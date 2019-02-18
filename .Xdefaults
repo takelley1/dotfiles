@@ -1,0 +1,57 @@
+!!
+!! ~/.Xdefaults
+!!
+
+!!!!!!!!!!!!!!!!!!
+!! rxvt-unicode !!
+!!!!!!!!!!!!!!!!!!
+
+URxvt*loginShell:true
+URxvt*transparent:true
+URxvt*shading:5
+URxvt*background:Black
+URxvt*foreground:White
+URxvt*scrollBar:true
+URxvt*scrollBar_right:true
+URxvt*scrollBar_floating:false
+URxvt*scrollstyle:plain
+URxvt*secondaryScroll:true
+
+! how many lines you want it to save per session
+URxvt*saveLines:32767
+URxvt*troughColor:#000000
+URxvt*scrollColor:#222222
+URxvt*font: xft:Dejavu Sans Mono:pixelsize=18
+
+! with this set to true, when an app sends a bell to the terminal, awesome hilights the appropriate tag(s) ;)
+URxvt*urgentOnBell: true
+
+! these three lines enable clicking on links to open them ;)
+! if you want to enable tab support, append ,tabbed to the next line
+! then use shift+down arrow to create tabs and shift+{left,right} arrows to switch between them
+URxvt*perl-ext-common: default,matcher,-option-popup,-selection-popup,-realine
+URxvt*matcher.button: 1
+! dont forget to change this to your favorite browser
+URxvt*urlLauncher: firefox
+
+!! The default colors are "Gruvbox":
+*.color0: #1d2021
+*.color1: #cc241d
+*.color2: #98971a
+*.color3: #d79921
+*.color4: #458588
+*.color5: #b16286
+*.color6: #689d6a
+*.color7: #a89984
+*.color8: #928374
+*.color9: #fb4934
+*.color10: #b8bb26
+*.color11: #fabd2f
+*.color12: #83a598
+*.color13: #d3869b
+*.color14: #8ec07c
+*.color15: #ffffff
+! Transparency (0-255):
+!st.alpha: 230
+!! Set a default font and font size as below:
+!! *.font: Monospace-14;
