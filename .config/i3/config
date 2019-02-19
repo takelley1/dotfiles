@@ -41,12 +41,16 @@ font pango:DejaVu Sans 11
  # set desktop background
    exec --no-startup-id feh --bg-scale /home/austin/.config/i3/2017-03-05_Earth_at_Night.jpg
 
-  ### start apps automatically		
+  ### start apps automatically
+     # main screen
      exec --no-startup-id i3-msg 'workspace 1: firefox; exec firefox'
-     exec --no-startup-id i3-msg 'workspace 2: terminal; exec terminator'
-     #exec --no-startup-id i3-msg 'workspace 3: files; exec urxvt -e ranger'
-     #exec --no-startup-id i3-msg 'workspace 7: system; exec terminator -e glances; exec CrashPlanDesktop workspace 5' 
-    
+     exec --no-startup-id i3-msg 'workspace 2: terminal; exec terminator --layout=austinslayout'
+     exec --no-startup-id i3-msg 'workspace 3: files; exec terminator -e ranger'
+     # right screen
+     exec --no-startup-id i3-msg 'workspace 7: system; exec terminator -e glances'
+     exec --no-startup-id i3-msg 'workspace 8: crashplan; exec CrashPlanDesktop'
+     # top screen
+     exec --no-startup-id i3-msg 'workspace 10; exec terminator'
 # FORMATTING ############################################
  
  # hide side borders
@@ -115,7 +119,8 @@ font pango:DejaVu Sans 11
 #floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec terminator
+bindsym $mod+Return exec terminator --layout=austinslayout
+bindsym $mod+Shift+Return exec terminator 
 
 # kill focused window
 bindsym $mod+Shift+k kill
@@ -170,7 +175,7 @@ bindsym $mod+4 workspace 4: docs
 bindsym $mod+5 workspace 5
 bindsym $mod+6 workspace 6
 bindsym $mod+7 workspace 7: system
-bindsym $mod+8 workspace 8
+bindsym $mod+8 workspace 8: crashplan
 bindsym $mod+9 workspace 9
 bindsym $mod+0 workspace 10
 bindsym $mod+Shift+1 workspace 11
