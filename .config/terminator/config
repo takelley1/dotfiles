@@ -1,5 +1,9 @@
 [global_config]
   focus = mouse
+  inactive_color_offset = 1.0
+  title_font = Sans 12
+  title_transmit_bg_color = "#4e9a06"
+  title_use_system_font = False
 [keybindings]
 [layouts]
   [[default]]
@@ -55,37 +59,37 @@
     [[[terminal10]]]
       order = 0
       parent = child9
-      profile = default
+      profile = austinsprofile
       type = Terminal
       uuid = dd56daaf-0472-4831-8e58-131c8d712f0a
     [[[terminal11]]]
       order = 1
       parent = child9
-      profile = default
+      profile = austinsprofile
       type = Terminal
       uuid = 9a214e3f-a6b7-407b-ada8-d811d5350be1
     [[[terminal4]]]
       order = 0
       parent = child3
-      profile = default
+      profile = austinsprofile
       type = Terminal
       uuid = 6e398979-97e5-45bb-9b80-1f8b788ee2cb
     [[[terminal5]]]
       order = 1
       parent = child3
-      profile = default
+      profile = austinsprofile
       type = Terminal
       uuid = 1fc41db7-0db5-458a-bea1-d49d6e311f23
     [[[terminal7]]]
       order = 0
       parent = child6
-      profile = default
+      profile = austinsprofile
       type = Terminal
       uuid = 94872cc5-7cc5-4ffd-89aa-6d70476dfff4
     [[[terminal8]]]
       order = 1
       parent = child6
-      profile = default
+      profile = austinsprofile
       type = Terminal
       uuid = 74ed2003-1a42-4971-9f3e-d7a737b6738c
   [[layout1]]
@@ -140,5 +144,18 @@
     font = Noto Sans Mono 15
     foreground_color = "#ebdbb2"
     icon_bell = False
+    scrollback_infinite = True
+    use_system_font = False
+  [[austinsprofile]]
+    background_color = "#2e3436"
+    copy_on_selection = True
+    cursor_blink = False
+    cursor_color = "#ffffff"
+    cursor_color_fg = False
+    exit_action = hold
+    font = Monospace 15
+    foreground_color = "#d1d1d1"
+    icon_bell = False
+    palette = "#000000:#cc0000:#4e9a06:#c4a000:#3465a4:#75507b:#06989a:#d3d7cf:#555753:#ef2929:#8ae234:#fce94f:#729fcf:#ad7fa8:#34e2e2:#eeeeec"
     scrollback_infinite = True
     use_system_font = False
