@@ -5,6 +5,18 @@
   title_transmit_bg_color = "#4e9a06"
   title_use_system_font = False
 [keybindings]
+  close_term = <Primary>w
+  copy = <Primary>c
+  cycle_next = <Primary><Shift><Alt>Tab
+  go_down = <Primary>Down
+  go_left = <Primary>Left
+  go_right = <Primary>Right
+  go_up = <Primary>Up
+  new_tab = <Primary>t
+  next_tab = <Primary>Tab
+  paste = <Primary>v
+  prev_tab = <Primary><Shift>Tab
+  search = <Primary>f
 [layouts]
   [[default]]
     [[[child1]]]
@@ -35,14 +47,14 @@
     [[[child2]]]
       order = 0
       parent = child1
-      position = 667
-      ratio = 0.673737373737
+      position = 731
+      ratio = 0.738383838384
       type = VPaned
     [[[child3]]]
       order = 0
       parent = child2
-      position = 1334
-      ratio = 0.697334030319
+      position = 1398
+      ratio = 0.730789336121
       type = HPaned
     [[[child6]]]
       order = 1
@@ -90,48 +102,6 @@
       order = 1
       parent = child6
       profile = austinsprofile
-      type = Terminal
-      uuid = 74ed2003-1a42-4971-9f3e-d7a737b6738c
-  [[layout1]]
-    [[[child0]]]
-      fullscreen = False
-      last_active_term = 6e398979-97e5-45bb-9b80-1f8b788ee2cb
-      last_active_window = True
-      maximised = False
-      order = 0
-      parent = ""
-      position = 0:1106
-      size = 1920, 1027
-      title = austin@uby: ~/.config
-      type = Window
-    [[[child1]]]
-      order = 0
-      parent = child0
-      position = 692
-      ratio = 0.6771037182
-      type = VPaned
-    [[[child3]]]
-      order = 1
-      parent = child1
-      position = 1093
-      ratio = 0.570757180157
-      type = HPaned
-    [[[terminal2]]]
-      order = 0
-      parent = child1
-      profile = default
-      type = Terminal
-      uuid = 6e398979-97e5-45bb-9b80-1f8b788ee2cb
-    [[[terminal4]]]
-      order = 0
-      parent = child3
-      profile = default
-      type = Terminal
-      uuid = 94872cc5-7cc5-4ffd-89aa-6d70476dfff4
-    [[[terminal5]]]
-      order = 1
-      parent = child3
-      profile = default
       type = Terminal
       uuid = 74ed2003-1a42-4971-9f3e-d7a737b6738c
 [plugins]
