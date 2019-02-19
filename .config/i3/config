@@ -43,9 +43,9 @@ font pango:DejaVu Sans 11
 
   ### start apps automatically		
      exec --no-startup-id i3-msg 'workspace 1: firefox; exec firefox'
-     exec --no-startup-id i3-msg "workspace 2: terminal; exec urxvt -bg 000000 -fn 'xft:Bitstream Vera Sans Mono:pixelsize=16'"
+     exec --no-startup-id i3-msg 'workspace 2: terminal; exec terminator'
      #exec --no-startup-id i3-msg 'workspace 3: files; exec urxvt -e ranger'
-     #exec --no-startup-id i3-msg 'workspace 7: system; exec urxvt -e glances; exec CrashPlanDesktop workspace 5' 
+     #exec --no-startup-id i3-msg 'workspace 7: system; exec terminator -e glances; exec CrashPlanDesktop workspace 5' 
     
 # FORMATTING ############################################
  
@@ -106,7 +106,7 @@ font pango:DejaVu Sans 11
    bindsym XF86AudioMute exec amixer set Master toggle
 
  # app hotkeys
-   bindsym $mod+r exec urxvt -e ranger
+   bindsym $mod+r exec terminator -e ranger
    bindsym $mod+i exec firefox
 
 #########################################################
@@ -115,7 +115,7 @@ font pango:DejaVu Sans 11
 #floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec urxvt
+bindsym $mod+Return exec terminator
 
 # kill focused window
 bindsym $mod+Shift+k kill
