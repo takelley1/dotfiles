@@ -50,46 +50,34 @@
     [[[child1]]]
       active_page = 0
       labels = None, None
-      last_active_term = d9782bb5-8f96-4653-a446-d7f0a30af341, 402ac4b1-47a2-4557-ac51-aa3a8cb6c41d
+      last_active_term = 9f11ff84-9fc1-4a30-b711-016bc5313c25, 7f8dba6c-a8e5-4ba9-9fbb-acc64c6448c2
       order = 0
       parent = child0
       type = Notebook
     [[[child2]]]
       order = 0
       parent = child1
-      position = 746
-      ratio = 0.753535353535
-      type = VPaned
-    [[[child5]]]
-      order = 1
-      parent = child1
-      position = 770
-      ratio = 0.777777777778
+      position = 749
+      ratio = 0.756565656566
       type = VPaned
     [[[terminal3]]]
       order = 0
       parent = child2
       profile = default
       type = Terminal
-      uuid = d9782bb5-8f96-4653-a446-d7f0a30af341
+      uuid = 9f11ff84-9fc1-4a30-b711-016bc5313c25
     [[[terminal4]]]
       order = 1
       parent = child2
       profile = default
       type = Terminal
-      uuid = 3abea1b7-8024-4544-8eb2-6240481dfcad
-    [[[terminal6]]]
-      order = 0
-      parent = child5
-      profile = default
-      type = Terminal
-      uuid = 402ac4b1-47a2-4557-ac51-aa3a8cb6c41d
-    [[[terminal7]]]
+      uuid = a3da14a1-aa81-4022-9687-79c43036d039
+    [[[terminal5]]]
       order = 1
-      parent = child5
+      parent = child1
       profile = default
       type = Terminal
-      uuid = 40568c5a-202c-46e4-a9a4-6eaf54ef7dbc
+      uuid = 7f8dba6c-a8e5-4ba9-9fbb-acc64c6448c2
 [plugins]
 [profiles]
   [[default]]
