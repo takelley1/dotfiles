@@ -122,7 +122,9 @@ font pango:DejaVu Sans 11
 
 # start a terminal
 bindsym $mod+Return exec terminator --layout=austinslayout
-bindsym $mod+Shift+Return exec terminator 
+#bindsym $mod+Shift+Return exec terminator
+
+bindsym $mod+Mod1+Return exec urxvt
 
 # kill focused window
 bindsym $mod+Shift+k kill
