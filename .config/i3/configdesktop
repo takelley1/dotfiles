@@ -27,32 +27,38 @@ font pango:DejaVu Sans 11
 
 # STARTUP COMMANDS ######################################
 
- # adjust mouse sensitivity
-   exec --no-startup-id xinput --set-prop 'pointer:Logitech USB Receiver' 295 -0.6
- # set cursor size
-   #exec --no-startup-id dconf write /org/gnome/desktop/interface/cursor-size 24
- # rebind F12 to mod5 in order to show hidden i3bar dock
-   exec xmodmap -e "keysym F12 = ISO_Level3_Shift"
+ # INPUT
+      exec --no-startup-id xinput --set-prop 'pointer:Logitech USB Receiver' 295 -0.6
+      mouse_warping none
+    # set cursor size
+      # exec --no-startup-id dconf write /org/gnome/desktop/interface/cursor-size 24
+    # rebind F12 to mod5 in order to show hidden i3bar dock
+      exec xmodmap -e "keysym F12 = ISO_Level3_Shift"
 
- # arrange displays
-   exec --no-startup-id xrandr --output DP-1 --primary --auto --right-of DVI-I-1 --output HDMI-1 --auto --above DVI-I-1
- # start redshift
-   exec --no-startup-id redshift-gtk -r -t 5500k:3000K 
- # set desktop background
-   exec --no-startup-id feh --bg-scale /home/austin/.config/i3/2017-03-05_Earth_at_Night.jpg
+ # DISPLAY
+      exec --no-startup-id xrandr --output DP-1 --primary --auto --right-of DVI-I-1 --output HDMI-0 --auto --above DVI-I-1
+    # start redshift
+      exec --no-startup-id redshift-gtk -r -t 5500k:3000K 
+    # set desktop background
+      exec --no-startup-id feh --bg-scale /home/austin/.config/i3/2017-03-05_Earth_at_Night.jpg
 
-  ### start apps automatically
-     # main screen
-     exec --no-startup-id i3-msg 'workspace 1: firefox; exec firefox'
-     exec --no-startup-id i3-msg 'workspace 2: terminal; exec terminator --layout=austinslayout'
-    # exec --no-startup-id i3-msg 'workspace 3: terminal; exec terminator --layout=austinslayout'
-     exec --no-startup-id i3-msg 'workspace 3: files; exec terminator -e ranger'
-     # right screen
-     exec --no-startup-id i3-msg 'workspace 7: system; exec terminator -e glances'
-     exec --no-startup-id i3-msg 'workspace 8: crashplan; exec CrashPlanDesktop'
-     exec --no-startup-id i3-msg 'workspace 9; exec terminator'
-     # top screen
-     exec --no-startup-id i3-msg 'workspace 10; exec terminator'
+ # STARTUP APPS
+    # main screen
+      exec --no-startup-id i3-msg 'workspace 1: firefox; exec firefox'
+      exec --no-startup-id i3-msg 'workspace 2: terminal; exec terminator' 
+      # exec --no-startup-id i3-msg 'workspace 3: terminal; exec terminator --layout=austinslayout'
+      # exec --no-startup-id i3-msg 'workspace 3: files; exec terminator -e ranger'
+    # right screen
+      #exec --no-startup-id i3-msg 'workspace 7: system; exec terminator -e glances'
+      exec --no-startup-id i3-msg 'workspace 8: crashplan; exec CrashPlanDesktop'
+      #exec --no-startup-id i3-msg 'workspace 2: terminal'
+      # exec --no-startup-id i3-msg 'workspace 9; exec terminator'
+    # top screen
+      # exec --no-startup-id i3-msg 'workspace 10; exec terminator'
+     
+ # DRIVES
+     exec mount -t nfs 10.0.0.20:/nfs-share/admin/files /home/austin/nfs-share
+
 # FORMATTING ############################################
  
  # hide side borders
@@ -73,9 +79,9 @@ font pango:DejaVu Sans 11
    workspace 8 output DP-1
    workspace 9 output DP-1
 
-   workspace 10 output HDMI-1
-   workspace 11 output HDMI-1
-   workspace 12 output HDMI-1
+   workspace 10 output HDMI-0
+   workspace 11 output HDMI-0
+   workspace 12 output HDMI-0
 
  ### colors
    # class                 border  backgr. text    indicator child_border
@@ -94,7 +100,7 @@ font pango:DejaVu Sans 11
    #client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
    #client.background       #ffffff
 
-# CUSTOM HOTKEYS ########################################
+# HOTKEYS ###############################################
   
  # new resizing hotkeys to remove 'resize mode'
  # 'Mod1' is alt
@@ -118,8 +124,6 @@ font pango:DejaVu Sans 11
  # app hotkeys
    bindsym $mod+r exec terminator -e ranger
    bindsym $mod+i exec firefox
-
-#########################################################
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 #floating_modifier $mod
@@ -273,7 +277,7 @@ bar {
 bar {
        status_command i3blocks -c /home/austin/.config/i3/i3blocks.conf
        colors {
-           statusline #bbbbbb
+           statusline #cccccc
        }
 }
 
