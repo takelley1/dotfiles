@@ -1,6 +1,5 @@
 [global_config]
   enabled_plugins = LaunchpadCodeURLHandler, APTURLHandler, Logger, LaunchpadBugURLHandler
-  focus = mouse
   inactive_color_offset = 1.0
   suppress_multiple_term_dialog = True
   title_font = Ubuntu Mono 12
@@ -38,95 +37,6 @@
     [[[window0]]]
       parent = ""
       type = Window
-  [[austinslayout]]
-    [[[child0]]]
-      fullscreen = False
-      last_active_window = False
-      maximised = False
-      order = 0
-      parent = ""
-      position = 0:26
-      size = 1920, 1027
-      title = austin@uby: ~
-      type = Window
-    [[[child1]]]
-      active_page = 1
-      labels = None, None, None
-      last_active_term = 9f11ff84-9fc1-4a30-b711-016bc5313c25, 7f8dba6c-a8e5-4ba9-9fbb-acc64c6448c2, fc2ed5f1-ea92-4e16-8247-9485221f2e64
-      order = 0
-      parent = child0
-      type = Notebook
-    [[[child2]]]
-      order = 0
-      parent = child1
-      position = 497
-      ratio = 0.50202020202
-      type = VPaned
-    [[[child7]]]
-      fullscreen = False
-      last_active_window = False
-      maximised = False
-      order = 0
-      parent = ""
-      position = 0:1106
-      size = 958, 1027
-      title = austin@uby: ~
-      type = Window
-    [[[child8]]]
-      active_page = 0
-      labels = None, None
-      last_active_term = 9f11ff84-9fc1-4a30-b711-016bc5313c25, 7f8dba6c-a8e5-4ba9-9fbb-acc64c6448c2
-      order = 0
-      parent = child7
-      type = Notebook
-    [[[child9]]]
-      order = 0
-      parent = child8
-      position = 852
-      ratio = 0.860606060606
-      type = VPaned
-    [[[terminal10]]]
-      order = 0
-      parent = child9
-      profile = default
-      type = Terminal
-      uuid = 9f11ff84-9fc1-4a30-b711-016bc5313c25
-    [[[terminal11]]]
-      order = 1
-      parent = child9
-      profile = default
-      type = Terminal
-      uuid = a3da14a1-aa81-4022-9687-79c43036d039
-    [[[terminal12]]]
-      order = 1
-      parent = child8
-      profile = default
-      type = Terminal
-      uuid = 7f8dba6c-a8e5-4ba9-9fbb-acc64c6448c2
-    [[[terminal3]]]
-      order = 0
-      parent = child2
-      profile = default
-      type = Terminal
-      uuid = 9f11ff84-9fc1-4a30-b711-016bc5313c25
-    [[[terminal4]]]
-      order = 1
-      parent = child2
-      profile = default
-      type = Terminal
-      uuid = a3da14a1-aa81-4022-9687-79c43036d039
-    [[[terminal5]]]
-      order = 1
-      parent = child1
-      profile = default
-      type = Terminal
-      uuid = 7f8dba6c-a8e5-4ba9-9fbb-acc64c6448c2
-    [[[terminal6]]]
-      order = 2
-      parent = child1
-      profile = default
-      type = Terminal
-      uuid = fc2ed5f1-ea92-4e16-8247-9485221f2e64
 [plugins]
 [profiles]
   [[default]]
