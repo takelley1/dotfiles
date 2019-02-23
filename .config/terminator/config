@@ -3,22 +3,24 @@
   focus = mouse
   inactive_color_offset = 1.0
   suppress_multiple_term_dialog = True
-  title_font = Sans 12
+  title_font = Ubuntu Mono 12
   title_transmit_bg_color = "#4e9a06"
   title_use_system_font = False
 [keybindings]
   close_term = <Primary>w
   copy = <Primary><Alt>c
   cycle_next = <Primary><Shift><Alt>Tab
-  go_down = <Primary>j
-  go_left = <Primary>h
-  go_next = <Primary>l
-  go_right = <Primary>Right
-  go_up = <Primary>k
+  cycle_prev = <Primary><Shift>Tab
+  go_down = <Primary><Shift><Alt>f
+  go_left = <Primary><Shift><Alt>h
+  go_next = <Primary><Shift><Alt><Super>Tab
+  go_prev = <Primary><Shift><Alt>Tab
+  go_right = <Primary><Shift><Alt>l
+  go_up = <Primary><Shift><Alt>k
   new_tab = <Primary>t
-  next_tab = <Primary>Tab
+  next_tab = <Primary>k
   paste = <Primary><Alt>v
-  prev_tab = <Primary><Shift>Tab
+  prev_tab = <Primary>j
   search = <Primary>f
   switch_to_tab_1 = <Primary>1
   switch_to_tab_2 = <Primary>2
@@ -39,7 +41,30 @@
   [[austinslayout]]
     [[[child0]]]
       fullscreen = False
-      last_active_window = True
+      last_active_window = False
+      maximised = False
+      order = 0
+      parent = ""
+      position = 0:26
+      size = 1920, 1027
+      title = austin@uby: ~
+      type = Window
+    [[[child1]]]
+      active_page = 1
+      labels = None, None, None
+      last_active_term = 9f11ff84-9fc1-4a30-b711-016bc5313c25, 7f8dba6c-a8e5-4ba9-9fbb-acc64c6448c2, fc2ed5f1-ea92-4e16-8247-9485221f2e64
+      order = 0
+      parent = child0
+      type = Notebook
+    [[[child2]]]
+      order = 0
+      parent = child1
+      position = 497
+      ratio = 0.50202020202
+      type = VPaned
+    [[[child7]]]
+      fullscreen = False
+      last_active_window = False
       maximised = False
       order = 0
       parent = ""
@@ -47,19 +72,37 @@
       size = 958, 1027
       title = austin@uby: ~
       type = Window
-    [[[child1]]]
+    [[[child8]]]
       active_page = 0
       labels = None, None
       last_active_term = 9f11ff84-9fc1-4a30-b711-016bc5313c25, 7f8dba6c-a8e5-4ba9-9fbb-acc64c6448c2
       order = 0
-      parent = child0
+      parent = child7
       type = Notebook
-    [[[child2]]]
+    [[[child9]]]
       order = 0
-      parent = child1
-      position = 749
-      ratio = 0.756565656566
+      parent = child8
+      position = 852
+      ratio = 0.860606060606
       type = VPaned
+    [[[terminal10]]]
+      order = 0
+      parent = child9
+      profile = default
+      type = Terminal
+      uuid = 9f11ff84-9fc1-4a30-b711-016bc5313c25
+    [[[terminal11]]]
+      order = 1
+      parent = child9
+      profile = default
+      type = Terminal
+      uuid = a3da14a1-aa81-4022-9687-79c43036d039
+    [[[terminal12]]]
+      order = 1
+      parent = child8
+      profile = default
+      type = Terminal
+      uuid = 7f8dba6c-a8e5-4ba9-9fbb-acc64c6448c2
     [[[terminal3]]]
       order = 0
       parent = child2
@@ -78,26 +121,33 @@
       profile = default
       type = Terminal
       uuid = 7f8dba6c-a8e5-4ba9-9fbb-acc64c6448c2
+    [[[terminal6]]]
+      order = 2
+      parent = child1
+      profile = default
+      type = Terminal
+      uuid = fc2ed5f1-ea92-4e16-8247-9485221f2e64
 [plugins]
 [profiles]
   [[default]]
     background_color = "#282828"
+    copy_on_selection = True
     cursor_blink = False
     cursor_color = "#ffffff"
     cursor_color_fg = False
-    font = Noto Sans Mono 15
+    font = Monospace 15
     foreground_color = "#ebdbb2"
     icon_bell = False
     scrollback_infinite = True
     use_system_font = False
   [[austinsprofile]]
-    background_color = "#2e3436"
+    background_color = "#191919"
     copy_on_selection = True
     cursor_blink = False
     cursor_color = "#ffffff"
     cursor_color_fg = False
     exit_action = hold
-    font = Monospace 15
+    font = Monospace 13
     foreground_color = "#d1d1d1"
     icon_bell = False
     palette = "#000000:#cc0000:#4e9a06:#c4a000:#3465a4:#75507b:#06989a:#d3d7cf:#555753:#ef2929:#8ae234:#fce94f:#729fcf:#ad7fa8:#34e2e2:#eeeeec"
