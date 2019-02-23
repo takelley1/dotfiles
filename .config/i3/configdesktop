@@ -110,6 +110,10 @@ font pango:DejaVu Sans 11
    bindsym XF86AudioLowerVolume exec amixer set Master 3%-
    bindsym XF86AudioRaiseVolume exec amixer set Master 3%+
    bindsym XF86AudioMute exec amixer set Master toggle
+  
+ # brightness controls
+   bindsym F2 exec brightness-
+   bindsym F3 exec brightness+
 
  # app hotkeys
    bindsym $mod+r exec terminator -e ranger
@@ -121,8 +125,8 @@ font pango:DejaVu Sans 11
 #floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec terminator --layout=austinslayout
-bindsym $mod+Shift+Return exec terminator
+bindsym $mod+Return exec terminator --profile=austinsprofile --layout=austinslayout
+bindsym $mod+Shift+Return exec terminator --profile=austinsprofile
 
 bindsym $mod+Mod1+Return exec urxvt
 
