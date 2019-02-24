@@ -43,8 +43,8 @@ font pango:DejaVu Sans 9
 
   ### start apps automatically
      # main screen
+     exec --no-startup-id i3-msg 'workspace 2: terminal; exec terminator --profile=austinsprofile'
      exec --no-startup-id i3-msg 'workspace 1: firefox; exec firefox'
-     exec --no-startup-id i3-msg 'workspace 2: terminal exec terminator --profile=austinsprofile'
     # exec --no-startup-id i3-msg 'workspace 2: terminal; exec terminator --layout=austinslayout; workspace 3: files'
     # exec --no-startup-id i3-msg 'workspace 3: terminal; exec terminator --layout=austinslayout'
     # exec --no-startup-id i3-msg 'workspace 3: files; exec terminator -e ranger; workspace 7: system'
@@ -247,6 +247,6 @@ bar {
 bar {
        status_command i3blocks -c /home/austin/.config/i3/i3blocks.conf
        colors {
-           statusline #bbbbbb
+           statusline #dddddd
        }
 }
