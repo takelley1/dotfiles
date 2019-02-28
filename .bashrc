@@ -2,6 +2,8 @@
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
+# auto mount drive since fstab won't work
+
 # COMMANDS ##############################################
 
         # custom git alias used for backing up dotfiles
