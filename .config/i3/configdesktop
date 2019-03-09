@@ -42,18 +42,6 @@ font pango:DejaVu Sans 11
     # start redshift
       #exec --no-startup-id redshift-gtk -r -t 5500k:3000K
       #
-      # screen brightness adjustment hotkeys 
-      bindsym $mod+Mod1+0 exec /home/austin/.config/i3/brightness/brightness-10.sh
-      bindsym $mod+Mod1+9 exec /home/austin/.config/i3/brightness/brightness-9.sh
-      bindsym $mod+Mod1+8 exec /home/austin/.config/i3/brightness/brightness-8.sh
-      bindsym $mod+Mod1+7 exec /home/austin/.config/i3/brightness/brightness-7.sh
-      bindsym $mod+Mod1+6 exec /home/austin/.config/i3/brightness/brightness-6.sh
-      bindsym $mod+Mod1+5 exec /home/austin/.config/i3/brightness/brightness-5.sh
-      bindsym $mod+Mod1+4 exec /home/austin/.config/i3/brightness/brightness-4.sh
-      bindsym $mod+Mod1+3 exec /home/austin/.config/i3/brightness/brightness-3.sh
-      bindsym $mod+Mod1+2 exec /home/austin/.config/i3/brightness/brightness-2.sh
-      bindsym $mod+Mod1+1 exec /home/austin/.config/i3/brightness/brightness-1.sh
-
     # set desktop background
       exec --no-startup-id feh --bg-scale /home/austin/.config/i3/background
 
@@ -120,8 +108,12 @@ font pango:DejaVu Sans 11
    #client.background       #ffffff
 
 # HOTKEYS ###############################################
-  
- # new resizing hotkeys to remove 'resize mode'
+ 
+ # screen brightness adjustment hotkeys for screens without a backlight
+   bindsym $mod+Up exec /home/austin/.config/i3/brightness-up.sh 
+   bindsym $mod+Down exec /home/austin/.config/i3/brightness-down.sh
+
+    # new resizing hotkeys to remove 'resize mode'
  # 'Mod1' is alt
    bindsym $mod+Mod1+h resize shrink width 5 px or 5 ppt
    bindsym $mod+Mod1+k resize grow height 5 px or 5 ppt
@@ -129,17 +121,10 @@ font pango:DejaVu Sans 11
    bindsym $mod+Mod1+l resize grow width 5 px or 5 ppt
 
  # volume controls
-   bindsym $mod+Down exec amixer set Master 3%-
-   bindsym $mod+Up exec amixer set Master 3%+
-
    bindsym XF86AudioLowerVolume exec amixer set Master 2%-
    bindsym XF86AudioRaiseVolume exec amixer set Master 2%+
    bindsym XF86AudioMute exec amixer set Master toggle
   
- # brightness controls
-   #bindsym F2 exec brightness-
-   #bindsym F3 exec brightness+
-
  # app hotkeys
    bindsym $mod+r exec terminator -e ranger
    bindsym $mod+i exec firefox

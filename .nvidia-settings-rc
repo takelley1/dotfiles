@@ -2,7 +2,7 @@
 # /home/austin/.nvidia-settings-rc
 #
 # Configuration file for nvidia-settings - the NVIDIA X Server Settings utility
-# Generated on Wed Mar  6 20:56:54 2019
+# Generated on Sat Mar  9 13:32:24 2019
 #
 
 # ConfigProperties:
@@ -13,21 +13,21 @@ SliderTextEntries = Yes
 IncludeDisplayNameInConfigFile = Yes
 ShowQuitDialog = Yes
 UpdateRulesOnProfileNameChange = Yes
-Timer = PowerMizer_Monitor_(GPU_0),Yes,1000
-Timer = Thermal_Monitor_(GPU_0),Yes,1000
 Timer = Memory_Used_(GPU_0),Yes,3000
+Timer = Thermal_Monitor_(GPU_0),Yes,1000
+Timer = PowerMizer_Monitor_(GPU_0),Yes,1000
 
 # Attributes:
 
 uby:1.0/SyncToVBlank=1
-uby:1.0/LogAniso=4
-uby:1.0/FSAA=11
+uby:1.0/LogAniso=0
+uby:1.0/FSAA=0
 uby:1.0/TextureClamping=1
 uby:1.0/FXAA=0
 uby:1.0/AllowFlipping=1
-uby:1.0/FSAAAppControlled=0
-uby:1.0/LogAnisoAppControlled=0
-uby:1.0/OpenGLImageSettings=0
+uby:1.0/FSAAAppControlled=1
+uby:1.0/LogAnisoAppControlled=1
+uby:1.0/OpenGLImageSettings=1
 uby:1.0/FSAAAppEnhanced=0
 uby:1.0/ShowGraphicsVisualIndicator=0
 uby:1[DPY:DVI-I-0]/Dithering=0
