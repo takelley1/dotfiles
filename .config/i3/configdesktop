@@ -38,10 +38,8 @@ font pango:DejaVu Sans 11
       exec --no-startup-id numlockx on
 
  # DISPLAY
- #
     # start redshift
       #exec --no-startup-id redshift-gtk -r -t 5500k:3000K
-      #
     # set desktop background
       exec --no-startup-id feh --bg-scale /home/austin/.config/i3/background
 
@@ -110,11 +108,27 @@ font pango:DejaVu Sans 11
 # HOTKEYS ###############################################
  
  # screen brightness adjustment hotkeys for screens without a backlight
-   bindsym $mod+Up exec /home/austin/.config/i3/brightness-up.sh 
-   bindsym $mod+Down exec /home/austin/.config/i3/brightness-down.sh
+   bindsym $mod+Mod1+Up exec /home/austin/.config/i3/brightness/brightness-up.sh 
+   bindsym $mod+Mod1+Down exec /home/austin/.config/i3/brightness/brightness-down.sh
+ # reset brightness
+   bindsym $mod+Mod1+Right exec /home/austin/.config/i3/brightness/brightness-reset.sh
 
-    # new resizing hotkeys to remove 'resize mode'
- # 'Mod1' is alt
+ # redshift brightness hotkeys
+   bindsym $mod+Mod1+0 exec /home/austin/.config/i3/redshift/redshift-brightness-10.sh
+   bindsym $mod+Mod1+9 exec /home/austin/.config/i3/redshift/redshift-brightness-9.sh
+   bindsym $mod+Mod1+8 exec /home/austin/.config/i3/redshift/redshift-brightness-8.sh
+   bindsym $mod+Mod1+7 exec /home/austin/.config/i3/redshift/redshift-brightness-7.sh
+   bindsym $mod+Mod1+6 exec /home/austin/.config/i3/redshift/redshift-brightness-6.sh
+   bindsym $mod+Mod1+5 exec /home/austin/.config/i3/redshift/redshift-brightness-5.sh
+   bindsym $mod+Mod1+4 exec /home/austin/.config/i3/redshift/redshift-brightness-4.sh
+   bindsym $mod+Mod1+3 exec /home/austin/.config/i3/redshift/redshift-brightness-3.sh
+   bindsym $mod+Mod1+2 exec /home/austin/.config/i3/redshift/redshift-brightness-2.sh
+   bindsym $mod+Mod1+1 exec /home/austin/.config/i3/redshift/redshift-brightness-1.sh
+ # kill redshift
+   bindsym $mod+Shift+r exec ps ax | grep redshift | cut -c 1-5 | xargs kill &> /dev/null 
+
+ # new resizing hotkeys to remove 'resize mode'
+   # 'Mod1' is alt
    bindsym $mod+Mod1+h resize shrink width 5 px or 5 ppt
    bindsym $mod+Mod1+k resize grow height 5 px or 5 ppt
    bindsym $mod+Mod1+j resize shrink height 5 px or 5 ppt
@@ -269,10 +283,11 @@ bindsym --release Num_Lock  exec pkill -SIGRTMIN+11 i3blocks
 # hidden detailed status bar, invoked with F12
 bar {
         status_command i3blocks -c /home/austin/.config/i3/i3blocks-hidden.conf
-        tray_output DVI-I-1
+        tray_output none
         mode hide
         hidden_state hide
         modifier Mod5
+        tray_output DVI-I-1
 	colors {
 	    statusline #ffffff
 	}
@@ -281,6 +296,7 @@ bar {
 # persistent status bar
 bar {
        status_command i3blocks -c /home/austin/.config/i3/i3blocks.conf
+       tray_output DVI-I-1
        colors {
            statusline #cccccc
        }
