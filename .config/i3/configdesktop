@@ -28,7 +28,7 @@ font pango:DejaVu Sans 11
 # STARTUP COMMANDS ######################################
 
  # INPUT
-      exec --no-startup-id xinput --set-prop 10 295 -0.6
+      exec --no-startup-id xinput --set-prop 10 296 -0.6
       mouse_warping none
     # set cursor size
       # exec --no-startup-id dconf write /org/gnome/desktop/interface/cursor-size 24
@@ -38,8 +38,22 @@ font pango:DejaVu Sans 11
       exec --no-startup-id numlockx on
 
  # DISPLAY
+ #
     # start redshift
-      exec --no-startup-id redshift-gtk -r -t 5500k:3000K 
+      #exec --no-startup-id redshift-gtk -r -t 5500k:3000K
+      #
+      # screen brightness adjustment hotkeys 
+      bindsym $mod+Mod1+0 exec /home/austin/.config/i3/brightness/brightness-10.sh
+      bindsym $mod+Mod1+9 exec /home/austin/.config/i3/brightness/brightness-9.sh
+      bindsym $mod+Mod1+8 exec /home/austin/.config/i3/brightness/brightness-8.sh
+      bindsym $mod+Mod1+7 exec /home/austin/.config/i3/brightness/brightness-7.sh
+      bindsym $mod+Mod1+6 exec /home/austin/.config/i3/brightness/brightness-6.sh
+      bindsym $mod+Mod1+5 exec /home/austin/.config/i3/brightness/brightness-5.sh
+      bindsym $mod+Mod1+4 exec /home/austin/.config/i3/brightness/brightness-4.sh
+      bindsym $mod+Mod1+3 exec /home/austin/.config/i3/brightness/brightness-3.sh
+      bindsym $mod+Mod1+2 exec /home/austin/.config/i3/brightness/brightness-2.sh
+      bindsym $mod+Mod1+1 exec /home/austin/.config/i3/brightness/brightness-1.sh
+
     # set desktop background
       exec --no-startup-id feh --bg-scale /home/austin/.config/i3/background
 
