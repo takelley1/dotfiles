@@ -16,7 +16,7 @@ set $mod Mod4
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
-font pango:DejaVu Sans 11
+font pango:Roboto 12
 
 # Before i3 v4.8, we used to recommend this one as the default:
 # font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
@@ -33,13 +33,17 @@ font pango:DejaVu Sans 11
     # set cursor size
       # exec --no-startup-id dconf write /org/gnome/desktop/interface/cursor-size 24
     # rebind F12 to mod5 in order to show hidden i3bar dock
-      exec xmodmap -e "keysym F12 = ISO_Level3_Shift"
+      exec_always xmodmap -e "keysym F12 = ISO_Level3_Shift"
     # make sure numlock is on
-      exec --no-startup-id numlockx on
+      exec_always --no-startup-id numlockx on
+    # set keyboard key repeat delay
+      exec_always xset r rate 200 30
 
  # DISPLAY
     # start redshift
-      #exec --no-startup-id redshift-gtk -r -t 5500k:3000K
+      exec --no-startup-id redshift-gtk -t 6500:3000
+    # set primary display output for xrandr
+      exec --no-startup-id xrandr --output DVI-I-1 --primary
     # set desktop background
       exec --no-startup-id feh --bg-scale /home/austin/.config/i3/background
 
@@ -52,7 +56,7 @@ font pango:DejaVu Sans 11
       #exec --no-startup-id i3-msg 'workspace 3: files; exec terminator -e ranger'
       #exec --no-startup-id sleep 5
     # right screen
-      exec --no-startup-id i3-msg 'workspace 7: system; exec urxvt -e glances'
+      #exec --no-startup-id i3-msg 'workspace 7: system; exec urxvt -e glances'
       exec --no-startup-id sleep 500
       exec --no-startup-id i3-msg 'workspace 8: crashplan; exec CrashPlanDesktop; workspace 9'
       exec --no-startup-id sleep 500
@@ -280,6 +284,16 @@ bindsym --release Num_Lock  exec pkill -SIGRTMIN+11 i3blocks
 #bindsym $mod+r mode "resize"
 
 # use i3blocks instead of default
+# persistent status bar
+bar {
+       status_command i3blocks -c /home/austin/.config/i3/i3blocks.conf
+       tray_output primary
+       tray_output DVI-I-1
+       colors {
+           statusline #cccccc
+       }
+}
+
 # hidden detailed status bar, invoked with F12
 bar {
         status_command i3blocks -c /home/austin/.config/i3/i3blocks-hidden.conf
@@ -287,18 +301,9 @@ bar {
         mode hide
         hidden_state hide
         modifier Mod5
-        tray_output DVI-I-1
 	colors {
 	    statusline #ffffff
 	}
 }
 
-# persistent status bar
-bar {
-       status_command i3blocks -c /home/austin/.config/i3/i3blocks.conf
-       tray_output DVI-I-1
-       colors {
-           statusline #cccccc
-       }
-}
 
