@@ -142,6 +142,9 @@ font pango:Roboto 12
    bindsym XF86AudioLowerVolume exec amixer set Master 2%-
    bindsym XF86AudioRaiseVolume exec amixer set Master 2%+
    bindsym XF86AudioMute exec amixer set Master toggle
+
+   bindsym $mod+Down exec amixer set Master 2%-
+   bindsym $mod+Up exec amixer set Master 2%+
   
  # app hotkeys
    bindsym $mod+r exec terminator -e ranger
