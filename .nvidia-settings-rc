@@ -2,7 +2,7 @@
 # /home/austin/.nvidia-settings-rc
 #
 # Configuration file for nvidia-settings - the NVIDIA X Server Settings utility
-# Generated on Sat Mar  9 13:32:24 2019
+# Generated on Sat Mar  9 15:00:29 2019
 #
 
 # ConfigProperties:
@@ -13,9 +13,9 @@ SliderTextEntries = Yes
 IncludeDisplayNameInConfigFile = Yes
 ShowQuitDialog = Yes
 UpdateRulesOnProfileNameChange = Yes
-Timer = Memory_Used_(GPU_0),Yes,3000
-Timer = Thermal_Monitor_(GPU_0),Yes,1000
 Timer = PowerMizer_Monitor_(GPU_0),Yes,1000
+Timer = Thermal_Monitor_(GPU_0),Yes,1000
+Timer = Memory_Used_(GPU_0),Yes,3000
 
 # Attributes:
 
