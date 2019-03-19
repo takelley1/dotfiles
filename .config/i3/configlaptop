@@ -29,15 +29,11 @@ font pango:DejaVu Sans 9
 
  # adjust mouse sensitivity
    #exec --no-startup-id xinput --set-prop 'pointer:Logitech USB Receiver' 295 -0.6
- # set cursor size
-   #exec --no-startup-id dconf write /org/gnome/desktop/interface/cursor-size 24
  # rebind F5 to mod5 in order to show hidden i3bar dock
    exec_always xmodmap -e "keysym F5 = ISO_Level3_Shift"
  # set key repeat delay
    exec_always xset r rate 200 30
 
- # arrange displays
-   #exec --no-startup-id xrandr --output DP-1 --primary --auto --right-of DVI-I-1 --output HDMI-1 --auto --above DVI-I-1
  # start redshift
    exec --no-startup-id redshift-gtk -r -t 5500k:3000K 
  # set desktop background
@@ -47,15 +43,6 @@ font pango:DejaVu Sans 9
      # main screen
      exec --no-startup-id i3-msg 'workspace 2: terminal; exec terminator --profile=austinsprofile'
      exec --no-startup-id i3-msg 'workspace 1: firefox; exec firefox'
-    # exec --no-startup-id i3-msg 'workspace 2: terminal; exec terminator --layout=austinslayout; workspace 3: files'
-    # exec --no-startup-id i3-msg 'workspace 3: terminal; exec terminator --layout=austinslayout'
-    # exec --no-startup-id i3-msg 'workspace 3: files; exec terminator -e ranger; workspace 7: system'
-     # right screen
-    # exec --no-startup-id i3-msg 'workspace 7: system; exec terminator -e glances; workspace 8: crashplan'
-    # exec --no-startup-id i3-msg 'workspace 8: crashplan; exec CrashPlanDesktop; workspace 9'
-    # exec --no-startup-id i3-msg 'workspace 9; exec terminator; workspace 10'
-     # top screen
-    # exec --no-startup-id i3-msg 'workspace 10; exec terminator; workspace 1: firefox'
 # FORMATTING ############################################
  
  # hide side borders
@@ -91,12 +78,12 @@ font pango:DejaVu Sans 9
    bindsym $mod+Mod1+l resize grow width 5 px or 5 ppt
 
  # volume controls
-   bindsym $mod+Down exec amixer set Master 3%-
-   bindsym $mod+Up exec amixer set Master 3%+
+   bindsym $mod+Down exec amixer set Master 5%-
+   bindsym $mod+Up exec amixer set Master 5%+
 
    #bindsym F6 exec amixer set Master toggle
-   bindsym F7 exec amixer set Master 3%-
-   bindsym F8 exec amixer set Master 3%+
+   bindsym F7 exec amixer set Master 5%-
+   bindsym F8 exec amixer set Master 5%+
 
    bindsym XF86AudioLowerVolume exec amixer set Master 3%-
    bindsym XF86AudioRaiseVolume exec amixer set Master 3%+
@@ -126,7 +113,6 @@ bindsym $mod+Shift+k kill
 
 # use rofi instead of dmenu
 bindsym $mod+d exec rofi -show run
-# bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 
 # change focus
 bindsym $mod+h focus left
@@ -164,12 +150,12 @@ bindsym $mod+v split v
 # switch to workspace
 bindsym $mod+1 workspace 1: firefox
 bindsym $mod+2 workspace 2: terminal
-bindsym $mod+3 workspace 3: files
+bindsym $mod+3 workspace 3
 bindsym $mod+4 workspace 4
 bindsym $mod+5 workspace 5
 bindsym $mod+6 workspace 6
-bindsym $mod+7 workspace 7: system
-bindsym $mod+8 workspace 8: crashplan
+bindsym $mod+7 workspace 7
+bindsym $mod+8 workspace 8
 bindsym $mod+9 workspace 9
 bindsym $mod+0 workspace 10
 bindsym $mod+Shift+1 workspace 11
@@ -186,12 +172,12 @@ bindsym $mod+Shift+0 workspace 20
 # move focused container to workspace
 bindsym $mod+Control+1 move container to workspace 1: firefox
 bindsym $mod+Control+2 move container to workspace 2: terminal
-bindsym $mod+Control+3 move container to workspace 3: files
+bindsym $mod+Control+3 move container to workspace 3
 bindsym $mod+Control+4 move container to workspace 4
 bindsym $mod+Control+5 move container to workspace 5
 bindsym $mod+Control+6 move container to workspace 6
-bindsym $mod+Control+7 move container to workspace 7: system
-bindsym $mod+Control+8 move container to workspace 8: crashplan
+bindsym $mod+Control+7 move container to workspace 7
+bindsym $mod+Control+8 move container to workspace 8
 bindsym $mod+Control+9 move container to workspace 9
 bindsym $mod+Control+0 move container to workspace 10
 bindsym $mod+Control+Shift+1 move container to workspace 11
@@ -212,29 +198,9 @@ bindsym $mod+Control+r restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Control+e exec i3-msg exit
 
-# resize window (you can also use the mouse for that)
-#mode "resize" {
-        # These bindings trigger as soon as you enter the resize mode
-
-        # Pressing left will shrink the window’s width.
-        # Pressing right will grow the window’s width.
-        # Pressing up will shrink the window’s height.
-        # Pressing down will grow the window’s height.
-       # bindsym j resize shrink width 10 px or 10 ppt
-       # bindsym k resize grow height 10 px or 10 ppt
-       # bindsym l resize shrink height 10 px or 10 ppt
-       # bindsym semicolon resize grow width 10 px or 10 ppt
-
-        # back to normal: Enter or Escape
-       # bindsym Return mode "default"
-       # bindsym Escape mode "default"
-#}
-
 # required keybindings for i3blocks to detect capslock and numlock
 bindsym --release Caps_Lock exec pkill -SIGRTMIN+11 i3blocks
 bindsym --release Num_Lock  exec pkill -SIGRTMIN+11 i3blocks
-
-#bindsym $mod+r mode "resize"
 
 # use i3blocks instead of default
 # hidden detailed status bar, invoked with F5
@@ -243,6 +209,7 @@ bar {
         #tray_output DVI-I-1
         mode hide
         hidden_state hide
+        tray_output none
         modifier Mod5
 	colors {
 	    statusline #ffffff
