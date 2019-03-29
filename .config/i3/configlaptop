@@ -35,7 +35,7 @@ font pango:DejaVu Sans 9
    exec_always xset r rate 200 30
 
  # start redshift
-   exec --no-startup-id redshift-gtk -r -t 5500k:3000K 
+   exec --no-startup-id redshift-gtk -r -t 5500k:2700K 
  # set desktop background
    #exec --no-startup-id feh --bg-scale /home/austin/.config/i3/2017-03-05_Earth_at_Night.jpg
 
@@ -69,7 +69,13 @@ font pango:DejaVu Sans 9
    #client.background       #ffffff
 
 # CUSTOM HOTKEYS ########################################
-  
+ 
+ # lock screen
+   bindsym $mod+x exec i3lock -c 440000
+ 
+ # take screenshot with printscreen key and name with timestamp
+  bindsym 0xff61 exec --no-startup-id import -window root ~/Pictures/latest-screenshot.png &&  mv ~/Pictures/latest-screenshot.png ~/Pictures/screenshot_$(date +%H:%M:%S_%d-%m-%Y).png
+
  # new resizing hotkeys to remove 'resize mode'
  # 'Mod1' is alt
    bindsym $mod+Mod1+h resize shrink width 5 px or 5 ppt

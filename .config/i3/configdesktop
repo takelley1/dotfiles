@@ -110,7 +110,10 @@ font pango:Roboto 12
    #client.background       #ffffff
 
 # HOTKEYS ###############################################
- 
+
+ # take screenshot with printscreen key and name with timestamp
+  bindsym 0xff61 exec --no-startup-id import -window root ~/Pictures/latest-screenshot.png && mv ~/Pictures/latest-screenshot.png ~/Pictures/screenshot_$(date +%H:%M:%S_%d-%m-%Y).png 
+
  # screen brightness adjustment hotkeys for screens without a backlight
    bindsym $mod+Mod1+Up exec /home/austin/.config/i3/brightness/brightness-up.sh 
    bindsym $mod+Mod1+Down exec /home/austin/.config/i3/brightness/brightness-down.sh
