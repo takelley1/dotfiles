@@ -16,7 +16,7 @@ set $mod Mod4
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
-font pango:Roboto 12
+font pango:DejaVu Sans 11
 
 # Before i3 v4.8, we used to recommend this one as the default:
 # font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
@@ -27,47 +27,32 @@ font pango:Roboto 12
 
 # STARTUP COMMANDS ######################################
 
- # INPUT
-      exec --no-startup-id xinput --set-prop 10 296 -0.6
-      mouse_warping none
-    # set cursor size
-      # exec --no-startup-id dconf write /org/gnome/desktop/interface/cursor-size 24
-    # rebind F12 to mod5 in order to show hidden i3bar dock
-      exec_always xmodmap -e "keysym F12 = ISO_Level3_Shift"
-    # make sure numlock is on
-      exec_always --no-startup-id numlockx on
-    # set keyboard key repeat delay
-      exec_always xset r rate 200 30
+ # adjust mouse sensitivity
+   exec --no-startup-id xinput --set-prop 'pointer:Logitech USB Receiver' 295 -0.6
+ # set cursor size
+   #exec --no-startup-id dconf write /org/gnome/desktop/interface/cursor-size 24
+ # rebind F12 to mod5 in order to show hidden i3bar dock
+   exec xmodmap -e "keysym F12 = ISO_Level3_Shift"
 
- # DISPLAY
-    # start redshift
-      exec --no-startup-id redshift-gtk -t 6500:3000
-    # set primary display output for xrandr
-      exec --no-startup-id xrandr --output DVI-I-1 --primary
-    # set desktop background
-      exec --no-startup-id feh --bg-scale /home/austin/.config/i3/background
+ # arrange displays
+   exec --no-startup-id xrandr --output DP-1 --primary --auto --right-of DVI-I-1 --output HDMI-1 --auto --above DVI-I-1
+ # start redshift
+   exec --no-startup-id redshift-gtk -r -t 5500k:3000K 
+ # set desktop background
+   exec --no-startup-id feh --bg-scale /home/austin/.config/i3/2017-03-05_Earth_at_Night.jpg
 
- # STARTUP APPS
-    # main screen
-      exec --no-startup-id i3-msg 'workspace 1: firefox; exec firefox'
-      exec --no-startup-id sleep 500
-      exec --no-startup-id i3-msg 'workspace 2: terminal; exec terminator' 
-      exec --no-startup-id sleep 500
-      #exec --no-startup-id i3-msg 'workspace 3: files; exec terminator -e ranger'
-      #exec --no-startup-id sleep 5
-    # right screen
-      #exec --no-startup-id i3-msg 'workspace 7: system; exec urxvt -e glances'
-      exec --no-startup-id sleep 500
-      exec --no-startup-id i3-msg 'workspace 8: crashplan; exec CrashPlanDesktop; workspace 9'
-      exec --no-startup-id sleep 500
-      #exec --no-startup-id i3-msg 'workspace 9; exec terminator'
-      #exec --no-startup-id sleep 5
-      exec --no-startup-id i3-msg 'workspace 2: terminal'
-      exec --no-startup-id sleep 500
-      
-    # top screen
-#      exec --no-startup-id i3-msg 'workspace 10; exec terminator'
-     
+  ### start apps automatically
+     # main screen
+     exec --no-startup-id i3-msg 'workspace 1: firefox; exec firefox; workspace 2: terminal'
+     exec --no-startup-id i3-msg 'workspace 2: terminal; exec terminator --layout=austinslayout; workspace 3: files'
+    # exec --no-startup-id i3-msg 'workspace 3: terminal; exec terminator --layout=austinslayout'
+     exec --no-startup-id i3-msg 'workspace 3: files; exec terminator -e ranger; workspace 7: system'
+     # right screen
+     exec --no-startup-id i3-msg 'workspace 7: system; exec terminator -e glances; workspace 8: crashplan'
+     exec --no-startup-id i3-msg 'workspace 8: crashplan; exec CrashPlanDesktop; workspace 9'
+     exec --no-startup-id i3-msg 'workspace 9; exec terminator; workspace 10'
+     # top screen
+     exec --no-startup-id i3-msg 'workspace 10; exec terminator; workspace 1: firefox'
 # FORMATTING ############################################
  
  # hide side borders
@@ -88,9 +73,9 @@ font pango:Roboto 12
    workspace 8 output DP-1
    workspace 9 output DP-1
 
-   workspace 10 output HDMI-0
-   workspace 11 output HDMI-0
-   workspace 12 output HDMI-0
+   workspace 10 output HDMI-1
+   workspace 11 output HDMI-1
+   workspace 12 output HDMI-1
 
  ### colors
    # class                 border  backgr. text    indicator child_border
@@ -109,60 +94,35 @@ font pango:Roboto 12
    #client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
    #client.background       #ffffff
 
-# HOTKEYS ###############################################
-
- # take screenshot with printscreen key and name with timestamp
-  bindsym 0xff61 exec --no-startup-id import -window root ~/Pictures/latest-screenshot.png && mv ~/Pictures/latest-screenshot.png ~/Pictures/screenshot_$(date +%H:%M:%S_%d-%m-%Y).png 
-
- # screen brightness adjustment hotkeys for screens without a backlight
-   bindsym $mod+Mod1+Up exec /home/austin/.config/i3/brightness/brightness-up.sh 
-   bindsym $mod+Mod1+Down exec /home/austin/.config/i3/brightness/brightness-down.sh
- # reset brightness
-   bindsym $mod+Mod1+Right exec /home/austin/.config/i3/brightness/brightness-reset.sh
-
- # redshift brightness hotkeys
-   bindsym $mod+Mod1+0 exec /home/austin/.config/i3/redshift/redshift-brightness-10.sh
-   bindsym $mod+Mod1+9 exec /home/austin/.config/i3/redshift/redshift-brightness-9.sh
-   bindsym $mod+Mod1+8 exec /home/austin/.config/i3/redshift/redshift-brightness-8.sh
-   bindsym $mod+Mod1+7 exec /home/austin/.config/i3/redshift/redshift-brightness-7.sh
-   bindsym $mod+Mod1+6 exec /home/austin/.config/i3/redshift/redshift-brightness-6.sh
-   bindsym $mod+Mod1+5 exec /home/austin/.config/i3/redshift/redshift-brightness-5.sh
-   bindsym $mod+Mod1+4 exec /home/austin/.config/i3/redshift/redshift-brightness-4.sh
-   bindsym $mod+Mod1+3 exec /home/austin/.config/i3/redshift/redshift-brightness-3.sh
-   bindsym $mod+Mod1+2 exec /home/austin/.config/i3/redshift/redshift-brightness-2.sh
-   bindsym $mod+Mod1+1 exec /home/austin/.config/i3/redshift/redshift-brightness-1.sh
- # kill redshift
-   bindsym $mod+Shift+r exec ps ax | grep redshift | cut -c 1-5 | xargs kill &> /dev/null 
- 
- # sleep
-   bindsym $mod+s exec systemctl suspend
- 
+# CUSTOM HOTKEYS ########################################
+  
  # new resizing hotkeys to remove 'resize mode'
-   # 'Mod1' is alt
+ # 'Mod1' is alt
    bindsym $mod+Mod1+h resize shrink width 5 px or 5 ppt
    bindsym $mod+Mod1+k resize grow height 5 px or 5 ppt
    bindsym $mod+Mod1+j resize shrink height 5 px or 5 ppt
    bindsym $mod+Mod1+l resize grow width 5 px or 5 ppt
 
  # volume controls
-   bindsym XF86AudioLowerVolume exec amixer set Master 2%-
-   bindsym XF86AudioRaiseVolume exec amixer set Master 2%+
+   bindsym $mod+Down exec amixer set Master 3%-
+   bindsym $mod+Up exec amixer set Master 3%+
+
+   bindsym XF86AudioLowerVolume exec amixer set Master 3%-
+   bindsym XF86AudioRaiseVolume exec amixer set Master 3%+
    bindsym XF86AudioMute exec amixer set Master toggle
 
-   bindsym $mod+Down exec amixer set Master 2%-
-   bindsym $mod+Up exec amixer set Master 2%+
-  
  # app hotkeys
    bindsym $mod+r exec terminator -e ranger
    bindsym $mod+i exec firefox
+
+#########################################################
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 #floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec terminator --profile=austinsprofile --layout=austinslayout
-bindsym $mod+Shift+Return exec terminator --profile=austinsprofile
-bindsym $mod+Control+Return exec urxvt
+bindsym $mod+Return exec terminator 
+bindsym $mod+Shift+Return exec terminator --layout=austinslayout
 
 bindsym $mod+Mod1+Return exec urxvt
 
@@ -214,11 +174,11 @@ bindsym $mod+v split v
 # switch to workspace
 bindsym $mod+1 workspace 1: firefox
 bindsym $mod+2 workspace 2: terminal
-bindsym $mod+3 workspace 3
+bindsym $mod+3 workspace 3: files
 bindsym $mod+4 workspace 4
 bindsym $mod+5 workspace 5
 bindsym $mod+6 workspace 6
-bindsym $mod+7 workspace 7
+bindsym $mod+7 workspace 7: system
 bindsym $mod+8 workspace 8: crashplan
 bindsym $mod+9 workspace 9
 bindsym $mod+0 workspace 10
@@ -236,11 +196,11 @@ bindsym $mod+Shift+0 workspace 20
 # move focused container to workspace
 bindsym $mod+Control+1 move container to workspace 1: firefox
 bindsym $mod+Control+2 move container to workspace 2: terminal
-bindsym $mod+Control+3 move container to workspace 3
-bindsym $mod+Control+4 move container to workspace 4
+bindsym $mod+Control+3 move container to workspace 3: files
+bindsym $mod+Control+4 move container to workspace 4 
 bindsym $mod+Control+5 move container to workspace 5
 bindsym $mod+Control+6 move container to workspace 6
-bindsym $mod+Control+7 move container to workspace 8
+bindsym $mod+Control+7 move container to workspace 7: system
 bindsym $mod+Control+8 move container to workspace 8: crashplan
 bindsym $mod+Control+9 move container to workspace 9
 bindsym $mod+Control+0 move container to workspace 10
@@ -293,20 +253,10 @@ bindsym --release Num_Lock  exec pkill -SIGRTMIN+11 i3blocks
 #bindsym $mod+r mode "resize"
 
 # use i3blocks instead of default
-# persistent status bar
-bar {
-       status_command i3blocks -c /home/austin/.config/i3/i3blocks.conf
-       tray_output primary
-       tray_output DVI-I-1
-       colors {
-           statusline #cccccc
-       }
-}
-
 # hidden detailed status bar, invoked with F12
 bar {
         status_command i3blocks -c /home/austin/.config/i3/i3blocks-hidden.conf
-        tray_output none
+        tray_output DVI-I-1
         mode hide
         hidden_state hide
         modifier Mod5
@@ -315,4 +265,10 @@ bar {
 	}
 }
 
-
+# persistent status bar
+bar {
+       status_command i3blocks -c /home/austin/.config/i3/i3blocks.conf
+       colors {
+           statusline #bbbbbb
+       }
+}
