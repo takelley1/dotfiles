@@ -70,6 +70,10 @@ font pango:DejaVu Sans 9
 
 # CUSTOM HOTKEYS ########################################
  
+ # disable touchpad (for easier typing)
+   bindsym $mod+t exec xinput --disable 12
+   bindsym $mod+Shift+t exec xinput --enable 12
+
  # lock screen
    bindsym $mod+x exec i3lock -c 440000
  

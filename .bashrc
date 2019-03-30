@@ -10,6 +10,8 @@
         # see https://developer.atlassian.com/blog/2016/02/best-way-to-store-dotfiles-git-bare-repo/	
         alias git-config='/usr/bin/git --git-dir=/home/austin/.cfg/ --work-tree=/home/austin'
 
+	alias up='sudo apt update && sudo apt upgrade -y'
+
         alias vi='vim'      
         alias pi='ssh austin@raspberrypi'
 
