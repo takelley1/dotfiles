@@ -95,13 +95,13 @@ font pango:DejaVu Sans 9
    bindsym F7 exec amixer set Master 5%-
    bindsym F8 exec amixer set Master 5%+
 
-   bindsym XF86AudioLowerVolume exec amixer set Master 3%-
-   bindsym XF86AudioRaiseVolume exec amixer set Master 3%+
+   bindsym XF86AudioLowerVolume exec amixer set Master 5%-
+   bindsym XF86AudioRaiseVolume exec amixer set Master 5%+
    #bindsym XF86AudioMute exec amixer set Master toggle
  
  # brightness controls
-   bindsym F2 exec brightness-
-   bindsym F3 exec brightness+ 
+   bindsym XF86MonBrightnessDown exec brightness-
+   bindsym XF86MonBrightnessUp exec brightness+ 
 
  # app hotkeys
    bindsym $mod+r exec terminator -e ranger
