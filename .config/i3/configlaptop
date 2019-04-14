@@ -27,6 +27,9 @@ font pango:DejaVu Sans 9
 
 # STARTUP COMMANDS ######################################
 
+ # start network monitor applet
+   exec nm-applet
+
  # adjust mouse sensitivity
    #exec --no-startup-id xinput --set-prop 'pointer:Logitech USB Receiver' 295 -0.6
  # rebind F5 to mod5 in order to show hidden i3bar dock
@@ -35,14 +38,14 @@ font pango:DejaVu Sans 9
    exec_always xset r rate 200 30
 
  # start redshift
-   exec --no-startup-id redshift-gtk -r -t 5500k:2700K 
+   exec --no-startup-id redshift-gtk -t 5500k:2700K 
  # set desktop background
    #exec --no-startup-id feh --bg-scale /home/austin/.config/i3/2017-03-05_Earth_at_Night.jpg
 
   ### start apps automatically
      # main screen
      exec --no-startup-id i3-msg 'workspace 2: terminal; exec terminator --profile=austinsprofile'
-     exec --no-startup-id i3-msg 'workspace 1: firefox; exec firefox'
+     #exec --no-startup-id i3-msg 'workspace 1: firefox; exec firefox'
 # FORMATTING ############################################
  
  # hide side borders
@@ -75,7 +78,7 @@ font pango:DejaVu Sans 9
    bindsym $mod+Shift+t exec xinput --enable 12
 
  # lock screen
-   bindsym $mod+x exec i3lock -c 440000
+   bindsym $mod+x exec i3lock-fancy -p
  
  # take screenshot with printscreen key and name with timestamp
   bindsym 0xff61 exec --no-startup-id import -window root ~/Pictures/latest-screenshot.png &&  mv ~/Pictures/latest-screenshot.png ~/Pictures/screenshot_$(date +%H:%M:%S_%d-%m-%Y).png
