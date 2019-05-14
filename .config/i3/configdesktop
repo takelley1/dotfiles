@@ -28,7 +28,8 @@ font pango:Roboto 12
 # STARTUP COMMANDS ######################################
 
  # INPUT
-      exec --no-startup-id xinput --set-prop 10 296 -0.6
+    # set mouse sensitivity
+      exec_always --no-startup-id xinput --set-prop 10 296 -0.6
       mouse_warping none
     # set cursor size
       # exec --no-startup-id dconf write /org/gnome/desktop/interface/cursor-size 24
@@ -41,7 +42,7 @@ font pango:Roboto 12
 
  # DISPLAY
     # start redshift
-      exec --no-startup-id redshift-gtk -t 6500:3000
+      exec --no-startup-id redshift-gtk -t 6500:3000 -l 39:-76
     # set primary display output for xrandr
       exec --no-startup-id xrandr --output DVI-I-1 --primary
     # set desktop background
@@ -49,21 +50,21 @@ font pango:Roboto 12
 
  # STARTUP APPS
     # main screen
-      exec --no-startup-id i3-msg 'workspace 1: firefox; exec firefox'
-      exec --no-startup-id sleep 500
+      #exec --no-startup-id i3-msg 'workspace 1: firefox; exec firefox'
+      #exec --no-startup-id sleep 500
       exec --no-startup-id i3-msg 'workspace 2: terminal; exec terminator' 
-      exec --no-startup-id sleep 500
+      #exec --no-startup-id sleep 500
       #exec --no-startup-id i3-msg 'workspace 3: files; exec terminator -e ranger'
       #exec --no-startup-id sleep 5
     # right screen
       #exec --no-startup-id i3-msg 'workspace 7: system; exec urxvt -e glances'
-      exec --no-startup-id sleep 500
-      exec --no-startup-id i3-msg 'workspace 8: crashplan; exec CrashPlanDesktop; workspace 9'
-      exec --no-startup-id sleep 500
+      #exec --no-startup-id sleep 500
+      #exec --no-startup-id i3-msg 'workspace 8: crashplan; exec CrashPlanDesktop; workspace 9'
+      #exec --no-startup-id sleep 500
       #exec --no-startup-id i3-msg 'workspace 9; exec terminator'
       #exec --no-startup-id sleep 5
-      exec --no-startup-id i3-msg 'workspace 2: terminal'
-      exec --no-startup-id sleep 500
+      #exec --no-startup-id i3-msg 'workspace 2: terminal'
+      #exec --no-startup-id sleep 500
       
     # top screen
 #      exec --no-startup-id i3-msg 'workspace 10; exec terminator'
