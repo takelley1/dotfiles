@@ -306,16 +306,14 @@ bar {
 
 # hidden detailed status bar, invoked with F12
 bar {
-        status_command py3status -c /home/austin/.config/i3/py3status.conf
-        position top
+        status_command i3blocks -c /home/austin/.config/i3/i3blocks-hidden.conf
         tray_output none
-        #mode hide
+        mode hide
         hidden_state hide
-        workspace_buttons no
-        #modifier Mod5
-	#colors {
-	#    statusline #ffffff
-	#}
+        modifier Mod5
+	colors {
+	    statusline #ffffff
+	}
 }
 
 
