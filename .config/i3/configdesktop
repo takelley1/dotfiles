@@ -33,8 +33,8 @@ font pango:Roboto 12
       mouse_warping none
     # set cursor size
       # exec --no-startup-id dconf write /org/gnome/desktop/interface/cursor-size 24
-    # rebind F12 to mod5 in order to show hidden i3bar dock
-      exec_always xmodmap -e "keysym F12 = ISO_Level3_Shift"
+    # rebind key to mod5 in order to show hidden i3bar dock
+      exec_always xmodmap -e "keysym Control_R = ISO_Level3_Shift"
     # make sure numlock is on
       exec_always --no-startup-id numlockx on
     # set keyboard key repeat delay
@@ -307,15 +307,16 @@ bar {
 # hidden detailed status bar, invoked with F12
 bar {
         status_command py3status -c /home/austin/.config/i3/py3status.conf
-        position top
+        #position top
+        font pango:Ubuntu Mono, Awesome 14
         tray_output none
-        #mode hide
+        mode hide
         hidden_state hide
         workspace_buttons no
-        #modifier Mod5
-	#colors {
-	#    statusline #ffffff
-	#}
+        modifier Mod5
+	colors {
+	    statusline #ffffff
+	}
 }
 
 
