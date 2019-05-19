@@ -1,0 +1,43 @@
+// vim:ts=4:sw=4:et
+{
+    "border": "normal",
+    "current_border_width": 2,
+    "floating": "auto_off",
+    "geometry": {
+       "height": 752,
+       "width": 1054,
+       "x": 0,
+       "y": 0
+    },
+    "name": "austin@uby: ~",
+    "percent": 0.75,
+    "swallows": [
+       {
+        "class": "^Terminator$",
+        "instance": "^terminator$"
+       }
+    ],
+    "type": "con"
+}
+
+{
+    "border": "normal",
+    "current_border_width": 2,
+    "floating": "auto_off",
+    "geometry": {
+       "height": 730,
+       "width": 900,
+       "x": 510,
+       "y": 740
+    },
+    "name": "Code42",
+    "percent": 0.25,
+    "swallows": [
+       {
+        "class": "^CrashPlan$",
+        "title": "^Code42$"
+       }
+    ],
+    "type": "con"
+}
+

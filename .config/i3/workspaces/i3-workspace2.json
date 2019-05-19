@@ -4,8 +4,8 @@
     "current_border_width": 2,
     "floating": "auto_off",
     "geometry": {
-       "height": 625,
-       "width": 814,
+       "height": 560,
+       "width": 974,
        "x": 0,
        "y": 0
     },
@@ -13,9 +13,8 @@
     "percent": 1,
     "swallows": [
        {
-       // "class": "^Terminator$",
-       // "instance": "^terminator$",
-       // "title": "^austin\\@uby\\:\\ \\~$"
+        "class": "^Terminator$",
+        "title": "^terminator$"
        }
     ],
     "type": "con"
