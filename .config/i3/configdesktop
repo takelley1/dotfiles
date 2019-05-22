@@ -35,17 +35,17 @@ font pango:Roboto 12
  # STARTUP APPS
     # apply saved layout, then start apps
       # workspace 1
-      exec_always --no-startup-id "i3-msg 'workspace 1: firefox; append_layout /home/austin/.config/i3/workspaces/i3-workspace1.json'"
-      exec_always --no-startup-id "i3-msg 'workspace 1: firefox; exec firefox'"
+      exec --no-startup-id "i3-msg 'workspace 1: firefox; append_layout /home/austin/.config/i3/workspaces/i3-workspace1.json'"
+      exec --no-startup-id "i3-msg 'workspace 1: firefox; exec firefox'"
       # workspace 2
-      exec_always --no-startup-id "i3-msg 'workspace 2: terminal; append_layout /home/austin/.config/i3/workspaces/i3-workspace2.json'"
-      exec_always --no-startup-id "i3-msg 'workspace 2: terminal; exec terminator -T terminator'"
+      exec --no-startup-id "i3-msg 'workspace 2: terminal; append_layout /home/austin/.config/i3/workspaces/i3-workspace2.json'"
+      exec --no-startup-id "i3-msg 'workspace 2: terminal; exec terminator -T terminator'"
       # workspace 3
-      exec_always --no-startup-id "i3-msg 'workspace 3; append_layout /home/austin/.config/i3/workspaces/i3-workspace3.json'"
-      exec_always --no-startup-id "i3-msg 'workspace 3; exec terminator -e ranger -T ranger'"
+      exec --no-startup-id "i3-msg 'workspace 3; append_layout /home/austin/.config/i3/workspaces/i3-workspace3.json'"
+      exec --no-startup-id "i3-msg 'workspace 3; exec terminator -e ranger -T ranger'"
       # workspace 4
-      exec_always --no-startup-id "i3-msg 'workspace 4; append_layout /home/austin/.config/i3/workspaces/i3-workspace4.json'"
-      exec_always --no-startup-id "i3-msg 'workspace 4; exec terminator; exec CrashPlanDesktop'"
+      exec --no-startup-id "i3-msg 'workspace 4; append_layout /home/austin/.config/i3/workspaces/i3-workspace4.json'"
+      exec --no-startup-id "i3-msg 'workspace 4; exec terminator; exec CrashPlanDesktop'"
      
 # FORMATTING ############################################
  
@@ -222,7 +222,7 @@ bar {
 bar {
         status_command py3status -c /home/austin/.config/i3/py3status.conf
         #position top
-        font pango:Ubuntu Mono, Awesome 14
+        font pango:Ubuntu Mono, Awesome 13
         tray_output none
         mode hide
         hidden_state hide
