@@ -2,7 +2,7 @@
 # /home/austin/.nvidia-settings-rc
 #
 # Configuration file for nvidia-settings - the NVIDIA X Server Settings utility
-# Generated on Sat Mar  9 15:00:29 2019
+# Generated on Tue May 21 20:38:14 2019
 #
 
 # ConfigProperties:
@@ -13,9 +13,9 @@ SliderTextEntries = Yes
 IncludeDisplayNameInConfigFile = Yes
 ShowQuitDialog = Yes
 UpdateRulesOnProfileNameChange = Yes
-Timer = PowerMizer_Monitor_(GPU_0),Yes,1000
-Timer = Thermal_Monitor_(GPU_0),Yes,1000
 Timer = Memory_Used_(GPU_0),Yes,3000
+Timer = Thermal_Monitor_(GPU_0),Yes,1000
+Timer = PowerMizer_Monitor_(GPU_0),Yes,1000
 
 # Attributes:
 
@@ -72,19 +72,9 @@ uby:1[DPY:DP-0]/DitheringDepth=0
 uby:1[DPY:DP-0]/ColorSpace=0
 uby:1[DPY:DP-0]/ColorRange=0
 uby:1[DPY:DP-0]/SynchronousPaletteUpdates=0
-uby:1[DPY:DP-1]/RedBrightness=0.000000
-uby:1[DPY:DP-1]/GreenBrightness=0.000000
-uby:1[DPY:DP-1]/BlueBrightness=0.000000
-uby:1[DPY:DP-1]/RedContrast=0.000000
-uby:1[DPY:DP-1]/GreenContrast=0.000000
-uby:1[DPY:DP-1]/BlueContrast=0.000000
-uby:1[DPY:DP-1]/RedGamma=1.000000
-uby:1[DPY:DP-1]/GreenGamma=1.000000
-uby:1[DPY:DP-1]/BlueGamma=1.000000
 uby:1[DPY:DP-1]/Dithering=0
 uby:1[DPY:DP-1]/DitheringMode=0
 uby:1[DPY:DP-1]/DitheringDepth=0
-uby:1[DPY:DP-1]/DigitalVibrance=0
 uby:1[DPY:DP-1]/ColorSpace=0
 uby:1[DPY:DP-1]/ColorRange=0
 uby:1[DPY:DP-1]/SynchronousPaletteUpdates=0

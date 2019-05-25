@@ -126,11 +126,9 @@ font pango:Roboto 12
    bindsym $mod+i exec firefox
 
 # start a terminal
-bindsym $mod+Return exec terminator --profile=austinsprofile --layout=austinslayout
-bindsym $mod+Shift+Return exec terminator --profile=austinsprofile
+bindsym $mod+Return exec terminator
+bindsym $mod+Mod1+Return exec terminator --profile=austinsprofile
 bindsym $mod+Control+Return exec urxvt
-
-bindsym $mod+Mod1+Return exec urxvt
 
 # kill focused window
 bindsym $mod+Shift+k kill
@@ -210,11 +208,11 @@ bindsym --release Num_Lock  exec pkill -SIGRTMIN+11 i3blocks
 # persistent status bar
 bar {
        status_command i3blocks -c /home/austin/.config/i3/i3blocks.conf
-       tray_output primary
+       tray_output primaryA
        tray_output DVI-I-1
        colors {
            statusline               #cccccc
-           urgent_workspace         #333333 #222222 #888888
+           urgent_workspace         #333333 #5f676a #ffffff
        }
 }
 
