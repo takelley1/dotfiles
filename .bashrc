@@ -42,7 +42,7 @@
         alias pgrep="ps aux | grep "
         alias mgrep="cat /var/log/messages | grep "
         alias sgrep="cat /var/log/secure | grep "
-        alias ping='ping -c 1'
+#        alias ping='ping -c 1'
         alias fping='ping -c 100 -s.2'
         alias ports='netstat -tulanp'
 
