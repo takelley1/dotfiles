@@ -152,6 +152,9 @@ bindsym $mod+Control+l move right
 bindsym $mod+v split v
 
 # switch to workspace
+bindsym $mod+Tab workspace next_on_output
+bindsym $mod+Shift+Tab workspace prev_on_output
+
 bindsym $mod+1 workspace 1: firefox
 bindsym $mod+2 workspace 2: terminal
 bindsym $mod+3 workspace 3
@@ -211,7 +214,7 @@ bar {
        tray_output primaryA
        tray_output DVI-I-1
        colors {
-           statusline               #cccccc
+           statusline               #eeeeee
            urgent_workspace         #333333 #5f676a #ffffff
        }
 }
