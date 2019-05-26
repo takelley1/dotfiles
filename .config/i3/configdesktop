@@ -101,7 +101,7 @@ font pango:Roboto 12
    bindsym $mod+Mod1+2 exec /home/austin/.config/i3/redshift/redshift-brightness-2.sh
    bindsym $mod+Mod1+1 exec /home/austin/.config/i3/redshift/redshift-brightness-1.sh
  # kill redshift
-   bindsym $mod+Shift+r exec killall redshift 
+   bindsym $mod+Shift+r exec killall redshift ; exec sleep .3s ; exec xrandr --output HDMI-0 --brightness 1 ; exec sleep .1s ; exec xrandr --output DVI-I-1 --brightness 1
  
  # sleep
    bindsym $mod+s exec systemctl suspend
