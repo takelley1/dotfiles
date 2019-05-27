@@ -138,6 +138,9 @@ bindsym $mod+v split v
 #bindsym $mod+d focus child
 
 # switch to workspace
+bindsym $mod+Tab workspace next
+bindsym $mod+Shift+Tab workspace prev
+
 bindsym $mod+1 workspace 1: firefox
 bindsym $mod+2 workspace 2: terminal
 bindsym $mod+3 workspace 3
