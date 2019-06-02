@@ -1,4 +1,5 @@
 #!/bin/bash
+echo '2' > /tmp/redshift-brightness
 
 # kill any existing redshift processes
 killall redshift-gtk
