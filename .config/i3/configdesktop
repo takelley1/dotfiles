@@ -57,16 +57,16 @@ font pango:Roboto 12
    workspace 2 output DVI-I-1
    workspace 3 output DVI-I-1
    workspace 4 output DVI-I-1
-   workspace 5 output DVI-I-1
-   workspace 6 output DVI-I-1
+   #workspace 5 output DVI-I-1
+   #workspace 6 output DVI-I-1
 
-   workspace 7 output HDMI-0
-   workspace 8 output HDMI-0
-   workspace 9 output HDMI-0
+   #workspace 7 output HDMI-0
+   #workspace 8 output HDMI-0
+   #workspace 9 output HDMI-0
 
-   workspace 10 output HDMI-0
-   workspace 11 output HDMI-0
-   workspace 12 output HDMI-0
+   #workspace 10 output HDMI-0
+   #workspace 11 output HDMI-0
+   #workspace 12 output HDMI-0
 
  ### colors
    # class                 border  backgr. text    indicator child_border
