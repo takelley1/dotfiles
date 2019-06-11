@@ -3,7 +3,7 @@
   enabled_plugins = LaunchpadCodeURLHandler, APTURLHandler, Logger, LaunchpadBugURLHandler
   inactive_color_offset = 1.0
   suppress_multiple_term_dialog = True
-  title_font = Source Code Pro 14
+  title_font = Ubuntu Mono 14
   title_transmit_bg_color = "#4e9a06"
   title_use_system_font = False
 [keybindings]
@@ -46,7 +46,7 @@
     cursor_blink = False
     cursor_color = "#ffffff"
     cursor_color_fg = False
-    font = Anonymous Pro 16
+    font = Ubuntu Mono 16
     foreground_color = "#ebdbb2"
     icon_bell = False
     scrollback_infinite = True
@@ -58,7 +58,7 @@
     cursor_color = "#ffffff"
     cursor_color_fg = False
     exit_action = hold
-    font = Source Code Pro 14
+    font = Ubuntu Mono 14
     foreground_color = "#d1d1d1"
     icon_bell = False
     palette = "#000000:#cc0000:#4e9a06:#c4a000:#3465a4:#75507b:#06989a:#d3d7cf:#555753:#ef2929:#8ae234:#fce94f:#729fcf:#ad7fa8:#34e2e2:#eeeeec"

@@ -53,8 +53,8 @@ font pango:DejaVu Sans 9
 # CUSTOM HOTKEYS ########################################
  
  # disable touchpad (for easier typing)
-   bindsym $mod+t exec xinput --disable 12
-   bindsym $mod+Shift+t exec xinput --enable 12
+   bindsym $mod+space exec xinput --disable 12
+   bindsym $mod+Mod1+space exec xinput --enable 12
 
  # lock screen
    bindsym $mod+x exec i3lock-fancy -p
@@ -79,7 +79,6 @@ font pango:DejaVu Sans 9
 
    bindsym XF86AudioLowerVolume exec amixer set Master 2%-
    bindsym XF86AudioRaiseVolume exec amixer set Master 2%+
-   bindsym XF86AudioMute exec amixer set Master toggle
  
  # brightness controls
    bindsym XF86MonBrightnessDown exec brightness-
