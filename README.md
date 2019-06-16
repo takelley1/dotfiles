@@ -1,14 +1,13 @@
-# cfg
+## cfg
 Arch Linux config files, all paths relative to user's home directory
 
 
 
-###The best way to store your dotfiles: A bare Git repository
-
-from: https://www.atlassian.com/git/tutorials/dotfiles
+### The best way to store your dotfiles: A bare Git repository
+#### from: https://www.atlassian.com/git/tutorials/dotfiles
  
 
-Disclaimer: the title is slightly hyperbolic, there are other proven solutions to the problem. I do think the technique below is very elegant though.
+*Disclaimer: the title is slightly hyperbolic, there are other proven solutions to the problem. I do think the technique below is very elegant though.*
 
 Recently I read about this amazing technique in an Hacker News thread on people's solutions to store their dotfiles. User StreakyCobra showed his elegant setup and ... It made so much sense! I am in the process of switching my own system to the same technique. The only pre-requisite is to install Git.
 
@@ -121,6 +120,6 @@ For completeness this is what I ended up with (tested on many freshly minted Alp
     config checkout
     config config status.showUntrackedFiles no
 
-###Wrapping up
+#### Wrapping up
 
 I hope you find this technique useful to track your configuration. If you're curious, my dotfiles live here. Also please do stay connected by following @durdn or my awesome team at @atlassiandev.
