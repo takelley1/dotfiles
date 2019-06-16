@@ -1,10 +1,11 @@
 # cfg
 Arch Linux config files, all paths relative to user's home directory
 
+
+
+###The best way to store your dotfiles: A bare Git repository
+
 from: https://www.atlassian.com/git/tutorials/dotfiles
-
-The best way to store your dotfiles: A bare Git repository
-
  
 
 Disclaimer: the title is slightly hyperbolic, there are other proven solutions to the problem. I do think the technique below is very elegant though.
@@ -27,6 +28,7 @@ If you haven't been tracking your configurations in a Git repository before, you
 
 The first line creates a folder ~/.cfg which is a Git bare repository that will track our files.
 Then we create an alias config which we will use instead of the regular git when we want to interact with our configuration repository.
+
 We set a flag - local to the repository - to hide files we are not explicitly tracking yet. This is so that when you type config status and other commands later, files you are not interested in tracking will not show up as untracked.
 Also you can add the alias definition by hand to your .bashrc or use the the fourth line provided for convenience.
 
@@ -85,7 +87,7 @@ Re-run the check out if you had problems:
 
     config checkout
 
-Set the flag showUntrackedFiles to no on this specific (local) repository:
+Set the flag 'showUntrackedFiles' to no on this specific (local) repository:
 
     config config --local status.showUntrackedFiles no
 
@@ -119,6 +121,6 @@ For completeness this is what I ended up with (tested on many freshly minted Alp
     config checkout
     config config status.showUntrackedFiles no
 
-Wrapping up
+###Wrapping up
 
 I hope you find this technique useful to track your configuration. If you're curious, my dotfiles live here. Also please do stay connected by following @durdn or my awesome team at @atlassiandev.
