@@ -20,10 +20,10 @@ Starting from scratch
 
 If you haven't been tracking your configurations in a Git repository before, you can start using this technique easily with these lines:
 
-git init --bare $HOME/.cfg
-alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
-config config --local status.showUntrackedFiles no
-echo "alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'" >> $HOME/.bashrc
+       git init --bare $HOME/.cfg
+       alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+       config config --local status.showUntrackedFiles no
+       echo "alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'" >> $HOME/.bashrc
 
     The first line creates a folder ~/.cfg which is a Git bare repository that will track our files.
     Then we create an alias config which we will use instead of the regular git when we want to interact with our configuration repository.
