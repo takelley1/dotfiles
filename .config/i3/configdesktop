@@ -26,8 +26,7 @@ font pango:Roboto 12
 
  # DISPLAY
     # start redshift
-      #exec --no-startup-id redshift-gtk -t 6500:3000 -l 39:-76
-      exec_always bash /home/austin/.config/i3/redshift/redshift-brightness-10.sh
+      exec bash /home/austin/.config/i3/redshift/redshift-brightness-10.sh
     # set primary display output for xrandr
       exec --no-startup-id xrandr --output DVI-I-1 --primary
     # set desktop background
@@ -36,15 +35,22 @@ font pango:Roboto 12
  # STARTUP APPS
     # apply saved layout, then start apps
       # workspace 1
+      workspace 1 output DVI-I-1
       exec --no-startup-id "i3-msg 'workspace 1: firefox; append_layout /home/austin/.config/i3/workspaces/i3-workspace1.json'"
       exec --no-startup-id "i3-msg 'workspace 1: firefox; exec firefox'"
+
       # workspace 2
+      workspace 2 output DVI-I-1
       exec --no-startup-id "i3-msg 'workspace 2: terminal; append_layout /home/austin/.config/i3/workspaces/i3-workspace2.json'"
       exec --no-startup-id "i3-msg 'workspace 2: terminal; exec terminator -T terminator'"
+
       # workspace 3
+      workspace 3 output DVI-I-1
       exec --no-startup-id "i3-msg 'workspace 3; append_layout /home/austin/.config/i3/workspaces/i3-workspace3.json'"
       exec --no-startup-id "i3-msg 'workspace 3; exec terminator -e ranger -T ranger'"
+
       # workspace 4
+      workspace 4 output DVI-I-1
       exec --no-startup-id "i3-msg 'workspace 4; append_layout /home/austin/.config/i3/workspaces/i3-workspace4.json'"
       exec --no-startup-id "i3-msg 'workspace 4; exec terminator; exec CrashPlanDesktop'"
      
@@ -52,22 +58,6 @@ font pango:Roboto 12
  
  # hide side borders
    hide_edge_borders both
-
- # assign workspaces to individual displays
-   workspace 1 output DVI-I-1
-   workspace 2 output DVI-I-1
-   workspace 3 output DVI-I-1
-   workspace 4 output DVI-I-1
-   #workspace 5 output DVI-I-1
-   #workspace 6 output DVI-I-1
-
-   #workspace 7 output HDMI-0
-   #workspace 8 output HDMI-0
-   #workspace 9 output HDMI-0
-
-   #workspace 10 output HDMI-0
-   #workspace 11 output HDMI-0
-   #workspace 12 output HDMI-0
 
  ### colors
    # class                 border  backgr. text    indicator child_border
@@ -216,7 +206,7 @@ bar {
        tray_output DVI-I-1
        colors {
            statusline               #eeeeee
-           urgent_workspace         #333333 #5f676a #ffffff
+           urgent_workspace         #333333 #484e50 #ffffff
        }
 }
 
@@ -298,6 +288,18 @@ bar {
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 #floating_modifier $mod
+
+ # assign workspaces to individual displays
+   #workspace 5 output DVI-I-1
+   #workspace 6 output DVI-I-1
+
+   #workspace 7 output HDMI-0
+   #workspace 8 output HDMI-0
+   #workspace 9 output HDMI-0
+
+   #workspace 10 output HDMI-0
+   #workspace 11 output HDMI-0
+   #workspace 12 output HDMI-0
 
 ## split in horizontal orientation
 #bindsym $mod+Mod1+Shift+h split h
