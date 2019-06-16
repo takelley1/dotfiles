@@ -26,7 +26,8 @@ font pango:Roboto 12
 
  # DISPLAY
     # start redshift
-      exec --no-startup-id redshift-gtk -t 6500:3000 -l 39:-76
+      #exec --no-startup-id redshift-gtk -t 6500:3000 -l 39:-76
+      exec_always bash /home/austin/.config/i3/redshift/redshift-brightness-10.sh
     # set primary display output for xrandr
       exec --no-startup-id xrandr --output DVI-I-1 --primary
     # set desktop background
