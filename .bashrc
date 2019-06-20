@@ -16,6 +16,7 @@
 
 	alias router='ssh root@OpenWrt'
         alias pi='ssh austin@raspberrypi'
+	alias odroid='ssh austin@192.168.1.3'
 
 	####################
 
