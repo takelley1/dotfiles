@@ -11,12 +11,14 @@
 
         alias git-config='/usr/bin/git --git-dir=/home/austin/.cfg/ --work-tree=/home/austin'
 	alias gc='git-config'
+	alias gp="git commit -a -m 'update' && git push" 
 
 	# SSH ALIASES #######
 
 	alias router='ssh root@OpenWrt'
         alias pi='ssh austin@raspberrypi'
 	alias odroid='ssh austin@192.168.1.3'
+	alias uby='ssh austin@192.168.1.11'
 
 	####################
 
