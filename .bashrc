@@ -11,7 +11,9 @@
 
         alias git-config='/usr/bin/git --git-dir=/home/austin/.cfg/ --work-tree=/home/austin'
 	alias gc='git-config'
+
 	alias gp="git commit -a -m 'update' && git push" 
+	alias gn="cd ~/notes && git commit -a -m 'update' && git push" 
 
 	# SSH ALIASES #######
 

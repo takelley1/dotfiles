@@ -7,6 +7,7 @@
   title_transmit_bg_color = "#4e9a06"
   title_use_system_font = False
 [keybindings]
+  broadcast_all = <Primary><Shift><Alt>a
   close_term = <Primary>w
   copy = <Primary><Alt>c
   cycle_next = <Primary><Shift><Alt>Tab
@@ -62,5 +63,5 @@
     foreground_color = "#d1d1d1"
     icon_bell = False
     palette = "#000000:#cc0000:#4e9a06:#c4a000:#3465a4:#75507b:#06989a:#d3d7cf:#555753:#ef2929:#8ae234:#fce94f:#729fcf:#ad7fa8:#34e2e2:#eeeeec"
-    scrollback_infinite = True
+    scrollback_lines = 10000
     use_system_font = False
