@@ -195,17 +195,17 @@ bindsym --release Caps_Lock exec pkill -SIGRTMIN+11 i3blocks
 bindsym --release Num_Lock  exec pkill -SIGRTMIN+11 i3blocks
 
 # use i3blocks instead of default
-# hidden detailed status bar, invoked with F5
-bar {
-        status_command i3blocks -c /home/austin/.config/i3/i3blocks-hidden-laptop.conf
-        mode hide
-        hidden_state hide
-        tray_output none
-        modifier Mod5
-	colors {
-	    statusline #ffffff
-	}
-}
+# hidden detailed status bar, invoked with right CTRL
+#bar {
+#        status_command i3blocks -c /home/austin/.config/i3/i3blocks-hidden-laptop.conf
+#        mode hide
+#        hidden_state hide
+#        tray_output none
+#        modifier Mod5
+#	colors {
+#	    statusline #ffffff
+#	}
+#}
 
 #persistent status bar
 bar {
