@@ -14,8 +14,8 @@ font pango:DejaVu Sans 9
 
  # start network monitor applet
    exec nm-applet
- # rebind key to mod5 in order to show hidden i3bar dock
-   exec_always xmodmap -e "keysym Control_R = ISO_Level3_Shift"
+ # rebind key to mod5 in order to show hidden i3bar dock -- no longer used
+   #exec_always xmodmap -e "keysym Control_R = ISO_Level3_Shift"
  # set key repeat delay
    exec_always xset r rate 200 30
 
@@ -52,7 +52,7 @@ font pango:DejaVu Sans 9
 
 # CUSTOM HOTKEYS ########################################
  
- # disable touchpad (for easier typing)
+ # disable touchpad toggle (for easier typing)
    bindsym $mod+space exec xinput --disable 12
    bindsym $mod+Mod1+space exec xinput --enable 12
 
@@ -60,7 +60,7 @@ font pango:DejaVu Sans 9
    bindsym $mod+x exec i3lock-fancy -p
  
  # take screenshot with printscreen key and name with timestamp
-  bindsym 0xff61 exec --no-startup-id import -window root ~/Pictures/latest-screenshot.png &&  mv ~/Pictures/latest-screenshot.png ~/Pictures/screenshot_$(date +%H:%M:%S_%d-%m-%Y).png
+  bindsym 0xff61 exec --no-startup-id import -window root ~/Pictures/latest-screenshot.png && mv ~/Pictures/latest-screenshot.png ~/Pictures/screenshot_$(date +%H:%M:%S_%d-%m-%Y).png
 
  # new resizing hotkeys to remove 'resize mode'
  # 'Mod1' is alt
@@ -73,7 +73,7 @@ font pango:DejaVu Sans 9
    bindsym $mod+Down exec amixer set Master 2%-
    bindsym $mod+Up exec amixer set Master 2%+
 
-   #bindsym F6 exec amixer set Master toggle
+   #bindsym F6 exec amixer set Master toggle -- the mute button is buggy
    bindsym F7 exec amixer set Master 2%-
    bindsym F8 exec amixer set Master 2%+
 
