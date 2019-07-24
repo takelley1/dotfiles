@@ -20,7 +20,7 @@ font pango:DejaVu Sans 9
    exec_always xset r rate 200 30
 
  # start redshift
-   exec --no-startup-id redshift-gtk -t 6500k:2700K 
+   exec --no-startup-id redshift-gtk -l 39:-76 -t 6500k:2700K
  # set desktop background
    exec --no-startup-id feh --bg-scale /home/austin/.config/i3/wallpapers/earth-at-night
 
