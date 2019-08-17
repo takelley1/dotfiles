@@ -8,7 +8,7 @@ set $mod Mod4
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
-font pango:DejaVu Sans 9
+font pango:DejaVu Sans 7.5
 
 # STARTUP COMMANDS ######################################
 
@@ -20,7 +20,7 @@ font pango:DejaVu Sans 9
    exec_always xset r rate 200 30
 
  # start redshift
-   exec --no-startup-id redshift-gtk -l 39:-76 -t 6500k:2700K
+   exec --no-startup-id redshift-gtk -l 39:-74 -t 5500k:2600K
  # set desktop background
    exec --no-startup-id feh --bg-scale /home/austin/.config/i3/wallpapers/earth-at-night
 
