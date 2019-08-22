@@ -12,6 +12,8 @@ font pango:DejaVu Sans 7.5
 
 # STARTUP COMMANDS ######################################
 
+ # force screen to lock when system is suspended, which occurs whenever the lid is shut
+   exec_always --no-startup-id xss-lock i3lock-fancy 
  # start network monitor applet
    exec nm-applet
  # rebind key to mod5 in order to show hidden i3bar dock -- no longer used
