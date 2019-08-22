@@ -17,10 +17,11 @@
 
 	# SSH ALIASES #######
 
-	alias router='ssh root@OpenWrt'
-        alias pi='ssh austin@raspberrypi'
-	alias odroid='ssh austin@192.168.1.3'
-	alias uby='ssh austin@192.168.1.11'
+	alias io='ssh root@192.168.1.1'
+        alias styx='ssh austin@192.168.1.2'
+	alias ganymede='ssh austin@192.168.1.3'
+	alias tethys='ssh austin@192.168.1.11'
+	alias phobos='ssh austin@192.168.1.12'
 
 	####################
 
