@@ -16,8 +16,11 @@ font pango:DejaVu Sans 7.5
    exec_always --no-startup-id xss-lock i3lock-fancy 
  # start network monitor applet
    exec nm-applet
+ # change shell commands to vim-style
+   exec set -o vi
  # rebind key to mod5 in order to show hidden i3bar dock -- no longer used
    #exec_always xmodmap -e "keysym Control_R = ISO_Level3_Shift"
+   
  # set key repeat delay
    exec_always xset r rate 200 30
 
