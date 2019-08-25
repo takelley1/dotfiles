@@ -14,6 +14,8 @@ font pango:Ubuntu Mono 10
 # STARTUP COMMANDS ######################################
 
  # INPUT
+    # make bash use vim-style shortcuts
+      exec_always --no-startup-id set -o vi
     # set mouse sensitivity
       exec_always --no-startup-id xinput --set-prop pointer:'Logitech G903' 296 -0.6
       mouse_warping none
