@@ -5,6 +5,7 @@
 # auto mount drive since fstab won't work
 
 # COMMANDS ##############################################
+        set -o vi
 
         # custom git alias used for backing up dotfiles
         # see https://developer.atlassian.com/blog/2016/02/best-way-to-store-dotfiles-git-bare-repo/	
