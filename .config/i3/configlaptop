@@ -13,11 +13,11 @@ font pango:DejaVu Sans 7.5
 # STARTUP COMMANDS ######################################
 
  # force screen to lock when system is suspended, which occurs whenever the lid is shut
-   exec_always --no-startup-id xss-lock i3lock-fancy 
+   exec_always --no-startup-id xss-lock /home/austin/.config/i3/wallpapers/xss-locker.sh
  # start network monitor applet
    exec nm-applet
  # change shell commands to vim-style
-   exec set -o vi
+   exec_always set -o vi
  # rebind key to mod5 in order to show hidden i3bar dock -- no longer used
    #exec_always xmodmap -e "keysym Control_R = ISO_Level3_Shift"
    
@@ -62,7 +62,7 @@ font pango:DejaVu Sans 7.5
    bindsym $mod+Mod1+space exec xinput --enable 12
 
  # lock screen
-   bindsym $mod+x exec i3lock-fancy -p
+   bindsym $mod+x exec i3lock -i /home/austin/.config/i3/wallpapers/sea-of-colors-1366x768.png
  
  # take screenshot with printscreen key and name with timestamp
   bindsym 0xff61 exec --no-startup-id import -window root ~/Pictures/latest-screenshot.png && mv ~/Pictures/latest-screenshot.png ~/Pictures/screenshot_$(date +%H:%M:%S_%d-%m-%Y).png
