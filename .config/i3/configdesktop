@@ -74,7 +74,7 @@ font pango:Ubuntu Mono 10
 # HOTKEYS ###############################################
 
  # take screenshot with printscreen key and name with timestamp
-   bindsym 0xff61 exec --no-startup-id import -window root ~/tethys-screenshot$(date +%H:%M:%S_%d-%m-%Y).png && mv ~/tethy-screenshot* ~/Pictures/misc_images/screenshots/tethys-desktop/ 
+   bindsym 0xff61 exec --no-startup-id import -window root ~/tethys-screenshot-$(date +%H:%M:%S_%Y-%m-%d).png && mv ~/tethys-screenshot-* ~/pictures/misc_images/screenshots/tethys-desktop/ 
 
  # screen brightness adjustment hotkeys for screens without a backlight
    #bindsym $mod+Mod1+Up exec /home/austin/.config/i3/brightness/brightness-up.sh 
