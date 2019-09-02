@@ -29,6 +29,7 @@
 	alias up='sudo apt update && sudo apt upgrade -y'
 
         alias vi='vim'      
+        alias vim='nvim'      
 
         alias ..='cd ../'
         alias ...='cd ../../../'
