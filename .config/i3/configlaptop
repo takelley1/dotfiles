@@ -65,7 +65,7 @@ font pango:DejaVu Sans 7.5
    bindsym $mod+x exec i3lock -i /home/austin/.config/i3/wallpapers/sea-of-colors-1366x768.png
  
  # take screenshot with printscreen key and name with timestamp
-  bindsym 0xff61 exec --no-startup-id import -window root ~/Pictures/latest-screenshot.png && mv ~/Pictures/latest-screenshot.png ~/Pictures/screenshot_$(date +%H:%M:%S_%d-%m-%Y).png
+  bindsym 0xff61 exec --no-startup-id import -window root ~/Pictures/latest-screenshot.png && mv ~/Pictures/latest-screenshot.png ~/Pictures/phobos-screenshot-$(date +%H:%M:%S_%Y-%m-%d).png
 
  # new resizing hotkeys to remove 'resize mode'
  # 'Mod1' is alt
