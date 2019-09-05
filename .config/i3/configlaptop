@@ -31,7 +31,7 @@ font pango:DejaVu Sans 7.5
 
   ### start apps automatically
      # main screen
-     exec --no-startup-id i3-msg 'workspace 2: terminal; exec terminator --profile=austinsprofile'
+     exec --no-startup-id i3-msg 'workspace 2: terminal; exec terminator --config /home/austin/.config/terminator/configlaptop -b --profile=austinsprofile'
 
 # FORMATTING ############################################
  
@@ -99,7 +99,7 @@ font pango:DejaVu Sans 7.5
 #floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec terminator --profile=austinsprofile 
+bindsym $mod+Return exec terminator --config /home/austin/.config/terminator/configlaptop -b --profile=austinsprofile 
 bindsym $mod+Mod1+Return exec urxvt
 
 # kill focused window
