@@ -4,17 +4,17 @@
     "current_border_width": 2,
     "floating": "auto_off",
     "geometry": {
-       "height": 1029,
-       "width": 1916,
+       "height": 560,
+       "width": 974,
        "x": 0,
        "y": 0
     },
-    "name": "DuckDuckGo — Privacy, simplified. - Mozilla Firefox",
+    "name": "^austin@",
     "percent": 1,
     "swallows": [
        {
-        "class": "^Firefox$",
-        "window_role": "^browser$"
+        "class": "^Terminator$",
+        "title": "^terminator$"
        }
     ],
     "type": "con"

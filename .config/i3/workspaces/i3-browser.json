@@ -4,17 +4,17 @@
     "current_border_width": 2,
     "floating": "auto_off",
     "geometry": {
-       "height": 560,
-       "width": 974,
+       "height": 1029,
+       "width": 1916,
        "x": 0,
        "y": 0
     },
-    "name": "austin@uby: ~",
+    "name": "Firefox$",
     "percent": 1,
     "swallows": [
        {
-        "class": "^Terminator$",
-        "title": "^terminator$"
+        "class": "^Firefox$",
+        "window_role": "^browser$"
        }
     ],
     "type": "con"
