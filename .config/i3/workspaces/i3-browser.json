@@ -9,11 +9,9 @@
        "x": 0,
        "y": 0
     },
-    "name": "Firefox$",
     "percent": 1,
     "swallows": [
        {
-        "class": "^Firefox$",
         "window_role": "^browser$"
        }
     ],

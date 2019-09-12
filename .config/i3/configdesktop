@@ -54,7 +54,7 @@ font pango:Ubuntu Mono 10
       # workspace 4
       workspace 4 output DVI-I-1
       exec --no-startup-id "i3-msg 'workspace 4; append_layout /home/austin/.config/i3/workspaces/i3-terminal-backups.json'"
-      exec --no-startup-id "i3-msg 'workspace 4; exec terminator; exec CrashPlanDesktop'"
+      exec --no-startup-id "i3-msg 'workspace 4; exec terminator --config /home/austin/.config/terminator/configdesktop -b --profile=austinsprofile; exec CrashPlanDesktop'"
      
 # FORMATTING ############################################
  
@@ -119,8 +119,7 @@ font pango:Ubuntu Mono 10
    bindsym $mod+i exec firefox
 
 # start a terminal
-bindsym $mod+Return exec terminator
-bindsym $mod+Mod1+Return exec terminator --config /home/austin/.config/terminator/configdesktop -b --profile=austinsprofile
+bindsym $mod+Return exec terminator --config /home/austin/.config/terminator/configdesktop -b --profile=austinsprofile
 bindsym $mod+Control+Return exec urxvt
 
 # kill focused window
