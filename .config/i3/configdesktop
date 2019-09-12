@@ -38,22 +38,22 @@ font pango:Ubuntu Mono 10
     # apply saved layout, then start apps
       # workspace 1
       workspace 1 output DVI-I-1
-      exec --no-startup-id "i3-msg 'workspace 1: firefox; append_layout /home/austin/.config/i3/workspaces/i3-workspace1.json'"
+      exec --no-startup-id "i3-msg 'workspace 1: firefox; append_layout /home/austin/.config/i3/workspaces/i3-browser.json'"
       exec --no-startup-id "i3-msg 'workspace 1: firefox; exec firefox'"
 
       # workspace 2
       #workspace 2 output DVI-I-1
-      #exec --no-startup-id "i3-msg 'workspace 2: terminal; append_layout /home/austin/.config/i3/workspaces/i3-workspace2.json'"
+      #exec --no-startup-id "i3-msg 'workspace 2: terminal; append_layout /home/austin/.config/i3/workspaces/i3-terminal.json'"
       #exec --no-startup-id "i3-msg 'workspace 2: terminal; exec terminator --config /home/austin/.config/terminator/configdesktop -b T terminator'"
 
       # workspace 3
       workspace 3 output DVI-I-1
-      exec --no-startup-id "i3-msg 'workspace 3; append_layout /home/austin/.config/i3/workspaces/i3-workspace3.json'"
+      exec --no-startup-id "i3-msg 'workspace 3; append_layout /home/austin/.config/i3/workspaces/i3-files.json'"
       exec --no-startup-id "i3-msg 'workspace 3; exec terminator --config /home/austin/.config/terminator/configdesktop -b -e ranger -T ranger'"
 
       # workspace 4
       workspace 4 output DVI-I-1
-      exec --no-startup-id "i3-msg 'workspace 4; append_layout /home/austin/.config/i3/workspaces/i3-workspace4.json'"
+      exec --no-startup-id "i3-msg 'workspace 4; append_layout /home/austin/.config/i3/workspaces/i3-terminal-backups.json'"
       exec --no-startup-id "i3-msg 'workspace 4; exec terminator; exec CrashPlanDesktop'"
      
 # FORMATTING ############################################
