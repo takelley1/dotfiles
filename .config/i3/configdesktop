@@ -207,7 +207,8 @@ bar {
        tray_output DVI-I-1
        colors {
            statusline               #eeeeee
-           urgent_workspace         #333333 #484e50 #ffffff
+           focused_workspace        #00ff00 #285777 #ffffff
+           urgent_workspace         #333333 #222222 #888888
        }
 }
 
