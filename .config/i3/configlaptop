@@ -88,6 +88,8 @@ font pango:DejaVu Sans 7.5
  # brightness controls
    bindsym XF86MonBrightnessDown exec brightness-
    bindsym XF86MonBrightnessUp exec brightness+ 
+   bindsym $mod+Right exec brightness+ 
+   bindsym $mod+Left exec brightness-
 
  # app hotkeys
    bindsym $mod+r exec terminator -e ranger
@@ -130,7 +132,7 @@ bindsym $mod+v split v
 #bindsym $mod+f fullscreen toggle
 
 # toggle tiling / floating
-#bindsym $mod+Shift+space floating toggle
+bindsym $mod+f floating toggle
 
 # change focus between tiling / floating windows
 #bindsym $mod+space focus mode_toggle
