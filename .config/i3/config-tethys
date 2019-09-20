@@ -1,0 +1,308 @@
+# Should you change your keyboard layout some time, delete
+# this file and re-run i3-config-wizard(1).
+
+set $mod Mod4
+
+# Font for window titles. Will also be used by the bar unless a different font
+# is used in the bar {} block below.
+#font pango:monospace 8
+
+# This font is widely installed, provides lots of unicode glyphs, right-to-left
+# text rendering and scalability on retina/hidpi displays (thanks to pango).
+font pango:Ubuntu Mono 10
+
+# STARTUP COMMANDS ######################################
+
+ # INPUT
+    # make bash use vim-style shortcuts
+      exec_always --no-startup-id set -o vi
+    # set mouse sensitivity
+      exec_always --no-startup-id xinput --set-prop pointer:'Logitech G903' 296 -0.75
+      mouse_warping none
+    # rebind right ctrl to mod5 in order to show hidden i3bar dock
+      exec_always xmodmap -e "keysym Control_R = ISO_Level3_Shift"
+    # make sure numlock is on
+      exec_always --no-startup-id numlockx on
+    # set keyboard key repeat delay
+      exec_always xset r rate 200 30
+
+ # DISPLAY
+    # start redshift
+      exec bash /home/austin/.config/i3/redshift/redshift-brightness-10.sh
+    # set primary display output for xrandr
+      exec --no-startup-id xrandr --output DVI-I-1 --primary
+    # set desktop background
+      exec --no-startup-id feh --bg-scale /home/austin/.config/i3/wallpapers/earth-at-night.png
+
+ # STARTUP APPS
+    # apply saved layout, then start apps
+      # workspace 1
+      workspace 1 output DVI-I-1
+      exec --no-startup-id "i3-msg 'workspace 1: firefox; append_layout /home/austin/.config/i3/workspaces/i3-browser.json'"
+      exec --no-startup-id "i3-msg 'workspace 1: firefox; exec firefox'"
+
+      # workspace 4
+      workspace 4 output DVI-I-1
+      exec --no-startup-id "i3-msg 'workspace 4; append_layout /home/austin/.config/i3/workspaces/i3-terminal-backups.json'"
+      exec --no-startup-id "i3-msg 'workspace 4; exec terminator --config /home/austin/.config/terminator/configdesktop -b --profile=austinsprofile; exec CrashPlanDesktop'"
+ 
+      # workspace 2
+      #workspace 2 output DVI-I-1
+      exec --no-startup-id "i3-msg 'workspace 2: terminal; append_layout /home/austin/.config/i3/workspaces/i3-terminal.json'"
+      exec --no-startup-id "i3-msg 'workspace 2: terminal; exec terminator --config /home/austin/.config/terminator/configdesktop -b T terminator'"
+      # workspace 3
+      #workspace 3 output DVI-I-1
+      #exec --no-startup-id "i3-msg 'workspace 3; append_layout /home/austin/.config/i3/workspaces/i3-files.json'"
+      #exec --no-startup-id "i3-msg 'workspace 3; exec terminator --config /home/austin/.config/terminator/configdesktop -b -e ranger -T ranger'"
+    
+# FORMATTING ############################################
+ 
+ # hide side borders
+   hide_edge_borders both
+
+ ### colors
+   # class                 border  backgr. text    indicator child_border
+   client.focused          #00ff00 #285777 #ffffff #00ff00   #00ff00
+   client.focused_inactive #888888 #888888 #000000 #484e50   #5f676a
+   client.unfocused        #888888 #888888 #000000 #292d2e   #222222
+   client.urgent           #888888 #888888 #000000 #292d2e   #222222
+   #client.urgent           #2f343a #900000 #ffffff #900000   #900000
+   client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
+   client.background       #000000
+
+# HOTKEYS ###############################################
+
+ # take screenshot with printscreen key and name with timestamp
+   bindsym 0xff61 exec --no-startup-id import -window root ~/tethys-screenshot-$(date +%H:%M:%S_%Y-%m-%d).png && mv ~/tethys-screenshot-* ~/pictures/misc-pictures/screenshots/tethys-desktop/ 
+
+ # screen brightness adjustment hotkeys for screens without a backlight
+   #bindsym $mod+Mod1+Up exec /home/austin/.config/i3/brightness/brightness-up.sh 
+   #bindsym $mod+Mod1+Down exec /home/austin/.config/i3/brightness/brightness-down.sh
+ # reset brightness
+   #bindsym $mod+Mod1+Right exec /home/austin/.config/i3/brightness/brightness-reset.sh
+
+ # redshift brightness hotkeys
+   bindsym $mod+Mod1+0 exec /home/austin/.config/i3/redshift/redshift-brightness-10.sh
+   bindsym $mod+Mod1+9 exec /home/austin/.config/i3/redshift/redshift-brightness-9.sh
+   bindsym $mod+Mod1+8 exec /home/austin/.config/i3/redshift/redshift-brightness-8.sh
+   bindsym $mod+Mod1+7 exec /home/austin/.config/i3/redshift/redshift-brightness-7.sh
+   bindsym $mod+Mod1+6 exec /home/austin/.config/i3/redshift/redshift-brightness-6.sh
+   bindsym $mod+Mod1+5 exec /home/austin/.config/i3/redshift/redshift-brightness-5.sh
+   bindsym $mod+Mod1+4 exec /home/austin/.config/i3/redshift/redshift-brightness-4.sh
+   bindsym $mod+Mod1+3 exec /home/austin/.config/i3/redshift/redshift-brightness-3.sh
+   bindsym $mod+Mod1+2 exec /home/austin/.config/i3/redshift/redshift-brightness-2.sh
+   bindsym $mod+Mod1+1 exec /home/austin/.config/i3/redshift/redshift-brightness-1.sh
+ # kill redshift
+   bindsym $mod+Shift+r exec killall redshift ; exec sleep .3s ; exec xrandr --output HDMI-0 --brightness 1 ; exec sleep .1s ; exec xrandr --output DVI-I-1 --brightness 1
+ 
+ # sleep
+   bindsym $mod+s exec systemctl suspend
+ 
+ # new resizing hotkeys to remove 'resize mode'
+   # 'Mod1' is alt
+   bindsym $mod+Mod1+h resize shrink width 5 px or 5 ppt
+   bindsym $mod+Mod1+k resize grow height 5 px or 5 ppt
+   bindsym $mod+Mod1+j resize shrink height 5 px or 5 ppt
+   bindsym $mod+Mod1+l resize grow width 5 px or 5 ppt
+
+ # volume controls
+   bindsym XF86AudioLowerVolume exec amixer set Master 2%-
+   bindsym XF86AudioRaiseVolume exec amixer set Master 2%+
+   bindsym XF86AudioMute exec amixer set Master toggle
+
+   bindsym $mod+Down exec amixer set Master 2%-
+   bindsym $mod+Up exec amixer set Master 2%+
+  
+ # app hotkeys
+   bindsym $mod+r exec terminator -e ranger
+   bindsym $mod+i exec firefox
+
+# start a terminal
+bindsym $mod+Return exec terminator --config /home/austin/.config/terminator/configdesktop -b --profile=austinsprofile
+bindsym $mod+Control+Return exec urxvt
+
+# kill focused window
+bindsym $mod+Shift+k kill
+
+# use rofi instead of dmenu
+bindsym $mod+d exec rofi -show run
+
+# change focus
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+# move focused window, rebound to vi keys
+bindsym $mod+Control+h move left
+bindsym $mod+Control+j move down
+bindsym $mod+Control+k move up
+bindsym $mod+Control+l move right
+
+# split in vertical orientation
+bindsym $mod+v split v
+
+# switch to workspace
+bindsym $mod+Tab workspace next_on_output
+bindsym $mod+Shift+Tab workspace prev_on_output
+
+bindsym $mod+1 workspace 1: firefox
+bindsym $mod+2 workspace 2: terminal
+bindsym $mod+3 workspace 3
+bindsym $mod+4 workspace 4
+bindsym $mod+5 workspace 5
+bindsym $mod+6 workspace 6
+bindsym $mod+7 workspace 7
+bindsym $mod+8 workspace 8
+bindsym $mod+9 workspace 9
+bindsym $mod+0 workspace 10
+bindsym $mod+Shift+1 workspace 11
+bindsym $mod+Shift+2 workspace 12
+bindsym $mod+Shift+3 workspace 13
+bindsym $mod+Shift+4 workspace 14
+bindsym $mod+Shift+5 workspace 15
+bindsym $mod+Shift+6 workspace 16
+bindsym $mod+Shift+7 workspace 17
+bindsym $mod+Shift+8 workspace 18
+bindsym $mod+Shift+9 workspace 19
+bindsym $mod+Shift+0 workspace 20
+
+# move focused container to workspace
+bindsym $mod+Control+1 move container to workspace 1: firefox
+bindsym $mod+Control+2 move container to workspace 2: terminal
+bindsym $mod+Control+3 move container to workspace 3
+bindsym $mod+Control+4 move container to workspace 4
+bindsym $mod+Control+5 move container to workspace 5
+bindsym $mod+Control+6 move container to workspace 6
+bindsym $mod+Control+7 move container to workspace 7
+bindsym $mod+Control+8 move container to workspace 8
+bindsym $mod+Control+9 move container to workspace 9
+bindsym $mod+Control+0 move container to workspace 10
+bindsym $mod+Control+Shift+1 move container to workspace 11
+bindsym $mod+Control+Shift+2 move container to workspace 12
+bindsym $mod+Control+Shift+3 move container to workspace 13
+bindsym $mod+Control+Shift+4 move container to workspace 14
+bindsym $mod+Control+Shift+5 move container to workspace 15
+bindsym $mod+Control+Shift+6 move container to workspace 16
+bindsym $mod+Control+Shift+7 move container to workspace 17
+bindsym $mod+Control+Shift+8 move container to workspace 18
+bindsym $mod+Control+Shift+9 move container to workspace 19
+bindsym $mod+Control+Shift+0 move container to workspace 20
+
+# reload the configuration file
+bindsym $mod+Control+c reload
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Control+r restart
+# exit i3 (logs you out of your X session)
+bindsym $mod+Control+e exec i3-msg exit
+# required keybindings for i3blocks to detect capslock and numlock
+bindsym --release Caps_Lock exec pkill -SIGRTMIN+11 i3blocks
+bindsym --release Num_Lock  exec pkill -SIGRTMIN+11 i3blocks
+
+# persistent status bar
+bar {
+       status_command i3blocks -c /home/austin/.config/i3/i3blocks.conf
+       tray_output primaryA
+       tray_output DVI-I-1
+       colors {
+           statusline               #eeeeee
+           focused_workspace        #00ff00 #285777 #ffffff
+           urgent_workspace         #333333 #222222 #888888
+       }
+}
+
+# hidden detailed status bar, invoked with F12
+bar {
+        status_command py3status -c /home/austin/.config/i3/py3status.conf
+        #position top
+        font pango:Ubuntu Mono, Awesome 11
+        tray_output none
+        mode hide
+        hidden_state hide
+        workspace_buttons no
+        modifier Mod5
+	colors {
+	    statusline #ffffff
+	}
+}
+
+# OLD CONFIGS ###########################################
+
+# set cursor size
+  # exec --no-startup-id dconf write /org/gnome/desktop/interface/cursor-size 24
+
+# resize window (you can also use the mouse for that)
+#mode "resize" {
+        # These bindings trigger as soon as you enter the resize mode
+
+        # Pressing left will shrink the window’s width.
+        # Pressing right will grow the window’s width.
+        # Pressing up will shrink the window’s height.
+        # Pressing down will grow the window’s height.
+       # bindsym j resize shrink width 10 px or 10 ppt
+       # bindsym k resize grow height 10 px or 10 ppt
+       # bindsym l resize shrink height 10 px or 10 ppt
+       # bindsym semicolon resize grow width 10 px or 10 ppt
+
+        # same bindings, but for the arrow keys
+       # bindsym Left resize shrink width 10 px or 10 ppt
+       # bindsym Down resize grow height 10 px or 10 ppt
+       # bindsym Up resize shrink height 10 px or 10 ppt
+       # bindsym Right resize grow width 10 px or 10 ppt
+
+        # back to normal: Enter or Escape
+       # bindsym Return mode "default"
+       # bindsym Escape mode "default"
+#}
+
+### colors (default backups)
+   # class                 border  backgr. text    indicator child_border
+   #client.focused          #4c7899 #285577 #ffffff #2e9ef4   #285577
+   #client.focused_inactive #333333 #5f676a #ffffff #484e50   #5f676a
+   #client.unfocused        #333333 #222222 #888888 #292d2e   #222222
+   #client.urgent           #2f343a #900000 #ffffff #900000   #900000
+   #client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
+   #client.background       #ffffff
+
+ # force certain apps to certain workspaces
+  # assign [class="Firefox$"] 1: firefox
+
+# enter fullscreen mode for the focused container
+#bindsym $mod+f fullscreen toggle
+
+# change container layout (stacked, tabbed, toggle split)
+#bindsym $mod+s layout stacking
+#bindsym $mod+w layout tabbed
+#bindsym $mod+Mod1+e layout toggle split
+
+# toggle tiling / floating
+#bindsym $mod+Shift+space floating toggle
+
+# change focus between tiling / floating windows
+#bindsym $mod+space focus mode_toggle
+
+# focus the parent container
+#bindsym $mod+a focus parent
+
+# focus the child container
+#bindsym $mod+d focus child
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+#floating_modifier $mod
+
+ # assign workspaces to individual displays
+   #workspace 5 output DVI-I-1
+   #workspace 6 output DVI-I-1
+
+   #workspace 7 output HDMI-0
+   #workspace 8 output HDMI-0
+   #workspace 9 output HDMI-0
+
+   #workspace 10 output HDMI-0
+   #workspace 11 output HDMI-0
+   #workspace 12 output HDMI-0
+
+## split in horizontal orientation
+#bindsym $mod+Mod1+Shift+h split h
+
+#bindsym $mod+r mode "resize"
