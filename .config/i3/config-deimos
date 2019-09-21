@@ -8,7 +8,7 @@ set $mod Mod4
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
-font pango:DejaVu Sans 11.5
+font pango:DejaVu Sans 11
 
 # STARTUP COMMANDS ######################################
 
@@ -16,13 +16,15 @@ font pango:DejaVu Sans 11.5
    exec_always --no-startup-id xss-lock /home/austin/.config/i3/wallpapers/xss-locker-deimos.sh
  # start network monitor applet
    exec nm-applet
+
  # change shell commands to vim-style
    exec_always set -o vi
- # rebind key to mod5 in order to show hidden i3bar dock -- no longer used
-   #exec_always xmodmap -e "keysym Control_R = ISO_Level3_Shift"
    
  # set key repeat delay
    exec_always xset r rate 200 30
+ # configure trackpad
+   exec_always --no-startup-id xinput --set-prop 'CyPS/2 Cypress Trackpad' 301 1   # enable tap-clicking
+   exec_always --no-startup-id xinput --set-prop 'CyPS/2 Cypress Trackpad' 316 0.3 # increase sensitivity
 
  # start redshift
    exec --no-startup-id redshift-gtk -l 39:-74 -t 6500k:2600K
