@@ -13,7 +13,7 @@ font pango:DejaVu Sans 11.5
 # STARTUP COMMANDS ######################################
 
  # force screen to lock when system is suspended, which occurs whenever the lid is shut
-   exec_always --no-startup-id xss-lock /home/austin/.config/i3/wallpapers/xss-locker.sh
+   exec_always --no-startup-id xss-lock /home/austin/.config/i3/wallpapers/xss-locker-deimos.sh
  # start network monitor applet
    exec nm-applet
  # change shell commands to vim-style
@@ -62,7 +62,7 @@ font pango:DejaVu Sans 11.5
    bindsym $mod+Mod1+space exec xinput --enable 'CyPS/2 Cypress Trackpad'
 
  # lock screen
-   bindsym $mod+x exec i3lock /home/austin/.config/i3/wallpapers/earth-at-night.png
+   bindsym $mod+x exec i3lock -i /home/austin/.config/i3/wallpapers/earth-at-night-1080.png
  
  # take screenshot with printscreen key and name with timestamp
   bindsym 0xff61 exec --no-startup-id import -window root ~/Pictures/latest-screenshot.png && mv ~/Pictures/latest-screenshot.png ~/Pictures/deimos-screenshot-$(date +%H:%M:%S_%Y-%m-%d).png
