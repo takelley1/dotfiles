@@ -8,7 +8,7 @@ set $mod Mod4
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
-font pango:DejaVu Sans 7.5
+font pango:DejaVu Sans 11.5
 
 # STARTUP COMMANDS ######################################
 
@@ -25,13 +25,13 @@ font pango:DejaVu Sans 7.5
    exec_always xset r rate 200 30
 
  # start redshift
-   exec --no-startup-id redshift-gtk -l 39:-74 -t 5500k:2600K
+   exec --no-startup-id redshift-gtk -l 39:-74 -t 6500k:2600K
  # set desktop background
    exec --no-startup-id feh --bg-fill /home/austin/.config/i3/wallpapers/earth-at-night.png
 
   ### start apps automatically
      # main screen
-     exec --no-startup-id i3-msg 'workspace 2: terminal; exec terminator --config /home/austin/.config/terminator/configlaptop -b --profile=austinsprofile'
+     exec --no-startup-id i3-msg 'workspace 2: terminal; exec terminator --config /home/austin/.config/terminator/configdesktop -b --profile=austinsprofile'
 
 # FORMATTING ############################################
  
@@ -58,14 +58,14 @@ font pango:DejaVu Sans 7.5
 # CUSTOM HOTKEYS ########################################
  
  # disable touchpad toggle (for easier typing)
-   bindsym $mod+space exec xinput --disable 12
-   bindsym $mod+Mod1+space exec xinput --enable 12
+   bindsym $mod+space exec xinput --disable 'CyPS/2 Cypress Trackpad'
+   bindsym $mod+Mod1+space exec xinput --enable 'CyPS/2 Cypress Trackpad'
 
  # lock screen
-   bindsym $mod+x exec i3lock -i /home/austin/.config/i3/wallpapers/sea-of-colors-1366x768.png
+   bindsym $mod+x exec i3lock /home/austin/.config/i3/wallpapers/earth-at-night.png
  
  # take screenshot with printscreen key and name with timestamp
-  bindsym 0xff61 exec --no-startup-id import -window root ~/Pictures/latest-screenshot.png && mv ~/Pictures/latest-screenshot.png ~/Pictures/phobos-screenshot-$(date +%H:%M:%S_%Y-%m-%d).png
+  bindsym 0xff61 exec --no-startup-id import -window root ~/Pictures/latest-screenshot.png && mv ~/Pictures/latest-screenshot.png ~/Pictures/deimos-screenshot-$(date +%H:%M:%S_%Y-%m-%d).png
 
  # new resizing hotkeys to remove 'resize mode'
  # 'Mod1' is alt
@@ -75,21 +75,24 @@ font pango:DejaVu Sans 7.5
    bindsym $mod+Mod1+l resize grow width 5 px or 5 ppt
 
  # volume controls
-   bindsym $mod+Down exec amixer set Master 2%-
-   bindsym $mod+Up exec amixer set Master 2%+
-
-   #bindsym F6 exec amixer set Master toggle -- the mute button is buggy
-   bindsym F7 exec amixer set Master 2%-
-   bindsym F8 exec amixer set Master 2%+
-
    bindsym XF86AudioLowerVolume exec amixer set Master 2%-
    bindsym XF86AudioRaiseVolume exec amixer set Master 2%+
  
+   bindsym F11 exec amixer set Master 2%-
+   bindsym F12 exec amixer set Master 2%+
+
+   bindsym $mod+Down exec amixer set Master 2%-
+   bindsym $mod+Up exec amixer set Master 2%+
+
  # brightness controls
-   bindsym XF86MonBrightnessDown exec brightness-
-   bindsym XF86MonBrightnessUp exec brightness+ 
-   bindsym $mod+Right exec brightness+ 
-   bindsym $mod+Left exec brightness-
+   bindsym XF86MonBrightnessDown exec brightnessctl set 2%-
+   bindsym XF86MonBrightnessUp exec brightnessctl set +2%
+
+   bindsym F4 exec brightnessctl set 2%-
+   bindsym F5 exec brightnessctl set +2%
+
+   bindsym $mod+Right exec brightnessctl set +2%
+   bindsym $mod+Left exec brightnessctl set 2%-
 
  # app hotkeys
    bindsym $mod+r exec terminator -e ranger
@@ -101,8 +104,7 @@ font pango:DejaVu Sans 7.5
 #floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec terminator --config /home/austin/.config/terminator/configlaptop -b --profile=austinsprofile 
-bindsym $mod+Mod1+Return exec urxvt
+bindsym $mod+Return exec terminator --config /home/austin/.config/terminator/configdesktop -b --profile=austinsprofile 
 
 # kill focused window
 bindsym $mod+Shift+k kill
@@ -197,10 +199,6 @@ bindsym $mod+Control+r restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Control+e exec i3-msg exit
 
-# required keybindings for i3blocks to detect capslock and numlock
-bindsym --release Caps_Lock exec pkill -SIGRTMIN+11 i3blocks
-bindsym --release Num_Lock  exec pkill -SIGRTMIN+11 i3blocks
-
 # use i3blocks instead of default
 # hidden detailed status bar, invoked with right CTRL
 #bar {
@@ -216,7 +214,7 @@ bindsym --release Num_Lock  exec pkill -SIGRTMIN+11 i3blocks
 
 #persistent status bar
 bar {
-       status_command i3blocks -c /home/austin/.config/i3/i3blocks-laptop.conf
+       status_command i3blocks -c /home/austin/.config/i3/i3blocks-deimos.conf
        colors {
            statusline #eeeeee
            focused_workspace        #00ff00 #285777 #ffffff
