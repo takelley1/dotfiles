@@ -201,7 +201,7 @@ bindsym --release Num_Lock  exec pkill -SIGRTMIN+11 i3blocks
 
 # persistent status bar
 bar {
-       status_command i3blocks -c /home/austin/.config/i3/i3blocks.conf
+       status_command i3blocks -c /home/austin/.config/i3/i3blocks-tethys.conf
        tray_output primaryA
        tray_output DVI-I-1
        colors {
