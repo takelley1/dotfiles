@@ -48,8 +48,8 @@ font pango:Ubuntu Mono 10
  
       # workspace 2
       #workspace 2 output DVI-I-1
-      exec --no-startup-id "i3-msg 'workspace 2: terminal; append_layout /home/austin/.config/i3/workspaces/i3-terminal.json'"
-      exec --no-startup-id "i3-msg 'workspace 2: terminal; exec terminator --config /home/austin/.config/terminator/configdesktop -b T terminator'"
+      #exec --no-startup-id "i3-msg 'workspace 2: terminal; append_layout /home/austin/.config/i3/workspaces/i3-terminal.json'"
+      #exec --no-startup-id "i3-msg 'workspace 2: terminal; exec terminator --config /home/austin/.config/terminator/configdesktop -b T terminator'"
       # workspace 3
       #workspace 3 output DVI-I-1
       #exec --no-startup-id "i3-msg 'workspace 3; append_layout /home/austin/.config/i3/workspaces/i3-files.json'"
