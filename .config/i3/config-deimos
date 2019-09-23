@@ -13,7 +13,9 @@ font pango:DejaVu Sans 11
 # STARTUP COMMANDS ######################################
 
  # force screen to lock when system is suspended, which occurs whenever the lid is shut
-   exec_always --no-startup-id xss-lock /home/austin/.config/i3/wallpapers/xss-locker-deimos.sh
+   #this functionality has been replaced by https://github.com/guns/go-luks-suspend
+   #exec_always --no-startup-id xss-lock /home/austin/.config/i3/wallpapers/xss-locker-deimos.sh
+
  # start network monitor applet
    exec nm-applet
 
