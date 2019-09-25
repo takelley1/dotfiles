@@ -5,7 +5,8 @@
 # auto mount drive since fstab won't work
 
 # COMMANDS ##############################################
-        set -o vi
+
+        set -o vi # use vi-style commands
 
         # custom git alias used for backing up dotfiles
         # see https://developer.atlassian.com/blog/2016/02/best-way-to-store-dotfiles-git-bare-repo/	
@@ -26,6 +27,8 @@
 	alias phobos='ssh austin@192.168.1.12'
 
 	####################
+
+	alias eve='bash /opt/evesetup/lib/evelauncher/evelauncher.sh'
 
 	alias up='sudo apt update && sudo apt upgrade -y'
 
