@@ -33,6 +33,9 @@ font pango:DejaVu Sans 11
  # set desktop background
    exec --no-startup-id feh --bg-fill /home/austin/.config/i3/wallpapers/earth-at-night.png
 
+ # turn down microphone
+   exec --no-startup-id amixer set Capture 0%
+
   ### start apps automatically
      # main screen
      exec --no-startup-id i3-msg 'workspace 2: terminal; exec terminator --config /home/austin/.config/terminator/configdesktop -b --profile=austinsprofile'
@@ -82,8 +85,8 @@ font pango:DejaVu Sans 11
    bindsym XF86AudioLowerVolume exec amixer set Master 2%-
    bindsym XF86AudioRaiseVolume exec amixer set Master 2%+
  
-   bindsym F11 exec amixer set Master 2%-
-   bindsym F12 exec amixer set Master 2%+
+   #bindsym F11 exec amixer set Master 2%-
+   #bindsym F12 exec amixer set Master 2%+
 
    bindsym $mod+Down exec amixer set Master 2%-
    bindsym $mod+Up exec amixer set Master 2%+
@@ -92,8 +95,8 @@ font pango:DejaVu Sans 11
    bindsym XF86MonBrightnessDown exec brightnessctl set 2%-
    bindsym XF86MonBrightnessUp exec brightnessctl set +2%
 
-   bindsym F4 exec brightnessctl set 2%-
-   bindsym F5 exec brightnessctl set +2%
+   #bindsym F4 exec brightnessctl set 2%-
+   #bindsym F5 exec brightnessctl set +2%
 
    bindsym $mod+Right exec brightnessctl set +2%
    bindsym $mod+Left exec brightnessctl set 2%-
