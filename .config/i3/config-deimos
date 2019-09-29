@@ -84,6 +84,7 @@ font pango:DejaVu Sans 11
  # volume controls
    bindsym XF86AudioLowerVolume exec amixer set Master 2%-
    bindsym XF86AudioRaiseVolume exec amixer set Master 2%+
+   bindsym XF86AudioMute exec amixer set Master 0%
  
    #bindsym F11 exec amixer set Master 2%-
    #bindsym F12 exec amixer set Master 2%+
