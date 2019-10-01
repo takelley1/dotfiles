@@ -28,6 +28,7 @@
 
 	####################
 
+        alias factorio='bash /home/austin/Games/Factorio/start.sh & \ ; sleep 3600 ; killall factorio ; systemctl suspend'
 	alias eve='bash /opt/evesetup/lib/evelauncher/evelauncher.sh'
 
 	alias up='sudo apt update && sudo apt upgrade -y'
