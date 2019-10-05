@@ -17,7 +17,7 @@ font pango:Ubuntu Mono 10
     # make bash use vim-style shortcuts
       exec_always --no-startup-id set -o vi
     # set mouse sensitivity
-      exec_always --no-startup-id xinput --set-prop pointer:'Logitech G903' 296 -0.75
+      exec_always --no-startup-id xinput --set-prop pointer:'Logitech G903' 296 -0.85
       mouse_warping none
     # rebind right ctrl to mod5 in order to show hidden i3bar dock
       exec_always xmodmap -e "keysym Control_R = ISO_Level3_Shift"
