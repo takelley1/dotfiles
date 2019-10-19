@@ -40,9 +40,6 @@ font pango:DejaVu Sans 11
      # main screen
      exec --no-startup-id i3-msg 'workspace 2: terminal; exec terminator --config /home/austin/.config/terminator/configdesktop -b --profile=austinsprofile'
 
- # take automatic screenshots for personal work tracking
-   exec --no-startup-id bash ~/MiscScripts/bash/screenshot.sh
-
 # FORMATTING ############################################
  
  # hide side borders
