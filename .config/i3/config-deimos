@@ -32,6 +32,8 @@ font pango:DejaVu Sans 11
    exec --no-startup-id redshift-gtk -l 39:-74 -t 6500k:2600K
  # set desktop background
    exec --no-startup-id feh --bg-fill /home/austin/.config/i3/wallpapers/earth-at-night.png
+ # start clipboard manager
+   exec --no-startup-id clipit
 
  # turn down microphone
    exec --no-startup-id amixer set Capture 0%
