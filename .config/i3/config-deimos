@@ -25,8 +25,8 @@ font pango:DejaVu Sans 11
  # set key repeat delay
    exec_always xset r rate 200 30
  # configure trackpad
-   exec_always --no-startup-id xinput --set-prop 'CyPS/2 Cypress Trackpad' 301 1   # enable tap-clicking
-   exec_always --no-startup-id xinput --set-prop 'CyPS/2 Cypress Trackpad' 316 0.3 # increase sensitivity
+   exec_always --no-startup-id xinput --set-prop 'CyPS/2 Cypress Trackpad' 'libinput Tapping Enabled' 1   # enable tap-clicking
+   exec_always --no-startup-id xinput --set-prop 'CyPS/2 Cypress Trackpad' 'libinput Accel Speed' 0.3 # increase sensitivity
 
  # start redshift
    exec --no-startup-id redshift-gtk -l 39:-74 -t 6500k:2600K
