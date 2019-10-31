@@ -24,7 +24,7 @@ font pango:Ubuntu Mono 10
     # make sure numlock is on
       exec_always --no-startup-id numlockx on
     # set keyboard key repeat delay
-      exec_always xset r rate 200 30
+      exec_always --no-startup-id xset r rate 200 30
 
  # DISPLAY
     # start redshift
@@ -38,18 +38,14 @@ font pango:Ubuntu Mono 10
     # apply saved layout, then start apps
       # workspace 1
       workspace 1 output DVI-I-1
-      exec --no-startup-id "i3-msg 'workspace 1: firefox; append_layout /home/austin/.config/i3/workspaces/i3-browser.json'"
-      exec --no-startup-id "i3-msg 'workspace 1: firefox; exec firefox'"
+      exec --no-startup-id "i3-msg 'workspace 1; append_layout /home/austin/.config/i3/workspaces/i3-browser.json'"
+      exec --no-startup-id "i3-msg 'workspace 1; exec firefox'"
 
       # workspace 4
-      workspace 4 output DVI-I-1
-      exec --no-startup-id "i3-msg 'workspace 4; append_layout /home/austin/.config/i3/workspaces/i3-terminal-backups.json'"
-      exec --no-startup-id "i3-msg 'workspace 4; exec terminator --config /home/austin/.config/terminator/configdesktop -b --profile=austinsprofile; exec CrashPlanDesktop'"
+      workspace 4 output HDMI-0
+      exec --no-startup-id "i3-msg 'workspace 4; append_layout /home/austin/.config/i3/workspaces/i3-terminal.json'"
+      exec --no-startup-id terminator
  
-      # workspace 2
-      #workspace 2 output DVI-I-1
-      #exec --no-startup-id "i3-msg 'workspace 2: terminal; append_layout /home/austin/.config/i3/workspaces/i3-terminal.json'"
-      #exec --no-startup-id "i3-msg 'workspace 2: terminal; exec terminator --config /home/austin/.config/terminator/configdesktop -b T terminator'"
       # workspace 3
       #workspace 3 output DVI-I-1
       #exec --no-startup-id "i3-msg 'workspace 3; append_layout /home/austin/.config/i3/workspaces/i3-files.json'"
@@ -146,8 +142,8 @@ bindsym $mod+v split v
 bindsym $mod+Tab workspace next_on_output
 bindsym $mod+Shift+Tab workspace prev_on_output
 
-bindsym $mod+1 workspace 1: firefox
-bindsym $mod+2 workspace 2: terminal
+bindsym $mod+1 workspace 1
+bindsym $mod+2 workspace 2
 bindsym $mod+3 workspace 3
 bindsym $mod+4 workspace 4
 bindsym $mod+5 workspace 5
@@ -168,8 +164,8 @@ bindsym $mod+Shift+9 workspace 19
 bindsym $mod+Shift+0 workspace 20
 
 # move focused container to workspace
-bindsym $mod+Control+1 move container to workspace 1: firefox
-bindsym $mod+Control+2 move container to workspace 2: terminal
+bindsym $mod+Control+1 move container to workspace 1
+bindsym $mod+Control+2 move container to workspace 2
 bindsym $mod+Control+3 move container to workspace 3
 bindsym $mod+Control+4 move container to workspace 4
 bindsym $mod+Control+5 move container to workspace 5
