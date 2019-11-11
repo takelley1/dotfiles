@@ -10,39 +10,42 @@ set $mod Mod4
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
 font pango:DejaVu Sans 11
 
-# STARTUP COMMANDS ######################################
+#########################################################
+# STARTUP COMMANDS
+#########################################################
 
  # force screen to lock when system is suspended, which occurs whenever the lid is shut
    #this functionality has been replaced by https://github.com/guns/go-luks-suspend
    #exec_always --no-startup-id xss-lock /home/austin/.config/i3/wallpapers/xss-locker-deimos.sh
 
- # start network monitor applet
-   exec nm-applet
+ # turn down microphone
+   exec --no-startup-id amixer set Capture 0%
 
- # change shell commands to vim-style
-   exec_always set -o vi
-   
- # set key repeat delay
-   exec_always xset r rate 200 30
- # configure trackpad
-   exec_always --no-startup-id xinput --set-prop 'CyPS/2 Cypress Trackpad' 'libinput Tapping Enabled' 1   # enable tap-clicking
-   exec_always --no-startup-id xinput --set-prop 'CyPS/2 Cypress Trackpad' 'libinput Accel Speed' 0.3 # increase sensitivity
+ # start network manager applet
+   exec nm-applet
+ # start clipboard manager
+   exec --no-startup-id clipit
 
  # start redshift
    exec --no-startup-id redshift-gtk -l 39:-74 -t 6500k:2600K
  # set desktop background
    exec --no-startup-id feh --bg-fill /home/austin/.config/i3/wallpapers/earth-at-night.png
- # start clipboard manager
-   exec --no-startup-id clipit
 
- # turn down microphone
-   exec --no-startup-id amixer set Capture 0%
+ # set keyboard key repeat delay
+   exec_always xset r rate 200 30
+ # configure trackpad
+   exec_always --no-startup-id xinput --set-prop 'CyPS/2 Cypress Trackpad' 'libinput Tapping Enabled' 1  # enable tap-clicking
+   exec_always --no-startup-id xinput --set-prop 'CyPS/2 Cypress Trackpad' 'libinput Accel Speed' 0.3    # increase sensitivity
 
-  ### start apps automatically
-     # main screen
-     exec --no-startup-id i3-msg 'workspace 2: terminal; exec terminator --config /home/austin/.config/terminator/configdesktop -b --profile=austinsprofile'
+ # change shell commands to vim-style
+   exec_always set -o vi
 
-# FORMATTING ############################################
+ # start apps automatically
+   exec --no-startup-id i3-msg 'workspace 2: terminal; exec terminator --config /home/austin/.config/terminator/configdesktop -b --profile=austinsprofile'
+
+#########################################################
+# FORMATTING
+#########################################################
  
  # hide side borders
    hide_edge_borders both
@@ -56,7 +59,7 @@ font pango:DejaVu Sans 11
    client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
    client.background       #000000
  ### colors (default backups)
-   # class                 border  backgr. text    indicator child_border
+   # class                  border  backgr. text    indicator child_border
    #client.focused          #4c7899 #285577 #ffffff #2e9ef4   #285577
    #client.focused_inactive #333333 #5f676a #ffffff #484e50   #5f676a
    #client.unfocused        #333333 #222222 #888888 #292d2e   #222222
@@ -64,25 +67,10 @@ font pango:DejaVu Sans 11
    #client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
    #client.background       #ffffff
 
-# CUSTOM HOTKEYS ########################################
+#########################################################
+# HOTKEYS
+#########################################################
  
- # disable touchpad toggle (for easier typing)
-   bindsym $mod+space exec xinput --disable 'CyPS/2 Cypress Trackpad'
-   bindsym $mod+Mod1+space exec xinput --enable 'CyPS/2 Cypress Trackpad'
-
- # lock screen
-   bindsym $mod+x exec i3lock -i /home/austin/.config/i3/wallpapers/earth-at-night-1080.png
- 
- # take screenshot with printscreen key and name with timestamp
-  bindsym 0xff61 exec --no-startup-id import -window root ~/Pictures/latest-screenshot.png && mv ~/Pictures/latest-screenshot.png ~/Pictures/deimos-screenshot-$(date +%H:%M:%S_%Y-%m-%d).png
-
- # new resizing hotkeys to remove 'resize mode'
- # 'Mod1' is alt
-   bindsym $mod+Mod1+h resize shrink width 5 px or 5 ppt
-   bindsym $mod+Mod1+k resize grow height 5 px or 5 ppt
-   bindsym $mod+Mod1+j resize shrink height 5 px or 5 ppt
-   bindsym $mod+Mod1+l resize grow width 5 px or 5 ppt
-
  # volume controls
    bindsym XF86AudioLowerVolume exec amixer set Master 2%-
    bindsym XF86AudioRaiseVolume exec amixer set Master 2%+
@@ -96,7 +84,6 @@ font pango:DejaVu Sans 11
 
  # brightness controls
  # sometimes requires 'chmod +s /bin/brightnessctl' to fix setuid after update breaks it
- #
    bindsym XF86MonBrightnessDown exec brightnessctl set 2%-
    bindsym XF86MonBrightnessUp exec brightnessctl set +2%
 
@@ -106,125 +93,141 @@ font pango:DejaVu Sans 11
    bindsym $mod+Right exec brightnessctl set +2%
    bindsym $mod+Left exec brightnessctl set 2%-
 
- # app hotkeys
+ # touchpad toggle (for easier typing)
+   bindsym $mod+space exec xinput --disable 'CyPS/2 Cypress Trackpad'
+   bindsym $mod+Mod1+space exec xinput --enable 'CyPS/2 Cypress Trackpad'
+
+ # lock screen
+   bindsym $mod+x exec i3lock -i /home/austin/.config/i3/wallpapers/earth-at-night-1080.png
+ 
+ # take screenshot with printscreen key and name with timestamp
+   bindsym 0xff61 exec --no-startup-id import -window root ~/Pictures/latest-screenshot.png && mv ~/Pictures/latest-screenshot.png ~/Pictures/deimos-screenshot-$(date +%H:%M:%S_%Y-%m-%d).png
+
+
+ # app launch hotkeys
    bindsym $mod+r exec terminator -e ranger
    bindsym $mod+i exec firefox
+   bindsym $mod+Return exec terminator --config /home/austin/.config/terminator/configdesktop -b --profile=austinsprofile 
+   bindsym $mod+d exec rofi -show run -lines 20
+
+ # reload the configuration file
+   bindsym $mod+Control+c reload
+ # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+   bindsym $mod+Control+r restart
+ # exit i3 (logs you out of your X session)
+   bindsym $mod+Control+e exec i3-msg exit
 
 #########################################################
+# WINDOW MANIPULATION
+#########################################################
 
-# Use Mouse+$mod to drag floating windows to their wanted position
-#floating_modifier $mod
+ # window resizing
+ # "Mod1" is alt
+   bindsym $mod+Mod1+h resize shrink width 5 px or 5 ppt
+   bindsym $mod+Mod1+k resize grow height 5 px or 5 ppt
+   bindsym $mod+Mod1+j resize shrink height 5 px or 5 ppt
+   bindsym $mod+Mod1+l resize grow width 5 px or 5 ppt
 
-# start a terminal
-bindsym $mod+Return exec terminator --config /home/austin/.config/terminator/configdesktop -b --profile=austinsprofile 
+ # use Mouse+$mod to drag floating windows to their wanted position
+  #floating_modifier $mod
+ 
+ # kill focused window
+   bindsym $mod+Shift+k kill
+ 
+ # change focus
+   bindsym $mod+h focus left
+   bindsym $mod+j focus down
+   bindsym $mod+k focus up
+   bindsym $mod+l focus right
+ 
+ # move focused window
+   bindsym $mod+Control+h move left
+   bindsym $mod+Control+j move down
+   bindsym $mod+Control+k move up
+   bindsym $mod+Control+l move right
+ 
+ # split in horizontal orientation
+  #bindsym $mod+Mod1+Shift+h split h
+ 
+ # split in vertical orientation
+   bindsym $mod+v split v
+ 
+ # enter fullscreen mode for the focused container
+  #bindsym $mod+f fullscreen toggle
+ 
+ # toggle tiling / floating
+   bindsym $mod+f floating toggle
+ 
+ # change focus between tiling / floating windows
+  #bindsym $mod+space focus mode_toggle
+ 
+ # focus the parent container
+  #bindsym $mod+a focus parent
+ 
+ # focus the child container
+  #bindsym $mod+d focus child
+ 
+ # switch to workspace
+   bindsym $mod+Tab workspace next
+   bindsym $mod+Shift+Tab workspace prev
+ 
+   bindsym $mod+1 workspace 1: firefox
+   bindsym $mod+2 workspace 2: terminal
+   bindsym $mod+3 workspace 3
+   bindsym $mod+4 workspace 4
+   bindsym $mod+5 workspace 5
+   bindsym $mod+6 workspace 6
+   bindsym $mod+7 workspace 7
+   bindsym $mod+8 workspace 8
+   bindsym $mod+9 workspace 9
+   bindsym $mod+0 workspace 10
+   bindsym $mod+Shift+1 workspace 11
+   bindsym $mod+Shift+2 workspace 12
+   bindsym $mod+Shift+3 workspace 13
+   bindsym $mod+Shift+4 workspace 14
+   bindsym $mod+Shift+5 workspace 15
+   bindsym $mod+Shift+6 workspace 16
+   bindsym $mod+Shift+7 workspace 17
+   bindsym $mod+Shift+8 workspace 18
+   bindsym $mod+Shift+9 workspace 19
+   bindsym $mod+Shift+0 workspace 20
+ 
+ # move focused container to workspace
+   bindsym $mod+Control+1 move container to workspace 1: firefox
+   bindsym $mod+Control+2 move container to workspace 2: terminal
+   bindsym $mod+Control+3 move container to workspace 3
+   bindsym $mod+Control+4 move container to workspace 4
+   bindsym $mod+Control+5 move container to workspace 5
+   bindsym $mod+Control+6 move container to workspace 6
+   bindsym $mod+Control+7 move container to workspace 7
+   bindsym $mod+Control+8 move container to workspace 8
+   bindsym $mod+Control+9 move container to workspace 9
+   bindsym $mod+Control+0 move container to workspace 10
+   bindsym $mod+Control+Shift+1 move container to workspace 11
+   bindsym $mod+Control+Shift+2 move container to workspace 12
+   bindsym $mod+Control+Shift+3 move container to workspace 13
+   bindsym $mod+Control+Shift+4 move container to workspace 14
+   bindsym $mod+Control+Shift+5 move container to workspace 15
+   bindsym $mod+Control+Shift+6 move container to workspace 16
+   bindsym $mod+Control+Shift+7 move container to workspace 17
+   bindsym $mod+Control+Shift+8 move container to workspace 18
+   bindsym $mod+Control+Shift+9 move container to workspace 19
+   bindsym $mod+Control+Shift+0 move container to workspace 20
+ 
+ # use i3blocks instead of default
+ # hidden detailed status bar, invoked with right CTRL
+ #bar {
+ #        status_command i3blocks -c /home/austin/.config/i3/i3blocks-hidden-laptop.conf
+ #        mode hide
+ #        hidden_state hide
+ #        tray_output none
+ #        modifier Mod5
+ #	colors {
+ #	    statusline #ffffff
+ #	}
+ #}
 
-# kill focused window
-bindsym $mod+Shift+k kill
-
-# use rofi instead of dmenu
-bindsym $mod+d exec rofi -show run -lines 20
-
-# change focus
-bindsym $mod+h focus left
-bindsym $mod+j focus down
-bindsym $mod+k focus up
-bindsym $mod+l focus right
-
-# move focused window, rebound to vi keys
-bindsym $mod+Control+h move left
-bindsym $mod+Control+j move down
-bindsym $mod+Control+k move up
-bindsym $mod+Control+l move right
-
-# split in horizontal orientation
-#bindsym $mod+Mod1+Shift+h split h
-
-# split in vertical orientation
-bindsym $mod+v split v
-
-# enter fullscreen mode for the focused container
-#bindsym $mod+f fullscreen toggle
-
-# toggle tiling / floating
-bindsym $mod+f floating toggle
-
-# change focus between tiling / floating windows
-#bindsym $mod+space focus mode_toggle
-
-# focus the parent container
-#bindsym $mod+a focus parent
-
-# focus the child container
-#bindsym $mod+d focus child
-
-# switch to workspace
-bindsym $mod+Tab workspace next
-bindsym $mod+Shift+Tab workspace prev
-
-bindsym $mod+1 workspace 1: firefox
-bindsym $mod+2 workspace 2: terminal
-bindsym $mod+3 workspace 3
-bindsym $mod+4 workspace 4
-bindsym $mod+5 workspace 5
-bindsym $mod+6 workspace 6
-bindsym $mod+7 workspace 7
-bindsym $mod+8 workspace 8
-bindsym $mod+9 workspace 9
-bindsym $mod+0 workspace 10
-bindsym $mod+Shift+1 workspace 11
-bindsym $mod+Shift+2 workspace 12
-bindsym $mod+Shift+3 workspace 13
-bindsym $mod+Shift+4 workspace 14
-bindsym $mod+Shift+5 workspace 15
-bindsym $mod+Shift+6 workspace 16
-bindsym $mod+Shift+7 workspace 17
-bindsym $mod+Shift+8 workspace 18
-bindsym $mod+Shift+9 workspace 19
-bindsym $mod+Shift+0 workspace 20
-
-# move focused container to workspace
-bindsym $mod+Control+1 move container to workspace 1: firefox
-bindsym $mod+Control+2 move container to workspace 2: terminal
-bindsym $mod+Control+3 move container to workspace 3
-bindsym $mod+Control+4 move container to workspace 4
-bindsym $mod+Control+5 move container to workspace 5
-bindsym $mod+Control+6 move container to workspace 6
-bindsym $mod+Control+7 move container to workspace 7
-bindsym $mod+Control+8 move container to workspace 8
-bindsym $mod+Control+9 move container to workspace 9
-bindsym $mod+Control+0 move container to workspace 10
-bindsym $mod+Control+Shift+1 move container to workspace 11
-bindsym $mod+Control+Shift+2 move container to workspace 12
-bindsym $mod+Control+Shift+3 move container to workspace 13
-bindsym $mod+Control+Shift+4 move container to workspace 14
-bindsym $mod+Control+Shift+5 move container to workspace 15
-bindsym $mod+Control+Shift+6 move container to workspace 16
-bindsym $mod+Control+Shift+7 move container to workspace 17
-bindsym $mod+Control+Shift+8 move container to workspace 18
-bindsym $mod+Control+Shift+9 move container to workspace 19
-bindsym $mod+Control+Shift+0 move container to workspace 20
-
-# reload the configuration file
-bindsym $mod+Control+c reload
-# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
-bindsym $mod+Control+r restart
-# exit i3 (logs you out of your X session)
-bindsym $mod+Control+e exec i3-msg exit
-
-# use i3blocks instead of default
-# hidden detailed status bar, invoked with right CTRL
-#bar {
-#        status_command i3blocks -c /home/austin/.config/i3/i3blocks-hidden-laptop.conf
-#        mode hide
-#        hidden_state hide
-#        tray_output none
-#        modifier Mod5
-#	colors {
-#	    statusline #ffffff
-#	}
-#}
-
-#persistent status bar
+# persistent status bar
 bar {
        status_command i3blocks -c /home/austin/.config/i3/i3blocks-deimos.conf
        colors {
