@@ -1,10 +1,8 @@
 ## cfg
-Arch Linux config files, all paths relative to user's home directory
-
-
+Arch/Manjaro config files, all paths relative to user's home directory.
 
 ### The best way to store your dotfiles: A bare Git repository
-#### from: https://www.atlassian.com/git/tutorials/dotfiles
+#### from https://www.atlassian.com/git/tutorials/dotfiles
  
 
 *Disclaimer: the title is slightly hyperbolic, there are other proven solutions to the problem. I do think the technique below is very elegant though.*

@@ -1,3 +1,5 @@
+# kill currently running screenshot scripts
 ps aux | grep bash | grep auto-screenshot | awk '{print $2}' | xargs kill
 sleep 1s
+# start screenshot script
 bash /home/austin/MiscScripts/bash/auto-screenshot.sh &

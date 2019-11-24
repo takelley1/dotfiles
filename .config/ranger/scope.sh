@@ -58,8 +58,8 @@ if [ "$preview_images" = "True" ]; then
         image/*)
            exit 7;;
         # Image preview for video, disabled by default.:
-        video/*)
-           ffmpegthumbnailer -i "$path" -o "$cached" -s 0 && exit 6 || exit 1;;
+        #video/*)
+        #   ffmpegthumbnailer -i "$path" -o "$cached" -s 0 && exit 6 || exit 1;;
     esac
 fi
 
@@ -104,8 +104,8 @@ case "$extension" in
     #    try pdftotext -l 10 -nopgbrk -q "$path" - && \
     #        { dump | trim | fmt -s -w $width; exit 0; } || exit 1;;
     # BitTorrent Files
-    torrent)
-        try transmission-show "$path" && { dump | trim; exit 5; } || exit 1;;
+    #torrent)
+    #    try transmission-show "$path" && { dump | trim; exit 5; } || exit 1;;
     # ODT Files
     odt|ods|odp|sxw)
         try odt2txt "$path" && { dump | trim; exit 5; } || exit 1;;
@@ -131,8 +131,8 @@ case "$mimetype" in
         try safepipe pygmentize -f ${pygmentize_format} "$path" && { dump | trim; exit 5; }
         exit 2;;
     # Ascii-previews of images:
-    image/*)
-        img2txt --gamma=0.6 --width="$width" "$path" && exit 4 || exit 1;;
+    #image/*)
+    #    img2txt --gamma=0.6 --width="$width" "$path" && exit 4 || exit 1;;
     # Display information about media files:
     video/* | audio/*)
         exiftool "$path" && exit 5

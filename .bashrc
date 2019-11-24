@@ -21,6 +21,8 @@
 	alias io='ssh root@192.168.1.1'
         alias styx='ssh austin@192.168.1.2'
 	alias ganymede='ssh austin@192.168.1.3'
+	alias rhea='ssh austin@192.168.1.4'
+	alias borg='ssh austin@192.168.1.5'
 	alias tethys='ssh austin@192.168.1.11'
 	alias phobos='ssh austin@192.168.1.12'
 
@@ -64,7 +66,7 @@
         alias fping='ping -c 100 -s.2'
         alias ports='netstat -tulanp'
 
-        alias df='df --human-readable --sync'
+        #alias df='df --human-readable --sync'
         alias cp='cp --recursive -d --preserve=all --verbose'
 	alias mv='mv --verbose'
         alias j='jobs -l'
