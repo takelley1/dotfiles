@@ -1,5 +1,6 @@
-# kill currently running screenshot scripts
-ps aux | grep bash | grep auto-screenshot | awk '{print $2}' | xargs kill
-sleep 1s
+# kill currently running screenshot script
+ps aux | grep bash | grep auto-screenshot | awk '{print $2}' | xargs kill -s 9
+
 # start screenshot script
-bash /home/austin/MiscScripts/bash/auto-screenshot.sh &>> /home/austin/Pictures/auto-screenshot.log
+  # the '&' is required or the window manager will not start
+bash /home/austin/MiscScripts/bash/auto-screenshot.sh &>> /home/austin/Pictures/auto-screenshot.log &
