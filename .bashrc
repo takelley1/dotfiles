@@ -7,6 +7,11 @@
         # use vi-style commands
         set -o vi 
 
+	# edit configuration files
+	alias i3c='nvim ~/.config/i3/config'
+        alias i3b="nvim ~/.config/i3/i3blocks-$(hostname).conf"
+        alias bashrc='nvim ~/.bashrc'
+
         # custom git alias used for backing up dotfiles ######################
         # see https://developer.atlassian.com/blog/2016/02/best-way-to-store-dotfiles-git-bare-repo/	
 
