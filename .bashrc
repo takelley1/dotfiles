@@ -12,11 +12,11 @@
 
         alias git-config='/usr/bin/git --git-dir=/home/austin/.cfg/ --work-tree=/home/austin'
 	alias gc='git-config'
-	alias gcs='git-config status --untracked-files=no'
 
+	alias gcs='git-config status --untracked-files=no'
+	alias gca='git-config add'
+	alias gcc='git-config commit'
 	alias gcp='git-config push'
-	alias gp="git commit -a -m 'update' && git push" 
-	alias gn="cd ~/notes && git commit -a -m 'update' && git push" 
 
 	# SSH ALIASES ########################################################
 
@@ -44,11 +44,6 @@
 
         # show SELinux contexts
         alias lcon='ls -lZ --all --reverse'
-        alias lh='history'
-        alias lmount='mount | column -t'
-
-        # tail all logs
-        alias logs="sudo find /var/log -type f -exec file {} \; | grep 'text' | cut -d' ' -f1 | sed -e's/:$//g' | grep -v '[0-9]$' | xargs tail -f"
 
 	# grep modifications
         alias grep='grep --color=auto'
@@ -68,6 +63,9 @@
         alias cp='cp --recursive -d --preserve=all --verbose'
 	alias mv='mv --verbose'
         alias mkdir='mkdir --parents --verbose -Z'
+
+        alias h='history'
+        alias mount='mount | column -t'
 
         # add colors to ls
         alias ls='ls -C --classify --color=auto'
