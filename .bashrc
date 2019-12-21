@@ -26,13 +26,16 @@
 	# SSH ALIASES ########################################################
 
 	alias iop='ssh root@10.0.0.1'
+	alias squid='ssh root@10.0.0.9'
 	alias syslog='ssh root@10.0.0.10'
 	alias tethys='ssh austin@tethys'
+	alias borg='ssh root@10.0.0.11'
 
 	######################################################################
 
-	# games
+	# apps and games
 	alias eve='bash /opt/evesetup/lib/evelauncher/evelauncher.sh'
+	alias audible='bash /opt/OpenAudible/OpenAudible'
 
 	# packages
 	alias up='sudo apt update && sudo apt upgrade -y'
@@ -42,6 +45,7 @@
         alias vim='nvim'      
 
 	# directory traversal
+	alias r='ranger'
         alias ..='cd ../'
         alias ...='cd ../../../'
         alias root='cd /'
