@@ -36,6 +36,11 @@
 	# apps and games
 	alias eve='bash /opt/evesetup/lib/evelauncher/evelauncher.sh'
 	alias audible='bash /opt/OpenAudible/OpenAudible'
+	
+	# git
+	alias gs='git status'
+	alias gc='git commit'
+	alias gp='git push'
 
 	# packages
 	alias up='sudo apt update && sudo apt upgrade -y'
