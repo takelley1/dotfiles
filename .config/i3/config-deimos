@@ -15,8 +15,10 @@ font pango:DejaVu Sans 9
 #########################################################
 
  # force screen to lock when system is suspended, which occurs whenever the lid is shut
-   #this functionality has been replaced by https://github.com/guns/go-luks-suspend
-   #exec_always --no-startup-id xss-lock /home/austin/.config/i3/wallpapers/xss-locker-deimos.sh
+   # run "systemctl enable go-luks-suspend.service" and comment out the below line to enable luks-suspend
+   #   https://github.com/guns/go-luks-suspend
+   # using xss-lock instead of luks-suspend is faster and more reliable, but less secure
+   exec_always --no-startup-id xss-lock /home/austin/.config/i3/wallpapers/xss-locker-deimos.sh
 
  # turn down microphone
    exec --no-startup-id amixer set Capture 0%
@@ -40,7 +42,7 @@ font pango:DejaVu Sans 9
  # change shell commands to vim-style
    exec_always set -o vi
 
- # start apps automatically
+ # start terminal automatically
    exec --no-startup-id i3-msg 'workspace 2: terminal; exec terminator --config /home/austin/.config/terminator/configdesktop -b --profile=austinsprofile'
 
 #########################################################
@@ -106,10 +108,13 @@ font pango:DejaVu Sans 9
    bindsym 0xff61 exec --no-startup-id import -window root ~/Pictures/latest-screenshot.png && mv ~/Pictures/latest-screenshot.png ~/Pictures/deimos-screenshot-$(date +%H:%M:%S_%Y-%m-%d).png
 
  # app launch hotkeys
-   bindsym $mod+r exec terminator -e ranger
    bindsym $mod+i exec firefox
+   # terminal emulator
    bindsym $mod+Return exec terminator --config /home/austin/.config/terminator/configdesktop -b --profile=austinsprofile 
+   # rofi app launcher
    bindsym $mod+d exec rofi -show run -lines 20
+   # ranger file browser
+   bindsym $mod+r exec terminator --config /home/austin/.config/terminator/configdesktop -b --profile=austinsprofile -e ranger
 
  # reload the configuration file
    bindsym $mod+Control+c reload
