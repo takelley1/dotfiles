@@ -103,6 +103,8 @@
         # combine multiline commands into one in history
         shopt -s cmdhist
 
+        export EDITOR='nvim'
+
 	# history modifications
         export HISTIGNORE="&:ls:[bf]g:exit"
         export HISTFILESIZE=200000
