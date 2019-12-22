@@ -8,7 +8,7 @@
 !! colorscheme
 
 ! special
-*.foreground: #ffffff
+*.foreground: #dddddd
 *.background: #293131
 *.cursorColor: #ffffff
 
