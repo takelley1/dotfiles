@@ -43,7 +43,8 @@ font pango:DejaVu Sans 9
    exec_always set -o vi
 
  # start terminal automatically
-   exec --no-startup-id i3-msg 'workspace 2: terminal; exec terminator --config /home/austin/.config/terminator/configdesktop -b --profile=austinsprofile'
+   exec --no-startup-id i3-msg 'workspace 2: urxvt'
+   #exec --no-startup-id i3-msg 'workspace 2: terminal; exec terminator --config /home/austin/.config/terminator/configdesktop -b --profile=austinsprofile'
 
 #########################################################
 # FORMATTING
@@ -109,10 +110,10 @@ font pango:DejaVu Sans 9
 
  # app launch hotkeys
    bindsym $mod+i exec firefox
-   # terminal emulator
-   bindsym $mod+Return exec terminator --config /home/austin/.config/terminator/configdesktop -b --profile=austinsprofile 
    # alternate terminal emulator (config file is ~/.Xdefaults)
-   bindsym $mod+Control+Return exec urxvt -pe tabbed
+   bindsym $mod+Return exec urxvt
+   # terminal emulator
+   bindsym $mod+Control+Return exec terminator --config /home/austin/.config/terminator/configdesktop -b --profile=austinsprofile 
    # rofi app launcher
    bindsym $mod+d exec rofi -show run -lines 20
    # ranger file browser
