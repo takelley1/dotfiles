@@ -111,6 +111,8 @@ font pango:DejaVu Sans 9
    bindsym $mod+i exec firefox
    # terminal emulator
    bindsym $mod+Return exec terminator --config /home/austin/.config/terminator/configdesktop -b --profile=austinsprofile 
+   # alternate terminal emulator (config file is ~/.Xdefaults)
+   bindsym $mod+Control+Return exec urxvt -pe tabbed
    # rofi app launcher
    bindsym $mod+d exec rofi -show run -lines 20
    # ranger file browser

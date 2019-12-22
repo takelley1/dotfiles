@@ -1,57 +1,137 @@
-!!
+
 !! ~/.Xdefaults
-!!
 
-!!!!!!!!!!!!!!!!!!
-!! rxvt-unicode !!
-!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!
+!! urxvt-unicode !!
+!!!!!!!!!!!!!!!!!!!
 
-URxvt*loginShell:true
-URxvt*transparent:true
-URxvt*shading:5
-URxvt*background:Black
-URxvt*foreground:White
-URxvt*scrollBar:true
-URxvt*scrollBar_right:true
-URxvt*scrollBar_floating:false
-URxvt*scrollstyle:plain
-URxvt*secondaryScroll:true
+!! Colorscheme
+
+! special
+*.foreground: #93a1a1
+*.background: #282828
+*.cursorColor: #afbfbf
+
+! black
+*.color0: #263640
+*.color8: #4a697d
+
+! red
+*.color1: #d12f2c
+*.color9: #fa3935
+
+! green
+*.color2: #819400
+*.color10: #a4bd00
+
+! yellow
+*.color3: #b08500
+*.color11: #d9a400
+
+! blue
+*.color4: #2587cc
+*.color12: #2ca2f5
+
+! magenta
+*.color5: #696ebf
+*.color13: #8086e8
+
+! cyan
+*.color6: #289c93
+*.color14: #33c5ba
+
+! white
+*.color7: #bfbaac
+*.color15: #fdf6e3
+
+!! URxvt Appearance
+URxvt.font: xft:Dejavu Sans Mono:pixelsize=18
+!!URxvt.boldFont: -*-rissole-*
+!!URxvt.italicFont: -*-rissole-*
+!!URxvt.boldItalicfont: -*-rissole-*
+URxvt.letterSpace: 0
+URxvt.lineSpace: 0
+URxvt.internalBorder: 24
+URxvt.cursorBlink: false
+URxvt.cursorUnderline: false
+URxvt.saveline: 2048
+URxvt.scrollBar: false
+URxvt.scrollBar_right: false
+URxvt.urgentOnBell: true
+URxvt.depth: 24
+URxvt.iso14755: false
+
+{printf '\33]50;%s%d\007' "xft:Dejavu Sans Mono:size=$1::antialias=false"}
+
+!! Common Keybinds for Navigations
+URxvt.keysym.Shift-Up: command:\033]720;1\007
+URxvt.keysym.Shift-Down: command:\033]721;1\007
+URxvt.keysym.Control-Up: \033[1;5A
+URxvt.keysym.Control-Down: \033[1;5B
+URxvt.keysym.Control-Right: \033[1;5C
+URxvt.keysym.Control-Left: \033[1;5D
+
+!! Copy Paste & Other Extensions
+!!URxvt.perl-ext-common: default,clipboard,url-select,keyboard-select
+!! load extensions
+URxvt.perl-ext-common: default,matcher,-option-popup,-selection-popup,-realine,tabbedex,clipboard,font-size
+
+URxvt.keysym.C-Up:     font-size:increase
+URxvt.keysym.C-Down:   font-size:decrease
+
+!! extension for tabs - requires urxvt-tabbedex from the AUR
+URxvt.tabbed.autohide: true
+URxvt.keysym.Control-t: perl:tabbedex:new_tab
+URxvt.keysym.Control-k: perl:tabbedex:next_tab
+URxvt.keysym.Control-j: perl:tabbedex:prev_tab
+
+URxvt.copyCommand: xclip -i -selection clipboard
+URxvt.pasteCommand: xclip -o -selection clipboard
+
+!! 'M' is equal to 'Control-Alt'
+URxvt.keysym.M-c: perl:clipboard:copy
+URxvt.keysym.M-v: perl:clipboard:paste
+URxvt.keysym.M-C-v: perl:clipboard:paste_escaped
+URxvt.keysym.M-Escape: perl:keyboard-select:activate
+URxvt.keysym.M-s: perl:keyboard-select:search
+URxvt.keysym.M-u: perl:url-select:select_next
+URxvt.urlLauncher: firefox
+URxvt.underlineURLs: true
+URxvt.urlButton: 1
+
+URxvt.loginShell:true
+URxvt.transparent:false
+URxvt.shading:5
+!!URxvt.background:White
+URxvt.foreground:White
+URxvt.scrollstyle:plain
+URxvt.secondaryScroll:true
 
 ! how many lines you want it to save per session
-URxvt*saveLines:32767
-URxvt*troughColor:#000000
-URxvt*scrollColor:#222222
-URxvt*font: xft:Dejavu Sans Mono:pixelsize=18
-
-! with this set to true, when an app sends a bell to the terminal, awesome hilights the appropriate tag(s) ;)
-URxvt*urgentOnBell: true
+URxvt.saveLines:32767
+URxvt.troughColor:#000000
+!!URxvt*scrollColor:#222222
 
 ! these three lines enable clicking on links to open them ;)
 ! if you want to enable tab support, append ,tabbed to the next line
 ! then use shift+down arrow to create tabs and shift+{left,right} arrows to switch between them
-URxvt*perl-ext-common: default,matcher,-option-popup,-selection-popup,-realine
-URxvt*matcher.button: 1
+URxvt.matcher.button: 1
 ! dont forget to change this to your favorite browser
-URxvt*urlLauncher: firefox
 
 !! The default colors are "Gruvbox":
-*.color0: #1d2021
-*.color1: #cc241d
-*.color2: #98971a
-*.color3: #d79921
-*.color4: #458588
-*.color5: #b16286
-*.color6: #689d6a
-*.color7: #a89984
-*.color8: #928374
-*.color9: #fb4934
-*.color10: #b8bb26
-*.color11: #fabd2f
-*.color12: #83a598
-*.color13: #d3869b
-*.color14: #8ec07c
-*.color15: #ffffff
-! Transparency (0-255):
-!st.alpha: 230
-!! Set a default font and font size as below:
-!! *.font: Monospace-14;
+!!*.color0: #1d2021
+!!*.color1: #cc241d
+!!*.color2: #98971a
+!!*.color3: #d79921
+!!*.color4: #458588
+!!*.color5: #b16286
+!!*.color6: #689d6a
+!!*.color7: #a89984
+!!*.color8: #928374
+!!*.color9: #fb4934
+!!*.color10: #b8bb26
+!!*.color11: #fabd2f
+!!*.color12: #83a598
+!!*.color13: #d3869b
+!!*.color14: #8ec07c
+!!*.color15: #ffffff
