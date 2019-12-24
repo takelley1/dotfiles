@@ -11,13 +11,16 @@
 	alias i3c='nvim ~/.config/i3/config'
         alias i3b="nvim ~/.config/i3/i3blocks-$(hostname).conf"
         alias bashrc='nvim ~/.bashrc'
+        alias rc='nvim ~/.bashrc'
+        alias xd='nvim ~/.Xdefaults'
+        alias xp='nvim ~/.xprofile'
 
         # custom git aliases used for backing up dotfiles ######################
         # see https://developer.atlassian.com/blog/2016/02/best-way-to-store-dotfiles-git-bare-repo/
 
         alias git-config='/usr/bin/git --git-dir=/home/austin/.cfg/ --work-tree=/home/austin'
 
-	#alias gc='git-config'
+	#alias gc='git-config' # conflicts with "alias gc=git commit"
 	alias gcd='git-config diff'
 	alias gcs='git-config status --untracked-files=no'
 	alias gca='git-config add'
