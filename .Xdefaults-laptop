@@ -103,13 +103,13 @@ URxvt.keysym.Control-k: perl:tabbedex:next_tab
 URxvt.keysym.Control-j: perl:tabbedex:prev_tab
 !! use Control-d to close tabs
 
-URxvt.copyCommand: xclip -i -selection clipboard
-URxvt.pasteCommand: xclip -o -selection clipboard
+URxvt.copyCommand: xclip -i -selection primary
+URxvt.pasteCommand: xclip -o -selection primary
 
-!! 'M' is equal to 'Control-Alt'
-URxvt.keysym.M-c: perl:clipboard:copy
-URxvt.keysym.M-v: perl:clipboard:paste
-URxvt.keysym.M-C-v: perl:clipboard:paste_escaped
+!! 'M' is equal to 'Alt'
+URxvt.keysym.M-C-c: perl:clipboard:copy
+URxvt.keysym.M-C-v: perl:clipboard:paste
+#URxvt.keysym.M-C-v: perl:clipboard:paste_escaped
 URxvt.keysym.M-Escape: perl:keyboard-select:activate
 URxvt.keysym.M-s: perl:keyboard-select:search
 URxvt.keysym.M-u: perl:url-select:select_next

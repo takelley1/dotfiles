@@ -88,7 +88,7 @@ URxvt.keysym.Control-Right: \033[1;5C
 URxvt.keysym.Control-Left: \033[1;5D
 
 !! extensions
-URxvt.perl-ext-common: default,matcher,-option-popup,-selection-popup,-realine,tabbedex,clipboard,font-size,url-select,keyboard-select
+URxvt.perl-ext-common: default,matcher,-option-popup,-selection-popup,-realine,selection-to-clipbard,tabbedex,clipboard,font-size,url-select,keyboard-select
 
 !! extension for font-resizing - requires https://github.com/majutsushi/urxvt-font-size
 URxvt.keysym.C-+:      font-size:increase
@@ -106,13 +106,14 @@ URxvt.keysym.Control-j: perl:tabbedex:prev_tab
 !! use Control-d to close tabs
 
 !! use the mouse and middle-click to copy and pste
+Urxvt.clipboard.autocopy: true
 URxvt.copyCommand: xclip -i -selection primary
 URxvt.pasteCommand: xclip -o -selection primary
 
-!! 'M' is equal to 'Control-Alt'
-URxvt.keysym.M-c: perl:clipboard:copy
-URxvt.keysym.M-v: perl:clipboard:paste
-URxvt.keysym.M-C-v: perl:clipboard:paste_escaped
+!! 'M' is equal to 'Alt'
+URxvt.keysym.M-C-c: perl:clipboard:copy
+URxvt.keysym.M-C-v: perl:clipboard:paste
+#URxvt.keysym.M-C-v: perl:clipboard:paste_escaped
 URxvt.keysym.M-Escape: perl:keyboard-select:activate
 URxvt.keysym.M-s: perl:keyboard-select:search
 URxvt.keysym.M-u: perl:url-select:select_next
