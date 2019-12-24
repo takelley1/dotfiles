@@ -18,6 +18,7 @@
         alias git-config='/usr/bin/git --git-dir=/home/austin/.cfg/ --work-tree=/home/austin'
 	alias gc='git-config'
 
+	alias gcd='git-config diff'
 	alias gcs='git-config status --untracked-files=no'
 	alias gca='git-config add'
 	alias gcc='git-config commit'
@@ -38,6 +39,7 @@
 	alias audible='bash /opt/OpenAudible/OpenAudible'
 	
 	# git
+	alias gd='git diff'
 	alias gs='git status'
 	alias ga='git add'
 	alias gc='git commit'
