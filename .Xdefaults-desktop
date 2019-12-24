@@ -61,7 +61,9 @@
 !!*.color15: #fdf6e3
 
 !! appearance
-URxvt.font: xft:Dejavu Sans Mono:pixelsize=16
+!! test out fonts by running printf '\e]710;%s\007' "xft:Terminus:pixelsize=12"
+#URxvt.font: xft:Dejavu Sans Mono:pixelsize=16
+URxvt.font: xft:Source code pro:pixelsize=16
 !!URxvt.boldFont: -*-rissole-*
 !!URxvt.italicFont: -*-rissole-*
 !!URxvt.boldItalicfont: -*-rissole-*
@@ -103,8 +105,9 @@ URxvt.keysym.Control-k: perl:tabbedex:next_tab
 URxvt.keysym.Control-j: perl:tabbedex:prev_tab
 !! use Control-d to close tabs
 
-URxvt.copyCommand: xclip -i -selection clipboard
-URxvt.pasteCommand: xclip -o -selection clipboard
+!! use the mouse and middle-click to copy and pste
+URxvt.copyCommand: xclip -i -selection primary
+URxvt.pasteCommand: xclip -o -selection primary
 
 !! 'M' is equal to 'Control-Alt'
 URxvt.keysym.M-c: perl:clipboard:copy
