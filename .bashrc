@@ -16,13 +16,14 @@
         # see https://developer.atlassian.com/blog/2016/02/best-way-to-store-dotfiles-git-bare-repo/
 
         alias git-config='/usr/bin/git --git-dir=/home/austin/.cfg/ --work-tree=/home/austin'
-	alias gc='git-config'
 
+	alias gc='git-config'
 	alias gcd='git-config diff'
 	alias gcs='git-config status --untracked-files=no'
 	alias gca='git-config add'
 	alias gcc='git-config commit'
 	alias gcp='git-config push'
+	alias gcl='git-config log'
 
 	# SSH ALIASES ########################################################
 
@@ -42,8 +43,9 @@
 	alias gd='git diff'
 	alias gs='git status'
 	alias ga='git add'
-	alias gc='git commit'
+	#alias gc='git commit' # conflicts with "alias gc=git-config"
 	alias gp='git push'
+	alias gl='git log'
 
 	# packages
 	alias up='sudo apt update && sudo apt upgrade -y'
