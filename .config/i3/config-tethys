@@ -20,8 +20,9 @@ font pango:DejaVu Sans 9
  # set mouse sensitivity
    exec_always --no-startup-id xinput --set-prop pointer:'Logitech G903' 296 -0.85
    mouse_warping none
- # rebind right ctrl to mod5 in order to show hidden i3bar dock
+ # rebind right ctrl and caps lock to mod5 in order to show hidden i3bar dock
    exec_always xmodmap -e "keysym Control_R = ISO_Level3_Shift"
+   exec_always xmodmap -e "keysym Caps_Lock = ISO_Level3_Shift"
  # make sure numlock is on
    exec_always --no-startup-id numlockx on
  # set keyboard key repeat delay
@@ -106,6 +107,13 @@ font pango:DejaVu Sans 9
    bindsym $mod+d exec rofi -show run -lines 20
    # ranger file browser
    bindsym $mod+r exec terminator --config /home/austin/.config/terminator/configdesktop -b --profile=austinsprofile -e ranger
+
+ # detect caps lock activation
+   mode "caps"
+     {
+     bindsym Caps_Lock mode "default"
+     }
+   bindsym Caps_Lock mode "caps"
 
  # reload the configuration file
    bindsym $mod+Control+c reload
@@ -227,11 +235,9 @@ bar {
 bar {
         status_command py3status -c /home/austin/.config/i3/py3status.conf
         #position top
-        font pango:Ubuntu Mono, Awesome 11
-        tray_output none
+        font pango:Dejavu Sans, Awesome 11
         mode hide
-        hidden_state hide
-        workspace_buttons no
+        #workspace_buttons no
         modifier Mod5
 	colors {
 	    statusline #ffffff
