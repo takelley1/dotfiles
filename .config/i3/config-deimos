@@ -32,6 +32,8 @@ font pango:DejaVu Sans 9
    exec --no-startup-id redshift-gtk -l 39:-74 -t 6500k:2600K
  # set desktop background
    exec --no-startup-id feh --bg-fill /home/austin/.config/i3/wallpapers/earth-at-night.png
+ # disable automatic suspend
+   exec_always xset -dpms
 
  # set keyboard key repeat delay
    exec_always xset r rate 200 30
