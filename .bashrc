@@ -1,14 +1,13 @@
 # ~/.bashrc: executed by bash(1) for non-login shells.
-# see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
-# for examples
 
 # COMMANDS ###################################################################
 
         # reattach to the last tmux session or create a new one
-        # requires "new-session -n $HOST" in ~/.tmux.conf file
+          # requires "new-session -n $HOST" in ~/.tmux.conf file
         tmux attach
+	alias ta='tmux attach'
 
-        # use vim-style commands
+        # use vi-style editing for bash commands
         set -o vi
 
 	# edit configuration files
@@ -18,6 +17,7 @@
         alias rc='nvim ~/.bashrc'
         alias xd='nvim ~/.Xdefaults'
         alias xp='nvim ~/.xprofile'
+        alias tm='nvim ~/.tmux.conf'
 
         # custom git aliases used for backing up dotfiles ######################
         # see https://developer.atlassian.com/blog/2016/02/best-way-to-store-dotfiles-git-bare-repo/
@@ -55,7 +55,8 @@
 	alias gl='git log'
 
 	# packages
-	alias up='sudo apt update && sudo apt upgrade -y'
+	#alias up='sudo apt update && sudo apt upgrade -y'
+	alias up='sudo pacman -Syu'
 
 	# text editors
         alias vi='nvim'      
@@ -86,7 +87,7 @@
 	alias noproxy='unset {http,ftp,https}_proxy'
 
 	# standard utilities
-        alias cp='cp --recursive -d --preserve=all --verbose'
+        #alias cp='cp --recursive -d --preserve=all --verbose'
 	alias mv='mv --verbose'
         alias mkdir='mkdir --parents --verbose -Z'
 
