@@ -4,6 +4,10 @@
 
 # COMMANDS ###################################################################
 
+        # reattach to the last tmux session or create a new one
+        # requires "new-session -n $HOST" in ~/.tmux.conf file
+        tmux attach
+
         # use vim-style commands
         set -o vi
 
