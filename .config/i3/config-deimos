@@ -34,6 +34,7 @@ font pango:DejaVu Sans 9
    exec --no-startup-id feh --bg-fill /home/austin/.config/i3/wallpapers/earth-at-night.png
  # disable automatic suspend
    exec_always xset -dpms
+   exec_always xset s blank
 
  # set keyboard key repeat delay
    exec_always xset r rate 200 30
@@ -46,7 +47,8 @@ font pango:DejaVu Sans 9
  # change shell commands to vim-style
    exec_always set -o vi
 
- # start terminal automatically
+ # start apps automatically
+   exec --no-startup-id i3-msg 'workspace 1: firefox; exec firefox'
    exec --no-startup-id i3-msg 'workspace 2: terminal; exec urxvt'
    #exec --no-startup-id i3-msg 'workspace 2: terminal; exec terminator --config /home/austin/.config/terminator/configdesktop -b --profile=austinsprofile'
 
