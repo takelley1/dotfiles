@@ -1,3 +1,6 @@
 #!/bin/bash
 
-i3lock -i /home/austin/.config/i3/wallpapers/earth-at-night-1080.png
+# screen locker for waking up from suspend (see ~/.config/i3/config)
+# requires i3lock-color
+
+i3lock --blur=5 --indicator --force-clock --timecolor=ffffffff --radius 150 --ring-width 15
