@@ -19,6 +19,8 @@
         alias xp='nvim ~/.xprofile'
         alias tm='nvim ~/.tmux.conf'
 
+	alias todo='cd ~/notes/personal/ && nvim ./todo.md'
+
         # custom git aliases used for backing up dotfiles ######################
         # see https://developer.atlassian.com/blog/2016/02/best-way-to-store-dotfiles-git-bare-repo/
 
@@ -36,9 +38,8 @@
 
 	alias iop='ssh root@10.0.0.1'
 	alias squid='ssh root@10.0.0.9'
-	alias syslog='ssh root@10.0.0.10'
-	alias tethys='ssh austin@tethys'
-	alias borg='ssh root@10.0.0.11'
+	alias tethys='ssh tethys'
+	alias borg='ssh 10.0.0.11'
 
 	######################################################################
 
