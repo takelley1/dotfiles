@@ -1,6 +1,6 @@
 # ~/.bashrc: executed by bash(1) for non-login shells.
 
-# COMMANDS ###################################################################
+# ALIASES #########################################################################################
 
         # reattach to the last tmux session or create a new one
           # requires "new-session -n $HOST" in ~/.tmux.conf file
@@ -10,7 +10,11 @@
         # use vi-style editing for bash commands
         set -o vi
 
-	# edit configuration files
+	# editing #################################################################################
+
+        alias vi='nvim'      
+        alias vim='nvim'      
+
 	alias i3c='nvim ~/.config/i3/config'
         alias i3b="nvim ~/.config/i3/i3blocks-$(hostname).conf"
         alias bashrc='nvim ~/.bashrc'
@@ -27,12 +31,12 @@
 	alias yt='vim /mnt/share/documents/scripting/youtube-dl-urls.txt'
 	alias youtube='vim /mnt/share/documents/scripting/youtube-dl-urls.txt'
 
-        # custom git aliases used for backing up dotfiles ######################
+        # custom git aliases used for backing up dotfiles ########################################
+
         # see https://developer.atlassian.com/blog/2016/02/best-way-to-store-dotfiles-git-bare-repo/
+        alias git-config='/usr/bin/git --git-dir=/home/austin/.cfg/ --work-tree=/home/austin/'
 
-        alias git-config='/usr/bin/git --git-dir=/home/austin/.cfg/ --work-tree=/home/austin'
-
-	#alias gc='git-config' # conflicts with "alias gc=git commit"
+	alias gco='git-config'
 	alias gcd='git-config diff'
 	alias gcs='git-config status --untracked-files=no'
 	alias gca='git-config add'
@@ -42,7 +46,18 @@
 	alias gcf='git-config fetch'
 	alias gcl='git-config log'
 
-	# SSH ALIASES ########################################################
+	# git ####################################################################################
+
+	alias gd='git diff'
+	alias gs='git status'
+	alias ga='git add'
+	alias gc='git commit'
+	alias gp='git push'
+	alias gpu='git pull'
+	alias gf='git fetch'
+	alias gl='git log'
+
+	# ssh ####################################################################################
 
 	alias iop='ssh root@10.0.0.1'
 	alias squid='ssh root@10.0.0.9'
@@ -50,31 +65,13 @@
 	alias tethys='ssh 10.0.0.32'
 	alias eris='ssh 10.0.0.11'
 
-	######################################################################
+	# apps and games #########################################################################
 
-	# apps and games
 	alias eve='bash /opt/evesetup/lib/evelauncher/evelauncher.sh'
 	alias audible='bash /opt/OpenAudible/OpenAudible'
-	
-	# git
-	alias gd='git diff'
-	alias gs='git status'
-	alias ga='git add'
-	alias gc='git commit' # conflicts with "alias gc=git-config"
-	alias gp='git push'
-	alias gpu='git pull'
-	alias gf='git fetch'
-	alias gl='git log'
 
-	# packages
-	#alias up='sudo apt update && sudo apt upgrade -y'
-	alias up='sudo pacman -Syu'
+	# directory traversal #####################################################################
 
-	# text editors
-        alias vi='nvim'      
-        alias vim='nvim'      
-
-	# directory traversal
 	alias r='ranger'
         alias ..='cd ../'
         alias ...='cd ../../../'
@@ -82,10 +79,8 @@
         alias home='cd ~'
         alias h='cd ~'
 
-        # show SELinux contexts
-        alias lcon='ls -lZ --all --reverse'
+	# grep ####################################################################################
 
-	# grep modifications
         alias grep='grep --color=auto'
         alias hgrep="history | grep "
         alias pgrep="ps aux | grep "
@@ -93,20 +88,16 @@
         alias sgrep="cat /var/log/secure | grep "
 
 	# networking
+
         alias fping='ping -c 100 -s.2'
         alias ports='netstat -tulanp'
 
-	# standard utilities
+	# core utilities ##########################################################################
+
         alias cp='cp --preserve=all --verbose'
 	alias mv='mv --verbose'
         alias mkdir='mkdir --parents --verbose -Z'
 
-        alias hi='history'
-        alias his='history'
-        alias mount='mount | column -t'
-        alias m='mount | column -t'
-
-        # add colors to ls
         alias ls='ls -C --classify --color=auto'
         alias la='ls -a -l --reverse --human-readable'
         alias ll='ll --human-readable'
@@ -114,10 +105,20 @@
         # sort by size
         alias lss='ls -S --reverse --human-readable'
 
+        alias hi='history'
+        alias his='history'
+        alias mount='mount | column -t'
+        alias m='mount | column -t'
+
+	# misc ####################################################################################
+
         alias j='jobs -l'
         alias c='clear'
         alias clr='clear'
         alias untar='tar -zxvf'
+	#alias up='sudo apt update && sudo apt upgrade -y'
+	alias up='sudo pacman -Syu'
+        alias lcon='ls -lZ --all --reverse'
 
 # FORMATTING  ################################################################
 
