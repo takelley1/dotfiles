@@ -62,6 +62,8 @@
 	alias ga='git add'
 	alias gc='git commit' # conflicts with "alias gc=git-config"
 	alias gp='git push'
+	alias gpu='git pull'
+	alias gf='git fetch'
 	alias gl='git log'
 
 	# packages
