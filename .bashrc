@@ -22,6 +22,11 @@
 	alias todo='cd ~/notes/personal/ && nvim ./todo.md'
 	alias gcut='git add ./todo.md && git commit -m "Update todo" && git push'
 
+	alias ban='vim /mnt/share/documents/banlist.txt'
+	alias banlist='vim /mnt/share/documents/banlist.txt'
+	alias yt='vim /mnt/share/documents/scripting/youtube-dl-urls.txt'
+	alias youtube='vim /mnt/share/documents/scripting/youtube-dl-urls.txt'
+
         # custom git aliases used for backing up dotfiles ######################
         # see https://developer.atlassian.com/blog/2016/02/best-way-to-store-dotfiles-git-bare-repo/
 
@@ -39,8 +44,9 @@
 
 	alias iop='ssh root@10.0.0.1'
 	alias squid='ssh root@10.0.0.9'
-	alias tethys='ssh tethys'
-	alias borg='ssh 10.0.0.11'
+	alias deimos='ssh 10.0.0.31'
+	alias tethys='ssh 10.0.0.32'
+	alias eris='ssh 10.0.0.11'
 
 	######################################################################
 
@@ -99,7 +105,7 @@
 
         # add colors to ls
         alias ls='ls -C --classify --color=auto'
-        alias la='ls -a  --reverse --human-readable'
+        alias la='ls -a -l --reverse --human-readable'
         alias ll='ll --human-readable'
         alias l='ls'
         # sort by size
