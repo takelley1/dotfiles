@@ -38,6 +38,8 @@
 	alias gca='git-config add'
 	alias gcc='git-config commit'
 	alias gcp='git-config push'
+	alias gcpu='git-config pull'
+	alias gcf='git-config fetch'
 	alias gcl='git-config log'
 
 	# SSH ALIASES ########################################################
@@ -76,6 +78,7 @@
         alias ...='cd ../../../'
         alias root='cd /'
         alias home='cd ~'
+        alias h='cd ~'
 
         # show SELinux contexts
         alias lcon='ls -lZ --all --reverse'
@@ -91,15 +94,13 @@
         alias fping='ping -c 100 -s.2'
         alias ports='netstat -tulanp'
 
-	alias proxy='export {http,ftp,https}_proxy="http://10.0.0.9:3128/'
-	alias noproxy='unset {http,ftp,https}_proxy'
-
 	# standard utilities
-        #alias cp='cp --recursive -d --preserve=all --verbose'
+        alias cp='cp --preserve=all --verbose'
 	alias mv='mv --verbose'
         alias mkdir='mkdir --parents --verbose -Z'
 
-        alias h='history'
+        alias hi='history'
+        alias his='history'
         alias mount='mount | column -t'
         alias m='mount | column -t'
 
@@ -113,6 +114,7 @@
 
         alias j='jobs -l'
         alias c='clear'
+        alias clr='clear'
         alias untar='tar -zxvf'
 
 # FORMATTING  ################################################################
