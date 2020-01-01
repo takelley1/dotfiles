@@ -20,6 +20,7 @@
         alias tm='nvim ~/.tmux.conf'
 
 	alias todo='cd ~/notes/personal/ && nvim ./todo.md'
+	alias gcut='git add ./todo.md && git commit -m "Update todo" && git push'
 
         # custom git aliases used for backing up dotfiles ######################
         # see https://developer.atlassian.com/blog/2016/02/best-way-to-store-dotfiles-git-bare-repo/
