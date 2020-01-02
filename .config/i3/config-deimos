@@ -111,7 +111,7 @@ font pango:DejaVu Sans 9
    bindsym $mod+Control+s exec systemctl suspend
  
  # take screenshot with printscreen key and name with timestamp
-   bindsym $mod+s exec --no-startup-id import -window root ~/Pictures/$(hostname)-screenshot-$(date +%H:%M:%S_%Y-%m-%d).png
+   bindsym 0xff61 exec --no-startup-id import -window root ~/Pictures/$(hostname)-screenshot-$(date +%H:%M:%S_%Y-%m-%d).png
  # super-s will also take a screenshot
    bindsym $mod+s exec --no-startup-id import -window root ~/Pictures/$(hostname)-screenshot-$(date +%H:%M:%S_%Y-%m-%d).png
 
