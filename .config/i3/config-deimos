@@ -40,12 +40,11 @@ font pango:DejaVu Sans 9
    exec_always xset r rate 200 30
  # rebind caps lock to right ctrl
    exec_always xmodmap -e "keysym Caps_Lock = ISO_Level3_Shift"
+ # make bash use vim-style command editing
+   exec_always --no-startup-id set -o vi
  # configure trackpad
    exec_always --no-startup-id xinput --set-prop 'CyPS/2 Cypress Trackpad' 'libinput Tapping Enabled' 1  # enable tap-clicking
    exec_always --no-startup-id xinput --set-prop 'CyPS/2 Cypress Trackpad' 'libinput Accel Speed' 0.3    # increase sensitivity
-
- # change shell commands to vim-style
-   exec_always set -o vi
 
  # start apps automatically
    exec --no-startup-id i3-msg 'workspace 1: firefox; exec firefox'
@@ -126,6 +125,13 @@ font pango:DejaVu Sans 9
    bindsym $mod+d exec rofi -show run -lines 20
    # ranger file browser
    bindsym $mod+r exec terminator --config /home/austin/.config/terminator/configdesktop -b --profile=austinsprofile -e ranger
+
+ # detect caps lock activation
+   mode "caps"
+     {
+     bindsym Caps_Lock mode "default"
+     }
+   bindsym Caps_Lock mode "caps"
 
  # reload the configuration file
    bindsym $mod+Control+c reload

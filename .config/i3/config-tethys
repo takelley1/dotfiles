@@ -15,19 +15,6 @@ font pango:DejaVu Sans 9
 # STARTUP COMMANDS
 #########################################################
 
- # make bash use vim-style shortcuts
-   exec_always --no-startup-id set -o vi
- # set mouse sensitivity
-   exec_always --no-startup-id xinput --set-prop pointer:'Logitech G903' 296 -0.85
-   mouse_warping none
- # rebind right ctrl and caps lock to mod5 in order to show hidden i3bar dock
-   exec_always xmodmap -e "keysym Control_R = ISO_Level3_Shift"
-   exec_always xmodmap -e "keysym Caps_Lock = ISO_Level3_Shift"
- # make sure numlock is on
-   exec_always --no-startup-id numlockx on
- # set keyboard key repeat delay
-   exec_always --no-startup-id xset r rate 200 30
-
  # start redshift
    exec bash /home/austin/.config/i3/redshift/redshift-brightness-10.sh
  # set primary display output for xrandr
@@ -35,7 +22,20 @@ font pango:DejaVu Sans 9
  # set desktop background
    exec --no-startup-id feh --bg-scale /home/austin/.config/i3/wallpapers/earth-at-night.png
 
- # start web browser automatically
+ # set keyboard key repeat delay
+   exec_always --no-startup-id xset r rate 200 30
+ # rebind right ctrl and caps lock to mod5 in order to show hidden i3bar dock
+   exec_always xmodmap -e "keysym Control_R = ISO_Level3_Shift"
+   exec_always xmodmap -e "keysym Caps_Lock = ISO_Level3_Shift"
+ # make sure numlock is on
+   exec_always --no-startup-id numlockx on
+ # make bash use vim-style command editing
+   exec_always --no-startup-id set -o vi
+ # set mouse sensitivity
+   exec_always --no-startup-id xinput --set-prop pointer:'Logitech G903' 296 -0.85
+   mouse_warping none
+
+ # start apps automatically
    exec --no-startup-id i3-msg 'workspace 2; exec firefox'
    exec --no-startup-id i3-msg 'workspace 1; exec urxvt'
    #exec --no-startup-id i3-msg 'workspace 3; exec urxvt'
