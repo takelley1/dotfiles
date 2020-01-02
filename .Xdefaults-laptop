@@ -99,10 +99,10 @@ URxvt.keysym.C-slash:  font-size:show
 
 !! extension for tabs - requires urxvt-tabbedex from the AUR
 !! currently commented out since tabs are implemented with tmux
-#URxvt.tabbed.autohide: true
-#URxvt.keysym.Control-t: perl:tabbedex:new_tab
-#URxvt.keysym.Control-k: perl:tabbedex:next_tab
-#URxvt.keysym.Control-j: perl:tabbedex:prev_tab
+!!URxvt.tabbed.autohide: true
+!!URxvt.keysym.Control-t: perl:tabbedex:new_tab
+!!URxvt.keysym.Control-k: perl:tabbedex:next_tab
+!!URxvt.keysym.Control-j: perl:tabbedex:prev_tab
 !! use Control-d to close tabs
 
 URxvt.copyCommand: xclip -i -selection primary
