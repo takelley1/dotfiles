@@ -74,7 +74,9 @@
 
 	alias r='ranger'
         alias ..='cd ../'
-        alias ...='cd ../../../'
+        alias u1='cd ../'       # "up 1 directory"
+        alias u2='cd ../../'
+        alias u3='cd ../../../'
         alias root='cd /'
         alias home='cd ~'
         alias h='cd ~'
@@ -98,12 +100,11 @@
 	alias mv='mv --verbose'
         alias mkdir='mkdir --parents --verbose -Z'
 
-        alias ls='ls -C --classify --color=auto'
-        alias la='ls -a -l --reverse --human-readable'
-        alias ll='ll --human-readable'
-        alias l='ls'
-        # sort by size
-        alias lss='ls -S --reverse --human-readable'
+        alias ls='ls --classify --color=auto --human-readable'
+        alias l='ls --classify --color=auto --human-readable'
+        alias ll='ls --classify --color=auto --human-readable -l'           # show single-column
+        alias la='ls --classify --color=auto --human-readable -l --all'
+        alias lss='ls --classify --color=auto --human-readable -l --all -S' # sort by size
 
         alias hi='history'
         alias his='history'
@@ -120,7 +121,7 @@
 	alias up='sudo pacman -Syu'
         alias lcon='ls -lZ --all --reverse'
 
-# FORMATTING  ################################################################
+# FORMATTING  #####################################################################################
 
         # colored manpages
         export LESS_TERMCAP_mb=$'\E[01;31m'
@@ -154,7 +155,7 @@
         # update the values of LINES and COLUMNS.
         shopt -s checkwinsize
 
-##############################################################################
+###################################################################################################
 
 # if not running interactively, don't do anything
 case $- in
