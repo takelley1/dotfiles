@@ -18,7 +18,7 @@ font pango:DejaVu Sans 9
    # run "systemctl enable go-luks-suspend.service" and comment out the below line to enable luks-suspend
    #   https://github.com/guns/go-luks-suspend
    # using xss-lock instead of luks-suspend is faster and more reliable, but less secure
-   exec --no-startup-id xss-lock /home/austin/.config/i3/wallpapers/xss-locker-deimos.sh
+   exec --no-startup-id xss-lock /home/austin/.config/i3/xss-locker.sh
 
  # turn down microphone
    exec --no-startup-id amixer set Capture 0%
