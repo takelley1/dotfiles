@@ -20,7 +20,7 @@ font pango:DejaVu Sans 9
  # set primary display output for xrandr
    exec --no-startup-id xrandr --output DVI-I-1 --primary
  # set desktop background
-   exec --no-startup-id feh --bg-scale /home/austin/.config/i3/wallpapers/earth-at-night.png
+   exec --no-startup-id feh --bg-scale /home/austin/.config/i3/wallpapers/earth-at-night-1920x1080.png
 
  # set keyboard key repeat delay
    exec_always --no-startup-id xset r rate 200 30
