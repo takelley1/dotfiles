@@ -3,4 +3,4 @@ ps aux | grep bash | grep auto-screenshot | awk '{print $2}' | xargs kill -s 9
 
 # start screenshot script
   # the '&' is required or the window manager will not start
-bash /home/austin/MiscScripts/bash/auto-screenshot.sh &>> /home/austin/Pictures/auto-screenshot.log &
+bash /home/austin/scripts/bash/auto-screenshot.sh &>> /home/austin/Pictures/auto-screenshot.log &
