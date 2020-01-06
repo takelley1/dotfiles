@@ -13,7 +13,7 @@ font pango:DejaVu Sans 7.5
 # STARTUP COMMANDS ######################################
 
  # force screen to lock when system is suspended, which occurs whenever the lid is shut
-   exec_always --no-startup-id xss-lock /home/austin/.config/i3/wallpapers/xss-locker.sh
+   exec_always --no-startup-id xss-lock /home/austin/.config/i3/xss-locker.sh
  # start network monitor applet
    exec nm-applet
  # change shell commands to vim-style
@@ -27,11 +27,13 @@ font pango:DejaVu Sans 7.5
  # start redshift
    exec --no-startup-id redshift-gtk -l 39:-74 -t 5500k:2600K
  # set desktop background
-   exec --no-startup-id feh --bg-fill /home/austin/.config/i3/wallpapers/earth-at-night.png
+   #exec --no-startup-id feh --bg-fill /home/austin/.config/i3/wallpapers/earth-at-night.png
 
   ### start apps automatically
      # main screen
-     exec --no-startup-id i3-msg 'workspace 2: terminal; exec terminator --config /home/austin/.config/terminator/configlaptop -b --profile=austinsprofile'
+     #exec --no-startup-id i3-msg 'workspace 2: terminal; exec terminator --config /home/austin/.config/terminator/configlaptop -b --profile=austinsprofile'
+     exec --no-startup-id i3-msg 'workspace 2: terminal; exec urxvt'
+     exec --no-startup-id i3-msg 'workspace 1: firefox; exec firefox'
 
 # FORMATTING ############################################
  
@@ -101,8 +103,8 @@ font pango:DejaVu Sans 7.5
 #floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec terminator --config /home/austin/.config/terminator/configlaptop -b --profile=austinsprofile 
-bindsym $mod+Mod1+Return exec urxvt
+bindsym $mod+Mod1+Return exec terminator --config /home/austin/.config/terminator/configlaptop -b --profile=austinsprofile 
+bindsym $mod+Return exec urxvt
 
 # kill focused window
 bindsym $mod+Shift+k kill
@@ -216,7 +218,7 @@ bindsym --release Num_Lock  exec pkill -SIGRTMIN+11 i3blocks
 
 #persistent status bar
 bar {
-       status_command i3blocks -c /home/austin/.config/i3/i3blocks-laptop.conf
+       status_command i3blocks -c /home/austin/.config/i3/i3blocks-phobos.conf
        colors {
            statusline #eeeeee
            focused_workspace        #00ff00 #285777 #ffffff
