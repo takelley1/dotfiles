@@ -117,9 +117,9 @@ font pango:DejaVu Sans 9
 
  # app launch hotkeys
    bindsym $mod+i exec firefox
-   # alternate terminal emulator (config file is ~/.Xdefaults)
+   # terminal emulator (config file is ~/.Xdefaults)
    bindsym $mod+Return exec urxvt
-   # terminal emulator
+   # alternate terminal emulator
    bindsym $mod+Control+Return exec terminator --config /home/austin/.config/terminator/configdesktop -b --profile=austinsprofile 
    # rofi app launcher
    bindsym $mod+d exec rofi -show run -lines 20
