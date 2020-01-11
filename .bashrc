@@ -15,6 +15,7 @@
         alias vi='nvim'      
         alias vim='nvim'      
 
+	# easier access to config files
 	alias i3c='nvim ~/.config/i3/config'
         alias i3b="nvim ~/.config/i3/i3blocks-$(hostname).conf"
         alias bashrc='nvim ~/.bashrc'
@@ -22,6 +23,7 @@
         alias xd='nvim ~/.Xdefaults'
         alias xp='nvim ~/.xprofile'
         alias tm='nvim ~/.tmux.conf'
+	alias vimrc='nvim ~/.config/nvim/init.vim'
 
 	alias todo='cd ~/notes/personal/ && nvim ./todo.md'
 	alias gcut='git add ./todo.md && git commit -m "Update todo" && git push'
