@@ -52,7 +52,7 @@
 	alias gd='git diff'
 	alias gs='git status'
 	alias ga='git add'
-	alais gr='git rm'
+	alias gr='git rm'
 	alias gc='git commit'
 	alias gp='git push'
 	alias gpu='git pull'
