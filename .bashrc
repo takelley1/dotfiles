@@ -38,8 +38,8 @@
 	
 	# encourage use of non-deprecated tools ##################################################
 	
-	alias netstat='echo use ss instead of netstat ---'
-	alias ifconfig='echo use ip instead of ifconfig ---'
+	alias netstat='echo use \"ss\" or \"lsof -i\" --- netstat is deprecated ---'
+	alias ifconfig='echo use \"ip a\" --- ifconfig is deprecated ---'
 
         # custom git aliases used for backing up dotfiles ########################################
 
