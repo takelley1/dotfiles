@@ -22,7 +22,10 @@
         alias rc='nvim ~/.bashrc'
         alias xd='nvim ~/.Xdefaults'
         alias xp='nvim ~/.xprofile'
+        alias xprofile='nvim ~/.xprofile'
         alias tm='nvim ~/.tmux.conf'
+        alias tmuxrc='nvim ~/.tmux.conf'
+	alias vm='nvim ~/.config/nvim/init.vim'
 	alias vimrc='nvim ~/.config/nvim/init.vim'
 
 	alias todo='cd ~/notes/personal/ && nvim ./todo.md'
