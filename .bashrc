@@ -35,6 +35,11 @@
 	alias banlist='vim /mnt/share/documents/banlist.txt'
 	alias yt='vim /mnt/share/documents/scripting/youtube-dl-urls.txt'
 	alias youtube='vim /mnt/share/documents/scripting/youtube-dl-urls.txt'
+	
+	# encourage use of non-deprecated tools ##################################################
+	
+	alias netstat='echo use ss instead of netstat ---'
+	alias ifconfig='echo use ip instead of ifconfig ---'
 
         # custom git aliases used for backing up dotfiles ########################################
 
@@ -99,7 +104,7 @@
 	# networking
 
         alias fping='ping -c 100 -s.2'
-        alias ports='netstat -tulanp'
+        alias ports='ss -plaunt'
 
 	# core utilities ##########################################################################
 
