@@ -20,3 +20,6 @@ set rnu
 
 " make line number column thinner
 set numberwidth=1
+
+" force cursor to stay in the middle of the screen
+set so=999
