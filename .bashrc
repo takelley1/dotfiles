@@ -41,33 +41,35 @@
 	alias netstat='echo use \"ss\" or \"lsof -i\" --- netstat is deprecated ---'
 	alias ifconfig='echo use \"ip a\" --- ifconfig is deprecated ---'
 
-        # custom git aliases used for backing up dotfiles ########################################
+        # custom git aliases used for managing dotfiles ##########################################
 
         # see https://developer.atlassian.com/blog/2016/02/best-way-to-store-dotfiles-git-bare-repo/
         alias git-config='/usr/bin/git --git-dir=/home/austin/.cfg/ --work-tree=/home/austin/'
 
-	alias gco='git-config'
-	alias gcd='git-config diff'
-	alias gcs='git-config status --untracked-files=no'
 	alias gca='git-config add'
-	alias gcr='git-config rm'
+	alias gcb='git-config branch'
 	alias gcc='git-config commit'
-	alias gcp='git-config push'
-	alias gcpu='git-config pull'
+	alias gcd='git-config diff'
 	alias gcf='git-config fetch'
 	alias gcl='git-config log'
+	alias gco='git-config'
+	alias gcp='git-config push'
+	alias gcpu='git-config pull'
+	alias gcr='git-config rm'
+	alias gcs='git-config status --untracked-files=no'
 
 	# git ####################################################################################
 
-	alias gd='git diff'
-	alias gs='git status'
 	alias ga='git add'
-	alias gr='git rm'
+	alias gb='git branch'
 	alias gc='git commit'
-	alias gp='git push'
-	alias gpu='git pull'
+	alias gd='git diff'
 	alias gf='git fetch'
 	alias gl='git log'
+	alias gp='git push'
+	alias gpu='git pull'
+	alias gr='git rm'
+	alias gs='git status'
 
 	# ssh ####################################################################################
 
