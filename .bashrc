@@ -29,7 +29,7 @@
 	alias vimrc='nvim ~/.config/nvim/init.vim'
 
 	alias todo='cd ~/notes/personal/ && nvim ./todo.md'
-	alias gcut='git add ./todo.md && git commit -m "Update todo" && git push'
+	alias gcut='cd ~/notes/personal/ && git add ./todo.md && git commit -m "Update todo" && git push'
 
 	alias ban='vim /mnt/share/documents/banlist.txt'
 	alias banlist='vim /mnt/share/documents/banlist.txt'
