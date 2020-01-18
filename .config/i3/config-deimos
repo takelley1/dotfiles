@@ -92,8 +92,8 @@ font pango:DejaVu Sans 9
 
  # brightness controls
  #   sometimes requires 'chmod +s /bin/brightnessctl' to fix setuid after update breaks it
-   bindsym XF86MonBrightnessDown exec brightnessctl set 2%-
-   bindsym XF86MonBrightnessUp exec brightnessctl set +2%
+   bindsym XF86MonBrightnessDown exec brightnessctl set 1%-
+   bindsym XF86MonBrightnessUp exec brightnessctl set +1%
 
    #bindsym F4 exec brightnessctl set 2%-
    #bindsym F5 exec brightnessctl set +2%
