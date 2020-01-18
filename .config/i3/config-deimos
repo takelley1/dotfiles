@@ -45,6 +45,8 @@ font pango:DejaVu Sans 9
  # configure trackpad
    exec_always --no-startup-id xinput --set-prop 'CyPS/2 Cypress Trackpad' 'libinput Tapping Enabled' 1  # enable tap-clicking
    exec_always --no-startup-id xinput --set-prop 'CyPS/2 Cypress Trackpad' 'libinput Accel Speed' 0.3    # increase sensitivity
+ # disable touchscreen
+   exec xinput --disable pointer:"Atmel Atmel maXTouch Digitizer"
 
  # start apps automatically
    exec --no-startup-id i3-msg 'workspace 1: firefox; exec firefox'
