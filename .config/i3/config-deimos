@@ -82,15 +82,15 @@ font pango:DejaVu Sans 9
 #########################################################
  
  # volume controls
-   bindsym XF86AudioLowerVolume exec amixer set Master 2%-
-   bindsym XF86AudioRaiseVolume exec amixer set Master 2%+
+   bindsym XF86AudioLowerVolume exec /home/austin/.config/i3/volume-down.sh
+   bindsym XF86AudioRaiseVolume exec /home/austin/.config/i3/volume-up.sh
    bindsym XF86AudioMute exec amixer set Master 0%
  
    #bindsym F11 exec amixer set Master 2%-
    #bindsym F12 exec amixer set Master 2%+
 
-   bindsym $mod+Down exec amixer set Master 2%-
-   bindsym $mod+Up exec amixer set Master 2%+
+   bindsym $mod+Down exec /home/austin/.config/i3/volume-down.sh
+   bindsym $mod+Up exec /home/austin/.config/i3/volume-up.sh
 
  # brightness controls
  #   sometimes requires 'chmod +s /bin/brightnessctl' to fix setuid after update breaks it
