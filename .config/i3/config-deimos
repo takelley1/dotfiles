@@ -37,16 +37,16 @@ font pango:DejaVu Sans 9
    exec_always xset s blank
 
  # set keyboard key repeat delay
-   exec_always xset r rate 200 40
+   exec xset r rate 200 40
  # rebind caps lock to right ctrl
-   exec_always xmodmap -e "keysym Caps_Lock = ISO_Level3_Shift"
+   exec xmodmap -e "keysym Caps_Lock = ISO_Level3_Shift"
  # make bash use vim-style command editing
-   exec_always --no-startup-id set -o vi
+   exec --no-startup-id set -o vi
  # configure trackpad
-   exec_always --no-startup-id xinput --set-prop 'CyPS/2 Cypress Trackpad' 'libinput Tapping Enabled' 1  # enable tap-clicking
-   exec_always --no-startup-id xinput --set-prop 'CyPS/2 Cypress Trackpad' 'libinput Accel Speed' 0.3    # increase sensitivity
+   exec --no-startup-id xinput --set-prop 'CyPS/2 Cypress Trackpad' 'libinput Tapping Enabled' 1  # enable tap-clicking
+   exec --no-startup-id xinput --set-prop 'CyPS/2 Cypress Trackpad' 'libinput Accel Speed' 0.3    # increase sensitivity
  # disable touchscreen
-   exec xinput --disable pointer:"Atmel Atmel maXTouch Digitizer"
+   exec xinput disable pointer:"Atmel Atmel maXTouch Digitizer"
 
  # start apps automatically
    exec --no-startup-id i3-msg 'workspace 1: firefox; exec firefox'
