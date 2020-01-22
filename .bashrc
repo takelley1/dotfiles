@@ -3,15 +3,17 @@
 # STARTUP #########################################################################################
 
         # reattach to the last tmux session or create a new one
-          # requires "new-session -n $HOST" in ~/.tmux.conf file
+        # requires "new-session -n $HOST" in ~/.tmux.conf file
         tmux attach
-
-	# use neovim instead of vim
-        export EDITOR='nvim'
 
         # use vi-style editing for bash commands
         set -o vi
 
+	# use neovim instead of vim
+        export EDITOR='nvim'
+
+        # add main bash scripting dir to path
+	export PATH="$PATH:/home/austin/scripts/bash"
 
 # ALIASES #########################################################################################
 
