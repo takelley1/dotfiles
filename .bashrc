@@ -1,14 +1,21 @@
 # ~/.bashrc: executed by bash(1) for non-login shells.
 
-# ALIASES #########################################################################################
+# STARTUP #########################################################################################
 
         # reattach to the last tmux session or create a new one
           # requires "new-session -n $HOST" in ~/.tmux.conf file
         tmux attach
-	alias ta='tmux attach'
+
+	# use neovim instead of vim
+        export EDITOR='nvim'
 
         # use vi-style editing for bash commands
         set -o vi
+
+
+# ALIASES #########################################################################################
+
+	alias ta='tmux attach'
 
 	# editing #################################################################################
 
@@ -149,8 +156,6 @@
         # combine multiline commands into one in history
         shopt -s cmdhist
 
-        export EDITOR='nvim'
-
 	# history modifications
         export HISTIGNORE="&:ls:[bf]g:exit"
         export HISTFILESIZE=9999999
@@ -169,7 +174,7 @@
         # update the values of LINES and COLUMNS.
         shopt -s checkwinsize
 
-###################################################################################################
+# MISC ############################################################################################
 
 # if not running interactively, don't do anything
 case $- in
