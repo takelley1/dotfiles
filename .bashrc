@@ -153,8 +153,8 @@
 
 	# history modifications
         export HISTIGNORE="&:ls:[bf]g:exit"
-        export HISTFILESIZE=200000
-        export HISTSIZE=100000
+        export HISTFILESIZE=9999999
+        export HISTSIZE=9999999
         shopt -s histappend
 
         # ignore duplicates, 'ls' without options, and builtin commands
