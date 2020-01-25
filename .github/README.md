@@ -4,7 +4,8 @@
 
 - clone this repo: `cd ~/ && git clone --bare [repo-url] $HOME/.cfg`  
 
-- install missing packages: `sudo pacman -Syu && for i in $(cat ~/.config/packages.txt | grep -v "^#"); do sudo pacman -Syy $i; done`  
+- install missing packages: `sudo pacman -Syu && for i in $(cat ~/.config/packages-to-install.txt | grep -v "^#"); do sudo pacman -Syy --noconfirm $i; done`  
+- remove unnecessary packages: `sudo pacman -Syu && for i in $(cat ~/.config/packages-to-remove.txt); do sudo pacman -Ryy --noconfirm $i; done`  
 
 - copy crontabs: `sudo cp ~/.config/new-hosts/cron.hourly/* /etc/cron.hourly/`  
 - add network share to fstab: `sudo cat ~/.config/new-hosts/fstab >> /etc/fstab`  

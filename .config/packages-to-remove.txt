@@ -1,0 +1,17 @@
+android-tools
+android-udev
+audacious
+audacious-plugins
+bauh
+bison
+bluez
+catfish
+engrampa
+manjaro-browser-settings
+manjaro-hello
+mousepad
+steam-manjaro
+subversion
+xfce4-appfinder
+xfce4-goodies
+xfce4-terminal
