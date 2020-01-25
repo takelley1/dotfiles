@@ -15,6 +15,10 @@
         # add main bash scripting dir to path
 	export PATH="$PATH:/home/austin/scripts/bash"
 
+	# vars for sxiv image viewer
+	export XDG_CONFIG_HOME=~/.config
+	export XDG_CACHE_HOME=~/.cache
+
 # ALIASES #########################################################################################
 
 	alias ta='tmux attach'
