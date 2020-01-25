@@ -37,7 +37,7 @@ font pango:DejaVu Sans 8.5
    exec_always xset s blank
 
  # set keyboard key repeat delay
-   exec xset r rate 200 40
+   exec_always xset r rate 200 45
  # rebind caps lock to right ctrl
    exec xmodmap -e "keysym Caps_Lock = ISO_Level3_Shift"
  # make bash use vim-style command editing
