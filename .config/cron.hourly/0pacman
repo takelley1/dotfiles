@@ -1,0 +1,19 @@
+#!/bin/bash
+
+http_proxy=http://10.0.0.8:8080/
+export http_proxy
+https_proxy=http://10.0.0.8:8080/
+export https_proxy
+no_proxy="localhost,127.0.0.1,localaddress,.localdomain.com"
+export no_proxy
+HTTP_PROXY=http://10.0.0.8:8080/
+export HTTP_PROXY
+HTTPS_PROXY=http://10.0.0.8:8080/
+export HTTPS_PROXY
+NO_PROXY="localhost,127.0.0.1,localaddress,.localdomain.com"
+export NO_PROXY
+
+pacman-mirrors --country United_States --timeout 2
+pacman --noconfirm -Syyu
+
+exit 0
