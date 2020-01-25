@@ -1,9 +1,30 @@
 ## cfg
+
+#### setup for new hosts
+
+- clone this repo: `cd ~/ && git clone --bare [repo-url] $HOME/.cfg`  
+
+- install missing packages: `sudo pacman -Syu && for i in $(cat ~/.config/packages.txt | grep -v "^#"); do sudo pacman -Syy $i; done`  
+
+- copy crontabs: `sudo cp ~/.config/new-hosts/cron.hourly/* /etc/cron.hourly/`  
+- add network share to fstab: `sudo cat ~/.config/new-hosts/fstab >> /etc/fstab`  
+
+- make brightnessctl for laptop backlight control: `cd ~/.config/brightnessctl/ && make install`  
+  - add sticky bit to brightnessctl binary: `sudo chmod +s /bin/brightnessctl`  
+
+- create symlinks according to which config files you wish to use  
+  - symlink i3 config: `cd ~/.config/i3 && ln -s ./config-[hostname].conf ./config`  
+  - symlink Xdefaults: `cd ~/ && ln -s .Xdefaults-[desktop/laptop] ./.Xdefaults`  
+  - symlink xprofile: `cd ~/ && ln -s .xprofile-[standard/noscreen] ./.xprofile`  
+
+- change thunar theme to dark: `lxappearance`  
+
+---
+
 Arch/Manjaro config files, all paths relative to user's home directory.
 
 ### The best way to store your dotfiles: A bare Git repository
 #### from https://www.atlassian.com/git/tutorials/dotfiles
- 
 
 *Disclaimer: the title is slightly hyperbolic, there are other proven solutions to the problem. I do think the technique below is very elegant though.*
 
