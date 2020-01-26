@@ -14,7 +14,7 @@
   - add sticky bit to brightnessctl binary: `sudo chmod +s /bin/brightnessctl`  
 
 - create symlinks according to which config files you wish to use  
-  - symlink Xdefaults: `cd ~/ && ln -s .Xdefaults-[desktop/laptop] ./.Xdefaults`  
+  - symlink Xdefaults based on preferred font size: `cd ~/ && ln -s .Xdefaults-[hostname] ./.Xdefaults`  
   - symlink xprofile: `cd ~/ && ln -s .xprofile-[standard/noscreen] ./.xprofile`  
 
 - create modular i3 config file for new host: `nvim ~/.config/i3/config-unique-$(hostname)`
