@@ -10,15 +10,15 @@ set $mod Mod4
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
 font pango:DejaVu Sans 8.5
 
-#########################################################
+##############################################################################
 # STARTUP COMMANDS
-#########################################################
+##############################################################################
 
  # force screen to lock when system is suspended, which occurs whenever the lid is shut
    # run "systemctl enable go-luks-suspend.service" and comment out the below line to enable luks-suspend
    #   https://github.com/guns/go-luks-suspend
    # using xss-lock instead of luks-suspend is faster and more reliable, but less secure
-   exec --no-startup-id xss-lock /home/austin/.config/i3/xss-locker.sh
+   exec xss-lock /home/austin/.config/i3/xss-locker.sh
 
  # turn down microphone
    exec --no-startup-id amixer set Capture 0%
@@ -26,10 +26,10 @@ font pango:DejaVu Sans 8.5
  # start network manager applet
    exec nm-applet
  # start clipboard manager
-   exec --no-startup-id clipit
+   exec clipit
 
  # start redshift
-   exec --no-startup-id redshift-gtk -l 39:-74 -t 6500k:2600K
+   exec redshift-gtk -l 39:-74 -t 6500k:2600K
  # set desktop background
    exec --no-startup-id feh --bg-fill /home/austin/.config/i3/wallpapers/earth-at-night-1920x1080.png
  # disable automatic suspend
@@ -42,25 +42,25 @@ font pango:DejaVu Sans 8.5
    exec xmodmap -e "keysym Caps_Lock = ISO_Level3_Shift"
  # make bash use vim-style command editing
    exec --no-startup-id set -o vi
+
  # configure trackpad
    exec --no-startup-id xinput --set-prop 'CyPS/2 Cypress Trackpad' 'libinput Tapping Enabled' 1  # enable tap-clicking
    exec --no-startup-id xinput --set-prop 'CyPS/2 Cypress Trackpad' 'libinput Accel Speed' 0.3    # increase sensitivity
  # disable touchscreen
-   exec_always xinput disable pointer:"Atmel Atmel maXTouch Digitizer"
+   exec_always --no-startup-id xinput disable pointer:"Atmel Atmel maXTouch Digitizer"
 
  # start apps automatically
    exec --no-startup-id i3-msg 'workspace 1: firefox; exec firefox'
    exec --no-startup-id i3-msg 'workspace 2: terminal; exec urxvt'
-   #exec --no-startup-id i3-msg 'workspace 2: terminal; exec terminator --config /home/austin/.config/terminator/configdesktop -b --profile=austinsprofile'
 
-#########################################################
+##############################################################################
 # FORMATTING
-#########################################################
+##############################################################################
  
  # hide side borders
    hide_edge_borders both
 
- ### colors
+ # top border colors
    # class                 border  backgr. text    indicator child_border
    client.focused          #00ff00 #285777 #ffffff #00ff00   #00ff00
    client.focused_inactive #888888 #888888 #000000 #484e50   #5f676a
@@ -68,7 +68,8 @@ font pango:DejaVu Sans 8.5
    client.urgent           #2f343a #900000 #ffffff #900000   #900000
    client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
    client.background       #000000
- ### colors (default backups)
+
+ # (default backups)
    # class                  border  backgr. text    indicator child_border
    #client.focused          #4c7899 #285577 #ffffff #2e9ef4   #285577
    #client.focused_inactive #333333 #5f676a #ffffff #484e50   #5f676a
@@ -77,9 +78,9 @@ font pango:DejaVu Sans 8.5
    #client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
    #client.background       #ffffff
 
-#########################################################
+##############################################################################
 # HOTKEYS
-#########################################################
+##############################################################################
  
  # volume controls
    bindsym XF86AudioLowerVolume exec ~/.config/i3/volume-down.sh
@@ -142,9 +143,9 @@ font pango:DejaVu Sans 8.5
  # exit i3 (logs out of X session)
    bindsym $mod+Control+e exec i3-msg exit
 
-#########################################################
+##############################################################################
 # WINDOW MANIPULATION
-#########################################################
+##############################################################################
 
  # window resizing
  # "Mod1" is alt
@@ -219,27 +220,25 @@ font pango:DejaVu Sans 8.5
    bindsym $mod+Control+9 move container to workspace 9
    bindsym $mod+Control+0 move container to workspace 10
  
- # use i3blocks instead of default
- # hidden detailed status bar, invoked with right CTRL
- #bar {
- #        status_command i3blocks -c /home/austin/.config/i3/i3blocks-hidden-laptop.conf
- #        mode hide
- #        hidden_state hide
- #        tray_output none
- #        modifier Mod5
- #	colors {
- #	    statusline #ffffff
- #	}
- #}
+# hidden detailed status bar, invoked with right CTRL
+#bar {
+#        status_command i3blocks -c /home/austin/.config/i3/i3blocks-hidden-laptop.conf
+#        mode hide
+#        hidden_state hide
+#        tray_output none
+#        modifier Mod5
+#	colors {
+#	    statusline #ffffff
+#	}
+#}
 
-# persistent status bar
+# main status bar
 bar {
-       status_command i3blocks -c /home/austin/.config/i3/i3blocks-deimos.conf
-       colors {
-           statusline #eeeeee
-           focused_workspace        #00ff00 #285777 #ffffff
-           urgent_workspace         #333333 #222222 #888888
-
-       }
-}
+     status_command i3blocks -c /home/austin/.config/i3/i3blocks-deimos.conf
+     colors {
+            statusline               #eeeeee
+            focused_workspace        #00ff00 #285777 #ffffff
+            urgent_workspace         #333333 #222222 #888888
+            }
+    }
 
