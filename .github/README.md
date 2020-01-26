@@ -9,6 +9,7 @@
 
 - copy crontabs: `sudo cp ~/.config/new-hosts/cron.hourly/* /etc/cron.hourly/`  
 - add network share to fstab: `sudo cat ~/.config/new-hosts/fstab >> /etc/fstab`  
+- add autoscreenshot log to logrotate: `sudo cat ~/.config/new-hosts/logrotate.conf >> /etc/logrotate.conf`
 
 - make brightnessctl for laptop backlight control: `cd ~/.config/brightnessctl/ && make install`  
   - add sticky bit to brightnessctl binary: `sudo chmod +s /bin/brightnessctl`  
