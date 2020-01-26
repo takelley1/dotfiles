@@ -50,7 +50,7 @@ if [ -d /etc/X11/xinit/xinitrc.d ] ; then
 fi
 
 cat $HOME/.config/i3/config-unique-$(hostname) > $HOME/.config/i3/config
-cat $HOME/.config/i3/config-common >> $HOME/.config/i3/config
+cat $HOME/.config/i3/config-shared >> $HOME/.config/i3/config
 
 i3 -c $HOME/.config/i3/config
 
