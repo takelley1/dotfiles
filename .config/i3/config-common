@@ -170,17 +170,6 @@
    bindsym $mod+Control+8 move container to workspace 8
    bindsym $mod+Control+9 move container to workspace 9
    bindsym $mod+Control+0 move container to workspace 10
- 
-# main status bar
-bar {
-     status_command i3blocks -c /home/austin/.config/i3/i3blocks-$(hostname).conf
-     colors {
-            #tray_output primaryA
-            statusline               #eeeeee
-            focused_workspace        #00ff00 #285777 #ffffff
-            urgent_workspace         #333333 #222222 #888888
-            }
-    }
 
 # \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 # //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

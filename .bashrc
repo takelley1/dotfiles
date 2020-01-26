@@ -29,7 +29,7 @@
         alias vim='nvim'      
 
 	# easier access to config files
-	alias i3c='nvim ~/.config/i3/config'
+	alias i3c="nvim ~/.config/i3/config-unique-$(hostname)"
         alias i3b="nvim ~/.config/i3/i3blocks-$(hostname).conf"
         alias bashrc='nvim ~/.bashrc'
         alias rc='nvim ~/.bashrc'
