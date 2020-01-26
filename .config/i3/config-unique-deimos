@@ -1,0 +1,60 @@
+##############################################################################
+# DEIMOS CONFIG
+##############################################################################
+
+font pango:DejaVu Sans 8.5
+
+# STARTUP
+
+ # start network manager applet
+   exec nm-applet
+ # start clipboard manager
+   exec clipit
+
+ # start redshift
+   exec redshift-gtk -l 39:-74 -t 6500k:2600K
+
+ # set desktop background
+   exec --no-startup-id feh --bg-fill /home/austin/.config/i3/wallpapers/earth-at-night-1920x1080.png
+ # disable automatic suspend
+   exec_always xset -dpms
+   exec_always xset s blank
+
+ # configure trackpad
+   exec --no-startup-id xinput --set-prop 'CyPS/2 Cypress Trackpad' 'libinput Tapping Enabled' 1  # enable tap-clicking
+   exec --no-startup-id xinput --set-prop 'CyPS/2 Cypress Trackpad' 'libinput Accel Speed' 0.3    # increase sensitivity
+ # disable touchscreen
+   exec_always --no-startup-id xinput disable pointer:"Atmel Atmel maXTouch Digitizer"
+
+# HOTKEYS
+ 
+ # brightness controls
+ #   sometimes requires 'chmod +s /bin/brightnessctl' to fix setuid after update breaks it
+   bindsym XF86MonBrightnessDown exec brightnessctl set 1%-
+   bindsym XF86MonBrightnessUp exec brightnessctl set +1%
+
+   #bindsym F4 exec brightnessctl set 2%-
+   #bindsym F5 exec brightnessctl set +2%
+
+   bindsym $mod+Right exec brightnessctl set +2%
+   bindsym $mod+Left exec brightnessctl set 2%-
+
+ # touchpad toggle (for easier typing)
+   bindsym $mod+space exec xinput --disable 'CyPS/2 Cypress Trackpad'
+   bindsym $mod+Mod1+space exec xinput --enable 'CyPS/2 Cypress Trackpad'
+
+# hidden detailed status bar, invoked with right CTRL
+#bar {
+#        status_command i3blocks -c /home/austin/.config/i3/i3blocks-hidden-laptop.conf
+#        mode hide
+#        hidden_state hide
+#        tray_output none
+#        modifier Mod5
+#	colors {
+#	    statusline #ffffff
+#	}
+#}
+
+# \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+# //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+

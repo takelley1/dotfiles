@@ -1,0 +1,54 @@
+##############################################################################
+# TETHYS CONFIG
+##############################################################################
+
+font pango:DejaVu Sans 9
+
+# STARTUP COMMANDS
+
+ # start redshift
+   exec bash /home/austin/.config/i3/redshift/redshift-brightness-10.sh
+ # set primary display output for xrandr
+   exec --no-startup-id xrandr --output DVI-I-1 --primary
+
+ # set desktop background
+   exec --no-startup-id feh --bg-fill /home/austin/.config/i3/wallpapers/earth-at-night-1920x1080.png
+
+ # rebind right ctrl and caps lock to mod5 in order to show hidden i3bar dock
+   exec_always xmodmap -e "keysym Control_R = ISO_Level3_Shift"
+   exec_always xmodmap -e "keysym Caps_Lock = ISO_Level3_Shift"
+ # make sure numlock is on
+   exec_always --no-startup-id numlockx on
+ # set mouse sensitivity
+   exec_always --no-startup-id xinput --set-prop pointer:'Logitech G903' 296 -0.85
+   mouse_warping none
+
+# HOTKEYS
+
+ # brightness hotkeys using redshift
+   bindsym $mod+Mod1+0 exec /home/austin/.config/i3/redshift/redshift-brightness-10.sh
+   bindsym $mod+Mod1+9 exec /home/austin/.config/i3/redshift/redshift-brightness-9.sh
+   bindsym $mod+Mod1+8 exec /home/austin/.config/i3/redshift/redshift-brightness-8.sh
+   bindsym $mod+Mod1+7 exec /home/austin/.config/i3/redshift/redshift-brightness-7.sh
+   bindsym $mod+Mod1+6 exec /home/austin/.config/i3/redshift/redshift-brightness-6.sh
+   bindsym $mod+Mod1+5 exec /home/austin/.config/i3/redshift/redshift-brightness-5.sh
+   bindsym $mod+Mod1+4 exec /home/austin/.config/i3/redshift/redshift-brightness-4.sh
+   bindsym $mod+Mod1+3 exec /home/austin/.config/i3/redshift/redshift-brightness-3.sh
+   bindsym $mod+Mod1+2 exec /home/austin/.config/i3/redshift/redshift-brightness-2.sh
+   bindsym $mod+Mod1+1 exec /home/austin/.config/i3/redshift/redshift-brightness-1.sh
+ # kill redshift
+   bindsym $mod+Shift+r exec killall redshift ; exec sleep .3s ; exec xrandr --output HDMI-0 --brightness 1 ; exec sleep .1s ; exec xrandr --output DVI-I-1 --brightness 1
+ 
+# hidden detailed status bar, invoked with right CTRL
+bar {
+        status_command py3status -c /home/austin/.config/i3/py3status.conf
+        #position top
+        font pango:Dejavu Sans, Awesome 11
+        mode hide
+        #workspace_buttons no
+        modifier Mod5
+	colors {
+	    statusline #ffffff
+	}
+}
+
