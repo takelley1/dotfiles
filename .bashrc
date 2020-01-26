@@ -30,7 +30,7 @@
 
 	# easier access to config files
 	alias i3c="nvim ~/.config/i3/config-unique-$(hostname)"
-	alias i3cc="nvim ~/.config/i3/config-common"
+	alias i3cc="nvim ~/.config/i3/config-shared"
 	alias i3ccc="nvim ~/.config/i3/config"
         alias i3b="nvim ~/.config/i3/i3blocks-$(hostname).conf"
 
