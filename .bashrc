@@ -30,14 +30,21 @@
 
 	# easier access to config files
 	alias i3c="nvim ~/.config/i3/config-unique-$(hostname)"
+	alias i3cc="nvim ~/.config/i3/config-common"
+	alias i3ccc="nvim ~/.config/i3/config"
         alias i3b="nvim ~/.config/i3/i3blocks-$(hostname).conf"
+
         alias bashrc='nvim ~/.bashrc'
         alias rc='nvim ~/.bashrc'
+
+        alias xdefaults='nvim ~/.Xdefaults'
         alias xd='nvim ~/.Xdefaults'
         alias xp='nvim ~/.xprofile'
         alias xprofile='nvim ~/.xprofile'
+
         alias tm='nvim ~/.tmux.conf'
         alias tmuxrc='nvim ~/.tmux.conf'
+
 	alias vm='nvim ~/.config/nvim/init.vim'
 	alias vimrc='nvim ~/.config/nvim/init.vim'
 
