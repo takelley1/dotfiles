@@ -9,7 +9,7 @@
    # run "systemctl enable go-luks-suspend.service" and comment out the below line to enable luks-suspend
    #   https://github.com/guns/go-luks-suspend
    # using xss-lock instead of luks-suspend is faster and more reliable, but less secure
-   exec xss-lock /home/austin/.config/i3/xss-locker.sh
+   exec xss-lock ~/.config/i3/xss-locker.sh
 
  # turn down microphone
    exec --no-startup-id amixer set Capture 0%
@@ -64,7 +64,7 @@
    bindsym $mod+Up exec ~/.config/i3/volume-up.sh
 
  # lock screen
-   bindsym $mod+Control+x exec i3lock -i /home/austin/.config/i3/wallpapers/earth-at-night-1080.png
+   bindsym $mod+Control+x exec ~/.config/i3/xss-locker.sh
  # sleep
    bindsym $mod+Control+s exec systemctl suspend
  
