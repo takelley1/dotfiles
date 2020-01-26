@@ -14,9 +14,11 @@
   - add sticky bit to brightnessctl binary: `sudo chmod +s /bin/brightnessctl`  
 
 - create symlinks according to which config files you wish to use  
-  - symlink i3 config: `cd ~/.config/i3 && ln -s ./config-[hostname].conf ./config`  
   - symlink Xdefaults: `cd ~/ && ln -s .Xdefaults-[desktop/laptop] ./.Xdefaults`  
   - symlink xprofile: `cd ~/ && ln -s .xprofile-[standard/noscreen] ./.xprofile`  
+
+- create modular i3 config file for new host: `nvim ~/.config/i3/config-unique-$(hostname)`
+  - see https://faq.i3wm.org/question/1367/anyway-to-include-in-config-file/%3C/p%3E.html for more info
 
 - change thunar theme to dark: `lxappearance`  
 
