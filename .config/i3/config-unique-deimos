@@ -3,7 +3,7 @@
 # DEIMOS CONFIG
 ##############################################################################
 
-font pango:DejaVu Sans 9
+font pango:DejaVu Sans 9, Awesome 9
 
 # STARTUP
 
