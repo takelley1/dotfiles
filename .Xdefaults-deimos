@@ -134,14 +134,16 @@ URxvt.urlButton: 1
 
 !! MISC
 
-URxvt.loginShell:true
-URxvt.scrollstyle:plain
-URxvt.secondaryScroll:true
+URxvt.loginShell: true
+!! scroll less frequently when receiving lots of text to improve speed
+URxvt.skipScroll: true
+URxvt.scrollstyle: plain
+URxvt.secondaryScroll: true
 URxvt.matcher.button: 1
 
 !! how many lines you want to save per session
-URxvt.saveLines:0
-URxvt.troughColor:#000000
+URxvt.saveLines: 0
+URxvt.troughColor: #000000
 
 !! The default colors are "Gruvbox":
 !!*.color0: #1d2021
