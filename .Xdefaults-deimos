@@ -70,7 +70,6 @@ URxvt.lineSpace: 0
 URxvt.internalBorder: 10
 URxvt.cursorBlink: false
 URxvt.cursorUnderline: false
-URxvt.saveline: 2048
 URxvt.scrollBar: false
 URxvt.scrollBar_right: false
 URxvt.urgentOnBell: true
@@ -125,7 +124,7 @@ URxvt.secondaryScroll:true
 URxvt.matcher.button: 1
 
 !! how many lines you want to save per session
-URxvt.saveLines:32767
+URxvt.saveLines:0
 URxvt.troughColor:#000000
 
 !! The default colors are "Gruvbox":
