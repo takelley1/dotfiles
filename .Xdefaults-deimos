@@ -101,8 +101,9 @@ URxvt.termName: bash
 URxvt.urgentOnBell: false
 !! no pseudo-transparency
 URxvt.transparent: false
-!! unicode support
-URxvt.iso14755: true
+!! disable weird picture-insert mode
+URxvt.iso14755: false
+URxvt.iso14755_52: false
 
 !! NAVIGATION
 
