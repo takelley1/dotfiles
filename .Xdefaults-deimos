@@ -98,11 +98,11 @@ URxvt.scrollBar: false
 !! name the terminal for tmux sessions
 URxvt.termName: bash
 !! notifies the window-manager of an urgent condition when a bell character is received
-URxvt.urgentOnBell: true
+URxvt.urgentOnBell: false
 !! no pseudo-transparency
-URxvt.transparent:false
+URxvt.transparent: false
 !! unicode support
-URxvt.iso14755: false
+URxvt.iso14755: true
 
 !! NAVIGATION
 
@@ -140,9 +140,6 @@ URxvt.keysym.M-C-v: perl:clipboard:paste
 URxvt.keysym.M-Escape: perl:keyboard-select:activate
 URxvt.keysym.M-s: perl:keyboard-select:search
 URxvt.keysym.M-u: perl:url-select:select_next
-URxvt.urlLauncher: firefox
-URxvt.underlineURLs: true
-URxvt.urlButton: 1
 
 !! MISC
 
@@ -155,6 +152,10 @@ URxvt.secondaryScroll: false
 !! don't save scrollback, as this is handled by tmux
 URxvt.saveLines: 0
 URxvt.troughColor: #000000
+
+URxvt.urlLauncher: firefox
+URxvt.underlineURLs: true
+URxvt.urlButton: 1
 
 !! The default colors are "Gruvbox":
 !!*.color0: #1d2021
