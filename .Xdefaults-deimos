@@ -81,14 +81,15 @@ URxvt.keysym.C-slash:  font-size:show
 URxvt.letterSpace: 0
 URxvt.lineSpace: 0
 URxvt.internalBorder: 10
+URxvt.depth: 24
 
 URxvt.cursorBlink: false
 URxvt.cursorUnderline: false
 URxvt.scrollBar: false
 URxvt.scrollBar_right: false
 
+URxvt.termName: bash
 URxvt.urgentOnBell: true
-URxvt.depth: 24
 URxvt.transparent:false
 URxvt.iso14755: false
 
