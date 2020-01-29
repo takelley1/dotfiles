@@ -86,8 +86,7 @@ URxvt.keysym.Control-Right: \033[1;5C
 URxvt.keysym.Control-Left: \033[1;5D
 
 !! extensions
-!! add "tabbedex" to include tab support
-URxvt.perl-ext-common: default,matcher,-option-popup,-selection-popup,-realine,clipboard,font-size,url-select,keyboard-select
+URxvt.perl-ext-common: default,clipboard,font-size,-keyboard-select,-option-popup,-selection-popup,-realine,-url-select,-matcher
 
 !! extension for font-resizing - requires https://github.com/majutsushi/urxvt-font-size
 URxvt.keysym.C-+:      font-size:increase
