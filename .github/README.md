@@ -12,15 +12,15 @@
 - add network share to fstab: `sudo cat ~/.config/new-hosts/fstab >> /etc/fstab`  
 - add autoscreenshot log to logrotate: `sudo cat ~/.config/new-hosts/logrotate.conf >> /etc/logrotate.conf`
 
-- make brightnessctl for laptop backlight control: `cd ~/.config/brightnessctl/ && make install`  
-  - add sticky bit to brightnessctl binary: `sudo chmod +s /bin/brightnessctl`  
+- build the brightnessctl package for backlight control on laptops: `cd ~/.config/brightnessctl/ && make install`  
+  - add sticky bit to brightnessctl binary so it doesn't require sudo to run: `sudo chmod +s /bin/brightnessctl`  
 
 - create symlinks according to which config files you wish to use  
   - symlink Xdefaults based on preferred font size: `cd ~/ && ln -s .Xdefaults-[hostname] ./.Xdefaults`  
   - symlink xprofile: `cd ~/ && ln -s .xprofile-[standard/noscreen] ./.xprofile`  
 
 - create modular i3 config file for new host: `nvim ~/.config/i3/config-unique-$(hostname)`
-  - see https://faq.i3wm.org/question/1367/anyway-to-include-in-config-file/%3C/p%3E.html for more info
+  - see https://faq.i3wm.org/question/1367/anyway-to-include-in-config-file/%3C/p%3E.html and ./xinitrc for more info
 
 - change thunar theme to dark: `lxappearance`  
 
