@@ -3,6 +3,7 @@
 #### setup for new hosts
 
 - clone this repo: `cd ~/ && git clone --bare [repo-url] $HOME/.cfg`  
+  - backup dotfiles that git will overwrite: `cd ~/ && mkdir .cfg.bak && mv file1.txt file2.txt file3.txt -t cfg.bak`
 
 - install missing packages: `sudo pacman -Syu && for i in $(cat ~/.config/packages-to-install.txt | grep -v "^#"); do sudo pacman -Syy --noconfirm $i; done`  
 - remove unnecessary packages: `sudo pacman -Syu && for i in $(cat ~/.config/packages-to-remove.txt); do sudo pacman -Ryy --noconfirm $i; done`  
@@ -25,10 +26,8 @@
 
 ---
 
-Arch/Manjaro config files, all paths relative to user's home directory.
-
-### The best way to store your dotfiles: A bare Git repository
 #### from https://www.atlassian.com/git/tutorials/dotfiles
+### The best way to store your dotfiles: A bare Git repository
 
 *Disclaimer: the title is slightly hyperbolic, there are other proven solutions to the problem. I do think the technique below is very elegant though.*
 
