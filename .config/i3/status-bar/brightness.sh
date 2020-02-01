@@ -15,4 +15,4 @@ then
 	echo ' ' $(cat /tmp/redshift-brightness)"0%"
 fi
 
-
+exit 0
