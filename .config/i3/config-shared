@@ -25,7 +25,7 @@
 
  # start apps automatically
    exec --no-startup-id i3-msg 'workspace 1: firefox; exec firefox'
-   exec --no-startup-id i3-msg 'workspace 2: terminal; exec urxvt'
+   exec --no-startup-id i3-msg 'workspace 2: terminal; exec alacritty'
 
  # hide side borders
    hide_edge_borders both
@@ -75,8 +75,10 @@
 
  # app launch hotkeys
    bindsym $mod+i exec firefox
-   # terminal emulator (config file is ~/.Xdefaults)
-   bindsym $mod+Return exec urxvt
+   # terminal emulator (config file is ~/.config/alacritty/alacritty.yml)
+   bindsym $mod+Return exec alacritty
+   # backup terminal emulator (config file is ~/.Xdefaults)
+   bindsym $mod+Shift+Return exec urxvt
    # rofi app launcher
    bindsym $mod+d exec rofi -show run -lines 20
    # ranger file browser
