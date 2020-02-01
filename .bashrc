@@ -32,7 +32,7 @@
 	alias i3c="nvim ~/.config/i3/config-unique-$(hostname)"
 	alias i3cc="nvim ~/.config/i3/config-shared"
 	alias i3ccc="nvim ~/.config/i3/config"
-        alias i3b="nvim ~/.config/i3/i3blocks-$(hostname).conf"
+        alias i3b="nvim ~/.config/i3/i3blocks.conf"
 
         alias bashrc='nvim ~/.bashrc'
         alias rc='nvim ~/.bashrc'
@@ -41,6 +41,8 @@
         alias xd='nvim ~/.Xdefaults'
         alias xp='nvim ~/.xprofile'
         alias xprofile='nvim ~/.xprofile'
+	alias ala='nvim ~/.config/alacritty/alacritty.yml'
+	alias alacrittyrc='nvim ~/.config/alacritty/alacritty.yml'
 
         alias tm='nvim ~/.tmux.conf'
         alias tmuxrc='nvim ~/.tmux.conf'
