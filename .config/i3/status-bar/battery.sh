@@ -1,4 +1,7 @@
 #!/usr/bin/perl
+
+# status bar script for obtaining the current battery charge level
+
 #
 # Copyright 2014 Pierre Mavro <deimos@deimos.fr>
 # Copyright 2014 Vivien Didelot <vivien@didelot.org>
