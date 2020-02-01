@@ -10,9 +10,10 @@
 - install missing packages: `sudo pacman -Syu && for i in $(cat ~/.config/packages-to-install.txt | grep -v "^#"); do sudo pacman -Syy --noconfirm $i; done`  
 - remove unnecessary packages: `sudo pacman -Syu && for i in $(cat ~/.config/packages-to-remove.txt); do sudo pacman -Ryy --noconfirm $i; done`  
 
-- copy crontabs: `sudo cp ~/.config/new-hosts/cron.hourly/* /etc/cron.hourly/`  
-- add network share to fstab: `sudo cat ~/.config/new-hosts/fstab >> /etc/fstab`  
-- add autoscreenshot log to logrotate: `sudo cat ~/.config/new-hosts/logrotate.conf >> /etc/logrotate.conf`
+- copy crontabs: `sudo cp ~/.config/new-hosts/etc/cron.hourly/* /etc/cron.hourly/`  
+- copy environment variables: `sudo cp ~/.config/new-hosts/etc/environment /etc/ && sudo cp ~/.config/new-hosts/etc/security/pam_env.conf /etc/security/`
+- add network share to fstab: `sudo cat ~/.config/new-hosts/etc/fstab >> /etc/fstab`  
+- add autoscreenshot log to logrotate: `sudo cat ~/.config/new-hosts/etc/logrotate.conf >> /etc/logrotate.conf`
 
 - build the brightnessctl package for backlight control on laptops: `cd ~/.config/brightnessctl/ && make install`  
   - add sticky bit to brightnessctl binary so it doesn't require sudo to run: `sudo chmod +s /bin/brightnessctl`  
