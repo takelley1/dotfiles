@@ -1,9 +1,11 @@
+# create i3 config
+cat $HOME/.config/i3/.config-notification $HOME/.config/i3/config-unique-$(hostname) $HOME/.config/i3/config-shared > $HOME/.config/i3/config &
+
 # kill currently running screenshot script
 ps aux | grep bash | grep auto-screenshot | awk '{print $2}' | xargs kill -s 9 &
+killall -s 9 scrot &
 
 # start screenshot script
   # the '&' is required or the window manager will not start
-bash /home/austin/scripts/bash/auto-screenshot.sh &>> /home/austin/Pictures/auto-screenshot.log &
+bash $HOME/scripts/bash/auto-screenshot.sh &>> $HOME/Pictures/auto-screenshot.log &
 
-# create i3 config
-cat $HOME/.config/i3/config-notification $HOME/.config/i3/config-unique-$(hostname) $HOME/.config/i3/config-shared > $HOME/.config/i3/config &

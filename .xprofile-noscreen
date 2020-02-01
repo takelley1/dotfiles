@@ -1,4 +1,4 @@
 # don't take screenshots on phobos
 
 # create i3 config
-cat $HOME/.config/i3/config-notification $HOME/.config/i3/config-unique-$(hostname) $HOME/.config/i3/config-shared > $HOME/.config/i3/config &
+cat $HOME/.config/i3/.config-notification $HOME/.config/i3/config-unique-$(hostname) $HOME/.config/i3/config-shared > $HOME/.config/i3/config &
