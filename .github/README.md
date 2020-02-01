@@ -5,6 +5,8 @@
 - clone this repo: `cd ~/ && git clone --bare [repo-url] $HOME/.cfg`  
   - backup dotfiles that git will overwrite: `cd ~/ && mkdir .cfg.bak && mv file1.txt file2.txt file3.txt -t cfg.bak`
 
+- add missing cert to trust store: `sudo trust anchor --store /mnt/tank/share/documents/configuration/e2guardian/my_rootCA.cr`
+  - open firefox and add this same cert again to the trusted CAs list
 - install missing packages: `sudo pacman -Syu && for i in $(cat ~/.config/packages-to-install.txt | grep -v "^#"); do sudo pacman -Syy --noconfirm $i; done`  
 - remove unnecessary packages: `sudo pacman -Syu && for i in $(cat ~/.config/packages-to-remove.txt); do sudo pacman -Ryy --noconfirm $i; done`  
 
