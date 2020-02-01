@@ -94,8 +94,6 @@ URxvt.cursorUnderline: false
 !! don't show the scroll bar, which takes up screenspace
 URxvt.scrollBar: false
 
-!! name the terminal for tmux sessions
-URxvt.termName: bash
 !! notifies the window-manager of an urgent condition when a bell character is received
 URxvt.urgentOnBell: false
 !! no pseudo-transparency
