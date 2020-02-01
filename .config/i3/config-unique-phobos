@@ -1,0 +1,34 @@
+
+##############################################################################
+# PHOBOS CONFIG
+##############################################################################
+
+font pango:DejaVu Sans 7.5
+
+# STARTUP
+
+ # start network monitor applet
+   exec nm-applet
+
+ # start redshift
+   exec --no-startup-id redshift-gtk -l 39:-74 -t 6500k:2600K
+
+# HOTKEYS
+   
+ # brightness controls
+   bindsym XF86MonBrightnessDown exec brightness-
+   bindsym XF86MonBrightnessUp exec brightness+ 
+
+   bindsym $mod+Right exec brightness+ 
+   bindsym $mod+Left exec brightness-
+
+ # touchpad toggle (for easier typing)
+   bindsym $mod+space exec xinput --disable 12
+   bindsym $mod+Mod1+space exec xinput --enable 12
+
+ # lock screen
+   bindsym $mod+x exec i3lock -i /home/austin/.config/i3/wallpapers/sea-of-colors-1366x768.png
+
+# \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+# //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+

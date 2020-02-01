@@ -31,8 +31,8 @@ if [ -d /etc/X11/xinit/xinitrc.d ] ; then
 fi
 
 # build window managerconfig file
-cat $HOME/.config/i3/config-unique-$(hostname) > $HOME/.config/i3/config
-cat $HOME/.config/i3/config-shared >> $HOME/.config/i3/config
+cat $HOME/.config/i3/config-unique-$(hostname) > /tmp/i3config
+cat $HOME/.config/i3/config-shared >> /tmp/i3config
 
 # start window manager
-i3 -c $HOME/.config/i3/config
+i3 -c /tmp/i3config

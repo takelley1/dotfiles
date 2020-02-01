@@ -56,16 +56,6 @@ font pango:DejaVu Sans 9, Awesome 9
 #	}
 #}
 
-# main status bar
-bar {
-     status_command i3blocks -c /home/austin/.config/i3/i3blocks-$(hostname).conf
-     colors {
-            statusline               #eeeeee
-            focused_workspace        #00ff00 #285777 #ffffff
-            urgent_workspace         #333333 #222222 #888888
-	    }
-    }
-
 # \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 # //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 

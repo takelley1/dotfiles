@@ -40,17 +40,6 @@ font pango:DejaVu Sans 9, Awesome 9
  # kill redshift
    bindsym $mod+Shift+r exec killall redshift ; exec sleep .3s ; exec xrandr --output HDMI-0 --brightness 1 ; exec sleep .1s ; exec xrandr --output DVI-I-1 --brightness 1
  
-# main status bar
-bar {
-     status_command i3blocks -c /home/austin/.config/i3/i3blocks-$(hostname).conf
-     tray_output DVI-I-1
-     colors {
-            statusline               #eeeeee
-            focused_workspace        #00ff00 #285777 #ffffff
-            urgent_workspace         #333333 #222222 #888888
-	    }
-    }
-
 # hidden detailed status bar, invoked with right CTRL
 bar {
     status_command py3status -c /home/austin/.config/i3/py3status.conf
