@@ -12,6 +12,13 @@
 
 - copy crontabs: `sudo cp ~/.config/new-hosts/etc/cron.hourly/* /etc/cron.hourly/`  
 - copy environment variables: `sudo cp ~/.config/new-hosts/etc/environment /etc/ && sudo cp ~/.config/new-hosts/etc/security/pam_env.conf /etc/security/`
+  - snapd doesn't respect /etc/environment, so edit the service manually: `sudo systemctl edit snapd.service`
+  - add the following text:
+    ```
+    [Service]
+    Environment=http_proxy=http://10.0.0.8:8080
+    Environment=https_proxy=http://10.0.0.8:8080
+    ```
 - add network share to fstab: `sudo cat ~/.config/new-hosts/etc/fstab >> /etc/fstab`  
 - add autoscreenshot log to logrotate: `sudo cat ~/.config/new-hosts/etc/logrotate.conf >> /etc/logrotate.conf`
 
