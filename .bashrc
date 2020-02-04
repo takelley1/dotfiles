@@ -83,6 +83,7 @@
 	# git ####################################################################################
 
 	alias ga='git add'
+	alias gaa='git add -A :/'
 	alias gb='git branch'
 	alias gc='git commit'
 	alias gd='git diff'
@@ -104,6 +105,7 @@
 	# apps and games #########################################################################
 
 	alias eve='bash /opt/evesetup/lib/evelauncher/evelauncher.sh'
+	alias osrs='bash /mnt/tank/share/software/gaming/games/runescape-launcher/osrs/bin/osrs-launcher'
 	alias audible='bash /opt/OpenAudible/OpenAudible'
 
 	# directory traversal #####################################################################
