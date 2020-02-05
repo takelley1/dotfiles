@@ -3,8 +3,10 @@
 # STARTUP #########################################################################################
 
         # reattach to the last tmux session or create a new one
-        # requires "new-session -n $HOST" in ~/.tmux.conf file
-        tmux attach
+	if [ ! $USER == "root" ] # only auto-attach in non-root shells
+	then
+        	tmux attach      # requires "new-session -n $HOST" in ~/.tmux.conf file
+	fi
 
         # use vi-style editing for bash commands
         set -o vi
@@ -100,7 +102,7 @@
 	alias squid='ssh root@10.0.0.9'
 	alias deimos='ssh 10.0.0.31'
 	alias tethys='ssh 10.0.0.32'
-	alias eris='ssh 10.0.0.11'
+	alias eris='ssh austin@10.0.0.11'
 
 	# apps and games #########################################################################
 
