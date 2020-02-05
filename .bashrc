@@ -201,6 +201,8 @@
         # update the values of LINES and COLUMNS.
         shopt -s checkwinsize
 
+	export PAGER=less
+
 # MISC ############################################################################################
 
 # if not running interactively, don't do anything
