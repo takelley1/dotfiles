@@ -5,7 +5,9 @@
         # reattach to the last tmux session or create a new one
 	if [ ! $USER == "root" ] # only auto-attach in non-root shells
 	then
-        	tmux attach      # requires "new-session -n $HOST" in ~/.tmux.conf file
+                # requires "new-session -n $HOST" in ~/.tmux.conf file
+		# only launches if tmux isn't running
+		[[ -z $TMUX ]] && exec tmux attach
 	fi
 
         # use vi-style editing for bash commands
