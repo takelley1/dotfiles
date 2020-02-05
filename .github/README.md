@@ -3,8 +3,12 @@
 #### setup for new hosts
 
 - clone this repo: `cd ~/ && git clone --bare [repo-url] $HOME/.cfg`  
-  - create alias: `alias git-config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'`
-  - checkout files: `git-config checkout`
+  - create alias:
+    ```bash
+    alias git-config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'       # Linux path
+    alias git-config='/usr/local/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME' # FreeBSD path
+    ```
+  - checkout files: `git-config checkout master`
   - backup dotfiles that git will overwrite: `cd ~/ && mkdir .cfg.bak && mv file1.txt file2.txt file3.txt -t cfg.bak`
 
 - add missing cert to trust store: `sudo trust anchor --store /mnt/tank/share/documents/configuration/e2guardian/my_rootCA.crt`

@@ -31,6 +31,8 @@
         alias vim='nvim'      
 
 	# easier access to config files
+        alias readme='nvim ~/.config/github/README.md'
+
 	alias i3c="nvim ~/.config/i3/config-unique-$(hostname)"
 	alias i3cc="nvim ~/.config/i3/config-shared"
 	alias i3ccc="nvim ~/.config/i3/config"
