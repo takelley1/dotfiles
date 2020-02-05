@@ -6,7 +6,7 @@
 	if [ ! $USER == "root" ] # only auto-attach in non-root shells
 	then
                 # requires "new-session -n $HOST" in ~/.tmux.conf file
-		# only launches if tmux isn't running
+		# only runs if tmux isn't already attached
 		[[ -z $TMUX ]] && exec tmux attach
 	fi
 
