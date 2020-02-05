@@ -72,12 +72,12 @@
         # custom git aliases used for managing dotfiles ##########################################
 
         # see https://developer.atlassian.com/blog/2016/02/best-way-to-store-dotfiles-git-bare-repo/
-	if [ ! $(uname) == "FreeBSD" ]
+	if [ $(uname) == "FreeBSD" ]
 	then
-        	alias git-config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
-	elif [ $(uname) == "FreeBSD" ]
-	then
+		# FreeBSD's "git" binary is located at a different path than on Linux
         	alias git-config='/usr/local/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+	else
+        	alias git-config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 	fi
 
 	alias gca='git-config add'
@@ -150,15 +150,15 @@
 	alias mv='mv --verbose'
         alias mkdir='mkdir --parents --verbose -Z'
 
-	if [ ! $(uname) == "FreeBSD" ]
+	if [ $(uname) == "FreeBSD" ]
 	then
+	  alias ls='ls -FCGh' # FreeBSD's "ls" uses a different syntax from Linux
+	else
 	  alias ls='ls --classify --color=auto --human-readable'
 	  alias l='ls --classify --color=auto --human-readable'
 	  alias ll='ls --classify --color=auto --human-readable -l'           # show single-column
 	  alias la='ls --classify --color=auto --human-readable -l --all'
 	  alias lss='ls --classify --color=auto --human-readable -l --all -S' # sort by size
-	else
-	  alias ls='ls -FCGh'
 	fi
 
         alias hi='history'
