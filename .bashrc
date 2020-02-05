@@ -150,11 +150,16 @@
 	alias mv='mv --verbose'
         alias mkdir='mkdir --parents --verbose -Z'
 
-        alias ls='ls --classify --color=auto --human-readable'
-        alias l='ls --classify --color=auto --human-readable'
-        alias ll='ls --classify --color=auto --human-readable -l'           # show single-column
-        alias la='ls --classify --color=auto --human-readable -l --all'
-        alias lss='ls --classify --color=auto --human-readable -l --all -S' # sort by size
+	if [ ! $(uname) == "FreeBSD" ]
+	then
+	  alias ls='ls --classify --color=auto --human-readable'
+	  alias l='ls --classify --color=auto --human-readable'
+	  alias ll='ls --classify --color=auto --human-readable -l'           # show single-column
+	  alias la='ls --classify --color=auto --human-readable -l --all'
+	  alias lss='ls --classify --color=auto --human-readable -l --all -S' # sort by size
+	else
+	  alias ls='ls -FCGh'
+	fi
 
         alias hi='history'
         alias his='history'
