@@ -182,12 +182,12 @@
         shopt -s histappend
 
         # ignore duplicates, 'ls' without options, and builtin commands
-        HISTCONTROL=ignoredups
-        HISTCONTROL=ignoreboth
+        export HISTCONTROL=ignoredups
+        export HISTCONTROL=ignoreboth
 
         # append history instead of overwriting it
         shopt -s histappend
-        PROMPT_COMMAND='history -a'
+        export PROMPT_COMMAND='history -a'
 
         # check the window size after each command and, if necessary,
         # update the values of LINES and COLUMNS.
