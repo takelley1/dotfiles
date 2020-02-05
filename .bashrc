@@ -70,7 +70,13 @@
         # custom git aliases used for managing dotfiles ##########################################
 
         # see https://developer.atlassian.com/blog/2016/02/best-way-to-store-dotfiles-git-bare-repo/
-        alias git-config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+	if [ ! $(uname) == "FreeBSD" ]
+	then
+        	alias git-config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+	elif [ $(uname) == "FreeBSD" ]
+	then
+        	alias git-config='/usr/local/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+	fi
 
 	alias gca='git-config add'
 	alias gcb='git-config branch'
