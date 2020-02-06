@@ -210,6 +210,7 @@
         shopt -s checkwinsize
 
 	export PAGER=less
+	export LC_CTYPE=en_US.UTF-8
 
 # MISC ############################################################################################
 
