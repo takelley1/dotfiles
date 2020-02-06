@@ -27,11 +27,11 @@ runtime! archlinux.vim
   set wildmode=longest,list,full
 
 " splits open at the bottom and right, rather than top and left
-	set splitbelow splitright
+  set splitbelow splitright
   
 " renew bash and ranger configs with new material
-	autocmd BufWritePost files,directories !shortcuts
+  autocmd BufWritePost files,directories !shortcuts
 " run xrdb whenever Xdefaults or Xresources are updated
-	autocmd BufWritePost *Xresources,*Xdefaults !xrdb %
+  autocmd BufWritePost *Xresources,*Xdefaults !xrdb %
 " update binds when sxhkdrc is updated
-	autocmd BufWritePost *sxhkdrc !pkill -USR1 sxhkd
+  autocmd BufWritePost *sxhkdrc !pkill -USR1 sxhkd
