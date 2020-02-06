@@ -11,6 +11,9 @@
    # using xss-lock instead of luks-suspend is faster and more reliable, but less secure
    exec xss-lock ~/.config/i3/xss-locker.sh
 
+ # run notification daemon
+   exec --nostartup-id dunst -config ~/.config/dunst/dunstrc &
+
  # turn down microphone
    exec --no-startup-id amixer set Capture 0%
 
