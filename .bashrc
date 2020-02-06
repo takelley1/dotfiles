@@ -131,50 +131,51 @@
         alias home='cd ~'
         alias h='cd ~'
 
-	# grep ####################################################################################
-
-        alias grep='grep --color=auto'
-        alias hgrep="history | grep "
-        alias pgrep="ps aux | grep "
-        alias mgrep="cat /var/log/messages | grep "
-        alias sgrep="cat /var/log/secure | grep "
-
-	# networking
-
-        alias fping='ping -c 100 -s.2'
-        alias ports='ss -plaunt'
-
-	# core utilities ##########################################################################
-
-        alias cp='cp --preserve=all --verbose'
-	alias mv='mv --verbose'
-        alias mkdir='mkdir --parents --verbose -Z'
-
 	if [ $(uname) == "FreeBSD" ]
 	then
 	  alias ls='ls -FCGh' # FreeBSD's "ls" uses a different syntax from Linux
-	else
+	else # the below aliases are Linux-only
+
+	  # grep ####################################################################################
+  
+          alias grep='grep --color=auto'
+          alias hgrep="history | grep "
+          alias pgrep="ps aux | grep "
+          alias mgrep="cat /var/log/messages | grep "
+          alias sgrep="cat /var/log/secure | grep "
+  
+	  # networking
+  
+          alias fping='ping -c 100 -s.2'
+          alias ports='ss -plaunt'
+  
+	  # core utilities ##########################################################################
+  
+          alias cp='cp --preserve=all --verbose'
+	  alias mv='mv --verbose'
+          alias mkdir='mkdir --parents --verbose -Z'
+  
 	  alias ls='ls --classify --color=auto --human-readable'
 	  alias l='ls --classify --color=auto --human-readable'
 	  alias ll='ls --classify --color=auto --human-readable -l'           # show single-column
 	  alias la='ls --classify --color=auto --human-readable -l --all'
 	  alias lss='ls --classify --color=auto --human-readable -l --all -S' # sort by size
+  
+          alias hi='history'
+          alias his='history'
+          alias mount='mount | column -t'
+          alias m='mount | column -t'
+  
+	  # misc ####################################################################################
+  
+          alias j='jobs -l'
+          alias c='clear'
+          alias clr='clear'
+          alias untar='tar -zxvf'
+	  #alias up='sudo apt update && sudo apt upgrade -y'
+	  alias up='sudo pacman -Syu'
+          alias lcon='ls -lZ --all --reverse'
 	fi
-
-        alias hi='history'
-        alias his='history'
-        alias mount='mount | column -t'
-        alias m='mount | column -t'
-
-	# misc ####################################################################################
-
-        alias j='jobs -l'
-        alias c='clear'
-        alias clr='clear'
-        alias untar='tar -zxvf'
-	#alias up='sudo apt update && sudo apt upgrade -y'
-	alias up='sudo pacman -Syu'
-        alias lcon='ls -lZ --all --reverse'
 
 # FORMATTING  #####################################################################################
 
