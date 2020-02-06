@@ -13,6 +13,11 @@ then
 		notify-send "CPU is getting hot! ($TEMP°C)"
 		sleep 20s
 	fi
+	if [ $TEMP -gt 85 ]
+	then
+		notify-send -u critical "CPU is getting VERY hot! ($TEMP°C)"
+		sleep 10s
+	fi
 
 elif [ $(hostname) == "phobos" ]
 then
@@ -23,6 +28,11 @@ then
 		notify-send "CPU is getting hot! ($TEMP°C)"
 		sleep 20s
 	fi
+	if [ $TEMP -gt 85 ]
+	then
+		notify-send -u critical "CPU is getting VERY hot! ($TEMP°C)"
+		sleep 10s
+	fi
 
 elif [ $(hostname) == "tethys" ]
 then
@@ -32,6 +42,11 @@ then
 	then
 		notify-send "CPU is getting hot! ($TEMP°C)"
 		sleep 20s
+	fi
+	if [ $TEMP -gt 85 ]
+	then
+		notify-send -u critical "CPU is getting VERY hot! ($TEMP°C)"
+		sleep 10s
 	fi
 fi
 
