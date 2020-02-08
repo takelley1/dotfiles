@@ -29,7 +29,8 @@
     # the top and down respectively.
     # The width can be negative.  In this case the actual width is the
     # screen width minus the width defined in within the geometry option.
-    geometry = "600x10-30+20"
+    #geometry = "(-geometry x2)+300+200"
+    geometry = "-400x3-200+20"
 
     # Show how many messages are currently hidden (because of geometry).
     indicate_hidden = yes
@@ -51,13 +52,13 @@
     # Draw a line of "separator_height" pixel height between two
     # notifications.
     # Set to 0 to disable.
-    separator_height = 2
+    separator_height = 10
 
     # Padding between text and separator.
-    padding = 8
+    padding = 10
 
     # Horizontal padding.
-    horizontal_padding = 8
+    horizontal_padding = 0
 
     # Defines width in pixels of frame around the notification window.
     # Set to 0 to disable.
@@ -130,7 +131,7 @@
 
     # Alignment of message text.
     # Possible values are "left", "center" and "right".
-    alignment = left
+    alignment = center
 
     # Show age of message if message is older than show_age_threshold
     # seconds.
@@ -175,7 +176,7 @@
     sticky_history = yes
 
     # Maximum amount of notifications kept in history
-    history_length = 20
+    history_length = 50
 
     ### Misc/Advanced ###
 
@@ -278,14 +279,14 @@
     background = "#222222"
     foreground = "#888888"
     frame_color = "#888888"
-    timeout = 10
+    timeout = 5
     # Icon for notifications with low urgency, uncomment to enable
     #icon = /path/to/icon
 
 [urgency_normal]
     background = "#285577"
     foreground = "#ffffff"
-    frame_color = "#eeeeee"
+    frame_color = "#ffffff"
     timeout = 10
     # Icon for notifications with normal urgency, uncomment to enable
     #icon = /path/to/icon
