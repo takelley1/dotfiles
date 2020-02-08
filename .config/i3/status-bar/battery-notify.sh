@@ -5,6 +5,13 @@
 
 # get current battery percentage
 PERCENT=$(acpi -b | awk {'print $4'} | tr -d '%' | tr -d ',')
+STATE=$(acpi -b | awk {'print $3'})
+
+# don't send a notification if the battery is being charged
+if [ $STATE == 'Charging,' ]
+then
+	exit 0
+fi
 
 if [ $PERCENT -lt 20 ]
 then
