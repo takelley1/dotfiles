@@ -8,7 +8,7 @@
         then
                 # requires "new-session -n $HOST" in ~/.tmux.conf file
                 # only runs if tmux isn't already attached
-                [[ -z $TMUX ]] && exec tmux attach
+                [[ -z $TMUX ]] && exec tmux -f ~/.config/tmux/tmux.conf attach
         fi
 
         exec fish # try out the fish shell instead of bash
@@ -18,7 +18,8 @@
 
 # ALIASES #########################################################################################
 
-        alias ta='tmux attach'
+        alias ta='tmux -f ~/.config/tmux/tmux.conf attach'
+        alias tmux='tmux -f ~/.config/tmux/tmux.conf'
         alias vi='nvim'      
         alias vim='nvim'      
 

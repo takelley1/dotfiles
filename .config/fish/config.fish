@@ -3,7 +3,8 @@
 fish_vi_key_bindings # use vi mode keybindings
 set -U fish_greeting # don't print default greeting
 
-alias ta='tmux attach'
+alias ta='tmux -f ~/.config/tmux/tmux.conf attach'
+alias tmux='tmux -f ~/.config/tmux/tmux.conf'
 alias vi='nvim'      
 alias vim='nvim'      
 
