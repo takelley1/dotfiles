@@ -1,3 +1,6 @@
+# ~/.xprofile, sourced when launching interactive login graphical shells
+# place stuff here that applies to the whole X user session
+
 # create i3 config
 cat $HOME/.config/i3/.config-notification $HOME/.config/i3/config-unique-$(hostname) $HOME/.config/i3/config-shared > $HOME/.config/i3/config &
 

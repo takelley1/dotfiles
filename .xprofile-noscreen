@@ -1,3 +1,6 @@
+# ~/.xprofile, sourced when launching interactive login graphical shells
+# place stuff here that applies to the whole X user session
+
 # don't take screenshots on phobos
 
 # create i3 config
