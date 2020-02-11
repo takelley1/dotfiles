@@ -10,6 +10,8 @@
                 [[ -z $TMUX ]] && exec tmux attach
         fi
 
+        exec fish # try out the fish shell instead of bash
+
         # use vi-style editing for bash commands
         set -o vi
 
@@ -31,6 +33,9 @@
         alias i3cc="nvim ~/.config/i3/config-shared"
         alias i3ccc="nvim ~/.config/i3/config"
         alias i3b="nvim ~/.config/i3/i3blocks.conf"
+
+        alias linux="cd ~/linux-notes"
+        alias notes="cd ~/notes/personal"
 
         alias readme='nvim ~/.github/README.md'
 
