@@ -21,8 +21,9 @@
    set $mod Mod4
  # set keyboard key repeat delay
    exec_always xset r rate 200 45
- # rebind caps lock to right ctrl
-   exec xmodmap -e "keysym Caps_Lock = ISO_Level3_Shift"
+ # rebind caps lock to right arrow
+   exec xmodmap -e "clear lock"               # remove original function of caps lock
+   exec xmodmap -e "keysym Caps_Lock = Right" # assign the right arrow key to caps lock (for fish shell completion)
  # make bash use vim-style command editing
    exec --no-startup-id set -o vi
 
