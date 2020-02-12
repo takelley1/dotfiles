@@ -2,43 +2,104 @@
 
 #### setup for new hosts
 
-- clone this repo: `cd ~/ && git clone --bare [repo-url] $HOME/.cfg`  
-  - create alias:
-    ```bash
-    alias git-config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'       # Linux path
-    alias git-config='/usr/local/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME' # FreeBSD path
-    ```
-  - checkout files: `git-config checkout master`
-  - backup dotfiles that git will overwrite: `cd ~/ && mkdir .cfg.bak && mv file1.txt file2.txt file3.txt -t cfg.bak`
+1. clone this repo:
+   ```bash
+   cd ~/ && git clone --bare [repo-url] $HOME/.cfg
+   ```
+   1. create alias:
+       ```bash
+       alias git-config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'       # Linux path
+       alias git-config='/usr/local/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME' # FreeBSD path
+       ```
+   1. checkout files:
+      ```bash
+      git-config checkout master
+      ```
+   1. backup dotfiles that git will overwrite:
+      ```bash
+      cd ~/ && mkdir .cfg.bak && mv file1.txt file2.txt file3.txt -t cfg.bak
+      ```
 
-- add missing cert to trust store: `sudo trust anchor --store /mnt/tank/share/documents/configuration/e2guardian/my_rootCA.crt`
-  - open firefox and add this same cert again to the trusted CAs list
-- install missing packages: `sudo pacman -Syu && for i in $(cat ~/.config/packages-to-install.txt | grep -v "^#"); do sudo pacman -Syy --noconfirm $i; done`  
-- remove unnecessary packages: `sudo pacman -Syu && for i in $(cat ~/.config/packages-to-remove.txt); do sudo pacman -Ryy --noconfirm $i; done`  
+1. add E2Guardian proxy cert to trust store:
+   ```bash
+   sudo trust anchor --store /mnt/tank/share/documents/configuration/e2guardian/my_rootCA.crt
+   ```
+   1. open firefox and add this same cert again to the trusted CAs list
+   
+1. install missing packages:
+   ```bash
+   sudo pacman -Syu
+   for i in $(cat ~/.config/packages-to-install.txt | grep -v "^#"); do sudo pacman -Syy --noconfirm $i; done
+   ```
+   
+1. remove unnecessary packages:
+   ```bash
+   sudo pacman -Syu
+   for i in $(cat ~/.config/packages-to-remove.txt | grep -v "^#"); do sudo pacman -Ryy --noconfirm $i; done
+   ```
 
-- copy crontabs: `sudo cp ~/.config/new-hosts/etc/cron.hourly/* /etc/cron.hourly/`  
-- copy environment variables: `sudo cp ~/.config/new-hosts/etc/environment /etc/ && sudo cp ~/.config/new-hosts/etc/security/pam_env.conf /etc/security/`
-  - snapd doesn't respect /etc/environment, so edit the service manually: `sudo systemctl edit snapd.service`
-  - add the following text:
-    ```
-    [Service]
-    Environment=http_proxy=http://10.0.0.8:8080
-    Environment=https_proxy=http://10.0.0.8:8080
-    ```
-- add network share to fstab: `sudo cat ~/.config/new-hosts/etc/fstab >> /etc/fstab`  
-- add autoscreenshot log to logrotate: `sudo cat ~/.config/new-hosts/etc/logrotate.conf >> /etc/logrotate.conf`
+1. copy crontabs:
+   ```bash
+   sudo cp ~/.config/new-hosts/etc/cron.hourly/* /etc/cron.hourly/
+   ```
 
-- build the brightnessctl package for backlight control on laptops: `cd ~/.config/brightnessctl/ && make install`  
-  - add sticky bit to brightnessctl binary so it doesn't require sudo to run: `sudo chmod +s /bin/brightnessctl`  
+1. copy global environment variables:
+   ```bash
+   sudo cp ~/.config/new-hosts/etc/environment /etc/
+   sudo cp ~/.config/new-hosts/etc/security/pam_env.conf /etc/security/
+   ```
+   1. snapd doesn't respect /etc/environment, so edit the service manually:
+      ```bash
+      sudo systemctl edit snapd.service
+      ```
+   1. add the following text:
+      ```
+      [Service]
+      Environment=http_proxy=http://10.0.0.8:8080
+      Environment=https_proxy=http://10.0.0.8:8080
+      ```
+1. add network share to fstab:
+   ```bash
+   sudo cat ~/.config/new-hosts/etc/fstab >> /etc/fstab
+   ```
+   
+1. add autoscreenshot log to logrotate:
+   ```bash
+   sudo cat ~/.config/new-hosts/etc/logrotate.conf >> /etc/logrotate.conf
+   ```
 
-- create symlinks according to which config files you wish to use  
-  - symlink Xdefaults based on preferred font size: `cd ~/ && ln -s .Xdefaults-[hostname] ./.Xdefaults`  
-  - symlink xprofile: `cd ~/ && ln -s .xprofile-[standard/noscreen] ./.xprofile`  
+1. build the brightnessctl package for backlight control on laptops
+   ```bash
+   cd ~/.config/brightnessctl/
+   make install
+   ```  
+   1. add sticky bit to brightnessctl binary so it doesn't require sudo to run:
+      ```bash
+      sudo chmod +s /bin/brightnessctl
+      ```
 
-- create modular i3 config file for new host: `nvim ~/.config/i3/config-unique-$(hostname)`
-  - see https://faq.i3wm.org/question/1367/anyway-to-include-in-config-file/%3C/p%3E.html and ./xinitrc for more info
+1. create symlinks according to which config files you wish to use  
+   1. symlink Xdefaults based on preferred urxvt font size:
+      ```bash
+      cd ~/
+      ln -s .Xdefaults-[hostname] ./.Xdefaults
+      ```
+   1. symlink xprofile:
+      ```bash
+      cd ~/
+      ln -s .xprofile-[standard/noscreen] ./.xprofile
+      ```
 
-- change thunar theme to dark: `lxappearance`  
+1. create modular i3 config file for new host:
+   ```bash
+   nvim ~/.config/i3/config-unique-$(hostname)
+   ```
+   1. see https://faq.i3wm.org/question/1367/anyway-to-include-in-config-file/%3C/p%3E.html and ./xinitrc for more info
+
+1. change thunar theme to dark:
+   ```bash
+   lxappearance
+   ```
 
 ---
 
