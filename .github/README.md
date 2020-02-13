@@ -21,7 +21,7 @@
       cd ~/ && mkdir .cfg.bak && mv file1.txt file2.txt file3.txt -t cfg.bak
       ```
 
-1. **dd E2Guardian proxy cert to trust store:**
+1. **add E2Guardian proxy cert to trust store:**
    ```bash
    sudo trust anchor --store /mnt/tank/share/documents/configuration/e2guardian/my_rootCA.crt
    ```
