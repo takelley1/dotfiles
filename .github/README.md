@@ -1,8 +1,9 @@
 ## cfg
 
-#### setup for new hosts
+---
+### setup for new hosts
 
-1. clone this repo:
+1. **clone this repo:**
    ```bash
    cd ~/ && git clone --bare [repo-url] $HOME/.cfg
    ```
@@ -20,30 +21,30 @@
       cd ~/ && mkdir .cfg.bak && mv file1.txt file2.txt file3.txt -t cfg.bak
       ```
 
-1. add E2Guardian proxy cert to trust store:
+1. **dd E2Guardian proxy cert to trust store:**
    ```bash
    sudo trust anchor --store /mnt/tank/share/documents/configuration/e2guardian/my_rootCA.crt
    ```
    1. open firefox and add this same cert again to the trusted CAs list
    
-1. install missing packages:
+1. **install missing packages:**
    ```bash
    sudo pacman -Syu
    for i in $(cat ~/.config/packages-to-install.txt | grep -v "^#"); do sudo pacman -Syy --noconfirm $i; done
    ```
    
-1. remove unnecessary packages:
+1. **remove unnecessary packages:**
    ```bash
    sudo pacman -Syu
    for i in $(cat ~/.config/packages-to-remove.txt | grep -v "^#"); do sudo pacman -Ryy --noconfirm $i; done
    ```
 
-1. copy crontabs:
+1. **copy crontabs:**
    ```bash
    sudo cp ~/.config/new-hosts/etc/cron.hourly/* /etc/cron.hourly/
    ```
 
-1. copy global environment variables:
+1. **copy global environment variables:**
    ```bash
    sudo cp ~/.config/new-hosts/etc/environment /etc/
    sudo cp ~/.config/new-hosts/etc/security/pam_env.conf /etc/security/
@@ -58,17 +59,17 @@
       Environment=http_proxy=http://10.0.0.8:8080
       Environment=https_proxy=http://10.0.0.8:8080
       ```
-1. add network share to fstab:
+1. **add network share to fstab:**
    ```bash
    sudo cat ~/.config/new-hosts/etc/fstab >> /etc/fstab
    ```
    
-1. add autoscreenshot log to logrotate:
+1. **add autoscreenshot log to logrotate:**
    ```bash
    sudo cat ~/.config/new-hosts/etc/logrotate.conf >> /etc/logrotate.conf
    ```
 
-1. build the brightnessctl package for backlight control on laptops
+1. **build the brightnessctl package for backlight control on laptops**
    ```bash
    cd ~/.config/brightnessctl/
    make install
@@ -78,7 +79,7 @@
       sudo chmod +s /bin/brightnessctl
       ```
 
-1. create symlinks according to which config files you wish to use  
+1. **create symlinks according to which config files you wish to use:**
    1. symlink Xdefaults based on preferred urxvt font size:
       ```bash
       cd ~/
@@ -90,13 +91,13 @@
       ln -s .xprofile-[standard/noscreen] ./.xprofile
       ```
 
-1. create modular i3 config file for new host:
+1. **create modular i3 config file for new host:**
    ```bash
    nvim ~/.config/i3/config-unique-$(hostname)
    ```
    1. see https://faq.i3wm.org/question/1367/anyway-to-include-in-config-file/%3C/p%3E.html and ./xinitrc for more info
 
-1. change thunar theme to dark:
+1. **change thunar theme to dark:**
    ```bash
    lxappearance
    ```
