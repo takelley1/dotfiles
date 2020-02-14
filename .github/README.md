@@ -21,7 +21,7 @@
       cd ~/ && mkdir .cfg.bak && mv file1.txt file2.txt file3.txt -t cfg.bak
       ```
 
-1. **add E2Guardian proxy cert to trust store:**
+1. **add e2guardian proxy cert to trust store:**
    ```bash
    sudo trust anchor --store /mnt/tank/share/documents/configuration/e2guardian/my_rootCA.crt
    ```
@@ -59,6 +59,7 @@
       Environment=http_proxy=http://10.0.0.8:8080
       Environment=https_proxy=http://10.0.0.8:8080
       ```
+
 1. **add network share to fstab:**
    ```bash
    sudo cat ~/.config/new-hosts/etc/fstab >> /etc/fstab
@@ -85,11 +86,6 @@
       cd ~/
       ln -s .Xdefaults-[hostname] ./.Xdefaults
       ```
-   1. symlink xprofile:
-      ```bash
-      cd ~/
-      ln -s .xprofile-[standard/noscreen] ./.xprofile
-      ```
 
 1. **create modular i3 config file for new host:**
    ```bash
@@ -103,7 +99,6 @@
    ```
 
 ---
-
 #### from https://www.atlassian.com/git/tutorials/dotfiles
 ### The best way to store your dotfiles: A bare Git repository
 
