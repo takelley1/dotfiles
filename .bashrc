@@ -26,9 +26,15 @@ alias vim='nvim'
 
 # easier access to editing particular files (mostly configs)
 alias alacrittyrc='nvim ~/.config/alacritty/alacritty.yml'
+    alias alarc='nvim ~/.config/alacritty/alacritty.yml'
 alias banlist='vim /mnt/share/documents/banlist.txt'
 alias bashrc='nvim ~/.bashrc'
+    alias rc='nvim ~/.bashrc'
 alias dunstrc='nvim ~/.config/dunst/dunstrc'
+
+alias fishrc='nvim ~/.config/fish/config.fish'
+alias fishvar='nvim ~/.config/fish/fish_variables'
+alias fishprompt='nvim ~/.config/fish/functions/fish_prompt.fish'
 
 alias i3c="nvim ~/.config/i3/config-unique-$(hostname)"
 alias i3cc="nvim ~/.config/i3/config-shared"
@@ -111,10 +117,10 @@ alias audible='bash /opt/OpenAudible/OpenAudible'
 # directory traversal ---------------------------------------------------------------------
 
 alias r='ranger'
-alias ..='cd ../'
-alias u1='cd ../'       # "up 1 directory"
+alias u='cd ../'       # "up 1 directory"
 alias u2='cd ../../'
 alias u3='cd ../../../'
+alias b="cd $(echo $OLDPWD)"   # "'back', jumps to previous working dir"
 alias root='cd /'
 alias home='cd ~'
 alias h='cd ~'
@@ -133,20 +139,23 @@ else
     alias mv='mv --verbose'
     alias mkdir='mkdir --parents --verbose -Z'
 
-    alias ls='ls --classify --color=auto --human-readable'
     alias l='ls --classify --color=auto --human-readable'
+    alias lr='ls --classify --color=auto --human-readable --reverse'
+    alias ls='ls --classify --color=auto --human-readable'
+    alias lsr='ls --classify --color=auto --human-readable --reverse'
     alias ll='ls --classify --color=auto --human-readable -l'           # show single-column
+    alias llr='ls --classify --color=auto --human-readable -l --reverse'
     alias la='ls --classify --color=auto --human-readable -l --all'
+    alias lar='ls --classify --color=auto --human-readable -l --all --reverse'
     alias lss='ls --classify --color=auto --human-readable -l --all -S' # sort by size
 
-    alias h='history'
     alias mount='mount | column -t'
 
     alias c='clear'
     alias clr='clear'
     alias untar='tar -zxvf'
     #alias up='sudo apt update && sudo apt upgrade -y'
-    alias up='sudo pacman -Syu'
+    #alias up='sudo pacman -Syu'
     alias lcon='ls -lZ --all --reverse'
 fi
 
@@ -180,7 +189,7 @@ export EDITOR='nvim'
 export BROWSER='firefox'
 
 # add main bash scripting dir to path
-export PATH="$PATH:/home/austin/scripts/bash"
+#export PATH="$PATH:/home/austin/scripts/bash"
 
 # vars for sxiv image viewer
 export XDG_CONFIG_HOME=~/.config
