@@ -43,7 +43,7 @@ function fish_prompt --description 'Write out the prompt'
     switch "$USER"
         # root gets red colors
         case root toor admin
-            echo -n -s (set_color ff000) "$USER" $normal @ (set_color ff000) (prompt_hostname) $normal ':' (set_color 729fcf) (pwd) $normal (__fish_vcs_prompt) $normal "# "
+            echo -n -s (set_color ff0000) "$USER" $normal @ (set_color ff0000) (prompt_hostname) $normal ':' (set_color 729fcf) (pwd) $normal (__fish_vcs_prompt) $normal "# "
         # everyone else gets green colors
         case '*'
             echo -n -s (set_color 8ae234) "$USER" $normal @ (set_color 8ae234) (prompt_hostname) $normal ':' (set_color 729fcf) (pwd) $normal (__fish_vcs_prompt) $normal "> "
