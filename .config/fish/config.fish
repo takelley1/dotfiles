@@ -13,8 +13,12 @@ alias vim='nvim'
 # easier access to editing particular files (mostly configs)
 alias alacrittyrc='nvim ~/.config/alacritty/alacritty.yml'
 alias banlist='vim /mnt/share/documents/banlist.txt'
+
 alias bashrc='nvim ~/.bashrc'
 alias fishrc='nvim ~/.config/fish/config.fish'
+alias fishprompt='nvim ~/.config/fish/functions/fish_prompt.fish'
+alias fishvar='nvim ~/.config/fish/fish_variables'
+
 alias dunstrc='nvim ~/.config/dunst/dunstrc'
 
 alias i3c="nvim ~/.config/i3/config-unique-(hostname)"
@@ -123,3 +127,19 @@ alias untar='tar -zxvf'
 #alias up='sudo apt update && sudo apt upgrade -y'
 alias up='sudo pacman -Syu'
 alias lcon='ls -lZ --all --reverse'
+
+# variables ###############################################################################
+
+export LC_CTYPE=en_US.UTF-8
+
+export PAGER='less'
+export EDITOR='nvim'
+export BROWSER='firefox'
+
+# add main bash scripting dir to path
+export PATH="$PATH:/home/austin/scripts/bash"
+
+# vars for sxiv image viewer
+export XDG_CONFIG_HOME=~/.config
+export XDG_CACHE_HOME=~/.cache
+
