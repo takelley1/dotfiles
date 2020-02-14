@@ -10,8 +10,6 @@ then
     [[ -z $TMUX ]] && exec tmux -f ~/.config/tmux/tmux.conf attach
 fi
 
-#exec fish # try out the fish shell instead of bash
-
 # use vi-style editing for bash commands
 set -o vi
 
@@ -50,7 +48,7 @@ alias readme='nvim ~/.github/README.md'
 alias todo='cd ~/notes/personal/ && nvim ./todo.md'
 alias gcut='cd ~/notes/personal/ && git add ./todo.md && git commit -m "Update todo" && git push'
 
-alias tmuxrc='nvim ~/.tmux.conf'
+alias tmuxrc='nvim ~/.config/tmux/tmux.conf'
 alias vimrc='nvim ~/.config/nvim/init.vim'
 
 alias xdefaults='nvim ~/.Xdefaults'
@@ -173,10 +171,10 @@ esac
 if [ $USER == "root" ]
 then
     # make the root prompt red to distinguish it from the standard user
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;31m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+    PS1='\[\033[01;31m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
 else
     # make the standard prompt green
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+    PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
 fi
 
 # VARIABLES ###############################################################################
