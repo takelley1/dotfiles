@@ -1,8 +1,10 @@
 # ~/.profile, sourced when launching interactive login shells
 # place stuff here that applies to the whole user session
 
-export LC_CTYPE=en_US.UTF-8
+# mostly not used in favor of bashrc or fishrc
 
+
+export LC_CTYPE=en_US.UTF-8
 export PAGER='less'
 export EDITOR='nvim'
 export BROWSER='firefox'
