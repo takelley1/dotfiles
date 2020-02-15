@@ -85,6 +85,7 @@ tigervnc
 tlp
 tmux
 ttf-font-awesome
+python-ueberzug
 unrar
 unzip
 urxvt-perls
