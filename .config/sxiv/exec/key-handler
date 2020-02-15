@@ -12,6 +12,12 @@
 # where C/M/S indicate Ctrl/Meta(Alt)/Shift modifier states and KEY is the X
 # keysym as listed in /usr/include/X11/keysymdef.h without the "XK_" prefix.
 
+#####################################
+##                                 ##
+## PRECEED ALL HOTKEYS WITH CTRL-X ##
+##                                 ##
+#####################################
+
 while read file
 do
         case "$1" in
