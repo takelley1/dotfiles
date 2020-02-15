@@ -44,6 +44,11 @@
    sudo cp ~/.config/new-hosts/etc/cron.hourly/* /etc/cron.hourly/
    ```
 
+1. **copy lightdm config:**
+   ```bash
+   sudo cp ~/.config/new-hosts/etc/lightdm/lightdm-gtk-greeter.conf /etc/lightdm/
+   ```
+
 1. **copy global environment variables:**
    ```bash
    sudo cp ~/.config/new-hosts/etc/environment /etc/
