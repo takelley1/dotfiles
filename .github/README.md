@@ -20,6 +20,12 @@
       ```bash
       cd ~/ && mkdir .cfg.bak && mv file1.txt file2.txt file3.txt -t cfg.bak
       ```
+   1. configure git
+      ```bash
+      git config --global user.email "hxyz@protonmail.com"
+      git config --global user.name "takelley1"
+      git-config push --set-upstream origin master
+      ```
 
 1. **add e2guardian proxy cert to trust store:**
    ```bash
