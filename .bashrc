@@ -10,24 +10,24 @@ then
     [[ -z $TMUX ]] && exec tmux -f ~/.config/tmux/tmux.conf attach
 fi
 
-# use vi-style editing for bash commands
-set -o vi
-
 # ALIASES #################################################################################
 
 alias ta='tmux -f ~/.config/tmux/tmux.conf attach'
 alias tmux='tmux -f ~/.config/tmux/tmux.conf'
-alias vi='nvim'      
-alias vim='nvim'      
+
+alias pass='pass -c'
 
 # editing ---------------------------------------------------------------------------------
 
+alias vi='nvim'      
+alias vim='nvim'      
+
 # easier access to editing particular files (mostly configs)
 alias alacrittyrc='nvim ~/.config/alacritty/alacritty.yml'
-    alias alarc='nvim ~/.config/alacritty/alacritty.yml'
+      alias alarc='alacrittyrc'
 alias banlist='vim /mnt/share/documents/banlist.txt'
 alias bashrc='nvim ~/.bashrc'
-    alias rc='nvim ~/.bashrc'
+      alias rc='bashrc'
 alias dunstrc='nvim ~/.config/dunst/dunstrc'
 
 alias fishrc='nvim ~/.config/fish/config.fish'
@@ -61,7 +61,7 @@ alias youtube='vim /mnt/share/documents/scripting/youtube-dl-urls.txt'
 alias netstat='echo use \"ss\" or \"lsof -i\" --- netstat is deprecated ---'
 alias ifconfig='echo use \"ip a\" --- ifconfig is deprecated ---'
 
-# custom git aliases used for managing dotfiles ------------------------------------------
+# custom git alias for managing dotfiles -------------------------------------------------
 
 # see https://developer.atlassian.com/blog/2016/02/best-way-to-store-dotfiles-git-bare-repo/
 if [ $(uname) == "FreeBSD" ]
@@ -110,15 +110,18 @@ alias eris='ssh austin@10.0.0.11'
 
 alias eve='bash /opt/evesetup/lib/evelauncher/evelauncher.sh'
 alias osrs='bash /mnt/tank/share/software/gaming/games/runescape-launcher/osrs/bin/osrs-launcher'
+      alias runescape='osrs'
+      alias rs='osrs'
 alias audible='bash /opt/OpenAudible/OpenAudible'
 
 # directory traversal ---------------------------------------------------------------------
 
 alias r='ranger'
 alias u='cd ../'       # "up 1 directory"
+      alias u1='u'
 alias u2='cd ../../'
 alias u3='cd ../../../'
-alias b="cd $(echo $OLDPWD)"   # "'back', jumps to previous working dir"
+alias u3='cd ../../../../'
 alias root='cd /'
 alias home='cd ~'
 alias h='cd ~'
@@ -158,6 +161,9 @@ else
 fi
 
 # MISC ####################################################################################
+
+# use vi-style editing for bash commands
+set -o vi
 
 # if not running interactively, don't do anything
 case $- in
