@@ -54,6 +54,9 @@
    ```bash
    sudo cp ~/.config/new-hosts/etc/lightdm/lightdm-gtk-greeter.conf /etc/lightdm/
    ```
+   1. for some reason, lightdm will use the configured background, then immediately change its
+      background to a default one. to fix this, just rename the default background file it's
+      changing to in `/usr/share/backgrounds`.
 
 1. **copy global environment variables:**
    ```bash
