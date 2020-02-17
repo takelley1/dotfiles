@@ -92,10 +92,13 @@
       ```
 
 1. **create symlinks according to which config files you wish to use:**
+   1. symlink alacritty.yml based on preferred alacritty font size:
+      ```bash
+      cd ~/.config/alacritty && ln -s alacritty-[font size].yml alacritty.yml
+      ```
    1. symlink Xdefaults based on preferred urxvt font size:
       ```bash
-      cd ~/
-      ln -s .Xdefaults-[hostname] ./.Xdefaults
+      ln -s ~/.Xdefaults-[hostname] ~/.Xdefaults
       ```
 
 1. **create modular i3 config file for new host:**
