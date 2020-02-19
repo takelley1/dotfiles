@@ -15,8 +15,6 @@ fi
 alias ta='tmux -f ~/.config/tmux/tmux.conf attach'
 alias tmux='tmux -f ~/.config/tmux/tmux.conf'
 
-alias pass='pass -c'
-
 # editing ---------------------------------------------------------------------------------
 
 alias vi='nvim'      
@@ -63,6 +61,7 @@ alias ifconfig='echo use \"ip a\" --- ifconfig is deprecated ---'
 
 # custom git alias for managing dotfiles -------------------------------------------------
 
+# TODO: change the "git-config" alias to "dot" or "d", short for "dotfiles"
 # see https://developer.atlassian.com/blog/2016/02/best-way-to-store-dotfiles-git-bare-repo/
 if [ $(uname) == "FreeBSD" ]
     then
@@ -86,10 +85,13 @@ alias gcs='git-config status --untracked-files=no'
 
 # git ------------------------------------------------------------------------------------
 
+alias g='git'
 alias ga='git add'
-alias gaa='git add -A :/'
+alias gau='git add -u'    # stage all modified files
+alias gaa='git add -A :/' # stage all changes, including added or deleted files
 alias gb='git branch'
 alias gc='git commit'
+alias gch='git checkout'
 alias gd='git diff'
 alias gf='git fetch'
 alias gl='git log'
