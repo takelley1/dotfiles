@@ -43,8 +43,8 @@ alias notes="cd ~/notes/personal"
 alias readme='nvim ~/.github/README.md'
 
 # easy editing and committing of todo list
-alias todo='cd ~/notes/personal/ && nvim ./todo.md'
-alias gcut='cd ~/notes/personal/ && git add ./todo.md && git commit -m "Update todo" && git push'
+alias todo='cd ~/notes/ && nvim ./todo.md'
+alias gcut='cd ~/notes/ && git add ./todo.md && git commit -m "Update todo" && git push'
 
 alias tmuxrc='nvim ~/.config/tmux/tmux.conf'
 alias vimrc='nvim ~/.config/nvim/init.vim'
