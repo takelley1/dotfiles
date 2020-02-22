@@ -46,6 +46,7 @@ mediainfo
 mlocate
 memtest86+
 moreutils
+mpv
 neovim
 net-tools
 network-manager-applet
@@ -82,6 +83,9 @@ sxiv
 tcpdump
 thunar
 tigervnc
+timeshift
+timeshift-gtk
+timeshift-autosnap
 tlp
 tmux
 ttf-font-awesome
@@ -89,7 +93,6 @@ python-ueberzug
 unrar
 unzip
 urxvt-perls
-vlc
 w3m
 wget
 xclip
