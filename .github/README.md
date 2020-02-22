@@ -9,12 +9,12 @@
    ```
    1. create alias:
        ```bash
-       alias git-config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'       # Linux path
-       alias git-config='/usr/local/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME' # FreeBSD path
+       alias dot='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'       # Linux path
+       alias dot='/usr/local/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME' # FreeBSD path
        ```
    1. checkout files:
       ```bash
-      git-config checkout master
+      dot checkout master
       ```
    1. backup dotfiles that git will overwrite:
       ```bash

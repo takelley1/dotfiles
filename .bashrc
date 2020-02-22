@@ -61,27 +61,28 @@ alias ifconfig='echo use \"ip a\" --- ifconfig is deprecated ---'
 
 # custom git alias for managing dotfiles -------------------------------------------------
 
-# TODO: change the "git-config" alias to "dot" or "d", short for "dotfiles"
 # see https://developer.atlassian.com/blog/2016/02/best-way-to-store-dotfiles-git-bare-repo/
 if [ $(uname) == "FreeBSD" ]
     then
         # FreeBSD's "git" binary is located at a different path than on Linux
-        alias git-config='/usr/local/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+        alias dot='/usr/local/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
     else
-        alias git-config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+        # "dot" for "dotfiles"
+        alias dot='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 fi
 
-alias gca='git-config add'
-alias gcb='git-config branch'
-alias gcc='git-config commit'
-alias gcd='git-config diff'
-alias gcf='git-config fetch'
-alias gcl='git-config log'
-alias gco='git-config'
-alias gcp='git-config push'
-alias gcpu='git-config pull'
-alias gcr='git-config rm'
-alias gcs='git-config status --untracked-files=no'
+alias d='dot'
+alias da='dot add'
+alias db='dot branch'
+alias dm='dot merge'
+alias dc='dot commit'
+alias dch='dot checkout'
+alias dd='dot diff'
+alias dl='dot log'
+alias dp='dot push'
+alias dpu='dot pull'
+alias dr='dot rm'
+alias ds='dot status --untracked-files=no'
 
 # git ------------------------------------------------------------------------------------
 
