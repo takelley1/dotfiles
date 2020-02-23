@@ -45,11 +45,6 @@
    for i in $(cat ~/.config/packages-to-remove.txt | grep -v "^#"); do sudo pacman -Ryy --noconfirm $i; done
    ```
 
-1. **copy crontabs:**
-   ```bash
-   sudo cp ~/.config/new-hosts/etc/cron.hourly/* /etc/cron.hourly/
-   ```
-
 1. **copy lightdm config:**
    ```bash
    sudo cp ~/.config/new-hosts/etc/lightdm/lightdm-gtk-greeter.conf /etc/lightdm/
@@ -74,11 +69,17 @@
       Environment=https_proxy=http://10.0.0.8:8080
       ```
 
+1. **copy misc configs:**
+   ```bash
+   sudo cp ~/.config/new-hosts/etc/cron.hourly/* /etc/cron.hourly/
+   sudo cp ~/.config/new-hosts/etc/timeshift.json /etc/timeshift.json
+   ```
+
 1. **add network share to fstab:**
    ```bash
    sudo cat ~/.config/new-hosts/etc/fstab >> /etc/fstab
    ```
-   
+
 1. **add autoscreenshot log to logrotate:**
    ```bash
    sudo cat ~/.config/new-hosts/etc/logrotate.conf >> /etc/logrotate.conf
