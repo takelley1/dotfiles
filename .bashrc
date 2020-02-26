@@ -2,9 +2,11 @@
 
 # STARTUP #################################################################################
 
+# start x without a display manager on phobos
+if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]] && [[ $HOSTNAME == "phobos" ]] && [[ ! $USER == "root" ]]; then exec startx; fi
+
 # reattach to the last tmux session or create a new one
-if [ ! $USER == "root" ] # only auto-attach in non-root shells
-then
+if [[ ! $USER == "root" ]]; then # only auto-attach in non-root shells
     # requires "new-session -n $HOST" in ~/.tmux.conf file
     # only runs if tmux isn't already attached
     [[ -z $TMUX ]] && exec tmux -f ~/.config/tmux/tmux.conf attach
