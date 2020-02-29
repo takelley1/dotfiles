@@ -33,15 +33,11 @@
    ```
    1. open firefox and add this same cert again to the trusted CAs list
    
-1. **install missing packages:**
+1. **install missing packages and remove unnecessary packages:**
    ```bash
    sudo pacman -Syu
    for i in $(cat ~/.config/packages-to-install.txt | grep -v "^#"); do sudo pacman -Syy --noconfirm $i; done
-   ```
-   
-1. **remove unnecessary packages:**
-   ```bash
-   sudo pacman -Syu
+
    for i in $(cat ~/.config/packages-to-remove.txt | grep -v "^#"); do sudo pacman -Ryy --noconfirm $i; done
    ```
 
@@ -71,12 +67,13 @@
 
 1. **copy misc configs:**
    ```bash
+   # automatic hourly pacman updates
    sudo cp ~/.config/new-hosts/etc/cron.hourly/* /etc/cron.hourly/
-   sudo cp ~/.config/new-hosts/etc/timeshift.json /etc/timeshift.json
-   ```
 
-1. **add network share to fstab:**
-   ```bash
+   # daily system snapshots
+   sudo cp ~/.config/new-hosts/etc/timeshift.json /etc/timeshift.json
+
+   # add network share to fstab
    sudo cat ~/.config/new-hosts/etc/fstab >> /etc/fstab
    ```
 
@@ -90,10 +87,11 @@
    cd ~/.config/brightnessctl/
    make install
    ```  
-   1. add sticky bit to brightnessctl binary so it doesn't require sudo to run:
+   1. allow running as root without a password:
       ```bash
-      sudo chmod +s /bin/brightnessctl
+      sudo su && visudo
       ```
+      - add the line `austin ALL=NOPASSWD: /bin/brightnessctl`
 
 1. **create symlinks according to which config files you wish to use:**
    1. symlink alacritty.yml based on preferred alacritty font size:
