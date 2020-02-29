@@ -8,7 +8,7 @@ font pango:DejaVu Sans 9, Awesome 9
 # STARTUP
 
  # start redshift
-   exec bash /home/austin/.config/i3/redshift/redshift-brightness-10.sh
+   exec bash /home/austin/.config/i3/scripts/redshift/redshift-brightness-10.sh
  # set primary display output for xrandr
    exec --no-startup-id xrandr --output DVI-I-1 --primary
 
@@ -27,16 +27,16 @@ font pango:DejaVu Sans 9, Awesome 9
 # HOTKEYS
 
  # brightness hotkeys using redshift
-   bindsym $mod+Mod1+0 exec /home/austin/.config/i3/redshift/redshift-brightness-10.sh
-   bindsym $mod+Mod1+9 exec /home/austin/.config/i3/redshift/redshift-brightness-9.sh
-   bindsym $mod+Mod1+8 exec /home/austin/.config/i3/redshift/redshift-brightness-8.sh
-   bindsym $mod+Mod1+7 exec /home/austin/.config/i3/redshift/redshift-brightness-7.sh
-   bindsym $mod+Mod1+6 exec /home/austin/.config/i3/redshift/redshift-brightness-6.sh
-   bindsym $mod+Mod1+5 exec /home/austin/.config/i3/redshift/redshift-brightness-5.sh
-   bindsym $mod+Mod1+4 exec /home/austin/.config/i3/redshift/redshift-brightness-4.sh
-   bindsym $mod+Mod1+3 exec /home/austin/.config/i3/redshift/redshift-brightness-3.sh
-   bindsym $mod+Mod1+2 exec /home/austin/.config/i3/redshift/redshift-brightness-2.sh
-   bindsym $mod+Mod1+1 exec /home/austin/.config/i3/redshift/redshift-brightness-1.sh
+   bindsym $mod+Mod1+0 exec /home/austin/.config/i3/scripts/redshift/redshift-brightness-10.sh
+   bindsym $mod+Mod1+9 exec /home/austin/.config/i3/scripts/redshift/redshift-brightness-9.sh
+   bindsym $mod+Mod1+8 exec /home/austin/.config/i3/scripts/redshift/redshift-brightness-8.sh
+   bindsym $mod+Mod1+7 exec /home/austin/.config/i3/scripts/redshift/redshift-brightness-7.sh
+   bindsym $mod+Mod1+6 exec /home/austin/.config/i3/scripts/redshift/redshift-brightness-6.sh
+   bindsym $mod+Mod1+5 exec /home/austin/.config/i3/scripts/redshift/redshift-brightness-5.sh
+   bindsym $mod+Mod1+4 exec /home/austin/.config/i3/scripts/redshift/redshift-brightness-4.sh
+   bindsym $mod+Mod1+3 exec /home/austin/.config/i3/scripts/redshift/redshift-brightness-3.sh
+   bindsym $mod+Mod1+2 exec /home/austin/.config/i3/scripts/redshift/redshift-brightness-2.sh
+   bindsym $mod+Mod1+1 exec /home/austin/.config/i3/scripts/redshift/redshift-brightness-1.sh
  # kill redshift
    bindsym $mod+Shift+r exec killall redshift ; exec sleep .3s ; exec xrandr --output HDMI-0 --brightness 1 ; exec sleep .1s ; exec xrandr --output DVI-I-1 --brightness 1
  

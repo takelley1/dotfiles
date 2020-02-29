@@ -9,7 +9,7 @@
    # run "systemctl enable go-luks-suspend.service" and comment out the below line to enable luks-suspend
    #   https://github.com/guns/go-luks-suspend
    # using xss-lock instead of luks-suspend is faster and more reliable, but less secure
-   exec xss-lock ~/.config/i3/xss-locker.sh
+   exec xss-lock ~/.config/i3/scripts/xss-locker.sh
 
  # run notification daemon
    exec --nostartup-id dunst -config ~/.config/dunst/dunstrc &
@@ -57,18 +57,18 @@
 # HOTKEYS
  
  # volume controls
-   bindsym XF86AudioLowerVolume exec ~/.config/i3/volume-down.sh
-   bindsym XF86AudioRaiseVolume exec ~/.config/i3/volume-up.sh
+   bindsym XF86AudioLowerVolume exec ~/.config/i3/scripts/volume-down.sh
+   bindsym XF86AudioRaiseVolume exec ~/.config/i3/scripts/volume-up.sh
    bindsym XF86AudioMute exec amixer set Master 0%
  
    #bindsym F11 exec amixer set Master 2%-
    #bindsym F12 exec amixer set Master 2%+
 
-   bindsym $mod+Down exec ~/.config/i3/volume-down.sh
-   bindsym $mod+Up exec ~/.config/i3/volume-up.sh
+   bindsym $mod+Down exec ~/.config/i3/scripts/volume-down.sh
+   bindsym $mod+Up exec ~/.config/i3/scripts/volume-up.sh
 
  # lock screen
-   bindsym $mod+Control+x exec ~/.config/i3/xss-locker.sh
+   bindsym $mod+Control+x exec ~/.config/i3/scripts/xss-locker.sh
  # sleep
    bindsym $mod+Control+s exec systemctl suspend
  
@@ -85,8 +85,6 @@
    bindsym $mod+Shift+Return exec urxvt
    # rofi app launcher
    bindsym $mod+d exec rofi -show run -lines 20
-   # ranger file browser
-   bindsym $mod+r exec terminator --config /home/austin/.config/terminator/configdesktop -b --profile=austinsprofile -e ranger
 
  # detect caps lock activation
    mode "caps"
@@ -184,7 +182,7 @@ bar {
             statusline               #eeeeee
             focused_workspace        #00ff00 #285777 #ffffff
             urgent_workspace         #333333 #222222 #888888
-	    }
+            }
     }
 
 # \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# notifies the user of a low battery charge
+# status bar script that notifies the user of a low battery charge
 # this script is called from the i3blocks config file periodically
 
 # get current battery percentage

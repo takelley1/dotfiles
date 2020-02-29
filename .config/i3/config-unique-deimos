@@ -30,15 +30,15 @@ font pango:DejaVu Sans 9, Awesome 9
 # HOTKEYS
  
  # brightness controls
- #   sometimes requires 'chmod +s /bin/brightnessctl' to fix setuid after update breaks it
-   bindsym XF86MonBrightnessDown exec brightnessctl set 1%-
-   bindsym XF86MonBrightnessUp exec brightnessctl set +1%
+ # requires the line "austin ALL=NOPASSWD: /bin/brightnessctl" in visudo file
+   bindsym XF86MonBrightnessDown exec "sudo brightnessctl set 5%+"
+   bindsym XF86MonBrightnessDown exec "sudo brightnessctl set 5%-"
 
    #bindsym F4 exec brightnessctl set 2%-
    #bindsym F5 exec brightnessctl set +2%
 
-   bindsym $mod+Right exec brightnessctl set +2%
-   bindsym $mod+Left exec brightnessctl set 2%-
+   bindsym $mod+Right exec "sudo brightnessctl set 2%+"
+   bindsym $mod+Left exec "sudo brightnessctl set 2%-"
 
  # touchpad toggle (for easier typing)
    bindsym $mod+space exec xinput --disable 'CyPS/2 Cypress Trackpad'

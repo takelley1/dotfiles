@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# notifies the user of a high CPU temp
+# status bar script that notifies the user of a high CPU temp
 # this script is called from the i3blocks config file periodically
 
 if [ $(hostname) == "deimos" ]
