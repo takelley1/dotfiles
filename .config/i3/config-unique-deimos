@@ -25,7 +25,7 @@ font pango:DejaVu Sans 9, Awesome 9
    exec --no-startup-id xinput --set-prop 'CyPS/2 Cypress Trackpad' 'libinput Tapping Enabled' 1  # enable tap-clicking
    exec --no-startup-id xinput --set-prop 'CyPS/2 Cypress Trackpad' 'libinput Accel Speed' 0.3    # increase sensitivity
  # disable touchscreen
-   exec_always --no-startup-id xinput disable pointer:"Atmel Atmel maXTouch Digitizer"
+   #exec_always --no-startup-id xinput disable pointer:"Atmel Atmel maXTouch Digitizer"
 
 # HOTKEYS
  
