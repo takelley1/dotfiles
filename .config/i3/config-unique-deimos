@@ -31,7 +31,7 @@ font pango:DejaVu Sans 9, Awesome 9
  
  # brightness controls
  # requires the line "austin ALL=NOPASSWD: /bin/brightnessctl" in visudo file
-   bindsym XF86MonBrightnessDown exec "sudo brightnessctl set 5%+"
+   bindsym XF86MonBrightnessUp exec "sudo brightnessctl set 5%+"
    bindsym XF86MonBrightnessDown exec "sudo brightnessctl set 5%-"
 
    #bindsym F4 exec brightnessctl set 2%-
