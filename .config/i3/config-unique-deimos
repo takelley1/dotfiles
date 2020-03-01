@@ -31,14 +31,14 @@ font pango:DejaVu Sans 9, Awesome 9
  
  # brightness controls
  # requires the line "austin ALL=NOPASSWD: /bin/brightnessctl" in visudo file
-   bindsym XF86MonBrightnessUp exec "sudo brightnessctl set 5%+"
-   bindsym XF86MonBrightnessDown exec "sudo brightnessctl set 5%-"
+   bindsym XF86MonBrightnessUp exec "sudo brightnessctl set 2%+"
+   bindsym XF86MonBrightnessDown exec "sudo brightnessctl set 2%-"
 
    #bindsym F4 exec brightnessctl set 2%-
    #bindsym F5 exec brightnessctl set +2%
 
-   bindsym $mod+Right exec "sudo brightnessctl set 2%+"
-   bindsym $mod+Left exec "sudo brightnessctl set 2%-"
+   bindsym $mod+Right exec "sudo brightnessctl set 1%+"
+   bindsym $mod+Left exec "sudo brightnessctl set 1%-"
 
  # touchpad toggle (for easier typing)
    bindsym $mod+space exec xinput --disable 'CyPS/2 Cypress Trackpad'
