@@ -77,6 +77,7 @@ fi
 
 alias d='dot'
 alias da='dot add'
+alias dau='dot add -u'
 alias db='dot branch'
 alias dm='dot merge'
 alias dc='dot commit'
