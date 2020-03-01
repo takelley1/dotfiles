@@ -2,8 +2,10 @@
 
 # STARTUP #################################################################################
 
-# start x without a display manager on phobos
-if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]] && [[ $HOSTNAME == "phobos" ]] && [[ ! $USER == "root" ]]; then exec startx; fi
+# start x without a display manager on phobos if logging into tty1 with non-root account
+if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]] && [[ $HOSTNAME == "phobos" ]] && [[ ! $USER == "root" ]]; then
+    exec startx
+fi
 
 # reattach to the last tmux session or create a new one
 if [[ ! $USER == "root" ]]; then # only auto-attach in non-root shells
