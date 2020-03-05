@@ -4,7 +4,7 @@
 # this is to notify the user if the daily timeshift snapshot job is running so they don't reboot while it's happening
 
 if [[ ! -z $(ps aux | grep 'timeshift' | grep -v 'grep' | grep "rsync || btrfs") ]]; then
-    printf "managing snapshots ..."
+    printf "%s\n" "managing snapshots ..."
 fi
 
 exit 0

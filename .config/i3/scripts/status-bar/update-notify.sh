@@ -4,7 +4,7 @@
 # this is to notify the user if the hourly cron pacman update job is running so they don't reboot while it's happening
 
 if [[ ! -z $(ps aux | grep '0pacman'| grep -v 'grep') ]]; then
-    printf "performing automatic updates ... DO NOT REBOOT"
+    printf "%s\n" "performing automatic updates ... DO NOT REBOOT"
 fi
 
 exit 0
