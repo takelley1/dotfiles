@@ -137,7 +137,8 @@ alias h='cd ~'
 
 if [ $(uname) == "FreeBSD" ]
 then
-  alias ls='ls -FCGh' # FreeBSD's "ls" uses a different syntax from Linux
+  alias ls='ls -FCGh' # freeBSD's "ls" uses a different syntax from Linux
+  alias sed='gsed'    # force freeBSD to use GNU's version of sed
 else
     # the below aliases are Linux-only
 
@@ -194,7 +195,12 @@ fi
 
 # VARIABLES ###############################################################################
 
-export SHELL='/bin/bash'
+if [ $(uname) == "FreeBSD" ]; then
+  export SHELL='/usr/local/bin/bash'
+else
+  export SHELL='/bin/bash'
+fi
+
 export TERM='screen-256color'
 export LC_CTYPE='en_US.UTF-8'
 export PAGER='less'
