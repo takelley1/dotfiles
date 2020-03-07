@@ -65,7 +65,7 @@
       Environment=https_proxy=http://10.0.0.8:8080
       ```
 
-1. **copy misc configs:**
+1. **copy other config files:**
    ```bash
    # automatic hourly pacman updates
    sudo cp ~/.config/new-hosts/etc/cron.hourly/* /etc/cron.hourly/
@@ -75,6 +75,9 @@
 
    # add network share to fstab
    sudo cat ~/.config/new-hosts/etc/fstab >> /etc/fstab
+
+   # Make default gateway the primary NTP server.
+   sudo cp /etc/chrony.conf /etc/chrony.conf.bak && sudo cp ~/.config/new-hosts/etc/chrony.conf /etc/
    ```
 
 1. **add autoscreenshot log to logrotate:**
