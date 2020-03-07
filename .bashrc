@@ -117,11 +117,11 @@ alias eris='ssh austin@10.0.0.11'
 
 # apps and games -------------------------------------------------------------------------
 
-alias eve='bash /opt/evesetup/lib/evelauncher/evelauncher.sh'
-alias osrs='bash /mnt/tank/share/software/gaming/games/runescape-launcher/osrs/bin/osrs-launcher'
+alias eve='bash /opt/evesetup/lib/evelauncher/evelauncher.sh &'
+alias osrs='bash /mnt/tank/share/software/gaming/games/runescape-launcher/osrs/bin/osrs-launcher &'
       alias runescape='osrs'
       alias rs='osrs'
-alias audible='bash /opt/OpenAudible/OpenAudible'
+alias audible='bash /opt/OpenAudible/OpenAudible &'
 
 # directory traversal ---------------------------------------------------------------------
 
