@@ -24,7 +24,6 @@ elif [[ ${percent} -lt 10 ]]; then
 elif [[ ${percent} -lt 15 ]]; then
     notify-send "Battery under 15%"
     exit 0
-
 fi
 
 exit 0
