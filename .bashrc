@@ -129,6 +129,7 @@ alias u3='cd ../../../../'
 alias root='cd /'
 alias home='cd ~'
 alias h='cd ~'
+alias c='clear'
 
 if [[ $(uname) == "FreeBSD" ]]; then
   alias ls='ls -FCGh' # FreeBSD's "ls" uses a different syntax from Linux.
@@ -156,8 +157,6 @@ else
 
     alias mount='mount | column -t'
 
-    alias c='clear'
-    alias clr='clear'
     alias untar='tar -zxvf'
     #alias up='sudo apt update && sudo apt upgrade -y'
     #alias up='sudo pacman -Syu'
