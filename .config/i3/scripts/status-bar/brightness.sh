@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# status bar script for obtaining the current screen brightness
+# Status bar script for printing the current screen brightness.
 
 if [[ ${HOSTNAME} == "deimos" ]] || [[ ${HOSTNAME} == "phobos" ]]; then
 	printf "%s\n" " $(brightnessctl | grep -o '[0-9]*%')"
