@@ -65,7 +65,8 @@ alias netstat='echo use \"ss\" or \"lsof -i\" --- netstat is deprecated ---'
 # Custom git alias for managing dotfiles. ------------------------------------------------
 # See: https://developer.atlassian.com/blog/2016/02/best-way-to-store-dotfiles-git-bare-repo/
 
-if [[ $(uname) == "FreeBSD" ]]; then
+os=$(uname)
+if [[ ${os} == "FreeBSD" ]]; then
         # FreeBSD's "git" binary is located at a different path than on Linux.
         alias dot='/usr/local/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
     else
@@ -131,7 +132,7 @@ alias home='cd ~'
 alias h='cd ~'
 alias c='clear'
 
-if [[ $(uname) == "FreeBSD" ]]; then
+if [[ ${os} == "FreeBSD" ]]; then
   alias ls='ls -FCGh' # FreeBSD's "ls" uses a different syntax from Linux.
   alias sed='gsed'    # Force freeBSD to use GNU's version of sed.
 else
@@ -163,25 +164,12 @@ else
     alias lcon='ls -lZ --all --reverse'
 fi
 
-# MISC ####################################################################################
+# OPTIONS #################################################################################
 
 # Use vi-style editing for bash commands.
 set -o vi
 
-# Make 'less' more friendly for non-text input files, see lesspipe(1).
-[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
-
-if [[ $USER == "root" ]]; then
-    # Make the root prompt red to distinguish it from a standard user.
-    PS1='\[\033[01;31m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
-else
-    # Make the standard prompt green.
-    PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
-fi
-
-# VARIABLES ###############################################################################
-
-if [ $(uname) == "FreeBSD" ]; then
+if [[ ${os} == "FreeBSD" ]]; then
   export SHELL='/usr/local/bin/bash'
 else
   export SHELL='/bin/bash'
@@ -193,11 +181,11 @@ export PAGER='less'
 export EDITOR='nvim'
 export BROWSER='firefox'
 
-# Vars for sxiv image viewer.
+# These vars are for the sxiv image viewer.
 export XDG_CONFIG_HOME=~/.config
 export XDG_CACHE_HOME=~/.cache
 
-# Colored manpages.
+# Force colored manpages.
 export LESS_TERMCAP_mb=$'\E[01;31m'
 export LESS_TERMCAP_md=$'\E[01;31m'
 export LESS_TERMCAP_me=$'\E[0m'
@@ -220,4 +208,14 @@ shopt -s cmdhist
 # Check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
+
+# PROMPT ##################################################################################
+
+if [[ ${USER} == "root" ]]; then
+    # Make root's prompt red to easily distinguish root from a standard user.
+    PS1='\[\033[01;31m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+else
+    # Make standard users' prompts green.
+    PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+fi
 
