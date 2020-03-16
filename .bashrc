@@ -26,10 +26,10 @@ alias vim='nvim'
 
 # Easier access to editing particular files (mostly configs).
 alias alacrittyrc='nvim ~/.config/alacritty/alacritty.yml'
-      alias alarc='alacrittyrc'
+  alias alarc='alacrittyrc'
 alias banlist='vim /mnt/share/documents/banlist.txt'
 alias bashrc='nvim ~/.bashrc'
-      alias rc='bashrc'
+  alias rc='bashrc'
 alias dunstrc='nvim ~/.config/dunst/dunstrc'
 
 alias fishrc='nvim ~/.config/fish/config.fish'
@@ -65,13 +65,14 @@ alias netstat='echo use \"ss\" or \"lsof -i\" --- netstat is deprecated ---'
 # Custom git alias for managing dotfiles. ------------------------------------------------
 # See: https://developer.atlassian.com/blog/2016/02/best-way-to-store-dotfiles-git-bare-repo/
 
-os=$(uname)
+os=$(uname) # Store the result of `uname` in a var since bash will use it multiple times.
+
 if [[ ${os} == "FreeBSD" ]]; then
-        # FreeBSD's "git" binary is located at a different path than on Linux.
-        alias dot='/usr/local/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
-    else
-        # "dot" for "dotfiles"
-        alias dot='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+    # FreeBSD's "git" binary is located at a different path than on Linux.
+    alias dot='/usr/local/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+else
+    # "dot" for "dotfiles"
+    alias dot='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 fi
 
 alias d='dot'
@@ -115,15 +116,15 @@ alias eris='ssh austin@10.0.0.11'
 
 alias eve='bash /opt/evesetup/lib/evelauncher/evelauncher.sh &'
 alias osrs='bash /mnt/tank/share/software/gaming/games/runescape-launcher/osrs/bin/osrs-launcher &'
-      alias runescape='osrs'
-      alias rs='osrs'
+  alias runescape='osrs'
+  alias rs='osrs'
 alias audible='bash /opt/OpenAudible/OpenAudible &'
 
 # directory traversal ---------------------------------------------------------------------
 
 alias r='ranger'
 alias u='cd ../'       # "Up 1 directory."
-      alias u1='u'
+alias u1='u'
 alias u2='cd ../../'
 alias u3='cd ../../../'
 alias u3='cd ../../../../'
@@ -133,12 +134,11 @@ alias h='cd ~'
 alias c='clear'
 
 if [[ ${os} == "FreeBSD" ]]; then
-  alias ls='ls -FCGh' # FreeBSD's "ls" uses a different syntax from Linux.
-  alias sed='gsed'    # Force freeBSD to use GNU's version of sed.
+  alias ls='ls -FCGh' # FreeBSD's ls uses a different syntax from Linux.
+  alias sed='gsed'    # Force FreeBSD to use GNU's version of sed.
 else
-    # The below aliases are Linux-only.
 
-    alias ports='ss -plaunt'
+    # The below aliases are Linux-only.
 
     alias grep='grep --color=auto'
     alias cp='cp --verbose'
@@ -156,12 +156,10 @@ else
     alias lar='ls --classify --color=auto --human-readable -l --all --reverse'
     alias lss='ls --classify --color=auto --human-readable -l --all -S' # Sort by size.
 
-    alias mount='mount | column -t'
-
-    alias untar='tar -zxvf'
-    #alias up='sudo apt update && sudo apt upgrade -y'
-    #alias up='sudo pacman -Syu'
     alias lcon='ls -lZ --all --reverse'
+
+    alias mount='mount | column -t'
+    alias untar='tar -xzvf'
 fi
 
 # OPTIONS #################################################################################
@@ -201,13 +199,12 @@ export HISTSIZE=9999999
 # Ignore duplicates, 'ls' without options, and builtin commands.
 export HISTCONTROL=ignoredups
 export HISTCONTROL=ignoreboth
-# Append history instead of overwriting it.
 export PROMPT_COMMAND='history -a'
-# Combine multiline commands into one in history.
-shopt -s cmdhist
-# Check the window size after each command and, if necessary,
-# update the values of LINES and COLUMNS.
-shopt -s checkwinsize
+
+shopt -s histappend      # Append history rather than overwriting it.
+shopt -q -s cmdhist      # Combine multiline commands into one in history.
+shopt -q -s checkwinsize # Check window size after each command and update values of LINES and COLUMNS.
+shopt -s cdspell         # Correct minor cd typos.
 
 # PROMPT ##################################################################################
 
@@ -218,4 +215,3 @@ else
     # Make standard users' prompts green.
     PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
 fi
-
