@@ -29,6 +29,9 @@ font pango:DejaVu Sans 7.5
  # lock screen
    bindsym $mod+x exec i3lock -i /home/austin/.config/i3/wallpapers/sea-of-colors-1366x768.png
 
+ # start urxvt (phobos doesn't support alacritty)
+   exec --no-startup-id i3-msg 'workspace 2: terminal; exec urxvt'
+
 # \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 # //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
