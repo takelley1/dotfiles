@@ -1,19 +1,13 @@
-# ~/.xprofile, sourced when launching interactive login graphical shells
-# place stuff here that applies to the whole X user session
+# ~/.xprofile, sourced when launching interactive login graphical shells.
+# Place stuff here that applies to the whole X user session.
 
-# add scripts to $PATH
-export PATH="$PATH:/home/austin/scripts/bash"
-
-# create i3 config
-cat $HOME/.config/i3/.config-notification $HOME/.config/i3/config-unique-$(hostname) $HOME/.config/i3/config-shared > $HOME/.config/i3/config &
-
-# take screenshots on all hosts but phobos
+# Take screenshots on all hosts but phobos.
 if [ ! $HOSTNAME == "phobos" ]
 then
-    # kill any previous instances of the auto-screenshot script
+    # Kill any previous instances of the auto-screenshot script.
     kill -s 9 $(ps ax | grep auto-screenshot | awk '{print $1}') &> /dev/null ; \
-    # start auto-screenshot script
-      # the '&' is required or the window manager will not start
+    # Start auto-screenshot script.
+      # The '&' is required or the window manager will not start.
     bash $HOME/scripts/bash/auto-screenshot.sh &>> $HOME/Pictures/auto-screenshot.log &
 fi
 

@@ -6,7 +6,7 @@ usermodmap=$HOME/.Xmodmap
 sysresources=/etc/X11/xinit/.Xresources
 sysmodmap=/etc/X11/xinit/.Xmodmap
 
-# merge in defaults and keymaps
+# Merge in defaults and keymaps.
 if [ -f $sysresources ]; then
     xrdb -merge $sysresources
 fi
@@ -30,5 +30,9 @@ if [ -d /etc/X11/xinit/xinitrc.d ] ; then
  unset f
 fi
 
-# start window manager
-exec i3
+# Create i3 config.
+rm -f /tmp/.i3-config
+cat $HOME/.config/i3/.config-notification $HOME/.config/i3/config-unique-$(hostname) $HOME/.config/i3/config-shared > /tmp/.i3-config
+
+# Start window manager.
+exec i3 -c /tmp/.i3-config
