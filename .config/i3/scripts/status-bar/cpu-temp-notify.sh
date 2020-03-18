@@ -14,5 +14,6 @@ if [[ ${temp} -gt 85 ]]; then
 elif [[ ${temp} -gt 75 ]]; then
     notify-send "CPU is getting hot! (${temp}°C)"
     exit 0
+fi
 
 exit 0
