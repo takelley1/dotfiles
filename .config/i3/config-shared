@@ -85,6 +85,7 @@
    bindsym $mod+Shift+Return exec urxvt
    # rofi app launcher
    bindsym $mod+d exec rofi -show run -lines 20
+   bindsym $mod+Shift+d exec dmenu
 
  # detect caps lock activation
    mode "caps"
