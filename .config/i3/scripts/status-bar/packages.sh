@@ -10,6 +10,10 @@ if [[ -x "/usr/bin/pacman" ]]; then
 
 elif [[ -x "/usr/bin/apt" ]]; then
     printf "%s\n" "PKGs $(dpkg-query --list | wc -l)"
+
+else
+    exit 0
+
 fi
 
 exit 0

@@ -2,7 +2,10 @@
 
 # Status bar script that notifies the user of a high CPU temperature.
 
-if [[ ${HOSTNAME} == "tethys" ]]; then
+# Don't run on phobos
+if [[ ${HOSTNAME} == "phobos" ]]; then
+    exit 0
+elif [[ ${HOSTNAME} == "tethys" ]]; then
     temp=$(sensors -u | grep -A 1 'Package id 0' | tail -1 | awk '{print $2}' | cut -f 1 -d '.')
 else
     temp=$(sensors -u | grep 'temp1_input' | awk '{print $2}' | cut -f 1 -d '.')

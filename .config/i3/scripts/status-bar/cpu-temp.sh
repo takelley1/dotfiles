@@ -16,6 +16,9 @@ if [[ -x "/usr/bin/pacman" ]]; then
         printf "%s\n" " ${temp}°C"
     fi
 
+elif [[ ${HOSTNAME} == "phobos" ]]; then # Phobos doesn't have any temp monitors
+    printf "%s\n" ""
+
 else
     temp=$(sensors -u | grep 'temp1_input' | awk '{print $2}' | cut -f 1 -d '.')
     printf "%s\n" "CPU ${temp}°C"

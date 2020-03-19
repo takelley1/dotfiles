@@ -2,7 +2,11 @@
 
 # Status bar script to print a notification if auto-screenshot.sh is NOT running.
 
-if [[ -z $(ps aux | grep "auto-screenshot\.sh$") ]]; then
+# Don't run on phobos.
+if [[ ${HOSTNAME} == "phobos" ]]; then
+    exit 0
+
+elif [[ -z $(ps aux | grep "auto-screenshot\.sh$") ]]; then
     printf "%s\n" "Screenshot script not running!"
 fi
 
