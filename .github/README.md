@@ -36,9 +36,9 @@
 1. **install missing packages and remove unnecessary packages:**
    ```bash
    sudo pacman -Syu
-   for i in $(cat ~/.config/packages-to-install.txt | grep -v "^#"); do sudo pacman -Syy --noconfirm $i; done
+   for i in $(cat ~/.config/new-hosts/packages-to-install.txt | grep -v "^#"); do sudo pacman -Syy --noconfirm ${i}; done
 
-   for i in $(cat ~/.config/packages-to-remove.txt | grep -v "^#"); do sudo pacman -Ryy --noconfirm $i; done
+   for i in $(cat ~/.config/new-hosts/packages-to-remove.txt | grep -v "^#"); do sudo pacman -Ryy --noconfirm ${i}; done
    ```
 
 1. **copy lightdm config:**
