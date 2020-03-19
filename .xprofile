@@ -1,13 +1,4 @@
-# ~/.xprofile, sourced when launching interactive login graphical shells.
+# ~/.xprofile
+# Sourced when launching interactive login graphical shells.
+# "startx" DOESN'T source this file.
 # Place stuff here that applies to the whole X user session.
-
-# Take screenshots on all hosts but phobos.
-if [ ! $HOSTNAME == "phobos" ]
-then
-    # Kill any previous instances of the auto-screenshot script.
-    kill -s 9 $(ps ax | grep auto-screenshot | awk '{print $1}') &> /dev/null ; \
-    # Start auto-screenshot script.
-      # The '&' is required or the window manager will not start.
-    bash $HOME/scripts/bash/auto-screenshot.sh &>> $HOME/Pictures/auto-screenshot.log &
-fi
-

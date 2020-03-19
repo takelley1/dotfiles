@@ -1,5 +1,6 @@
 #!/bin/sh
-# ~/.xinitrc, executed by /bin/sh to start the X user session
+# ~/.xinitrc
+# Executed by /bin/sh to start the X user session.
 
 userresources=$HOME/.Xresources
 usermodmap=$HOME/.Xmodmap
@@ -32,7 +33,17 @@ fi
 
 # Create i3 config.
 rm -f /tmp/.i3-config
-cat $HOME/.config/i3/.config-notification $HOME/.config/i3/config-unique-$(hostname) $HOME/.config/i3/config-shared > /tmp/.i3-config
+cat ${HOME}/.config/i3/.config-notification ${HOME}/.config/i3/config-unique-$(hostname) ${HOME}/.config/i3/config-shared > /tmp/.i3-config
+
+# Take screenshots on all hosts but phobos.
+if [ ! ${HOSTNAME} == "phobos" ]
+then
+    # Kill any previous instances of the auto-screenshot script.
+    kill -s 9 $(ps ax | grep auto-screenshot | awk '{print $1}') &> /dev/null ; \
+    # Start auto-screenshot script.
+      # The '&' is required or the window manager will not start.
+    bash ${HOME}/scripts/bash/auto-screenshot.sh &>> ${HOME}/Pictures/auto-screenshot.log &
+fi
 
 # Start window manager.
 exec i3 -c /tmp/.i3-config
