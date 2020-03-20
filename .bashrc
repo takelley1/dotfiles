@@ -3,16 +3,13 @@
 # STARTUP #################################################################################
 
 # Start X without a display manager if logging into tty1 with a non-root account.
-if [[ -z ${DISPLAY} ]] && [[ $(tty) == "/dev/tty1" ]] && [[ ! ${USER} == "root" ]]; then
-    exec startx
-fi
+[[ -z ${DISPLAY} ]] && [[ $(tty) == "/dev/tty1" ]] && [[ ! ${USER} == "root" ]] && exec startx
 
 # Reattach to the last tmux session or create a new one if it doesn't exist.
-if [[ ! ${USER} == "root" ]]; then # only auto-attach in non-root shells.
-    # Requires "new-session -n $HOST" in ~/.tmux.conf file.
-    # Only runs if tmux isn't already attached.
-    [[ -z ${TMUX} ]] && exec tmux -f ~/.config/tmux/tmux.conf attach
-fi
+# Only auto-attach in non-root shells.
+# Requires "new-session -n $HOST" in ~/.tmux.conf file.
+# Only runs if tmux isn't already attached.
+[[ ! ${USER} == "root" ]] && [[ -z ${TMUX} ]] && exec tmux -f ~/.config/tmux/tmux.conf attach
 
 # ALIASES #################################################################################
 
@@ -36,7 +33,7 @@ alias fishrc='nvim ~/.config/fish/config.fish'
 alias fishvar='nvim ~/.config/fish/fish_variables'
 alias fishprompt='nvim ~/.config/fish/functions/fish_prompt.fish'
 
-alias i3c="nvim ~/.config/i3/config-unique-$(hostname)"
+alias i3c="nvim ~/.config/i3/config-unique-${HOSTNAME}"
 alias i3cc="nvim ~/.config/i3/config-shared"
 alias i3ccc="nvim ~/.config/i3/config"
 alias i3b="nvim ~/.config/i3/i3blocks.conf"
@@ -65,13 +62,13 @@ alias netstat='echo use \"ss\" or \"lsof -i\" --- netstat is deprecated ---'
 # Custom git alias for managing dotfiles. ------------------------------------------------
 # See: https://developer.atlassian.com/blog/2016/02/best-way-to-store-dotfiles-git-bare-repo/
 
-os=$(uname) # Store the result of `uname` in a var since bash will use it multiple times.
+os=$(uname) # Store the result of `uname` in a var since this file will check it multiple times.
 
 if [[ ${os} == "FreeBSD" ]]; then
-    # FreeBSD's "git" binary is located at a different path than on Linux.
+    # FreeBSD's Git binary is at a different path than on Linux.
     alias dot='/usr/local/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 else
-    # "dot" for "dotfiles"
+    # "dot" for "dotfiles".
     alias dot='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 fi
 
@@ -167,11 +164,8 @@ fi
 # Use vi-style editing for bash commands.
 set -o vi
 
-if [[ ${os} == "FreeBSD" ]]; then
-  export SHELL='/usr/local/bin/bash'
-else
-  export SHELL='/bin/bash'
-fi
+# FreeBSD uses a different path for the Bash binary.
+[[ ${os} == "FreeBSD" ]] && export SHELL='/usr/local/bin/bash' || export SHELL='/bin/bash'
 
 export TERM='screen-256color'
 export LC_CTYPE='en_US.UTF-8'
