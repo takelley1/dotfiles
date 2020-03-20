@@ -5,6 +5,7 @@
 # Don't run on phobos
 if [[ ${HOSTNAME} == "phobos" ]]; then
     exit 0
+
 elif [[ ${HOSTNAME} == "tethys" ]]; then
     temp=$(sensors -u | grep -A 1 'Package id 0' | tail -1 | awk '{print $2}' | cut -f 1 -d '.')
 else

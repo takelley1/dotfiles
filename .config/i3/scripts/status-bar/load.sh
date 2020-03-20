@@ -5,11 +5,13 @@
 # Emoji U+1F4CA 📈
 # Font-Awesome f3fd  
 
+load=$(cat /proc/loadavg | awk '{print $1,$2,$3}')
+
 # Show Font-Awesome icons on Arch-based distros, use text everywhere else.
 if [[ -x "/usr/bin/pacman" ]]; then
-    printf "%s\n" " $(cat /proc/loadavg | awk '{print $1,$2,$3}')"
+    printf "%s\n" " ${load}"
 else
-    printf "%s\n" "LOAD $(cat /proc/loadavg | awk '{print $1,$2,$3}')"
+    printf "%s\n" "LOAD ${load}"
 fi
 
 exit 0

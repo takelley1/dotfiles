@@ -4,13 +4,17 @@
 
 # Font-Awesome f028  
 
+vol=$(amixer get Master | grep -o '[0-9]*%' | sed -n 1p)
+
 # Show Font-Awesome icons on Arch-based distros, use text everywhere else.
 if [[ -x "/usr/bin/pacman" ]]; then
-    printf "%s\n" " $(amixer get Master | grep -o '[0-9]*%' | sed -n 1p)"
+    printf "%s\n" " ${vol}"
+
 elif [[ ${HOSTNAME} == "phobos" ]]; then # Don't show any volume info on phobos
-    printf "%s\n" ""
+    exit 0
+
 else
-    printf "%s\n" "VOL $(amixer get Master | grep -o '[0-9]*%' | sed -n 1p)"
+    printf "%s\n" "VOL ${vol}"
 fi
 
 # Show both L and R channels.
