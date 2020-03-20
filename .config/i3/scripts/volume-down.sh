@@ -5,11 +5,9 @@
 
 amixer sset Master,0 2%-,2%-
 
-L=$(amixer get Master | grep -o '[0-9]*%' | sed -n 1p | tr -d '%')
-R=$(amixer get Master | grep -o '[0-9]*%' | sed -n 2p | tr -d '%')
+L=$(amixer get Master | grep -Eo '[0-9]{1,3}%' | sed -n 1p | tr -d '%')
+R=$(amixer get Master | grep -Eo '[0-9]{1,3}%' | sed -n 2p | tr -d '%')
 
-if [[ ${L} != ${R} ]]; then
-    amixer sset Master,0 ${L}%,${L}%
-fi
+[[ ${L} != ${R} ]] && amixer sset Master,0 ${L}%,${L}%
 
 exit 0
