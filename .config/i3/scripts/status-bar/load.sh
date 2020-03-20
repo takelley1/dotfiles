@@ -8,10 +8,6 @@
 load=$(cat /proc/loadavg | awk '{print $1,$2,$3}')
 
 # Show Font-Awesome icons on Arch-based distros, use text everywhere else.
-if [[ -x "/usr/bin/pacman" ]]; then
-    printf "%s\n" " ${load}"
-else
-    printf "%s\n" "LOAD ${load}"
-fi
+[[ -x "/usr/bin/pacman" ]] && printf "%s\n" " ${load}" || printf "%s\n" "LOAD ${load}"
 
 exit 0

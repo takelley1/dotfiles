@@ -8,10 +8,6 @@
 swap_used=$(echo $(cat /proc/swaps | awk '{print $4}' | tail -1) / 1000 | bc)
 
 # Show Font-Awesome icons on Arch-based distros, use text everywhere else.
-if [[ -x "/usr/bin/pacman" ]]; then
-    printf "%s\n" " ${swap_used}M"
-else
-    printf "%s\n" "SWP ${swap_used}M"
-fi
+[[ -x "/usr/bin/pacman" ]] && printf "%s\n" " ${swap_used}M" || printf "%s\n" "SWP ${swap_used}M"
 
 exit 0

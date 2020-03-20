@@ -14,9 +14,7 @@ percent=$(acpi -b | awk '{print $4}' | tr -d '%' | tr -d ',')
 state=$(acpi -b | awk '{print $3}')
 
 # Don't send a notification if the battery is being charged.
-if [[ ${state} == 'Charging,' ]]; then
-    exit 0
-fi
+[[ ${state} == 'Charging,' ]] && exit 0
 
 if [[ ${percent} -lt 5 ]]; then
     notify-send -u critical "Battery under 5%"
