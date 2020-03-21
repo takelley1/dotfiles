@@ -117,6 +117,12 @@
    lxappearance
    ```
 
+1. **clone ALE repo for NeoVim syntax highlighting:**
+   ```bash
+   mkdir -p ~/.local/share/nvim/site/pack/git-plugins/start
+   git clone --depth 1 https://github.com/dense-analysis/ale.git ~/.local/share/nvim/site/pack/git-plugins/start/ale
+   ```
+
 ---
 #### from https://www.atlassian.com/git/tutorials/dotfiles
 ### The best way to store your dotfiles: A bare Git repository
