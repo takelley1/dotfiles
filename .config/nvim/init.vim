@@ -7,38 +7,55 @@ runtime! archlinux.vim
 " force unicode encoding
   set encoding=utf-8
 
-" remap jk to ESC for easier exiting insert mode 
+" remap jk to ESC for easier exiting insert mode.
   inoremap jk <ESC>
-" convert tabs to 4x spaces
+" convert tabs to 4x spaces.
   set tabstop=8
   set softtabstop=0
   set expandtab
   set shiftwidth=4
   set smarttab
 
-" map vim copy buffer to system clipboard
+" map vim copy buffer to system clipboard.
   set clipboard=unnamedplus
 
-" show relative line numbers for easy jumping around using #j and #k keys
+" Show relative line numbers for easy jumping around using #j and #k keys.
  "set relativenumber
  "set rnu
-" make line number column thinner
+" Make line number column thinner.
  "set numberwidth=1
-" force cursor to stay in the middle of the screen
+" Force cursor to stay in the middle of the screen.
   set so=999
 
-" disables automatic commenting on newline
+" Disables automatic commenting on newline.
   autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
-" force path autocompletion
+" Force path autocompletion.
   set wildmode=longest,list,full
 
-" splits open at the bottom and right, rather than top and left
+" Splits open at the bottom and right, rather than top and left.
   set splitbelow splitright
   
-" renew bash and ranger configs with new material
+" Renew bash and ranger configs with new material.
   autocmd BufWritePost files,directories !shortcuts
-" run xrdb whenever Xdefaults or Xresources are updated
+" Run xrdb whenever Xdefaults or Xresources are updated.
   autocmd BufWritePost *Xresources,*Xdefaults !xrdb %
-" update binds when sxhkdrc is updated
-  autocmd BufWritePost *sxhkdrc !pkill -USR1 sxhkd
+
+" PLUGINS -----------------------------------------------------------------
+
+" Load all plugins now.
+" Plugins need to be added to runtimepath before helptags can be generated.
+  packloadall
+" Load all of the helptags now, after plugins have been loaded.
+" All messages and errors will be ignored.
+  silent! helptags ALL
+
+" Have ALE remove extra whitespace and trailing lines.
+  let g:ale_fixers = {'*': ['remove_trailing_lines', 'trim_whitespace']}
+
+  " ALE will fix files automatically when they're saved.
+  let g:ale_fix_on_save = 1
+
+  " Quickly jump between ALE errors with CTRL-j/k
+  nmap <silent> <C-k> <Plug>(ale_previous_wrap)
+  nmap <silent> <C-j> <Plug>(ale_next_wrap)
