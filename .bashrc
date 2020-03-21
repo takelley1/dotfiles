@@ -6,9 +6,8 @@
 [[ -z ${DISPLAY} ]] && [[ $(tty) == "/dev/tty1" ]] && [[ ! ${USER} == "root" ]] && exec startx
 
 # Reattach to the last tmux session or create a new one if it doesn't exist.
-# Only auto-attach in non-root shells.
-# Requires "new-session -n $HOST" in ~/.tmux.conf file.
-# Only runs if tmux isn't already attached.
+#   Requires "new-session -n $HOST" in ~/.tmux.conf file.
+#   Only runs if tmux isn't already attached.
 [[ ! ${USER} == "root" ]] && [[ -z ${TMUX} ]] && exec tmux -f ~/.config/tmux/tmux.conf attach
 
 # ALIASES #################################################################################
@@ -18,8 +17,8 @@ alias tmux='tmux -f ~/.config/tmux/tmux.conf'
 
 # editing ---------------------------------------------------------------------------------
 
-alias vi='nvim'      
-alias vim='nvim'      
+alias vi='nvim'
+alias vim='nvim'
 
 # Easier access to editing particular files (mostly configs).
 alias alacrittyrc='nvim ~/.config/alacritty/alacritty.yml'
@@ -33,7 +32,7 @@ alias fishrc='nvim ~/.config/fish/config.fish'
 alias fishvar='nvim ~/.config/fish/fish_variables'
 alias fishprompt='nvim ~/.config/fish/functions/fish_prompt.fish'
 
-alias i3c="nvim ~/.config/i3/config-unique-${HOSTNAME}"
+alias i3c='nvim ~/.config/i3/config-unique-${HOSTNAME}'
 alias i3cc="nvim ~/.config/i3/config-shared"
 alias i3ccc="nvim ~/.config/i3/config"
 alias i3b="nvim ~/.config/i3/i3blocks.conf"
@@ -44,7 +43,7 @@ alias notes="cd ~/notes/personal"
 alias readme='nvim ~/.github/README.md'
 
 # Easy editing and committing of todo list.
-alias todo='cd ~/notes/ && nvim ./todo.md'
+alias todo='cd ~/notes/ && git pull && nvim ./todo.md'
 alias gcut='cd ~/notes/ && git add ./todo.md && git commit -m "Update todo" && git push'
 
 alias tmuxrc='nvim ~/.config/tmux/tmux.conf'
@@ -165,7 +164,11 @@ fi
 set -o vi
 
 # FreeBSD uses a different path for the Bash binary.
-[[ ${os} == "FreeBSD" ]] && export SHELL='/usr/local/bin/bash' || export SHELL='/bin/bash'
+if [[ ${os} == "FreeBSD" ]]; then
+    export SHELL='/usr/local/bin/bash'
+else
+    export SHELL='/bin/bash'
+fi
 
 export TERM='screen-256color'
 export LC_CTYPE='en_US.UTF-8'
