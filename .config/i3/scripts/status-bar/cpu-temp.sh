@@ -9,7 +9,7 @@
 [[ ${HOSTNAME} == "phobos" ]] && exit 0
 
 # Show Font-Awesome icons on Arch-based distros, use text everywhere else.
-if [[ -x "/usr/bin/pacman" ]]; then
+if [[ -n $(pacman -Q otf-font-awesome) ]]; then
 
     if [[ ${HOSTNAME} == "tethys" ]]; then
         temp=$(sensors -u | grep -A 1 'Package id 0' | tail -1 | awk '{print $2}' | cut -f 1 -d '.')

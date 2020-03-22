@@ -8,6 +8,6 @@
 ram_free=$(free -h | awk '{print $7}' | sed -n 2p | tr -d 'i')
 
 # Show Font-Awesome icons on Arch-based distros, use text everywhere else.
-[[ -x "/usr/bin/pacman" ]] && printf "%s\n" "  ${ram_free}" || printf "%s\n" "FREE ${ram_free}"
+[[ -n $(pacman -Q otf-font-awesome) ]] && printf "%s\n" "  ${ram_free}" || printf "%s\n" "FREE ${ram_free}"
 
 exit 0

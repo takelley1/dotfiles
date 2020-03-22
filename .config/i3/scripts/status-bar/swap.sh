@@ -8,8 +8,8 @@
 swap_used=$(echo "$(awk '{print $4}' /proc/swaps | tail -1)" / 1000 | bc)
 
 # Show Font-Awesome icons on Arch-based distros, use text everywhere else.
-if [[ -n "${swap_used}" ]]; then          # Only continue if the system has a swap partition.
-    if [[ -x "/usr/bin/pacman" ]]; then
+if [[ -n "${swap_used}" ]]; then # Only continue if the system has a swap partition.
+    if [[ -n $(pacman -Q otf-font-awesome) ]]; then
         printf "%s\n" " ${swap_used}M"
     else
         printf "%s\n" "SWP ${swap_used}M"

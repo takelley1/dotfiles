@@ -11,7 +11,7 @@ use=$(echo 100 - "${idle}" | bc)
 [[ ${use} -lt 10 ]] && use=$(echo 0"${use}")
 
 # Use an emoji if user has pacman installed, otherwise use text.
-[[ -x "/usr/bin/pacman" ]] && echo  "${use}"% || echo CPU "${use}"%
+[[ -n $(pacman -Q otf-font-awesome) ]] && echo  "${use}"% || echo CPU "${use}"%
 
 # Show all CPU cores individually.
 #cores=$(top -b -n 1 -1 | grep "%Cpu" | awk -F',' '{print $4}' | awk -F'.' '{print $1}' | sed 's/^ *//g' | tr -d 'id')

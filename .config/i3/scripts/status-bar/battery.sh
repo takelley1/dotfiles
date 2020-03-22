@@ -13,8 +13,13 @@ status=$(acpi -b | grep -Eo "(Charging|Discharging)")
 text=$(printf "%s " "${percent}" "${remaining}")
 
 if [[ "${status}" == "Charging" ]]; then
-    text=$(printf "%s " "CHRG" "${text}")
+    text=$(printf "%s" "${text}" "CHRG")
 fi
 
-printf ' %s\n' "$text"
+if [[ -n $(pacman -Q otf-font-awesome) ]]; then
+    printf " %s\n" "  $text"
+else
+    printf " %s\n" "BAT $text"
+fi
+
 exit 0

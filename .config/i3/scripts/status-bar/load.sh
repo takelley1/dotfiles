@@ -8,6 +8,6 @@
 load=$(awk '{print $1,$2,$3}' /proc/loadavg)
 
 # Show Font-Awesome icons on Arch-based distros, use text everywhere else.
-[[ -x "/usr/bin/pacman" ]] && printf "%s\n" " ${load}" || printf "%s\n" "LOAD ${load}"
+[[ -n $(pacman -Q otf-font-awesome) ]] && printf "%s\n" " ${load}" || printf "%s\n" "LOAD ${load}"
 
 exit 0

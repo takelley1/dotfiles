@@ -7,6 +7,6 @@
 share_free=$(df -h /mnt/tank/share | awk '{print $4}' | tail -1)
 
 # Show Font-Awesome icons on Arch-based distros, use text everywhere else.
-[[ -x "/usr/bin/pacman" ]] && printf "%s\n" " ${share_free}" || printf "%s\n" "SHARE ${share_free}"
+[[ -n $(pacman -Q otf-font-awesome) ]] && printf "%s\n" " ${share_free}" || printf "%s\n" "SHARE ${share_free}"
 
 exit 0

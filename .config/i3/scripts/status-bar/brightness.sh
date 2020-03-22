@@ -6,7 +6,7 @@
 # Font-Awesome f185 
 
 # Show Font-Awesome icons on Arch-based distros, use text everywhere else.
-if [[ -x "/usr/bin/pacman" ]]; then
+if [[ -n $(pacman -Q otf-font-awesome) ]]; then
 
     if [[ ${HOSTNAME} == "tethys" ]]; then
 	printf "%s\n" " $(cat /tmp/redshift-brightness)0%"
