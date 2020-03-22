@@ -5,7 +5,7 @@
 # Emoji U+1F4CA 📈
 # Font-Awesome f3fd  
 
-load=$(cat /proc/loadavg | awk '{print $1,$2,$3}')
+load=$(awk '{print $1,$2,$3}' /proc/loadavg)
 
 # Show Font-Awesome icons on Arch-based distros, use text everywhere else.
 [[ -x "/usr/bin/pacman" ]] && printf "%s\n" " ${load}" || printf "%s\n" "LOAD ${load}"

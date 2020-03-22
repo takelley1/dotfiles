@@ -3,9 +3,7 @@
 # Status bar script that notifies the user of a low battery charge.
 
 # Don't run on phobos.
-if [[ ${HOSTNAME} == "phobos" ]]
-    exit 0
-fi
+[[ ${HOSTNAME} == "phobos" ]] && exit 0
 
 # Get current battery percentage.
 percent=$(acpi -b | awk '{print $4}' | tr -d '%' | tr -d ',')
