@@ -37,9 +37,6 @@ alias i3cc="nvim ~/.config/i3/config-shared"
 alias i3ccc="nvim ~/.config/i3/config"
 alias i3b="nvim ~/.config/i3/i3blocks.conf"
 
-alias linux="cd ~/linux-notes"
-alias notes="cd ~/notes/personal"
-
 alias readme='nvim ~/.github/README.md'
 
 # Easy editing and committing of todo list.
@@ -119,15 +116,21 @@ alias audible='bash /opt/OpenAudible/OpenAudible &'
 # directory traversal ---------------------------------------------------------------------
 
 alias r='ranger'
+
 alias u='cd ../'       # "Up 1 directory."
 alias u1='u'
 alias u2='cd ../../'
 alias u3='cd ../../../'
 alias u3='cd ../../../../'
+
 alias root='cd /'
 alias home='cd ~'
 alias h='cd ~'
 alias c='clear'
+
+alias linux="cd ~/linux-notes"
+alias notes="cd ~/notes/personal"
+alias status='cd ~/.config/i3/scripts/status-bar/'
 
 if [[ ${os} == "FreeBSD" ]]; then
   alias ls='ls -FCGh' # FreeBSD's ls uses a different syntax from Linux.
