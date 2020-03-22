@@ -153,8 +153,6 @@ else
     alias lss='ls --classify --color=auto --human-readable -l --all -S' # Sort by size.
 
     alias lcon='ls -lZ --all --reverse'
-
-    alias mount='mount | column -t'
     alias untar='tar -xzvf'
 fi
 
