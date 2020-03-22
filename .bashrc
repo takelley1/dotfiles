@@ -3,7 +3,7 @@
 # STARTUP #################################################################################
 
 # Start X without a display manager if logging into tty1 with a non-root account.
-[[ -z ${DISPLAY} ]] && [[ $(tty) == "/dev/tty1" ]] && [[ ! ${USER} == "root" ]] && exec startx
+[[ ! ${USER} == "root" ]] && [[ -z ${DISPLAY} ]] && [[ $(tty) == "/dev/tty1" ]] && exec startx
 
 # Reattach to the last tmux session or create a new one if it doesn't exist.
 #   Requires "new-session -n $HOST" in ~/.tmux.conf file.
@@ -174,8 +174,15 @@ fi
 export TERM='screen-256color'
 export LC_CTYPE='en_US.UTF-8'
 export PAGER='less'
-export EDITOR='nvim'
 export BROWSER='firefox'
+
+if [[ -x /usr/bin/nvim ]]; then
+    export EDITOR='nvim'
+elif [[ -x /usr/bin/vim ]]; then
+    export EDITOR='vim'
+else
+    export EDITOR='vi'
+fi
 
 # These vars are for the sxiv image viewer.
 export XDG_CONFIG_HOME=~/.config
