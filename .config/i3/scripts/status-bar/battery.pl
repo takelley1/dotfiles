@@ -2,8 +2,7 @@
 
 # Status bar script for obtaining the current battery charge level.
 
-# Copyright 2014 Pierre Mavro <deimos@deimos.fr>
-# Copyright 2014 Vivien Didelot <vivien@didelot.org>
+# Copyright 2014 Pierre Mavro <deimos@deimos.fr> and Vivien Didelot <vivien@didelot.org>
 # Licensed under the terms of the GNU GPL v3, or any later version.
 #
 # The color will gradually change for a percentage below 85%, and the urgency
@@ -12,6 +11,7 @@
 use strict;
 use warnings;
 use utf8;
+use Sys::Hostname;
 
 my $acpi;
 my $status;
@@ -19,8 +19,15 @@ my $percent;
 my $ac_adapt;
 my $full_text;
 my $short_text;
+my $host;
 my $bat_number = $ENV{BAT_NUMBER} || 0;
 my $label = $ENV{LABEL} || "";
+$host = hostname;
+
+# Don't run on hosts that don't hace batteries.
+if ($host eq 'tethys') {
+    exit(0);
+}
 
 # read the first line of the "acpi" command output
 open (ACPI, "acpi -b 2>/dev/null| grep 'Battery $bat_number' |") or die;
@@ -89,4 +96,3 @@ if ($status eq 'Discharging') {
 }
 
 exit(0);
-
