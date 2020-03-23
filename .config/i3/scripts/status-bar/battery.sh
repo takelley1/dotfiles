@@ -3,8 +3,8 @@
 # Print battery percentage and estimated time remaining to full charge
 # or depletion.
 
-# Currently the Perl script is being used instead of this one due to
-# this script's lack of colors.
+# Don't run on Tethys, since it doesn't have a battery.
+[[ "${HOSTNAME}" == "tethys" ]] && exit 0
 
 percent=$(acpi -b | grep -Eo '[0-9]{1,3}%')
 remaining=$(printf "%s\n" "($(acpi -b | grep -Eo '[0-9]{2}:[0-9]{2}:[0-9]{2}'))")
