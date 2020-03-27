@@ -73,9 +73,9 @@
    bindsym $mod+Control+s exec systemctl suspend
  
  # take screenshot with printscreen key and name with timestamp
-   bindsym 0xff61 exec --no-startup-id import -window root ~/Pictures/$(date +%H:%M:%S_%Y-%m-%d)_$hostname_screenshot.png
+   bindsym 0xff61 exec --no-startup-id import -window root ~/Pictures/$(date +%H:%M:%S_%Y-%m-%d)_${HOSTNAME}_screenshot.png && notify-send "saved screenshot to ~/Pictures/$(date +%H:%M:%S_%Y-%m-%d)_${HOSTNAME}_screenshot.png"
  # super-s will also take a screenshot
-   bindsym $mod+s exec --no-startup-id import -window root ~/Pictures/$(date +%H:%M:%S_%Y-%m-%d)_$(hostname)_screenshot.png
+   bindsym $mod+s exec --no-startup-id import -window root ~/Pictures/$(date +%H:%M:%S_%Y-%m-%d)_${HOSTNAME}_screenshot.png && notify-send "saved screenshot to ~/Pictures/$(date +%H:%M:%S_%Y-%m-%d)_${HOSTNAME}_screenshot.png"
 
  # app launch hotkeys
    bindsym $mod+i exec firefox
