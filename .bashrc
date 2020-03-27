@@ -34,7 +34,7 @@ alias fishprompt='nvim ~/.config/fish/functions/fish_prompt.fish'
 
 alias i3c='nvim ~/.config/i3/config-unique-${HOSTNAME}'
 alias i3cc="nvim ~/.config/i3/config-shared"
-alias i3ccc="nvim ~/.config/i3/config"
+alias i3ccc="nvim /tmp/.i3-config"
 alias i3b="nvim ~/.config/i3/i3blocks.conf"
 
 alias readme='nvim ~/.github/README.md'
@@ -128,9 +128,10 @@ alias home='cd ~'
 alias h='cd ~'
 alias c='clear'
 
-alias linux="cd ~/linux-notes"
-alias notes="cd ~/notes/personal"
-alias status='cd ~/.config/i3/scripts/status-bar/'
+alias linux="cd ~/linux-notes && ranger"
+alias notes="cd ~/notes/personal/ && ranger"
+alias scripts='cd ~/scripts/bash/ && ranger'
+alias status='cd ~/.config/i3/scripts/status-bar/ && ranger'
 
 if [[ ${os} == "FreeBSD" ]]; then
   alias ls='ls -FCGh' # FreeBSD's ls uses a different syntax from Linux.
