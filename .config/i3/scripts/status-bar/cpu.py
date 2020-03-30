@@ -2,11 +2,11 @@
 
 # Status bar script for printing the current usage of CPU cores once per second.
 
-import psutil
-import sys
+from psutil import cpu_percent
+from sys import exit
 
 def main():
-    percent=psutil.cpu_percent(1)
+    percent=cpu_percent(1)
     percent=round(percent)
 
     if percent < 10:
@@ -14,7 +14,7 @@ def main():
     else:
         print(" "+ str(percent) + "%")
 
-    sys.exit(0)
+    exit(0)
 
 if __name__ == '__main__':
     main()

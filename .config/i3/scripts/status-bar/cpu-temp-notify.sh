@@ -5,12 +5,16 @@
 # Don't run on phobos
 if [[ ${HOSTNAME} == "phobos" ]]; then
     exit 0
-
-elif [[ ${HOSTNAME} == "tethys" ]]; then
-    temp=$(sensors -u | grep -A 1 'Package id 0' | tail -1 | awk '{print $2}' | cut -f 1 -d '.')
-else
-    temp=$(sensors -u | grep 'temp1_input' | awk '{print $2}' | cut -f 1 -d '.')
 fi
+
+# Get the current temp from a file, which was written to by the cpu-temp.py script.
+temp=$(cat /tmp/cputemp)
+
+#elif [[ ${HOSTNAME} == "tethys" ]]; then
+    #temp=$(sensors -u | grep -A 1 'Package id 0' | tail -1 | awk '{print $2}' | cut -f 1 -d '.')
+#else
+    #temp=$(sensors -u | grep 'temp1_input' | awk '{print $2}' | cut -f 1 -d '.')
+#fi
 
 if [[ ${temp} -gt 90 ]]; then
     notify-send -u critical "Suspending system due to CPU temp! (${temp}°C)"
