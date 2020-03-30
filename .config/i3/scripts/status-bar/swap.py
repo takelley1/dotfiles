@@ -20,9 +20,9 @@ def main():
     swap_used_mb=swap_used_raw / (1024**2)
     swap_used=round(swap_used_mb,1)
 
-    # Round down by default if less than 1 MB
+    # Don't show anything if using <1M of swap space.
     if swap_used < 1:
-        swap_used=0
+        exit(0)
 
     # Get swap usage in percentage of total swap space.
     swap_used_percent_raw=swap_memory().percent
