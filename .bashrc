@@ -115,7 +115,7 @@ alias audible='bash /opt/OpenAudible/OpenAudible &'
 
 # directory traversal ---------------------------------------------------------------------
 
-alias r='ranger'
+alias r='ranger_cd'
 
 alias u='cd ../'       # "Up 1 directory."
 alias u1='u'
@@ -128,10 +128,10 @@ alias home='cd ~'
 alias h='cd ~'
 alias c='clear'
 
-alias linux="cd ~/linux-notes && ranger"
-alias notes="cd ~/notes/personal/ && ranger"
-alias scripts='cd ~/scripts/bash/ && ranger'
-alias status='cd ~/.config/i3/scripts/status-bar/ && ranger'
+alias linux="cd ~/linux-notes && r"
+alias notes="cd ~/notes/personal/ && r"
+alias scripts='cd ~/scripts/bash/ && r'
+alias status='cd ~/.config/i3/scripts/status-bar/ && r'
 
 if [[ ${os} == "FreeBSD" ]]; then
   alias ls='ls -FCGh' # FreeBSD's ls uses a different syntax from Linux.
@@ -211,6 +211,22 @@ shopt -s histappend      # Append history rather than overwriting it.
 shopt -q -s cmdhist      # Combine multiline commands into one in history.
 shopt -q -s checkwinsize # Check window size after each command and update values of LINES and COLUMNS.
 shopt -s cdspell         # Correct minor cd typos.
+
+# RANGER ##################################################################################
+
+# Automatically change the current working directory after closing ranger
+# This is a shell function to automatically change the current working
+# directory to the last visited one after ranger quits.
+
+ranger_cd() {
+    temp_file="$(mktemp -t "ranger_cd.XXXXXXXXXX")"
+    ranger --choosedir="$temp_file" -- "${@:-$PWD}"
+    if chosen_dir="$(cat -- "$temp_file")" && [[ -n "$chosen_dir" ]] && [[ "$chosen_dir" != "$PWD" ]]
+    then
+        cd -- "$chosen_dir" || exit 1
+    fi
+    rm -f -- "$temp_file"
+}
 
 # PROMPT ##################################################################################
 
