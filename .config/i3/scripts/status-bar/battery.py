@@ -14,6 +14,7 @@ if uname().nodename == 'tethys':
 def secs2hours(secs): # Convert seconds to HH:mm format.
     mm, ss = divmod(secs, 60)
     hh, mm = divmod(mm, 60)
+
     return "%02d:%02d" % (hh, mm)
 
 def main():
@@ -22,14 +23,25 @@ def main():
 
     # Round remaining percent to nearest whole number.
     percent=round(batt.percent)
-    remaining=secs2hours(batt.secsleft)
-    output=(str(percent) + '% ' + '(' + (str(remaining) + ')' ))
 
-    if batt.power_plugged == False:
-        output=output + ' NOT_CHARGING'
+    # Convert remaining time to hours and minutes.
+    remaining=secs2hours(batt.secsleft)
+    remaining=str(remaining)
+
+    output=''
+
+    if batt.power_plugged == True:
+        output=output + '(CHARGING)'
+
+    # The secs2hours() function returns -1:59 when the battery is full.
+    #   If that's the case, don't print the time remaining.
+    if remaining == '-1:59':
+        output=" " + str(percent) + '% ' + output
     else:
-        output=output + ' CHARGING'
+        output=" " + str(percent) + '% (' + (str(remaining) + ')' ) + output
+
     print(output)
+
     exit(0)
 
 if __name__ == '__main__':
