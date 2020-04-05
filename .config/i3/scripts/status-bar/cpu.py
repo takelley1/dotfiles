@@ -1,20 +1,37 @@
 #!/bin/python
 
-# Status bar script for printing the current usage of CPU cores once per second.
+# Status bar script for printing the current usage of each CPU core.
 
-from psutil import cpu_percent
-from sys import exit
+import psutil
+import sys
+import os
 
 def main():
-    percent=cpu_percent(1)
-    percent=round(percent)
 
-    if percent < 10:
-        print(" 0" + str(percent) + "%")
-    else:
-        print(" "+ str(percent) + "%")
+    core_list=[]
 
-    exit(0)
+    # Get a list of the current usage of each CPU core.
+    for core_percent in psutil.cpu_percent(interval=0.5, percpu=True):
+        # Round each value.
+        core_percent=round(core_percent)
+        # Add leading zeroes to single-digit numbers.
+        core_percent=("{:02d}".format(core_percent))
+        core_percent=(core_percent + "%")
+        # Re-create the list using the rounded values.
+        core_list.append(core_percent)
+
+    core_list=str(core_list)
+
+    # Format output.
+    os.system('echo ' + core_list + \
+            ' | sed -e "s/\[//g"    \
+                    -e "s/\]//g"    \
+                    -e "s/.*/ &/g" \
+                    -e "s/\,/ /g"   \
+                    >/tmp/cpu_usage')
+
+    print(open("/tmp/cpu_usage").read())
+    sys.exit(0)
 
 if __name__ == '__main__':
     main()
