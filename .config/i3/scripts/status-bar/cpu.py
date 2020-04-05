@@ -15,7 +15,7 @@ def main():
         # Round each value.
         core_percent=round(core_percent)
         # Add leading zeroes to single-digit numbers.
-        core_percent=("{:02d}".format(core_percent))
+        core_percent=("{:03d}".format(core_percent))
         core_percent=(core_percent + "%")
         # Re-create the list using the rounded values.
         core_list.append(core_percent)
