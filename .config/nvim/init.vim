@@ -9,11 +9,11 @@ runtime! archlinux.vim
 
 " remap jk to ESC for easier exiting insert mode.
   inoremap jk <ESC>
-" convert tabs to 4x spaces.
-  set tabstop=8
+" convert tabs to 2x spaces.
+  set tabstop=2
   set softtabstop=0
   set expandtab
-  set shiftwidth=4
+  set shiftwidth=2
   set smarttab
 
 " map vim copy buffer to system clipboard.
