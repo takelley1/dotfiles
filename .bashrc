@@ -47,6 +47,7 @@ alias tmuxrc='nvim ~/.config/tmux/tmux.conf'
 alias vimrc='nvim ~/.config/nvim/init.vim'
 
 alias xdefaults='nvim ~/.Xdefaults'
+alias xinitrc='nvim ~/.xinitrc'
 alias xprofile='nvim ~/.xprofile'
 
 alias youtube='vim /mnt/share/documents/scripting/youtube-dl-urls.txt'
