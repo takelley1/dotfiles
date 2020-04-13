@@ -45,9 +45,11 @@ then
     bash "${HOME}/scripts/bash/auto-screenshot.sh" &>> "${HOME}/Pictures/auto-screenshot.log" &
 fi
 
-# Force manual fan control on Dell laptops.
 if [ "$(hostname)" = "deimos" ]; then
+  # Force manual fan control on Dell laptops.
   modprobe i8k force=1 &
+  # Start manual fan control script.
+  bash "${HOME}/scripts/bash/fan.sh" &
 fi
 
 # Start window manager.
