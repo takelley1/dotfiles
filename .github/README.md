@@ -24,8 +24,13 @@
       ```bash
       git config --global user.email "hxyz@protonmail.com"
       git config --global user.name "takelley1"
-      git-config push --set-upstream origin master
+      git config push --set-upstream origin master
       ```
+
+1. **clone scripts repo**
+   ```bash
+    git clone [repo-url]
+    ```
 
 1. **add e2guardian proxy cert to trust store:**
    ```bash
@@ -61,8 +66,8 @@
    1. add the following text:
       ```
       [Service]
-      Environment=http_proxy=http://10.0.0.8:8080
-      Environment=https_proxy=http://10.0.0.8:8080
+      Environment=http_proxy=http://10.0.0.15:8080
+      Environment=https_proxy=http://10.0.0.15:8080
       ```
 
 1. **copy other config files:**
@@ -122,6 +127,17 @@
    mkdir -p ~/.local/share/nvim/site/pack/git-plugins/start
    git clone --depth 1 https://github.com/dense-analysis/ale.git ~/.local/share/nvim/site/pack/git-plugins/start/ale
    ```
+
+1. **set up Dell fan controls:**
+   1. allow passwordless modprobe
+      ```bash
+      sudo su && visudo
+      ``` 
+      - add the line `austin ALL=NOPASSWD: usr/bin/modprobe`
+   1. install i8k controller from AUR
+      ```bash
+      yay -S i8kutils
+      ```
 
 ---
 #### from https://www.atlassian.com/git/tutorials/dotfiles
