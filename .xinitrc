@@ -33,16 +33,21 @@ fi
 
 # Create i3 config.
 rm -f /tmp/.i3-config
-cat ${HOME}/.config/i3/.config-notification ${HOME}/.config/i3/config-unique-$(hostname) ${HOME}/.config/i3/config-shared > /tmp/.i3-config
+cat "${HOME}/.config/i3/.config-notification" "${HOME}/.config/i3/config-unique-$(hostname)" "${HOME}/.config/i3/config-shared" > /tmp/.i3-config
 
 # Take screenshots on all hosts but phobos.
-if [ ! ${HOSTNAME} == "phobos" ]
+if [ ! "$(hostname)" = "phobos" ]
 then
     # Kill any previous instances of the auto-screenshot script.
-    kill -s 9 $(ps ax | grep auto-screenshot | awk '{print $1}') &> /dev/null ; \
+    kill -s 9 "$(pgrep -f auto-screenshot.sh)" ; \
     # Start auto-screenshot script.
       # The '&' is required or the window manager will not start.
-    bash ${HOME}/scripts/bash/auto-screenshot.sh &>> ${HOME}/Pictures/auto-screenshot.log &
+    bash "${HOME}/scripts/bash/auto-screenshot.sh" &>> "${HOME}/Pictures/auto-screenshot.log" &
+fi
+
+# Force manual fan control on Dell laptops.
+if [ "$(hostname)" = "deimos" ]; then
+  modprobe i8k force=1 &
 fi
 
 # Start window manager.

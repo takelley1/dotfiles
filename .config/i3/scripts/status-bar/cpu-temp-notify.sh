@@ -19,9 +19,12 @@ elif [[ ${temp} -gt 85 ]]; then
     notify-send -u critical "CPU is getting VERY hot! (${temp}°C)"
     exit 0
 
-elif [[ ${temp} -gt 80 ]]; then
+elif [[ ${temp} -gt 82 ]]; then
     notify-send "CPU is getting hot! (${temp}°C)"
     exit 0
+
+else
+  exit 0
 
 fi
 
