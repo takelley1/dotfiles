@@ -16,10 +16,10 @@ if [[ "${temp}" -ge 90 ]]; then
   exit 0
 
 elif [[ "${temp}" -ge 85 ]]; then
-  notify-send -u critical "CPU is getting VERY hot! (${temp}°C)"
+  notify-send -u critical "CPU is getting hot! (${temp}°C)"
   exit 0
 
-elif [[ "${temp}" -ge 82 ]]; then
+elif [[ "${temp}" -ge 83 ]]; then
   notify-send "CPU is getting hot! (${temp}°C)"
   exit 0
 
