@@ -45,7 +45,8 @@ if [[ "${HOSTNAME}" == "deimos" ]]; then
   # Force manual fan control on Dell laptops.
   # This requires allowing passwordless sudo for modprobe.
   sudo modprobe i8k force=1 &
-  i8kmon &
+  kill -s 9 "$(pgrep -f "${HOME}/scripts/bash/fan.sh")" &> /dev/null ; \
+  bash "${HOME}/scripts/bash/fan.sh" &> /dev/null &
 fi
 
 # Create i3 config and launch i3.
