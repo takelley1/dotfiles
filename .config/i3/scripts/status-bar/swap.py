@@ -18,9 +18,9 @@ def main():
 
     # Convert to MB
     swap_used_mb=swap_used_raw / (1024**2)
-    swap_used=round(swap_used_mb,1)
+    swap_used=round(swap_used_mb)
 
-    # Don't show anything if using <1M of swap space.
+    # If the system is using <1M of swap space, exit.
     if swap_used < 1:
         exit(0)
 
