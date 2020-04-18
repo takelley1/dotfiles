@@ -11,10 +11,12 @@ runtime! archlinux.vim
   inoremap jk <ESC>
 " convert tabs to 2x spaces.
   set tabstop=2
-  set softtabstop=0
+  set softtabstop=2
   set expandtab
   set shiftwidth=2
   set smarttab
+
+  set smartindent
 
 " map vim copy buffer to system clipboard.
   set clipboard=unnamedplus
