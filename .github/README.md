@@ -37,7 +37,7 @@
    sudo trust anchor --store /mnt/tank/share/documents/configuration/e2guardian/my_rootCA.crt
    ```
    1. open firefox and add this same cert again to the trusted CAs list
-   
+
 1. **install missing packages and remove unnecessary packages:**
    ```bash
    sudo pacman -Syu
@@ -94,7 +94,7 @@
    ```bash
    cd ~/.config/brightnessctl/
    make install
-   ```  
+   ```
    1. allow running as root without a password:
       ```bash
       sudo su && visudo
@@ -122,17 +122,20 @@
    lxappearance
    ```
 
-1. **clone ALE repo for NeoVim syntax highlighting:**
+1. **clone NeoVim packages:**
    ```bash
    mkdir -p ~/.local/share/nvim/site/pack/git-plugins/start
+   # ALE for bash script linting
    git clone --depth 1 https://github.com/dense-analysis/ale.git ~/.local/share/nvim/site/pack/git-plugins/start/ale
+   git clone https://github.com/itchyny/lightline.vim ~/.local/share/nvim/site/pack/git-plugins/start/lightline
+   git clone https://github.com/airblade/vim-gitgutter.git ~/.local/share/nvim/site/pack/git-plugins/start/vim-gitgutter
    ```
 
 1. **set up Dell fan controls:**
    1. allow passwordless modprobe
       ```bash
       sudo su && visudo
-      ``` 
+      ```
       - add the line `austin ALL=NOPASSWD: usr/bin/modprobe`
    1. install i8k controller from AUR
       ```bash

@@ -15,8 +15,10 @@ runtime! archlinux.vim
   set expandtab
   set shiftwidth=2
   set smarttab
-
   set smartindent
+
+" reduce plugin update time
+  set updatetime=100
 
 " map vim copy buffer to system clipboard.
   set clipboard=unnamedplus
