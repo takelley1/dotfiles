@@ -157,6 +157,8 @@ else
     alias lar='ls --classify --color=auto --human-readable -l --all --reverse'
     alias lss='ls --classify --color=auto --human-readable -l --all -S' # Sort by size.
 
+    alias less='less -XRF' # Show text in terminal even after quitting less.
+
     alias lcon='ls -lZ --all --reverse'
     alias untar='tar -xzvf'
 fi
