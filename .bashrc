@@ -108,6 +108,7 @@ alias eris='ssh austin@10.0.0.11'
 
 # apps and games -------------------------------------------------------------------------
 
+alias define='dict'
 alias eve='bash /opt/evesetup/lib/evelauncher/evelauncher.sh &'
 alias osrs='bash /mnt/tank/share/software/gaming/games/runescape-launcher/osrs/bin/osrs-launcher &'
   alias runescape='osrs'
@@ -130,7 +131,7 @@ alias h='cd ~'
 alias c='clear'
 
 alias linux="cd ~/linux-notes && r"
-alias notes="cd ~/notes/personal/ && r"
+alias notes="cd ~/notes/ && r"
 alias scripts='cd ~/scripts/bash/ && r'
 alias status='cd ~/.config/i3/scripts/status-bar/ && r'
 
