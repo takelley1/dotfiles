@@ -181,9 +181,10 @@ export LC_CTYPE='en_US.UTF-8'
 export PAGER='less'
 export BROWSER='firefox'
 
-if [[ -x /usr/bin/nvim ]]; then
+#  Linux path                 FreeBSD path
+if [[ -x /usr/bin/nvim ]] || [[ -x /usr/local/bin/nvim ]]; then
     export EDITOR='nvim'
-elif [[ -x /usr/bin/vim ]]; then
+elif [[ -x /usr/bin/vim ]] || [[ -x /usr/local/bin/vim ]]; then
     export EDITOR='vim'
 else
     export EDITOR='vi'
