@@ -40,8 +40,8 @@ alias i3b="nvim ~/.config/i3/i3blocks.conf"
 alias readme='nvim ~/.github/README.md'
 
 # Easy editing and committing of todo list.
-alias todo='cd ~/notes/ && git pull && nvim ./todo.md'
 alias gcut='cd ~/notes/ && git add ./todo.md && git commit -m "Update todo" && git push'
+alias todo='cd ~/notes/ && git pull && nvim ./todo.md && gcut'
 
 alias tmuxrc='nvim ~/.config/tmux/tmux.conf'
 alias vimrc='nvim ~/.config/nvim/init.vim'
