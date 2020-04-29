@@ -15,20 +15,20 @@ state=$(acpi -b | awk '{print $3}')
 [[ ${state} == 'Charging,' ]] && exit 0
 
 if [[ ${percent} -lt 3 ]]; then
-    notify-send -u critical "Battery under 3%"
-    exit 0
+  notify-send -u critical "Battery under 3%"
+  exit 0
 
 elif [[ ${percent} -lt 5 ]]; then
-    notify-send -u critical "Battery under 5%"
-    exit 0
+  notify-send -u critical "Battery under 5%"
+  exit 0
 
 elif [[ ${percent} -lt 10 ]]; then
-    notify-send "Battery under 10%"
-    exit 0
+  notify-send "Battery under 10%"
+  exit 0
 
 elif [[ ${percent} -lt 15 ]]; then
-    notify-send "Battery under 15%"
-    exit 0
+  notify-send "Battery under 15%"
+  exit 0
 fi
 
 exit 0

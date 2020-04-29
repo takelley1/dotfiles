@@ -4,19 +4,19 @@
 
 # Font-Awesome 
 
-from psutil import disk_usage
-from sys import exit
+import psutil
+import sys
 
 def main():
     # Get free space in bytes
-    disk_raw=disk_usage('/').free
+    disk = psutil.disk_usage('/').free
     # Convert to GB
-    disk_gb=disk_raw / (1024**3)
-    disk=round(disk_gb)
+    disk = disk / (1024**3)
+    disk = round(disk)
 
     print(" " + str(disk) + "G")
 
-    exit(0)
+    sys.exit(0)
 
 if __name__ == '__main__':
     main()
