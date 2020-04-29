@@ -15,4 +15,5 @@ START_HOURS_RANGE=3-22
 7	25	cron.weekly		nice run-parts /etc/cron.weekly
 @monthly 45	cron.monthly		nice run-parts /etc/cron.monthly
 
-@weekly 5       library-backup          rsync --recursive -zz --human-readable --itemize-changes --ipv4 /mnt/tank/share/documents/library/networking /mnt/tank/share/documents/library/operating-systems /mnt/tank/share/documents/library/product-manuals /mnt/tank/share/documents/library/programming /mnt/tank/share/documents/library/security /mnt/tank/share/documents/library/storage ~/local-library
+# Backs up reference manuals onto local machine, so these resources will still be available if the share goes down and I have to troubleshoot.
+@weekly 5       library-backup          rsync --recursive --human-readable --itemize-changes --ipv4 /mnt/tank/share/documents/library/networking /mnt/tank/share/documents/library/operating-systems /mnt/tank/share/documents/library/product-manuals /mnt/tank/share/documents/library/programming /mnt/tank/share/documents/library/security /mnt/tank/share/documents/library/storage /home/austin/local-library && chown austin:austin -R /home/austin/local-library
