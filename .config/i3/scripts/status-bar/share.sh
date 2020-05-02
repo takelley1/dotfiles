@@ -4,7 +4,7 @@
 
 # Font-Awesome f6ff 
 
-share_free=$(df -h /mnt/tank/share | grep share | awk '{print $4}' | tail -1)
+share_free=$(df -h /mnt/tank/share/documents | awk '{print $4}' | tail -1)
 
 # Show Font-Awesome icons on Arch-based distros, use text everywhere else.
 if [[ -n "${share_free}" ]]; then # Only run on hosts with a "share" filesystem

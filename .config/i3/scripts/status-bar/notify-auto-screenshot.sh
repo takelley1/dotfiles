@@ -5,6 +5,6 @@
 # Don't run on phobos.
 [[ ${HOSTNAME} == "phobos" ]] && exit 0
 
-[[ -z $(pgrep -f "auto-screenshot\.sh$") ]] && printf "%s\n" "Screenshot script not running!"
+[[ -z $(pgrep -f "/home/austin/scripts/bash/linux/auto-screenshot\.sh$") ]] && printf "%s\n" "Screenshot script not running!"
 
 exit 0
