@@ -11,6 +11,8 @@ bzip2
 chrony
 clipit
 curl
+dash
+dictd
 fdupes
 feh
 ffmpeg
@@ -77,6 +79,7 @@ rofi
 rsync
 rsyslog
 rxvt-unicode
+screen
 scrot
 sed
 slock
@@ -109,6 +112,6 @@ yay
 zathura
 zathura-ps
 zathura-cb
-zathura-pdf-poppler
+zathura-pdf-mupdf
 zathura-djvu
 zip
