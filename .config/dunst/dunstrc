@@ -30,14 +30,14 @@
     # The width can be negative.  In this case the actual width is the
     # screen width minus the width defined in within the geometry option.
     #geometry = "(-geometry x2)+300+200"
-    geometry = "-400x3-200+20"
+    geometry = "-400x3-200"
 
     # Show how many messages are currently hidden (because of geometry).
-    indicate_hidden = yes
+    indicate_hidden = true
 
     # Shrink window if it's smaller than the width.  Will be ignored if
     # width is 0.
-    shrink = no
+    shrink = false
 
     # The transparency of the window.  Range: [0; 100].
     # This option will only work if a compositing window manager is
@@ -52,7 +52,7 @@
     # Draw a line of "separator_height" pixel height between two
     # notifications.
     # Set to 0 to disable.
-    separator_height = 10
+    separator_height = 0
 
     # Padding between text and separator.
     padding = 10
@@ -76,7 +76,7 @@
     separator_color = frame
 
     # Sort messages by urgency.
-    sort = yes
+    sort = true
 
     # Don't remove messages, if the user is idle (no mouse or keyboard input)
     # for longer than idle_threshold seconds.
@@ -140,23 +140,23 @@
 
     # Split notifications into multiple lines if they don't fit into
     # geometry.
-    word_wrap = yes
+    word_wrap = true
 
     # When word_wrap is set to no, specify where to make an ellipsis in long lines.
     # Possible values are "start", "middle" and "end".
     ellipsize = middle
 
     # Ignore newlines '\n' in notifications.
-    ignore_newline = no
+    ignore_newline = false
 
     # Stack together notifications with the same content
-    stack_duplicates = true
+    stack_duplicates = false
 
     # Hide the count of stacked notifications with the same content
     hide_duplicate_count = false
 
     # Display indicators for URLs (U) and actions (A).
-    show_indicators = yes
+    show_indicators = true
 
     ### Icons ###
 
@@ -173,7 +173,7 @@
 
     # Should a notification popped up from history be sticky or timeout
     # as if it would normally do.
-    sticky_history = yes
+    sticky_history = true
 
     # Maximum amount of notifications kept in history
     history_length = 50
@@ -279,7 +279,7 @@
     background = "#222222"
     foreground = "#888888"
     frame_color = "#888888"
-    timeout = 3
+    timeout = 1
     # Icon for notifications with low urgency, uncomment to enable
     #icon = /path/to/icon
 
@@ -346,14 +346,14 @@
 # Disable the transient hint so that idle_threshold cannot be bypassed from the
 # client
 #[transient_disable]
-#    match_transient = yes
-#    set_transient = no
+#    match_transient = true
+#    set_transient = false
 #
 # Make the handling of transient notifications more strict by making them not
 # be placed in history.
 #[transient_history_ignore]
-#    match_transient = yes
-#    history_ignore = yes
+#    match_transient = true
+#    history_ignore = true
 
 # fullscreen values
 # show: show the notifications, regardless if there is a fullscreen window opened
@@ -383,7 +383,7 @@
 #[history-ignore]
 #    # This notification will not be saved in history
 #    summary = "foobar"
-#    history_ignore = yes
+#    history_ignore = true
 
 #[skip-display]
 #    # This notification will not be displayed, but will be included in the history
