@@ -35,18 +35,10 @@ fi
 if [[ ! "${HOSTNAME}" == "phobos" ]]
 then
   # Kill any previous instances of the auto-screenshot script.
-  pkill --signal 9 -f "${HOME}/scripts/bash/auto-screenshot.sh" &> /dev/null ; \
+  pkill --signal 9 -f "${HOME}/scripts/bash/linux/auto-screenshot.sh" &> /dev/null ; \
   # Start auto-screenshot script.
     # The '&' is required or the window manager will not start.
-  bash "${HOME}/scripts/bash/auto-screenshot.sh" &>> "${HOME}/Pictures/auto-screenshot.log" &
-fi
-
-if [[ "${HOSTNAME}" == "deimos" ]]; then
-  # Force manual fan control on Dell laptops.
-  # This requires allowing passwordless sudo for modprobe.
-  sudo modprobe i8k force=1 &
-  pkill --signal 9 -f "${HOME}/scripts/bash/fan.sh" &> /dev/null ; \
-  bash "${HOME}/scripts/bash/fan.sh" &> /dev/null &
+  bash "${HOME}/scripts/bash/linux/auto-screenshot.sh" &>> "${HOME}/Pictures/auto-screenshot.log" &
 fi
 
 # Create i3 config and launch i3.
