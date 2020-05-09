@@ -163,6 +163,9 @@ else
 
     alias lcon='ls -lZ --all --reverse'
     alias untar='tar -xzvf'
+
+    # This is required for bash aliases to work with sudo.
+    alias sudo='sudo '
 fi
 
 # OPTIONS #################################################################################
@@ -185,12 +188,15 @@ export BROWSER='firefox'
 #  Linux path                 FreeBSD path
 if [[ -x /usr/bin/nvim ]] || [[ -x /usr/local/bin/nvim ]]; then
     export EDITOR='/usr/bin/nvim'
+    export VISUAL='/usr/bin/nvim'
     export SUDO_EDITOR='/usr/bin/nvim'
 elif [[ -x /usr/bin/vim ]] || [[ -x /usr/local/bin/vim ]]; then
     export EDITOR='/usr/bin/vim'
+    export VISUAL='/usr/bin/vim'
     export SUDO_EDITOR='/usr/bin/vim'
 else
     export EDITOR='/usr/bin/vi'
+    export VISUAL='/usr/bin/vi'
     export SUDO_EDITOR='/usr/bin/vi'
 fi
 
