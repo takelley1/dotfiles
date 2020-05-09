@@ -144,7 +144,7 @@
     custom: &custom
       primary:
         background: '#313030'
-        foreground: '#dedede'
+        foreground: '#eeeeee'
       cursor:
         cursor: '0xffffff'
       normal:
@@ -155,7 +155,7 @@
         blue:    '#4499ff'
         magenta: '#ff6fff'
         cyan:    '#55dddd'
-        white:   '#dddddd'
+        white:   '#eeeeee'
       bright:
         black:   '#111111'
         red:     '#ee0000'
@@ -164,7 +164,7 @@
         blue:    '#4499ff'
         magenta: '#ff6fff'
         cyan:    '#55ddff'
-        white:   '#dddddd'
+        white:   '#eeeeee'
     gruvbox_dark: &gruvbox_dark
       primary:
         # hard contrast: background = '#1d2021'
