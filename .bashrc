@@ -113,6 +113,7 @@ alias eve='bash /opt/evesetup/lib/evelauncher/evelauncher.sh &'
 alias osrs='bash /mnt/tank/share/software/gaming/games/runescape-launcher/osrs/bin/osrs-launcher &'
   alias runescape='osrs'
   alias rs='osrs'
+  alias snip='scrot --quality 100 --select --freeze --silent'
 alias audible='bash /opt/OpenAudible/OpenAudible &'
 
 # directory traversal ---------------------------------------------------------------------
@@ -183,11 +184,14 @@ export BROWSER='firefox'
 
 #  Linux path                 FreeBSD path
 if [[ -x /usr/bin/nvim ]] || [[ -x /usr/local/bin/nvim ]]; then
-    export EDITOR='nvim'
+    export EDITOR='/usr/bin/nvim'
+    export SUDO_EDITOR='/usr/bin/nvim'
 elif [[ -x /usr/bin/vim ]] || [[ -x /usr/local/bin/vim ]]; then
-    export EDITOR='vim'
+    export EDITOR='/usr/bin/vim'
+    export SUDO_EDITOR='/usr/bin/vim'
 else
-    export EDITOR='vi'
+    export EDITOR='/usr/bin/vi'
+    export SUDO_EDITOR='/usr/bin/vi'
 fi
 
 # These vars are for the sxiv image viewer.
