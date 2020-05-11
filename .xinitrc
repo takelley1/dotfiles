@@ -31,16 +31,6 @@ if [[ -d /etc/X11/xinit/xinitrc.d ]] ; then
   unset f
 fi
 
-# Take screenshots on all hosts but phobos.
-if [[ ! "${HOSTNAME}" == "phobos" ]]
-then
-  # Kill any previous instances of the auto-screenshot script.
-  pkill --signal 9 -f "${HOME}/scripts/bash/linux/auto-screenshot.sh" &> /dev/null ; \
-  # Start auto-screenshot script.
-    # The '&' is required or the window manager will not start.
-  bash "${HOME}/scripts/bash/linux/auto-screenshot.sh" &>> "${HOME}/Pictures/auto-screenshot.log" &
-fi
-
 # Create i3 config and launch i3.
 cat "${HOME}/.config/i3/.config-notification"      \
     "${HOME}/.config/i3/config-unique-${HOSTNAME}" \
