@@ -134,6 +134,8 @@ alias c='clear'
 alias mv='mv -v'
 alias cp='cp -v'
 
+# misc ------------------------------------------------------------------------------------
+
 alias linux="cd ~/linux-notes && r"
 alias notes="cd ~/notes/ && r"
 alias scripts='cd ~/scripts/bash/ && r'
@@ -188,6 +190,11 @@ export LC_CTYPE='en_US.UTF-8'
 export PAGER='less'
 export BROWSER='firefox'
 
+# Add scripts to PATH
+export PATH=$PATH:~/scripts/bash
+export PATH=$PATH:~/scripts/bash/linux
+
+# Set correct text editor.
 #  Linux path                 FreeBSD path
 if [[ -x /usr/bin/nvim ]] || [[ -x /usr/local/bin/nvim ]]; then
     export EDITOR='/usr/bin/nvim'
@@ -234,7 +241,7 @@ shopt -s cdspell         # Correct minor cd typos.
 
 # Automatically change the current working directory after closing ranger
 # This is a shell function to automatically change the current working
-# directory to the last visited one after ranger quits.
+#   directory to the last visited one after ranger quits.
 
 ranger_cd() {
     temp_file="$(mktemp -t "ranger_cd.XXXXXXXXXX")"
