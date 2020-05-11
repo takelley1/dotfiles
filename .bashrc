@@ -131,6 +131,9 @@ alias home='cd ~'
 alias h='cd ~'
 alias c='clear'
 
+alias mv='mv -v'
+alias cp='cp -v'
+
 alias linux="cd ~/linux-notes && r"
 alias notes="cd ~/notes/ && r"
 alias scripts='cd ~/scripts/bash/ && r'
