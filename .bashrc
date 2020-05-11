@@ -110,7 +110,7 @@ alias eris='ssh austin@10.0.0.11'
 
 alias define='dict'
 alias eve='bash /opt/evesetup/lib/evelauncher/evelauncher.sh &'
-alias osrs='bash /mnt/tank/share/software/gaming/games/runescape-launcher/osrs/bin/osrs-launcher &'
+alias osrs='bash ~/scripts/bash/linux/osrs.sh &'
   alias runescape='osrs'
   alias rs='osrs'
   alias snip='scrot --quality 100 --select --freeze --silent'
