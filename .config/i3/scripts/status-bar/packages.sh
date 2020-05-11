@@ -9,7 +9,7 @@
 if [[ -x "/usr/bin/pacman" ]]; then
 
   # Add parenthesis around the update number.
-  if [[ -n "$(sudo pacman -Sy &>/dev/null && sudo pacman -Qu | wc -l)" ]]; then
+  if [[ "$(sudo pacman -Sy &>/dev/null && sudo pacman -Qu | wc -l)" -gt 0 ]]; then
     updates=" (${updates})"
   fi
 
