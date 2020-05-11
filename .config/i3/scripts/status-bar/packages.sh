@@ -1,15 +1,22 @@
 #!/bin/bash
 
 # Status bar script for printing the total number of packages on the system.
+# The number of packages that require updates is shown in parenthesis (requires passwordless sudo for pacman).
 
-# Font-Awesome f49e  
+# Font-Awesome f49e 
 
 # Show Font-Awesome icons on Arch-based distros, use text everywhere else.
 if [[ -x "/usr/bin/pacman" ]]; then
+
+  # Add parenthesis around the update number.
+  if [[ -n "$(sudo pacman -Sy &>/dev/null && sudo pacman -Qu | wc -l)" ]]; then
+    updates=" (${updates})"
+  fi
+
   if [[ -n $(pacman -Q otf-font-awesome) ]]; then
-    printf "%s\n" " $(pacman -Q | wc -l)"
+    printf "%s\n" " $(pacman -Q | wc -l)${updates}"
   else
-    printf "%s\n" "PKGs $(pacman -Q | wc -l)"
+    printf "%s\n" "PKGs $(pacman -Q | wc -l)${updates}"
   fi
 
 elif [[ -x "/usr/bin/apt" ]]; then
