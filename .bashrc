@@ -1,6 +1,11 @@
 # ~/.bashrc. Executed by bash when launching interactive non-login shells.
 
-# STARTUP #################################################################################
+##########################################################################################
+# COMMON CONFIGURATION
+##########################################################################################
+# Configuration that is shared by both FreeBSD and Linux.
+
+# STARTUP =================================================================================
 
 # Start X without a display manager if logging into tty1 with a non-root account.
 [[ ! ${USER} == "root" ]] && [[ -z ${DISPLAY} ]] && [[ $(tty) == "/dev/tty1" ]] && exec startx
@@ -10,7 +15,7 @@
 #   Only runs if tmux isn't already attached.
 [[ ! ${USER} == "root" ]] && [[ -z ${TMUX} ]] && exec tmux -f ~/.config/tmux/tmux.conf attach
 
-# ALIASES #################################################################################
+# ALIASES =================================================================================
 
 alias ta='tmux -f ~/.config/tmux/tmux.conf attach'
 alias tmux='tmux -f ~/.config/tmux/tmux.conf'
@@ -47,23 +52,6 @@ alias xinitrc='nvim ~/.xinitrc'
 alias xprofile='nvim ~/.xprofile'
 
 alias youtube='vim /mnt/share/documents/scripting/youtube-dl-urls.txt'
-
-# Encourage use of non-deprecated tools. -------------------------------------------------
-
-alias netstat='echo use \"ss\" or \"lsof -i\" --- netstat is deprecated ---'
-
-# Custom git alias for managing dotfiles. ------------------------------------------------
-# See: https://developer.atlassian.com/blog/2016/02/best-way-to-store-dotfiles-git-bare-repo/
-
-os=$(uname) # Store the result of `uname` in a var since this file will check it multiple times.
-
-if [[ ${os} == "FreeBSD" ]]; then
-    # FreeBSD's Git binary is at a different path than on Linux.
-    alias dot='/usr/local/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
-else
-    # "dot" for "dotfiles".
-    alias dot='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
-fi
 
 alias d='dot'
 alias da='dot add'
@@ -137,52 +125,14 @@ alias notes="cd ~/notes/ && r"
 alias scripts='cd ~/scripts/bash/ && r'
 alias status='cd ~/.config/i3/scripts/status-bar/ && r'
 
-if [[ ${os} == "FreeBSD" ]]; then
-  alias ls='ls -FCGh' # FreeBSD's ls uses a different syntax from Linux.
-  alias sed='gsed'    # Force FreeBSD to use GNU's version of sed.
-  # Set proxy for FreeBSD here since there's no /etc/environment file.
-  export http_proxy="http://10.0.0.15:8080"
-  export https_proxy="http://10.0.0.15:8080"
-else
+# This is required for bash aliases to work with sudo.
+alias sudo='sudo '
 
-    # The below aliases are Linux-only.
 
-    alias grep='grep --color=auto'
-    alias cp='cp --verbose'
-    alias mv='mv --verbose'
-    alias mkdir='mkdir --parents --verbose -Z'
-
-    alias ls='ls --classify --color=auto --human-readable'
-    alias l='ls'
-    alias lr='ls --classify --color=auto --human-readable --reverse'
-    alias lsr='lr'
-
-    alias ll='ls --classify --color=auto --human-readable -l'           # Show single-column.
-    alias llr='ls --classify --color=auto --human-readable -l --reverse'
-    alias la='ls --classify --color=auto --human-readable -l --all'
-    alias lar='ls --classify --color=auto --human-readable -l --all --reverse'
-    alias lss='ls --classify --color=auto --human-readable -l --all -S' # Sort by size.
-
-    alias less='less -XRF' # Show text in terminal even after quitting less.
-
-    alias lcon='ls -lZ --all --reverse'
-    alias untar='tar -xzvf'
-
-    # This is required for bash aliases to work with sudo.
-    alias sudo='sudo '
-fi
-
-# OPTIONS #################################################################################
+# OPTIONS =================================================================================
 
 # Use vi-style editing for bash commands.
 set -o vi
-
-# FreeBSD uses a different path for the Bash binary.
-if [[ ${os} == "FreeBSD" ]]; then
-    export SHELL='/usr/local/bin/bash'
-else
-    export SHELL='/bin/bash'
-fi
 
 export TERM='screen-256color'
 export LC_CTYPE='en_US.UTF-8'
@@ -192,22 +142,6 @@ export BROWSER='firefox'
 # Add scripts to PATH
 export PATH=$PATH:~/scripts/bash
 export PATH=$PATH:~/scripts/bash/linux
-
-# Set correct text editor.
-#  Linux path                 FreeBSD path
-if [[ -x /usr/bin/nvim ]] || [[ -x /usr/local/bin/nvim ]]; then
-    export EDITOR='/usr/bin/nvim'
-    export VISUAL='/usr/bin/nvim'
-    export SUDO_EDITOR='/usr/bin/nvim'
-elif [[ -x /usr/bin/vim ]] || [[ -x /usr/local/bin/vim ]]; then
-    export EDITOR='/usr/bin/vim'
-    export VISUAL='/usr/bin/vim'
-    export SUDO_EDITOR='/usr/bin/vim'
-else
-    export EDITOR='/usr/bin/vi'
-    export VISUAL='/usr/bin/vi'
-    export SUDO_EDITOR='/usr/bin/vi'
-fi
 
 # These vars are for the sxiv image viewer.
 export XDG_CONFIG_HOME=~/.config
@@ -236,7 +170,7 @@ shopt -q -s cmdhist      # Combine multiline commands into one in history.
 shopt -q -s checkwinsize # Check window size after each command and update values of LINES and COLUMNS.
 shopt -s cdspell         # Correct minor cd typos.
 
-# RANGER ##################################################################################
+# RANGER ==================================================================================
 
 # Automatically change the current working directory after closing ranger
 # This is a shell function to automatically change the current working
@@ -252,7 +186,7 @@ ranger_cd() {
     rm -f -- "$temp_file"
 }
 
-# PROMPT ##################################################################################
+# PROMPT ==================================================================================
 
 if [[ ${USER} == "root" ]]; then
     # Make root's prompt red to easily distinguish root from a standard user.
@@ -260,4 +194,84 @@ if [[ ${USER} == "root" ]]; then
 else
     # Make standard users' prompts green.
     PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+fi
+
+os=$(uname) # Store the result of `uname` in a var since this file will check it multiple times.
+
+##########################################################################################
+# FREEBSD CONFIGURATION
+##########################################################################################
+if [[ ${os} == "FreeBSD" ]]; then
+  # Custom git alias for managing dotfiles. ------------------------------------------------
+  # See: https://developer.atlassian.com/blog/2016/02/best-way-to-store-dotfiles-git-bare-repo/
+  # FreeBSD's Git binary is at a different path than on Linux.
+  # "dot" for "dotfiles".
+  alias dot='/usr/local/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+
+  export SHELL='/usr/local/bin/bash'
+
+  alias ls='ls -FCGh' # FreeBSD's ls uses a different syntax from Linux.
+  alias sed='gsed'    # Force FreeBSD to use GNU's version of sed.
+
+  # Set proxy for FreeBSD here since there's no /etc/environment file.
+  export http_proxy="http://10.0.0.15:8080"
+  export https_proxy="http://10.0.0.15:8080"
+
+  if [[ -x /usr/local/bin/nvim ]]; then
+    export EDITOR='/usr/local/bin/nvim'
+    export VISUAL='/usr/local/bin/nvim'
+    export SUDO_EDITOR='/usr/local/bin/nvim'
+  elif [[ -x /usr/local/bin/vim ]]; then
+    export EDITOR='/usr/local/bin/vim'
+    export VISUAL='/usr/local/bin/vim'
+    export SUDO_EDITOR='/usr/local/bin/vim'
+  else
+    export EDITOR='/usr/local/bin/vi'
+    export VISUAL='/usr/local/bin/vi'
+    export SUDO_EDITOR='/usr/local/bin/vi'
+  fi
+
+##########################################################################################
+# LINUX CONFIGURATION
+##########################################################################################
+elif [[ ${os} == "Linux" ]]; then
+  alias dot='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+
+  export SHELL='/bin/bash'
+
+  alias grep='grep --color=auto'
+  alias cp='cp --verbose'
+  alias mv='mv --verbose'
+  alias mkdir='mkdir --parents --verbose -Z'
+
+  alias ls='ls --classify --color=auto --human-readable'
+  alias l='ls'
+  alias lr='ls --classify --color=auto --human-readable --reverse'
+  alias lsr='lr'
+
+  alias ll='ls --classify --color=auto --human-readable -l'           # Show single-column.
+  alias llr='ls --classify --color=auto --human-readable -l --reverse'
+  alias la='ls --classify --color=auto --human-readable -l --all'
+  alias lar='ls --classify --color=auto --human-readable -l --all --reverse'
+  alias lss='ls --classify --color=auto --human-readable -l --all -S' # Sort by size.
+
+  alias less='less -XRF' # Show text in terminal even after quitting less.
+
+  alias lcon='ls -lZ --all --reverse'
+  alias untar='tar -xzvf'
+
+  if [[ -x /usr/bin/nvim ]]; then
+    export EDITOR='/usr/bin/nvim'
+    export VISUAL='/usr/bin/nvim'
+    export SUDO_EDITOR='/usr/bin/nvim'
+  elif [[ -x /usr/bin/vim ]]; then
+    export EDITOR='/usr/bin/vim'
+    export VISUAL='/usr/bin/vim'
+    export SUDO_EDITOR='/usr/bin/vim'
+  else
+    export EDITOR='/usr/bin/vi'
+    export VISUAL='/usr/bin/vi'
+    export SUDO_EDITOR='/usr/bin/vi'
+  fi
+
 fi
