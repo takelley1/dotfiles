@@ -28,10 +28,6 @@ alias bashrc='nvim ~/.bashrc'
   alias rc='bashrc'
 alias dunstrc='nvim ~/.config/dunst/dunstrc'
 
-alias fishrc='nvim ~/.config/fish/config.fish'
-alias fishvar='nvim ~/.config/fish/fish_variables'
-alias fishprompt='nvim ~/.config/fish/functions/fish_prompt.fish'
-
 alias i3c='nvim ~/.config/i3/config-unique-${HOSTNAME}'
 alias i3cc="nvim ~/.config/i3/config-shared"
 alias i3ccc="nvim /tmp/.i3-config"
@@ -144,6 +140,9 @@ alias status='cd ~/.config/i3/scripts/status-bar/ && r'
 if [[ ${os} == "FreeBSD" ]]; then
   alias ls='ls -FCGh' # FreeBSD's ls uses a different syntax from Linux.
   alias sed='gsed'    # Force FreeBSD to use GNU's version of sed.
+  # Set proxy for FreeBSD here since there's no /etc/environment file.
+  export http_proxy="http://10.0.0.15:8080"
+  export https_proxy="http://10.0.0.15:8080"
 else
 
     # The below aliases are Linux-only.
