@@ -5,7 +5,7 @@
 
 1. **clone this repo:**
    ```bash
-   cd ~/ && git clone --bare [repo-url] $HOME/.cfg
+   cd ~/ && git clone --bare git@github.com:takelley1/dotfiles.git $HOME/.cfg
    ```
    1. create alias:
        ```bash
