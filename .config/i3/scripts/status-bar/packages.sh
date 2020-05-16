@@ -1,5 +1,6 @@
 #!/bin/bash
-set -euo pipefail
+set -uo pipefail
+# Don't use "set -e" because $updates must be unset sometimes.
 
 # Status bar script for printing the total number of packages on the system.
 # The number of packages that require updates is shown in parenthesis (requires passwordless sudo for pacman).
@@ -11,10 +12,11 @@ if [[ -x "/usr/bin/pacman" ]]; then
 
   updates=$(sudo pacman -Sy &>/dev/null && sudo pacman -Qu | wc -l)
 
-  # Add parenthesis around the update number.
+  # Add parenthesis around the update number if there are updates to apply.
   if [[ "${updates}" -gt 0 ]]; then
     updates=" (${updates})"
   else
+  # If there aren't any updates, make sure the variable is empty.
     updates=""
   fi
 
