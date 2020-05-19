@@ -6,14 +6,19 @@
 # Configuration that is shared by both FreeBSD and Linux.
 
 # STARTUP =================================================================================
+os=$(uname) # Store the result of `uname` in a var since this file will check it multiple times.
 
 # Start X without a display manager if logging into tty1 with a non-root account.
-[[ ! ${USER} == "root" ]] && [[ -z ${DISPLAY} ]] && [[ $(tty) == "/dev/tty1" ]] && exec startx
+if [[ "${os}" == "Linux" && ! "${USER}" == "root" && -z "${DISPLAY}" && "$(tty)" == "/dev/tty1" ]]; then
+  exec startx
+fi
 
 # Reattach to the last tmux session or create a new one if it doesn't exist.
 #   Requires "new-session -n $HOST" in ~/.tmux.conf file.
 #   Only runs if tmux isn't already attached.
-[[ ! ${USER} == "root" ]] && [[ -z ${TMUX} ]] && exec tmux -f ~/.config/tmux/tmux.conf attach
+if [[ "${os}" == "Linux" && ! "${USER}" == "root" && -z "${TMUX}" ]]; then
+  exec tmux -f ~/.config/tmux/tmux.conf attach
+fi
 
 # ALIASES =================================================================================
 
@@ -100,6 +105,7 @@ alias osrs='bash ~/scripts/bash/linux/osrs.sh &'
   alias runescape='osrs'
   alias rs='osrs'
   alias snip='scrot --quality 100 --select --freeze --silent'
+  alias s='bash ~/scripts/bash/linux/ocvbot-sync-manual.sh'
 alias audible='bash /opt/OpenAudible/OpenAudible &'
 
 # directory traversal ---------------------------------------------------------------------
@@ -198,12 +204,10 @@ else
     PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
 fi
 
-os=$(uname) # Store the result of `uname` in a var since this file will check it multiple times.
-
 ##########################################################################################
 # FREEBSD CONFIGURATION
 ##########################################################################################
-if [[ ${os} == "FreeBSD" ]]; then
+if [[ "${os}" == "FreeBSD" ]]; then
   # Custom git alias for managing dotfiles. ------------------------------------------------
   # See: https://developer.atlassian.com/blog/2016/02/best-way-to-store-dotfiles-git-bare-repo/
   # FreeBSD's Git binary is at a different path than on Linux.
@@ -236,7 +240,7 @@ if [[ ${os} == "FreeBSD" ]]; then
 ##########################################################################################
 # LINUX CONFIGURATION
 ##########################################################################################
-elif [[ ${os} == "Linux" ]]; then
+elif [[ "${os}" == "Linux" ]]; then
   alias dot='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 
   export SHELL='/bin/bash'
