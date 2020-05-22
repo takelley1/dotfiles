@@ -148,7 +148,8 @@
       cursor:
         cursor: '0xffffff'
       normal:
-        black:   '#111111'
+        #black:   '#111111'
+        black:   '#bbbbbb'
         red:     '#ff3344'
         green:   '#00ee00'
         yellow:  '#ffff33'
@@ -157,7 +158,8 @@
         cyan:    '#55dddd'
         white:   '#eeeeee'
       bright:
-        black:   '#111111'
+        #black:   '#111111'
+        black:   '#bbbbbb'
         red:     '#ee0000'
         green:   '#00ee00'
         yellow:  '#ffff33'
