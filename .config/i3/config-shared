@@ -60,12 +60,12 @@
    #for_window [title="ocvbot"] floating enable
 
 # HOTKEYS
- 
+
  # volume controls
    bindsym XF86AudioLowerVolume exec ~/.config/i3/scripts/volume-down.sh
    bindsym XF86AudioRaiseVolume exec ~/.config/i3/scripts/volume-up.sh
    bindsym XF86AudioMute exec amixer set Master 0%
- 
+
    #bindsym F11 exec amixer set Master 2%-
    #bindsym F12 exec amixer set Master 2%+
 
@@ -76,21 +76,26 @@
    bindsym $mod+Control+x exec ~/.config/i3/scripts/xss-locker.sh
  # sleep
    bindsym $mod+Control+s exec systemctl suspend
- 
+
  # take screenshot with printscreen key and name with timestamp
    bindsym 0xff61 exec --no-startup-id import -window root ~/Pictures/$(date +%H:%M:%S_%Y-%m-%d)_${HOSTNAME}_screenshot.png && notify-send "saved screenshot to ~/Pictures/$(date +%H:%M:%S_%Y-%m-%d)_${HOSTNAME}_screenshot.png"
  # super-s will also take a screenshot
    bindsym $mod+s exec --no-startup-id import -window root ~/Pictures/$(date +%H:%M:%S_%Y-%m-%d)_${HOSTNAME}_screenshot.png && notify-send "saved screenshot to ~/Pictures/$(date +%H:%M:%S_%Y-%m-%d)_${HOSTNAME}_screenshot.png"
 
  # app launch hotkeys
-   bindsym $mod+i exec firefox
    # terminal emulator (config file is ~/.config/alacritty/alacritty.yml)
    bindsym $mod+Return exec alacritty
    # backup terminal emulator (config file is ~/.Xdefaults)
    bindsym $mod+Shift+Return exec urxvt
    # rofi app launcher
    bindsym $mod+d exec rofi -show run -lines 20
+   # backup app launcher
    bindsym $mod+Shift+d exec dmenu
+
+   bindsym $mod+f exec firefox
+   bindsym $mod+i exec firefox
+   bindsym $mod+p exec pycharm
+   bindsym $mod+v exec vncviewer
 
  # detect caps lock activation
    mode "caps"
@@ -100,7 +105,7 @@
    bindsym Caps_Lock mode "caps"
 
  # reload the configuration file
-   bindsym $mod+Mod1+Control+c reload
+   bindsym $mod+Control+c reload
  # restart i3 inplace (preserves layout/session, can be used to upgrade i3)
    bindsym $mod+Control+r restart
  # exit i3 (logs out of X session)
@@ -117,47 +122,47 @@
 
  # use Mouse+$mod to drag floating windows to their wanted position
    floating_modifier $mod
- 
+
  # kill focused window
    bindsym $mod+Shift+k kill
- 
+
  # change focus
    bindsym $mod+h focus left
    bindsym $mod+j focus down
    bindsym $mod+k focus up
    bindsym $mod+l focus right
- 
+
  # move focused window
    bindsym $mod+Control+h move left
    bindsym $mod+Control+j move down
    bindsym $mod+Control+k move up
    bindsym $mod+Control+l move right
- 
+
  # split in horizontal orientation
   #bindsym $mod+Mod1+Shift+h split h
- 
+
  # split in vertical orientation
    bindsym $mod+v split v
- 
+
  # enter fullscreen mode for the focused container
   #bindsym $mod+f fullscreen toggle
- 
+
  # toggle tiling / floating
    bindsym $mod+f floating toggle
- 
+
  # change focus between tiling / floating windows
   #bindsym $mod+space focus mode_toggle
- 
+
  # focus the parent container
   #bindsym $mod+a focus parent
- 
+
  # focus the child container
   #bindsym $mod+d focus child
- 
+
  # switch to workspace
    bindsym $mod+Tab workspace next
    bindsym $mod+Shift+Tab workspace prev
- 
+
    bindsym $mod+1 workspace 1: firefox
    bindsym $mod+2 workspace 2: terminal
    bindsym $mod+3 workspace 3
@@ -168,7 +173,7 @@
    bindsym $mod+8 workspace 8
    bindsym $mod+9 workspace 9
    bindsym $mod+0 workspace 10
- 
+
  # move focused container to workspace
    bindsym $mod+Control+1 move container to workspace 1: firefox
    bindsym $mod+Control+2 move container to workspace 2: terminal
@@ -193,4 +198,3 @@ bar {
 
 # \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 # //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
