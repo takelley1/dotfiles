@@ -56,8 +56,8 @@
 
    # make certain windows floating for pycharm testing of bots
    for_window [title="feh"] floating enable
-   for_window [title="OCVBot"] floating enable
-   for_window [title="ocvbot"] floating enable
+   #for_window [title="OCVBot"] floating enable
+   #for_window [title="ocvbot"] floating enable
 
 # HOTKEYS
  
@@ -100,11 +100,11 @@
    bindsym Caps_Lock mode "caps"
 
  # reload the configuration file
-   bindsym $mod+Control+c reload
+   bindsym $mod+Mod1+Control+c reload
  # restart i3 inplace (preserves layout/session, can be used to upgrade i3)
    bindsym $mod+Control+r restart
  # exit i3 (logs out of X session)
-   bindsym $mod+Control+e exec i3-msg exit
+   bindsym $mod+Mod1+Control+e exec i3-msg exit
 
 # WINDOW MANIPULATION
 
