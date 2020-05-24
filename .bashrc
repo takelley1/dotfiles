@@ -136,6 +136,9 @@ alias status='cd ~/.config/i3/scripts/status-bar/ && r'
 # This is required for bash aliases to work with sudo.
 alias sudo='sudo '
 
+alias pip='pip --trusted-host pypi.org --trusted-host pypi.python.org --trusted-host files.pythonhosted.org'
+alias pip3='pip3 --trusted-host pypi.org --trusted-host pypi.python.org --trusted-host files.pythonhosted.org'
+alias pip3.8='pip3.8 --trusted-host pypi.org --trusted-host pypi.python.org --trusted-host files.pythonhosted.org'
 
 # OPTIONS =================================================================================
 
