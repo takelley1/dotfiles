@@ -94,6 +94,7 @@
 
    bindsym $mod+f exec firefox
    bindsym $mod+i exec firefox
+   bindsym $mod+g exec gimp
    bindsym $mod+p exec pycharm
    bindsym $mod+v exec vncviewer
 
