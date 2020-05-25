@@ -92,7 +92,7 @@
    # backup app launcher
    bindsym $mod+Shift+d exec dmenu
 
-   bindsym $mod+f exec firefox
+   bindsym $mod+Control+f exec firefox
    bindsym $mod+i exec firefox
    bindsym $mod+g exec gimp
    bindsym $mod+p exec pycharm
@@ -143,7 +143,7 @@
   #bindsym $mod+Mod1+Shift+h split h
 
  # split in vertical orientation
-   bindsym $mod+v split v
+   #bindsym $mod+v split v
 
  # enter fullscreen mode for the focused container
   #bindsym $mod+f fullscreen toggle
