@@ -58,6 +58,8 @@
    for_window [title="feh"] floating enable
    #for_window [title="OCVBot"] floating enable
    #for_window [title="ocvbot"] floating enable
+   # force pycharm commit window to be fixed, since it likes to move around
+   for_window [title="Commit\ Changes"] floating disable
 
 # HOTKEYS
 
