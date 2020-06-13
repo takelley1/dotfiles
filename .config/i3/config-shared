@@ -60,6 +60,8 @@
    #for_window [title="ocvbot"] floating enable
    # force pycharm commit window to be fixed, since it likes to move around
    for_window [title="Commit\ Changes"] floating disable
+   # same thing with the git push window
+   for_window [title="Push\ Commits"] floating disable
 
 # HOTKEYS
 
