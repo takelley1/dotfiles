@@ -2,9 +2,9 @@
 
 # Status bar script for printing the current usage of each CPU core.
 
-import psutil
-import sys
 import os
+import sys
+import psutil
 
 def main():
 

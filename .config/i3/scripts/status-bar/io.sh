@@ -11,7 +11,7 @@ io_wa=$(top -b | head -3 | awk '{print $10}' | tail -1)
 #[[ "${io_wa}" == "0.0" ]] && exit 0
 
 # Add a leading zero.
-if [[ $(printf "%.f\n" "${io_wa}") -lt 10 ]]; then
+if [[ $(cut -f 1 -d '.' "${io_wa}") -lt 10 ]]; then
   io_wa=$(printf "%s\n" "0${io_wa}")
 fi
 

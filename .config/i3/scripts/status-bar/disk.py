@@ -4,8 +4,8 @@
 
 # Font-Awesome 
 
-import psutil
 import sys
+import psutil
 
 def main():
     # Get free space in bytes
