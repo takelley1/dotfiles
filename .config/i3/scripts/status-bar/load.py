@@ -20,7 +20,9 @@ def main():
 
     # Convert the list into a string and remove unnecessary characters.
     load_list = str(load_list)
-    load_list = load_list.replace('[','').replace(']','').replace("'","")
+    load_list = load_list.replace('[','')
+    load_list = load_list.replace(']','')
+    load_list = load_list.replace("'","")
 
     print('', load_list)
 
