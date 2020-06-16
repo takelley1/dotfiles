@@ -85,11 +85,6 @@
    sudo cp /etc/chrony.conf /etc/chrony.conf.bak && sudo cp ~/.config/new-hosts/etc/chrony.conf /etc/
    ```
 
-1. **add autoscreenshot log to logrotate:**
-   ```bash
-   sudo cat ~/.config/new-hosts/etc/logrotate.conf >> /etc/logrotate.conf
-   ```
-
 1. **build the brightnessctl package for backlight control on laptops**
    ```bash
    cd ~/.config/brightnessctl/
