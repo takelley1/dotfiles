@@ -72,6 +72,7 @@ alias dp='dot push'
 alias dpu='dot pull'
 alias dr='dot rm'
 alias ds='dot status --untracked-files=no'
+alias dss='dot status'
 
 # git ------------------------------------------------------------------------------------
 
