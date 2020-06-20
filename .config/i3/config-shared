@@ -62,6 +62,8 @@
    for_window [title="Commit\ Changes"] floating disable
    # same thing with the git push window
    for_window [title="Push\ Commits"] floating disable
+   # and the settings window
+   for_window [title="Settings"] floating disable
 
 # HOTKEYS
 
