@@ -19,7 +19,7 @@ font pango:DejaVu Sans 9, Awesome 9
    exec --no-startup-id feh --bg-fill /home/austin/.config/i3/wallpapers/earth-at-night-1920x1080.png
  # disable automatic suspend
    exec_always xset -dpms
-   exec_always xset s blank
+   exec_always xset s off
 
  # configure trackpad
    exec --no-startup-id xinput --set-prop 'CyPS/2 Cypress Trackpad' 'libinput Tapping Enabled' 1  # enable tap-clicking
