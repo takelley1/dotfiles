@@ -1,5 +1,3 @@
-runtime! archlinux.vim
-
 " identify the filetype
   filetype plugin on
 " force syntax highlighting
