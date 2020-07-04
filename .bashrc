@@ -233,7 +233,6 @@ if [[ "${os}" == "FreeBSD" ]]; then
   alias ls='ls -FCGh' # FreeBSD's ls uses a different syntax from Linux.
   alais ll='ls -l'
   alais la='ls -al'
-  alias sed='gsed'    # Force FreeBSD to use GNU's version of sed.
 
   # Set proxy for FreeBSD here since there's no /etc/environment file.
   export http_proxy="http://10.0.0.15:8080"
