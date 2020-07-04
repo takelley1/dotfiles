@@ -1,31 +1,37 @@
 # ~/.bashrc. Executed by bash when launching interactive non-login shells.
 
-##########################################################################################
+####################################################################################################
 # COMMON CONFIGURATION
-##########################################################################################
+####################################################################################################
 # Configuration that is shared by both FreeBSD and Linux.
 
-# STARTUP =================================================================================
-os=$(uname) # Store the result of `uname` in a var since this file will check it multiple times.
+# STARTUP ==========================================================================================
+os="$(uname)" # Store the result of `uname` in a var since this file will check it multiple times.
+tty="$(tty)"
 
 # Start X without a display manager if logging into tty1 with a non-root account.
-if [[ "${os}" == "Linux" && ! "${USER}" == "root" && -z "${DISPLAY}" && "$(tty)" == "/dev/tty1" ]]; then
+if [[ "${os}" == "Linux"
+  && ! "${USER}" == "root" 
+  && -z "${DISPLAY}" 
+  && "${tty}" == "/dev/tty1" ]]; then
   exec startx
 fi
 
 # Reattach to the last tmux session or create a new one if it doesn't exist.
 #   Requires "new-session -n $HOST" in ~/.tmux.conf file.
-#   Only runs if tmux isn't already attached.
-if [[ "${os}" == "Linux" && ! "${USER}" == "root" && -z "${TMUX}" ]]; then
+#   Only runs if tmux isn't already attached and if not tty2.
+if [[ ! "${USER}" == "root" 
+  && -z "${TMUX}" 
+  && ! "${tty}" == "/dev/tty2" ]]; then
   exec tmux -f ~/.config/tmux/tmux.conf attach
 fi
 
-# ALIASES =================================================================================
+# ALIASES ==========================================================================================
 
 alias ta='tmux -f ~/.config/tmux/tmux.conf attach'
 alias tmux='tmux -f ~/.config/tmux/tmux.conf'
 
-# editing ---------------------------------------------------------------------------------
+# EDITING ------------------------------------------------------------------------------------------
 
 alias vi='nvim'
 alias vim='nvim'
@@ -74,7 +80,7 @@ alias dr='dot rm'
 alias ds='dot status --untracked-files=no'
 alias dss='dot status'
 
-# git ------------------------------------------------------------------------------------
+# GIT ----------------------------------------------------------------------------------------------
 
 alias g='git'
 alias ga='git add'
@@ -91,14 +97,14 @@ alias gpu='git pull'
 alias gr='git rm'
 alias gs='git status'
 
-# ssh ------------------------------------------------------------------------------------
+# SSH ----------------------------------------------------------------------------------------------
 
 alias europa='ssh 10.0.0.15'
 alias eris='ssh austin@10.0.0.11'
 alias rhea='ssh root@10.0.0.4'
 #alias orion='ssh root@10.0.0.'
 
-# apps and games -------------------------------------------------------------------------
+# APPS AND GAMES -----------------------------------------------------------------------------------
 
 alias define='dict'
 alias eve='bash /opt/evesetup/lib/evelauncher/evelauncher.sh &'
@@ -109,7 +115,7 @@ alias osrs='bash ~/scripts/bash/linux/osrs.sh &'
   alias s='bash ~/scripts/bash/linux/ocvbot-sync-manual.sh'
 alias audible='bash /opt/OpenAudible/OpenAudible &'
 
-# directory traversal ---------------------------------------------------------------------
+# DIRECTORY TRAVERSAL ------------------------------------------------------------------------------
 
 alias r='ranger_cd'
 
@@ -127,7 +133,7 @@ alias c='clear'
 alias mv='mv -v'
 alias cp='cp -v'
 
-# misc ------------------------------------------------------------------------------------
+# MISC ---------------------------------------------------------------------------------------------
 
 alias linux="cd ~/linux-notes && r"
 alias notes="cd ~/notes/ && r"
@@ -137,11 +143,15 @@ alias status='cd ~/.config/i3/scripts/status-bar/ && r'
 # This is required for bash aliases to work with sudo.
 alias sudo='sudo '
 
+alias less='less -XRF' # Show text in terminal even after quitting less.
+alias grep='grep --color=always'
+alias mkdir='mkdir -pv'
+
 alias pip='pip --trusted-host pypi.org --trusted-host pypi.python.org --trusted-host files.pythonhosted.org'
 alias pip3='pip3 --trusted-host pypi.org --trusted-host pypi.python.org --trusted-host files.pythonhosted.org'
 alias pip3.8='pip3.8 --trusted-host pypi.org --trusted-host pypi.python.org --trusted-host files.pythonhosted.org'
 
-# OPTIONS =================================================================================
+# OPTIONS ==========================================================================================
 
 # Use vi-style editing for bash commands.
 set -o vi
@@ -153,7 +163,7 @@ export BROWSER='firefox'
 
 # Add scripts to PATH
 export PATH=$PATH:~/scripts/bash
-export PATH=$PATH:~/scripts/bash/linux
+export PATH=$PATH:~/scripts/bash/freebsd
 
 # These vars are for the sxiv image viewer.
 export XDG_CONFIG_HOME=~/.config
@@ -172,8 +182,6 @@ export LESS_TERMCAP_us=$'\E[01;32m'
 export HISTIGNORE="&:ls:[bf]g:exit"
 export HISTFILESIZE=9999999
 export HISTSIZE=9999999
-# Ignore duplicates, 'ls' without options, and builtin commands.
-export HISTCONTROL=ignoredups
 export HISTCONTROL=ignoreboth
 export PROMPT_COMMAND='history -a'
 
@@ -182,7 +190,7 @@ shopt -q -s cmdhist      # Combine multiline commands into one in history.
 shopt -q -s checkwinsize # Check window size after each command and update values of LINES and COLUMNS.
 shopt -s cdspell         # Correct minor cd typos.
 
-# RANGER ==================================================================================
+# RANGER ===========================================================================================
 
 # Automatically change the current working directory after closing ranger
 # This is a shell function to automatically change the current working
@@ -198,7 +206,7 @@ ranger_cd() {
     rm -f -- "$temp_file"
 }
 
-# PROMPT ==================================================================================
+# PROMPT ===========================================================================================
 
 if [[ ${USER} == "root" ]]; then
     # Make root's prompt red to easily distinguish root from a standard user.
@@ -208,19 +216,23 @@ else
     PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
 fi
 
-##########################################################################################
+####################################################################################################
 # FREEBSD CONFIGURATION
-##########################################################################################
+####################################################################################################
+
 if [[ "${os}" == "FreeBSD" ]]; then
-  # Custom git alias for managing dotfiles. ------------------------------------------------
+  # Custom Git alias for managing dotfiles.
   # See: https://developer.atlassian.com/blog/2016/02/best-way-to-store-dotfiles-git-bare-repo/
   # FreeBSD's Git binary is at a different path than on Linux.
   # "dot" for "dotfiles".
   alias dot='/usr/local/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 
   export SHELL='/usr/local/bin/bash'
+  export PATH=$PATH:~/scripts/bash/freebsd
 
   alias ls='ls -FCGh' # FreeBSD's ls uses a different syntax from Linux.
+  alais ll='ls -l'
+  alais la='ls -al'
   alias sed='gsed'    # Force FreeBSD to use GNU's version of sed.
 
   # Set proxy for FreeBSD here since there's no /etc/environment file.
@@ -241,18 +253,15 @@ if [[ "${os}" == "FreeBSD" ]]; then
     export SUDO_EDITOR='/usr/local/bin/vi'
   fi
 
-##########################################################################################
+####################################################################################################
 # LINUX CONFIGURATION
-##########################################################################################
+####################################################################################################
+
 elif [[ "${os}" == "Linux" ]]; then
   alias dot='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 
   export SHELL='/bin/bash'
-
-  alias grep='grep --color=auto'
-  alias cp='cp --verbose'
-  alias mv='mv --verbose'
-  alias mkdir='mkdir --parents --verbose -Z'
+  export PATH=$PATH:~/scripts/bash/linux
 
   alias ls='ls --classify --color=auto --human-readable'
   alias l='ls'
@@ -264,8 +273,6 @@ elif [[ "${os}" == "Linux" ]]; then
   alias la='ls --classify --color=auto --human-readable -l --all'
   alias lar='ls --classify --color=auto --human-readable -l --all --reverse'
   alias lss='ls --classify --color=auto --human-readable -l --all -S' # Sort by size.
-
-  alias less='less -XRF' # Show text in terminal even after quitting less.
 
   alias lcon='ls -lZ --all --reverse'
   alias untar='tar -xzvf'
