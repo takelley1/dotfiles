@@ -59,6 +59,10 @@
    for_window [title="feh"] floating enable
    #for_window [title="OCVBot"] floating enable
    #for_window [title="ocvbot"] floating enable
+
+   # force ikvm viewer to be fixed
+   for_window [title="iKVM\ Viewer"] floating disable
+
    # force pycharm commit window to be fixed, since it likes to move around
    for_window [title="Commit\ Changes"] floating disable
    # same thing with the git push window
