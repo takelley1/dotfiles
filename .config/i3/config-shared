@@ -89,9 +89,9 @@
    bindsym $mod+Control+s exec systemctl suspend
 
  # take screenshot with printscreen key and name with timestamp
-   bindsym 0xff61 exec --no-startup-id import -window root ~/Pictures/$(date +%H:%M:%S_%Y-%m-%d)_${HOSTNAME}_screenshot.png && notify-send "saved screenshot to ~/Pictures/$(date +%H:%M:%S_%Y-%m-%d)_${HOSTNAME}_screenshot.png"
+   bindsym 0xff61 exec --no-startup-id ~/.config/i3/scripts/screenshot.sh
  # super-s will also take a screenshot
-   bindsym $mod+s exec --no-startup-id import -window root ~/Pictures/$(date +%H:%M:%S_%Y-%m-%d)_${HOSTNAME}_screenshot.png && notify-send "saved screenshot to ~/Pictures/$(date +%H:%M:%S_%Y-%m-%d)_${HOSTNAME}_screenshot.png"
+   bindsym $mod+s exec --no-startup-id ~/.config/i3/scripts/screenshot.sh
 
  # app launch hotkeys
    # terminal emulator (config file is ~/.config/alacritty/alacritty.yml)
