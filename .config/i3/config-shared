@@ -30,6 +30,7 @@
  # start apps automatically
    exec --no-startup-id i3-msg 'workspace 1: firefox; exec firefox'
    exec --no-startup-id i3-msg 'workspace 2: terminal; exec alacritty'
+   exec --no-startup-id i3-msg 'workspace 5; exec discord'
 
  # hide side borders
    hide_edge_borders both
