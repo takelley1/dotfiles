@@ -103,7 +103,6 @@
    # backup app launcher
    bindsym $mod+Shift+d exec dmenu
 
-   bindsym $mod+Control+f exec firefox
    bindsym $mod+i exec firefox
    bindsym $mod+g exec gimp
    bindsym $mod+p exec pycharm
@@ -171,8 +170,9 @@
  # focus the child container
   #bindsym $mod+d focus child
 
- # switch to workspace
-   bindsym $mod+Tab workspace next
+ # switch between the two most recently-used workspaces
+   bindsym $mod+Tab workspace back_and_forth
+ # cycle through workspaces
    bindsym $mod+Shift+Tab workspace prev
 
    bindsym $mod+1 workspace 1: firefox
