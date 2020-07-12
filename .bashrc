@@ -11,8 +11,8 @@ tty="$(tty)"
 
 # Start X without a display manager if logging into tty1 with a non-root account.
 if [[ "${os}" == "Linux"
-  && ! "${USER}" == "root" 
-  && -z "${DISPLAY}" 
+  && ! "${USER}" == "root"
+  && -z "${DISPLAY}"
   && "${tty}" == "/dev/tty1" ]]; then
   exec startx
 fi
@@ -20,8 +20,8 @@ fi
 # Reattach to the last tmux session or create a new one if it doesn't exist.
 #   Requires "new-session -n $HOST" in ~/.tmux.conf file.
 #   Only runs if tmux isn't already attached and if not tty2.
-if [[ ! "${USER}" == "root" 
-  && -z "${TMUX}" 
+if [[ ! "${USER}" == "root"
+  && -z "${TMUX}"
   && ! "${tty}" == "/dev/tty2" ]]; then
   exec tmux -f ~/.config/tmux/tmux.conf attach
 fi
@@ -67,6 +67,7 @@ alias youtube='vim /mnt/share/documents/scripting/youtube-dl-urls.txt'
 alias d='dot'
 alias da='dot add'
 alias dau='dot add -u'
+alias daa='dot add -A'
 alias db='dot branch'
 alias dm='dot merge'
 alias dc='dot commit'
@@ -84,8 +85,8 @@ alias dss='dot status'
 
 alias g='git'
 alias ga='git add'
-alias gau='git add -u'    # Stage all modified files.
-alias gaa='git add -A :/' # Stage all changes, including added or deleted files.
+alias gau='git add -u'  # Stage all modified files.
+alias gaa='git add -A'  # Stage all changes below the given path, including added or deleted files.
 alias gb='git branch'
 alias gc='git commit'
 alias gch='git checkout'
@@ -114,6 +115,7 @@ alias osrs='bash ~/scripts/bash/linux/osrs.sh &'
   alias snip='scrot --quality 100 --select --freeze --silent'
   alias s='bash ~/scripts/bash/linux/ocvbot-sync-manual.sh'
 alias audible='bash /opt/OpenAudible/OpenAudible &'
+alias pass='systemctl stop auto-screenshot.service && pass'
 
 # DIRECTORY TRAVERSAL ------------------------------------------------------------------------------
 
@@ -231,8 +233,8 @@ if [[ "${os}" == "FreeBSD" ]]; then
   export PATH=$PATH:~/scripts/bash/freebsd
 
   alias ls='ls -FCGh' # FreeBSD's ls uses a different syntax from Linux.
-  alais ll='ls -l'
-  alais la='ls -al'
+  alias ll='ls -l'
+  alias la='ls -al'
 
   # Set proxy for FreeBSD here since there's no /etc/environment file.
   export http_proxy="http://10.0.0.15:8080"
