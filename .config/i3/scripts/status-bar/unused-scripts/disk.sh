@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Status bar script for printing the amount of gigabytes free in the root partition.
 

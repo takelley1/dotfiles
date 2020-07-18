@@ -1,4 +1,4 @@
-#!/bin/dash
+#!/usr/bin/env dash
 
 # Increases volume, then checks to see if L and R channels are equal. 
 # If channels are not equal, forces R channel to equal L channel.

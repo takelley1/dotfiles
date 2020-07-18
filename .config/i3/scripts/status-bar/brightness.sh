@@ -1,4 +1,4 @@
-#!/bin/dash
+#!/usr/bin/env dash
 
 # Status bar script for printing the current screen brightness.
 

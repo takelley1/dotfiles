@@ -1,4 +1,4 @@
-#!/bin/python
+#!/usr/bin/env python
 
 # Status bar script for printing the amount of gigabytes free in the network share, assuming it's mounted to /mnt/tank/share/documents.
 

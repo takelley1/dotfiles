@@ -1,4 +1,4 @@
-#!/bin/dash
+#!/usr/bin/env dash
 set -eu
 
 # Takes a screenshot, compresses it, and saves it to ~/Pictures.

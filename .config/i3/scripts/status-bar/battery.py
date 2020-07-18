@@ -1,4 +1,4 @@
-#!/bin/python
+#!/usr/bin/env python
 
 # Print battery percentage and estimated time remaining to full charge or
 # depletion.

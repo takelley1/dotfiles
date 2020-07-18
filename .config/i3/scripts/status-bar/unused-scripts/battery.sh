@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Print battery percentage and estimated time remaining to full charge
 # or depletion.

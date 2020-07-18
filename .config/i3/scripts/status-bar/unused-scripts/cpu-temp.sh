@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Status bar script for printing the current CPU package temperature.
 

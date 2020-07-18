@@ -1,4 +1,4 @@
-#!/bin/python
+#!/usr/bin/env python
 
 # Status bar script for printing the current system load, as seen in `top`.
 

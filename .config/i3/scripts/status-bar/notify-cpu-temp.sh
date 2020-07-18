@@ -1,4 +1,4 @@
-#!/bin/dash
+#!/usr/bin/env dash
 
 # Status bar script that notifies the user of a high CPU temperature.
 

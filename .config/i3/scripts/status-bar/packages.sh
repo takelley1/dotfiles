@@ -1,4 +1,4 @@
-#!/bin/dash
+#!/usr/bin/env dash
 
 # Status bar script for printing the total number of packages on the system.
 # The number of packages that require updates is shown in parenthesis (requires passwordless sudo for pacman).

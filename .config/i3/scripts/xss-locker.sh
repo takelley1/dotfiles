@@ -1,4 +1,4 @@
-#!/bin/dash
+#!/usr/bin/env dash
 
 # Standard screen locker that can be invoked manually or after waking from suspend (see ~/.config/i3/config).
 # Requires the i3lock-color package.

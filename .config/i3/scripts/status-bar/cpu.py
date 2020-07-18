@@ -1,4 +1,4 @@
-#!/bin/python
+#!/usr/bin/env python
 
 # Status bar script for printing the current usage of each CPU core.
 

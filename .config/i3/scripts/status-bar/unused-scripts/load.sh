@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Status bar script for printing the current system load, as seen in `top`.
 
