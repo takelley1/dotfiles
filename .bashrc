@@ -159,7 +159,6 @@ alias pip3.8='pip3.8 --trusted-host pypi.org --trusted-host pypi.python.org --tr
 set -o vi
 
 export TERM='screen-256color'
-export LC_CTYPE='en_US.UTF-8'
 export PAGER='less'
 export BROWSER='firefox'
 
