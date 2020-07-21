@@ -1,6 +1,0 @@
-## Sxiv config file.
-## Run `xrdb -load <FILENAME>` to apply settings.
-
-*.background: #000000
-*.foreground: #DDDDDD
-*.font: Noto Sans Mono

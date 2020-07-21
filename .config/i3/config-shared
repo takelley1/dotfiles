@@ -15,8 +15,6 @@
    exec dunst -config ~/.config/dunst/dunstrc &
  # turn down microphone
    exec --no-startup-id amixer set Capture 0%
- # apply sxiv image viewer config settings
-   exec --no-startup-id xrdb -load ~/.config/sxiv/sxiv-xrdb.txt
 
 # KEYBOARD
 
