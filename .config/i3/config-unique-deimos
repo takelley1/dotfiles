@@ -3,7 +3,7 @@
 # DEIMOS CONFIG
 ##############################################################################
 
-font pango:DejaVu Sans 9, Awesome 9
+font pango:Noto Sans 10
 
 # STARTUP
 
@@ -28,7 +28,7 @@ font pango:DejaVu Sans 9, Awesome 9
    #exec_always --no-startup-id xinput disable pointer:"Atmel Atmel maXTouch Digitizer"
 
 # HOTKEYS
- 
+
  # brightness controls
  # requires the line "austin ALL=NOPASSWD: /bin/brightnessctl" in visudo file
    bindsym XF86MonBrightnessUp exec "sudo brightnessctl set 2%+"
@@ -58,4 +58,3 @@ font pango:DejaVu Sans 9, Awesome 9
 
 # \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 # //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
