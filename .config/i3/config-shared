@@ -12,10 +12,13 @@
    exec xss-lock ~/.config/i3/scripts/xss-locker.sh
 
  # run notification daemon
-   exec --nostartup-id dunst -config ~/.config/dunst/dunstrc &
-
+   exec dunst -config ~/.config/dunst/dunstrc &
  # turn down microphone
    exec --no-startup-id amixer set Capture 0%
+ # apply sxiv image viewer config settings
+   exec --no-startup-id xrdb -load ~/.config/sxiv/sxiv-xrdb.txt
+
+# KEYBOARD
 
  # set super key as main modifier
    set $mod Mod4
@@ -23,9 +26,7 @@
    exec_always xset r rate 200 45
  # rebind caps lock to right arrow
    exec xmodmap -e "clear lock"               # remove original function of caps lock
-   exec xmodmap -e "keysym Caps_Lock = Right" # assign the right arrow key to caps lock (for fish shell completion)
- # make bash use vim-style command editing
-   exec --no-startup-id set -o vi
+   #exec xmodmap -e "keysym Caps_Lock = Right" # assign the right arrow key to caps lock (for fish shell completion)
 
  # start apps automatically
    exec --no-startup-id i3-msg 'workspace 1: firefox; exec firefox'
