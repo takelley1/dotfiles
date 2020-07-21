@@ -8,7 +8,7 @@ if [ "$(hostname)" = "phobos" ]; then
 fi
 
 # Get the current temp from a file, which was written to by the cpu-temp.py script.
-temp=$(cat /tmp/cputemp)
+temp="$(cat /tmp/cputemp)"
 
 if [ "${temp}" -ge 91 ]; then
   notify-send -u critical "Suspending system due to CPU temp! (${temp}°C)"
