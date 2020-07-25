@@ -38,12 +38,10 @@
 " Splits open at the bottom and right, rather than top and left.
   set splitbelow splitright
 
-" Renew bash and ranger configs with new material.
-  autocmd BufWritePost files,directories !shortcuts
 " Run xrdb whenever Xdefaults or Xresources are updated.
   autocmd BufWritePost *Xresources,*Xdefaults !xrdb %
 
-" PLUGINS -----------------------------------------------------------------
+" PLUGINS #################################################################
 
 " Load all plugins now.
 " Plugins need to be added to runtimepath before helptags can be generated.
@@ -52,14 +50,32 @@
 " All messages and errors will be ignored.
   silent! helptags ALL
 
-" Have ALE remove extra whitespace and trailing lines.
+" MARKDOWN-PREVIEW --------------------------------------------------------
+  " Automatically launch rendered markdown in browser
+  let g:mkdp_auto_start = 1
+  let g:mkdp_auto_close = 1
+
+" LIGHTLINE ---------------------------------------------------------------
+  let g:lightline = {
+        \ 'colorscheme': 'one',
+        \ 'component_function': {
+        \   'filename': 'LightlineFilename',
+        \ },
+        \ }
+  " Show the full path of the open file.
+  function! LightlineFilename()
+    return expand('%')
+  endfunction
+
+" ALE ---------------------------------------------------------------------
+  " Have ALE remove extra whitespace and trailing lines.
   let g:ale_fixers = {'*': ['remove_trailing_lines', 'trim_whitespace']}
 
   " ALE will fix files automatically when they're saved.
   let g:ale_fix_on_save = 1
 
   " Set how long ALE waits before linting code (default is 200).
-  let g:ale_lint_delay = 500
+  let g:ale_lint_delay = 300
 
   " Quickly jump between ALE errors with CTRL-j/k
   nmap <silent> <C-k> <Plug>(ale_previous_wrap)
