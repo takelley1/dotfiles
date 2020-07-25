@@ -35,8 +35,8 @@
   # Blank space added around the window in pixels. This padding is scaled
   # by DPI and the specified value is always added at both opposing sides.
     padding:
-      x: 2
-      y: 0
+      x: 5
+      y: 5
 
   # Spread additional padding evenly around the terminal content.
   #dynamic_padding: false
@@ -122,7 +122,7 @@
       style: Bold Italic
 
   # Point size
-    size: 6.5
+    size: 7
 
   # Offset is the extra space around each character. `offset.y` can be thought of
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
@@ -167,6 +167,8 @@
         magenta: '#ff6fff'
         cyan:    '#55ddff'
         white:   '#eeeeee'
+
+    # NOT USED ----------------
     gruvbox_dark: &gruvbox_dark
       primary:
         # hard contrast: background = '#1d2021'
@@ -191,6 +193,8 @@
         magenta: '#d3869b'
         cyan:    '#8ec07c'
         white:   '#ebdbb2'
+
+    # NOT USED ----------------
     tomorrow_night_bright: &tomorrow_night_bright
       primary:
         background: '#1d1f21'
