@@ -7,44 +7,44 @@ font pango:Noto Sans 10
 
 # STARTUP
 
- # start network manager applet
-   exec nm-applet
- # start clipboard manager
-   exec clipit
+ # Start network manager applet.
+   exec --no-startup-id nm-applet
+ # Start clipboard manager.
+   exec --no-startup-id clipit
 
- # start redshift
-   exec redshift-gtk -l 39:-74 -t 6500k:2600K
+ # Start redshift.
+   exec --no-startup-id redshift-gtk -l 39:-74 -t 6500k:2600K
 
- # set desktop background
+ # Set desktop background.
    exec --no-startup-id feh --bg-fill /home/austin/.config/i3/wallpapers/earth-at-night-1920x1080.png
- # disable automatic suspend
-   exec_always xset -dpms
-   exec_always xset s off
+ # Disable automatic suspend.
+   exec_always --no-startup-id xset -dpms
+   exec_always --no-startup-id xset s off
 
- # configure trackpad
-   exec --no-startup-id xinput --set-prop 'CyPS/2 Cypress Trackpad' 'libinput Tapping Enabled' 1  # enable tap-clicking
-   exec --no-startup-id xinput --set-prop 'CyPS/2 Cypress Trackpad' 'libinput Accel Speed' 0.3    # increase sensitivity
- # disable touchscreen
+ # Configure trackpad.
+   exec --no-startup-id xinput --set-prop 'CyPS/2 Cypress Trackpad' 'libinput Tapping Enabled' 1  # enable tap-clicking.
+   exec --no-startup-id xinput --set-prop 'CyPS/2 Cypress Trackpad' 'libinput Accel Speed' 0.3    # Increase sensitivity.
+ # Disable touchscreen.
    #exec_always --no-startup-id xinput disable pointer:"Atmel Atmel maXTouch Digitizer"
 
 # HOTKEYS
 
- # brightness controls
- # requires the line "austin ALL=NOPASSWD: /bin/brightnessctl" in visudo file
-   bindsym XF86MonBrightnessUp exec "sudo brightnessctl set 2%+"
-   bindsym XF86MonBrightnessDown exec "sudo brightnessctl set 2%-"
+ # Brightness controls.
+ # Requires the line "austin ALL=NOPASSWD: /bin/brightnessctl" in visudo file.
+   bindsym XF86MonBrightnessUp exec --no-startup-id "sudo brightnessctl set 2%+"
+   bindsym XF86MonBrightnessDown exec --no-startup-id "sudo brightnessctl set 2%-"
 
    #bindsym F4 exec brightnessctl set 2%-
    #bindsym F5 exec brightnessctl set +2%
 
-   bindsym $mod+Right exec "sudo brightnessctl set 1%+"
-   bindsym $mod+Left exec "sudo brightnessctl set 1%-"
+   bindsym $mod+Right exec --no-startup-id "sudo brightnessctl set 1%+"
+   bindsym $mod+Left exec --no-startup-id "sudo brightnessctl set 1%-"
 
- # touchpad toggle (for easier typing)
-   bindsym $mod+space exec xinput --disable 'CyPS/2 Cypress Trackpad'
-   bindsym $mod+Mod1+space exec xinput --enable 'CyPS/2 Cypress Trackpad'
+ # Touchpad toggle (for easier typing).
+   bindsym $mod+space exec --no-startup-id xinput --disable 'CyPS/2 Cypress Trackpad'
+   bindsym $mod+Mod1+space exec --no-startup-id xinput --enable 'CyPS/2 Cypress Trackpad'
 
-# hidden detailed status bar, invoked with right CTRL
+# Hidden detailed status bar, invoked with right CTRL.
 #bar {
 #        status_command i3blocks -c /home/austin/.config/i3/i3blocks-hidden-laptop.conf
 #        mode hide

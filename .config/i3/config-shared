@@ -5,38 +5,50 @@
 
 # STARTUP
 
- # force screen to lock when system is suspended, which occurs whenever the lid is shut
-   # run "systemctl enable go-luks-suspend.service" and comment out the below line to enable luks-suspend
-   #   https://github.com/guns/go-luks-suspend
-   # using xss-lock instead of luks-suspend is faster and more reliable, but less secure
-   exec xss-lock ~/.config/i3/scripts/xss-locker.sh
+ # Force screen to lock when system is suspended, which occurs whenever the lid is shut.
+   # Run 'systemctl enable go-luks-suspend.service' and comment out the
+   #   below line to enable luks-suspend (https://github.com/guns/go-luks-suspend).
+   # Using xss-lock instead of luks-suspend is faster and more reliable, but less secure.
+   exec --no-startup-id xss-lock ~/.config/i3/scripts/xss-locker.sh
 
- # run notification daemon
+ # Start notification daemon.
    exec dunst -config ~/.config/dunst/dunstrc &
- # turn down microphone
+ # Mute microphone.
    exec --no-startup-id amixer set Capture 0%
+
+ # Start apps automatically and assign them to workspaces.
+   exec --no-startup-id i3-msg "workspace 1: firefox; exec firefox"
+   assign [class="firefox"] number "1: firefox"
+
+   exec --no-startup-id i3-msg "workspace 2: terminal; exec alacritty"
+   assign [class="alacritty"] number "2: terminal"
+
+   exec --no-startup-id i3-msg "workspace 3; exec pycharm"
+   assign [class="jetbrains-pycharm-ce"] number 3
+
+   exec --no-startup-id i3-msg "workspace 9; exec discord"
+   assign [class="discord"] number 9
+
+ # Return to workspace 1.
+   exec --no-startup-id i3-msg "workspace 1: firefox"
 
 # KEYBOARD
 
- # set super key as main modifier
+ # Set key repeat delay.
+   exec_always --no-startup-id xset r rate 200 45
+
+ # Make the SUPER key the main modifier key.
    set $mod Mod4
- # set keyboard key repeat delay
-   exec_always xset r rate 200 45
- # rebind caps lock to right arrow
-   exec xmodmap -e "clear lock"               # remove original function of caps lock
-   #exec xmodmap -e "keysym Caps_Lock = Right" # assign the right arrow key to caps lock (for fish shell completion)
-
- # start apps automatically
-   exec --no-startup-id i3-msg 'workspace 1: firefox; exec firefox'
-   exec --no-startup-id i3-msg 'workspace 2: terminal; exec alacritty'
-   exec --no-startup-id i3-msg 'workspace 5; exec discord'
-
- # hide side borders
-   hide_edge_borders both
+ # "Mod1" is the ALT key.
+   set $mod2 Mod1
+ # Rebind CAPS_LOCK to be another modifier key.
+   exec --no-startup-id xmodmap -e "clear lock"
+   exec --no-startup-id xmodmap -e "keysym Caps_Lock = Mod3"
+   set $mod3 Mod3
 
 # FORMATTING
 
- # top border colors
+ # Top border colors.
    # class                 border  backgr. text    indicator child_border
    client.focused          #00ff00 #285777 #ffffff #00ff00   #00ff00
    client.focused_inactive #888888 #888888 #000000 #484e50   #5f676a
@@ -54,24 +66,30 @@
    #client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
    #client.background       #ffffff
 
-   # make certain windows floating for pycharm testing of bots
+ # Hide side borders when only one window is shown in workspace.
+   hide_edge_borders smart
+ # Make the side borders 3 pixels wide on workspaces with >1 window.
+   default_border pixel 3
+
+ # Make certain windows floating for PyCharm unit-tests of botting scripts.
    for_window [title="feh"] floating enable
    #for_window [title="OCVBot"] floating enable
    #for_window [title="ocvbot"] floating enable
 
-   # force ikvm viewer to be fixed
+ # Force iKVM viewer to be fixed.
    for_window [title="iKVM\ Viewer"] floating disable
 
-   # force pycharm commit window to be fixed, since it likes to move around
+ # Force PyCharm commit window to be fixed, since it likes to move around.
    for_window [title="Commit\ Changes"] floating disable
-   # same thing with the git push window
+ # Same thing with the Git push window.
    for_window [title="Push\ Commits"] floating disable
-   # and the settings window
+ # And the settings window.
    for_window [title="Settings"] floating disable
 
 # HOTKEYS
 
- # volume controls
+ # Volume controls.
+ # A small script is used to ensure L and R channels are in sync.
    bindsym XF86AudioLowerVolume exec ~/.config/i3/scripts/volume-down.sh
    bindsym XF86AudioRaiseVolume exec ~/.config/i3/scripts/volume-up.sh
    bindsym XF86AudioMute exec amixer set Master 0%
@@ -79,27 +97,27 @@
    #bindsym F11 exec amixer set Master 2%-
    #bindsym F12 exec amixer set Master 2%+
 
-   bindsym $mod+Down exec ~/.config/i3/scripts/volume-down.sh
-   bindsym $mod+Up exec ~/.config/i3/scripts/volume-up.sh
+   bindsym $mod+Down exec --no-startup-id ~/.config/i3/scripts/volume-down.sh
+   bindsym $mod+Up exec --no-startup-id ~/.config/i3/scripts/volume-up.sh
 
- # lock screen
-   bindsym $mod+Control+x exec ~/.config/i3/scripts/xss-locker.sh
- # sleep
-   bindsym $mod+Control+s exec systemctl suspend
+ # Lock screen.
+   bindsym $mod+Control+x exec --no-startup-id ~/.config/i3/scripts/xss-locker.sh
+ # Suspend system.
+   bindsym $mod+Control+s exec --no-startup-id systemctl suspend
 
- # take screenshot with printscreen key and name with timestamp
+ # Take screenshot with PRINTSCREEN key.
    bindsym 0xff61 exec --no-startup-id ~/.config/i3/scripts/screenshot.sh
- # super-s will also take a screenshot
+ # SUPER-S will also take a screenshot.
    bindsym $mod+s exec --no-startup-id ~/.config/i3/scripts/screenshot.sh
 
- # app launch hotkeys
-   # terminal emulator (config file is ~/.config/alacritty/alacritty.yml)
+ # App launch hotkeys.
+   # Terminal emulator (config file is ~/.config/alacritty/alacritty.yml).
    bindsym $mod+Return exec alacritty
-   # backup terminal emulator (config file is ~/.Xdefaults)
+   # Backup terminal emulator (config file is ~/.Xdefaults).
    bindsym $mod+Shift+Return exec urxvt
-   # rofi app launcher
+   # Rofi app launcher.
    bindsym $mod+d exec rofi -show run -lines 20
-   # backup app launcher
+   # Backup app launcher.
    bindsym $mod+Shift+d exec dmenu
 
    bindsym $mod+i exec firefox
@@ -107,72 +125,71 @@
    bindsym $mod+p exec pycharm
    bindsym $mod+v exec vncviewer
 
- # detect caps lock activation
+ # Detect caps lock activation.
    mode "caps"
      {
      bindsym Caps_Lock mode "default"
      }
    bindsym Caps_Lock mode "caps"
 
- # reload the configuration file
+ # Reload the configuration file.
    bindsym $mod+Control+c reload
- # restart i3 inplace (preserves layout/session, can be used to upgrade i3)
+ # Restart i3 in-place (preserves layout/session, can be used to upgrade i3).
    bindsym $mod+Control+r restart
- # exit i3 (logs out of X session)
-   bindsym $mod+Mod1+Control+e exec i3-msg exit
+ # Exit i3 (logs out of X session).
+   bindsym $mod+$mod2+Control+e exec --no-startup-id i3-msg exit
 
 # WINDOW MANIPULATION
 
- # window resizing
- # "Mod1" is alt
-   bindsym $mod+Mod1+h resize shrink width 20 px
-   bindsym $mod+Mod1+k resize grow height 20 px
-   bindsym $mod+Mod1+j resize shrink height 20 px
-   bindsym $mod+Mod1+l resize grow width 20 px
+ # Window resizing.
+   bindsym $mod+$mod2+h resize shrink width 20 px
+   bindsym $mod+$mod2+k resize grow height 20 px
+   bindsym $mod+$mod2+j resize shrink height 20 px
+   bindsym $mod+$mod2+l resize grow width 20 px
 
- # use Mouse+$mod to drag floating windows to their wanted position
+ # Use Mouse+$mod to drag floating windows to their wanted position.
    floating_modifier $mod
 
- # kill focused window
+ # Kill focused window.
    bindsym $mod+Shift+k kill
 
- # change focus
+ # Change focus.
    bindsym $mod+h focus left
    bindsym $mod+j focus down
    bindsym $mod+k focus up
    bindsym $mod+l focus right
 
- # move focused window
+ # Move focused window.
    bindsym $mod+Control+h move left
    bindsym $mod+Control+j move down
    bindsym $mod+Control+k move up
    bindsym $mod+Control+l move right
 
- # split in horizontal orientation
-  #bindsym $mod+Mod1+Shift+h split h
+ # Split in horizontal orientation.
+  #bindsym $mod+$mod2+Shift+h split h
 
- # split in vertical orientation
+ # Split in vertical orientation.
    #bindsym $mod+v split v
 
- # enter fullscreen mode for the focused container
+ # Enter fullscreen mode for the focused container.
   #bindsym $mod+f fullscreen toggle
 
- # toggle tiling / floating
+ # Toggle tiling / floating.
    bindsym $mod+f floating toggle
 
- # change focus between tiling / floating windows
+ # Change focus between tiling / floating windows.
   #bindsym $mod+space focus mode_toggle
 
- # focus the parent container
+ # Focus the parent container.
   #bindsym $mod+a focus parent
 
- # focus the child container
+ # Focus the child container.
   #bindsym $mod+d focus child
 
- # switch between the two most recently-used workspaces
+ # Switch between the two most recently-used workspaces.
    bindsym $mod+Tab workspace back_and_forth
- # cycle through workspaces
-   bindsym $mod+Shift+Tab workspace prev
+ # Cycle through workspaces on current display.
+   bindsym $mod+Shift+Tab workspace next_on_output
 
    bindsym $mod+1 workspace 1: firefox
    bindsym $mod+2 workspace 2: terminal
@@ -185,7 +202,7 @@
    bindsym $mod+9 workspace 9
    bindsym $mod+0 workspace 10
 
- # move focused container to workspace
+ # Move focused container to workspace.
    bindsym $mod+Control+1 move container to workspace 1: firefox
    bindsym $mod+Control+2 move container to workspace 2: terminal
    bindsym $mod+Control+3 move container to workspace 3
@@ -197,7 +214,7 @@
    bindsym $mod+Control+9 move container to workspace 9
    bindsym $mod+Control+0 move container to workspace 10
 
-# main status bar
+# Main status bar.
 bar {
      status_command i3blocks -c /home/austin/.config/i3/i3blocks.conf
      colors {
