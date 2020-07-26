@@ -15,8 +15,12 @@ if [ "${temp}" -ge 91 ]; then
   systemctl suspend &
   exit 0
 
+elif [ "${temp}" -ge 89 ]; then
+  notify-send "CPU is getting VERY hot! (${temp}°C)"
+  exit 0
+
 elif [ "${temp}" -ge 87 ]; then
-  notify-send "CPU is getting hot! (${temp}°C)"
+  notify-send -u low "CPU is getting hot! (${temp}°C)"
   exit 0
 
 fi
