@@ -17,8 +17,10 @@ def main():
 
     print(" " + temp + "°C")
 
-    # Write the current temperature to a file for cpu-temp-notify.sh to use.
-    os.system('echo ' + temp + ' > /tmp/cputemp')
+    # Write the current temperature to a file for notify-cpu-temp.sh to use.
+    with open("/tmp/cputemp", mode="w") as file:
+        file.write(temp + "\n")
+        file.close
 
     sys.exit(0)
 
