@@ -1,0 +1,83 @@
+#page-header {
+  background-color: #303030 !important;
+  border-color: #303030 !important;
+}
+#page-ctn {
+  color: #303030 !important;
+  max-width: none !important;
+}
+table {
+  display: block;
+  width: 100%;
+  overflow: auto;
+  word-break: normal;
+  word-break: keep-all;
+  border-collapse: collapse;
+  border-spacing: 0;
+  color: #eeeeee !important;
+}
+th,td,tr {
+    background-color: #505050; !important;
+    background-image: none !important;
+    color: #eeeeee !important;
+}
+* {
+    background-image: none !important;
+    color: #eeeeee
+}
+div,p {
+    background-color: #303030;
+    background-image: none !important;
+    color: #eeeeee
+}
+body {
+    color: #eeeeee;
+    background-color: #202020 !important;
+}
+pre,input,textarea {
+    background-color: #505050 !important;
+    background-image: none !important;
+    color: #bbbbbb !important;
+}
+.markdown-body {
+  background: #303030 !important;
+  color: #eeeeee !important;
+}
+.markdown-body blockquote {
+  padding: 0 15px;
+  border-left: 4px solid #ddd !important;
+  background-color #00ee00 !important;
+  color #00ee00 !important;
+}
+ code {
+  background-color: #505050 !important;
+}
+
+h1,h2,h3,h4 {
+    background-color: #303030 !important;
+    color: #ffffff !important;
+}
+a {
+    color: #1ce6ff !important;
+}
+a:hover,a:focus {
+    color: #b8ddea !important;
+}
+a:visited {
+    color: #b8ddea !important;
+}
+.hljs-built_in,
+.hljs-builtin-name {
+  color: #40c3f0 !important;
+}
+.hljs-string,
+.hljs-doctag {
+  color: #ff5c5c !important;
+}
+.hljs-number,
+.hljs-literal,
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag .hljs-attr {
+  color: #00ffff !important;
+}
