@@ -44,16 +44,19 @@
 " PLUGINS #################################################################
 
 " Load all plugins now.
-" Plugins need to be added to runtimepath before helptags can be generated.
   packloadall
 " Load all of the helptags now, after plugins have been loaded.
 " All messages and errors will be ignored.
   silent! helptags ALL
 
 " MARKDOWN-PREVIEW --------------------------------------------------------
-  " Automatically launch rendered markdown in browser
+  " Automatically launch rendered markdown in browser.
   let g:mkdp_auto_start = 1
+  " Automatically close rendered markdown in browser.
   let g:mkdp_auto_close = 1
+  " Use vimb instead of Firefox since Firefox won't automatically close
+  "   the rendered markdown window.
+  let g:mkdp_browser = 'vimb'
 
 " LIGHTLINE ---------------------------------------------------------------
   let g:lightline = {
