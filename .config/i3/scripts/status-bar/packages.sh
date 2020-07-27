@@ -18,7 +18,8 @@ if [ -x "/usr/bin/pacman" ]; then
     updates=""
   fi
 
-  if [ -n "$(pacman -Q otf-font-awesome)" ]; then
+  # Show Font-Awesome icons if possible, use text everywhere else.
+  if [ -n "$(ls /usr/share/fonts/OTF/Font\ Awesome*.otf)" ]; then
     printf "%s\n" " $(pacman -Q | wc -l)${updates}"
   else
     printf "%s\n" "PKGs $(pacman -Q | wc -l)${updates}"

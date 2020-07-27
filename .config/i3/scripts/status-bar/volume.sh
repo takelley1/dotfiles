@@ -2,15 +2,21 @@
 
 # Status bar script for printing the current system volume.
 
-# Font-Awesome f028  
+# Font-Awesome f028 
 
 # Don't show any volume info on phobos
-[ "$(hostname)" = "phobos" ] && exit 0
+if [ "$(hostname)" = "phobos" ]; then
+  exit 0
+fi
 
 vol=$(amixer get Master | grep -o '[0-9]*%' | sed -n 1p)
 
-# Show Font-Awesome icons on Arch-based distros, use text everywhere else.
-[ -n "$(pacman -Q otf-font-awesome)" ] && printf "%s\n" " ${vol}" || printf "%s\n" "VOL ${vol}"
+# Show Font-Awesome icons if possible, use text everywhere else.
+if [ -n "$(ls /usr/share/fonts/OTF/Font\ Awesome*.otf)" ]; then
+  printf "%s\n" " ${vol}"
+else
+  printf "%s\n" "VOL ${vol}"
+fi
 
 # Show both L and R channels.
 #printf "%s\n " $(amixer get Master | grep -o '[0-9]*%' | tr '\n' ' ' | sed 's/ $//' | tr ' ' '/')"
