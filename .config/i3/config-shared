@@ -68,8 +68,12 @@
 
  # Hide side borders when only one window is shown in workspace.
    hide_edge_borders smart
- # Make the side borders 3 pixels wide on workspaces with >1 window.
+ # Make the side borders X pixels wide on workspaces with >1 window.
    default_border pixel 3
+
+ # Don't auto-focus the Vimb browser since it's exclusively used for Markdown
+ #   preview by the markdown-previm.nvim NeoVim extension.
+   no_focus [class="Vimb"]
 
  # Make certain windows floating for PyCharm unit-tests of botting scripts.
    for_window [title="feh"] floating enable
