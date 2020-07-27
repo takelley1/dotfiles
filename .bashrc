@@ -6,11 +6,10 @@
 # Configuration that is shared by both FreeBSD and Linux.
 
 # STARTUP ==========================================================================================
-os="$(uname)" # Store the result of `uname` in a var since this file will check it multiple times.
 tty="$(tty)"
 
 # Start X without a display manager if logging into tty1 with a non-root account.
-if [[ "${os}" == "Linux"
+if [[ "${OSTYPE}" == "linux-gnu"
   && ! "${USER}" == "root"
   && -z "${DISPLAY}"
   && "${tty}" == "/dev/tty1" ]]; then
@@ -26,132 +25,11 @@ if [[ ! "${USER}" == "root"
   exec tmux -f ~/.config/tmux/tmux.conf attach
 fi
 
-# ALIASES ==========================================================================================
-
-alias ta='tmux -f ~/.config/tmux/tmux.conf attach'
-alias tmux='tmux -f ~/.config/tmux/tmux.conf'
-
-# EDITING ------------------------------------------------------------------------------------------
-
-alias vi='nvim'
-alias vim='nvim'
-
-# Easier access to editing particular files (mostly configs).
-alias alacrittyrc='nvim ~/.config/alacritty/alacritty.yml'
-  alias alarc='alacrittyrc'
-alias banlist='vim /mnt/share/documents/banlist.txt'
-alias bashrc='nvim ~/.bashrc'
-  alias rc='bashrc'
-alias dunstrc='nvim ~/.config/dunst/dunstrc'
-
-alias i3c='nvim ~/.config/i3/config-unique-${HOSTNAME}'
-alias i3cc="nvim ~/.config/i3/config-shared"
-alias i3ccc="nvim /tmp/.i3-config"
-alias i3b="nvim ~/.config/i3/i3blocks.conf"
-
-alias readme='nvim ~/.github/README.md'
-
-# Easy editing and committing of todo list.
-alias gcut='cd ~/notes/ && git add ./todo.md && git commit -m "Update todo" && git push'
-alias todo='cd ~/notes/ && git pull && nvim ./todo.md && gcut'
-
-alias tmuxrc='nvim ~/.config/tmux/tmux.conf'
-alias vimrc='nvim ~/.config/nvim/init.vim'
-
-alias xdefaults='nvim ~/.Xdefaults'
-alias xinitrc='nvim ~/.xinitrc'
-alias xprofile='nvim ~/.xprofile'
-
-alias youtube='vim /mnt/share/documents/scripting/youtube-dl-urls.txt'
-
-alias d='dot'
-alias da='dot add'
-alias dau='dot add -u'
-alias daa='dot add -A'
-alias db='dot branch'
-alias dm='dot merge'
-alias dc='dot commit'
-alias dch='dot checkout'
-alias ddd='dot diff'
-alias ddi='dot diff'
-alias dl='dot log'
-alias dp='dot push'
-alias dpu='dot pull'
-alias dr='dot rm'
-alias ds='dot status --untracked-files=no'
-alias dss='dot status'
-
-# GIT ----------------------------------------------------------------------------------------------
-
-alias g='git'
-alias ga='git add'
-alias gau='git add -u'  # Stage all modified files.
-alias gaa='git add -A'  # Stage all changes below the given path, including added or deleted files.
-alias gb='git branch'
-alias gc='git commit'
-alias gch='git checkout'
-alias gd='git diff'
-alias gf='git fetch'
-alias gl='git log'
-alias gp='git push'
-alias gpu='git pull'
-alias gr='git rm'
-alias gs='git status'
-
-# SSH ----------------------------------------------------------------------------------------------
-
-alias europa='ssh 10.0.0.15'
-alias eris='ssh austin@10.0.0.11'
-alias rhea='ssh root@10.0.0.4'
-#alias orion='ssh root@10.0.0.'
-
-# APPS AND GAMES -----------------------------------------------------------------------------------
-
-alias define='dict'
-alias eve='bash /opt/evesetup/lib/evelauncher/evelauncher.sh &'
-alias osrs='bash ~/scripts/bash/linux/osrs.sh &'
-  alias runescape='osrs'
-  alias rs='osrs'
-  alias snip='scrot --quality 100 --select --freeze --silent'
-  alias s='bash ~/scripts/bash/linux/ocvbot-sync-manual.sh'
-alias audible='bash /opt/OpenAudible/OpenAudible &'
-alias pass='systemctl stop auto-screenshot.service && pass'
-
-# DIRECTORY TRAVERSAL ------------------------------------------------------------------------------
-
-alias r='ranger_cd'
-
-alias u='cd ../'       # "Up 1 directory."
-alias u1='u'
-alias u2='cd ../../'
-alias u3='cd ../../../'
-alias u3='cd ../../../../'
-
-alias root='cd /'
-alias home='cd ~'
-alias h='cd ~'
-alias c='clear'
-
-alias mv='mv -v'
-alias cp='cp -v'
-
-# MISC ---------------------------------------------------------------------------------------------
-
-alias linux="cd ~/linux-notes && r"
-alias notes="cd ~/notes/ && r"
-alias scripts='cd ~/scripts/bash/ && r'
-alias status='cd ~/.config/i3/scripts/status-bar/ && r'
-
-# This is required for bash aliases to work with sudo.
-alias sudo='sudo '
-
-alias less='less -XRF' # Show text in terminal even after quitting less.
-alias grep='grep --color=always'
-alias mkdir='mkdir -pv'
-
-alias pip='pip --trusted-host pypi.org --trusted-host pypi.python.org --trusted-host files.pythonhosted.org'
-alias pip3='pip3 --trusted-host pypi.org --trusted-host pypi.python.org --trusted-host files.pythonhosted.org'
-alias pip3.8='pip3.8 --trusted-host pypi.org --trusted-host pypi.python.org --trusted-host files.pythonhosted.org'
+# Source bash alias scripts.
+# shellcheck disable=1090
+for file in ~/.config/bashrc.d/*.sh; do
+  source "${file}"
+done
 
 # OPTIONS ==========================================================================================
 
@@ -163,8 +41,7 @@ export PAGER='less'
 export BROWSER='firefox'
 
 # Add scripts to PATH
-export PATH=$PATH:~/scripts/bash
-export PATH=$PATH:~/scripts/bash/freebsd
+export PATH=$PATH:~/scripts/bash:~/scripts/bash/freebsd
 
 # These vars are for the sxiv image viewer.
 export XDG_CONFIG_HOME=~/.config
@@ -197,6 +74,7 @@ shopt -s cdspell         # Correct minor cd typos.
 # This is a shell function to automatically change the current working
 #   directory to the last visited one after ranger quits.
 
+alias r='ranger_cd'
 ranger_cd() {
     temp_file="$(mktemp -t "ranger_cd.XXXXXXXXXX")"
     ranger --choosedir="$temp_file" -- "${@:-$PWD}"
@@ -221,13 +99,7 @@ fi
 # FREEBSD CONFIGURATION
 ####################################################################################################
 
-if [[ "${os}" == "FreeBSD" ]]; then
-  # Custom Git alias for managing dotfiles.
-  # See: https://developer.atlassian.com/blog/2016/02/best-way-to-store-dotfiles-git-bare-repo/
-  # FreeBSD's Git binary is at a different path than on Linux.
-  # "dot" for "dotfiles".
-  alias dot='/usr/local/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
-
+if [[ "${OSTYPE}" == "freebsd"* ]]; then
   export SHELL='/usr/local/bin/bash'
   export PATH=$PATH:~/scripts/bash/freebsd
 
@@ -257,9 +129,7 @@ if [[ "${os}" == "FreeBSD" ]]; then
 # LINUX CONFIGURATION
 ####################################################################################################
 
-elif [[ "${os}" == "Linux" ]]; then
-  alias dot='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
-
+elif [[ "${OSTYPE}" == "linux-gnu" ]]; then
   export SHELL='/bin/bash'
   export PATH=$PATH:~/scripts/bash/linux
 
@@ -290,5 +160,4 @@ elif [[ "${os}" == "Linux" ]]; then
     export VISUAL='/usr/bin/vi'
     export SUDO_EDITOR='/usr/bin/vi'
   fi
-
 fi
