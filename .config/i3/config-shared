@@ -70,6 +70,10 @@
    hide_edge_borders smart
  # Make the side borders X pixels wide on workspaces with >1 window.
    default_border pixel 3
+ # Don't wrap focus. 
+   focus_wrapping no
+ # Don't auto-focus newly activated windows.
+   focus_on_window_activaion none
 
  # Don't auto-focus the Vimb browser since it's exclusively used for Markdown
  #   preview by the markdown-previm.nvim NeoVim extension.
@@ -173,7 +177,7 @@
   #bindsym $mod+$mod2+Shift+h split h
 
  # Split in vertical orientation.
-   #bindsym $mod+v split v
+  #bindsym $mod+v split v
 
  # Enter fullscreen mode for the focused container.
   #bindsym $mod+f fullscreen toggle
