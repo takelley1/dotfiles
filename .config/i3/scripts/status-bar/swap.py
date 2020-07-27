@@ -26,7 +26,7 @@ def main():
 
     # Get swap usage in percentage of total swap space.
     swap_used_percent = psutil.swap_memory().percent
-    swap_used_percent = round(swap_used_percent, 1)
+    swap_used_percent = round(swap_used_percent)
 
     # If the system is using <1% of swap space, exit.
     if swap_used_percent <= 1:

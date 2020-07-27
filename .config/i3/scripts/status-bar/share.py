@@ -12,7 +12,7 @@ def main():
     disk = psutil.disk_usage('/mnt/tank/share/documents').free
     # Convert to TB
     disk = disk / (1024**4)
-    disk = round(disk, 3)
+    disk = round(disk, 2)
 
     print(' ' + str(disk) + "T")
 
