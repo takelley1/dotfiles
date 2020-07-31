@@ -28,7 +28,7 @@ fi
 # Source bash alias scripts.
 # shellcheck disable=1090
 for file in ~/.config/bashrc.d/*.sh; do
-  source "${file}"
+  . "${file}"
 done
 
 # OPTIONS ==========================================================================================
@@ -43,7 +43,7 @@ export PAGER='less'
 export BROWSER='firefox'
 
 # Add scripts to PATH
-export PATH=$PATH:~/scripts/bash:~/scripts/bash/freebsd
+export PATH="$PATH:~/scripts/bash"
 
 # These vars are for the sxiv image viewer.
 export XDG_CONFIG_HOME=~/.config
@@ -113,11 +113,11 @@ if [[ "${OSTYPE}" == "freebsd"* ]]; then
   export http_proxy="http://10.0.0.15:8080"
   export https_proxy="http://10.0.0.15:8080"
 
-  if [[ -x /usr/local/bin/nvim ]]; then
+  if hash nvim 2>/dev/null; then
     export EDITOR='/usr/local/bin/nvim'
     export VISUAL='/usr/local/bin/nvim'
     export SUDO_EDITOR='/usr/local/bin/nvim'
-  elif [[ -x /usr/local/bin/vim ]]; then
+  elif hash vim 2>/dev/null; then
     export EDITOR='/usr/local/bin/vim'
     export VISUAL='/usr/local/bin/vim'
     export SUDO_EDITOR='/usr/local/bin/vim'
@@ -131,7 +131,7 @@ if [[ "${OSTYPE}" == "freebsd"* ]]; then
 # LINUX CONFIGURATION
 ####################################################################################################
 
-elif [[ "${OSTYPE}" == "linux-gnu" ]]; then
+elif [[ "${OSTYPE}" == "linux"* ]]; then
   export SHELL='/bin/bash'
   export PATH=$PATH:~/scripts/bash/linux
 
@@ -149,11 +149,11 @@ elif [[ "${OSTYPE}" == "linux-gnu" ]]; then
   alias lcon='ls -lZ --all --reverse'
   alias untar='tar -xzvf'
 
-  if [[ -x /usr/bin/nvim ]]; then
+  if hash nvim 2>/dev/null; then
     export EDITOR='/usr/bin/nvim'
     export VISUAL='/usr/bin/nvim'
     export SUDO_EDITOR='/usr/bin/nvim'
-  elif [[ -x /usr/bin/vim ]]; then
+  elif hash vim 2>/dev/null; then
     export EDITOR='/usr/bin/vim'
     export VISUAL='/usr/bin/vim'
     export SUDO_EDITOR='/usr/bin/vim'
