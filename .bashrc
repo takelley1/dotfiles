@@ -35,6 +35,8 @@ done
 
 # Use vi-style editing for bash commands.
 set -o vi
+# Use jk to exit edit mode instead of ESC.
+bind '"jk":vi-movement-mode'
 
 export TERM='screen-256color'
 export PAGER='less'
