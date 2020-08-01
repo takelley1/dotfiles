@@ -1,24 +1,22 @@
-" identify the filetype
+" Identify the filetype.
   filetype plugin on
-" force syntax highlighting
+" Force syntax highlighting.
   syntax on
-" force unicode encoding
+" Force unicode encoding.
   set encoding=utf-8
 
-" remap jk to ESC for easier exiting insert mode.
-  inoremap jk <ESC>
-" convert tabs to 2x spaces.
+" FORMATTING ##############################################################
+
+" Convert tabs to 2x spaces.
   set tabstop=2
   set softtabstop=2
-  set expandtab
   set shiftwidth=2
+
+  set expandtab
   set smarttab
   set smartindent
 
-" reduce plugin update time
-  set updatetime=100
-
-" map vim copy buffer to system clipboard.
+" Map vim copy buffer to system clipboard.
   set clipboard=unnamedplus
 
 " Show relative line numbers for easy jumping around using #j and #k keys.
@@ -41,6 +39,15 @@
 " Run xrdb whenever Xdefaults or Xresources are updated.
   autocmd BufWritePost *Xresources,*Xdefaults !xrdb %
 
+" KEYBINDINGS #############################################################
+
+" Remap jk to ESC for easier exiting insert mode.
+  inoremap jk <ESC>
+" Disable Ex mode.
+  map q: <Nop>
+" Remap Q to :noh to turn off highlighted search results.
+  nnoremap Q :noh<CR>
+
 " PLUGINS #################################################################
 
 " Load all plugins now.
@@ -48,6 +55,8 @@
 " Load all of the helptags now, after plugins have been loaded.
 " All messages and errors will be ignored.
   silent! helptags ALL
+" Reduce plugin update time.
+  set updatetime=100
 
 " MARKDOWN-PREVIEW --------------------------------------------------------
   " Automatically launch rendered markdown in browser.
@@ -67,7 +76,7 @@
         \ }
   " Show the full path of the open file.
   function! LightlineFilename()
-    return expand('%')
+    return expand('%F')
   endfunction
 
 " ALE ---------------------------------------------------------------------
@@ -80,6 +89,6 @@
   " Set how long ALE waits before linting code (default is 200).
   let g:ale_lint_delay = 300
 
-  " Quickly jump between ALE errors with CTRL-j/k
+  " Quickly jump between ALE errors with CTRL-j/k.
   nmap <silent> <C-k> <Plug>(ale_previous_wrap)
   nmap <silent> <C-j> <Plug>(ale_next_wrap)
