@@ -8,6 +8,8 @@ amixer sset Master,0 1%+,1%+
 L=$(amixer get Master | grep -Eo '[0-9]{1,3}%' | sed -n 1p | tr -d '%')
 R=$(amixer get Master | grep -Eo '[0-9]{1,3}%' | sed -n 2p | tr -d '%')
 
-[ "${L}" != "${R}" ] && amixer sset Master,0 "${L}"%,"${L}"%
+if [ "${L}" != "${R}" ]; then
+  amixer sset Master,0 "${L}"%,"${L}"%
+fi
 
 exit 0
