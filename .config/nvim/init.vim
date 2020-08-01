@@ -1,13 +1,16 @@
+" FEATURES ################################################################
+
 " Identify the filetype.
-  filetype plugin on
+  filetype indent plugin on
 " Force syntax highlighting.
   syntax on
 " Force unicode encoding.
   set encoding=utf-8
+  set nocompatible
 
 " FORMATTING ##############################################################
 
-" Convert tabs to 2x spaces.
+  " Convert tabs to 2x spaces.
   set tabstop=2
   set softtabstop=2
   set shiftwidth=2
@@ -16,47 +19,58 @@
   set smarttab
   set smartindent
 
-" Map vim copy buffer to system clipboard.
-  set clipboard=unnamedplus
-
-" Show relative line numbers for easy jumping around using #j and #k keys.
- "set relativenumber
- "set rnu
-" Make line number column thinner.
- "set numberwidth=1
-" Force cursor to stay in the middle of the screen.
+  " Show line numbers.
+  set number
+  " Make line number column thinner.
+  set numberwidth=1
+  " Force cursor to stay in the middle of the screen.
   set so=999
 
-" Disables automatic commenting on newline.
+" BEHAVIOR ################################################################
+
+  " Case-insensitive search, except when using capitals.
+  set ignorecase
+  set smartcase
+
+  " Map vim copy buffer to system clipboard.
+  set clipboard=unnamedplus
+
+  " Show dialog when a comman requires confirmation.
+  set confirm
+
+  " Disables automatic commenting on newline.
   autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
-" Force path autocompletion.
+  " Better path autocompletion.
+  set wildmenu
   set wildmode=longest,list,full
 
-" Splits open at the bottom and right, rather than top and left.
+  " Splits open at the bottom and right, rather than top and left.
   set splitbelow splitright
 
-" Run xrdb whenever Xdefaults or Xresources are updated.
+  " Run xrdb whenever Xdefaults or Xresources are updated.
   autocmd BufWritePost *Xresources,*Xdefaults !xrdb %
 
 " KEYBINDINGS #############################################################
 
-" Remap jk to ESC for easier exiting insert mode.
+  " Remap jk to ESC for easier exiting insert mode.
   inoremap jk <ESC>
-" Disable Ex mode.
+  " Disable Ex mode.
   map q: <Nop>
-" Remap Q to :noh to turn off highlighted search results.
-  nnoremap Q :noh<CR>
+  " Remap Q to :nohl to turn off highlighted search results.
+  nnoremap Q :nohl<CR>
+  " Also trigger screen redraws to clear search restuls.
+  nnoremap <C-L> :nohl<CR><C-L>
 
 " PLUGINS #################################################################
 
-" Load all plugins now.
+  " Load all plugins now.
   packloadall
-" Load all of the helptags now, after plugins have been loaded.
-" All messages and errors will be ignored.
+  " Load all of the helptags now, after plugins have been loaded.
+  " All messages and errors will be ignored.
   silent! helptags ALL
-" Reduce plugin update time.
-  set updatetime=100
+  " Reduce plugin update time.
+  set updatetime=200
 
 " MARKDOWN-PREVIEW --------------------------------------------------------
   " Automatically launch rendered markdown in browser.
