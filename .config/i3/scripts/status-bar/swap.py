@@ -17,10 +17,11 @@ def main():
     if swap_used is None:
       sys.exit(0)
 
-    # Convert to MB
+    # Convert used to MB
     swap_used = swap_used / (1024**2)
     swap_used = round(swap_used)
 
+    # Convert total to GB
     swap_total = swap_total / (1024**3)
     swap_total = round(swap_total, 1)
 
@@ -28,8 +29,8 @@ def main():
     swap_used_percent = psutil.swap_memory().percent
     swap_used_percent = round(swap_used_percent)
 
-    # If the system is using <1% of swap space, exit.
-    if swap_used_percent <= 1:
+    # If the system is using <X% of swap space, exit.
+    if swap_used_percent <= 3:
       sys.exit(0)
 
     print(" " + str(swap_used) + "M/" + str(swap_total) + "G (" + str(swap_used_percent) + "%)")
