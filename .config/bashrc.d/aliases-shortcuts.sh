@@ -1,11 +1,11 @@
 # Sourced by bashrc.
-
-# CONFIG FILES ------------------------------------------------------------
+#
+# Aliases for easily accessing config files and directories.
 
 alias alacrittyrc='nvim ~/.config/alacritty/alacritty.yml'
 alias banlist='vim /mnt/share/documents/banlist.txt'
-alias bashrc='nvim ~/.bashrc'
-alias bashrcd='cd ~/.config/bashrc.d && r'
+alias bashrc='cd ~/.config/bashrc.d && r'
+alias bashrcf='nvim ~/.bashrc'
 alias dunstrc='nvim ~/.config/dunst/dunstrc'
 alias readme='nvim ~/.github/README.md'
 alias tmuxrc='nvim ~/.config/tmux/tmux.conf'
@@ -18,8 +18,6 @@ alias i3b="nvim ~/.config/i3/i3blocks.conf"
 alias i3c='nvim ~/.config/i3/config-unique-${HOSTNAME}'
 alias i3cc="nvim ~/.config/i3/config-shared"
 alias i3ccc="nvim /tmp/.i3-config"
-
-# DIRECTORIES -------------------------------------------------------------
 
 alias config="cd ~/.config && r"
 alias linux="cd ~/linux-notes && r"

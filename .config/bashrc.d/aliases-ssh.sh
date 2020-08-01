@@ -1,4 +1,6 @@
 # Sourced by bashrc.
+#
+# Aliases for quickly SSHing into other hosts.
 
 alias europa='ssh 10.0.0.15'
 alias eris='ssh austin@10.0.0.11'
