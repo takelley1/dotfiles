@@ -41,12 +41,24 @@ def main():
     if remaining == '(-1:59)':
         remaining = ''
 
+    output=''
     if percent >= 99:
-        output='  FULL'
+        output=output + ' FULL'
     else:
-        output=' ' + str(percent) + '% ' + remaining + plug
+        output=output + ' ' + str(percent) + '% ' + remaining + plug
 
     print(output)
+
+    # Change color for low-power states.
+    # The i3bar protocol uses the third line of the output to specify
+    #   color: https://github.com/vivien/i3blocks#format
+    if batt.power_plugged == False:
+        if percent <= 5:
+            print('\n#F11712')
+        elif percent <= 10:
+            print('\n#FF7300')
+        elif percent <= 20:
+            print('\n#FFF000')
 
     sys.exit(0)
 
