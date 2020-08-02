@@ -1,11 +1,11 @@
 #!/usr/bin/env dash
-
+#
 # Status bar script for printing the total number of packages on the system.
-# The number of packages that require updates is shown in parenthesis (requires passwordless sudo for pacman).
-
+# The number of packages that require updates is shown in parentheses.
+#   (requires passwordless sudo for pacman).
+#
 # Font-Awesome f49e 
 
-# Show Font-Awesome icons on Arch-based distros, use text everywhere else.
 if [ -x "/usr/bin/pacman" ]; then
 
   updates=$(sudo pacman -Sy >/dev/null 2>&1 && sudo pacman -Qu | wc -l)
@@ -20,10 +20,11 @@ if [ -x "/usr/bin/pacman" ]; then
 
   # Show Font-Awesome icons if possible, use text everywhere else.
   if [ -n "$(ls /usr/share/fonts/OTF/Font\ Awesome*.otf)" ]; then
-    printf "%s\n" " $(pacman -Q | wc -l)${updates}"
+    symbol=""
   else
-    printf "%s\n" "PKGs $(pacman -Q | wc -l)${updates}"
+    symbol="PKGs"
   fi
+  printf "%s\n" "${symbol} $(pacman -Q | wc -l)${updates}"
 
 elif [ -x "/usr/bin/apt" ]; then
   printf "%s\n" "PKGs $(dpkg-query --list | wc -l)"

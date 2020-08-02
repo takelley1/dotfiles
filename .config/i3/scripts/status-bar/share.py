@@ -1,7 +1,7 @@
 #!/usr/bin/env python
-
+#
 # Status bar script for printing the amount of gigabytes free in the network share, assuming it's mounted to /mnt/tank/share/documents.
-
+#
 # Font-Awesome f6ff 
 
 import sys
@@ -14,7 +14,7 @@ def main():
     disk = disk / (1024**4)
     disk = round(disk, 2)
 
-    print(' ' + str(disk) + "T")
+    print(' ' + str(disk) + 'T')
 
     sys.exit(0)
 

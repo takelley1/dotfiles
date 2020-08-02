@@ -1,7 +1,7 @@
 #!/usr/bin/env python
-
+#
 # Status bar script for printing the current swap space usage in megabytes and percentage of total.
-
+#
 # Emoji U+1F504 🔄
 # Font-Awesome f56f 
 
@@ -33,7 +33,7 @@ def main():
     if swap_used_percent <= 3:
       sys.exit(0)
 
-    print(" " + str(swap_used) + "M/" + str(swap_total) + "G (" + str(swap_used_percent) + "%)")
+    print(' ' + str(swap_used) + 'M/' + str(swap_total) + 'G (' + str(swap_used_percent) + '%)')
 
     sys.exit(0)
 

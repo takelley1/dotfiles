@@ -1,7 +1,7 @@
 #!/usr/bin/env python
-
+#
 # Status bar script for printing the current system load, as seen in `top`.
-
+#
 # Emoji U+1F4CA 📈
 # Font-Awesome f3fd 
 
@@ -14,7 +14,7 @@ def main():
 
     # Break apart the tuple in order to add leading zeroes to each number.
     for load in load_tuple:
-        load = "{:05.2f}".format(load)
+        load = '{:05.2f}'.format(load)
         # Reassemble the values into a list.
         load_list.append(load)
 

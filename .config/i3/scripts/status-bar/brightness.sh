@@ -1,7 +1,7 @@
 #!/usr/bin/env dash
-
-# Status bar script for printing the current screen brightness.
-
+#
+# Print the current screen brightness.
+#
 # Emoji U+1F506 🔆
 # Font-Awesome f185 
 

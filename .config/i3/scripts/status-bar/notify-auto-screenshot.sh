@@ -1,5 +1,5 @@
 #!/usr/bin/env dash
-
+#
 # Status bar script to print a notification if auto-screenshot.sh is NOT running.
 
 # Don't run on phobos.

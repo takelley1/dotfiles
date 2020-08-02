@@ -1,7 +1,8 @@
 #!/usr/bin/env dash
-
-# Status bar script for printing the "wa" field, as seen in the `top` command to get I/O use estimate.
-
+#
+# Status bar script for printing the "wa" field, as seen in the `top`
+#   command to get I/O use estimate.
+#
 # Emoji U+1F4BD 💽
 # Font-Awesome f252 
 
@@ -12,10 +13,12 @@ io_wa=$(top -b | head -3 | awk '{print $10}' | tail -1)
 
 # Show Font-Awesome icons if possible, use text everywhere else.
 if [ -n "$(ls /usr/share/fonts/OTF/Font\ Awesome*.otf)" ]; then
-  # Pad with leading zeros.
-  printf "%s%04.1f\n" " " "${io_wa}"
+  symbol=""
 else
-  printf "%s%04.1f\n" "WA " "${io_wa}"
+  symbol="WA"
 fi
+
+# Pad with leading zeros.
+printf "%s%04.1f\n" "${symbol} " "${io_wa}"
 
 exit 0

@@ -1,7 +1,7 @@
 #!/usr/bin/env python
-
+#
 # Status bar script for printing the current amount of virtual RAM available in gigabytes.
-
+#
 # Emoji U+1F9E0 🧠
 # Font-Awesome f538 
 
@@ -16,7 +16,7 @@ def main():
     # Round to one decimal place.
     ram = round(ram, 1)
 
-    print("  " + str(ram) + "G")
+    print('  ' + str(ram) + 'G')
 
     sys.exit(0)
 
