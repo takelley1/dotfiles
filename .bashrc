@@ -8,4 +8,3 @@ set globstar
 for file in ~/.config/bashrc.d/**.sh; do
   source "${file}"
 done
-unset globstar
