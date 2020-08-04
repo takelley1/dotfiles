@@ -18,6 +18,9 @@
   set expandtab
   set smarttab
   set smartindent
+  
+  " Force YAML files to use indents of 2 spaces.
+  autocmd FileType yaml setlocal shiftwidth=2 softtabstop=2 tabstop=2
 
   " Show line numbers.
   set number
