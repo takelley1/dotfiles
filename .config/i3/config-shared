@@ -23,14 +23,14 @@
    exec --no-startup-id i3-msg "workspace 2: terminal; exec alacritty"
    assign [class="alacritty"] number "2: terminal"
 
-   exec --no-startup-id i3-msg "workspace 3; exec pycharm"
+   #exec --no-startup-id i3-msg "workspace 3; exec pycharm"
    assign [class="jetbrains-pycharm-ce"] number 3
 
-   exec --no-startup-id i3-msg "workspace 9; exec discord"
+   #exec --no-startup-id i3-msg "workspace 9; exec discord"
    assign [class="discord"] number 9
 
- # Return to workspace 1.
-   exec --no-startup-id i3-msg "workspace 1: firefox"
+ # Return to workspace 2.
+   exec --no-startup-id i3-msg "workspace 2: terminal"
 
 # KEYBOARD
 
@@ -41,10 +41,8 @@
    set $mod Mod4
  # "Mod1" is the ALT key.
    set $mod2 Mod1
- # Rebind CAPS_LOCK to be another modifier key.
-   exec --no-startup-id xmodmap -e "clear lock"
-   exec --no-startup-id xmodmap -e "keysym Caps_Lock = Mod3"
-   set $mod3 Mod3
+ # Rebind CAPS_LOCK to be useless.
+   exec --no-startup-id xmodmap -e "remove Lock = Caps_Lock" -e "keysym Caps_Lock = Scroll_Lock"
 
 # FORMATTING
 
@@ -70,10 +68,8 @@
    hide_edge_borders smart
  # Make the side borders X pixels wide on workspaces with >1 window.
    default_border pixel 3
- # Don't wrap focus. 
+ # Don't wrap focus.
    focus_wrapping no
- # Don't auto-focus newly activated windows.
-   focus_on_window_activaion none
 
  # Don't auto-focus the Vimb browser since it's exclusively used for Markdown
  #   preview by the markdown-previm.nvim NeoVim extension.
@@ -154,9 +150,6 @@
    bindsym $mod+$mod2+k resize grow height 20 px
    bindsym $mod+$mod2+j resize shrink height 20 px
    bindsym $mod+$mod2+l resize grow width 20 px
-
- # Use Mouse+$mod to drag floating windows to their wanted position.
-   floating_modifier $mod
 
  # Kill focused window.
    bindsym $mod+Shift+k kill

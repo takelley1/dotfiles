@@ -22,7 +22,7 @@ font pango:Noto Sans 10
    exec_always --no-startup-id xset s off
 
  # Configure trackpad.
-   exec --no-startup-id xinput --set-prop 'CyPS/2 Cypress Trackpad' 'libinput Tapping Enabled' 1  # enable tap-clicking.
+   exec --no-startup-id xinput --set-prop 'CyPS/2 Cypress Trackpad' 'libinput Tapping Enabled' 1  # Enable tap-clicking.
    exec --no-startup-id xinput --set-prop 'CyPS/2 Cypress Trackpad' 'libinput Accel Speed' 0.3    # Increase sensitivity.
  # Disable touchscreen.
    #exec_always --no-startup-id xinput disable pointer:"Atmel Atmel maXTouch Digitizer"
