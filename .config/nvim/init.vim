@@ -55,6 +55,10 @@
 
   " Remap jk to ESC for easier exiting insert mode.
   inoremap jk <ESC>
+  
+  " Columnize selection.
+  vnoremap t :!column -t<CR>
+  
   " Disable Ex mode.
   map q: <Nop>
   " Remap Q to :nohl to turn off highlighted search results.
