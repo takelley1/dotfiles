@@ -8,7 +8,7 @@
 
 if [ -x "/usr/bin/pacman" ]; then
 
-  updates=$(sudo pacman -Sy >/dev/null 2>&1 && sudo pacman -Qu | wc -l)
+  updates=$(checkupdates 2>/dev/null | wc -l)
 
   # Add parenthesis around the update number if there are updates to apply.
   if [ "${updates}" -gt 0 ]; then
