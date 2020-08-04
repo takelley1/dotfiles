@@ -1,4 +1,3 @@
-#!/usr/bin/env dash
 # ~/.xinitrc
 # Executed by shell to start the X user session.
 
@@ -31,9 +30,15 @@ if [ -d /etc/X11/xinit/xinitrc.d ] ; then
   unset f
 fi
 
-# Create i3 config and launch i3.
+# Ensure i3 running config file is empty.
+>/tmp/.i3-config
+
+# Build i3 config file out of a shared common configuration and a
+#   separate configuration unique to the current host.
 cat "${HOME}/.config/i3/.config-notification"      \
     "${HOME}/.config/i3/config-unique-$(hostname)" \
     "${HOME}/.config/i3/config-shared"             \
-    > /tmp/.i3-config                              \
-    && exec i3 -c /tmp/.i3-config
+    > /tmp/.i3-config
+
+# Launch i3 using the temporary "running config" file.
+exec i3 -c /tmp/.i3-config
