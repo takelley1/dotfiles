@@ -99,10 +99,3 @@
 
   " ALE will fix files automatically when they're saved.
   let g:ale_fix_on_save = 1
-
-  " Set how long ALE waits before linting code (default is 200).
-  let g:ale_lint_delay = 300
-
-  " Quickly jump between ALE errors with CTRL-j/k.
-  nmap <silent> <C-k> <Plug>(ale_previous_wrap)
-  nmap <silent> <C-j> <Plug>(ale_next_wrap)
