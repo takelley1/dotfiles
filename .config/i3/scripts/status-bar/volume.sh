@@ -4,13 +4,13 @@
 #
 # Font-Awesome f028 
 
-vol=$(amixer get Master | grep -o '[0-9]*%' | sed -n 1p)
+vol=$(amixer get Master | awk '/[[:digit:]]+%/ {gsub(/\[/,""); gsub(/\]/,""); print $5;exit}')
 
 # Show Font-Awesome icons if possible, use text everywhere else.
 if [ -n "$(ls /usr/share/fonts/OTF/Font\ Awesome*.otf)" ]; then
-  symbol=""
+    symbol=""
 else
-  symbol="VOL"
+    symbol="VOL"
 fi
 
 printf "%s\n" "${symbol} ${vol}"

@@ -9,11 +9,19 @@
 # This is not useful on ZFS datasets, for example.
 show_percent = False
 
+import os
 import sys
 import psutil
 
+
 def main():
-    # Get free space in bytes
+
+    # Check server availability.
+    shares = os.system('ping -c 1 10.0.0.4 &>/dev/null')
+    if shares != 0:
+        sys.exit(0)
+
+    # Get free space in bytes.
     disk = psutil.disk_usage('/mnt/tank/share/documents')
     disk_byes = disk.free
 
@@ -21,7 +29,7 @@ def main():
     if disk_perc >= 1:
         disk_perc = round(disk_perc)
 
-    # Convert to TB
+    # Convert to TB.
     disk_byes = disk_byes / (1024**4)
     disk_byes = round(disk_byes, 2)
 
@@ -30,7 +38,7 @@ def main():
     if show_percent is False:
         print(output)
 
-    # The i3bar protocol uses the third line of the output to specify
+    # The i3bar protocol uses the third line of the output to specify.
     #   color: https://github.com/vivien/i3blocks#format
     else:
         print(output + ' (' + str(disk_perc) + '%)')
@@ -43,6 +51,7 @@ def main():
             print('\n#FFF000')
 
     sys.exit(0)
+
 
 if __name__ == '__main__':
     main()

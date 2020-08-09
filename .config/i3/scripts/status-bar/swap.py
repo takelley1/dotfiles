@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 #
-# Status bar script for printing the current swap space usage in megabytes and percentage of total.
+# Status bar script for printing the current swap space usage in
+#   megabytes and percentage of total.
 #
 # Emoji U+1F504 🔄
 # Font-Awesome f56f 
@@ -8,34 +9,37 @@
 import sys
 import psutil
 
+
 def main():
-    # Get swap usage in bytes.
     swap_used = psutil.swap_memory().used
     swap_total = psutil.swap_memory().total
 
     # If the system doesn't have swap, exit.
     if swap_used is None:
-      sys.exit(0)
+        sys.exit(0)
 
     # Convert used to MB
     swap_used = swap_used / (1024**2)
     swap_used = round(swap_used)
+    swap_used = str(swap_used)
 
     # Convert total to GB
     swap_total = swap_total / (1024**3)
     swap_total = round(swap_total, 1)
+    swap_total = str(swap_total)
 
-    # Get swap usage in percentage of total swap space.
-    swap_used_percent = psutil.swap_memory().percent
-    swap_used_percent = round(swap_used_percent)
+    swap_used_perc = psutil.swap_memory().percent
+    swap_used_perc = round(swap_used_perc)
 
     # If the system is using <X% of swap space, exit.
-    if swap_used_percent <= 3:
-      sys.exit(0)
+    if swap_used_perc <= 3:
+        sys.exit(0)
+    swap_used_perc = str(swap_used_perc)
 
-    print(' ' + str(swap_used) + 'M/' + str(swap_total) + 'G (' + str(swap_used_percent) + '%)')
+    print(' ' + swap_used + 'M/' + swap_total + 'G (' + swap_used_perc + '%)')
 
     sys.exit(0)
+
 
 if __name__ == '__main__':
     main()

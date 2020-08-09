@@ -13,9 +13,9 @@ io_wa=$(top -b | head -3 | awk '{print $10}' | tail -1)
 
 # Show Font-Awesome icons if possible, use text everywhere else.
 if [ -n "$(ls /usr/share/fonts/OTF/Font\ Awesome*.otf)" ]; then
-  symbol=""
+    symbol=""
 else
-  symbol="WA"
+    symbol="WA"
 fi
 
 # Pad with leading zeros.

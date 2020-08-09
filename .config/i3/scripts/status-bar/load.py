@@ -8,11 +8,12 @@
 import sys
 import psutil
 
+
 def main():
     load_tuple = psutil.getloadavg()
     load_list = []
 
-    # Break apart the tuple in order to add leading zeroes to each number.
+    # Break apart the tuple to add leading zeroes to each number.
     for load in load_tuple:
         load = '{:05.2f}'.format(load)
         # Reassemble the values into a list.
@@ -20,13 +21,14 @@ def main():
 
     # Convert the list into a string and remove unnecessary characters.
     load_list = str(load_list)
-    load_list = load_list.replace('[','')
-    load_list = load_list.replace(']','')
-    load_list = load_list.replace("'","")
+    load_list = load_list.replace('[', '')
+    load_list = load_list.replace(']', '')
+    load_list = load_list.replace("'", "")
 
     print('', load_list)
 
     sys.exit(0)
+
 
 if __name__ == '__main__':
     main()
