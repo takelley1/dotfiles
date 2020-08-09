@@ -10,10 +10,10 @@
 
 " FORMATTING ##############################################################
 
-  " Convert tabs to 2x spaces.
-  set tabstop=2
-  set softtabstop=2
-  set shiftwidth=2
+  " Convert tabs to spaces.
+  set tabstop=4
+  set softtabstop=4
+  set shiftwidth=4
 
   set expandtab
   set smarttab
@@ -58,7 +58,7 @@
   " Disable Ex mode.
   map q: <Nop>
   " Remap Q to :nohl to turn off highlighted search results.
-  nnoremap Q :nohl<CR>
+  nnoremap Q :nohl<CR><C-L>
   " Also trigger screen redraws to clear search restuls.
   nnoremap <C-L> :nohl<CR><C-L>
 
@@ -99,3 +99,10 @@
 
   " ALE will fix files automatically when they're saved.
   let g:ale_fix_on_save = 1
+
+  " Increase linting speed.
+  let g:ale_lint_delay = 300
+
+  " Python
+  let g:ale_python_flake8_options = '--config ~/.config/nvim/linters/flake8.config'
+  let g:ale_python_pylint_options = '--rcfile ~/.config/nvim/linters/pylintrc.config'
