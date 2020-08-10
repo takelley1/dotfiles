@@ -6,8 +6,8 @@
 #
 # shellcheck disable=2154
 
-if [[ ! "${USER}" == "root"
-  && -z "${TMUX}"
-  && ! "${tty}" == "/dev/tty2" ]]; then
-  exec tmux -f "${HOME}/.config/tmux/tmux.conf" attach
+if [[ ! "${USER}" == "root" && -z "${TMUX}" && ! "${tty}" == "/dev/tty2" ]]; then
+    if hash tmux 2>/dev/null; then
+        exec tmux -f "${HOME}/.config/tmux/tmux.conf" attach
+    fi
 fi

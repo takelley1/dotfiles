@@ -4,9 +4,8 @@
 #
 # shellcheck disable=2154
 
-if [[ "${OSTYPE}" == "linux-gnu"
-  && ! "${USER}" == "root"
-  && -z "${DISPLAY}"
-  && "${tty}" == "/dev/tty1" ]]; then
-  exec startx
+if [[ "${OSTYPE}" == "linux-gnu" && ! "${USER}" == "root" && -z "${DISPLAY}" && "${tty}" == "/dev/tty1" ]]; then
+    if hash startx 2>/dev/null; then
+        exec startx
+    fi
 fi
