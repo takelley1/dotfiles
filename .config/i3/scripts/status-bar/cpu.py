@@ -28,11 +28,9 @@ def main():
     # Format output.
     core_list = str(core_list)
     core_list = core_list.replace("'", "")
-    core_list = core_list.replace(',', '')
     core_list = core_list.replace('[', '')
     core_list = core_list.replace(']', '')
     core_list = core_list.replace(']', '')
-    core_list = core_list.replace(' ', '  ')
 
     print('', core_list)
     sys.exit(0)
