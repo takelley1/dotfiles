@@ -18,7 +18,7 @@
   set expandtab
   set smarttab
   set smartindent
-  
+
   " Force YAML files to use indents of 2 spaces.
   autocmd FileType yaml setlocal shiftwidth=2 softtabstop=2 tabstop=2
 
@@ -58,10 +58,10 @@
 
   " Remap jk to ESC for easier exiting insert mode.
   inoremap jk <ESC>
-  
+
   " Columnize selection.
   vnoremap t :!column -t<CR>
-  
+
   " Disable Ex mode.
   map q: <Nop>
   " Remap Q to :nohl to turn off highlighted search results.
@@ -113,3 +113,4 @@
   " Python
   let g:ale_python_flake8_options = '--config ~/.config/nvim/linters/flake8.config'
   let g:ale_python_pylint_options = '--rcfile ~/.config/nvim/linters/pylintrc.config'
+  let g:ale_sh_bashate_options = '--max-line-length 120 --ignore E043'
