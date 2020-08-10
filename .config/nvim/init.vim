@@ -41,8 +41,15 @@
   " Show dialog when a comman requires confirmation.
   set confirm
 
-  " Disables automatic commenting on newline.
-  autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+  " Disables automatic commenting and indenting on newline.
+  autocmd FileType * setlocal
+    \ formatoptions-=c
+    \ formatoptions-=r
+    \ formatoptions-=o
+    \ indentexpr=
+    \ noautoindent
+    \ nocindent
+    \ nosmartindent
 
   " Better path autocompletion.
   set wildmenu
