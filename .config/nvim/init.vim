@@ -118,10 +118,14 @@
     " Increase linting speed.
       let g:ale_lint_delay = 300
 
+      " Bash
+      let g:ale_sh_bashate_options = '--max-line-length 120 --ignore E043'
+
       " Python
       let g:ale_python_flake8_options = '--config ~/.config/nvim/linters/flake8.config'
       let g:ale_python_pylint_options = '--rcfile ~/.config/nvim/linters/pylintrc.config'
-      let g:ale_sh_bashate_options = '--max-line-length 120 --ignore E043'
 
       " YAML
       let g:ale_yaml_yamllint_options = '--config-file ~/.config/nvim/linters/yamllint.yml'
+      " Don't run swaglint on YAML files.
+      let g:ale_linters = {'yaml': ['yamllint']}
