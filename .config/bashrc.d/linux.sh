@@ -6,9 +6,11 @@ if [[ "${OSTYPE}" == "linux"* ]]; then
 
     export SHELL="/bin/bash"
 
-    function stop-automount() {
+    # Easily start/stop automounts.
+    function mnt() {
         # shellcheck disable=2046
-        systemctl stop $(systemctl | awk '{ORS=" "}; /^  mnt.*mount/ {print $1}') 2>/dev/null
+        systemctl "${@}" \
+        $(systemctl list-units mnt*.*mount --plain --no-legend --no-pager | awk '{ORS=" "}; {print $1}') 2>/dev/null
     }
 
     alias ls='ls --classify --color=auto --human-readable'
