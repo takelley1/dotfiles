@@ -117,10 +117,16 @@
 
   " LIGHTLINE ---------------------------------------------------------------
 
+    " Integrates with vim-fugitive to show branch name.
     let g:lightline = {
           \ 'colorscheme': 'one',
+          \ 'active': {
+          \   'left': [ [ 'mode', 'paste' ],
+          \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
+          \ },
           \ 'component_function': {
           \   'filename': 'LightlineFilename',
+          \   'gitbranch': 'FugitiveHead'
           \ },
           \ }
 
@@ -128,6 +134,9 @@
       function! LightlineFilename()
         return expand('%F')
       endfunction
+
+    " Don't show the mode in the command line since lightline takes care of it.
+    set noshowmode
 
   " MARKDOWN-PREVIEW --------------------------------------------------------
 
