@@ -19,10 +19,10 @@ def main():
     ram = round(ram, 1)
     ram = str(ram)
 
-    print('  ' + ram + 'G')
+    print("  " + ram + "G")
 
     sys.exit(0)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

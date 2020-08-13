@@ -16,11 +16,11 @@ def main():
         core_percent = round(core_percent)
 
         # Add leading zeroes so all numbers are three digits.
-        core_percent = ('{:03d}'.format(core_percent))
+        core_percent = "{:03d}".format(core_percent)
 
         # Remove trailing digit to make more compact.
         core_percent = str(core_percent)
-        core_percent = '{:.2}'.format(core_percent)
+        core_percent = "{:.2}".format(core_percent)
 
         # Create a list using the rounded values.
         core_list.append(core_percent)
@@ -28,13 +28,13 @@ def main():
     # Format output.
     core_list = str(core_list)
     core_list = core_list.replace("'", "")
-    core_list = core_list.replace('[', '')
-    core_list = core_list.replace(']', '')
-    core_list = core_list.replace(']', '')
+    core_list = core_list.replace("[", "")
+    core_list = core_list.replace("]", "")
+    core_list = core_list.replace("]", "")
 
-    print('', core_list)
+    print("", core_list)
     sys.exit(0)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

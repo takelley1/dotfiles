@@ -11,18 +11,18 @@ import psutil
 
 def main():
     temp = psutil.sensors_temperatures()
-    temp = temp.get('coretemp')[0].current
+    temp = temp.get("coretemp")[0].current
     temp = round(temp)
     temp = str(temp)
 
-    print(' ' + temp + '°C')
+    print(" " + temp + "°C")
 
     # Write the current temperature to a file for notify-cpu-temp.sh to use.
-    with open('/tmp/cputemp', mode='w') as file:
-        file.write(temp + '\n')
+    with open("/tmp/cputemp", mode="w") as file:
+        file.write(temp + "\n")
 
     sys.exit(0)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

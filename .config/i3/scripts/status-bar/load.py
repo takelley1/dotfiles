@@ -15,25 +15,25 @@ def main():
 
     # Break apart the tuple to add leading zeroes to each number.
     for load in load_tuple:
-        load = '{:05.2f}'.format(load)
+        load = "{:05.2f}".format(load)
 
         # Remove trailing digit to make more compact.
         load = str(load)
-        load = '{:.4}'.format(load)
+        load = "{:.4}".format(load)
 
         # Reassemble the values into a list.
         load_list.append(load)
 
     # Convert the list into a string and remove unnecessary characters.
     load_list = str(load_list)
-    load_list = load_list.replace('[', '')
-    load_list = load_list.replace(']', '')
+    load_list = load_list.replace("[", "")
+    load_list = load_list.replace("]", "")
     load_list = load_list.replace("'", "")
 
-    print('', load_list)
+    print("", load_list)
 
     sys.exit(0)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
