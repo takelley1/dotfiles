@@ -19,7 +19,7 @@
     set smarttab
     set smartindent
 
-  " Force YAML files to use indents of 2 spaces.
+  " Force certain filetypes to use indents of 2 spaces.
     autocmd FileType yaml setlocal shiftwidth=2 softtabstop=2 tabstop=2
     autocmd FileType vim setlocal shiftwidth=2 softtabstop=2 tabstop=2
 
@@ -87,28 +87,8 @@
   " Reduce plugin update time.
     set updatetime=200
 
-  " MARKDOWN-PREVIEW --------------------------------------------------------
-    " Automatically launch rendered markdown in browser.
-      let g:mkdp_auto_start = 1
-    " Automatically close rendered markdown in browser.
-      let g:mkdp_auto_close = 1
-    " Use vimb instead of Firefox since Firefox won't automatically close
-    "   the rendered markdown window.
-      let g:mkdp_browser = 'vimb'
-
-  " LIGHTLINE ---------------------------------------------------------------
-    let g:lightline = {
-          \ 'colorscheme': 'one',
-          \ 'component_function': {
-          \   'filename': 'LightlineFilename',
-          \ },
-          \ }
-    " Show the full path of the open file.
-      function! LightlineFilename()
-        return expand('%F')
-      endfunction
-
   " ALE ---------------------------------------------------------------------
+
     " Have ALE remove extra whitespace and trailing lines.
       let g:ale_fixers = {'*': ['remove_trailing_lines', 'trim_whitespace']}
 
@@ -129,3 +109,34 @@
       let g:ale_yaml_yamllint_options = '--config-file ~/.config/nvim/linters/yamllint.yml'
       " Don't run swaglint on YAML files.
       let g:ale_linters = {'yaml': ['yamllint']}
+
+  " BLACK -------------------------------------------------------------------
+
+    " Run Black formatter on saving Python files.
+      autocmd BufWritePre *.py execute ':Black'
+
+  " LIGHTLINE ---------------------------------------------------------------
+
+    let g:lightline = {
+          \ 'colorscheme': 'one',
+          \ 'component_function': {
+          \   'filename': 'LightlineFilename',
+          \ },
+          \ }
+
+    " Show the full path of the open file.
+      function! LightlineFilename()
+        return expand('%F')
+      endfunction
+
+  " MARKDOWN-PREVIEW --------------------------------------------------------
+
+    " Automatically launch rendered markdown in browser.
+      let g:mkdp_auto_start = 1
+
+    " Automatically close rendered markdown in browser.
+      let g:mkdp_auto_close = 1
+
+    " Use vimb instead of Firefox since Firefox won't automatically close
+    "   the rendered markdown window.
+      let g:mkdp_browser = 'vimb'
