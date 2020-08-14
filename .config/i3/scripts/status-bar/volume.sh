@@ -4,7 +4,7 @@
 #
 # Font-Awesome f028 
 
-vol=$(amixer get Master | awk '/[[:digit:]]+%/ {gsub(/\[/,""); gsub(/\]/,""); print $5;exit}')
+vol=$(amixer get Master | awk -F'[][]' '/[[:digit:]]+%/ print $2; exit}')
 
 # Show Font-Awesome icons if possible, use text everywhere else.
 if [ -n "$(ls /usr/share/fonts/OTF/Font\ Awesome*.otf)" ]; then
