@@ -24,7 +24,7 @@ alias mkdir='mkdir -pv' # Always make parent directories.
 
 # PROXIES ---------------------------------------------------------------------
 
-alias noproxy='export http_proxy=; export https_proxy=; export HTTP_PROXY=; export HTTPS_PROXY=' # Disables proxy.
+alias noproxy='export http_proxy=; export https_proxy=; export HTTP_PROXY=; export HTTPS_PROXY=; export npm_config_proxy='
 
 alias pip='pip --trusted-host pypi.org --trusted-host pypi.python.org --trusted-host files.pythonhosted.org'
 alias pip3='pip3 --trusted-host pypi.org --trusted-host pypi.python.org --trusted-host files.pythonhosted.org'
