@@ -30,6 +30,9 @@
   #  x: 0
   #  y: 0
 
+  # Allow terminal applications to change Alacritty's window title.
+    dynamic_title: false
+
   # Window padding (changes require restart)
   #
   # Blank space added around the window in pixels. This padding is scaled
@@ -143,30 +146,28 @@
   schemes:
     custom: &custom
       primary:
-        background: '#313030'
+        background: '#302f2f'
         foreground: '#eeeeee'
       cursor:
         cursor: '0xffffff'
       normal:
-        black:   '#111111'
-        #black:   '#bbbbbb'
+        black:   '#333333'
         red:     '#ff3344'
         green:   '#00ee00'
         yellow:  '#ffff33'
         blue:    '#4499ff'
         magenta: '#ff6fff'
         cyan:    '#55dddd'
-        white:   '#eeeeee'
+        white:   '#ffffff'
       bright:
-        #black:   '#111111'
-        black:   '#bbbbbb'
+        black:   '#aaaaaa'
         red:     '#ee0000'
         green:   '#00ee00'
-        yellow:  '#ffff33'
+        yellow:  '#f0e529'
         blue:    '#4499ff'
         magenta: '#ff6fff'
         cyan:    '#55ddff'
-        white:   '#eeeeee'
+        white:   '#ffffff'
 
     # NOT USED ----------------
     gruvbox_dark: &gruvbox_dark
@@ -290,7 +291,7 @@
 #   - Linear
 #
 # Specifying a `duration` of `0` will disable the visual bell.
-  visual_bell:
+  bell:
 #  animation: EaseOutExpo
     duration: 0
 #  color: '0xffffff'
@@ -306,9 +307,6 @@
 
   # When set to `true`, selected text will be copied to the primary clipboard.
     save_to_clipboard: true
-
-# Allow terminal applications to change Alacritty's window title.
-  dynamic_title: false
 
   cursor:
   # Cursor style
