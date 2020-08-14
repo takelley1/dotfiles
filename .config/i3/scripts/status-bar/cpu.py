@@ -12,7 +12,7 @@ import psutil
 def main():
     core_list = []
     # Break up the tuple containing the usage of each CPU core.
-    for core_percent in psutil.cpu_percent(interval=1, percpu=True):
+    for core_percent in psutil.cpu_percent(interval=3, percpu=True):
         core_percent = round(core_percent)
 
         # Add leading zeroes so all numbers are three digits.
