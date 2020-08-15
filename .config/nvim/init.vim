@@ -59,7 +59,10 @@
   " Splits open at the bottom and right, rather than top and left.
     set splitbelow splitright
 
-  " Run xrdb whenever Xdefaults or Xresources are updated.
+  " Keep loaded plugins up to date.
+    autocmd VimLeave * execute ":UpdateRemotePlugins"
+
+  " Run xrdb whenever Xdefaults or Xresources is updated.
     autocmd BufWritePost *Xresources,*Xdefaults !xrdb %
 
 " KEYBINDINGS #############################################################
