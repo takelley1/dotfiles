@@ -5,13 +5,20 @@
 # Emoji U+1F321 🌡️
 # Font-Awesome f2c9 
 
+import socket
 import sys
 import psutil
 
 
 def main():
     temp = psutil.sensors_temperatures()
-    temp = temp.get("coretemp")[0].current
+    hostname = socket.gethostname()
+
+    if hostname == "polaris":
+        temp = temp.get("thinkpad")[0].current
+    elif hostname == "deimos":
+        temp = temp.get("coretemp")[0].current
+
     temp = round(temp)
     temp = str(temp)
 
