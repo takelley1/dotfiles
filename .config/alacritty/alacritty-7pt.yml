@@ -141,7 +141,7 @@
   #  y: 0
 
     # If `true`, bold text is drawn using the bright color variants.
-    draw_bold_text_with_bright_colors: true
+    draw_bold_text_with_bright_colors: false
 
   schemes:
     custom: &custom
@@ -154,7 +154,7 @@
         black:   '#333333'
         red:     '#ff3344'
         green:   '#00ee00'
-        yellow:  '#ffff33'
+        yellow:  '#ffc400'
         blue:    '#4499ff'
         magenta: '#ff6fff'
         cyan:    '#55dddd'
@@ -163,7 +163,7 @@
         black:   '#aaaaaa'
         red:     '#ee0000'
         green:   '#00ee00'
-        yellow:  '#f0e529'
+        yellow:  '#ffc400'
         blue:    '#4499ff'
         magenta: '#ff6fff'
         cyan:    '#55ddff'
