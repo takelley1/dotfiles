@@ -7,6 +7,9 @@
   " Force unicode encoding.
     set encoding=utf-8
     set nocompatible
+  " Auto update when a file is changed from the outside.
+    set autoread
+    au FocusGained,BufEnter * checktime
 
 " FORMATTING ##############################################################
 
@@ -64,12 +67,18 @@
   " Run xrdb whenever Xdefaults or Xresources is updated.
     autocmd BufWritePost *Xresources,*Xdefaults !xrdb %
 
+  " Don't use swap files since most files are in Git.
+    set noswapfile
+
 " KEYBINDINGS #############################################################
 
   " Remap jk to ESC for easier exiting insert mode.
     inoremap jk <Esc>
 
-    " Tab and split navigation similar to Tmux, except using ALT instead of CTRL.
+  " :W to save the file with sudo, useful for handling the permission-denied error.
+    command! W execute 'w !sudo tee % >/dev/null' <bar> edit!
+
+  " Tab and split navigation similar to Tmux, except using ALT instead of CTRL.
     nnoremap <M-p> :tabprevious<CR>
     inoremap <M-p> <Esc>:tabprevious<CR>
     nnoremap <M-n> :tabnext<CR>
