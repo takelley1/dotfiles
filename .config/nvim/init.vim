@@ -78,6 +78,27 @@
   " :W to save the file with sudo, useful for handling the permission-denied error.
     command! W execute 'w !sudo tee % >/dev/null' <bar> edit!
 
+  " Git mappings:
+    " Vim-Fugitive
+      nnoremap ga :Git add %<CR>
+      nnoremap gs :Git status<CR>
+      nnoremap gc :Git commit %<CR>
+      nnoremap gcc :Git commit<CR>
+    " Automatically enter Insert mode when opening the commit window.
+      autocmd BufWinEnter COMMIT_EDITMSG startinsert
+
+    " Dotfiles (Vim-fugitive doesn't support --git-dir option)
+      nnoremap da :!git --git-dir=$HOME/.cfg/ --work-tree=$HOME add %<CR><C-L>
+      noremap ds :!git --git-dir=$HOME/.cfg/ --work-tree=$HOME status --untracked-files=no<CR>
+      " *dot diff unstageds*
+      nnoremap diu :!git --git-dir=$HOME/.cfg/ --work-tree=$HOME diff<CR>
+      " *dot diff staged*
+      nnoremap dis :!git --git-dir=$HOME/.cfg/ --work-tree=$HOME diff --staged<CR>
+      " *dot commit file*
+      nnoremap dcf :!git --git-dir=$HOME/.cfg/ --work-tree=$HOME commit % -m '
+      " *dot commit all*
+      nnoremap dca :!git --git-dir=$HOME/.cfg/ --work-tree=$HOME commit -m '
+
   " Tab and split navigation similar to Tmux, except using ALT instead of CTRL.
     nnoremap <M-p> :tabprevious<CR>
     inoremap <M-p> <Esc>:tabprevious<CR>
