@@ -93,7 +93,7 @@
 
     " Dotfiles (Vim-fugitive doesn't support --git-dir option)
       nnoremap da :write<CR> :!git --git-dir=$HOME/.cfg/ --work-tree=$HOME add %<CR><C-L>
-      noremap ds :!git --git-dir=$HOME/.cfg/ --work-tree=$HOME status --untracked-files=no<CR>
+      nnoremap ds :!git --git-dir=$HOME/.cfg/ --work-tree=$HOME status --untracked-files=no<CR>
       nnoremap dl :!git --git-dir=$HOME/.cfg/ --work-tree=$HOME log<CR>
       nnoremap dp :!git --git-dir=$HOME/.cfg/ --work-tree=$HOME push
       " *dot diff unstaged*
