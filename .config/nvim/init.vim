@@ -10,7 +10,7 @@
 
 " FORMATTING ##############################################################
 
-  " Convert tabs to spaces.
+  " Convert tabs to 4 spaces by default.
     set tabstop=4
     set softtabstop=4
     set shiftwidth=4
@@ -20,16 +20,14 @@
     set smartindent
 
   " Force certain filetypes to use indents of 2 spaces.
-    autocmd FileType yaml setlocal shiftwidth=2 softtabstop=2 tabstop=2
-    autocmd FileType vim setlocal shiftwidth=2 softtabstop=2 tabstop=2
-    autocmd FileType markdown setlocal shiftwidth=2 softtabstop=2 tabstop=2
+    autocmd FileType yaml,vim,markdown setlocal shiftwidth=2 softtabstop=2 tabstop=2
 
   " Show line numbers.
     set number
   " Make line number column thinner.
     set numberwidth=1
   " Force cursor to stay in the middle of the screen.
-    set so=999
+    set scrolloff=999
 
 " BEHAVIOR ################################################################
 
@@ -69,7 +67,24 @@
 " KEYBINDINGS #############################################################
 
   " Remap jk to ESC for easier exiting insert mode.
-    inoremap jk <ESC>
+    inoremap jk <Esc>
+
+    " Tab and split navigation similar to Tmux, except using ALT instead of CTRL.
+    nnoremap <M-p> :tabprevious<CR>
+    inoremap <M-p> <Esc>:tabprevious<CR>
+    nnoremap <M-n> :tabnext<CR>
+    inoremap <M-n> <Esc>:tabnext<CR>
+    nnoremap <M-c> :tabnew<CR>
+    inoremap <M-c> <Esc>:tabnew<CR>
+    nnoremap <M-e> :tabclose<CR>
+    inoremap <M-e> <Esc>:tabclose<CR>
+
+    nnoremap <M-s> :split<CR>
+    inoremap <M-s> <Esc>:split<CR>
+    nnoremap <M-k> <C-w><Up>
+    inoremap <M-k> <Esc><C-w><Up>
+    nnoremap <M-j> <C-w><Down>
+    inoremap <M-j> <Esc><C-w><Down>
 
   " Columnize selection.
     vnoremap t :!column -t<CR>
