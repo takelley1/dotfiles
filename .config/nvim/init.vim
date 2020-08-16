@@ -9,7 +9,7 @@
     set nocompatible
   " Auto update when a file is changed from the outside.
     set autoread
-    au FocusGained,BufEnter * checktime
+    autocmd FocusGained,BufEnter * checktime
 
 " FORMATTING ##############################################################
 
@@ -18,12 +18,12 @@
     set softtabstop=4
     set shiftwidth=4
 
+  " Force certain filetypes to use indents of 2 spaces.
+    autocmd FileType yaml,vim,markdown,config setlocal shiftwidth=2 softtabstop=2 tabstop=2
+
     set expandtab
     set smarttab
     set smartindent
-
-  " Force certain filetypes to use indents of 2 spaces.
-    autocmd FileType yaml,vim,markdown setlocal shiftwidth=2 softtabstop=2 tabstop=2
 
   " Show line numbers.
     set number
@@ -63,9 +63,6 @@
 
   " Keep loaded plugins up to date.
     autocmd VimLeave * execute ":UpdateRemotePlugins"
-
-  " Run xrdb whenever Xdefaults or Xresources is updated.
-    autocmd BufWritePost *Xresources,*Xdefaults !xrdb %
 
   " Don't use swap files since most files are in Git.
     set noswapfile
