@@ -67,13 +67,29 @@
   " Don't use swap files since most files are in Git.
     set noswapfile
 
+  " Disable Ex mode.
+    noremap q: <Nop>
+  " Screen redraws clear search restuls.
+    noremap <C-L> :nohl<CR><C-L>
+
 " KEYBINDINGS #############################################################
 
-  " Remap jk to ESC for easier exiting insert mode.
+  " Leader key easier to reach.
+    let mapleader = ","
+  " Easier exiting insert mode.
     inoremap jk <Esc>
+  " Faster saving.
+    nnoremap <leader>w :write<CR>
+  " Reload configuration without restarting vim (*source vim*).
+    nnoremap <leader>sv :source $MYVIMRC<CR>
 
   " :W to save the file with sudo, useful for handling the permission-denied error.
     command! W execute 'w !sudo tee % >/dev/null' <bar> edit!
+
+  " Columnize selection.
+    vnoremap t :!column -t<CR>
+  " Turn off highlighted search results.
+    nnoremap Q :nohl<CR><C-L>
 
   " Git mappings:
     " Vim-Fugitive
@@ -85,8 +101,8 @@
       nnoremap gis :Git diff --staged<CR>
       nnoremap gcf :write<CR> :Git commit %<CR>
       nnoremap gcs :Git commit<CR>
-    " Automatically enter Insert mode when opening the commit window.
-      autocmd BufWinEnter COMMIT_EDITMSG startinsert
+      " Automatically enter Insert mode when opening the commit window.
+        autocmd BufWinEnter COMMIT_EDITMSG startinsert
 
     " Dotfiles (Vim-fugitive doesn't support --git-dir option)
       nnoremap da :write<CR> :!git --git-dir=$HOME/.cfg/ --work-tree=$HOME add %<CR><C-L>
@@ -118,16 +134,6 @@
     inoremap <M-k> <Esc><C-w><Up>
     nnoremap <M-j> <C-w><Down>
     inoremap <M-j> <Esc><C-w><Down>
-
-  " Columnize selection.
-    vnoremap t :!column -t<CR>
-
-  " Disable Ex mode.
-    map q: <Nop>
-  " Remap Q to :nohl to turn off highlighted search results.
-    nnoremap Q :nohl<CR><C-L>
-  " Also trigger screen redraws to clear search restuls.
-    nnoremap <C-L> :nohl<CR><C-L>
 
 " PLUGINS #################################################################
 
