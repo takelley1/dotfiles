@@ -2,14 +2,7 @@
 #
 # Custom Git aliases for managing dotfiles.
 # See: https://developer.atlassian.com/blog/2016/02/best-way-to-store-dotfiles-git-bare-repo/
-
-if [[ "${OSTYPE}" == "linux"* ]]; then
-    # "dot" for "dotfiles".
-    alias dot='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
-elif [[ "${OSTYPE}" == "freebsd"* ]]; then
-    # FreeBSD's Git binary is at a different path than on Linux.
-    alias dot='/usr/local/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
-fi
+alias dot='git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 
 # Easy editing and committing of todo list.
 alias todo='cd ~/notes/ && git pull && nvim ./todo.md && git commit -m "Update todo.md" ./todo.md && git push'
