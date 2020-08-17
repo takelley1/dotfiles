@@ -107,6 +107,8 @@
       nnoremap gis :Git diff --staged<CR>
       nnoremap gcf :write<CR> :Git commit %<CR>
       nnoremap gcs :Git commit<CR>
+      nnoremap grm :Git rm
+      nnoremap grs :Git restore
       " Automatically enter Insert mode when opening the commit window.
         autocmd BufWinEnter COMMIT_EDITMSG startinsert
 
@@ -123,6 +125,8 @@
       nnoremap dcf :write<CR> :!git --git-dir=$HOME/.cfg/ --work-tree=$HOME commit % -m '
       " *dot commit staged*
       nnoremap dcs :!git --git-dir=$HOME/.cfg/ --work-tree=$HOME commit -m '
+      nnoremap drm :!git --git-dir=$HOME/.cfg/ --work-tree=$HOME rm
+      nnoremap drs :!git --git-dir=$HOME/.cfg/ --work-tree=$HOME restore
 
   " Tab and split navigation similar to Tmux, except using ALT instead of CTRL.
     nnoremap <M-p> :tabprevious<CR>
