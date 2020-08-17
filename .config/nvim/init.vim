@@ -30,6 +30,8 @@
 
   " Force certain filetypes to use indents of 2 spaces.
     autocmd FileType config,markdown,vim,yaml setlocal shiftwidth=2 softtabstop=2 tabstop=2
+  " Don't wrap text on Markdown files.
+    autocmd FileType markdown setlocal nowrap
 
   " Show line numbers.
     set number
@@ -37,6 +39,7 @@
     set numberwidth=1
   " Force cursor to stay in the middle of the screen.
     set scrolloff=999
+    set sidescrolloff=999
 
 " BEHAVIOR ################################################################
 
@@ -63,6 +66,9 @@
   " Don't use swap files since most files are in Git.
     set noswapfile
 
+  " Allow moving the cursor over blank areas.
+    set virtualedit=all
+
   " Disable Ex mode.
     noremap q: <Nop>
   " Screen redraws clear search restuls.
@@ -74,8 +80,12 @@
     let mapleader = ","
   " Easier exiting insert mode.
     inoremap jk <Esc>
+  " Easier navigating soft-wrapped lines.
+    nnoremap j gj
+    nnoremap k gk
   " Faster saving.
     nnoremap <leader>w :write<CR>
+    cnoremap w<CR> <Nop>
   " Reload configuration without restarting vim (*source vim*).
     nnoremap <leader>sv :source $MYVIMRC<CR>
 
