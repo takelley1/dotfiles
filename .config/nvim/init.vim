@@ -13,17 +13,23 @@
 
 " FORMATTING ##############################################################
 
-  " Convert tabs to 4 spaces by default.
+  " Indents are 4 spaces by default.
     set tabstop=4
     set softtabstop=4
     set shiftwidth=4
+  " Convert tabs to spaces.
+    set expandtab
+  " No automatic formatting.
+    set noautoindent
+    set nocindent
+    set nosmartindent
+    set formatoptions-=c
+    set formatoptions-=r
+    set formatoptions-=o
+    set indentexpr=
 
   " Force certain filetypes to use indents of 2 spaces.
-    autocmd FileType yaml,vim,markdown,config setlocal shiftwidth=2 softtabstop=2 tabstop=2
-
-    set expandtab
-    set smarttab
-    set smartindent
+    autocmd FileType config,markdown,vim,yaml setlocal shiftwidth=2 softtabstop=2 tabstop=2
 
   " Show line numbers.
     set number
@@ -43,16 +49,6 @@
 
   " Show dialog when a comman requires confirmation.
     set confirm
-
-  " Disables automatic commenting and indenting on newline.
-    autocmd FileType * setlocal
-      \ formatoptions-=c
-      \ formatoptions-=r
-      \ formatoptions-=o
-      \ indentexpr=
-      \ noautoindent
-      \ nocindent
-      \ nosmartindent
 
   " Better path autocompletion.
     set wildmenu
