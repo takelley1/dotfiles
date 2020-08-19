@@ -166,7 +166,7 @@
       let g:ale_lint_delay = 300
 
       " Bash
-      let g:ale_sh_bashate_options = '--max-line-length 120 --ignore E043'
+      let g:ale_sh_bashate_options = '--ignore E043 --ignore E006'
 
       " Python
       let g:ale_python_flake8_options = '--config ~/.config/nvim/linters/flake8.config'
