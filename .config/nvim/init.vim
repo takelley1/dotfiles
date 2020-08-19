@@ -65,9 +65,6 @@
   " Don't use swap files since most files are in Git.
     set noswapfile
 
-  " Allow moving the cursor over blank areas.
-    set virtualedit=all
-
   " Disable Ex mode.
     noremap q: <Nop>
   " Screen redraws clear search restuls.
