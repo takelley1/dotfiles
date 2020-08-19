@@ -39,7 +39,6 @@
     set numberwidth=1
   " Force cursor to stay in the middle of the screen.
     set scrolloff=999
-    set sidescrolloff=999
 
 " BEHAVIOR ################################################################
 
