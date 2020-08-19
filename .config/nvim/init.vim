@@ -30,9 +30,9 @@
 
   " Force certain filetypes to use indents of 2 spaces.
     autocmd FileType config,markdown,vim,yaml setlocal shiftwidth=2 softtabstop=2 tabstop=2
-  " Don't wrap text on Markdown files.
-    autocmd FileType markdown setlocal nowrap
 
+  " Don't wrap text.
+    set nowrap
   " Show line numbers.
     set number
   " Make line number column thinner.
@@ -45,12 +45,18 @@
   " Case-insensitive search, except when using capitals.
     set ignorecase
     set smartcase
+  " Don't require escaping in searches.
+    set magic
 
   " Map vim copy buffer to system clipboard.
     set clipboard=unnamedplus
 
   " Show dialog when a comman requires confirmation.
     set confirm
+  " Don't redraw screen during macros.
+    set lazyredraw
+  " Remember undo after quitting.
+    set hidden
 
   " Better path autocompletion.
     set wildmenu
@@ -64,6 +70,7 @@
 
   " Don't use swap files since most files are in Git.
     set noswapfile
+    set nobackup
 
   " Disable Ex mode.
     noremap q: <Nop>
