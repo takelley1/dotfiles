@@ -57,9 +57,9 @@ alias gis='git diff --staged'
 alias gl='git log'
 alias gp='git push'
 alias gpu='git pull'
-alias gr='dot restore'
+alias gr='git restore'
 alias grm='git rm'
-alias grs='dot restore --staged'
+alias grs='git restore --staged'
 alias gs='git status'
 function gcamp {
 git commit --all --message "${@}" && git push
