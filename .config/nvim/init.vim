@@ -23,10 +23,7 @@
     set noautoindent
     set nocindent
     set nosmartindent
-    set formatoptions-=c
-    set formatoptions-=r
-    set formatoptions-=o
-    set indentexpr=
+    autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o indentexpr=
 
   " Force certain filetypes to use indents of 2 spaces.
     autocmd FileType config,markdown,vim,yaml setlocal shiftwidth=2 softtabstop=2 tabstop=2
@@ -89,11 +86,14 @@
   " Faster saving.
     nnoremap <leader>w :write<CR>
     cnoremap w<CR> <Nop>
-  " Reload configuration without restarting vim (*source vim*).
+  " Reload configuration without restarting vim (*sv = source vim*).
     nnoremap <leader>sv :source $MYVIMRC<CR>
 
   " :W to save the file with sudo, useful for handling the permission-denied error.
     command! W execute 'w !sudo tee % >/dev/null' <bar> edit!
+
+  " Markdown preview (*pr = preview*)
+    autocmd FileType markdown nnoremap pr :MarkdownPreview<CR><C-L>
 
   " Columnize selection.
     vnoremap t :!column -t<CR>
@@ -212,7 +212,7 @@
   " MARKDOWN-PREVIEW --------------------------------------------------------
 
     " Automatically launch rendered markdown in browser.
-      let g:mkdp_auto_start = 1
+      "let g:mkdp_auto_start = 1
 
     " Automatically close rendered markdown in browser.
       let g:mkdp_auto_close = 1
