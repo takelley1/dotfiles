@@ -28,7 +28,7 @@
   " Force certain filetypes to use indents of 2 spaces.
     autocmd FileType config,markdown,vim,yaml setlocal shiftwidth=2 softtabstop=2 tabstop=2
 
-  " Don't wrap text.
+  " Don't wrap text by default.
     set nowrap
   " Show line numbers.
     set number
@@ -83,6 +83,8 @@
   " Easier navigating soft-wrapped lines.
     nnoremap j gj
     nnoremap k gk
+  " Toggle wrapping (*pp = wraPP*).
+    nnoremap pp :set wrap!<CR><C-L>
   " Faster saving.
     nnoremap <leader>w :write<CR>
     cnoremap w<CR> <Nop>
@@ -92,7 +94,7 @@
   " :W to save the file with sudo, useful for handling the permission-denied error.
     command! W execute 'w !sudo tee % >/dev/null' <bar> edit!
 
-  " Markdown preview (*pr = preview*)
+  " Markdown preview (*pr = preview*).
     autocmd FileType markdown nnoremap pr :MarkdownPreview<CR><C-L>
 
   " Columnize selection.
