@@ -6,7 +6,7 @@
 # Emoji U+1F4BD 💽
 # Font-Awesome f252 
 
-io_wa=$(top -b | head -3 | awk '{print $10}' | tail -1)
+io_wa=$(top -n 1 -b | awk '/id,.*wa,.*hi,.*si/ {print $10}')
 
 # Hide disk IO if it's zero.
 #[[ "${io_wa}" == "0.0" ]] && exit 0

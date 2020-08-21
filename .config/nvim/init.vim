@@ -7,28 +7,39 @@
   " Force unicode encoding.
     set encoding=utf-8
     set nocompatible
+  " Auto update when a file is changed from the outside.
+    set autoread
+    autocmd FocusGained,BufEnter * checktime
 
 " FORMATTING ##############################################################
 
-  " Convert tabs to spaces.
+  " Indents are 4 spaces by default.
     set tabstop=4
     set softtabstop=4
     set shiftwidth=4
-
+  " Convert tabs to spaces.
     set expandtab
-    set smarttab
-    set smartindent
+  " No automatic formatting.
+    set noautoindent
+    set nocindent
+    set nosmartindent
+    set formatoptions-=c
+    set formatoptions-=r
+    set formatoptions-=o
+    set indentexpr=
 
   " Force certain filetypes to use indents of 2 spaces.
-    autocmd FileType yaml setlocal shiftwidth=2 softtabstop=2 tabstop=2
-    autocmd FileType vim setlocal shiftwidth=2 softtabstop=2 tabstop=2
+    autocmd FileType config,markdown,vim,yaml setlocal shiftwidth=2 softtabstop=2 tabstop=2
+  " Don't wrap text on Markdown files.
+    autocmd FileType markdown setlocal nowrap
 
   " Show line numbers.
     set number
   " Make line number column thinner.
     set numberwidth=1
   " Force cursor to stay in the middle of the screen.
-    set so=999
+    set scrolloff=999
+    set sidescrolloff=999
 
 " BEHAVIOR ################################################################
 
@@ -42,16 +53,6 @@
   " Show dialog when a comman requires confirmation.
     set confirm
 
-  " Disables automatic commenting and indenting on newline.
-    autocmd FileType * setlocal
-      \ formatoptions-=c
-      \ formatoptions-=r
-      \ formatoptions-=o
-      \ indentexpr=
-      \ noautoindent
-      \ nocindent
-      \ nosmartindent
-
   " Better path autocompletion.
     set wildmenu
     set wildmode=longest,list,full
@@ -59,23 +60,90 @@
   " Splits open at the bottom and right, rather than top and left.
     set splitbelow splitright
 
-  " Run xrdb whenever Xdefaults or Xresources are updated.
-    autocmd BufWritePost *Xresources,*Xdefaults !xrdb %
+  " Keep loaded plugins up to date.
+    autocmd VimLeave * execute ":UpdateRemotePlugins"
+
+  " Don't use swap files since most files are in Git.
+    set noswapfile
+
+  " Allow moving the cursor over blank areas.
+    set virtualedit=all
+
+  " Disable Ex mode.
+    noremap q: <Nop>
+  " Screen redraws clear search restuls.
+    noremap <C-L> :nohl<CR><C-L>
 
 " KEYBINDINGS #############################################################
 
-  " Remap jk to ESC for easier exiting insert mode.
-    inoremap jk <ESC>
+  " Leader key easier to reach.
+    let mapleader = ","
+  " Easier exiting insert mode.
+    inoremap jk <Esc>
+  " Easier navigating soft-wrapped lines.
+    nnoremap j gj
+    nnoremap k gk
+  " Faster saving.
+    nnoremap <leader>w :write<CR>
+    cnoremap w<CR> <Nop>
+  " Reload configuration without restarting vim (*source vim*).
+    nnoremap <leader>sv :source $MYVIMRC<CR>
+
+  " :W to save the file with sudo, useful for handling the permission-denied error.
+    command! W execute 'w !sudo tee % >/dev/null' <bar> edit!
 
   " Columnize selection.
     vnoremap t :!column -t<CR>
-
-  " Disable Ex mode.
-    map q: <Nop>
-  " Remap Q to :nohl to turn off highlighted search results.
+  " Turn off highlighted search results.
     nnoremap Q :nohl<CR><C-L>
-  " Also trigger screen redraws to clear search restuls.
-    nnoremap <C-L> :nohl<CR><C-L>
+
+  " Git mappings:
+    " Vim-Fugitive
+      nnoremap ga :write<CR> :Git add %<CR>
+      nnoremap gs :Git status<CR>
+      nnoremap gl :Git log<CR>
+      nnoremap gp :Git push<CR>
+      nnoremap giu :Git diff<CR>
+      nnoremap gis :Git diff --staged<CR>
+      nnoremap gcf :write<CR> :Git commit %<CR>
+      nnoremap gcs :Git commit<CR>
+      nnoremap grm :Git rm
+      nnoremap grs :Git restore
+      " Automatically enter Insert mode when opening the commit window.
+        autocmd BufWinEnter COMMIT_EDITMSG startinsert
+
+    " Dotfiles (Vim-fugitive doesn't support --git-dir option)
+      nnoremap da :write<CR> :!git --git-dir=$HOME/.cfg/ --work-tree=$HOME add %<CR><C-L>
+      nnoremap ds :!git --git-dir=$HOME/.cfg/ --work-tree=$HOME status --untracked-files=no<CR>
+      nnoremap dl :!git --git-dir=$HOME/.cfg/ --work-tree=$HOME log<CR>
+      nnoremap dp :!git --git-dir=$HOME/.cfg/ --work-tree=$HOME push
+      " *dot diff unstaged*
+      nnoremap diu :!git --git-dir=$HOME/.cfg/ --work-tree=$HOME diff<CR>
+      " *dot diff staged*
+      nnoremap dis :!git --git-dir=$HOME/.cfg/ --work-tree=$HOME diff --staged<CR>
+      " *dot commit file*
+      nnoremap dcf :write<CR> :!git --git-dir=$HOME/.cfg/ --work-tree=$HOME commit % -m '
+      " *dot commit staged*
+      nnoremap dcs :!git --git-dir=$HOME/.cfg/ --work-tree=$HOME commit -m '
+      nnoremap drm :!git --git-dir=$HOME/.cfg/ --work-tree=$HOME rm
+      nnoremap drs :!git --git-dir=$HOME/.cfg/ --work-tree=$HOME restore
+
+  " Tab and split navigation similar to Tmux, except using ALT instead of CTRL.
+    nnoremap <M-p> :tabprevious<CR>
+    inoremap <M-p> <Esc>:tabprevious<CR>
+    nnoremap <M-n> :tabnext<CR>
+    inoremap <M-n> <Esc>:tabnext<CR>
+    nnoremap <M-c> :tabnew<CR>
+    inoremap <M-c> <Esc>:tabnew<CR>
+    nnoremap <M-e> :tabclose<CR>
+    inoremap <M-e> <Esc>:tabclose<CR>
+
+    nnoremap <M-s> :split<CR>
+    inoremap <M-s> <Esc>:split<CR>
+    nnoremap <M-k> <C-w><Up>
+    inoremap <M-k> <Esc><C-w><Up>
+    nnoremap <M-j> <C-w><Down>
+    inoremap <M-j> <Esc><C-w><Down>
 
 " PLUGINS #################################################################
 

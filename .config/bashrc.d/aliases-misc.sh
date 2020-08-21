@@ -4,6 +4,21 @@
 
 # UTILITIES -------------------------------------------------------------------
 
+# Make nvim follow symlinks.
+# This makes it easier to use Git mappings within nvim.
+# From: https://stackoverflow.com/questions/30791692/make-vim-follow-symlinks-when-opening-files-from-command-line
+function nvim {
+    args=()
+    for i in "$@"; do
+        if [[ -h $i ]]; then
+            args+=("$( readlink "$i" )")
+        else
+            args+=("$i")
+        fi
+    done
+    /usr/bin/nvim -p "${args[@]}"
+}
+
 # "Up 1 directory."
 alias u='cd ../'
 alias u2='cd ../../'
