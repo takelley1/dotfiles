@@ -3,8 +3,9 @@
 
 tty="$(tty)"
 
-# Source bashrc scripts.
-set globstar
-for file in ~/.config/bashrc.d/**.sh; do
-  source "${file}"
+# Source bashrc scripts. Scripts are located in my home directory.
+shopt -s globstar  # Source recursively.
+shopt -s nullglob  # Set nullglob so the unmatched username glob is not made literal.
+for file in /home/akelley/.config/bashrc.d/**.sh /home/austin/.config/bashrc.d/**.sh; do
+    source "${file}"
 done
