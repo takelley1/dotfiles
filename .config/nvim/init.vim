@@ -23,35 +23,39 @@
     set noautoindent
     set nocindent
     set nosmartindent
-    set formatoptions-=c
-    set formatoptions-=r
-    set formatoptions-=o
-    set indentexpr=
+    autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o indentexpr=
 
   " Force certain filetypes to use indents of 2 spaces.
     autocmd FileType config,markdown,vim,yaml setlocal shiftwidth=2 softtabstop=2 tabstop=2
-  " Don't wrap text on Markdown files.
-    autocmd FileType markdown setlocal nowrap
+  " Wrap markdown files.
+    autocmd FileType markdown setlocal wrap
 
+  " Don't wrap text by default.
+    set nowrap
   " Show line numbers.
     set number
   " Make line number column thinner.
     set numberwidth=1
   " Force cursor to stay in the middle of the screen.
     set scrolloff=999
-    set sidescrolloff=999
 
 " BEHAVIOR ################################################################
 
   " Case-insensitive search, except when using capitals.
     set ignorecase
     set smartcase
+  " Don't require escaping in searches.
+    set magic
 
   " Map vim copy buffer to system clipboard.
     set clipboard=unnamedplus
 
   " Show dialog when a comman requires confirmation.
     set confirm
+  " Don't redraw screen during macros.
+    set lazyredraw
+  " Remember undo after quitting.
+    set hidden
 
   " Better path autocompletion.
     set wildmenu
@@ -65,9 +69,7 @@
 
   " Don't use swap files since most files are in Git.
     set noswapfile
-
-  " Allow moving the cursor over blank areas.
-    set virtualedit=all
+    set nobackup
 
   " Disable Ex mode.
     noremap q: <Nop>
@@ -85,12 +87,14 @@
     nnoremap k gk
   " Faster saving.
     nnoremap <leader>w :write<CR>
-    cnoremap w<CR> <Nop>
-  " Reload configuration without restarting vim (*source vim*).
+  " Reload configuration without restarting vim (*sv = source vim*).
     nnoremap <leader>sv :source $MYVIMRC<CR>
 
   " :W to save the file with sudo, useful for handling the permission-denied error.
     command! W execute 'w !sudo tee % >/dev/null' <bar> edit!
+
+  " Markdown preview.
+    autocmd FileType markdown nnoremap mp :MarkdownPreview<CR><C-L>
 
   " Columnize selection.
     vnoremap t :!column -t<CR>
@@ -167,7 +171,7 @@
       let g:ale_lint_delay = 300
 
       " Bash
-      let g:ale_sh_bashate_options = '--max-line-length 120 --ignore E043'
+      let g:ale_sh_bashate_options = '--ignore E043 --ignore E006'
 
       " Python
       let g:ale_python_flake8_options = '--config ~/.config/nvim/linters/flake8.config'
@@ -209,7 +213,7 @@
   " MARKDOWN-PREVIEW --------------------------------------------------------
 
     " Automatically launch rendered markdown in browser.
-      let g:mkdp_auto_start = 1
+      "let g:mkdp_auto_start = 1
 
     " Automatically close rendered markdown in browser.
       let g:mkdp_auto_close = 1
