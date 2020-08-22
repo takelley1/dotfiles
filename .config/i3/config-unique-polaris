@@ -23,6 +23,9 @@ font pango:Noto Sans 10
   # exec --no-startup-id xinput --set-prop 'ETPS/2 Elantech Touchpad' 'libinput Tapping Enabled' 1  # Enable tap-clicking.
   # exec --no-startup-id xinput --set-prop 'ETPS/2 Elantech Touchpad' 'libinput Accel Speed' 0.3    # Increase sensitivity.
 
+ # Mute speakers.
+   exec --no-startup-id amider set Master 0%
+
 # HOTKEYS
 
  # Brightness controls.
