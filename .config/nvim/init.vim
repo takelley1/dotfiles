@@ -99,6 +99,9 @@
   " Turn off highlighted search results.
     nnoremap Q :nohl<CR><C-L>
 
+  " Easier line deletion.
+    nnoremap - dd
+
   " Git mappings:
     " Vim-Fugitive
       nnoremap ga :write<CR> :Git add %<CR>
