@@ -47,6 +47,7 @@ alias gaaa='git add --all'   # Stage all changes.
 alias gau='git add --update ./' # Add all modified files below current path.
 alias gauu='git add --update'   # Add all modified files.
 alias gb='git branch'
+alias gc='git commit'
 alias gcs='git commit'
 alias gca='git commit --all'
 alias gcam='git commit --all --message'
