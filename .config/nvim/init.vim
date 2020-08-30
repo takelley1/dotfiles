@@ -27,11 +27,9 @@
 
   " Force certain filetypes to use indents of 2 spaces.
     autocmd FileType config,markdown,vim,yaml setlocal shiftwidth=2 softtabstop=2 tabstop=2
-  " Wrap markdown files.
-    autocmd FileType markdown setlocal wrap
 
-  " Don't wrap text by default.
-    set nowrap
+  " Wrap text by default.
+    set wrap
   " Show line numbers.
     set number
   " Make line number column thinner.
