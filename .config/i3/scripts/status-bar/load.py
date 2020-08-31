@@ -15,11 +15,10 @@ def main():
 
     # Break apart the tuple to add leading zeroes to each number.
     for load in load_tuple:
-        load = "{:05.2f}".format(load)
 
-        # Remove trailing digit to make more compact.
-        load = str(load)
-        load = "{:.4}".format(load)
+        # Convert to int, drop decimal.
+        load = int(load)
+        load = "{:02d}".format(load)
 
         # Reassemble the values into a list.
         load_list.append(load)
