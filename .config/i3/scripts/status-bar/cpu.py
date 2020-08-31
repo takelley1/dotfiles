@@ -1,9 +1,10 @@
 #!/usr/bin/env python
 #
-# Status bar script for printing the current usage of each CPU core.
+# Status bar script for printing the current usage of the four most
+#   active CPU cores/threads.
 #
-# Usage is expressed in increments of 10, so a core value of "05" means
-#   the core is 50% used.
+# Usage is expressed in increments of 10, so a value of "5" means
+#   a core is 50% used.
 
 import sys
 import psutil
@@ -15,14 +16,14 @@ def main():
     for core_percent in psutil.cpu_percent(interval=3, percpu=True):
         core_percent = round(core_percent)
 
-        # Add leading zeroes so all numbers are three digits.
-        core_percent = "{:03d}".format(core_percent)
+        # Add leading zero so all numbers are two digits.
+        core_percent = "{:02d}".format(core_percent)
 
-        # Remove trailing digit to make more compact.
+        # Only show tens place.
         core_percent = str(core_percent)
-        core_percent = "{:.2}".format(core_percent)
+        core_percent = "{:.1}".format(core_percent)
 
-        # Create a list using the rounded values.
+        # Create a list using the reformatted values.
         core_list.append(core_percent)
 
     # Sort list by most active cores.
