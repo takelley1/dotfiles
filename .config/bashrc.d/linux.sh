@@ -10,7 +10,7 @@ if [[ "${OSTYPE}" == "linux"* ]]; then
     function mnt() {
         # shellcheck disable=2046
         systemctl "${@}" \
-        $(systemctl list-units mnt*.*mount --plain --no-legend --no-pager | awk '{ORS=" "}; {print $1}') 2>/dev/null
+        $(systemctl list-units mnt*.*mount --type=automount --plain --no-legend --no-pager | awk '{ORS=" "}; {print $1}') 2>/dev/null
     }
 
     alias ls='ls --classify --color=auto --human-readable'
