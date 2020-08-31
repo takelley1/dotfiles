@@ -14,15 +14,12 @@ def main():
     core_list = []
     # Break up the tuple containing the usage of each CPU core.
     for core_percent in psutil.cpu_percent(interval=3, percpu=True):
-        core_percent = round(core_percent)
 
+        core_percent = round(core_percent)
         # Add leading zero so all numbers are two digits.
         core_percent = "{:02d}".format(core_percent)
-
         # Only show tens place.
-        core_percent = str(core_percent)
         core_percent = "{:.1}".format(core_percent)
-
         # Create a list using the reformatted values.
         core_list.append(core_percent)
 
