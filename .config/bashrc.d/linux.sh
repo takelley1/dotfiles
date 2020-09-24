@@ -13,22 +13,17 @@ if [[ "${OSTYPE}" == "linux"* ]]; then
         $(systemctl list-units mnt*.*mount --type=automount --plain --no-legend --no-pager | awk '{ORS=" "}; {print $1}') 2>/dev/null
     }
 
-    alias ls='ls --classify --color=auto --human-readable'
-    alias l='ls'
-    alias lr='ls --classify --color=auto --human-readable --reverse'
+    alias l='ls --classify --color=auto --human-readable'
+    alias ls='l'
+    alias lr='l --reverse'
     alias lsr='lr'
-
-    # Show single-column.
-    alias ll='ls --classify --color=auto --human-readable -l'
-
-    alias llr='ls --classify --color=auto --human-readable -l --reverse'
-    alias la='ls --classify --color=auto --human-readable -l --all'
-    alias lar='ls --classify --color=auto --human-readable -l --all --reverse'
-
+    alias ll='l -l'
+    alias la='l -l --all'
+    alias lar='l -l --all --reverse'
     # Sort by size.
-    alias lss='ls --classify --color=auto --human-readable -l --all -S'
+    alias lss='l -l --all -S'
 
-    alias lcon='ls -lZ --all --reverse'
+    alias lcon='l -lZ --all --reverse'
     alias untar='tar -xzvf'
 
     if hash nvim 2>/dev/null; then
