@@ -2,6 +2,9 @@
 #
 # Aliases for easily accessing config files and directories.
 
+# Easy editing and committing of todo list.
+alias todo='cd ~/notes/ && git pull && nvim ./personal--todo.md && git commit -m "Update todo.md" ./personal--todo.md && git push'
+
 alias alacrittyrc='nvim ~/.config/alacritty/alacritty.yml'
 alias banlist='vim /mnt/share/documents/banlist.txt'
 alias bashrc='cd ~/.config/bashrc.d && r'
