@@ -6,7 +6,7 @@
 alias todo='cd ~/notes/ && git pull && nvim ./personal--todo.md && git commit -m "Update todo.md" ./personal--todo.md && git push'
 
 alias alacrittyrc='nvim ~/.config/alacritty/alacritty.yml'
-alias banlist='vim /mnt/share/documents/banlist.txt'
+alias banlist='nvim /mnt/share/documents/banlist.txt'
 alias bashrc='cd ~/.config/bashrc.d && r'
 alias bashrcf='nvim ~/.bashrc'
 alias dunstrc='nvim ~/.config/dunst/dunstrc'
@@ -18,14 +18,14 @@ alias xdefaults='nvim ~/.Xdefaults'
 alias xinitrc='nvim ~/.xinitrc'
 alias xprofile='nvim ~/.xprofile'
 
-alias i3b="nvim ~/.config/i3/i3blocks.conf"
+alias i3b='nvim ~/.config/i3/i3blocks.conf'
 alias i3c='nvim ~/.config/i3/config-unique-${HOSTNAME}'
-alias i3cc="nvim ~/.config/i3/config-shared"
-alias i3ccc="nvim /tmp/.i3-config"
+alias i3cc='nvim ~/.config/i3/config-shared'
+alias i3ccc='nvim /tmp/.i3-config'
 
-alias config="cd ~/.config && r"
-alias linux="cd ~/linux-notes && r"
-alias notes="cd ~/notes/ && r"
+alias config='cd ~/.config && r'
+alias linux='cd ~/linux-notes && r'
+alias notes='cd ~/notes/ && r'
 alias roles='cd ~/scripts/ansible/home/roles && r'
 alias scripts='cd ~/scripts/ && r'
 alias status='cd ~/.config/i3/scripts/status-bar/ && r'
