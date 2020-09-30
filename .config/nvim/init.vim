@@ -26,7 +26,7 @@
     autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o indentexpr=
 
   " Force certain filetypes to use indents of 2 spaces.
-    autocmd FileType config,markdown,vim,yaml setlocal shiftwidth=2 softtabstop=2 tabstop=2
+    autocmd FileType config,markdown,vim,yaml,*.md setlocal shiftwidth=2 softtabstop=2 tabstop=2 textwidth=120
 
   " Wrap text by default.
     set wrap
