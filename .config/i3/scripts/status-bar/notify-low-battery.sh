@@ -14,7 +14,11 @@ if [ "${state}" = 'Charging,' ]; then
     exit 0
 fi
 
-if [ "${percent}" -le 5 ]; then
+if [ "${percent}" -le 15 ]; then
+    notify-send -u "Battery under 15%!"
+elif [ "${percent}" -le 10 ]; then
+    notify-send -u "Battery under 10%!"
+elif [ "${percent}" -le 5 ]; then
     notify-send -u "Battery under 5%!"
 elif [ "${percent}" -le 3 ]; then
     notify-send -u critical "Battery under 3%!"
