@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+#
 # Sourced by bashrc.
 #
 # Start X without a display manager if logging into tty1 with a non-root account.

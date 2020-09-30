@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+#
 # Sourced by bashrc.
 #
 # Miscellaneous shell options and environment variables.

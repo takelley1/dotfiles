@@ -1,11 +1,10 @@
+#!/usr/bin/env bash
+#
 # Sourced by bashrc.
 #
 # Custom Git aliases for managing dotfiles.
 # See: https://developer.atlassian.com/blog/2016/02/best-way-to-store-dotfiles-git-bare-repo/
 alias dot='git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
-
-# Easy editing and committing of todo list.
-alias todo='cd ~/notes/ && git pull && nvim ./todo.md && git commit -m "Update todo.md" ./todo.md && git push'
 
 # -----------------------------------------------------------------------------
 

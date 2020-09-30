@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+#
 # Sourced by bashrc.
 #
 # Aliases for easily accessing config files and directories.
@@ -10,6 +12,7 @@ alias banlist='nvim /mnt/share/documents/banlist.txt'
 alias bashrc='cd ~/.config/bashrc.d && r'
 alias bashrcf='nvim ~/.bashrc'
 alias dunstrc='nvim ~/.config/dunst/dunstrc'
+
 alias readme='nvim ~/.github/README.md'
 alias tmuxrc='nvim ~/.config/tmux/tmux.conf'
 alias vimrc='nvim ~/.config/nvim/init.vim'

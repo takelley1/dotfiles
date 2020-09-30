@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+#
 # Sourced by bashrc.
 #
 # Configuration for main bash prompt.
