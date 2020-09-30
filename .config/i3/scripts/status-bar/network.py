@@ -1,4 +1,10 @@
-#!/usr/local/env python
+#!/usr/bin/env python
+#
+# Status bar script for printing the amount of data incoming and
+#   outgoing from all network interfaces.
+#
+#  fa-angle-double-up [&#xf102;]
+#  fa-angle-double-down [&#xf103;]
 
 import time
 import psutil
