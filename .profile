@@ -7,4 +7,3 @@
 PATH="$PATH:${HOME}/scripts/bash"
 
 source ~/.bashrc
-exit 0
