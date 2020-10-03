@@ -9,8 +9,9 @@
 
 if [[ "${OSTYPE}" == "linux-gnu" ]]; then
 
+
     # asd.service breaks if this isn't enabled.
-    xhost +
+    xhost + &>/dev/null
 
     export SHELL="/bin/bash"
 
@@ -18,7 +19,14 @@ if [[ "${OSTYPE}" == "linux-gnu" ]]; then
     mnt() {
         # shellcheck disable=2046
         systemctl "${@}" \
-        $(systemctl list-units mnt*.*mount --type=automount --plain --no-legend --no-pager | awk '{ORS=" "}; {print $1}') 2>/dev/null
+        $(systemctl list-units \
+            mnt*.*mount \
+            --type=automount \
+            --plain \
+            --no-legend \
+            --no-pager | \
+            awk '{ORS=" "}; {print $1}') \
+            2>/dev/null
     }
 
     alias l='ls --classify --color=auto --human-readable'
