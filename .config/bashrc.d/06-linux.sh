@@ -17,7 +17,7 @@ if [[ "${OSTYPE}" == "linux-gnu" ]]; then
     # For some reason Ansible likes to add a bunch of junk at the end
     #   of plays. Sed cleans this up.
     ap() {
-        ansible-playbook "${@}" | sed '/^{/,$d'
+        ansible-playbook --diff "${@}" | sed '/^{/,$d'
     }
 
     # Easily start/stop automounts.
