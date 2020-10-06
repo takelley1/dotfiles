@@ -4,7 +4,7 @@
 #   don't reboot while it's happening.
 
 if [ -x "/usr/bin/pacman" ]; then
-    if [ -n "$(pgrep --newest -f "aud.sh")" ]; then
+    if pgrep --newest --full --list-full "aud.sh" | grep -qEv "EDITOR|vi"; then
         printf "%s\n" "Updating system..."
     else
         exit 0
