@@ -108,7 +108,7 @@
       nnoremap gs :Git status<CR>
       nnoremap gl :Git log<CR>
       nnoremap gp :Git push<CR>
-      nnoremap giu :Git diff<CR>
+      nnoremap gd :Gdiffsplit<CR>
       nnoremap gis :Git diff --staged<CR>
       nnoremap gcf :write<CR> :Git commit %<CR>
       nnoremap gcs :Git commit<CR>
