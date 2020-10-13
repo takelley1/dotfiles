@@ -1,8 +1,10 @@
 #!/usr/bin/env dash
-set -eu
-
+#
 # Takes a screenshot, compresses it, and saves it to ~/Pictures.
+#
 # Requires pngcrush, ImageMagick, and optionally dunst for notifications.
+#
+set -eu
 
 time="$(date +%Y-%m-%d_%H:%M:%S)"
 hostname="$(hostname)"

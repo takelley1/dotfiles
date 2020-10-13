@@ -1,8 +1,9 @@
 #!/usr/bin/env dash
-
+#
 # Increases/Decreases volume, then checks to see if L and R channels
 #   are equal.
 # If channels are not equal, forces R channel to equal L channel.
+#
 
 if [ "${1}" = "up" ]; then
     amixer sset Master,0 1%+,1%+ >"/dev/null" 2>&1
