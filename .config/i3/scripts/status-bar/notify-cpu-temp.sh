@@ -4,7 +4,7 @@
 
 # Get the current temp from a file, which was written to by the
 #   cpu-temp.py script.
-temp="$(cat /tmp/cputemp)"
+temp="$(cat "/tmp/cputemp")"
 
 if [ "${temp}" -ge 87 ]; then
     notify-send -u low "CPU is getting hot! (${temp}°C)"
