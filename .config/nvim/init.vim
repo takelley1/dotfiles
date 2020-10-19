@@ -103,6 +103,8 @@
     nnoremap - dd
 
   " Git mappings:
+    " Git-gutter
+      nnoremap gu :GitGutterUndoHunk<CR>
     " Vim-Fugitive
       nnoremap ga :write<CR> :Git add %<CR>
       nnoremap gs :Git status<CR>
