@@ -147,10 +147,15 @@
 
     nnoremap <M-s> :split<CR>
     inoremap <M-s> <Esc>:split<CR>
+    
     nnoremap <M-k> <C-w><Up>
     inoremap <M-k> <Esc><C-w><Up>
     nnoremap <M-j> <C-w><Down>
     inoremap <M-j> <Esc><C-w><Down>
+    nnoremap <M-h> <C-w><Left>
+    inoremap <M-h> <Esc><C-w><Left>
+    nnoremap <M-l> <C-w><Right>
+    inoremap <M-l> <Esc><C-w><Right>
 
 " PLUGINS #################################################################
 
