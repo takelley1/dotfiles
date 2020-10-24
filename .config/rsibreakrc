@@ -1,0 +1,29 @@
+[General]
+AutoStart=true
+
+[General Settings]
+BigDuration=1
+BigInterval=60
+BigThreshold=5
+DisableAccel=true
+Effect=0
+ExpandImageToFullScreen=true
+Graylevel=80
+HideLockButton=true
+HideMinimizeButton=true
+HidePostponeButton=true
+ImageFolder=/home/akelley
+Patience=30
+PostponeBreakDuration=5
+SearchRecursiveCheck=false
+ShowSmallImagesCheck=true
+SlideInterval=10
+TinyDuration=20
+TinyInterval=10
+TinyThreshold=40
+UseNoIdleTimer=false
+UsePlasmaReadOnly=true
+
+[Popup Settings]
+UseFlash=true
+UsePopup=true

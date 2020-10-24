@@ -1,0 +1,13 @@
+[Event/end long break]
+Action=
+Execute=
+Logfile=
+Sound=
+TTS=
+
+[Event/start long break]
+Action=
+Execute=
+Logfile=
+Sound=
+TTS=
