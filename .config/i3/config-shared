@@ -13,6 +13,8 @@
 
  # Start notification daemon.
    exec --no-startup-id dunst -config ~/.config/dunst/dunstrc &
+ # Start RSI-prevention daemon.
+   exec --no-startup-id rsibreak
  # Mute microphone.
    exec --no-startup-id amixer set Capture 0%
 
@@ -96,12 +98,12 @@
 
  # Volume controls.
  # A small script is used to ensure L and R channels are in sync.
-   bindsym XF86AudioLowerVolume exec --no-startup-id ~/.config/i3/scripts/volume-down.sh
-   bindsym XF86AudioRaiseVolume exec --no-startup-id ~/.config/i3/scripts/volume-up.sh
+   bindsym XF86AudioLowerVolume exec --no-startup-id ~/.config/i3/scripts/volume-change.sh down
+   bindsym XF86AudioRaiseVolume exec --no-startup-id ~/.config/i3/scripts/volume-change.sh up
    bindsym XF86AudioMute exec --no-startup-id amixer set Master 0%
 
-   bindsym $mod+Down exec --no-startup-id ~/.config/i3/scripts/volume-down.sh
-   bindsym $mod+Up exec --no-startup-id ~/.config/i3/scripts/volume-up.sh
+   bindsym $mod+Down exec --no-startup-id ~/.config/i3/scripts/volume-change.sh down
+   bindsym $mod+Up exec --no-startup-id ~/.config/i3/scripts/volume-change.sh up
 
  # Lock screen.
    bindsym $mod+Control+x exec --no-startup-id ~/.config/i3/scripts/xss-locker.sh
