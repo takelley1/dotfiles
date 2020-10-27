@@ -1,0 +1,5 @@
+set recolor "true"
+set recolor-lightcolor "#313030"
+set recolor-darkcolor "#DEDEDE"
+set statusbar-v-padding "8"
+set font "monospace normal 11"
