@@ -209,6 +209,7 @@ bar {
             focused_workspace        #00ff00 #285777 #ffffff
             urgent_workspace         #333333 #222222 #888888
             }
+     tray_output none # Tray icons can get distracting.
     }
 
 # \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
