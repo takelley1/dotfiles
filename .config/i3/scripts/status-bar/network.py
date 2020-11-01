@@ -63,4 +63,4 @@ else:
 data_in = str(round(data_in, 2))
 data_out = str(round(data_out, 2))
 
-print("   " + data_in + in_unit + "   " + data_out + out_unit + " ")
+print("  " + data_in + " " + in_unit + "   " + data_out + " " + out_unit + " ")

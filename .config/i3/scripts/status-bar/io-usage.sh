@@ -28,9 +28,9 @@ interval=10
 
 # Remove the first set of results from iostat, since those stats start
 #   from bootup rather than $interval seconds ago.
-stats=$(iostat -hd "${interval}" 2 | sed -e "1,5s/.*//g" -e "/^$/d")
-kb_read="$(printf "%s\n" "${stats}" | awk '/[0-9]+k/ {print $2}' | head -1)"
-kb_written="$(printf "%s\n" "${stats}" | awk '/[0-9]+k/ {print $3}' | head -1)"
+stats=$(iostat -d "${interval}" 2 | sed -e "1,5s/.*//g" -e "/^$/d")
+kb_read="$(printf "%s\n" "${stats}" | awk '/[0-9]+/ {print $2}' | head -1)"
+kb_written="$(printf "%s\n" "${stats}" | awk '/[0-9]+/ {print $3}' | head -1)"
 
 if [ -n "$(ls /usr/share/fonts/OTF/Font\ Awesome*.otf)" ]; then
     symbol=""
@@ -42,6 +42,6 @@ else
     write_symbol="W"
 fi
 
-printf "%s\n" "${symbol}  ${kb_read} ${read_symbol}  ${kb_written} ${write_symbol}"
+printf "%s\n" "${symbol}  ${kb_read} K ${read_symbol}  ${kb_written} K ${write_symbol}"
 
 exit 0
