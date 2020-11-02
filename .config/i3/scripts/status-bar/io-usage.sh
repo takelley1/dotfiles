@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env dash
 #
 # Status bar script for printing the amount of data incoming and
 #   outgoing from all local disk interfaces.
@@ -26,7 +26,7 @@ interval=10
 #done
 #######################################################################################
 
-# Remove the first set of results from iostat, since those stats start
+# Remove the first set of results from iostat with sed, since those stats start
 #   from bootup rather than $interval seconds ago.
 stats=$(iostat -d "${interval}" 2 | sed -e "1,5s/.*//g" -e "/^$/d")
 kb_read="$(printf "%s\n" "${stats}" | awk '/[0-9]+/ {print $2}' | head -1)"
@@ -42,6 +42,6 @@ else
     write_symbol="W"
 fi
 
-printf "%s\n" "${symbol}  ${kb_read} K ${read_symbol}  ${kb_written} K ${write_symbol}"
+printf "%s\n" "${symbol} ${kb_read} K ${read_symbol}  ${kb_written} K ${write_symbol}"
 
 exit 0
