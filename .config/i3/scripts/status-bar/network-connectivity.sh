@@ -6,20 +6,22 @@
 #   keeyping the output as short as possible is not an issue.
 
 site_check_domain="icanhazip.com"
-site_check_url="https://icanhazip.com"
+site_check_url="https://${site_check_domain}"
 
-# Determine correct network interface.
-interface="$(ip address show scope global up | awk '{if(NR==1) print $2}')"
+# Collect interface info.
+status="$(networkctl status --lines=0 --no-pager --no-legend)"
+interface="$(printf "%s\n" "${status}" | awk '/Address/ {if(NR==2) print $4}')"
+gateway_ip="$(printf "%s\n" "${status}" | awk '/Gateway/ {print $2}' | head -1)"
 
-# Determine local network connectivity.
-if ping -c 1 10.0.0.1 | grep -q "bytes from"; then
+# Determine gateway connectivity.
+if ping -c 1 "${gateway_ip}" | grep -q " bytes from ${gateway_ip}"; then
     gateway="UP"
 else
     gateway="DOWN"
 fi
 
 # Determine internet connectivity.
-if ping -c 1 "${site_check_domain}" | grep -q "bytes from"; then
+if ping -c 1 "${site_check_domain}" | grep -q " bytes from "; then
     internet="UP"
 else
     internet="DOWN"
@@ -32,6 +34,15 @@ else
     proxy="FWRD"
 fi
 
-printf "%s\n" "${interface} gw ${gateway} web ${internet} proxy ${proxy}"
+printf "%s\n" "${interface} gw:${gateway} web:${internet} proxy:${proxy}"
+
+# Determine coloring using i3bar protocol.
+if [ "${proxy}" = "BLK" ] && [ "${internet}" = "UP" ] && [ "${gateway}" = "UP" ]; then
+    printf "\n%s\n" "#FFF000" # Yellow
+elif [ "${proxy}" = "DOWN" ] || [ "${internet}" = "DOWN" ] || [ "${gateway}" = "DOWN" ]; then
+    printf "\n%s\n" "#FF0000" # Red
+else
+    printf "\n%s\n" "#00FF00" # Green
+fi
 
 exit 0
