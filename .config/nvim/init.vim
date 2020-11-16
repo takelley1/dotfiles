@@ -99,9 +99,6 @@
   " Turn off highlighted search results.
     nnoremap Q :nohl<CR><C-L>
 
-  " Easier line deletion.
-    nnoremap - dd
-
   " Git mappings:
     " Git-gutter
       nnoremap gu :GitGutterUndoHunk<CR>
@@ -158,6 +155,14 @@
     inoremap <M-l> <Esc><C-w><Right>
 
 " PLUGINS #################################################################
+
+  " GitGutter ---------------------------------------------------------
+    " Make sidebar dark.
+      highlight SignColumn guibg=Black ctermbg=Black
+    " Undo git changes easily.
+      nnoremap gu :GitGutterUndoHunk<CR>
+    " View interactive git diff.
+      nnoremap gd :Gdiffsplit<CR>
 
   " Load all plugins now.
     packloadall

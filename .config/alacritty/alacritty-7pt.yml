@@ -151,7 +151,7 @@
       cursor:
         cursor: '0xffffff'
       normal:
-        black:   '#333333'
+        black:   '#302f2f'
         red:     '#ff3344'
         green:   '#00ee00'
         yellow:  '#ffc400'
