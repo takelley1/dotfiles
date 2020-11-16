@@ -9,8 +9,16 @@ set -o vi
 # Use jk to exit edit mode instead of ESC.
 bind '"jk":vi-movement-mode'
 
+if hash bat 2>/dev/null; then
+    export BAT_THEME='ansi-dark'
+    export PAGER="bat -p"
+    alias less='bat -p'
+    alias cat='bat -p'
+else
+    export PAGER="less"
+fi
+
 export TERM="screen-256color"
-export PAGER="less"
 export BROWSER="firefox"
 
 # These vars are for the sxiv image viewer.
