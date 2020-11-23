@@ -7,6 +7,7 @@
 if [[ "${OSTYPE}" == "freebsd"* ]]; then
 
     export SHELL="/usr/local/bin/bash"
+    export LANG="en_US.UTF-8"
 
     # FreeBSD's ls uses a different syntax from Linux.
     alias ls='ls -FCGh'
