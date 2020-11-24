@@ -97,6 +97,7 @@
     let g:airline#extensions#grepper#enabled = 1
     let g:airline_highlighting_cache = 1
     let g:airline#extensions#tabline#enabled = 1
+    let g:airline_detect_modified = 0
 
   " ALE --------------------------------------------------------------------------------------------
     " Have ALE remove extra whitespace and trailing lines.
@@ -119,13 +120,18 @@
       autocmd BufWritePre *.py execute ':Black'
 
   " Ctrl-P -----------------------------------------------------------------------------------------
-    " <leader>p to start searching.
+    " <leader>s to start searching (s for 'search').
     " CTRL-t to open the desired file in a new tab.
     " CTRL-v to open the desired file in a new vertical split.
-    let g:ctrlp_map = '<leader>p'
+    let g:ctrlp_map = '<leader>s'
     let g:ctrlp_tabpage_position = 'ac'
-    " Set search path to start at first .git directory below the cwd.
-    let g:ctrlp_working_path_mode = 'rw'
+    let g:ctrlp_working_path_mode = 'rw' " Set search path to start at first .git directory below the cwd.
+    let g:ctrlp_show_hidden = 1          " Index hidden files.
+    let g:ctrlp_clear_cache_on_exit = 0  " Keep cache accross reboots.
+    set wildignore+=*/.git/*,*/.hg/*,*/.svn/*  " Don't index version-control dirs.
+    let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
+    let g:ctrlp_max_depth = 50
+    let g:ctrlp_max_files = 50000
 
   " Fugitive -----------------------------------------------------------------------------------
       nnoremap ga :Git add %<CR><C-L>
@@ -152,9 +158,9 @@
       highlight DiffText ctermbg=1 ctermfg=3 guibg=1 guifg=3
 
   " Grepper ----------------------------------------------------------------------------------------
-    nnoremap <leader>G :Grepper -tool grep -cd /home/akelley<CR>
+    " <leader>s to start grepping (g for 'grep').
+    nnoremap <leader>G :Grepper -tool grep -cd ~/<CR>
     nnoremap <leader>g :Grepper -tool grep<CR>
-    nnoremap <leader>ho :e#1 <bar> nohl<CR><C-L>
 
   " MarkdownPreview --------------------------------------------------------------------------------
     " Markdown preview with mp.
@@ -222,6 +228,8 @@
       Plug 'ctrlpvim/ctrlp.vim'
       Plug 'preservim/nerdcommenter'
       Plug 'kevinhwang91/rnvimr'
+      Plug 'psf/black.git', { 'for': 'python' }
+      Plug 'sheerun/vim-polyglot.git'
     call plug#end()
 
 " NAVIGATION #######################################################################################
