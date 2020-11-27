@@ -10,14 +10,11 @@ set -o vi
 bind '"jk":vi-movement-mode'
 
 if hash bat 2>/dev/null; then
-    export BAT_THEME='ansi-dark'
-    export PAGER="bat -p"
-    alias less='bat -p'
+    export BAT_THEME='TwoDark'
     alias cat='bat -p'
-else
-    export PAGER="less"
 fi
 
+export PAGER="less"
 export TERM="screen-256color"
 export BROWSER="firefox"
 
