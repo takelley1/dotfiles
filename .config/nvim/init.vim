@@ -143,8 +143,13 @@ if has ('nvim')
   " Airline ---------------------------------------------------------------------------------------- {{{
 
     let g:airline_theme='powerlineish'
-    let g:airline#extensions#grepper#enabled = 1           " Enable Airline's Grepper extension.
     let g:airline_highlighting_cache = 1
+
+    let g:airline#extensions#grepper#enabled = 1           " Enable Grepper extension.
+    let g:airline#extensions#coc#enabled = 1               " Enable COC extension.
+    let g:airline#extensions#tagbar#enabled = 1            " Enable tagbar extension.
+
+    let g:airline#extensions#tabline#fnamemod = ':p:t'     " Format filenames in tabline.
 
     let g:airline#extensions#tabline#enabled = 1           " Replace the tabline with Airline's.
     let g:airline#extensions#tabline#show_splits = 0       " Don't show splits in the tabline.
@@ -319,8 +324,6 @@ if has ('nvim')
     Plug 'tpope/vim-fugitive'
     Plug 'xolox/vim-misc', { 'on': ['SaveSession', 'OpenSession', 'OpenSession!'] }
     Plug 'xolox/vim-session', { 'on': ['SaveSession', 'OpenSession', 'OpenSession!'] }
-    " Tab completion.
-    Plug 'ervandew/supertab'
     Plug 'vim-airline/vim-airline'
     Plug 'vim-airline/vim-airline-themes'
     Plug 'mhinz/vim-grepper', { 'on': 'Grepper' }
