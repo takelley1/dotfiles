@@ -1,4 +1,4 @@
-" FEATURES ######################################################################################### {{{
+" OPTIONS ########################################################################################## {{{
 
     set nocompatible
     filetype indent plugin on             " Identify the filetype.
@@ -7,20 +7,31 @@
     set encoding=utf-8                    " Force unicode encoding.
     set autoread                          " Auto update when a file is changed from the outside.
     set noshowmode                        " Don't show mode since it's handled by Airline.
+    set noshowcmd
 
+    set ignorecase                        " Case-insensitive search, except when using capitals.
+    set smartcase
     set wildmenu                          " Better path autocompletion.
     set wildmode=longest,list,full
-    set wildignore+=*/.git/*,*/.hg/*,*/.svn/*    " Don't index version-control dirs.
+    set wildignore+=*/.git/*,*/.hg/*,*/.svn/*    " Don't auto-complete these following filetypes.
+    set wildignore+=*/.git/*,*/.svn/*,*/__pycache__/*,*/build/**,*.pyc
+    set wildignore+=*.jpg,*.png,*.jpeg,*.bmp,*.gif,*.tiff,*.svg,*.ico
 
-    set number                                   " Show line numbers.
-    set numberwidth=1                            " Make line number column thinner.
-    set scrolloff=999                            " Force cursor to stay in the middle of the screen.
-
-    " https://vim.fandom.com/wiki/Set_working_directory_to_the_current_file
-    autocmd BufEnter * silent! lcd %:p:h         " Set working dir to current file's dir.
+    set autowriteall
+    set clipboard=unnamedplus             " Map vim copy buffer to system clipboard.
+    set confirm                           " Show dialog when a command requires confirmation.
+    set splitbelow splitright             " Splits open at the bottom and right, rather than top and left.
+    set noswapfile                        " Don't use swap files since most files are in Git.
 
     let g:python3_host_prog = '/usr/bin/python3' " Speed up startup.
     let g:loaded_python_provider = 0
+
+    " Disable Ex mode.
+      noremap q: <Nop>
+    " Screen redraws clear search results.
+      noremap <C-L> :nohl<CR><C-L>
+    " Use cedit mode when entering command mode.
+      nnoremap : :<C-f>
 
     " Persistent undo https://sidneyliebrand.io/blog/vim-tip-persistent-undo
     if has('persistent_undo')
@@ -33,19 +44,49 @@
     endif
 
 " }}}
+" AUTOCOMMANDS ##################################################################################### {{{
+
+    autocmd VimEnter * cd ~                   " Change to home directory on startup.
+    autocmd BufLeave * silent! :wa            " Save on focus loss.
+
+    autocmd FocusGained,BufEnter * checktime  " Automatically update file if changed from outside.
+
+    if has ('nvim')                           " Switch to insert mode when entering or creating terminals.
+        autocmd BufEnter * if &buftype == "terminal" | startinsert | endif
+        autocmd TermOpen * setlocal nonumber | startinsert
+    endif
+
+    " https://vim.fandom.com/wiki/Set_working_directory_to_the_current_file
+      autocmd BufEnter * silent! lcd %:p:h      " Set working dir to current file's dir.
+
+    " https://github.com/jdhao/nvim-config/blob/master/core/autocommands.vim
+    " Return to last position when re-opening file.
+      autocmd BufReadPost if line("'\"") > 1 && line("'\"") <= line("$") && &ft !~# 'commit' | execute "normal! g`\"zvzz" | endif
+
+" }}}
 " FORMATTING ####################################################################################### {{{
+
+    set number             " Show line numbers.
+    set numberwidth=1      " Make line number column thinner.
+    set scrolloff=999      " Force cursor to stay in the middle of the screen.
 
     set tabstop=4          " Indents are 4 spaces by default.
     set softtabstop=4
     set shiftwidth=4
     set expandtab          " Convert tabs to spaces.
-    set noautoindent       " No automatic formatting.
+    set noautoindent       " No automatic indenting.
+
+    set linebreak          " Break line at predefined characters.
+    set showbreak=↪        " Character to show before the lines that have been soft-wrapped.
+
+    " Disable all auto-formatting.
     autocmd FileType * setlocal nocindent nosmartindent formatoptions-=c formatoptions-=r formatoptions-=o indentexpr=
 
   " Force certain filetypes to use indents of 2 spaces.
-    autocmd FileType config,markdown,vim,yaml,*.md setlocal shiftwidth=2 softtabstop=2 tabstop=2
+    autocmd FileType text,config,markdown,vim,yaml,*.md setlocal shiftwidth=2 softtabstop=2 tabstop=2
+
   " Don't wrap text on Markdown files.
-    autocmd FileType markdown setlocal nowrap
+    autocmd FileType markdown,*.md setlocal nowrap
   " Manual folding in vim files.
     autocmd FileType vim setlocal foldlevelstart=0 foldmethod=marker
 
@@ -53,68 +94,42 @@
 " COLORS ########################################################################################### {{{
 
   " Color for folded blocks of text.
-    highlight Folded cterm=bold ctermfg=5 ctermbg=16 guifg=5 guibg=8
+    highlight Folded cterm=bold ctermfg=5 ctermbg=232 guifg=5 guibg=8
   " Visual mode text highlight color.
-    highlight Visual cterm=bold ctermfg=10 ctermbg=16 guifg=10 guibg=7
+    highlight Visual cterm=bold ctermfg=10 ctermbg=232 guifg=10 guibg=7
   " Search results highlight color.
     highlight Search cterm=bold ctermfg=0 ctermbg=3 guifg=0 guibg=3
-  " Drop-down menu highlighting.
+  " Auto-complete drop-down menu.
+    highlight Pmenu ctermfg=White ctermbg=234 guifg=White guibg=234
     highlight PmenuSel ctermfg=0 ctermbg=3 guifg=0 guibg=3
 
 " }}}
-" BEHAVIOR ######################################################################################### {{{
-    set noshowcmd
-    set autowriteall
-    set ignorecase                  " Case-insensitive search, except when using capitals.
-    set smartcase
-    set clipboard=unnamedplus       " Map vim copy buffer to system clipboard.
-    set confirm                     " Show dialog when a command requires confirmation.
-    set splitbelow splitright       " Splits open at the bottom and right, rather than top and left.
-    set noswapfile                  " Don't use swap files since most files are in Git.
-
-    autocmd VimEnter * cd ~         " Change to home directory on startup.
-    autocmd BufLeave * silent! :wa  " Save on focus loss.
-    autocmd FocusGained,BufEnter * checktime  " Automatically update file if changed from outside.
-
-    " Switch to insert mode when entering or creating terminals.
-    if has ('nvim')
-        autocmd BufEnter * if &buftype == "terminal" | startinsert | endif
-        autocmd TermOpen * :setlocal nonumber | :startinsert
-    endif
-
-    " Disable Ex mode.
-      noremap q: <Nop>
-    " Screen redraws clear search results.
-      noremap <C-L> :nohl<CR><C-L>
-    " Use cedit mode when entering command mode.
-      nnoremap : :<C-f>
-
-" }}}
 " SHORTCUTS ######################################################################################## {{{
+
   " Leader key easier to reach.
     let mapleader = ","
-  " Easier exiting insert mode.
-    inoremap jk <Esc>
-    if has('nvim') | tnoremap <Esc> <C-\><C-n> | endif
+
   " Faster saving.
-    nnoremap <leader>w :write<CR>
-  " Easily edit vimrc.
+    nnoremap <leader>w :write<CR><C-L>
+
+  " Easily edit vimrc (ev for 'edit vim').
     nnoremap <leader>ev :split ~/.config/nvim/init.vim<CR>
   " Reload configuration without restarting vim (sv for 'source vim').
-    nnoremap <leader>sv :write <bar> :source $MYVIMRC<CR>
+    nnoremap <leader>sv :update <bar> :source $MYVIMRC<CR><C-L>
+
   " Jump back and forth between files.
     nnoremap <leader><space> <C-^>
-
-  " Quickly open a terminal tab or split.
-    nnoremap <leader>t :tabnew <bar> terminal<CR>
-    nnoremap <leader>nt :tabnew <bar> terminal<CR>
-    nnoremap <leader>st :split <bar> terminal<CR>
-    nnoremap <leader>vt :vsplit <bar> terminal<CR>
 
   " Columnize selection.
     vnoremap t :!column -t<CR>
   " Turn off highlighted search results.
     nnoremap Q :nohl<CR><C-L>
+
+  " https://github.com/jdhao/nvim-config/blob/master/core/mappings.vim
+  " Continuous visual shifting (does not exit Visual mode), `gv` means
+  " to reselect previous visual area, see https://superuser.com/q/310417/736190
+    xnoremap < <gv
+    xnoremap > >gv
 
   " Dotfiles (Vim-fugitive doesn't support --git-dir option)
     nnoremap da :write<CR> :!git --git-dir=$HOME/.cfg/ --work-tree=$HOME add %<CR><C-L>
@@ -138,7 +153,7 @@
 if has ('nvim')
 
   " Increase plugin update speed.
-    set updatetime=1000
+    set updatetime=500
 
   " Airline ---------------------------------------------------------------------------------------- {{{
 
@@ -146,7 +161,6 @@ if has ('nvim')
     let g:airline_highlighting_cache = 1
 
     let g:airline#extensions#grepper#enabled = 1           " Enable Grepper extension.
-    let g:airline#extensions#coc#enabled = 1               " Enable COC extension.
     let g:airline#extensions#tagbar#enabled = 1            " Enable tagbar extension.
 
     let g:airline#extensions#tabline#fnamemod = ':p:t'     " Format filenames in tabline.
@@ -184,22 +198,55 @@ if has ('nvim')
       autocmd BufWritePre *.py execute ':Black'
 
   " }}}
+  " COC -------------------------------------------------------------------------------------------- {{{
+
+    " These configs are from https://github.com/neoclide/coc.nvim
+
+    " Use K to show documentation in preview window.
+    nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+    function! s:show_documentation()
+      if(index(['vim','help'], &filetype) >= 0)
+        execute 'h '.expand('<cword>')
+      elseif (coc#rpc#ready())
+        call CocActionAsync('doHover')
+      else
+        execute '!' . &keywordprg . " " . expand('<cword>')
+      endif
+    endfunction
+
+    " Use TAB to trigger auto-complete.
+    inoremap <silent><expr> <TAB>
+          \ pumvisible() ? "\<C-n>" :
+          \ <SID>check_back_space() ? "\<TAB>" :
+          \ coc#refresh()
+    inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+    function! s:check_back_space() abort
+      let col = col('.') - 1
+      return !col || getline('.')[col - 1]  =~# '\s'
+    endfunction
+
+  " }}}
   " CtrlP ------------------------------------------------------------------------------------------ {{{
 
-    " <leader>s to start searching (s for 'search').
+    " <leader>s to start searching from project directory (s for 'search').
+    " <leader>S to start searching from home directory.
+
+    " CTRL-j and CTRL-k to navigate through results.
     " CTRL-t to open the desired file in a new tab.
     " CTRL-v to open the desired file in a new vertical split.
 
     let g:ctrlp_map = '<leader>s'
+    nnoremap <leader>S :CtrlP ~<CR>
 
     let g:ctrlp_tabpage_position = 'ac'
     let g:ctrlp_working_path_mode = 'rw' " Set search path to start at first .git directory below the cwd.
 
+    let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:15,results:15' " Change height of search window.
     let g:ctrlp_show_hidden = 1          " Index hidden files.
     let g:ctrlp_clear_cache_on_exit = 0  " Keep cache accross reboots.
-    let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
-    let g:ctrlp_max_depth = 50
-    let g:ctrlp_max_files = 50000
+    let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn|swp)$'
 
   " }}}
   " Fugitive --------------------------------------------------------------------------------------- {{{
@@ -320,29 +367,43 @@ if has ('nvim')
 
   call plug#begin(stdpath('data') . '/plugged')
     Plug 'airblade/vim-gitgutter'
+    " Linting engine.
     Plug 'dense-analysis/ale'
+    " Git integration.
     Plug 'tpope/vim-fugitive'
+    " Dependency for vim-session.
     Plug 'xolox/vim-misc', { 'on': ['SaveSession', 'OpenSession', 'OpenSession!'] }
+    " Session save and restore.
     Plug 'xolox/vim-session', { 'on': ['SaveSession', 'OpenSession', 'OpenSession!'] }
+    " Status bar.
     Plug 'vim-airline/vim-airline'
     Plug 'vim-airline/vim-airline-themes'
+    " Search within files.
     Plug 'mhinz/vim-grepper', { 'on': 'Grepper' }
-    " File search.
+    " Filename search.
     Plug 'ctrlpvim/ctrlp.vim'
     " Easily comment blocks.
     Plug 'preservim/nerdcommenter'
+    " Floating embedded Ranger window.
     Plug 'kevinhwang91/rnvimr'
+    " Python code formatter.
     Plug 'psf/black.git', { 'for': 'python', 'branch': 'stable' }
+    " Better syntax highlighting.
     Plug 'sheerun/vim-polyglot.git'
     "Plug 'psliwka/vim-smoothie'
     Plug 'iamcco/markdown-preview.nvim', { 'for': 'markdown' }
+    " Visualize and navigate Vim's undo tree.
     Plug 'mbbill/undotree'
     " Auto-create bracket and quote pairs.
     Plug 'jiangmiao/auto-pairs'
-    " Easy function navigation on large files.
+    " Function navigation on large files.
     Plug 'preservim/tagbar'
     " Code completion.
     Plug 'neoclide/coc.nvim', { 'branch': 'release' }
+    " Auto-save file after period if inactivity.
+    Plug '907th/vim-auto-save'
+    " Smooth scrolling.
+    Plug 'psliwka/vim-smoothie'
   call plug#end()
 
 endif
@@ -350,9 +411,19 @@ endif
 " }}}
 " NAVIGATION ####################################################################################### {{{
 
+  " Easier exiting insert mode.
+    inoremap jk <Esc>
+    if has('nvim') | tnoremap <C-x> <C-\><C-n> | endif
+
   " Easier navigating soft-wrapped lines.
     nnoremap j gj
     nnoremap k gk
+
+  " Quickly open a terminal tab or split.
+    nnoremap <leader>t :tabnew <bar> terminal<CR>
+    nnoremap <leader>nt :tabnew <bar> terminal<CR>
+    nnoremap <leader>st :split <bar> terminal<CR>
+    nnoremap <leader>vt :vsplit <bar> terminal<CR>
 
   " CTRL-n/p to navigate tabs.
     nnoremap <silent> <C-p> :tabprevious<CR>
@@ -363,7 +434,6 @@ endif
   " Jump to last active tab (a for 'alternate').
     autocmd TabLeave * let g:lasttab = tabpagenr()
     nnoremap <leader>a :exe "tabn ".g:lasttab<CR>
-    inoremap <leader>a <Esc>:exe "tabn ".g:lasttab<CR>
 
   " Create and delete tabs web-browser-style.
   " Open Ranger on new splits and tabs by default.
