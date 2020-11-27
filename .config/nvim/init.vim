@@ -2,6 +2,18 @@
 
     filetype indent plugin on             " Identify the filetype.
     syntax on                             " Force syntax highlighting.
+    if has('termguicolors')
+        set termguicolors                 " Enable 24-bit color support.
+    endif
+
+    " Change cursor to bar when switching to insert mode.
+      let &t_SI = "\e[6 q"
+      let &t_EI = "\e[2 q"
+      " Optionally reset the cursor on start:
+      augroup myCmds
+          au!
+          autocmd VimEnter * silent !echo -ne "\e[2 q"
+      augroup END
 
     set encoding=utf-8                    " Force unicode encoding.
     set autoread                          " Auto update when a file is changed from the outside.
@@ -81,25 +93,12 @@
     autocmd FileType * setlocal nocindent nosmartindent formatoptions-=c formatoptions-=r formatoptions-=o indentexpr=
 
   " Force certain filetypes to use indents of 2 spaces.
-    autocmd FileType text,config,markdown,vim,yaml,*.md setlocal shiftwidth=2 softtabstop=2 tabstop=2
+    autocmd FileType text,config,markdown,yaml,*.md setlocal shiftwidth=2 softtabstop=2 tabstop=2
 
   " Don't wrap text on Markdown files.
     autocmd FileType markdown,*.md setlocal nowrap
   " Manual folding in vim files.
     autocmd FileType vim setlocal foldlevelstart=0 foldmethod=marker
-
-" }}}
-" COLORS ########################################################################################### {{{
-
-  " Color for folded blocks of text.
-    highlight Folded cterm=bold ctermfg=5 ctermbg=232 guifg=5 guibg=8
-  " Visual mode text highlight color.
-    highlight Visual cterm=bold ctermfg=10 ctermbg=232 guifg=10 guibg=7
-  " Search results highlight color.
-    highlight Search cterm=bold ctermfg=0 ctermbg=3 guifg=0 guibg=3
-  " Auto-complete drop-down menu.
-    highlight Pmenu ctermfg=White ctermbg=234 guifg=White guibg=234
-    highlight PmenuSel ctermfg=0 ctermbg=3 guifg=0 guibg=3
 
 " }}}
 " SHORTCUTS ######################################################################################## {{{
@@ -162,7 +161,7 @@ if has ('nvim')
 
   " Airline ---------------------------------------------------------------------------------------- {{{
 
-    let g:airline_theme='powerlineish'
+    let g:airline_theme='palenight'
     let g:airline_highlighting_cache = 1
 
     let g:airline#extensions#grepper#enabled = 1           " Enable Grepper extension.
@@ -337,12 +336,12 @@ if has ('nvim')
                 \ }
 
     " Set floating initial size relative to main window size.
-    let g:rnvimr_layout = {
-                \ 'relative': 'editor',
-                \ 'width': float2nr(round(0.9 * &columns)),
-                \ 'height': float2nr(round(0.9 * &lines)),
-                \ 'style': 'minimal'
-                \ }
+    " let g:rnvimr_layout = {
+    "             \ 'relative': 'editor',
+    "             \ 'width': float2nr(round(0.9 * &columns)),
+    "             \ 'height': float2nr(round(0.9 * &lines)),
+    "             \ 'style': 'minimal'
+    "             \ }
 
   " }}}
   " Session ---------------------------------------------------------------------------------------- {{{
@@ -362,48 +361,69 @@ if has ('nvim')
     nnoremap <leader>u :UndotreeToggle<CR>
 
   " }}}
+  " Vim-Plug --------------------------------------------------------------------------------------- {{{
 
   call plug#begin(stdpath('data') . '/plugged')
-    Plug 'airblade/vim-gitgutter'
-    " Linting engine.
-    Plug 'dense-analysis/ale'
-    " Git integration.
-    Plug 'tpope/vim-fugitive'
-    " Dependency for vim-session.
-    Plug 'xolox/vim-misc', { 'on': ['SaveSession', 'OpenSession', 'OpenSession!'] }
-    " Session save and restore.
-    Plug 'xolox/vim-session', { 'on': ['SaveSession', 'OpenSession', 'OpenSession!'] }
-    " Status bar.
-    Plug 'vim-airline/vim-airline'
-    Plug 'vim-airline/vim-airline-themes'
-    " Search within files.
-    Plug 'mhinz/vim-grepper', { 'on': 'Grepper' }
-    " Filename search.
-    Plug 'ctrlpvim/ctrlp.vim'
-    " Easily comment blocks.
-    Plug 'preservim/nerdcommenter'
-    " Floating embedded Ranger window.
-    Plug 'kevinhwang91/rnvimr'
-    " Python code formatter.
-    Plug 'psf/black.git', { 'for': 'python', 'branch': 'stable' }
-    " Better syntax highlighting.
-    Plug 'sheerun/vim-polyglot.git'
-    "Plug 'psliwka/vim-smoothie'
-    Plug 'iamcco/markdown-preview.nvim', { 'for': 'markdown' }
-    " Visualize and navigate Vim's undo tree.
-    Plug 'mbbill/undotree'
-    " Auto-create bracket and quote pairs.
-    Plug 'jiangmiao/auto-pairs'
-    " Function navigation on large files.
-    Plug 'preservim/tagbar'
-    " Code completion.
-    Plug 'neoclide/coc.nvim', { 'branch': 'release' }
-    " Auto-save file after period if inactivity.
-    Plug '907th/vim-auto-save'
-    " Smooth scrolling.
-    Plug 'psliwka/vim-smoothie'
-    Plug 'machakann/vim-highlightedyank'
+
+    " Navigation -----------------------------------------------------
+        " Search within files.
+        Plug 'mhinz/vim-grepper', { 'on': 'Grepper' }
+        " Filename search.
+        Plug 'ctrlpvim/ctrlp.vim'
+        " Floating embedded Ranger window.
+        Plug 'kevinhwang91/rnvimr'
+        " Smooth scrolling.
+        Plug 'psliwka/vim-smoothie'
+
+    " Usability ------------------------------------------------------
+        " Main colorscheme.
+        Plug 'drewtempelmeyer/palenight.vim'
+        " Dependency for vim-session.
+        Plug 'xolox/vim-misc', { 'on': ['SaveSession', 'OpenSession', 'OpenSession!'] }
+        " Session save and restore.
+        Plug 'xolox/vim-session', { 'on': ['SaveSession', 'OpenSession', 'OpenSession!'] }
+        " Status bar.
+        Plug 'vim-airline/vim-airline'
+        Plug 'vim-airline/vim-airline-themes'
+        " Easily comment blocks.
+        Plug 'preservim/nerdcommenter'
+        Plug 'iamcco/markdown-preview.nvim', { 'for': 'markdown' }
+        " Visualize and navigate Vim's undo tree.
+        Plug 'mbbill/undotree'
+        " Auto-save file after period if inactivity.
+        Plug '907th/vim-auto-save'
+        Plug 'machakann/vim-highlightedyank'
+
+    " Programming ----------------------------------------------------
+        " Git integration.
+        Plug 'airblade/vim-gitgutter'
+        Plug 'tpope/vim-fugitive'
+        " Python code formatter.
+        Plug 'psf/black', { 'for': 'python', 'branch': 'stable' }
+        " Better syntax highlighting.
+        Plug 'sheerun/vim-polyglot'
+        " Function navigation on large files.
+        Plug 'preservim/tagbar'
+        " Code completion.
+        Plug 'neoclide/coc.nvim', { 'branch': 'release' }
+        " Linting engine.
+        Plug 'dense-analysis/ale'
+        " Auto-create bracket and quote pairs.
+        Plug 'jiangmiao/auto-pairs'
+        " Show indentation lines.
+        Plug 'yggdroot/indentline'
+
   call plug#end()
+" }}}
+  " Colors ----------------------------------------------------------------------------------------- {{{
+
+  " For some reason this has to come after loading the plugin.
+    let g:palenight_color_overrides = {
+    \    'black': { 'gui': '#2c2a2a', "cterm": "0", "cterm16": "0" },
+    \}
+    colorscheme palenight
+
+  " }}}
 
 endif
 
@@ -442,8 +462,8 @@ endif
     nnoremap <C-w> :tabclose<CR>
     inoremap <C-w> <Esc>:tabclose<CR>
 
-" https://breuer.dev/blog/top-neovim-plugins.html
-" If a split exists, navigate to it. Otherwise, create a split.
+  " https://breuer.dev/blog/top-neovim-plugins.html
+  " If a split exists, navigate to it. Otherwise, create a split.
     function! WinMove(key)
         let t:curwin = winnr()
         exec "wincmd ".a:key
