@@ -166,6 +166,7 @@ if has ('nvim')
 
     let g:airline#extensions#grepper#enabled = 1           " Enable Grepper extension.
     let g:airline#extensions#tagbar#enabled = 1            " Enable tagbar extension.
+    let g:airline#extensions#coc#enabled = 0
 
     let g:airline#extensions#tabline#fnamemod = ':p:t'     " Format filenames in tabline.
 
@@ -392,6 +393,7 @@ if has ('nvim')
         Plug 'mbbill/undotree'
         " Auto-save file after period if inactivity.
         Plug '907th/vim-auto-save'
+        " Briefly highlight yanked text.
         Plug 'machakann/vim-highlightedyank'
 
     " Programming ----------------------------------------------------
