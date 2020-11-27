@@ -362,27 +362,6 @@ endif
     nnoremap <leader>a :exe "tabn ".g:lasttab<CR>
     inoremap <leader>a <Esc>:exe "tabn ".g:lasttab<CR>
 
-  " Jump to tab by number.
-  " Using CTRL doesn't work here, so must use ALT.
-    nnoremap <silent> <A-1> 1gt
-    inoremap <silent> <A-1> <Esc>1gt<CR>
-    nnoremap <silent> <A-2> 2gt
-    inoremap <silent> <A-2> <Esc>2gt<CR>
-    nnoremap <silent> <A-3> 3gt
-    inoremap <silent> <A-3> <Esc>3gt<CR>
-    nnoremap <silent> <A-4> 4gt
-    inoremap <silent> <A-4> <Esc>4gt<CR>
-    nnoremap <silent> <A-5> 5gt
-    inoremap <silent> <A-5> <Esc>5gt<CR>
-    nnoremap <silent> <A-6> 6gt
-    inoremap <silent> <A-6> <Esc>6gt<CR>
-    nnoremap <silent> <A-7> 7gt
-    inoremap <silent> <A-7> <Esc>7gt<CR>
-    nnoremap <silent> <A-8> 8gt
-    inoremap <silent> <A-8> <Esc>8gt<CR>
-    nnoremap <silent> <A-9> 9gt
-    inoremap <silent> <A-9> <Esc>9gt<CR>
-
   " Create and delete tabs web-browser-style.
   " Open Ranger on new splits and tabs by default.
     nnoremap <C-t> :tabnew <bar> :RnvimrToggle<CR><C-L>
@@ -398,12 +377,11 @@ endif
         if (t:curwin == winnr())
             if (match(a:key,'[jk]'))
                 vsplit
-                Ranger
             else
                 split
-                Ranger
             endif
             exec "wincmd ".a:key
+            RnvimrToggle
         endif
     endfunction
 
@@ -464,4 +442,26 @@ endif
         tnoremap <A-Up> <C-\><C-n>:resize +2<CR><C-L>
         tnoremap <A-Down> <C-\><C-n>:resize -2<CR><C-L>
     endif
+
+  " Jump to tab by number.
+  " Using CTRL doesn't work here, so must use ALT.
+    nnoremap <silent> <A-1> 1gt
+    inoremap <silent> <A-1> <Esc>1gt<CR>
+    nnoremap <silent> <A-2> 2gt
+    inoremap <silent> <A-2> <Esc>2gt<CR>
+    nnoremap <silent> <A-3> 3gt
+    inoremap <silent> <A-3> <Esc>3gt<CR>
+    nnoremap <silent> <A-4> 4gt
+    inoremap <silent> <A-4> <Esc>4gt<CR>
+    nnoremap <silent> <A-5> 5gt
+    inoremap <silent> <A-5> <Esc>5gt<CR>
+    nnoremap <silent> <A-6> 6gt
+    inoremap <silent> <A-6> <Esc>6gt<CR>
+    nnoremap <silent> <A-7> 7gt
+    inoremap <silent> <A-7> <Esc>7gt<CR>
+    nnoremap <silent> <A-8> 8gt
+    inoremap <silent> <A-8> <Esc>8gt<CR>
+    nnoremap <silent> <A-9> 9gt
+    inoremap <silent> <A-9> <Esc>9gt<CR>
+
 " }}}
