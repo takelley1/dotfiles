@@ -42,6 +42,13 @@
     " Use cedit mode when entering command mode.
       nnoremap : :<C-f>
 
+    " Disable Ex mode.
+      noremap q: <Nop>
+    " Screen redraws clear search results.
+      noremap <C-L> :nohl<CR><C-L>
+    " Use cedit mode when entering command mode.
+      nnoremap : :<C-f>
+
     " Persistent undo https://sidneyliebrand.io/blog/vim-tip-persistent-undo
     if has('persistent_undo')
         let target_path = expand('~/.vim/undo/')
@@ -92,7 +99,7 @@
     autocmd FileType * setlocal nocindent nosmartindent formatoptions-=c formatoptions-=r formatoptions-=o indentexpr=
 
   " Force certain filetypes to use indents of 2 spaces.
-    autocmd FileType text,config,markdown,yaml,*.md setlocal shiftwidth=2 softtabstop=2 tabstop=2
+    autocmd FileType text,config,markdown,vim,yaml,*.md setlocal shiftwidth=2 softtabstop=2 tabstop=2
 
   " Don't wrap text on Markdown files.
     autocmd FileType markdown,*.md setlocal nowrap
