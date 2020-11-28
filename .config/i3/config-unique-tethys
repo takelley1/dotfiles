@@ -21,7 +21,7 @@ font pango:DejaVu Sans 9, Awesome 9
  # make sure numlock is on
    exec_always --no-startup-id numlockx on
  # set mouse sensitivity
-   exec_always --no-startup-id xinput --set-prop pointer:'Logitech G903' 296 -0.85
+   exec_always --no-startup-id xinput --set-prop pointer:'Logitech G903' 'libinput Accel Speed' -0.85
    mouse_warping none
 
 # HOTKEYS
@@ -37,7 +37,7 @@ font pango:DejaVu Sans 9, Awesome 9
    bindsym $mod+Mod1+3 exec --no-startup-id /home/austin/.config/i3/scripts/redshift/redshift-brightness.sh .3
    bindsym $mod+Mod1+2 exec --no-startup-id /home/austin/.config/i3/scripts/redshift/redshift-brightness.sh .2
    bindsym $mod+Mod1+1 exec --no-startup-id /home/austin/.config/i3/scripts/redshift/redshift-brightness.sh .1
- 
+
 # hidden detailed status bar, invoked with right CTRL
 bar {
     status_command py3status -c /home/austin/.config/i3/py3status.conf
@@ -53,4 +53,3 @@ bar {
 
 # \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 # //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
