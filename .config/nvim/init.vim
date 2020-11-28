@@ -6,13 +6,14 @@
         set termguicolors                 " Enable 24-bit color support.
     endif
 
-    " Change cursor to bar when switching to insert mode.
-      let &t_SI = "\e[6 q"
-      let &t_EI = "\e[2 q"
-      augroup myCmds
-          au!
-          autocmd VimEnter * silent !echo -ne "\e[2 q"
-      augroup END
+  " Change cursor to bar when switching to insert mode.
+  " Requires `set -ga terminal-overrides ',*:Ss=\E[%p1%d q:Se=\E[2 q'` in tmux config.
+    let &t_SI = "\e[6 q"
+    let &t_EI = "\e[2 q"
+    augroup insertbar
+        autocmd!
+        autocmd VimEnter * silent !echo -ne "\e[2 q"
+    augroup END
 
     set encoding=utf-8                    " Force unicode encoding.
     set autoread                          " Auto update when a file is changed from the outside.
@@ -20,36 +21,29 @@
     set noshowcmd                         " Don't show command on last line.
 
     set ignorecase                        " Case-insensitive search, except when using capitals.
-    set smartcase
-    set wildmenu                          " Better path autocompletion.
+    set smartcase                         " Override ignorecase if search contains capital letters.
+    set wildmenu                          " Enable path autocompletion.
     set wildmode=longest,list,full
-    " Don't auto-complete these filetypes.
+  " Don't auto-complete these filetypes.
     set wildignore+=*/.git/*,*/.svn/*,*/__pycache__/*,*.pyc,*.jpg,*.png,*.jpeg,*.bmp,*.gif,*.tiff,*.svg,*.ico,*.mp4,*.mkv,*.avi
 
     set autowriteall                      " Auto-save after certain events.
     set clipboard=unnamedplus             " Map vim copy buffer to system clipboard.
-    set confirm                           " Show dialog when a command requires confirmation.
-    set splitbelow splitright             " Splits open at the bottom and right, rather than top and left.
-    set noswapfile nobackup nowritebackup " Don't use backups since most files are in Git.
+    set confirm                           " Require confirmation before doing certain destructive things.
+    set splitbelow splitright             " Splits open at the bottom and right by default, rather than top and left.
+    set noswapfile nobackup               " Don't use backups since most files are in Git.
 
     let g:python3_host_prog = '/usr/bin/python3' " Speed up startup.
     let g:loaded_python_provider = 0             " Disable Python 2 provider.
 
-    " Disable Ex mode.
-      noremap q: <Nop>
-    " Screen redraws clear search results.
-      noremap <C-L> :nohl<CR><C-L>
-    " Use cedit mode when entering command mode.
-      nnoremap : :<C-f>
+  " Disable Ex mode.
+    noremap q: <Nop>
+  " Screen redraws will clear search results.
+    noremap <C-L> :nohl<CR><C-L>
+  " Use cedit mode when entering command mode.
+    nnoremap : :<C-f>
 
-    " Disable Ex mode.
-      noremap q: <Nop>
-    " Screen redraws clear search results.
-      noremap <C-L> :nohl<CR><C-L>
-    " Use cedit mode when entering command mode.
-      nnoremap : :<C-f>
-
-    " Persistent undo https://sidneyliebrand.io/blog/vim-tip-persistent-undo
+  " Persistent undo https://sidneyliebrand.io/blog/vim-tip-persistent-undo
     if has('persistent_undo')
         let target_path = expand('~/.vim/undo/')
         if !isdirectory(target_path)
@@ -62,22 +56,42 @@
 " }}}
 " AUTOCOMMANDS ##################################################################################### {{{
 
-    autocmd VimEnter * cd ~                   " Change to home directory on startup.
-    autocmd BufLeave * silent! :wa            " Save on focus loss.
+  " Change to home directory on startup.
+    augroup homecd
+        autocmd!
+        autocmd VimEnter * cd ~
+    augroup END
 
-    autocmd FocusGained,BufEnter * checktime  " Automatically update file if changed from outside.
+    augroup autoupdate
+        autocmd!
+        " Automatically update file if changed from outside.
+        autocmd FocusGained,BufEnter * checktime
+        " Save on focus loss.
+        autocmd BufLeave * silent! :wa
+    augroup END
 
-    if has ('nvim')                           " Switch to insert mode when entering or creating terminals.
-        autocmd BufEnter * if &buftype == "terminal" | startinsert | endif
-        autocmd TermOpen * setlocal nonumber | startinsert
+  " Switch to insert mode when entering or creating terminals.
+    if has ('nvim')
+        augroup termsettings
+            autocmd!
+            autocmd BufEnter * if &buftype == "terminal" | startinsert | endif
+            autocmd TermOpen * setlocal nonumber | startinsert
+        augroup END
     endif
 
-    " https://vim.fandom.com/wiki/Set_working_directory_to_the_current_file
-      autocmd BufEnter * silent! lcd %:p:h      " Set working dir to current file's dir.
+  " https://vim.fandom.com/wiki/Set_working_directory_to_the_current_file
+  " Set working dir to current file's dir.
+    augroup filecd
+        autocmd!
+        autocmd BufEnter * silent! lcd %:p:h
+    augroup END
 
-    " https://github.com/jdhao/nvim-config/blob/master/core/autocommands.vim
-    " Return to last position when re-opening file.
-      autocmd BufReadPost if line("'\"") > 1 && line("'\"") <= line("$") && &ft !~# 'commit' | execute "normal! g`\"zvzz" | endif
+  " https://github.com/jdhao/nvim-config/blob/master/core/autocommands.vim
+  " Return to last position when re-opening file.
+    augroup lastpos
+        autocmd!
+        autocmd BufReadPost if line("'\"") > 1 && line("'\"") <= line("$") && &ft !~# 'commit' | execute "normal! g`\"zvzz" | endif
+    augroup END
 
 " }}}
 " FORMATTING ####################################################################################### {{{
@@ -86,16 +100,17 @@
     set numberwidth=1      " Make line number column thinner.
     set scrolloff=999      " Force cursor to stay in the middle of the screen.
 
-    set tabstop=4          " Indents are 4 spaces by default.
+  " Indents are 4 spaces by default.
+    set tabstop=4          " A <TAB> creates 4 spaces.
     set softtabstop=4
-    set shiftwidth=4
+    set shiftwidth=4       " Number of auto-indent spaces.
     set expandtab          " Convert tabs to spaces.
     set noautoindent       " No automatic indenting.
 
-    set linebreak          " Break line at predefined characters.
+    set linebreak          " Break line at predefined characters when soft-wrapping.
     set showbreak=↪        " Character to show before the lines that have been soft-wrapped.
 
-    " Disable all auto-formatting.
+  " Disable all auto-formatting.
     autocmd FileType * setlocal nocindent nosmartindent formatoptions-=c formatoptions-=r formatoptions-=o indentexpr=
 
   " Force certain filetypes to use indents of 2 spaces.
@@ -170,10 +185,14 @@ if has ('nvim')
     let g:airline_theme='palenight'
     let g:airline_highlighting_cache = 1
 
-    let g:airline#extensions#grepper#enabled = 1           " Enable Grepper extension.
-    let g:airline#extensions#tagbar#enabled = 1            " Enable tagbar extension.
-    let g:airline#extensions#coc#enabled = 0
+    " Disable unnecessary extensions.
+      let g:airline#extensions#tagbar#enabled = 0
+      let g:airline#extensions#po#enabled = 0
+      let g:airline#extensions#netrw#enabled = 0
+      let g:airline#extensions#keymap#enabled = 0
+      let g:airline#extensions#fzf#enabled = 0
 
+    let g:airline#extensions#tabline#enabled = 1
     let g:airline#extensions#tabline#fnamemod = ':p:t'     " Format filenames in tabline.
 
     let g:airline#extensions#tabline#enabled = 1           " Replace the tabline with Airline's.
@@ -194,13 +213,13 @@ if has ('nvim')
       let g:ale_lint_delay = 300 " Increase linting speed.
 
       " Bash
-      let g:ale_sh_bashate_options = '--ignore "E043,E006"'
+        let g:ale_sh_bashate_options = '--ignore "E043,E006"'
       " Python
-      let g:ale_python_flake8_options = '--config ~/.config/nvim/linters/flake8.config'
-      let g:ale_python_pylint_options = '--rcfile ~/.config/nvim/linters/pylintrc.config'
+        let g:ale_python_flake8_options = '--config ~/.config/nvim/linters/flake8.config'
+        let g:ale_python_pylint_options = '--rcfile ~/.config/nvim/linters/pylintrc.config'
       " YAML
-      let g:ale_yaml_yamllint_options = '--config-file ~/.config/nvim/linters/yamllint.yml'
-      let g:ale_linters = {'yaml': ['yamllint']} " Don't run swaglint on YAML files.
+        let g:ale_yaml_yamllint_options = '--config-file ~/.config/nvim/linters/yamllint.yml'
+        let g:ale_linters = {'yaml': ['yamllint']} " Don't run swaglint on YAML files.
 
   " }}}
   " Black ------------------------------------------------------------------------------------------ {{{
@@ -214,28 +233,28 @@ if has ('nvim')
     " These configs are from https://github.com/neoclide/coc.nvim
 
     " Use K to show documentation in preview window.
-    nnoremap <silent> K :call <SID>show_documentation()<CR>
+      nnoremap <silent> K :call <SID>show_documentation()<CR>
 
     function! s:show_documentation()
-      if(index(['vim','help'], &filetype) >= 0)
-        execute 'h '.expand('<cword>')
-      elseif (coc#rpc#ready())
-        call CocActionAsync('doHover')
-      else
-        execute '!' . &keywordprg . " " . expand('<cword>')
-      endif
+        if(index(['vim','help'], &filetype) >= 0)
+            execute 'h '.expand('<cword>')
+        elseif (coc#rpc#ready())
+            call CocActionAsync('doHover')
+        else
+            execute '!' . &keywordprg . " " . expand('<cword>')
+        endif
     endfunction
 
     " Use TAB to trigger auto-complete.
-    inoremap <silent><expr> <TAB>
-          \ pumvisible() ? "\<C-n>" :
-          \ <SID>check_back_space() ? "\<TAB>" :
-          \ coc#refresh()
-    inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+      inoremap <silent><expr> <TAB>
+            \ pumvisible() ? "\<C-n>" :
+            \ <SID>check_back_space() ? "\<TAB>" :
+            \ coc#refresh()
+      inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
     function! s:check_back_space() abort
-      let col = col('.') - 1
-      return !col || getline('.')[col - 1]  =~# '\s'
+        let col = col('.') - 1
+        return !col || getline('.')[col - 1]  =~# '\s'
     endfunction
 
   " }}}
@@ -262,19 +281,19 @@ if has ('nvim')
   " }}}
   " Fugitive --------------------------------------------------------------------------------------- {{{
 
-      nnoremap ga :Git add %<CR><C-L>
-      nnoremap gs :Git status<CR>
-      nnoremap gl :Git log<CR>
-      nnoremap gp :Git push<CR>
-      nnoremap giu :Git diff<CR>
-      nnoremap gis :Git diff --staged<CR>
-      nnoremap gcf :Git commit %<CR>
-      nnoremap gcs :Git commit<CR>
-      nnoremap grm :Git rm
-      nnoremap grs :Git restore
+    nnoremap ga :Git add %<CR><C-L>
+    nnoremap gs :Git status<CR>
+    nnoremap gl :Git log<CR>
+    nnoremap gp :Git push<CR>
+    nnoremap giu :Git diff<CR>
+    nnoremap gis :Git diff --staged<CR>
+    nnoremap gcf :Git commit %<CR>
+    nnoremap gcs :Git commit<CR>
+    nnoremap grm :Git rm
+    nnoremap grs :Git restore
 
-      " Automatically enter Insert mode when opening the commit window.
-        autocmd BufWinEnter COMMIT_EDITMSG startinsert
+    " Automatically enter Insert mode when opening the commit window.
+      autocmd BufWinEnter COMMIT_EDITMSG startinsert
 
   " }}}
   " GitGutter -------------------------------------------------------------------------------------- {{{
@@ -291,9 +310,15 @@ if has ('nvim')
   " }}}
   " Grepper ---------------------------------------------------------------------------------------- {{{
 
-    " <leader>s to start grepping (g for 'grep').
+    " <leader>g to start grepping (g for 'grep').
     nnoremap <leader>G :Grepper -tool grep -cd ~/<CR>
     nnoremap <leader>g :Grepper -tool grep<CR>
+
+  " }}}
+  " Highlighted Yank ------------------------------------------------------------------------------- {{{
+
+    let g:highlightedyank_highlight_duration = 200
+    highlight link HighlightedyankRegion Search
 
   " }}}
   " Markdown Preview ------------------------------------------------------------------------------- {{{
@@ -304,8 +329,7 @@ if has ('nvim')
       "let g:mkdp_auto_start = 1  " Automatically launch rendered markdown in browser.
       let g:mkdp_auto_close = 1   " Automatically close rendered markdown in browser.
 
-    " Use vimb instead of Firefox since Firefox won't automatically close
-    "   the rendered markdown window.
+    " Use vimb since Firefox won't automatically close the rendered markdown window.
       let g:mkdp_browser = 'vimb'
 
   " }}}
@@ -359,6 +383,7 @@ if has ('nvim')
   " }}}
   " Tagbar ----------------------------------------------------------------------------------------- {{{
 
+    " Launch the tagbar by default when opening Python files.
       autocmd FileType python TagbarToggle
 
   " }}}
@@ -374,57 +399,56 @@ if has ('nvim')
 
     " Navigation -----------------------------------------------------
         " Search within files.
-        Plug 'mhinz/vim-grepper', { 'on': 'Grepper' }
+          Plug 'mhinz/vim-grepper', { 'on': 'Grepper' }
         " Filename search.
-        Plug 'ctrlpvim/ctrlp.vim'
-        Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-        Plug 'junegunn/fzf.vim'
-        " Floating embedded Ranger window.
-        Plug 'kevinhwang91/rnvimr'
+          Plug 'ctrlpvim/ctrlp.vim'
+        "Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+        "Plug 'junegunn/fzf.vim'
+        " Embedded floating Ranger window.
+          Plug 'kevinhwang91/rnvimr'
         " Smooth scrolling.
-        Plug 'psliwka/vim-smoothie'
+          Plug 'psliwka/vim-smoothie'
 
     " Usability ------------------------------------------------------
         " Colorschemes.
-        Plug 'drewtempelmeyer/palenight.vim'
-        Plug 'morhetz/gruvbox'
-        Plug 'joshdick/onedark.vim'
+          Plug 'drewtempelmeyer/palenight.vim'
+          "Plug 'morhetz/gruvbox'
+          "Plug 'joshdick/onedark.vim'
 
-        " Dependency for vim-session.
-        Plug 'xolox/vim-misc', { 'on': ['SaveSession', 'OpenSession', 'OpenSession!'] }
         " Session save and restore.
-        Plug 'xolox/vim-session', { 'on': ['SaveSession', 'OpenSession', 'OpenSession!'] }
+          Plug 'xolox/vim-misc', { 'on': ['SaveSession', 'OpenSession', 'OpenSession!'] }
+          Plug 'xolox/vim-session', { 'on': ['SaveSession', 'OpenSession', 'OpenSession!'] }
         " Status bar.
-        Plug 'vim-airline/vim-airline'
-        Plug 'vim-airline/vim-airline-themes'
+          Plug 'vim-airline/vim-airline'
+          Plug 'vim-airline/vim-airline-themes'
         " Easily comment blocks.
-        Plug 'preservim/nerdcommenter'
-        Plug 'iamcco/markdown-preview.nvim', { 'for': 'markdown' }
+          Plug 'preservim/nerdcommenter'
+          Plug 'iamcco/markdown-preview.nvim', { 'for': 'markdown' }
         " Visualize and navigate Vim's undo tree.
-        Plug 'mbbill/undotree'
+          Plug 'mbbill/undotree'
         " Auto-save file after period if inactivity.
-        Plug '907th/vim-auto-save'
+          Plug '907th/vim-auto-save'
         " Briefly highlight yanked text.
-        Plug 'machakann/vim-highlightedyank'
+          Plug 'machakann/vim-highlightedyank'
 
     " Programming ----------------------------------------------------
         " Git integration.
-        Plug 'airblade/vim-gitgutter'
-        Plug 'tpope/vim-fugitive'
+          Plug 'airblade/vim-gitgutter'
+          Plug 'tpope/vim-fugitive'
         " Python code formatter.
-        Plug 'psf/black', { 'for': 'python', 'branch': 'stable' }
+          Plug 'psf/black', { 'for': 'python', 'branch': 'stable' }
         " Better syntax highlighting.
-        Plug 'sheerun/vim-polyglot'
+          Plug 'sheerun/vim-polyglot'
         " Function navigation on large files.
-        Plug 'preservim/tagbar'
+          Plug 'preservim/tagbar'
         " Code completion.
-        Plug 'neoclide/coc.nvim', { 'branch': 'release' }
+          Plug 'neoclide/coc.nvim', { 'branch': 'release' }
         " Linting engine.
-        Plug 'dense-analysis/ale'
+          Plug 'dense-analysis/ale'
         " Auto-create bracket and quote pairs.
-        Plug 'jiangmiao/auto-pairs'
+          "Plug 'jiangmiao/auto-pairs'
         " Show indentation lines.
-        Plug 'yggdroot/indentline'
+          Plug 'yggdroot/indentline'
 
   call plug#end()
 " }}}
@@ -434,6 +458,7 @@ if has ('nvim')
     let g:palenight_color_overrides = {
     \    'comment_grey': { 'gui': '#7AD3FF', "cterm": "59", "cterm16": "15" },
     \}
+    " This has to come AFTER Vim-plug, which is why it's after all the other plugins.
     colorscheme palenight
 
   " }}}
