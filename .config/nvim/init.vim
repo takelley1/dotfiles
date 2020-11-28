@@ -115,13 +115,13 @@
   " Faster saving.
     nnoremap <leader>w :write<CR><C-L>
 
-  " Easily edit vimrc (ev for 'edit vim').
-    nnoremap <leader>ev :split ~/.config/nvim/init.vim<CR>
-  " Reload configuration without restarting vim (sv for 'source vim').
-    nnoremap <leader>sv :update <bar> :source $MYVIMRC<CR><C-L>
+  " Easily edit vimrc (ve for 'vim edit').
+    nnoremap <leader>ve :split ~/.config/nvim/init.vim<CR>
+  " Reload configuration without restarting vim (vs for 'vim source').
+    nnoremap <leader>vs :update <bar> :source $MYVIMRC<CR><C-L>
 
   " Jump back and forth between files.
-    nnoremap <leader><space> <C-^>
+    nnoremap <BS> <C-^>
 
   " Columnize selection.
     vnoremap t :!column -t<CR>
@@ -255,9 +255,9 @@ if has ('nvim')
     let g:ctrlp_working_path_mode = 'rw' " Set search path to start at first .git directory below the cwd.
 
     let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:15,results:15' " Change height of search window.
-    let g:ctrlp_show_hidden = 1          " Index hidden files.
-    let g:ctrlp_clear_cache_on_exit = 0  " Keep cache accross reboots.
-    let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn|swp)$'
+    let g:ctrlp_show_hidden = 1                                           " Index hidden files.
+    let g:ctrlp_clear_cache_on_exit = 0                                   " Keep cache accross reboots.
+    let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn|swp|cache|tmp)$'
 
   " }}}
   " Fugitive --------------------------------------------------------------------------------------- {{{
@@ -377,14 +377,19 @@ if has ('nvim')
         Plug 'mhinz/vim-grepper', { 'on': 'Grepper' }
         " Filename search.
         Plug 'ctrlpvim/ctrlp.vim'
+        Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+        Plug 'junegunn/fzf.vim'
         " Floating embedded Ranger window.
         Plug 'kevinhwang91/rnvimr'
         " Smooth scrolling.
         Plug 'psliwka/vim-smoothie'
 
     " Usability ------------------------------------------------------
-        " Main colorscheme.
+        " Colorschemes.
         Plug 'drewtempelmeyer/palenight.vim'
+        Plug 'morhetz/gruvbox'
+        Plug 'joshdick/onedark.vim'
+
         " Dependency for vim-session.
         Plug 'xolox/vim-misc', { 'on': ['SaveSession', 'OpenSession', 'OpenSession!'] }
         " Session save and restore.
@@ -425,9 +430,9 @@ if has ('nvim')
 " }}}
   " Colors ----------------------------------------------------------------------------------------- {{{
 
-  " For some reason this has to come after loading the plugin.
+    " Change comment color from grey to turquoise.
     let g:palenight_color_overrides = {
-    \    'black': { 'gui': '#2c2a2a', "cterm": "0", "cterm16": "0" },
+    \    'comment_grey': { 'gui': '#7AD3FF', "cterm": "59", "cterm16": "15" },
     \}
     colorscheme palenight
 
@@ -465,8 +470,8 @@ endif
 
   " Create and delete tabs web-browser-style.
   " Open Ranger on new splits and tabs by default.
-    nnoremap <C-t> :tabnew <bar> :RnvimrToggle<CR><C-L>
-    inoremap <C-t> <Esc>:tabnew <bar> :RnvimrToggle<CR><C-L>
+    nnoremap <C-t> :tabnew<CR>
+    inoremap <C-t> <Esc>:tabnew<CR>
     nnoremap <C-w> :tabclose<CR>
     inoremap <C-w> <Esc>:tabclose<CR>
 
@@ -482,7 +487,6 @@ endif
                 split
             endif
             exec "wincmd ".a:key
-            RnvimrToggle
         endif
     endfunction
 
@@ -518,10 +522,8 @@ endif
         tnoremap <C-p> <C-\><C-n>:tabprevious<CR>
         tnoremap <leader>a <C-\><C-n>:exe "tabn ".g:lasttab<CR>
 
-        tnoremap <silent> <C-t> <C-\><C-n>:tabnew <bar> :Ranger<CR><C-L>
+        tnoremap <silent> <C-t> <C-\><C-n>:tabnew<CR>
         tnoremap <silent> <C-w> <C-\><C-n>:tabclose<CR>
-        tnoremap <silent> <C-s> <C-\><C-n>:split <bar> :Ranger<CR><C-L>
-        tnoremap <silent> <C-\> <C-\><C-n>:vsplit <bar> :Ranger<CR><C-L>
 
         tnoremap <silent> <C-k> <C-\><C-n>:call WinMove('k')<CR>
         tnoremap <silent> <C-j> <C-\><C-n>:call WinMove('j')<CR>

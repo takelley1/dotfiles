@@ -171,7 +171,7 @@
 
     onedark: &onedark
       primary:
-        background: "#2c2a2a"
+        background: "#282c34"
         foreground: "#abb2bf"
       cursor:
         text: CellBackground
