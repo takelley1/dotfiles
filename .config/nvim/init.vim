@@ -479,7 +479,7 @@ if has ('nvim')
         " Search within files.
           Plug 'mhinz/vim-grepper', { 'on': 'Grepper' }
         " Filename search.
-          Plug 'Yggdroot/LeaderF'
+          Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' }
           "Plug 'ctrlpvim/ctrlp.vim'
           "Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
           "Plug 'junegunn/fzf.vim'
