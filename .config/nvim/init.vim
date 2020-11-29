@@ -5,6 +5,7 @@
     if has('termguicolors')
         set termguicolors                 " Enable 24-bit color support.
     endif
+    set guifont=Nerd\ Font\ 11            " Enable Nerd Fonts (requires AUR package).
 
   " Change cursor to bar when switching to insert mode.
   " Requires `set -ga terminal-overrides ',*:Ss=\E[%p1%d q:Se=\E[2 q'` in tmux config.
@@ -173,6 +174,8 @@ if has ('nvim')
   " Atttempt to install vim-plug if it isn't present.
     let target_path = expand('~/.local/share/nvim/site/autoload/plug.vim')
     if !filereadable(target_path)
+        echo "Attempting to install vim-plug!"
+        sleep 2
         call system('curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
                     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim')
     endif
@@ -191,6 +194,8 @@ if has ('nvim')
       let g:airline#extensions#netrw#enabled = 0
       let g:airline#extensions#keymap#enabled = 0
       let g:airline#extensions#fzf#enabled = 0
+
+    let g:airline_powerline_fonts = 1                      " Use Nerd Fonts from Vim-devicons.
 
     let g:airline#extensions#tabline#enabled = 1
     let g:airline#extensions#tabline#fnamemod = ':p:t'     " Format filenames in tabline.
@@ -260,15 +265,17 @@ if has ('nvim')
   " }}}
   " CtrlP ------------------------------------------------------------------------------------------ {{{
 
-    " <leader>s to start searching from project directory (s for 'search').
-    " <leader>S to start searching from home directory.
+    " CURRENTLY USING LEADERF INSTEAD OF CTRLP
+
+    " <leader>s to start searching from home directory (s for 'search').
+    " <leader>S to start searching from project directory.
 
     " CTRL-j and CTRL-k to navigate through results.
     " CTRL-t to open the desired file in a new tab.
     " CTRL-v to open the desired file in a new vertical split.
 
-    let g:ctrlp_map = '<leader>s'
-    nnoremap <leader>S :CtrlP ~<CR>
+    "let g:ctrlp_map = '<leader>S'
+    "nnoremap <leader>s :CtrlP ~<CR>
 
     let g:ctrlp_tabpage_position = 'ac'
     let g:ctrlp_working_path_mode = 'rw' " Set search path to start at first .git directory below the cwd.
@@ -276,7 +283,16 @@ if has ('nvim')
     let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:15,results:15' " Change height of search window.
     let g:ctrlp_show_hidden = 1                                           " Index hidden files.
     let g:ctrlp_clear_cache_on_exit = 0                                   " Keep cache accross reboots.
-    let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn|swp|cache|tmp)$'
+    let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn|swp|cache|tmp)$'     " Don't index these filetypes in addition to Wildignore.
+
+  " }}}
+  " Devicons --------------------------------------------------------------------------------------- {{{
+
+    " https://github.com/ryanoasis/vim-devicons
+    " Fix issues re-sourcing Vimrc.
+      if exists("g:loaded_webdevicons")
+        call webdevicons#refresh()
+      endif
 
   " }}}
   " Fugitive --------------------------------------------------------------------------------------- {{{
@@ -319,6 +335,58 @@ if has ('nvim')
 
     let g:highlightedyank_highlight_duration = 200
     highlight link HighlightedyankRegion Search
+
+  " }}}
+  " LeaderF ---------------------------------------------------------------------------------------- {{{
+
+    " <leader>s to start searching from home directory (s for 'search').
+    " <leader>S to start searching from project directory.
+    " CTRL-j and CTRL-k to navigate through results.
+
+    nnoremap <leader>s :LeaderfFile ~/<CR>
+    nnoremap <leader>S :LeaderfFile <CR>
+
+    let g:Lf_ShowHidden = 1                        " Index hidden files.
+    let g:Lf_PopupHeight = float2nr(&lines * 0.5)  " Set popup height low to allow for preview window.
+    let g:Lf_PopupWidth = &columns * 0.8
+    let g:Lf_WindowPosition = 'popup'              " Enable popup window.
+    let g:Lf_PopupColorscheme = 'one'
+    let g:Lf_PreviewCode = 1                       " Enable preview window.
+    let g:Lf_PreviewInPopup = 1                    " Enable preview window in popup window.
+    let g:Lf_PopupPreviewPosition = 'bottom'       " Place preview window below search results.
+    let g:Lf_PopupPosition = [1, 0]                " Place popup window at top of screen.
+
+    " Don't index the following dirs/files.
+    let g:Lf_WildIgnore = {
+            \ 'dir': ['.svn','.git','.hg',
+                    \ '.cache','.cfg','.swp','.gnupg',
+                    \ '.cargo',
+                    \ '.vim/undo','.mozilla','__pychache__'],
+
+            \ 'file': ['*.sw?','*.pyc','~$*',
+                     \ '*.gpg','*.key','*.crt','*.cert','*.cer',
+                     \ '*.so','*.lock','*.*db','*.shada','*.pack',
+                     \ '*.vdi','*.vmdx','*.vmdk','*.dat',
+                     \ '*.pdf','*.odt','*.doc*','*.bau','*.dic','*.exc',
+                     \ '*.7z','*.*zip','*.tar.*','*.tar','*.tgz','*.gz',
+                     \ '*.jpg','*.png','*.jpeg','*.bmp','*.gif','*.tiff','*.svg','*.ico','*.webp',
+                     \ '*.mp3','*.m4a','*.aac',
+                     \ '*.mp4','*.mkv','*.avi']
+            \}
+
+    " Automatically preview the following results.
+    let g:Lf_PreviewResult = {
+            \ 'File': 1,
+            \ 'Buffer': 1,
+            \ 'Mru': 1,
+            \ 'Tag': 1,
+            \ 'BufTag': 1,
+            \ 'Function': 1,
+            \ 'Line': 1,
+            \ 'Colorscheme': 0,
+            \ 'Rg': 0,
+            \ 'Gtags': 0
+            \}
 
   " }}}
   " Markdown Preview ------------------------------------------------------------------------------- {{{
@@ -366,13 +434,15 @@ if has ('nvim')
                 \ 'yw': 'EmitRangerCwd',
                 \ }
 
-    " Set floating initial size relative to main window size.
-    " let g:rnvimr_layout = {
-    "             \ 'relative': 'editor',
-    "             \ 'width': float2nr(round(0.9 * &columns)),
-    "             \ 'height': float2nr(round(0.9 * &lines)),
-    "             \ 'style': 'minimal'
-    "             \ }
+    " Set floating initial size relative to 90% of parent window size.
+      let g:rnvimr_layout = {
+                  \ 'relative': 'editor',
+                  \ 'width': float2nr(round(0.9 * &columns)),
+                  \ 'height': float2nr(round(0.9 * &lines)),
+                  \ 'col': float2nr(round(0.05 * &columns)),
+                  \ 'row': float2nr(round(0.05 * &lines)),
+                  \ 'style': 'minimal'
+                  \ }
 
   " }}}
   " Session ---------------------------------------------------------------------------------------- {{{
@@ -402,12 +472,33 @@ if has ('nvim')
           Plug 'mhinz/vim-grepper', { 'on': 'Grepper' }
         " Filename search.
           Plug 'ctrlpvim/ctrlp.vim'
-        "Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-        "Plug 'junegunn/fzf.vim'
+          "Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+          "Plug 'junegunn/fzf.vim'
+          "Plug 'wincent/command-t'
+          Plug 'Yggdroot/LeaderF'
         " Embedded floating Ranger window.
           Plug 'kevinhwang91/rnvimr'
         " Smooth scrolling.
           Plug 'psliwka/vim-smoothie'
+
+    " Programming ----------------------------------------------------
+        " Git integration.
+          Plug 'airblade/vim-gitgutter'
+          Plug 'tpope/vim-fugitive'
+        " Python code formatter.
+          Plug 'psf/black', { 'for': 'python', 'branch': 'stable' }
+        " Better syntax highlighting.
+          Plug 'sheerun/vim-polyglot'
+        " Function navigation on large files.
+          Plug 'preservim/tagbar'
+        " Code completion.
+          Plug 'neoclide/coc.nvim', { 'branch': 'release' }
+        " Linting engine.
+          Plug 'dense-analysis/ale'
+        " Auto-create bracket and quote pairs.
+          "Plug 'jiangmiao/auto-pairs'
+        " Show indentation lines.
+          Plug 'yggdroot/indentline'
 
     " Usability ------------------------------------------------------
         " Colorschemes.
@@ -430,33 +521,19 @@ if has ('nvim')
           Plug '907th/vim-auto-save'
         " Briefly highlight yanked text.
           Plug 'machakann/vim-highlightedyank'
+        " Icons.
+          Plug 'ryanoasis/vim-devicons'
 
-    " Programming ----------------------------------------------------
-        " Git integration.
-          Plug 'airblade/vim-gitgutter'
-          Plug 'tpope/vim-fugitive'
-        " Python code formatter.
-          Plug 'psf/black', { 'for': 'python', 'branch': 'stable' }
-        " Better syntax highlighting.
-          Plug 'sheerun/vim-polyglot'
-        " Function navigation on large files.
-          Plug 'preservim/tagbar'
-        " Code completion.
-          Plug 'neoclide/coc.nvim', { 'branch': 'release' }
-        " Linting engine.
-          Plug 'dense-analysis/ale'
-        " Auto-create bracket and quote pairs.
-          "Plug 'jiangmiao/auto-pairs'
-        " Show indentation lines.
-          Plug 'yggdroot/indentline'
 
   call plug#end()
 " }}}
   " Colors ----------------------------------------------------------------------------------------- {{{
 
     " Change comment color from grey to turquoise.
+    " Make white a bit brighter.
     let g:palenight_color_overrides = {
-    \    'comment_grey': { 'gui': '#7AD3FF', "cterm": "59", "cterm16": "15" },
+    \    'comment_grey': { 'gui': '#7ad3ff', "cterm": "59", "cterm16": "15" },
+    \    'white': { 'gui': '#d3dae8', "cterm": "59", "cterm16": "15" },
     \}
     " This has to come AFTER Vim-plug, which is why it's after all the other plugins.
     colorscheme palenight
