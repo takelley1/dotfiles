@@ -197,6 +197,7 @@ if has ('nvim')
     let g:airline_powerline_fonts = 1                      " Use Nerd Fonts from Vim-devicons.
 
     let g:airline#extensions#tabline#enabled = 1
+    let g:airline#extensions#tabline#show_buffers = 0      " Don't show buffers when a single tab is open.
     let g:airline#extensions#tabline#fnamemod = ':p:t'     " Format filenames in tabline.
 
     let g:airline#extensions#tabline#enabled = 1           " Replace the tabline with Airline's.
