@@ -12,7 +12,7 @@ if [ -x "/usr/bin/pacman" ]; then
 
     # Show Font-Awesome icons if possible, use text everywhere else.
     if [ -n "$(ls /usr/share/fonts/OTF/Font\ Awesome*.otf)" ]; then
-        pkg_symbol=""
+        pkg_symbol=""
         update_symbol="  "
     else
         pkg_symbol="PKGs"

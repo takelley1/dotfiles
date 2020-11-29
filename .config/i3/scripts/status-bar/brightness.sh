@@ -4,10 +4,11 @@
 #
 # Emoji U+1F506 🔆
 # Font-Awesome f185 
+# Nerd Fonts f5df 
 
 # Show Font-Awesome icons if possible, use text everywhere else.
 if [ -n "$(ls /usr/share/fonts/OTF/Font\ Awesome*.otf)" ]; then
-    symbol=""
+    symbol=""
 else
     symbol="BRGHT"
 fi

@@ -4,6 +4,7 @@
 #
 # Emoji U+1F4CA 📈
 # Font-Awesome f3fd 
+# Nerd Fonts f9c4 龍
 
 import sys
 import psutil
@@ -29,7 +30,7 @@ def main():
     load_list = load_list.replace("]", "")
     load_list = load_list.replace("'", "")
 
-    print("", load_list)
+    print("龍", load_list)
 
     sys.exit(0)
 

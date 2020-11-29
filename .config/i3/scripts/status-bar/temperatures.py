@@ -5,6 +5,7 @@
 #
 # Emoji U+1F321 🌡️
 # Font-Awesome f2c9 
+# Nerd Fonts f2c9 
 
 import socket
 import sys
