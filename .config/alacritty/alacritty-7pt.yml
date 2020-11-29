@@ -172,7 +172,8 @@
     onedark: &onedark
       primary:
         background: "#282c34"
-        foreground: "#abb2bf"
+        #foreground: "#abb2bf"
+        foreground:  "#d3dae8"
       cursor:
         text: CellBackground
         cursor:     "#eeeeee" # syntax-cursor-color
