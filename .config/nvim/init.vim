@@ -5,7 +5,6 @@
     if has('termguicolors')
         set termguicolors                 " Enable 24-bit color support.
     endif
-    set guifont=Nerd\ Font\ 11            " Enable Nerd Fonts (requires AUR package).
 
   " Change cursor to bar when switching to insert mode.
   " Requires `set -ga terminal-overrides ',*:Ss=\E[%p1%d q:Se=\E[2 q'` in tmux config.
@@ -288,6 +287,9 @@ if has ('nvim')
   " }}}
   " Devicons --------------------------------------------------------------------------------------- {{{
 
+    " Enable Nerd Fonts (requires AUR package).
+      set guifont=Nerd\ Font\ 11
+
     " https://github.com/ryanoasis/vim-devicons
     " Fix issues re-sourcing Vimrc.
       if exists("g:loaded_webdevicons")
@@ -341,7 +343,11 @@ if has ('nvim')
 
     " <leader>s to start searching from home directory (s for 'search').
     " <leader>S to start searching from project directory.
+
     " CTRL-j and CTRL-k to navigate through results.
+    "<C-X> : open in horizontal split window.
+    "<C-]> : open in vertical split window.
+    "<C-T> : open in new tabpage.
 
     nnoremap <leader>s :LeaderfFile ~/<CR>
     nnoremap <leader>S :LeaderfFile <CR>
@@ -358,17 +364,19 @@ if has ('nvim')
 
     " Don't index the following dirs/files.
     let g:Lf_WildIgnore = {
-            \ 'dir': ['.svn','.git','.hg',
-                    \ '.cache','.cfg','.swp','.gnupg',
-                    \ '.cargo',
+            \ 'dir': ['.svn','.git','.hg','.cfg',
+                    \ '.*cache','_*cache','.swp','.LfCache','.swt',
+                    \ '.gnupg','.pylint.d','ansible-local-*',
+                    \ '.cargo','.fltk','.icons','.password-store',
                     \ '.vim/undo','.mozilla','__pychache__'],
-
-            \ 'file': ['*.sw?','*.pyc','~$*',
-                     \ '*.gpg','*.key','*.crt','*.cert','*.cer',
-                     \ '*.so','*.lock','*.*db','*.shada','*.pack',
-                     \ '*.vdi','*.vmdx','*.vmdk','*.dat',
-                     \ '*.pdf','*.odt','*.doc*','*.bau','*.dic','*.exc',
-                     \ '*.7z','*.*zip','*.tar.*','*.tar','*.tgz','*.gz',
+            \
+            \ 'file': ['*.sw?','~$*',
+                     \ '*.pyc','*.py1*','*.stats',
+                     \ '*.gpg','*.kbx*','*.key','*.crt','*.*cert*','*.cer','*.der',
+                     \ '*.so','*.msg','*.lock','*.*db*','*.*sql*','*.localstorage*','*.shada','*.pack','*.crate',
+                     \ '*.vdi','*.vmdx','*.vmdk','*.dat','*.vhd','*.iso',
+                     \ '*.pdf','*.odt','*.doc*','*.bau','*.dic','*.exc','*.fmt','*.thm','*.sdv',
+                     \ '*.7z','*.*zip','*.tar.*','*.tar','*.tgz','*.gz','*.pick*','*.whl',
                      \ '*.jpg','*.png','*.jpeg','*.bmp','*.gif','*.tiff','*.svg','*.ico','*.webp',
                      \ '*.mp3','*.m4a','*.aac',
                      \ '*.mp4','*.mkv','*.avi']
@@ -471,11 +479,11 @@ if has ('nvim')
         " Search within files.
           Plug 'mhinz/vim-grepper', { 'on': 'Grepper' }
         " Filename search.
-          Plug 'ctrlpvim/ctrlp.vim'
+          Plug 'Yggdroot/LeaderF'
+          "Plug 'ctrlpvim/ctrlp.vim'
           "Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
           "Plug 'junegunn/fzf.vim'
           "Plug 'wincent/command-t'
-          Plug 'Yggdroot/LeaderF'
         " Embedded floating Ranger window.
           Plug 'kevinhwang91/rnvimr'
         " Smooth scrolling.
@@ -521,7 +529,7 @@ if has ('nvim')
           Plug '907th/vim-auto-save'
         " Briefly highlight yanked text.
           Plug 'machakann/vim-highlightedyank'
-        " Icons.
+        " Icons (Must be loaded after all the plugins that use it).
           Plug 'ryanoasis/vim-devicons'
 
 
