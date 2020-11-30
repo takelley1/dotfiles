@@ -1,19 +1,10 @@
 " OPTIONS ########################################################################################## {{{
 
-    filetype indent plugin on             " Identify the filetype.
+    filetype indent plugin on             " Identify the filetype, load indent and plugin files.
     syntax on                             " Force syntax highlighting.
     if has('termguicolors')
         set termguicolors                 " Enable 24-bit color support.
     endif
-
-  " Change cursor to bar when switching to insert mode.
-  " Requires `set -ga terminal-overrides ',*:Ss=\E[%p1%d q:Se=\E[2 q'` in tmux config.
-    let &t_SI = "\e[6 q"
-    let &t_EI = "\e[2 q"
-    augroup insertbar
-        autocmd!
-        autocmd VimEnter * silent !echo -ne "\e[2 q"
-    augroup END
 
     set encoding=utf-8                    " Force unicode encoding.
     set autoread                          " Auto update when a file is changed from the outside.
@@ -30,7 +21,7 @@
     set wildignore+=*/.git/*,*/.svn/*,*/__pycache__/*,*.pyc,*.jpg,*.png,*.jpeg,*.bmp,*.gif,*.tiff,*.svg,*.ico,*.mp4,*.mkv,*.avi
 
     set autowriteall                      " Auto-save after certain events.
-    set clipboard=unnamedplus             " Map vim copy buffer to system clipboard.
+    set clipboard+=unnamedplus            " Map vim copy buffer to system clipboard.
     set confirm                           " Require confirmation before doing certain destructive things.
     set splitbelow splitright             " Splits open at the bottom and right by default, rather than top and left.
     set noswapfile nobackup               " Don't use backups since most files are in Git.
@@ -58,6 +49,15 @@
 " }}}
 " AUTOCOMMANDS ##################################################################################### {{{
 
+  " Change cursor to bar when switching to insert mode.
+  " Requires `set -ga terminal-overrides ',*:Ss=\E[%p1%d q:Se=\E[2 q'` in tmux config.
+    let &t_SI = "\e[6 q"
+    let &t_EI = "\e[2 q"
+    augroup insertbar
+        autocmd!
+        autocmd VimEnter * silent !echo -ne "\e[2 q"
+    augroup END
+
   " Change to home directory on startup.
     augroup homecd
         autocmd!
@@ -69,7 +69,7 @@
         " Automatically update file if changed from outside.
         autocmd FocusGained,BufEnter * checktime
         " Save on focus loss.
-        autocmd BufLeave * silent! :wa
+        autocmd BufLeave * if &readonly == 0 | silent! :write | endif
     augroup END
 
   " Switch to insert mode when entering or creating terminals.
@@ -112,16 +112,18 @@
     set linebreak          " Break line at predefined characters when soft-wrapping.
     set showbreak=↪        " Character to show before the lines that have been soft-wrapped.
 
-  " Disable all auto-formatting.
-    autocmd FileType * setlocal nocindent nosmartindent formatoptions-=c formatoptions-=r formatoptions-=o indentexpr=
+    augroup formatting
+        autocmd!
+      " Disable all auto-formatting.
+        autocmd FileType * setlocal nocindent nosmartindent formatoptions-=c formatoptions-=r formatoptions-=o indentexpr=
+      " Force certain filetypes to use indents of 2 spaces.
+        autocmd FileType text,config,markdown,vim,yaml,*.md setlocal shiftwidth=2 softtabstop=2 tabstop=2
 
-  " Force certain filetypes to use indents of 2 spaces.
-    autocmd FileType text,config,markdown,vim,yaml,*.md setlocal shiftwidth=2 softtabstop=2 tabstop=2
-
-  " Don't wrap text on Markdown files.
-    autocmd FileType markdown,*.md setlocal nowrap
-  " Manual folding in vim files.
-    autocmd FileType vim setlocal foldlevelstart=0 foldmethod=marker
+      " Don't wrap text on Markdown files.
+        autocmd FileType markdown,*.md setlocal nowrap
+      " Manual folding in vim files.
+        autocmd FileType vim setlocal foldlevelstart=0 foldmethod=marker
+    augroup END
 
 " }}}
 " SHORTCUTS ######################################################################################## {{{
@@ -237,21 +239,21 @@ if has ('nvim')
   " Buffergator ------------------------------------------------------------------------------------ {{{
 
     " Keep buffer bar open after selecting a buffer.
-      let g:buffergator_autodismiss_on_select = 0
-      let g:buffergator_autoupdate = 1
-      let g:buffergator_vsplit_size = 25
-      let g:buffergator_display_regime = "basename"
-      let g:buffergator_sort_regime = "basename"
-      let g:buffergator_suppress_keymaps = 1
+      " let g:buffergator_autodismiss_on_select = 0
+      " let g:buffergator_autoupdate = 1
+      " let g:buffergator_vsplit_size = 25
+      " let g:buffergator_display_regime = "basename"
+      " let g:buffergator_sort_regime = "basename"
+      " let g:buffergator_suppress_keymaps = 1
 
     " Keep buffer bar open.
-      augroup buffergator
-          autocmd!
-          autocmd VimEnter * BuffergatorOpen
-          autocmd TabNew * BuffergatorOpen
-          autocmd TabEnter * BuffergatorOpen
-          autocmd TabEnter * wincmd l
-      augroup END
+      " augroup buffergator
+      "     autocmd!
+      "     autocmd VimEnter * BuffergatorOpen
+      "     autocmd TabNew * BuffergatorOpen
+      "     autocmd TabEnter * BuffergatorOpen
+      "     autocmd TabEnter * wincmd l
+      " augroup END
 
 
   " }}}
@@ -299,13 +301,13 @@ if has ('nvim')
     "let g:ctrlp_map = '<leader>S'
     "nnoremap <leader>s :CtrlP ~<CR>
 
-    let g:ctrlp_tabpage_position = 'ac'
-    let g:ctrlp_working_path_mode = 'rw' " Set search path to start at first .git directory below the cwd.
+    "let g:ctrlp_tabpage_position = 'ac'
+    "let g:ctrlp_working_path_mode = 'rw' " Set search path to start at first .git directory below the cwd.
 
-    let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:15,results:15' " Change height of search window.
-    let g:ctrlp_show_hidden = 1                                           " Index hidden files.
-    let g:ctrlp_clear_cache_on_exit = 0                                   " Keep cache accross reboots.
-    let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn|swp|cache|tmp)$'     " Don't index these filetypes in addition to Wildignore.
+    "let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:15,results:15' " Change height of search window.
+    "let g:ctrlp_show_hidden = 1                                           " Index hidden files.
+    "let g:ctrlp_clear_cache_on_exit = 0                                   " Keep cache accross reboots.
+    "let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn|swp|cache|tmp)$'     " Don't index these filetypes in addition to Wildignore.
 
   " }}}
   " Devicons --------------------------------------------------------------------------------------- {{{
@@ -364,8 +366,8 @@ if has ('nvim')
   " }}}
   " LeaderF ---------------------------------------------------------------------------------------- {{{
 
-    " <leader>s to start searching from home directory (s for 'search').
-    " <leader>S to start searching from project directory.
+    " <leader>f to start searching from home directory (f for 'find').
+    " <leader>F to start searching from project directory.
 
     " <leader>/ to grep for a string in all open buffers.
     " <leader>b to search within open buffers.
@@ -376,8 +378,8 @@ if has ('nvim')
     "<C-]> : open in vertical split window.
     "<C-T> : open in new tabpage.
 
-    nnoremap <leader>s :LeaderfFile ~/<CR>
-    nnoremap <leader>S :LeaderfFile<CR>
+    nnoremap <leader>f :LeaderfFile ~/<CR>
+    nnoremap <leader>F :LeaderfFile<CR>
 
     nnoremap <leader>m :LeaderfMru<CR>
 
@@ -443,8 +445,8 @@ if has ('nvim')
   " }}}
   " Rnvimr ----------------------------------------------------------------------------------------- {{{
 
-    " <leader>f to open file manager.
-    nnoremap <silent> <leader>f :RnvimrToggle<CR>
+    " <leader>r to open file manager.
+    nnoremap <silent> <leader>r :RnvimrToggle<CR>
 
     let g:rnvimr_enable_ex = 1                      " Replace NetRW.
     let g:rnvimr_enable_picker = 1                  " Hide Ranger after picking file.
@@ -477,22 +479,37 @@ if has ('nvim')
                   \ }
 
   " }}}
-  " Session ---------------------------------------------------------------------------------------- {{{
-
-    " Run ':SaveSession <SESSION NAME>' to save your preferred editor configuration.
-    " Run ':OpenSession! <SESSION NAME>' to restore config.
-
-  " }}}
   " Tagbar ----------------------------------------------------------------------------------------- {{{
 
+    " Launch the tagbar by default when opening files >1000 lines.
+      "autocmd BufReadPost * if
+
     " Launch the tagbar by default when opening Python files.
-      autocmd FileType python TagbarToggle
+      "autocmd FileType python TagbarToggle
 
   " }}}
   " Undotree --------------------------------------------------------------------------------------- {{{
 
     " <leader>u to open Vim's undo tree.
     nnoremap <leader>u :UndotreeToggle<CR>
+
+  " }}}
+  " Workspace -------------------------------------------------------------------------------------- {{{
+
+    " Automatically close leftover hidden buffers after reloading session.
+      augroup closebuffers
+          autocmd!
+          autocmd SessionLoadPost * CloseHiddenBuffers
+      augroup END
+
+    " Automatically create, save, and restore sessions.
+      let g:workspace_autocreate = 1
+      let g:workspace_session_name = $HOME . '/.vim/sessions/session.vim'
+    " These options are for auto-saving individual files, but it breaks the cedit window.
+      let g:workspace_autosave = 0
+      let g:workspace_autosave_always = 0
+    " Don't deal with persisting undo history, since it's already handled.
+      let g:workspace_persist_undo_history = 0
 
   " }}}
   " Vim-Plug --------------------------------------------------------------------------------------- {{{
@@ -502,18 +519,22 @@ if has ('nvim')
     " Navigation -----------------------------------------------------
         " Search within files.
           Plug 'mhinz/vim-grepper', { 'on': 'Grepper' }
+
         " Filename search.
           Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' }
           "Plug 'ctrlpvim/ctrlp.vim'
           "Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
           "Plug 'junegunn/fzf.vim'
           "Plug 'wincent/command-t'
-        " Embedded floating Ranger window.
+
+        " File manager.
           Plug 'kevinhwang91/rnvimr'
-        " Smooth scrolling.
-          Plug 'psliwka/vim-smoothie'
+
+        " Function navigation on large files.
+          Plug 'preservim/tagbar'
+
         " Buffer management.
-          Plug 'jeetsukumaran/vim-buffergator'
+          "Plug 'jeetsukumaran/vim-buffergator'
           "Plug 'bling/vim-bufferline'
           "Plug 'jlanzarotta/bufexplorer'
 
@@ -521,44 +542,59 @@ if has ('nvim')
         " Git integration.
           Plug 'airblade/vim-gitgutter'
           Plug 'tpope/vim-fugitive'
-        " Python code formatter.
+
+        " Code formatting.
           Plug 'psf/black', { 'for': 'python', 'branch': 'stable' }
-        " Better syntax highlighting.
-          Plug 'sheerun/vim-polyglot'
-        " Function navigation on large files.
-          Plug 'preservim/tagbar'
         " Code completion.
           Plug 'neoclide/coc.nvim', { 'branch': 'release' }
         " Linting engine.
           Plug 'dense-analysis/ale'
+
+        " Better syntax highlighting.
+          Plug 'sheerun/vim-polyglot'
         " Auto-create bracket and quote pairs.
           "Plug 'jiangmiao/auto-pairs'
-        " Show indentation lines.
-          Plug 'yggdroot/indentline'
+        " Find and replace.
+          Plug 'brooth/far.vim'
 
     " Usability ------------------------------------------------------
+        " Session save and restore.
+           Plug 'thaerkh/vim-workspace'
+           "Plug 'xolox/vim-misc'
+           "Plug 'xolox/vim-session'
+        " Auto-save file after period if inactivity.
+          Plug '907th/vim-auto-save'
+        " Visualize and navigate Vim's undo tree.
+          Plug 'mbbill/undotree'
+
+        " Smooth scrolling.
+          Plug 'psliwka/vim-smoothie'
+
+        " Status bar.
+          Plug 'vim-airline/vim-airline'
+          Plug 'vim-airline/vim-airline-themes'
+
+        " Easily comment blocks.
+          Plug 'preservim/nerdcommenter'
+          Plug 'iamcco/markdown-preview.nvim', { 'for': 'markdown' }
+        " Show indentation lines.
+          Plug 'yggdroot/indentline'
+        " View man pages without leaving Neovim (:Man <COMMAND>).
+          Plug 'vim-utils/vim-man'
+
         " Colorschemes.
           Plug 'drewtempelmeyer/palenight.vim'
           "Plug 'morhetz/gruvbox'
           "Plug 'joshdick/onedark.vim'
-
-        " Session save and restore.
-          Plug 'xolox/vim-misc', { 'on': ['SaveSession', 'OpenSession', 'OpenSession!'] }
-          Plug 'xolox/vim-session', { 'on': ['SaveSession', 'OpenSession', 'OpenSession!'] }
-        " Status bar.
-          Plug 'vim-airline/vim-airline'
-          Plug 'vim-airline/vim-airline-themes'
-        " Easily comment blocks.
-          Plug 'preservim/nerdcommenter'
-          Plug 'iamcco/markdown-preview.nvim', { 'for': 'markdown' }
-        " Visualize and navigate Vim's undo tree.
-          Plug 'mbbill/undotree'
-        " Auto-save file after period if inactivity.
-          Plug '907th/vim-auto-save'
-        " Briefly highlight yanked text.
-          Plug 'machakann/vim-highlightedyank'
         " Icons (Must be loaded after all the plugins that use it).
           Plug 'ryanoasis/vim-devicons'
+        " Briefly highlight yanked text.
+          Plug 'machakann/vim-highlightedyank'
+
+        " Terminal in a floating window.
+          Plug 'voldikss/vim-floaterm'
+        " LeaderF extension for Floaterm.
+          Plug 'voldikss/leaderf-floaterm'
 
 
   call plug#end()
@@ -591,13 +627,24 @@ endif
   " Easier navigating soft-wrapped lines.
     nnoremap j gj
     nnoremap k gk
+  " Easier jumping to beginning and ends of lines.
+    nnoremap L $
+    nnoremap H ^
+  " Navigate quick-fix menus and helpgrep results.
+    nnoremap <leader>n :cnext<CR>
+    nnoremap <leader>p :cprevious<CR>
 
   " Quickly open a terminal tab or split.
-    nnoremap <leader>t :tabnew <bar> terminal<CR>
-    nnoremap <leader>tn :tabnew <bar> terminal<CR>
-    nnoremap <leader>tt :tabnew <bar> terminal<CR>
-    nnoremap <leader>ts :split <bar> terminal<CR>
-    nnoremap <leader>tv :vsplit <bar> terminal<CR>
+    if has('nvim')
+      nnoremap <leader>t :tabnew <bar> terminal<CR>
+      nnoremap <leader>tn :tabnew <bar> terminal<CR>
+      nnoremap <leader>tt :tabnew <bar> terminal<CR>
+
+      nnoremap <leader>tf :FloatermToggle<CR>
+
+      nnoremap <leader>ts :split <bar> terminal<CR>
+      nnoremap <leader>tv :vsplit <bar> terminal<CR>
+    endif
 
   " CTRL-n/p to navigate tabs.
     nnoremap <silent> <C-p> :tabprevious<CR>
@@ -605,21 +652,13 @@ endif
     nnoremap <silent> <C-n> :tabnext<CR>
     inoremap <silent> <C-n> <Esc>:tabnext<CR>
 
-    nnoremap <silent> <leader>p :tabprevious<CR>
-    inoremap <silent> <leader>p <Esc>:tabprevious<CR>
-    nnoremap <silent> <leader>n :tabnext<CR>
-    inoremap <silent> <leader>n <Esc>:tabnext<CR>
-
   " Jump to last active tab (a for 'alternate').
     autocmd TabLeave * let g:lasttab = tabpagenr()
     nnoremap <leader>a :exe "tabn ".g:lasttab<CR>
 
-  " Create and delete tabs web-browser-style.
-  " Open Ranger on new splits and tabs by default.
+  " Create tabs web-browser-style.
     nnoremap <C-t> :tabnew<CR>
     inoremap <C-t> <Esc>:tabnew<CR>
-    nnoremap <C-w> :tabclose<CR>
-    inoremap <C-w> <Esc>:tabclose<CR>
 
   " https://breuer.dev/blog/top-neovim-plugins.html
   " If a split exists, navigate to it. Otherwise, create a split.
@@ -637,17 +676,17 @@ endif
     endfunction
 
   " CTRL-h/j/k/l to navigate and create splits.
-    nnoremap <silent> <C-k> :call WinMove('k')<CR>
-    inoremap <silent> <C-k> :call WinMove('k')<CR>
+    nnoremap <silent> <C-k>      :call WinMove('k')<CR>
+    inoremap <silent> <C-k> <Esc>:call WinMove('k')<CR>
 
-    nnoremap <silent> <C-j> :call WinMove('j')<CR>
-    inoremap <silent> <C-j> :call WinMove('j')<CR>
+    nnoremap <silent> <C-j>      :call WinMove('j')<CR>
+    inoremap <silent> <C-j> <Esc>:call WinMove('j')<CR>
 
-    nnoremap <silent> <C-h> :call WinMove('h')<CR>
-    inoremap <silent> <C-h> :call WinMove('h')<CR>
+    nnoremap <silent> <C-h>      :call WinMove('h')<CR>
+    inoremap <silent> <C-h> <Esc>:call WinMove('h')<CR>
 
-    nnoremap <silent> <C-l> :call WinMove('l')<CR>
-    inoremap <silent> <C-l> :call WinMove('l')<CR>
+    nnoremap <silent> <C-l>      :call WinMove('l')<CR>
+    inoremap <silent> <C-l> <Esc>:call WinMove('l')<CR>
 
   " ALT-Up/Down/Left/Right to resize splits.
     nnoremap <A-Right> :vertical resize -5<CR><C-L>
