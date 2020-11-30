@@ -22,7 +22,6 @@
 
     set autowriteall                      " Auto-save after certain events.
     set clipboard+=unnamedplus            " Map vim copy buffer to system clipboard.
-    set confirm                           " Require confirmation before doing certain destructive things.
     set splitbelow splitright             " Splits open at the bottom and right by default, rather than top and left.
     set noswapfile nobackup               " Don't use backups since most files are in Git.
 
@@ -175,8 +174,7 @@
 if has ('nvim')
 
   " Atttempt to install vim-plug if it isn't present.
-    let target_path = expand('~/.local/share/nvim/site/autoload/plug.vim')
-    if !filereadable(target_path)
+    if !filereadable($HOME . '/.local/share/nvim/site/autoload/plug.vim')
         echo "Attempting to install vim-plug!"
         sleep 2
         call system('curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
@@ -233,7 +231,10 @@ if has ('nvim')
   " Black ------------------------------------------------------------------------------------------ {{{
 
     " Run Black formatter before saving Python files.
-      autocmd BufWritePre *.py execute ':Black'
+      augroup black
+          autocmd!
+          autocmd BufWritePre *.py execute ':Black'
+      augroup END
 
   " }}}
   " Buffergator ------------------------------------------------------------------------------------ {{{
@@ -336,7 +337,10 @@ if has ('nvim')
     nnoremap grs :Git restore
 
     " Automatically enter Insert mode when opening the commit window.
-      autocmd BufWinEnter COMMIT_EDITMSG startinsert
+      augroup commit
+          autocmd!
+          autocmd BufWinEnter COMMIT_EDITMSG startinsert
+      augroup END
 
   " }}}
   " GitGutter -------------------------------------------------------------------------------------- {{{
@@ -349,13 +353,6 @@ if has ('nvim')
       nnoremap gd :Gdiffsplit<CR>
     " Fix git diff colors.
       highlight DiffText ctermbg=1 ctermfg=3 guibg=1 guifg=3
-
-  " }}}
-  " Grepper ---------------------------------------------------------------------------------------- {{{
-
-    " <leader>g to start grepping (g for 'grep').
-    nnoremap <leader>G :Grepper -tool grep -cd ~/<CR>
-    nnoremap <leader>g :Grepper -tool grep<CR>
 
   " }}}
   " Highlighted Yank ------------------------------------------------------------------------------- {{{
@@ -426,7 +423,10 @@ if has ('nvim')
   " Markdown Preview ------------------------------------------------------------------------------- {{{
 
     " Markdown preview with mp.
-      autocmd FileType markdown nnoremap mp :MarkdownPreview<CR><C-L>
+      augroup markdownpreview
+          autocmd!
+          autocmd FileType markdown nnoremap mp :MarkdownPreview<CR><C-L>
+      augroup END
 
       "let g:mkdp_auto_start = 1  " Automatically launch rendered markdown in browser.
       let g:mkdp_auto_close = 1   " Automatically close rendered markdown in browser.
@@ -518,7 +518,7 @@ if has ('nvim')
 
     " Navigation -----------------------------------------------------
         " Search within files.
-          Plug 'mhinz/vim-grepper', { 'on': 'Grepper' }
+          Plug 'mhinz/vim-grepper'
 
         " Filename search.
           Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' }
@@ -614,6 +614,42 @@ if has ('nvim')
       highlight IncSearch ctermfg=235 ctermbg=180 guifg=#292D3E guibg=#ffcb6b
 
   " }}}
+  " Grepper ---------------------------------------------------------------------------------------- {{{
+
+    " <leader>g to start grepping (g for 'grep').
+
+   " Use `}`and `{` to jump to contexts. `o` opens the current context in the
+   " last window. `<cr>` opens the current context in the last window, but closes
+   " the current window first.
+
+    nnoremap <leader>G :Grepper -tool rg -cd ~/<CR>
+    nnoremap <leader>g :Grepper -tool rg<CR>
+
+    " I have to recreate the entire rg command here if I want to add
+    "  additional options since it doesn't work correctly otherwise.
+    let g:grepper.rg.grepprg = 'rg -H --no-heading --vimgrep
+                              \ --hidden
+                              \ -g "!**/.LfCache"
+                              \ -g "!**/.ansible"
+                              \ -g "!**/.cache"
+                              \ -g "!**/.cargo"
+                              \ -g "!**/.cfg"
+                              \ -g "!**/.gem"
+                              \ -g "!**/.local"
+                              \ -g "!**/.mozilla"
+                              \ -g "!**/.npm"
+                              \ -g "!**/.tmux"
+                              \ -g "!**/.fltk"
+                              \ -g "!**/.gnupg"
+                              \ -g "!**/.gnupg"
+                              \ '
+
+    let g:grepper.quickfix = 0 " Don't use the quickfix menu.
+    let g:grepper.side = 1     " Open results with context in a side window.
+    let g:grepper.stop = 1000  " Stop after this many matches.
+    let g:grepper.prompt_text = '$t> '
+
+  " }}}
 
 endif
 
@@ -653,7 +689,10 @@ endif
     inoremap <silent> <C-n> <Esc>:tabnext<CR>
 
   " Jump to last active tab (a for 'alternate').
-    autocmd TabLeave * let g:lasttab = tabpagenr()
+    augroup tableave
+        autocmd!
+        autocmd TabLeave * let g:lasttab = tabpagenr()
+    augroup END
     nnoremap <leader>a :exe "tabn ".g:lasttab<CR>
 
   " Create tabs web-browser-style.
