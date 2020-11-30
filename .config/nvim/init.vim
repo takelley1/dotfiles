@@ -19,6 +19,8 @@
     set autoread                          " Auto update when a file is changed from the outside.
     set noshowmode                        " Don't show mode since it's handled by Airline.
     set noshowcmd                         " Don't show command on last line.
+    set hidden                            " Hide abandoned buffers. https://stackoverflow.com/questions/26708822/why-do-vim-experts-prefer-buffers-over-tabs?rq=1
+    set switchbuf=usetab,newtab           " Use tabs when switching buffers. https://stackoverflow.com/questions/102384/using-vims-tabs-like-buffers
 
     set ignorecase                        " Case-insensitive search, except when using capitals.
     set smartcase                         " Override ignorecase if search contains capital letters.
@@ -196,7 +198,6 @@ if has ('nvim')
 
     let g:airline_powerline_fonts = 1                      " Use Nerd Fonts from Vim-devicons.
 
-    let g:airline#extensions#tabline#enabled = 1
     let g:airline#extensions#tabline#show_buffers = 0      " Don't show buffers when a single tab is open.
     let g:airline#extensions#tabline#fnamemod = ':p:t'     " Format filenames in tabline.
 
@@ -231,6 +232,27 @@ if has ('nvim')
 
     " Run Black formatter before saving Python files.
       autocmd BufWritePre *.py execute ':Black'
+
+  " }}}
+  " Buffergator ------------------------------------------------------------------------------------ {{{
+
+    " Keep buffer bar open after selecting a buffer.
+      let g:buffergator_autodismiss_on_select = 0
+      let g:buffergator_autoupdate = 1
+      let g:buffergator_vsplit_size = 25
+      let g:buffergator_display_regime = "basename"
+      let g:buffergator_sort_regime = "basename"
+      let g:buffergator_suppress_keymaps = 1
+
+    " Keep buffer bar open.
+      augroup buffergator
+          autocmd!
+          autocmd VimEnter * BuffergatorOpen
+          autocmd TabNew * BuffergatorOpen
+          autocmd TabEnter * BuffergatorOpen
+          autocmd TabEnter * wincmd l
+      augroup END
+
 
   " }}}
   " COC -------------------------------------------------------------------------------------------- {{{
@@ -345,23 +367,24 @@ if has ('nvim')
     " <leader>s to start searching from home directory (s for 'search').
     " <leader>S to start searching from project directory.
 
+    " <leader>/ to grep for a string in all open buffers.
+    " <leader>b to search within open buffers.
+    " <leader>m to search recently used files.
+
     " CTRL-j and CTRL-k to navigate through results.
     "<C-X> : open in horizontal split window.
     "<C-]> : open in vertical split window.
     "<C-T> : open in new tabpage.
 
     nnoremap <leader>s :LeaderfFile ~/<CR>
-    nnoremap <leader>S :LeaderfFile <CR>
+    nnoremap <leader>S :LeaderfFile<CR>
 
-    let g:Lf_ShowHidden = 1                        " Index hidden files.
-    let g:Lf_PopupHeight = float2nr(&lines * 0.5)  " Set popup height low to allow for preview window.
-    let g:Lf_PopupWidth = &columns * 0.8
-    let g:Lf_WindowPosition = 'popup'              " Enable popup window.
-    let g:Lf_PopupColorscheme = 'one'
-    let g:Lf_PreviewCode = 1                       " Enable preview window.
-    let g:Lf_PreviewInPopup = 1                    " Enable preview window in popup window.
-    let g:Lf_PopupPreviewPosition = 'bottom'       " Place preview window below search results.
-    let g:Lf_PopupPosition = [1, 0]                " Place popup window at top of screen.
+    nnoremap <leader>m :LeaderfMru<CR>
+
+    nnoremap <leader>/ :LeaderfLineAll<CR>
+
+    let g:Lf_ShowHidden = 1      " Index hidden files.
+    let g:Lf_MruMaxFiles = 10000 " Index all used files in MRU list.
 
     " Don't index the following dirs/files.
     let g:Lf_WildIgnore = {
@@ -385,16 +408,16 @@ if has ('nvim')
 
     " Automatically preview the following results.
     let g:Lf_PreviewResult = {
-            \ 'File': 1,
-            \ 'Buffer': 1,
-            \ 'Mru': 1,
+            \ 'File': 0,
+            \ 'Buffer': 0,
+            \ 'Mru': 0,
             \ 'Tag': 1,
             \ 'BufTag': 1,
             \ 'Function': 1,
             \ 'Line': 1,
-            \ 'Colorscheme': 0,
-            \ 'Rg': 0,
-            \ 'Gtags': 0
+            \ 'Colorscheme': 1,
+            \ 'Rg': 1,
+            \ 'Gtags': 1
             \}
 
   " }}}
@@ -489,6 +512,10 @@ if has ('nvim')
           Plug 'kevinhwang91/rnvimr'
         " Smooth scrolling.
           Plug 'psliwka/vim-smoothie'
+        " Buffer management.
+          Plug 'jeetsukumaran/vim-buffergator'
+          "Plug 'bling/vim-bufferline'
+          "Plug 'jlanzarotta/bufexplorer'
 
     " Programming ----------------------------------------------------
         " Git integration.
@@ -540,12 +567,15 @@ if has ('nvim')
 
     " Change comment color from grey to turquoise.
     " Make white a bit brighter.
-    let g:palenight_color_overrides = {
-    \    'comment_grey': { 'gui': '#7ad3ff', "cterm": "59", "cterm16": "15" },
-    \    'white': { 'gui': '#d3dae8', "cterm": "59", "cterm16": "15" },
-    \}
+      let g:palenight_color_overrides = {
+      \    'comment_grey': { 'gui': '#7ad3ff', "cterm": "59", "cterm16": "15" },
+      \    'white': { 'gui': '#d3dae8', "cterm": "59", "cterm16": "15" },
+      \}
     " This has to come AFTER Vim-plug, which is why it's after all the other plugins.
-    colorscheme palenight
+      colorscheme palenight
+
+    " Make IncSearch and Search highlights the same.
+      highlight IncSearch ctermfg=235 ctermbg=180 guifg=#292D3E guibg=#ffcb6b
 
   " }}}
 
@@ -574,6 +604,11 @@ endif
     inoremap <silent> <C-p> <Esc>:tabprevious<CR>
     nnoremap <silent> <C-n> :tabnext<CR>
     inoremap <silent> <C-n> <Esc>:tabnext<CR>
+
+    nnoremap <silent> <leader>p :tabprevious<CR>
+    inoremap <silent> <leader>p <Esc>:tabprevious<CR>
+    nnoremap <silent> <leader>n :tabnext<CR>
+    inoremap <silent> <leader>n <Esc>:tabnext<CR>
 
   " Jump to last active tab (a for 'alternate').
     autocmd TabLeave * let g:lasttab = tabpagenr()
@@ -634,6 +669,7 @@ endif
         tnoremap <leader>a <C-\><C-n>:exe "tabn ".g:lasttab<CR>
 
         tnoremap <silent> <C-t> <C-\><C-n>:tabnew<CR>
+        tnoremap <silent> <C-t> <C-\><C-n>:enew<CR>
         tnoremap <silent> <C-w> <C-\><C-n>:tabclose<CR>
 
         tnoremap <silent> <C-k> <C-\><C-n>:call WinMove('k')<CR>
