@@ -672,9 +672,9 @@ endif
 
   " Quickly open a terminal tab or split.
     if has('nvim')
-      nnoremap <leader>t :tabnew <bar> terminal<CR>
+      nnoremap <leader>t :terminal<CR>
       nnoremap <leader>tn :tabnew <bar> terminal<CR>
-      nnoremap <leader>tt :tabnew <bar> terminal<CR>
+      nnoremap <leader>tt :terminal<CR>
 
       nnoremap <leader>tf :FloatermToggle<CR>
 
@@ -687,6 +687,8 @@ endif
     inoremap <silent> <C-p> <Esc>:tabprevious<CR>
     nnoremap <silent> <C-n> :tabnext<CR>
     inoremap <silent> <C-n> <Esc>:tabnext<CR>
+    nnoremap <silent> <C-w> :q!<CR>
+    inoremap <silent> <C-w> <Esc>:q!<CR>
 
   " Jump to last active tab (a for 'alternate').
     augroup tableave
@@ -742,13 +744,13 @@ endif
 
   " Same shortcuts but from within a terminal.
     if has('nvim')
+        tnoremap <C-t> <C-\><C-n>:tabnew<CR>
         tnoremap <C-n> <C-\><C-n>:tabnext<CR>
         tnoremap <C-p> <C-\><C-n>:tabprevious<CR>
         tnoremap <leader>a <C-\><C-n>:exe "tabn ".g:lasttab<CR>
 
-        tnoremap <silent> <C-t> <C-\><C-n>:tabnew<CR>
         tnoremap <silent> <C-t> <C-\><C-n>:enew<CR>
-        tnoremap <silent> <C-w> <C-\><C-n>:tabclose<CR>
+        tnoremap <silent> <C-w> <C-\><C-n>:q!<CR>
 
         tnoremap <silent> <C-k> <C-\><C-n>:call WinMove('k')<CR>
         tnoremap <silent> <C-j> <C-\><C-n>:call WinMove('j')<CR>
