@@ -177,8 +177,9 @@ if has ('nvim')
     if !filereadable($HOME . '/.local/share/nvim/site/autoload/plug.vim')
         echo "Attempting to install vim-plug!"
         sleep 2
-        call system('curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
-                    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim')
+        silent !curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
+            https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim')
+        autocmd VimEnter * PlugInstall
     endif
 
   " Increase plugin update speed.
