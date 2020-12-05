@@ -40,6 +40,7 @@ if [[ "${OSTYPE}" == "linux-gnu" ]]; then
     alias lsr='lr'
     alias ll='l -l'
     alias la='l -l --all'
+    alias lsal='l -l --all'
     alias lar='l -l --all --reverse'
     # Sort by size.
     alias lss='l -l --all -S'
