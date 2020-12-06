@@ -857,7 +857,6 @@ endif
   " Easier exiting insert mode.
   inoremap jk <Esc>
   if has('nvim') | tnoremap fd <C-\><C-n> | endif
-
   " Easier navigating soft-wrapped lines.
   nnoremap j gj
   nnoremap k gk
