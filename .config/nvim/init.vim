@@ -215,7 +215,7 @@
     nnoremap da :write<CR> :!git --git-dir=$HOME/.cfg/ --work-tree=$HOME add %<CR><C-L>
     nnoremap ds :!git --git-dir=$HOME/.cfg/ --work-tree=$HOME status --untracked-files=no<CR>
     nnoremap dl :!git --git-dir=$HOME/.cfg/ --work-tree=$HOME log<CR>
-    nnoremap dp :!git --git-dir=$HOME/.cfg/ --work-tree=$HOME push
+    nnoremap dp :!git --git-dir=$HOME/.cfg/ --work-tree=$HOME push<CR>
     " *dot diff unstaged*
     nnoremap diu :!git --git-dir=$HOME/.cfg/ --work-tree=$HOME diff<CR>
     " *dot diff staged*
@@ -414,13 +414,13 @@
   " }}}
   " Fugitive --------------------------------------------------------------------------------------- {{{
 
-    nnoremap ga :Git add %<CR><C-L>
+    nnoremap ga :Git add %<CR>
     nnoremap gs :Git status<CR>
     nnoremap gl :Git log<CR>
     nnoremap gp :Git push<CR>
     nnoremap giu :Git diff<CR>
     nnoremap gis :Git diff --staged<CR>
-    nnoremap gcf :Git commit %<CR>
+    nnoremap gcf :Git add % <bar> Git commit %<CR>
     nnoremap gcs :Git commit<CR>
     nnoremap grm :Git rm
     nnoremap grs :Git restore
@@ -560,6 +560,17 @@
           \ 'Gtags': 1
           \ }
     endif
+
+  " }}}
+  " Magit ------------------------------------------------------------------------------------------ {{{
+
+    " Use Magit for dotfiles.
+    function! Dotmagit()
+      let g:magit_git_cmd="git --git-dir=$HOME/.cfg/ --work-tree=$HOME"
+      Magit
+      let g:magit_git_cmd="git"
+    endfunction
+    nnoremap <leader>d :call Dotmagit()<CR>
 
   " }}}
   " Markdown Preview ------------------------------------------------------------------------------- {{{
