@@ -9,10 +9,11 @@ enable_postpone     false
 #idle_time          10:00
 #sleep_time         30:00
 
-#break              35:00   5:00    2:00
-#break              5:00    0:10    0:00
+break              20:00   0:20    0:00
+break              60:00   5:00    0:00
+
+font                -*-lucidatypewriter-*-*-*-*-34-*-*-*-*-*-*-*
 
 # Example settings. They are not default.
-
-#font               -*-terminus-*-*-*-*-32-*-*-*-*-*-*-*
+#font               -*-terminus-*-*-*-*-64-*-*-*-*-*-*-*
 #block              MPlayer
