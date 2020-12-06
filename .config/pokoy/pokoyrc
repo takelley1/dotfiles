@@ -1,0 +1,18 @@
+# pokoy config file
+
+# Default settings. Uncomment to change.
+
+#show_bar           true
+#show_timer         true
+enable_skip         false
+enable_postpone     false
+#idle_time          10:00
+#sleep_time         30:00
+
+#break              35:00   5:00    2:00
+#break              5:00    0:10    0:00
+
+# Example settings. They are not default.
+
+#font               -*-terminus-*-*-*-*-32-*-*-*-*-*-*-*
+#block              MPlayer
