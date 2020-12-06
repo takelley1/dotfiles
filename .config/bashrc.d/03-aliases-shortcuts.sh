@@ -7,6 +7,8 @@
 # Easy editing and committing of todo list.
 alias todo='cd ~/notes/ && git pull && nvim ./personal--todo.md && git commit -m "Update todo.md" ./personal--todo.md && git push'
 
+alias fmt='fmt -w 120'
+
 alias alacrittyrc='nvim ~/.config/alacritty/alacritty.yml'
 alias banlist='nvim /mnt/share/documents/banlist.txt'
 alias bashrc='cd ~/.config/bashrc.d && r'
