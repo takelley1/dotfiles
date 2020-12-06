@@ -224,6 +224,9 @@
     nnoremap dcf :write<CR> :!git --git-dir=$HOME/.cfg/ --work-tree=$HOME commit % -m '
     " *dot commit staged*
     nnoremap dcs :!git --git-dir=$HOME/.cfg/ --work-tree=$HOME commit -m '
+    " *dot commit --amend*
+    nnoremap dca :!git --git-dir=$HOME/.cfg/ --work-tree=$HOME commit % -C HEAD --amend
+
     nnoremap drm :!git --git-dir=$HOME/.cfg/ --work-tree=$HOME rm
     nnoremap drs :!git --git-dir=$HOME/.cfg/ --work-tree=$HOME restore
   endif
@@ -887,33 +890,20 @@ endif
   nnoremap <silent> <C-w> :q!<CR>
   inoremap <silent> <C-w> <Esc>:q!<CR>
 
-  " https://breuer.dev/blog/top-neovim-plugins.html
-  " If a split exists, navigate to it. Otherwise, create a split.
-  function! WinMove(key)
-    let t:curwin = winnr()
-    exec "wincmd ".a:key
-    if (t:curwin == winnr())
-      if (match(a:key,'[jk]'))
-        vsplit
-      else
-        split
-      endif
-      exec "wincmd ".a:key
-    endif
-  endfunction
+  " Create a split with an empty file.
+  nnoremap <silent> <C-s>      :new<CR>
+  inoremap <silent> <C-s> <Esc>:new<CR>
+  nnoremap <silent> <C-\>      :vnew<CR>
+  inoremap <silent> <C-\> <Esc>:vnew<CR>
 
-  " CTRL-h/j/k/l to navigate and create splits.
-  nnoremap <silent> <C-k>      :call WinMove('k')<CR>
-  inoremap <silent> <C-k> <Esc>:call WinMove('k')<CR>
-
-  nnoremap <silent> <C-j>      :call WinMove('j')<CR>
-  inoremap <silent> <C-j> <Esc>:call WinMove('j')<CR>
-
-  nnoremap <silent> <C-h>      :call WinMove('h')<CR>
-  inoremap <silent> <C-h> <Esc>:call WinMove('h')<CR>
-
-  nnoremap <silent> <C-l>      :call WinMove('l')<CR>
-  inoremap <silent> <C-l> <Esc>:call WinMove('l')<CR>
+  nnoremap <silent> <C-k>      :wincmd k<CR>
+  inoremap <silent> <C-k> <Esc>:wincmd k<CR>
+  nnoremap <silent> <C-j>      :wincmd j<CR>
+  inoremap <silent> <C-j> <Esc>:wincmd j<CR>
+  nnoremap <silent> <C-h>      :wincmd h<CR>
+  inoremap <silent> <C-h> <Esc>:wincmd h<CR>
+  nnoremap <silent> <C-l>      :wincmd l<CR>
+  inoremap <silent> <C-l> <Esc>:wincmd l<CR>
 
   " ALT-Up/Down/Left/Right to resize splits.
   nnoremap <A-Right> :vertical resize -5<CR><C-L>
@@ -954,10 +944,13 @@ endif
     tnoremap <silent> <C-w> <C-\><C-n>:q!<CR>
     tnoremap <leader>a <C-\><C-n>:exe "tabn ".g:lasttab<CR>
 
-    tnoremap <silent> <C-k> <C-\><C-n>:call WinMove('k')<CR>
-    tnoremap <silent> <C-j> <C-\><C-n>:call WinMove('j')<CR>
-    tnoremap <silent> <C-h> <C-\><C-n>:call WinMove('h')<CR>
-    tnoremap <silent> <C-l> <C-\><C-n>:call WinMove('l')<CR>
+    tnoremap <silent> <C-k> <C-\><C-n>:wincmd k<CR>
+    tnoremap <silent> <C-j> <C-\><C-n>:wincmd j<CR>
+    tnoremap <silent> <C-h> <C-\><C-n>:wincmd h<CR>
+    tnoremap <silent> <C-l> <C-\><C-n>:wincmd l<CR>
+
+    tnoremap <silent> <C-s> <C-\><C-n>:new<CR>
+    tnoremap <silent> <C-\> <C-\><C-n>:vnew<CR>
 
     tnoremap <silent> <A-1> <C-\><C-n>1gt<CR>
     tnoremap <silent> <A-2> <C-\><C-n>2gt<CR>
@@ -1028,3 +1021,41 @@ endif
   endif
 
 " }}}
+
+" UNUSED FUNCTIONS ################################################################################# {{{
+
+"  " If a split exists, navigate to it. Otherwise, create a split.
+"  " Currently not used, since I kept unintentionally splitting windows.
+"  " https://breuer.dev/blog/top-neovim-plugins.html
+"  function! WinMove(key)
+"    let t:curwin = winnr()
+"    exec "wincmd ".a:key
+"    if (t:curwin == winnr())
+"      if (match(a:key,'[jk]'))
+"        vsplit
+"      else
+"        split
+"      endif
+"      exec "wincmd ".a:key
+"    endif
+"  endfunction
+
+"  " CTRL-h/j/k/l to navigate and create splits.
+"  nnoremap <silent> <C-k>      :call WinMove('k')<CR>
+"  inoremap <silent> <C-k> <Esc>:call WinMove('k')<CR>
+
+"  nnoremap <silent> <C-j>      :call WinMove('j')<CR>
+"  inoremap <silent> <C-j> <Esc>:call WinMove('j')<CR>
+
+"  nnoremap <silent> <C-h>      :call WinMove('h')<CR>
+"  inoremap <silent> <C-h> <Esc>:call WinMove('h')<CR>
+
+"  nnoremap <silent> <C-l>      :call WinMove('l')<CR>
+"  inoremap <silent> <C-l> <Esc>:call WinMove('l')<CR>
+
+"  tnoremap <silent> <C-k> <C-\><C-n>:call WinMove('k')<CR>
+"  tnoremap <silent> <C-j> <C-\><C-n>:call WinMove('j')<CR>
+"  tnoremap <silent> <C-h> <C-\><C-n>:call WinMove('h')<CR>
+"  tnoremap <silent> <C-l> <C-\><C-n>:call WinMove('l')<CR>
+
+"  }}}
