@@ -568,9 +568,14 @@
     function! Dotmagit()
       let g:magit_git_cmd="git --git-dir=$HOME/.cfg/ --work-tree=$HOME"
       Magit
-      let g:magit_git_cmd="git"
     endfunction
     nnoremap <leader>d :call Dotmagit()<CR>
+
+    function! Gitmagit()
+      let g:magit_git_cmd="git"
+      Magit
+    endfunction
+    nnoremap <leader>m :call Gitmagit()<CR>
 
   " }}}
   " Markdown Preview ------------------------------------------------------------------------------- {{{
