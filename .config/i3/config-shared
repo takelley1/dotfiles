@@ -17,7 +17,7 @@
  #   access the display.
    exec_always --no-startup-id xhost + &>/dev/null
  # Start RSI-prevention daemon.
-   exec rsibreak
+   exec pokoy -r
  # Mute microphone.
    exec --no-startup-id amixer set Capture 0%
 
@@ -227,6 +227,7 @@ bar {
 # Main status bar.
 bar {
      status_command i3blocks -c ~/.config/i3/i3blocks.conf
+     font pango:Noto Sans 15
      colors {
             statusline               #eeeeee
             focused_workspace        #00ff00 #285777 #ffffff
