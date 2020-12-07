@@ -2,7 +2,7 @@
 
 # Default settings. Uncomment to change.
 
-#show_bar           true
+show_bar           false
 #show_timer         true
 enable_skip         false
 enable_postpone     false
