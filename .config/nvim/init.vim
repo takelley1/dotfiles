@@ -63,75 +63,56 @@
 " }}}
 " AUTOCOMMANDS ##################################################################################### {{{
 
+  " See https://gist.github.com/romainl/6e4c15dfc4885cb4bd64688a71aa7063#protip
+  augroup mygroup
+    autocmd!
+  augroup END
+
   " Change cursor to bar when switching to insert mode.
   " Requires `set -ga terminal-overrides ',*:Ss=\E[%p1%d q:Se=\E[2 q'` in tmux config.
   let &t_SI = "\e[6 q"
   let &t_EI = "\e[2 q"
-  augroup insertbar
-    autocmd!
-    autocmd VimEnter * silent !echo -ne "\e[2 q"
-  augroup END
+  autocmd mygroup VimEnter * silent !echo -ne "\e[2 q"
 
   " Automatically clear search results.
-  augroup clearsearch
-    autocmd!
-    autocmd InsertEnter * let @/ = ''
-  augroup END
+  autocmd mygroup InsertEnter * let @/ = ''
 
-  augroup autoupdate
-    autocmd!
-    " Automatically update file if changed from outside.
-    autocmd FocusGained,BufEnter * checktime
-    " Save on focus loss.
-    autocmd BufLeave * if &readonly == 0 | silent! write | endif
-    " Save after editing text.
-    autocmd TextChanged,TextChangedI * if &readonly == 0 | silent! write | endif
-  augroup END
+  " Automatically update file if changed from outside.
+  autocmd mygroup FocusGained,BufEnter * checktime
+  " Save on focus loss.
+  autocmd mygroup BufLeave * if &readonly == 0 | silent! write | endif
+  " Save after editing text.
+  autocmd mygroup TextChanged,TextChangedI * if &readonly == 0 | silent! write | endif
 
   " Switch to insert mode when entering or creating terminals.
   if has ('nvim')
-    augroup termsettings
-      autocmd!
-      autocmd BufEnter * if &buftype == "terminal" | startinsert | endif
-      autocmd TermOpen * setlocal nonumber | startinsert
-    augroup END
+    autocmd mygroup BufEnter * if &buftype == "terminal" | startinsert | endif
+    autocmd mygroup TermOpen * setlocal nonumber | startinsert
   endif
 
   " https://vim.fandom.com/wiki/Set_working_directory_to_the_current_file
-  augroup vimcd
-    autocmd!
-    " Set working dir to current file's dir.
-    autocmd BufEnter * silent! lcd %:p:h
-    " Change to home directory on startup.
-    autocmd VimEnter * cd ~
-  augroup END
+  " Set working dir to current file's dir.
+  autocmd mygroup BufEnter * silent! lcd %:p:h
+  " Change to home directory on startup.
+  autocmd mygroup VimEnter * cd ~
 
   " https://github.com/jdhao/nvim-config/blob/master/core/autocommands.vim
   " Return to last position when re-opening file.
-  augroup lastpos
-    autocmd!
-    autocmd BufReadPost if line("'\"") > 1 && line("'\"") <= line("$") && &ft !~# 'commit' | execute "normal! g`\"zvzz" | endif
-  augroup END
+  autocmd mygroup BufReadPost if line("'\"") > 1 && line("'\"") <= line("$") && &ft !~# 'commit' | execute "normal! g`\"zvzz" | endif
 
   " Quickly commit and push updates to notes.
   " The QuitPre event will trigger even when exiting with ZZ.
   if athome
-    augroup autocommit notes
-      autocmd!
-      autocmd QuitPre ~/notes/unsorted.md silent :!git -C ~/notes commit -m 'Update unsorted.md' unsorted.md && git push -C ~/notes
-    augroup END
+    autocmd mygroup QuitPre ~/notes/unsorted.md silent :!git -C ~/notes commit -m 'Update unsorted.md' unsorted.md && git push -C ~/notes
   endif
 
   " Automatically copy changes from ansible repo to personal dotfiles.
   " Use sed to remove the 'Ansible managed' header.
   if atwork
-    augroup ansiblecopy
-      autocmd!
-      autocmd BufWritePost ~/scripts/ansible/inventories/global_files/home/akelley/.vimrc silent :!cp -f ~/scripts/ansible/inventories/global_files/home/akelley/.vimrc ~/.config/nvim/init.vim
-      autocmd BufWritePost ~/scripts/ansible/inventories/global_files/home/akelley/.bashrc silent :!sed '0,/ansible_managed/d' ~/scripts/ansible/inventories/global_files/home/akelley/.bashrc > ~/.bashrc
-      autocmd BufWritePost ~/scripts/ansible/inventories/global_files/home/akelley/.tmux.conf silent :!sed '0,/ansible_managed/d' ~/scripts/ansible/inventories/global_files/home/akelley/.tmux.conf > ~/.tmux.conf
-      autocmd BufWritePost ~/scripts/ansible/inventories/global_files/home/akelley/.bash_profile silent :!sed '0,/ansible_managed/d' ~/scripts/ansible/inventories/global_files/home/akelley/.bash_profile ~/.bash_profile
-    augroup END
+    autocmd mygroup BufWritePost ~/scripts/ansible/inventories/global_files/home/akelley/.vimrc silent :!cp -f ~/scripts/ansible/inventories/global_files/home/akelley/.vimrc ~/.config/nvim/init.vim
+    autocmd mygroup BufWritePost ~/scripts/ansible/inventories/global_files/home/akelley/.bashrc silent :!sed '0,/ansible_managed/d' ~/scripts/ansible/inventories/global_files/home/akelley/.bashrc > ~/.bashrc
+    autocmd mygroup BufWritePost ~/scripts/ansible/inventories/global_files/home/akelley/.tmux.conf silent :!sed '0,/ansible_managed/d' ~/scripts/ansible/inventories/global_files/home/akelley/.tmux.conf > ~/.tmux.conf
+    autocmd mygroup BufWritePost ~/scripts/ansible/inventories/global_files/home/akelley/.bash_profile silent :!sed '0,/ansible_managed/d' ~/scripts/ansible/inventories/global_files/home/akelley/.bash_profile ~/.bash_profile
   endif
 
 " }}}
@@ -151,15 +132,12 @@
   set linebreak          " Break line at predefined characters when soft-wrapping.
   set showbreak=↪        " Character to show before the lines that have been soft-wrapped.
 
-  augroup formatting
-    autocmd!
-    " Disable all auto-formatting.
-    autocmd FileType * setlocal nocindent nosmartindent formatoptions-=c formatoptions-=r formatoptions-=o indentexpr=
-    " Force certain filetypes to use indents of 2 spaces.
-    autocmd FileType text,config,markdown,yaml,*.md,vimwiki setlocal nowrap shiftwidth=2 softtabstop=2 tabstop=2
-    " Manual folding in vim files.
-    autocmd FileType vim setlocal foldlevelstart=0 foldmethod=marker
-  augroup END
+  " Disable all auto-formatting.
+  autocmd mygroup FileType * setlocal nocindent nosmartindent formatoptions-=c formatoptions-=r formatoptions-=o indentexpr=
+  " Force certain filetypes to use indents of 2 spaces.
+  autocmd mygroup FileType text,config,markdown,yaml,*.md,vimwiki setlocal nowrap shiftwidth=2 softtabstop=2 tabstop=2
+  " Manual folding in vim files.
+  autocmd mygroup FileType vim setlocal foldlevelstart=0 foldmethod=marker
 
 " }}}
 " SHORTCUTS ######################################################################################## {{{
@@ -243,7 +221,7 @@
       echo "Attempting to install vim-plug!" | sleep 2
       silent !curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
               https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim')
-      autocmd VimEnter * PlugInstall
+      autocmd mygroup VimEnter * PlugInstall
     endif
 
   " Increase plugin update speed.
@@ -316,10 +294,7 @@
   " Black ------------------------------------------------------------------------------------------ {{{
 
     " Run Black formatter before saving Python files.
-    augroup black
-      autocmd!
-      autocmd BufWritePre *.py execute ':Black'
-    augroup END
+    autocmd mygroup BufWritePre *.py execute ':Black'
 
   " }}}
   " Buffergator ------------------------------------------------------------------------------------ {{{
@@ -333,13 +308,10 @@
     " let g:buffergator_suppress_keymaps = 1
 
     " Keep buffer bar open.
-    " augroup buffergator
-    " autocmd!
-    " autocmd VimEnter * BuffergatorOpen
-    " autocmd TabNew * BuffergatorOpen
-    " autocmd TabEnter * BuffergatorOpen
-    " autocmd TabEnter * wincmd l
-    " augroup END
+    " autocmd mygroup VimEnter * BuffergatorOpen
+    " autocmd mygroup TabNew * BuffergatorOpen
+    " autocmd mygroup TabEnter * BuffergatorOpen
+    " autocmd mygroup TabEnter * wincmd l
 
 
   " }}}
@@ -387,7 +359,7 @@
     if atwork
       let g:ctrlp_map = '<leader>F'
       " For some reason mapping this normally doesn't work.
-      autocmd VimEnter * nnoremap <leader>f :CtrlP ~/<CR>
+      autocmd mygroup VimEnter * nnoremap <leader>f :CtrlP ~/<CR>
 
       let g:ctrlp_tabpage_position = 'ac'
       let g:ctrlp_working_path_mode = 'rw' " Set search path to start at first .git directory below the cwd.
@@ -427,10 +399,7 @@
     nnoremap grs :Git restore
 
     " Automatically enter Insert mode when opening the commit window.
-    augroup commit
-      autocmd!
-      autocmd BufWinEnter COMMIT_EDITMSG startinsert
-    augroup END
+    autocmd mygroup BufWinEnter COMMIT_EDITMSG startinsert
 
   " }}}
   " Grepper ---------------------------------------------------------------------------------------- {{{
@@ -584,10 +553,7 @@
 
     if athome
       " Markdown preview with mp.
-      augroup markdownpreview
-        autocmd!
-        autocmd FileType markdown nnoremap mp :MarkdownPreview<CR><C-L>
-      augroup END
+      autocmd mygroup FileType markdown nnoremap mp :MarkdownPreview<CR><C-L>
 
       "let g:mkdp_auto_start = 1  " Automatically launch rendered markdown in browser.
       let g:mkdp_auto_close = 1   " Automatically close rendered markdown in browser.
@@ -654,10 +620,10 @@
   " Tagbar ----------------------------------------------------------------------------------------- {{{
 
     " Launch the tagbar by default when opening files >1000 lines.
-      "autocmd BufReadPost * if
+    "autocmd mygroup BufReadPost * if
 
     " Launch the tagbar by default when opening Python files.
-      "autocmd FileType python TagbarToggle
+    "autocmd mygroup FileType python TagbarToggle
 
   " }}}
   " Undotree --------------------------------------------------------------------------------------- {{{
@@ -669,10 +635,7 @@
   " Workspace -------------------------------------------------------------------------------------- {{{
 
     " Automatically close leftover hidden buffers after reloading session.
-    augroup closebuffers
-        autocmd!
-        autocmd SessionLoadPost * CloseHiddenBuffers
-    augroup END
+    autocmd mygroup SessionLoadPost * CloseHiddenBuffers
 
     " Automatically create, save, and restore sessions.
     let g:workspace_autocreate = 1
@@ -694,11 +657,8 @@
 
     " Override some of Vimwiki's configs.
     " For some reason this only works after the BufEnter event.
-    augroup conceal
-      autocmd!
-      " Only conceal markdown syntax in Normal mode.
-      autocmd BufEnter *.md,vimwiki,markdown setlocal concealcursor=n conceallevel=1
-    augroup END
+    " Only conceal markdown syntax in Normal mode.
+    autocmd mygroup BufEnter *.md,vimwiki,markdown setlocal concealcursor=n conceallevel=1
 
     " Uncomment to enable automatic Markdown folding.
     " let g:vimwiki_folding = 'custom'
@@ -714,11 +674,8 @@
     "   endif
     "   return '=' " return previous fold level
     " endfunction
-    " augroup VimrcAuGroup
-    "   autocmd!
-    "   autocmd FileType vimwiki setlocal foldmethod=expr |
-    "     \ setlocal foldenable | set foldexpr=VimwikiFoldLevelCustom(v:lnum)
-    " augroup END
+    " autocmd mygroup FileType vimwiki setlocal foldmethod=expr |
+    "   \ setlocal foldenable | set foldexpr=VimwikiFoldLevelCustom(v:lnum)
 
   " }}}
 
@@ -896,10 +853,7 @@ endif
   inoremap <silent> <C-n> <Esc>:tabnext<CR>
 
   " Jump to last active tab (a for 'alternate').
-  augroup tableave
-    autocmd!
-    autocmd TabLeave * let g:lasttab = tabpagenr()
-  augroup END
+  autocmd mygroup TabLeave * let g:lasttab = tabpagenr()
   nnoremap <leader>a :exe "tabn ".g:lasttab<CR>
 
   " Create and delete tabs web-browser-style.
