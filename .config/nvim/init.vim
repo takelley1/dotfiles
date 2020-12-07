@@ -404,12 +404,13 @@
   " }}}
   " Grepper ---------------------------------------------------------------------------------------- {{{
 
-    if athome
       " <leader>g to start grepping (g for 'grep').
 
       " Use `}`and `{` to jump to contexts. `o` opens the current context in the
       " last window. `<cr>` opens the current context in the last window, but closes
       " the current window first.
+
+    if athome
 
       nnoremap <leader>G :Grepper -tool rg -cd ~/<CR>
       nnoremap <leader>g :Grepper -tool rg<CR>
@@ -436,12 +437,19 @@
         \ -g "!**/.gnupg"
         \ '
 
-      silent! let g:grepper.quickfix = 0 " Don't use the quickfix menu.
-      silent! let g:grepper.side = 1     " Open results with context in a side window.
-      silent! let g:grepper.stop = 1000  " Stop after this many matches.
-      silent! let g:grepper.prompt_text = '$t> '
+    elseif atwork
+
+      nnoremap <leader>G :Grepper -tool grep -cd ~/<CR>
+      nnoremap <leader>g :Grepper -tool grep<CR>
 
     endif
+
+    " Use silent! here since Nvim will complain on startup that plugin is missing.
+    silent! let g:grepper.quickfix = 0         " Don't use the quickfix menu.
+    silent! let g:grepper.side = 1             " Open results with context in a side window.
+    silent! let g:grepper.stop = 1000          " Stop after this many matches.
+    silent! let g:grepper.prompt_text = '$t> ' " Show bare prompt.
+
   " }}}
   " GitGutter -------------------------------------------------------------------------------------- {{{
 
@@ -530,23 +538,6 @@
           \ 'Gtags': 1
           \ }
     endif
-
-  " }}}
-  " Magit ------------------------------------------------------------------------------------------ {{{
-
-    " Magit for dotfiles.
-    function! Dotmagit()
-      let g:magit_git_cmd="git --git-dir=$HOME/.cfg/ --work-tree=$HOME"
-      Magit
-    endfunction
-    nnoremap <leader>d :call Dotmagit()<CR>
-
-    function! Gitmagit()
-      let g:magit_git_cmd="git"
-      Magit
-    endfunction
-    nnoremap <leader>m :call Gitmagit()<CR>
-    nnoremap <leader>g :call Gitmagit()<CR>
 
   " }}}
   " Markdown Preview ------------------------------------------------------------------------------- {{{
@@ -645,6 +636,26 @@
     let g:workspace_autosave_always = 0
     " Don't deal with persisting undo history, since it's already handled.
     let g:workspace_persist_undo_history = 0
+
+  " }}}
+  " Vimagit ------------------------------------------------------------------------------------------ {{{
+
+    " Magit for dotfiles.
+    function! Dotmagit()
+      let g:magit_git_cmd="git --git-dir=$HOME/.cfg/ --work-tree=$HOME"
+      Magit
+    endfunction
+    nnoremap <leader>d :call Dotmagit()<CR>
+
+    " Magit for all other repos.
+    function! Gitmagit()
+      let g:magit_git_cmd="git"
+      Magit
+    endfunction
+    nnoremap <leader>m :call Gitmagit()<CR>
+    nnoremap <leader>g :call Gitmagit()<CR>
+
+    let g:magit_scrolloff=999
 
   " }}}
   " Vim Wiki --------------------------------------------------------------------------------------- {{{
