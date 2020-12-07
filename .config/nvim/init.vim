@@ -18,6 +18,7 @@
     endif
   endif
 
+  set lazyredraw                        " Don't redraw screen during macros.
   set encoding=utf-8                    " Force unicode encoding.
   set autoread                          " Auto update when a file is changed from the outside.
   set noshowmode                        " Don't show mode since it's handled by Airline.
@@ -564,7 +565,7 @@
   " }}}
   " Magit ------------------------------------------------------------------------------------------ {{{
 
-    " Use Magit for dotfiles.
+    " Magit for dotfiles.
     function! Dotmagit()
       let g:magit_git_cmd="git --git-dir=$HOME/.cfg/ --work-tree=$HOME"
       Magit
@@ -576,6 +577,7 @@
       Magit
     endfunction
     nnoremap <leader>m :call Gitmagit()<CR>
+    nnoremap <leader>g :call Gitmagit()<CR>
 
   " }}}
   " Markdown Preview ------------------------------------------------------------------------------- {{{
@@ -956,7 +958,7 @@ endif
     tnoremap <silent> <C-n> <C-\><C-n>:tabnext<CR>
     tnoremap <silent> <C-p> <C-\><C-n>:tabprevious<CR>
 
-    tnoremap <silent> <C-t> <C-\><C-n>:enew<CR>
+    tnoremap <silent> <C-t> <C-\><C-n>:tabnew<CR>
     tnoremap <silent> <C-w> <C-\><C-n>:q!<CR>
     tnoremap <leader>a <C-\><C-n>:exe "tabn ".g:lasttab<CR>
 
