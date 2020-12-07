@@ -874,10 +874,10 @@ endif
   inoremap <silent> <C-w> <Esc>:q!<CR>
 
   " Create a split with an empty file.
-  nnoremap <silent> <C-s>      :new<CR>
-  inoremap <silent> <C-s> <Esc>:new<CR>
-  nnoremap <silent> <C-\>      :vnew<CR>
-  inoremap <silent> <C-\> <Esc>:vnew<CR>
+  nnoremap <silent> <C-s>      :cd ~/ <bar> new<CR>
+  inoremap <silent> <C-s> <Esc>:cd ~/ <bar> new<CR>
+  nnoremap <silent> <C-\>      :cd ~/ <bar> vnew<CR>
+  inoremap <silent> <C-\> <Esc>:cd ~/ <bar> vnew<CR>
 
   nnoremap <silent> <C-k>      :wincmd k<CR>
   inoremap <silent> <C-k> <Esc>:wincmd k<CR>
@@ -932,8 +932,8 @@ endif
     tnoremap <silent> <C-h> <C-\><C-n>:wincmd h<CR>
     tnoremap <silent> <C-l> <C-\><C-n>:wincmd l<CR>
 
-    tnoremap <silent> <C-s> <C-\><C-n>:new<CR>
-    tnoremap <silent> <C-\> <C-\><C-n>:vnew<CR>
+    tnoremap <silent> <C-s> <C-\><C-n>:cd ~/ <bar> new<CR>
+    tnoremap <silent> <C-\> <C-\><C-n>:cd ~/ <bar> vnew<CR>
 
     tnoremap <silent> <A-1> <C-\><C-n>1gt<CR>
     tnoremap <silent> <A-2> <C-\><C-n>2gt<CR>
