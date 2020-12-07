@@ -2,6 +2,13 @@
 #
 # Print battery percentage and estimated time remaining to full charge or
 #   depletion.
+#
+# Emoji U+1F50B 🔋
+# Emoji U+1F50C 🔌
+# Emoji U+26A1  ⚡
+
+battery_icon = "🔋"
+plug_icon = "⚡"
 
 import sys
 import psutil
@@ -32,9 +39,8 @@ def main():
     remaining = "(" + remaining + ")"
 
     # Indicate when the battery is being charged.
-    if battery.power_plugged:
-        plug_icon = ""
-    else:
+    if not battery.power_plugged:
+        global plug_icon
         plug_icon = ""
 
     # This remaining time is caused by a full battery and is likely
@@ -42,7 +48,6 @@ def main():
     if remaining == "(-1:59)":
         remaining = ""
 
-    battery_icon = ""
     if percent >= 99:
         output = battery_icon + " FULL"
     else:

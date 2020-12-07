@@ -6,7 +6,10 @@
 # Usage is expressed in increments of 10, so a value of "5" means
 #   a core is 50% used.
 #
+# Emoji U+1F4BB 💻
 # Nerd Fonts e266 
+
+icon = "💻"
 
 import sys
 import psutil
@@ -37,7 +40,7 @@ def main():
     core_list = core_list.replace("]", "")
     core_list = core_list.replace("]", "")
 
-    print("", core_list)
+    print(icon, core_list)
     sys.exit(0)
 
 

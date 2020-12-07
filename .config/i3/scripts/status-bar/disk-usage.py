@@ -4,6 +4,9 @@
 #   root partition.
 #
 # Font-Awesome 
+# Emoji U+1F5C4 🗄️
+
+icon = "🗄️"
 
 import sys
 import psutil
@@ -23,7 +26,7 @@ def main():
     disk_bytes = round(disk_bytes)
     disk_bytes = str(disk_bytes)
 
-    print(" " + disk_bytes + "G (" + str(disk_perc) + "%)")
+    print(icon + disk_bytes + "G (" + str(disk_perc) + "%)")
 
     # The i3bar protocol uses the third line of the output to specify
     #   color: https://github.com/vivien/i3blocks#format
@@ -31,7 +34,7 @@ def main():
         print("\n#F11712")
     elif disk_perc >= 85:
         print("\n#FF7300")
-    elif disk_perc >= 80:
+    elif disk_perc >= 75:
         print("\n#FFF000")
 
     sys.exit(0)

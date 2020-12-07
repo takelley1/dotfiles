@@ -7,6 +7,8 @@
 # Font-Awesome f2c9 
 # Nerd Fonts f2c9 
 
+icon = "🌡️"
+
 import socket
 import sys
 import psutil
@@ -28,11 +30,11 @@ def main():
     cpu_temp = str(cpu_temp)
 
     if gpu_temp == "":
-        print(" " + cpu_temp + "°C")
+        print(icon + cpu_temp + "°C")
     else:
         gpu_temp = round(gpu_temp)
         gpu_temp = str(gpu_temp)
-        print(" CPU: " + cpu_temp + "°C" + ", GPU: " + gpu_temp + "°C")
+        print(icon + "CPU: " + cpu_temp + "°C" + ", GPU: " + gpu_temp + "°C")
 
     # Write the current CPU temperature to a file for notify-cpu-temp.sh to use.
     with open("/tmp/cputemp", mode="w") as file:

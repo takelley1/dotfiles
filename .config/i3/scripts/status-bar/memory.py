@@ -4,7 +4,10 @@
 #   available in gigabytes.
 #
 # Emoji U+1F9E0 🧠
+# Emoji U+1F40F 🐏
 # Nerd Fonts f85a 
+
+icon = "🐏"
 
 import sys
 import psutil
@@ -19,7 +22,7 @@ def main():
     ram = round(ram, 1)
     ram = str(ram)
 
-    print(" " + ram + "G")
+    print(icon + ram + "G")
 
     sys.exit(0)
 

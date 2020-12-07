@@ -3,8 +3,11 @@
 # Status bar script for printing the current system load, as seen in `top`.
 #
 # Emoji U+1F4CA 📈
+# Emoji U+2696 ⚖️
 # Font-Awesome f3fd 
 # Nerd Fonts f9c4 龍
+
+icon = "⚖️"
 
 import sys
 import psutil
@@ -30,7 +33,7 @@ def main():
     load_list = load_list.replace("]", "")
     load_list = load_list.replace("'", "")
 
-    print("龍", load_list)
+    print(icon, load_list)
 
     sys.exit(0)
 
