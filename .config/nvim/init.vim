@@ -148,14 +148,14 @@
   " Leader key easier to reach.
   let mapleader = ","
   " Faster saving.
-  nnoremap <leader>w :write<CR><C-L>
+  nnoremap <silent> <leader>w :write<CR><C-L>
   " Jump back and forth between files.
-  noremap <BS> :e#<CR><C-L>
+  noremap <silent> <BS> :e#<CR><C-L>
 
   " Columnize selection.
   vnoremap t :!column -t<CR>
   " Turn off highlighted search results.
-  nnoremap Q :nohl<CR><C-L>
+  nnoremap <silent> Q :nohl<CR><C-L>
 
   " https://github.com/jdhao/nvim-config/blob/master/core/mappings.vim
   " Continuous visual shifting (does not exit Visual mode), `gv` means
@@ -864,24 +864,24 @@ endif
   nnoremap L $
   nnoremap H ^
   " Navigate quick-fix menus and helpgrep results.
-  " <leader>n is for opening notes, which is more common.
-  nnoremap <leader>N :cnext<CR>
-  nnoremap <leader>P :cprevious<CR>
+  nnoremap <leader>n :cnext<CR>
+  nnoremap <leader>p :cprevious<CR>
+  nnoremap <leader>l :copen<CR>
 
   " CTRL-n/p to navigate tabs.
-  nnoremap <silent> <C-p> :tabprevious<CR>
+  nnoremap <silent> <C-p>      :tabprevious<CR>
   inoremap <silent> <C-p> <Esc>:tabprevious<CR>
-  nnoremap <silent> <C-n> :tabnext<CR>
+  nnoremap <silent> <C-n>      :tabnext<CR>
   inoremap <silent> <C-n> <Esc>:tabnext<CR>
 
   " Jump to last active tab (a for 'alternate').
   autocmd mygroup TabLeave * let g:lasttab = tabpagenr()
-  nnoremap <leader>a :exe "tabn ".g:lasttab<CR>
+  nnoremap <silent> <leader>a :exe "tabn ".g:lasttab<CR>
 
   " Create and delete tabs web-browser-style.
-  nnoremap <C-t> :tabnew<CR>
-  inoremap <C-t> <Esc>:tabnew<CR>
-  nnoremap <silent> <C-w> :q!<CR>
+  nnoremap <silent> <C-t>      :tabnew<CR>
+  inoremap <silent> <C-t> <Esc>:tabnew<CR>
+  nnoremap <silent> <C-w>      :q!<CR>
   inoremap <silent> <C-w> <Esc>:q!<CR>
 
   " Create a split with an empty file.
@@ -900,22 +900,22 @@ endif
   inoremap <silent> <C-l> <Esc>:wincmd l<CR>
 
   " ALT-Up/Down/Left/Right to resize splits.
-  nnoremap <A-Right> :vertical resize -5<CR><C-L>
-  inoremap <A-Right> <Esc>:vertical resize -5<CR><C-L>
+  nnoremap <silent> <A-Right>      :vertical resize -5<CR><C-L>
+  inoremap <silent> <A-Right> <Esc>:vertical resize -5<CR><C-L>
 
-  nnoremap <A-Left> :vertical resize +5<CR><C-L>
-  inoremap <A-Left> <Esc>:vertical resize +5<CR><C-L>
+  nnoremap <silent> <A-Left>      :vertical resize +5<CR><C-L>
+  inoremap <silent> <A-Left> <Esc>:vertical resize +5<CR><C-L>
 
-  nnoremap <A-Up> :resize +2<CR><C-L>
-  inoremap <A-Up> <Esc>:resize +2<CR><C-L>
+  nnoremap <silent> <A-Up>      :resize +2<CR><C-L>
+  inoremap <silent> <A-Up> <Esc>:resize +2<CR><C-L>
 
-  nnoremap <A-Down> :resize -2<CR><C-L>
-  inoremap <A-Down> <Esc>:resize -2<CR><C-L>
+  nnoremap <silent> <A-Down>      :resize -2<CR><C-L>
+  inoremap <silent> <A-Down> <Esc>:resize -2<CR><C-L>
 
   " Terminal-related shortcuts.
   if has('nvim')
-    nnoremap <silent> <leader>t           :terminal<CR>
-    tnoremap <silent> <leader>t <C-\><C-n>:terminal<CR>
+    nnoremap <silent> <leader>t            :terminal<CR>
+    tnoremap <silent> <leader>t  <C-\><C-n>:terminal<CR>
     nnoremap <silent> <leader>tt           :terminal<CR>
     tnoremap <silent> <leader>tt <C-\><C-n>:terminal<CR>
 
@@ -924,8 +924,8 @@ endif
 
     nnoremap <silent> <leader>tn           :tabnew <bar> terminal<CR>
     tnoremap <silent> <leader>tn <C-\><C-n>:tabnew <bar> terminal<CR>
-    nnoremap <silent> <leader>ts           :split <bar> terminal<CR>
-    tnoremap <silent> <leader>ts <C-\><C-n>:split <bar> terminal<CR>
+    nnoremap <silent> <leader>ts           :split  <bar> terminal<CR>
+    tnoremap <silent> <leader>ts <C-\><C-n>:split  <bar> terminal<CR>
     nnoremap <silent> <leader>tv           :vsplit <bar> terminal<CR>
     tnoremap <silent> <leader>tv <C-\><C-n>:vsplit <bar> terminal<CR>
 
@@ -933,10 +933,10 @@ endif
 
     tnoremap <silent> <C-n> <C-\><C-n>:tabnext<CR>
     tnoremap <silent> <C-p> <C-\><C-n>:tabprevious<CR>
+    tnoremap <leader>a <C-\><C-n>:exe "tabn ".g:lasttab<CR>
 
     tnoremap <silent> <C-t> <C-\><C-n>:tabnew<CR>
     tnoremap <silent> <C-w> <C-\><C-n>:q!<CR>
-    tnoremap <leader>a <C-\><C-n>:exe "tabn ".g:lasttab<CR>
 
     tnoremap <silent> <C-k> <C-\><C-n>:wincmd k<CR>
     tnoremap <silent> <C-j> <C-\><C-n>:wincmd j<CR>
@@ -956,10 +956,10 @@ endif
     tnoremap <silent> <A-8> <C-\><C-n>8gt<CR>
     tnoremap <silent> <A-9> <C-\><C-n>9gt<CR>
 
-    tnoremap <A-Left> <C-\><C-n>:vertical resize -5<CR><C-L>
-    tnoremap <A-Right> <C-\><C-n>:vertical resize +5<CR><C-L>
-    tnoremap <A-Up> <C-\><C-n>:resize +2<CR><C-L>
-    tnoremap <A-Down> <C-\><C-n>:resize -2<CR><C-L>
+    tnoremap <silent> <A-Left>  <C-\><C-n>:vertical resize -5<CR><C-L>
+    tnoremap <silent> <A-Right> <C-\><C-n>:vertical resize +5<CR><C-L>
+    tnoremap <silent> <A-Up>    <C-\><C-n>:resize +2<CR><C-L>
+    tnoremap <silent> <A-Down>  <C-\><C-n>:resize -2<CR><C-L>
   endif
 
   " Jump to tab by number.
