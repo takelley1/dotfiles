@@ -647,16 +647,18 @@
     function! Dotmagit()
       let g:magit_git_cmd="git --git-dir=$HOME/.cfg/ --work-tree=$HOME"
       Magit
+      stopinsert
     endfunction
     nnoremap <leader>d :call Dotmagit()<CR>
 
     " Magit for all other repos.
-    function! Gitmagit()
+    function! Vimagit()
       let g:magit_git_cmd="git"
       Magit
+      stopinsert
     endfunction
-    nnoremap <leader>m :call Gitmagit()<CR>
-    nnoremap <leader>g :call Gitmagit()<CR>
+    nnoremap <leader>m :call Vimagit()<CR>
+    nnoremap <leader>g :call Vimagit()<CR>
 
     let g:magit_scrolloff=999
 
