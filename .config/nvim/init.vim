@@ -712,9 +712,9 @@
       elseif atwork
         Plug 'ctrlpvim/ctrlp.vim'
       endif
-      "Plug 'junegunn/fzf', { 'do': { -> fzf#install()  }  }
-      "Plug 'junegunn/fzf.vim'
-      "Plug 'wincent/command-t'
+      " Plug 'junegunn/fzf', { 'do': { -> fzf#install()  }  }
+      " Plug 'junegunn/fzf.vim'
+      " Plug 'wincent/command-t'
 
       " File manager.
       if athome
@@ -729,9 +729,9 @@
       Plug 'preservim/tagbar'
 
       " Buffer management.
-      "Plug 'jeetsukumaran/vim-buffergator'
-      "Plug 'bling/vim-bufferline'
-      "Plug 'jlanzarotta/bufexplorer'
+      " Plug 'jeetsukumaran/vim-buffergator'
+      " Plug 'bling/vim-bufferline'
+      " Plug 'jlanzarotta/bufexplorer'
 
       " Smooth scrolling.
       Plug 'psliwka/vim-smoothie'
@@ -746,20 +746,24 @@
 
       " Code formatting.
       Plug 'psf/black', { 'for': 'python', 'branch': 'stable' }
-      " Code completion.
-      if athome | Plug 'neoclide/coc.nvim', { 'branch': 'release' } | endif
       " Linting engine.
       Plug 'dense-analysis/ale'
       " Better syntax highlighting.
       Plug 'sheerun/vim-polyglot'
+
+      " Code completion.
+      " This causes a noticeable lag when scrolling.
+      " if athome
+      "   Plug 'neoclide/coc.nvim', { 'branch': 'release' }
+      " endif
 
     " }}}
     " Usability {{{
 
       " Session save and restore.
       Plug 'thaerkh/vim-workspace'
-      "Plug 'xolox/vim-misc'
-      "Plug 'xolox/vim-session'
+      " Plug 'xolox/vim-misc'
+      " Plug 'xolox/vim-session'
 
       " Visualize and navigate Vim's undo tree.
       Plug 'mbbill/undotree'
@@ -773,7 +777,8 @@
       " Show indentation lines.
       Plug 'yggdroot/indentline'
       " Auto-create bracket and quote pairs.
-      Plug 'jiangmiao/auto-pairs'
+      " This can get annoying so it's turned off.
+      " Plug 'jiangmiao/auto-pairs'
 
       " View man pages without leaving Neovim (:Man <COMMAND>).
       Plug 'vim-utils/vim-man'
@@ -783,8 +788,9 @@
       if athome
         " Colorschemes.
         Plug 'drewtempelmeyer/palenight.vim'
-        "Plug 'morhetz/gruvbox'
-        "Plug 'joshdick/onedark.vim'
+        " Plug 'morhetz/gruvbox'
+        " Plug 'joshdick/onedark.vim'
+
         " Icons (Must be loaded after all the plugins that use it).
         Plug 'ryanoasis/vim-devicons'
         " Note management
