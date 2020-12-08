@@ -135,12 +135,15 @@
   set linebreak          " Break line at predefined characters when soft-wrapping.
   set showbreak=↪        " Character to show before the lines that have been soft-wrapped.
 
-  " Disable all auto-formatting.
+  " Disable all auto-formatting by default.
+  " t = auto-wrap text, c = auto-wrap comments, r = auto-insert comments after <CR>, o = auto-insert comments after <o>
   autocmd mygroup FileType * setlocal nocindent nosmartindent formatoptions-=c formatoptions-=r formatoptions-=o indentexpr=
   " Force certain filetypes to use indents of 2 spaces.
   autocmd mygroup FileType config,markdown,*.md,text,vim,vimwiki,yaml setlocal nowrap shiftwidth=2 softtabstop=2 tabstop=2
   " Manual folding in vim files.
   autocmd mygroup FileType vim setlocal foldlevelstart=0 foldmethod=marker
+  " Autoformat personal notes.
+  autocmd mygroup BufEnter ~/notes/**.md setlocal textwidth=120 formatoptions+=a formatoptions+=t
 
 " }}}
 " SHORTCUTS ######################################################################################## {{{
