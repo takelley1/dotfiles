@@ -2,7 +2,7 @@
 
   " Determine if system is at home or at work.
   let hostname = substitute(system('hostname'), '\n', '', '')
-  if hostname == "polaris" || "tethys"
+  if hostname ==# "polaris" || "tethys"
     let athome = 1
     let atwork = 0
   else
@@ -19,7 +19,6 @@
   endif
 
   set lazyredraw                        " Don't redraw screen during macros.
-  set encoding=utf-8                    " Force unicode encoding.
   set autoread                          " Auto update when a file is changed from the outside.
   set noshowmode                        " Don't show mode since it's handled by Airline.
   set noshowcmd                         " Don't show command on last line.
@@ -63,32 +62,34 @@
 " }}}
 " AUTOCOMMANDS ##################################################################################### {{{
 
-  " See https://gist.github.com/romainl/6e4c15dfc4885cb4bd64688a71aa7063#protip
+  " https://gist.github.com/romainl/6e4c15dfc4885cb4bd64688a71aa7063#protip
   augroup mygroup
     autocmd!
   augroup END
 
   " Change cursor to bar when switching to insert mode.
-  " Requires `set -ga terminal-overrides ',*:Ss=\E[%p1%d q:Se=\E[2 q'` in tmux config.
+  " Requires `set -ga terminal-overrides ',*:Ss=\E[%p1%d q:Se=\E[2 q'` in tmux config if using tmux.
   let &t_SI = "\e[6 q"
   let &t_EI = "\e[2 q"
   autocmd mygroup VimEnter * silent !echo -ne "\e[2 q"
 
-  " Automatically clear search results.
+  " Clear search results when entering insert mode.
   autocmd mygroup InsertEnter * let @/ = ''
 
-  " Automatically update file if changed from outside.
+  " Update file if changed from outside.
   autocmd mygroup FocusGained,BufEnter * checktime
   " Save on focus loss.
-  autocmd mygroup BufLeave * if &readonly == 0 | silent! write | endif
+  autocmd mygroup BufLeave * if &readonly ==# 0 | silent! write | endif
   " Save after editing text.
-  autocmd mygroup TextChanged,TextChangedI * if &readonly == 0 | silent! write | endif
+  autocmd mygroup TextChanged,TextChangedI * if &readonly ==# 0 | silent! write | endif
 
-  " Switch to insert mode when entering or creating terminals.
+  " Switch to insert mode when entering terminals.
   if has ('nvim')
-    autocmd mygroup BufEnter * if &buftype == "terminal" | startinsert | endif
+    autocmd mygroup BufEnter * if &buftype ==# "terminal" | startinsert | endif
     autocmd mygroup TermOpen * setlocal nonumber | startinsert
   endif
+  " Switch to normal mode when entering all other buffers.
+  autocmd mygroup BufEnter * if &buftype !=# "terminal" | stopinsert | endif
 
   " https://vim.fandom.com/wiki/Set_working_directory_to_the_current_file
   " Set working dir to current file's dir.
@@ -117,6 +118,8 @@
 
 " }}}
 " FORMATTING ####################################################################################### {{{
+
+  set encoding=utf-8     " Force unicode encoding.
 
   set number             " Show line numbers.
   set numberwidth=1      " Make line number column thinner.
