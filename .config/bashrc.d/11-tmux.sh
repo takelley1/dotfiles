@@ -8,10 +8,12 @@
 #
 # shellcheck disable=2154
 
-if [[ "${OSTYPE}" == "linux-gnu" ]]; then
-    if [[ ! "${USER}" == "root" && -z "${TMUX}" && ! "${tty}" == "/dev/tty2" ]]; then
-        if hash tmux 2>/dev/null; then
-            exec tmux -f "${HOME}/.config/tmux/tmux.conf" attach
-        fi
-    fi
-fi
+# Currently I'm using Nvim's terminal and session features to replace Tmux.
+
+# if [[ "${OSTYPE}" == "linux-gnu" ]]; then
+#     if [[ ! "${USER}" == "root" && -z "${TMUX}" && ! "${tty}" == "/dev/tty2" ]]; then
+#         if hash tmux 2>/dev/null; then
+#             exec tmux -f "${HOME}/.config/tmux/tmux.conf" attach
+#         fi
+#     fi
+# fi
