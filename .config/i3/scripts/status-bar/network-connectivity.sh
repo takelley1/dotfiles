@@ -36,7 +36,7 @@ if ping -c 1 "${proxy_ip}" | grep -q " byes from "; then
         proxy="FWRD"
     fi
 else
-    proxy="BLK"
+    proxy="DOWN"
 fi
 
 printf "%s\n" "${interface} gw:${gateway} web:${internet} proxy:${proxy}"
