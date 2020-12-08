@@ -3,8 +3,9 @@
 # Status bar script for printing the primary network interface status.
 #
 # This script is intended to be used on the secondary status bar, so
-#   keeyping the output as short as possible is not an issue.
+#   keeping the output short is not a concern.
 
+proxy_ip="10.0.0.15"
 site_check_domain="icanhazip.com"
 site_check_url="https://${site_check_domain}"
 
@@ -28,15 +29,19 @@ else
 fi
 
 # Determine proxy state.
-if curl --silent "${site_check_url}" 2>"/dev/null" | grep -q "E2Guardian - Unable to load website"; then
-    proxy="BLK"
+if ping -c 1 "${proxy_ip}" | grep -q " byes from "; then
+    if curl --silent "${site_check_url}" 2>"/dev/null" | grep -q "E2Guardian - Unable to load website"; then
+        proxy="BLK"
+    else
+        proxy="FWRD"
+    fi
 else
-    proxy="FWRD"
+    proxy="BLK"
 fi
 
 printf "%s\n" "${interface} gw:${gateway} web:${internet} proxy:${proxy}"
 
-# Determine coloring using i3bar protocol.
+# Set coloring using i3bar protocol.
 if [ "${proxy}" = "BLK" ] && [ "${internet}" = "UP" ] && [ "${gateway}" = "UP" ]; then
     printf "\n%s\n" "#FFF000" # Yellow
 elif [ "${proxy}" = "DOWN" ] || [ "${internet}" = "DOWN" ] || [ "${gateway}" = "DOWN" ]; then
