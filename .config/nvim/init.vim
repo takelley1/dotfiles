@@ -135,7 +135,7 @@
   " Disable all auto-formatting.
   autocmd mygroup FileType * setlocal nocindent nosmartindent formatoptions-=c formatoptions-=r formatoptions-=o indentexpr=
   " Force certain filetypes to use indents of 2 spaces.
-  autocmd mygroup FileType text,config,markdown,yaml,*.md,vimwiki setlocal nowrap shiftwidth=2 softtabstop=2 tabstop=2
+  autocmd mygroup FileType config,markdown,*.md,text,vim,vimwiki,yaml setlocal nowrap shiftwidth=2 softtabstop=2 tabstop=2
   " Manual folding in vim files.
   autocmd mygroup FileType vim setlocal foldlevelstart=0 foldmethod=marker
 
