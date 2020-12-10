@@ -258,6 +258,7 @@
     endif
 
     let g:airline_highlighting_cache = 1
+    let g:airline_detect_modified = 0                      " Don't loudly mark files as modified.
 
     " Disable unnecessary extensions.
     let g:airline#extensions#grepper#enabled = 0
@@ -272,7 +273,6 @@
     " let g:airline#extensions#tabline#fnamemod = ':p:t'     " Format filenames in tabline.
     " let g:airline#extensions#tabline#enabled = 1           " Replace the tabline with Airline's.
     " let g:airline#extensions#tabline#show_splits = 0       " Don't show splits in the tabline.
-    " let g:airline_detect_modified = 0                      " Don't loudly mark files as modified.
     " let g:airline#extensions#tabline#show_tab_nr = 0       " Don't show tab numbers.
     " let g:airline#extensions#tabline#show_tab_count = 0    " Don't show number of tabs on top-right.
     " let g:airline#extensions#tabline#show_tab_type = 0     " Don't show tab type.
@@ -988,7 +988,7 @@ endif
 
   " Tabline function from https://vim.fandom.com/wiki/Show_tab_number_in_your_tab_line
   if exists("+showtabline")
-    function MyTabLine()
+    function! MyTabLine()
       let s = ''
       let t = tabpagenr()
       let i = 1
