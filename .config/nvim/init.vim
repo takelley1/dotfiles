@@ -1,3 +1,4 @@
+"{% raw %}
 " OPTIONS ########################################################################################## {{{
 
   " Determine if system is at home or at work.
@@ -109,8 +110,9 @@
 
   " Automatically copy changes from ansible repo to personal dotfiles.
   " Use sed to remove the 'Ansible managed' header.
+  " test1
   if atwork
-    autocmd mygroup BufWritePost ~/scripts/ansible/inventories/global_files/home/akelley/.vimrc silent :!cp -f ~/scripts/ansible/inventories/global_files/home/akelley/.vimrc ~/.config/nvim/init.vim
+    autocmd mygroup BufWritePost ~/scripts/ansible/inventories/global_files/home/akelley/.vimrc :!cp -f ~/scripts/ansible/inventories/global_files/home/akelley/.vimrc ~/.config/nvim/init.vim
     autocmd mygroup BufWritePost ~/scripts/ansible/inventories/global_files/home/akelley/.bashrc silent :!sed '0,/ansible_managed/d' ~/scripts/ansible/inventories/global_files/home/akelley/.bashrc > ~/.bashrc
     autocmd mygroup BufWritePost ~/scripts/ansible/inventories/global_files/home/akelley/.tmux.conf silent :!sed '0,/ansible_managed/d' ~/scripts/ansible/inventories/global_files/home/akelley/.tmux.conf > ~/.tmux.conf
     autocmd mygroup BufWritePost ~/scripts/ansible/inventories/global_files/home/akelley/.bash_profile silent :!sed '0,/ansible_managed/d' ~/scripts/ansible/inventories/global_files/home/akelley/.bash_profile ~/.bash_profile
@@ -154,11 +156,15 @@
   nnoremap <silent> <leader>w :write<CR><C-L>
   " Jump back and forth between files.
   noremap <silent> <BS> :e#<CR><C-L>
+  nnoremap ZZ :nohl
+  nnoremap ZQ :nohl
 
   " Columnize selection.
   vnoremap t :!column -t<CR>
   " Turn off highlighted search results.
   nnoremap <silent> Q :nohl<CR><C-L>
+  " Easy turn on paste mode.
+  nnoremap <leader>p :set paste!<CR>
 
   " https://github.com/jdhao/nvim-config/blob/master/core/mappings.vim
   " Continuous visual shifting (does not exit Visual mode), `gv` means
@@ -258,6 +264,7 @@
     endif
 
     let g:airline_highlighting_cache = 1
+    let g:airline_detect_modified = 0                      " Don't loudly mark files as modified.
 
     " Disable unnecessary extensions.
     let g:airline#extensions#grepper#enabled = 0
@@ -272,7 +279,6 @@
     " let g:airline#extensions#tabline#fnamemod = ':p:t'     " Format filenames in tabline.
     " let g:airline#extensions#tabline#enabled = 1           " Replace the tabline with Airline's.
     " let g:airline#extensions#tabline#show_splits = 0       " Don't show splits in the tabline.
-    " let g:airline_detect_modified = 0                      " Don't loudly mark files as modified.
     " let g:airline#extensions#tabline#show_tab_nr = 0       " Don't show tab numbers.
     " let g:airline#extensions#tabline#show_tab_count = 0    " Don't show number of tabs on top-right.
     " let g:airline#extensions#tabline#show_tab_type = 0     " Don't show tab type.
@@ -753,6 +759,8 @@
       Plug 'dense-analysis/ale'
       " Better syntax highlighting.
       Plug 'sheerun/vim-polyglot'
+      " Ansible syntax.
+      Plug 'pearofducks/ansible-vim'
 
       " Code completion.
       " This causes a noticeable lag when scrolling.
@@ -988,7 +996,7 @@ endif
 
   " Tabline function from https://vim.fandom.com/wiki/Show_tab_number_in_your_tab_line
   if exists("+showtabline")
-    function MyTabLine()
+    function! MyTabLine()
       let s = ''
       let t = tabpagenr()
       let i = 1
@@ -1056,3 +1064,4 @@ endif
 "  tnoremap <silent> <C-l> <C-\><C-n>:call WinMove('l')<CR>
 
 "  }}}
+"{% endraw %}
