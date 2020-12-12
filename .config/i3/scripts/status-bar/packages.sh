@@ -4,8 +4,7 @@
 # The number of packages requiring updates is also shown.
 #
 # Emoji U+1F4E6 📦
-# Emoji U+2B06 ⬆️
-# Font-Awesome f49e 
+# Emoji U+2B06  ⬆️
 # Font-Awesome  fa-arrow-circle-up [&#xf0aa;]
 
 icon_packages="📦"
