@@ -251,16 +251,19 @@
   " }}}
   " Auto Pairs ------------------------------------------------------------------------------------- {{{
 
-    " Only auto-pair the following characters.
-    let g:AutoPairs={
+    " Don't auto-pair anything by default.
+    let g:AutoPairs={}
+
+    autocmd mygroup FileType yaml.ansible let b:AutoPairs=AutoPairsDefine({
+    \'"':'"',
     \'(':')',
     \'[':']',
-    \'{':'}',
+    \'{{':'}}',
     \"`":"`",
     \'```':'```',
     \'"""':'"""',
     \"'''":"'''"
-    \}
+    \})
 
   " }}}
   " Airline ---------------------------------------------------------------------------------------- {{{
