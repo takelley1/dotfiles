@@ -30,6 +30,7 @@ alias drm='dot rm'
 alias drs='dot restore --staged'
 alias ds='dot status --untracked-files=no'
 alias dss='dot status'
+alias dt='dot ls-tree -r master --name-only' # Show all tracked files.
 function dcamp {
 dot commit --all --message "${@}" && dot push
 }
@@ -61,6 +62,7 @@ alias gr='git restore'
 alias grm='git rm'
 alias grs='git restore --staged'
 alias gs='git status'
+alias gt='git ls-tree -r master --name-only' # Show all tracked files.
 function gcamp {
 git commit --all --message "${@}" && git push
 }
