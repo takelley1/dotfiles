@@ -812,8 +812,7 @@
       " Alignment tools.
       Plug 'godlygeek/tabular'
       " Auto-create bracket and quote pairs.
-      " This can get annoying so it's turned off.
-      " Plug 'jiangmiao/auto-pairs'
+      Plug 'jiangmiao/auto-pairs'
 
       " View man pages without leaving Neovim (:Man <COMMAND>).
       Plug 'vim-utils/vim-man'
