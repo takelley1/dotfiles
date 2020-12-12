@@ -753,6 +753,8 @@
 
       " Smooth scrolling.
       Plug 'psliwka/vim-smoothie'
+      " Alternative line navigation.
+      Plug 'easymotion/vim-easymotion'
 
     " }}}
     " Programming {{{
@@ -770,6 +772,11 @@
       Plug 'sheerun/vim-polyglot'
       " Ansible syntax.
       Plug 'pearofducks/ansible-vim'
+      " Dockerfile syntax.
+      Plug 'ekalinin/Dockerfile.vim'
+
+      " More performant folding.
+      Plug 'Konfekt / FastFold'
 
       " Code completion.
       " This causes a noticeable lag when scrolling.
@@ -787,6 +794,8 @@
 
       " Visualize and navigate Vim's undo tree.
       Plug 'mbbill/undotree'
+      " Repeat plugin actions.
+      Plug 'tpope/vim-repeat'
 
       " Status bar.
       Plug 'vim-airline/vim-airline'
@@ -796,12 +805,16 @@
       Plug 'preservim/nerdcommenter'
       " Show indentation lines.
       Plug 'yggdroot/indentline'
+      " Alignment tools.
+      Plug 'godlygeek/tabular'
       " Auto-create bracket and quote pairs.
       " This can get annoying so it's turned off.
       " Plug 'jiangmiao/auto-pairs'
 
       " View man pages without leaving Neovim (:Man <COMMAND>).
       Plug 'vim-utils/vim-man'
+      " Better shell commands.
+      Plug 'tpope/vim-eunuch'
       " Briefly highlight yanked text.
       Plug 'machakann/vim-highlightedyank'
 
