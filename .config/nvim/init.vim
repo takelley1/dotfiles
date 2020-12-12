@@ -95,8 +95,13 @@
   " https://vim.fandom.com/wiki/Set_working_directory_to_the_current_file
   " Set working dir to current file's dir.
   autocmd mygroup BufEnter * silent! lcd %:p:h
-  " Change to home directory on startup.
-  autocmd mygroup VimEnter * cd ~
+
+  if athome
+    " Change to home directory on startup.
+    autocmd mygroup VimEnter * cd ~
+  elseif atwork
+    autocmd mygroup VimEnter * cd ~/scripts/ansible
+  endif
 
   " https://github.com/jdhao/nvim-config/blob/master/core/autocommands.vim
   " Return to last position when re-opening file.
@@ -156,8 +161,11 @@
   nnoremap <silent> <leader>w :write<CR><C-L>
   " Jump back and forth between files.
   noremap <silent> <BS> :e#<CR><C-L>
-  nnoremap ZZ :nohl
-  nnoremap ZQ :nohl
+
+  " if atwork
+  "   nnoremap ZZ :nohl
+  "   nnoremap ZQ :nohl
+  " endif
 
   " Columnize selection.
   vnoremap t :!column -t<CR>
