@@ -14,11 +14,13 @@ if [[ "${OSTYPE}" == "linux-gnu" ]]; then
     # asd.service breaks if this isn't enabled.
     xhost + &>/dev/null
 
-    # For some reason Ansible likes to add a bunch of junk at the end
-    #   of plays. Sed cleans this up.
-    ap() {
-        ansible-playbook --diff "${@}" | sed '/^{/,$d'
-    }
+    # This has been fixed.
+    # # For some reason Ansible likes to add a bunch of junk at the end
+    # #   of plays. Sed cleans this up.
+    # ap() {
+    #     ansible-playbook --diff "${@}" | sed '/^{/,$d'
+    # }
+    alias ap='ansible-playbook --diff'
 
     # Easily start/stop automounts.
     mnt() {
