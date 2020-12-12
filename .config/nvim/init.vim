@@ -509,7 +509,7 @@
 
       " <leader>/ to grep for a string in all open buffers.
       " <leader>b to search within open buffers.
-      " <leader>m to search recently used files.
+      " <leader>M to search recently used files.
 
       " CTRL-j and CTRL-k to navigate through results.
       "<C-X> : open in horizontal split window.
@@ -519,7 +519,7 @@
       nnoremap <leader>f :LeaderfFile ~/<CR>
       nnoremap <leader>F :LeaderfFile<CR>
 
-      nnoremap <leader>m :LeaderfMru<CR>
+      nnoremap <leader>M :LeaderfMru<CR>
 
       nnoremap <leader>/ :LeaderfLineAll<CR>
 
