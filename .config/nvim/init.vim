@@ -662,7 +662,7 @@
     let g:workspace_persist_undo_history = 0
 
   " }}}
-  " Vimagit ------------------------------------------------------------------------------------------ {{{
+  " Vimagit ---------------------------------------------------------------------------------------- {{{
 
     " Open Vimagit for the current repo. If Vimagit can't find a repo, use the dotfiles repo.
     " See also https://stackoverflow.com/questions/5441697/how-can-i-get-last-echoed-message-in-vimscript
