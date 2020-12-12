@@ -75,7 +75,8 @@
   autocmd mygroup VimEnter * silent !echo -ne "\e[2 q"
 
   " Clear search results when entering insert mode.
-  autocmd mygroup InsertEnter * let @/ = ''
+  " This can make it more difficult to do find-replace actions.
+  " autocmd mygroup InsertEnter * let @/ = ''
 
   " Update file if changed from outside.
   autocmd mygroup FocusGained,BufEnter * checktime
