@@ -664,20 +664,21 @@
   " }}}
   " Vimagit ------------------------------------------------------------------------------------------ {{{
 
-    " Magit for dotfiles.
-    function! Dotmagit()
-      let g:magit_git_cmd="git --git-dir=$HOME/.cfg/ --work-tree=$HOME"
-      Magit
-      stopinsert
-    endfunction
-    nnoremap <leader>d :call Dotmagit()<CR>
-
-    " Magit for all other repos.
+    " Open Vimagit for the current repo. If Vimagit can't find a repo, use the dotfiles repo.
+    " See also https://stackoverflow.com/questions/5441697/how-can-i-get-last-echoed-message-in-vimscript
     function! Vimagit()
-      let g:magit_git_cmd="git"
-      Magit
+        let g:magit_git_cmd="git"                              " Ensure variable is set to default value.
+      redir => g:messages                                      " Begin capturing output of messages.
+        silent! Magit                                          " Try opening Magit for the current repo.
+      redir END                                                " End capturing output.
+      let g:lastmsg=get(split(g:messages, "\n"), -5, "")       " Send output to var.
+      if g:lastmsg ==# "magit can not find any git repository" " If var matches error, use dotfiles instead.
+        let g:magit_git_cmd="git --git-dir=$HOME/.cfg/ --work-tree=$HOME"
+        Magit
+      endif
       stopinsert
     endfunction
+
     nnoremap <leader>m :call Vimagit()<CR>
     nnoremap <leader>g :call Vimagit()<CR>
 
