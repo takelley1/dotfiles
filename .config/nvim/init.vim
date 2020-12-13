@@ -936,11 +936,11 @@ endif
   inoremap <silent> <C-l> <Esc>:wincmd l<CR>
 
   " ALT-Up/Down/Left/Right to resize splits.
-  nnoremap <silent> <A-Right>      :vertical resize -5<CR><C-L>
-  inoremap <silent> <A-Right> <Esc>:vertical resize -5<CR><C-L>
+  nnoremap <silent> <A-Right>      :vertical resize +5<CR><C-L>
+  inoremap <silent> <A-Right> <Esc>:vertical resize +5<CR><C-L>
 
-  nnoremap <silent> <A-Left>      :vertical resize +5<CR><C-L>
-  inoremap <silent> <A-Left> <Esc>:vertical resize +5<CR><C-L>
+  nnoremap <silent> <A-Left>      :vertical resize -5<CR><C-L>
+  inoremap <silent> <A-Left> <Esc>:vertical resize -5<CR><C-L>
 
   nnoremap <silent> <A-Up>      :resize +2<CR><C-L>
   inoremap <silent> <A-Up> <Esc>:resize +2<CR><C-L>
