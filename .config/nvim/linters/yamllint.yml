@@ -24,7 +24,7 @@ rules:
     min-spaces-after: 1
     max-spaces-after: 1
   comments:
-    require-starting-space: false
+    require-starting-space: true
     min-spaces-from-content: 1
     level: warning
   document-start:
@@ -54,6 +54,9 @@ rules:
     quote-type: double
     required: only-when-needed
   trailing-spaces: enable
+  line-length:
+    max: 120
+    level: warning
   truthy:
     allowed-values:
       - "true"
