@@ -149,9 +149,10 @@
   " Force certain filetypes to use indents of 2 spaces.
   autocmd mygroup FileType config,markdown,*.md,text,vim,vimwiki,yaml setlocal nowrap shiftwidth=2 softtabstop=2 tabstop=2
   " Manual folding in vim files.
-  autocmd mygroup FileType vim setlocal foldlevelstart=0 foldmethod=marker
+  autocmd mygroup FileType vim setlocal foldcolumn foldlevelstart=0 foldmethod=marker
   " Autoformat personal notes.
   autocmd mygroup BufEnter ~/notes/**.md setlocal textwidth=120 formatoptions+=a formatoptions+=t
+  autocmd mygroup FileType help setlocal nonumber
 
 " }}}
 " SHORTCUTS ######################################################################################## {{{
@@ -254,7 +255,7 @@
     " Don't auto-pair anything by default.
     let g:AutoPairs={}
 
-    autocmd mygroup FileType yaml.ansible let b:AutoPairs=AutoPairsDefine({
+    autocmd mygroup FileType yaml.ansible,jinja2 let b:AutoPairs=AutoPairsDefine({
     \'"':'"',
     \'(':')',
     \'[':']',
