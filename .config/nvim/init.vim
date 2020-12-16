@@ -185,7 +185,9 @@
   " Easily edit vimrc (ve for 'vim edit').
   if athome
     nnoremap <leader>ve :edit ~/.config/nvim/init.vim<CR>
-    if has('nvim') | tnoremap <leader>ve <C-\><C-n>:edit ~/.config/nvim/init.vim<CR> | endif
+    if has('nvim')
+      tnoremap <leader>ve <C-\><C-n>:edit ~/.config/nvim/init.vim<CR>
+    endif
   elseif atwork
     nnoremap <leader>ve :edit /home/akelley/scripts/ansible/inventories/global_files/home/akelley/.vimrc<CR>
   endif
@@ -893,7 +895,9 @@ endif
 
   " Easier exiting insert mode.
   inoremap jk <Esc>
-  if has('nvim') | tnoremap fd <C-\><C-n> | endif
+  if has('nvim')
+    tnoremap fd <C-\><C-n>
+  endif
   " Easier navigating soft-wrapped lines.
   nnoremap j gj
   nnoremap k gk
