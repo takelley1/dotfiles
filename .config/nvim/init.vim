@@ -824,6 +824,8 @@
       Plug 'tpope/vim-eunuch'
       " Briefly highlight yanked text.
       Plug 'machakann/vim-highlightedyank'
+      " Easily swap window splits with <leader>ww
+      Plug 'wesQ3/vim-windowswap'
 
       if athome
         " Colorschemes.
@@ -985,14 +987,13 @@ endif
     nnoremap <silent> <leader>tv           :vsplit <bar> terminal<CR>
     tnoremap <silent> <leader>tv <C-\><C-n>:vsplit <bar> terminal<CR>
 
-    tnoremap <silent> ZZ <C-\><C-n>:q!<CR>
-
     tnoremap <silent> <C-n> <C-\><C-n>:tabnext<CR>
     tnoremap <silent> <C-p> <C-\><C-n>:tabprevious<CR>
     tnoremap <leader>a <C-\><C-n>:exe "tabn ".g:lasttab<CR>
 
     tnoremap <silent> <C-t> <C-\><C-n>:tabnew<CR>
-    tnoremap <silent> <C-w> <C-\><C-n>:q!<CR>
+    tnoremap <silent> <C-w> <C-\><C-n>:quit!<CR>
+    tnoremap <silent> ZZ    <C-\><C-n>:quit!<CR>
 
     tnoremap <silent> <C-k> <C-\><C-n>:wincmd k<CR>
     tnoremap <silent> <C-j> <C-\><C-n>:wincmd j<CR>
