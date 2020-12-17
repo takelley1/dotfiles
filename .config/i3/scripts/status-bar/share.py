@@ -22,7 +22,7 @@ def main():
         sys.exit(0)
 
     # Get free space in bytes.
-    disk = psutil.disk_usage("/mnt/tank/share/documents")
+    disk = psutil.disk_usage("/mnt/tank/storage/documents")
     disk_byes = disk.free
 
     disk_perc = disk.percent
