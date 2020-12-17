@@ -101,7 +101,7 @@
     " Change to home directory on startup.
     autocmd mygroup VimEnter * cd ~
   elseif atwork
-    autocmd mygroup VimEnter * cd ~/scripts/ansible
+    autocmd mygroup VimEnter * if isdirectory($HOME . '/scripts/ansible') | cd ~/scripts/ansible | endif
   endif
 
   " https://github.com/jdhao/nvim-config/blob/master/core/autocommands.vim
