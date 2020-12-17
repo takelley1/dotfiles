@@ -23,9 +23,6 @@ function nvim {
 
 # "Up 1 directory."
 alias u='cd ../'
-alias u2='cd ../../'
-alias u3='cd ../../../'
-alias u3='cd ../../../../'
 
 alias h='cd ~'
 alias c='clear'
@@ -49,11 +46,11 @@ alias pip3.8='pip3.8 --trusted-host pypi.org --trusted-host pypi.python.org --tr
 
 # APPS ------------------------------------------------------------------------
 
+# Reset break timer.
+alias reset='pokoy && pokoy -k && pokoy -r && pokoy'
+
 alias ta='tmux -f ~/.config/tmux/tmux.conf attach'
 alias tmux='tmux -f ~/.config/tmux/tmux.conf'
-
-alias vi='nvim'
-alias vim='nvim'
 
 alias define='dict'
 alias eve='bash /opt/evesetup/lib/evelauncher/evelauncher.sh &'
