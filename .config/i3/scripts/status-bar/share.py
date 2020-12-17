@@ -8,6 +8,9 @@
 # Whether to display percentage used of network share.
 # This is not useful on ZFS datasets, for example.
 show_percent = False
+# "G" or "T"
+unit = "G"
+icon = ""
 
 import os
 import sys
@@ -29,11 +32,19 @@ def main():
     if disk_perc >= 1:
         disk_perc = round(disk_perc)
 
-    # Convert to TB.
-    disk_byes = disk_byes / (1024 ** 4)
-    disk_byes = round(disk_byes, 2)
+    if unit == "G":
+        # Convert to GB.
+        disk_byes = disk_byes / (1024 ** 3)
+        disk_byes = round(disk_byes)
+    elif unit == "T":
+        # Convert to TB.
+        disk_byes = disk_byes / (1024 ** 4)
+        disk_byes = round(disk_byes, 2)
+    else:
+        print("unit is incorrect!")
+        sys.exit(1)
 
-    output = " " + str(disk_byes) + "T"
+    output = icon + str(disk_byes) + unit
 
     if show_percent is False:
         print(output)
