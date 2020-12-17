@@ -956,6 +956,20 @@ endif
 
   " Terminal-related shortcuts.
   if has('nvim')
+
+    " Quickly convert a terminal window to a Ranger window.
+    function! Termtoranger()
+      :new
+      :wincmd k
+      :quit!
+      if athome
+        :Rnvimr
+      elseif atwork
+        :Ranger
+      endif
+    endfunction
+    tnoremap <leader>r <C-\><C-n>:call Termtoranger()<CR>
+
     nnoremap <silent> <leader>t            :terminal<CR>
     tnoremap <silent> <leader>t  <C-\><C-n>:terminal<CR>
     nnoremap <silent> <leader>tt           :terminal<CR>
