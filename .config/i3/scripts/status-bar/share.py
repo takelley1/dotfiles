@@ -8,9 +8,13 @@
 # Whether to display percentage used of network share.
 # This is not useful on ZFS datasets, for example.
 show_percent = False
-# "G" or "T"
+# Display in gigabytes or terabytes. The value you provide will also
+#   be used in the output.
 unit = "G"
 icon = ""
+# When free space drops below this amount, color the output in red.
+# Units are in gigabytes.
+alert_thresh = 1800
 
 import os
 import sys
@@ -26,40 +30,35 @@ def main():
 
     # Get free space in bytes.
     disk = psutil.disk_usage("/mnt/tank/storage/documents")
-    disk_byes = disk.free
+    disk_bytes = disk.free
 
     disk_perc = disk.percent
     if disk_perc >= 1:
         disk_perc = round(disk_perc)
 
-    if unit == "G":
-        # Convert to GB.
-        disk_byes = disk_byes / (1024 ** 3)
-        disk_byes = round(disk_byes)
-    elif unit == "T":
+    # Convert to GB.
+    disk_bytes_g = disk_bytes / (1024 ** 3)
+    disk_bytes_g = round(disk_bytes_g)
+    output = icon + str(disk_bytes_g) + unit
+
+    if unit in ("T", "t", "TB", "Tb", "tb", "tB", "terabytes", "Terabytes"):
         # Convert to TB.
-        disk_byes = disk_byes / (1024 ** 4)
-        disk_byes = round(disk_byes, 2)
-    else:
-        print("unit is incorrect!")
+        disk_bytes_t = disk_bytes / (1024 ** 4)
+        disk_bytes_t = round(disk_bytes_t, 2)
+        output = icon + str(disk_bytes_t) + unit
+    elif unit not in ("G", "g", "GB", "Gb", "gb", "gB", "gigabytes", "Gigabytes"):
+        print("The 'unit' variable has an incorrect value!")
         sys.exit(1)
 
-    output = icon + str(disk_byes) + unit
-
-    if show_percent is False:
+    if show_percent:
+        print(output + " (" + str(disk_perc) + "%)")
+    else:
         print(output)
 
     # The i3bar protocol uses the third line of the output to specify.
     #   color: https://github.com/vivien/i3blocks#format
-    else:
-        print(output + " (" + str(disk_perc) + "%)")
-
-        if disk_perc >= 80:
-            print("\n#F11712")
-        elif disk_perc >= 75:
-            print("\n#FF7300")
-        elif disk_perc >= 70:
-            print("\n#FFF000")
+    if disk_bytes_g <= alert_thresh:
+        print("\n#F11712")
 
     sys.exit(0)
 
