@@ -682,6 +682,7 @@
       stopinsert
     endfunction
 
+    let g:magit_show_magit_mapping='m'
     nnoremap <leader>m :call Vimagit()<CR>
     nnoremap <leader>g :call Vimagit()<CR>
 
