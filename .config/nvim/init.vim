@@ -581,6 +581,15 @@
     endif
 
   " }}}
+  " Neovim Remote ---------------------------------------------------------------------------------- {{{
+
+    " See https://github.com/mhinz/neovim-remote
+    if has('nvim')
+      let $GIT_EDITOR = 'nvr -cc split --remote-wait'
+    endif
+    autocmd mygroup FileType gitcommit,gitrebase,gitconfig set bufhidden=delete
+
+  " }}}
   " NERD Commenter --------------------------------------------------------------------------------- {{{
 
     " <leader>cc to comment a block.
