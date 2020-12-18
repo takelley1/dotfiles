@@ -4,16 +4,16 @@
   " Determine if system is at home or at work.
   let hostname = substitute(system('hostname'), '\n', '', '')
   if hostname ==# "polaris" || "tethys"
-    let athome = 1
-    let atwork = 0
+    let g:athome = 1
+    let g:atwork = 0
   else
-    let athome = 0
-    let atwork = 1
+    let g:athome = 0
+    let g:atwork = 1
   endif
 
   filetype indent plugin on             " Identify the filetype, load indent and plugin files.
   syntax on                             " Force syntax highlighting.
-  if athome
+  if g:athome
     if has('termguicolors')
       set termguicolors                 " Enable 24-bit color support.
     endif
@@ -38,7 +38,7 @@
   set splitbelow splitright             " Splits open at the bottom and right by default, rather than top and left.
   set noswapfile nobackup               " Don't use backups since most files are in Git.
 
-  if athome
+  if g:athome
     let g:python3_host_prog = '/usr/bin/python3' " Speed up startup.
     let g:loaded_python_provider = 0             " Disable Python 2 provider.
   endif
@@ -97,10 +97,10 @@
   " Set working dir to current file's dir.
   autocmd mygroup BufEnter * silent! lcd %:p:h
 
-  if athome
+  if g:athome
     " Change to home directory on startup.
     autocmd mygroup VimEnter * cd ~
-  elseif atwork
+  elseif g:atwork
     autocmd mygroup VimEnter * if isdirectory($HOME . '/scripts/ansible') | cd ~/scripts/ansible | endif
   endif
 
@@ -110,14 +110,14 @@
 
   " Quickly commit and push updates to notes.
   " The QuitPre event will trigger even when exiting with ZZ.
-  if athome
+  if g:athome
     autocmd mygroup QuitPre ~/notes/unsorted.md silent :!git -C ~/notes commit -m 'Update unsorted.md' unsorted.md && git push -C ~/notes
   endif
 
   " Automatically copy changes from ansible repo to personal dotfiles.
   " Use sed to remove the 'Ansible managed' header.
   " test1
-  if atwork
+  if g:atwork
     autocmd mygroup BufWritePost ~/scripts/ansible/inventories/global_files/home/akelley/.vimrc :!cp -f ~/scripts/ansible/inventories/global_files/home/akelley/.vimrc ~/.config/nvim/init.vim
     autocmd mygroup BufWritePost ~/scripts/ansible/inventories/global_files/home/akelley/.bashrc silent :!sed '0,/ansible_managed/d' ~/scripts/ansible/inventories/global_files/home/akelley/.bashrc > ~/.bashrc
     autocmd mygroup BufWritePost ~/scripts/ansible/inventories/global_files/home/akelley/.tmux.conf silent :!sed '0,/ansible_managed/d' ~/scripts/ansible/inventories/global_files/home/akelley/.tmux.conf > ~/.tmux.conf
@@ -164,7 +164,7 @@
   " Jump back and forth between files.
   noremap <silent> <BS> :e#<CR><C-L>
 
-  " if atwork
+  " if g:atwork
   "   nnoremap ZZ :nohl
   "   nnoremap ZQ :nohl
   " endif
@@ -183,12 +183,12 @@
   "xnoremap > >gv
 
   " Easily edit vimrc (ve for 'vim edit').
-  if athome
+  if g:athome
     nnoremap <leader>ve :edit ~/.config/nvim/init.vim<CR>
     if has('nvim')
       tnoremap <leader>ve <C-\><C-n>:edit ~/.config/nvim/init.vim<CR>
     endif
-  elseif atwork
+  elseif g:atwork
     nnoremap <leader>ve :edit /home/akelley/scripts/ansible/inventories/global_files/home/akelley/.vimrc<CR>
   endif
   " Reload configuration without restarting vim (vs for 'vim source').
@@ -201,7 +201,7 @@
     normal! Go
   endfunction
 
-  if athome
+  if g:athome
     nnoremap <leader>n :call Notes()<CR>
     command! Note      call Notes()
 
@@ -270,11 +270,11 @@
 
   " }}}
   " Airline ---------------------------------------------------------------------------------------- {{{
-    if athome
+    if g:athome
       let g:airline_theme='palenight'
       " Use Nerd Fonts from Vim-devicons.
       let g:airline_powerline_fonts = 1
-    elseif atwork
+    elseif g:atwork
       let g:airline_theme='dark'
     endif
 
@@ -344,7 +344,7 @@
   " }}}
   " COC -------------------------------------------------------------------------------------------- {{{
 
-    if athome
+    if g:athome
       " These configs are from https://github.com/neoclide/coc.nvim
 
       " Use K to show documentation in preview window.
@@ -383,7 +383,7 @@
     " CTRL-t to open the desired file in a new tab.
     " CTRL-v to open the desired file in a new vertical split.
 
-    if atwork
+    if g:atwork
       let g:ctrlp_map = '<leader>F'
       " For some reason mapping this normally doesn't work.
       autocmd mygroup VimEnter * nnoremap <leader>f :CtrlP ~/<CR>
@@ -400,7 +400,7 @@
   " }}}
   " Devicons --------------------------------------------------------------------------------------- {{{
 
-    if athome
+    if g:athome
       " Enable Nerd Fonts (requires AUR package).
       set guifont=Nerd\ Font\ 11
 
@@ -437,7 +437,7 @@
       " last window. `<cr>` opens the current context in the last window, but closes
       " the current window first.
 
-    if athome
+    if g:athome
 
       nnoremap <leader>G :Grepper -tool rg -cd ~/<CR>
       nnoremap <leader>g :Grepper -tool rg<CR>
@@ -464,7 +464,7 @@
         \ -g "!**/.gnupg"
         \ '
 
-    elseif atwork
+    elseif g:atwork
 
       nnoremap <leader>G :Grepper -tool grep -cd ~/<CR>
       nnoremap <leader>g :Grepper -tool grep<CR>
@@ -481,13 +481,13 @@
   " GitGutter -------------------------------------------------------------------------------------- {{{
 
     " Make sidebar dark.
-    if athome | highlight SignColumn cterm=bold ctermbg=0 guibg=0 | endif
+    if g:athome | highlight SignColumn cterm=bold ctermbg=0 guibg=0 | endif
     " Undo git changes easily.
     nnoremap gu :GitGutterUndoHunk<CR>
     " View interactive git diff.
     nnoremap gd :Gdiffsplit<CR>
     " Fix git diff colors.
-    if athome | highlight DiffText ctermbg=1 ctermfg=3 guibg=1 guifg=3 | endif
+    if g:athome | highlight DiffText ctermbg=1 ctermfg=3 guibg=1 guifg=3 | endif
 
   " }}}
   " Highlighted Yank ------------------------------------------------------------------------------- {{{
@@ -506,7 +506,7 @@
   " }}}
   " LeaderF ---------------------------------------------------------------------------------------- {{{
 
-    if athome
+    if g:athome
       " <leader>f to start searching from home directory (f for 'find').
       " <leader>F to start searching from project directory.
 
@@ -569,7 +569,7 @@
   " }}}
   " Markdown Preview ------------------------------------------------------------------------------- {{{
 
-    if athome
+    if g:athome
       " Markdown preview with mp.
       autocmd mygroup FileType markdown nnoremap mp :MarkdownPreview<CR><C-L>
 
@@ -591,7 +591,7 @@
   " }}}
   " Ranger ----------------------------------------------------------------------------------------- {{{
 
-    if atwork
+    if g:atwork
       " <leader>r to open file manager.
       nnoremap <silent> <leader>r :Ranger<CR>
     endif
@@ -599,7 +599,7 @@
   " }}}
   " Rnvimr ----------------------------------------------------------------------------------------- {{{
 
-    if athome
+    if g:athome
       " <leader>r to open file manager.
       nnoremap <silent> <leader>r :RnvimrToggle<CR>
 
@@ -733,9 +733,9 @@
       Plug 'brooth/far.vim'
 
       " Filename search.
-      if athome
+      if g:athome
         Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' }
-      elseif atwork
+      elseif g:atwork
         Plug 'ctrlpvim/ctrlp.vim'
       endif
       " Plug 'junegunn/fzf', { 'do': { -> fzf#install()  }  }
@@ -743,9 +743,9 @@
       " Plug 'wincent/command-t'
 
       " File manager.
-      if athome
+      if g:athome
         Plug 'kevinhwang91/rnvimr'
-      elseif atwork
+      elseif g:atwork
         Plug 'francoiscabrol/ranger.vim'
         " Dependency for ranger.vim.
         Plug 'rbgrouleff/bclose.vim'
@@ -788,7 +788,7 @@
 
       " Code completion.
       " This causes a noticeable lag when scrolling.
-      " if athome
+      " if g:athome
       "   Plug 'neoclide/coc.nvim', { 'branch': 'release' }
       " endif
 
@@ -827,7 +827,7 @@
       " Easily swap window splits with <leader>ww
       Plug 'wesQ3/vim-windowswap'
 
-      if athome
+      if g:athome
         " Colorschemes.
         Plug 'drewtempelmeyer/palenight.vim'
         " Plug 'morhetz/gruvbox'
@@ -858,7 +858,7 @@ endif
 
   " Colors for plugins typically have to come after they're loaded by Vim-plug.
 
-  if athome
+  if g:athome
 
     " Change comment color from grey to turquoise.
     " Make white a bit brighter.
@@ -874,7 +874,7 @@ endif
     " Make selected LeaderF results more visible.
     highlight Lf_hl_cursorline guifg=#c3e88d gui=Bold ctermfg=226 ctermbg=0 cterm=Bold
 
-  elseif atwork
+  elseif g:atwork
 
     colorscheme peachpuff
 
@@ -964,9 +964,9 @@ endif
       :new
       :wincmd k
       :quit!
-      if athome
-        :Rnvimr
-      elseif atwork
+      if g:athome
+        :RnvimrToggle
+      elseif g:atwork
         :Ranger
       endif
     endfunction
