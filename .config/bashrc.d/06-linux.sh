@@ -11,6 +11,11 @@ if [[ "${OSTYPE}" == "linux-gnu" ]]; then
 
     export SHELL="/bin/bash"
 
+    # Add to $PATH
+    if ! printf "%s\n" "${PATH}" | grep -q '/.local/bin'; then
+        export PATH=${PATH}:~/.local/bin
+    fi
+
     # asd.service breaks if this isn't enabled.
     xhost + &>/dev/null
 
