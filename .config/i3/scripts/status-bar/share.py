@@ -11,7 +11,8 @@ show_percent = False
 # Display in gigabytes or terabytes. The value you provide will also
 #   be used in the output.
 unit = "G"
-icon = ""
+# Emoji U+1F5C4 🗄️
+icon = "🗄️"
 # When free space drops below this amount, color the output in red.
 # Units are in gigabytes.
 alert_thresh = 1800

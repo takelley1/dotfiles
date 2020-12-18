@@ -3,10 +3,8 @@
 # Status bar script for printing the amount of gigabytes free in the
 #   root partition.
 #
-# Font-Awesome 
-# Emoji U+1F5C4 🗄️
-
-icon = "🗄️"
+# Emoji U+1F5C3 🗃️
+icon = "🗃️"
 
 import sys
 import psutil
@@ -26,7 +24,7 @@ def main():
     disk_bytes = round(disk_bytes)
     disk_bytes = str(disk_bytes)
 
-    print(icon + disk_bytes + "G (" + str(disk_perc) + "%)")
+    print(icon + " " + disk_bytes + "G (" + str(disk_perc) + "%)")
 
     # The i3bar protocol uses the third line of the output to specify
     #   color: https://github.com/vivien/i3blocks#format
