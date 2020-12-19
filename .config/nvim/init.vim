@@ -139,19 +139,20 @@
   set shiftwidth=4       " Number of auto-indent spaces.
   set expandtab          " Convert tabs to spaces.
   set noautoindent       " No automatic indenting.
+  set nocindent
+  set nosmartindent
+  set formatoptions=q    " Disable all auto-formatting.
+  set indentexpr=
 
   set linebreak          " Break line at predefined characters when soft-wrapping.
   set showbreak=↪        " Character to show before the lines that have been soft-wrapped.
 
-  " Disable all auto-formatting by default.
-  " t = auto-wrap text, c = auto-wrap comments, r = auto-insert comments after <CR>, o = auto-insert comments after <o>
-  autocmd mygroup FileType * setlocal nocindent nosmartindent formatoptions-=c formatoptions-=r formatoptions-=o indentexpr=
   " Force certain filetypes to use indents of 2 spaces.
   autocmd mygroup FileType config,markdown,*.md,text,vim,vimwiki,yaml setlocal nowrap shiftwidth=2 softtabstop=2 tabstop=2
   " Manual folding in vim files.
   autocmd mygroup FileType vim setlocal foldcolumn foldlevelstart=0 foldmethod=marker
   " Autoformat personal notes.
-  autocmd mygroup BufEnter ~/notes/**.md setlocal textwidth=120 formatoptions+=a formatoptions+=t
+  autocmd mygroup BufEnter ~/notes/**.md setlocal textwidth=120
   autocmd mygroup FileType help setlocal nonumber
 
 " }}}
