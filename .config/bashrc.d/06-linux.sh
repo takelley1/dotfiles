@@ -68,4 +68,12 @@ if [[ "${OSTYPE}" == "linux-gnu" ]]; then
         export VISUAL="/usr/bin/vi"
         export SUDO_EDITOR="/usr/bin/vi"
     fi
+
+    # Use nvr to edit files within a single neovim instance on polaris.
+    if [[ "${HOSTNAME}" == "polaris" ]]; then
+        export EDITOR="/usr/bin/nvr -cc split --remote-wait"
+        export VISUAL="/usr/bin/nvr -cc split --remote-wait"
+        export SUDO_EDITOR="/usr/bin/vi"
+    fi
+
 fi
