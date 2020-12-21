@@ -43,7 +43,7 @@ rules:
     spaces: 2
     indent-sequences: true
     check-multi-line-strings: true
-  key-duplicates: enable
+  key-duplicates: disable
   key-ordering: disable
   new-line-at-end-of-file: enable
   new-lines:
