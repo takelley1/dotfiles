@@ -677,24 +677,35 @@
   " }}}
   " Vimagit ---------------------------------------------------------------------------------------- {{{
 
+    let g:magit_show_magit_mapping='m'
+
     " Open Vimagit for the current repo. If Vimagit can't find a repo, use the dotfiles repo.
     " See also https://stackoverflow.com/questions/5441697/how-can-i-get-last-echoed-message-in-vimscript
-    function! Vimagit()
-        let g:magit_git_cmd="git"                              " Ensure variable is set to default value.
+    function! Vimagit(split)
+      let g:magit_git_cmd="git"                                " Ensure variable is set to default value.
       redir => g:messages                                      " Begin capturing output of messages.
+      if a:split == 1
         silent! Magit                                          " Try opening Magit for the current repo.
+      else
+        silent! MagitOnly
+      endif
       redir END                                                " End capturing output.
       let g:lastmsg=get(split(g:messages, "\n"), -5, "")       " Send output to var.
       if g:lastmsg ==# "magit can not find any git repository" " If var matches error, use dotfiles instead.
         let g:magit_git_cmd="git --git-dir=$HOME/.cfg/ --work-tree=$HOME"
-        Magit
+        if a:split == 1
+          silent! Magit                                        " Try opening Magit for the current repo.
+        else
+          silent! MagitOnly
+        endif
       endif
       stopinsert
     endfunction
 
-    let g:magit_show_magit_mapping='m'
-    nnoremap <leader>m :call Vimagit()<CR>
-    nnoremap <leader>g :call Vimagit()<CR>
+    " Open Vimagit in a new split.
+    nnoremap <leader>m :call Vimagit(1)<CR>
+    " Open Vimagit in the same window.
+    nnoremap <leader>M :call Vimagit(0)<CR>
 
     let g:magit_scrolloff=999
 
