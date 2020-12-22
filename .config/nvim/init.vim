@@ -513,17 +513,17 @@
 
       " <leader>/ to grep for a string in all open buffers.
       " <leader>b to search within open buffers.
-      " <leader>M to search recently used files.
+      " <leader>R to search recently used files.
 
-      " CTRL-j and CTRL-k to navigate through results.
-      "<C-X> : open in horizontal split window.
-      "<C-]> : open in vertical split window.
-      "<C-T> : open in new tabpage.
+      " CTRL-j, CTRL-k : navigate through results.
+      " CTRL-x : open in horizontal split window.
+      " CTRL-] : open in vertical split window.
+      " CTRL-T : open in new tabpage.
 
       nnoremap <leader>f :LeaderfFile ~/<CR>
       nnoremap <leader>F :LeaderfFile<CR>
 
-      nnoremap <leader>M :LeaderfMru<CR>
+      nnoremap <leader>R :LeaderfMru<CR>
 
       nnoremap <leader>/ :LeaderfLineAll<CR>
 
