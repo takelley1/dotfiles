@@ -2,8 +2,6 @@
 # Bash configuration file.
 #
 
-tty="$(tty)"
-
 # ALIASES ########################################################################################## {{{
 
     # Git ------------------------------------------------------------------------------------------ {{{
@@ -111,21 +109,6 @@ tty="$(tty)"
     # Utilities -------------------------------------------------------------------------------------{{{
 
     # Aliases for common utilities and apps.
-
-    # Make nvim follow symlinks.
-    # This makes it easier to use Git mappings within nvim.
-    # From: https://stackoverflow.com/questions/30791692/make-vim-follow-symlinks-when-opening-files-from-command-line
-    function nvim {
-        args=()
-        for i in "$@"; do
-            if [[ -h $i ]]; then
-                args+=("$( readlink "$i" )")
-            else
-                args+=("$i")
-            fi
-        done
-        /usr/bin/nvim -p "${args[@]}"
-    }
 
     # "Up 1 directory."
     alias u='cd ../'
@@ -247,9 +230,7 @@ fi
 # LINUX ############################################################################################ {{{
 
 # Linux-specific aliases and environment variables.
-#
 # shellcheck disable=2154
-#
 
 if [[ "${OSTYPE}" == "linux-gnu" ]]; then
 
@@ -412,6 +393,22 @@ ranger_cd() {
     rm -f -- "$temp_file"
 }
 
+# Make nvim follow symlinks.
+# This makes it easier to use Git mappings within nvim.
+# From: https://stackoverflow.com/questions/30791692/make-vim-follow-symlinks-when-opening-files-from-command-line
+function nvim {
+    args=()
+    for i in "$@"; do
+        if [[ -h $i ]]; then
+            args+=("$( readlink "$i" )")
+        else
+            args+=("$i")
+        fi
+    done
+    /usr/bin/nvim -p "${args[@]}"
+}
+
+
 # }}}
 # STARTX ########################################################################################### {{{
 
@@ -419,7 +416,7 @@ ranger_cd() {
 # shellcheck disable=2154
 
 if [[ "${OSTYPE}" == "linux-gnu" ]]; then
-    if [[ ! "${USER}" == "root" && -z "${DISPLAY}" && "${tty}" == "/dev/tty1" ]]; then
+    if [[ ! "${USER}" == "root" && -z "${DISPLAY}" && "$(tty)" == "/dev/tty1" ]]; then
         if hash startx 2>/dev/null; then
             exec startx
         fi
