@@ -87,6 +87,8 @@
     alias dss='dot status'
     alias gs='git status'
 
+    alias gsp='git submodule foreach git push'
+
     # Show all tracked files.
     alias dt='dot ls-tree -r master --name-only'
     alias gt='git ls-tree -r master --name-only'
