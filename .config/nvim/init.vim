@@ -150,7 +150,7 @@
   " Force certain filetypes to use indents of 2 spaces.
   autocmd mygroup FileType config,markdown,*.md,text,vim,vimwiki,yaml setlocal nowrap shiftwidth=2 softtabstop=2 tabstop=2
   " Manual folding in vim files.
-  autocmd mygroup FileType vim setlocal foldcolumn foldlevelstart=0 foldmethod=marker
+  autocmd mygroup FileType vim,sh setlocal foldlevelstart=0 foldmethod=marker
   " Autoformat personal notes.
   autocmd mygroup BufEnter ~/notes/**.md setlocal textwidth=120
   autocmd mygroup FileType help setlocal nonumber
