@@ -138,15 +138,14 @@
   set softtabstop=4
   set shiftwidth=4       " Number of auto-indent spaces.
   set expandtab          " Convert tabs to spaces.
-  set noautoindent       " No automatic indenting.
-  set nocindent
-  set nosmartindent
   set formatoptions=q    " Disable all auto-formatting.
   set indentexpr=
 
   set linebreak          " Break line at predefined characters when soft-wrapping.
   set showbreak=↪        " Character to show before the lines that have been soft-wrapped.
 
+  " For some reason setting these options only works within an autocommand.
+  autocmd mygroup BufEnter * set formatoptions=q noautoindent nocindent nosmartindent
   " Force certain filetypes to use indents of 2 spaces.
   autocmd mygroup FileType config,markdown,*.md,text,vim,vimwiki,yaml setlocal nowrap shiftwidth=2 softtabstop=2 tabstop=2
   " Manual folding in vim files.
@@ -290,7 +289,7 @@
     let g:airline#extensions#keymap#enabled = 0
     let g:airline#extensions#fzf#enabled = 0
 
-    " The tabline incorrectly displays terminal buffers.
+    " The tabline incorrectly displays terminal buffers, so disable it.
     " let g:airline#extensions#tabline#show_buffers = 0      " Don't show buffers when a single tab is open.
     " let g:airline#extensions#tabline#fnamemod = ':p:t'     " Format filenames in tabline.
     " let g:airline#extensions#tabline#enabled = 1           " Replace the tabline with Airline's.
@@ -717,6 +716,9 @@
 
     let g:vimwiki_conceallevel = 1
     let g:vimwiki_conceal_onechar_markers = 0
+
+    " <leader>ww is used by Vim-Windowswap, so remap it here.
+    nmap <Leader>wx <Plug>VimwikiIndex
 
     " Override some of Vimwiki's configs.
     " For some reason this only works after the BufEnter event.
