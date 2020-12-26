@@ -435,14 +435,22 @@
       " last window. `<cr>` opens the current context in the last window, but closes
       " the current window first.
 
+    " For some reason this plugin doesn't load correctly, so we must source it
+    "   manually here.
+    source $HOME/.local/share/nvim/plugged/vim-grepper/plugin/grepper.vim
+
     if g:athome
 
       nnoremap <leader>G :Grepper -tool rg -cd ~/<CR>
       nnoremap <leader>g :Grepper -tool rg<CR>
+      if has('nvim')
+        tnoremap <leader>G <C-\><C-n>:Grepper -tool rg -cd ~/<CR>
+        tnoremap <leader>g <C-\><C-n>:Grepper -tool rg<CR>
+      endif
 
       " I have to recreate the entire rg command here if I want to add
       "  additional options since it doesn't work correctly otherwise.
-      silent! let g:grepper.rg.grepprg = 'rg
+      let g:grepper.rg.grepprg = 'rg
         \ -H
         \ --no-heading
         \ --vimgrep
@@ -460,20 +468,78 @@
         \ -g "!**/.fltk"
         \ -g "!**/.gnupg"
         \ -g "!**/.gnupg"
+        \ -g "!*.7z"
+        \ -g "!*.aac"
+        \ -g "!*.avi"
+        \ -g "!*.bau"
+        \ -g "!*.bmp"
+        \ -g "!*.cer"
+        \ -g "!*.cert*"
+        \ -g "!*.crate"
+        \ -g "!*.crt"
+        \ -g "!*.dat"
+        \ -g "!*.db*"
+        \ -g "!*.der"
+        \ -g "!*.dic"
+        \ -g "!*.doc*"
+        \ -g "!*.exc"
+        \ -g "!*.fmt"
+        \ -g "!*.gif"
+        \ -g "!*.gpg"
+        \ -g "!*.gz"
+        \ -g "!*.ico"
+        \ -g "!*.iso"
+        \ -g "!*.jpeg"
+        \ -g "!*.jpg"
+        \ -g "!*.kbx*"
+        \ -g "!*.key"
+        \ -g "!*.localstorage*"
+        \ -g "!*.lock"
+        \ -g "!*.m4a"
+        \ -g "!*.mkv"
+        \ -g "!*.mp3"
+        \ -g "!*.mp4"
+        \ -g "!*.msg"
+        \ -g "!*.odt"
+        \ -g "!*.pack"
+        \ -g "!*.pdf"
+        \ -g "!*.pick*"
+        \ -g "!*.png"
+        \ -g "!*.py1*"
+        \ -g "!*.pyc"
+        \ -g "!*.sdv"
+        \ -g "!*.shada"
+        \ -g "!*.so"
+        \ -g "!*.sql*"
+        \ -g "!*.stats"
+        \ -g "!*.svg"
+        \ -g "!*.tar"
+        \ -g "!*.tar.*"
+        \ -g "!*.tgz"
+        \ -g "!*.thm"
+        \ -g "!*.tiff"
+        \ -g "!*.vdi"
+        \ -g "!*.vhd"
+        \ -g "!*.vmdk"
+        \ -g "!*.vmdx"
+        \ -g "!*.webp"
+        \ -g "!*.whl"
+        \ -g "!*.zip"
         \ '
 
     elseif g:atwork
 
       nnoremap <leader>G :Grepper -tool grep -cd ~/<CR>
       nnoremap <leader>g :Grepper -tool grep<CR>
+      if has('nvim')
+        tnoremap <leader>G <C-\><C-n>:Grepper -tool grep -cd ~/<CR>
+        tnoremap <leader>g <C-\><C-n>:Grepper -tool grep<CR>
+      endif
 
     endif
 
-    " Use silent! here since Nvim will complain on startup that plugin is missing.
-    silent! let g:grepper.quickfix = 0         " Don't use the quickfix menu.
-    silent! let g:grepper.side = 1             " Open results with context in a side window.
-    silent! let g:grepper.stop = 1000          " Stop after this many matches.
-    silent! let g:grepper.prompt_text = '$t> ' " Show bare prompt.
+    let g:grepper.stop = 1000          " Stop after this many matches.
+    let g:grepper.prompt_text = '$t> ' " Show bare prompt.
 
   " }}}
   " GitGutter -------------------------------------------------------------------------------------- {{{
