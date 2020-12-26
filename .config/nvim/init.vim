@@ -79,7 +79,7 @@
   " autocmd mygroup InsertEnter * let @/ = ''
 
   " Update file if changed from outside.
-  autocmd mygroup FocusGained,BufEnter * checktime
+  autocmd mygroup FocusGained,BufEnter * if &readonly ==# 0 | silent! checktime | endif
   " Save after editing text.
   autocmd mygroup TextChanged,TextChangedI * if &readonly ==# 0 | silent! write | endif
 
@@ -104,22 +104,39 @@
 
   " https://github.com/jdhao/nvim-config/blob/master/core/autocommands.vim
   " Return to last position when re-opening file.
-  autocmd mygroup BufReadPost if line("'\"") > 1 && line("'\"") <= line("$") && &ft !~# 'commit' | execute "normal! g`\"zvzz" | endif
+  autocmd mygroup BufReadPost
+    \ if line("'\"") > 1 && line("'\"") <= line("$") && &ft !~# 'commit' | execute "normal! g`\"zvzz" | endif
 
   " Quickly commit and push updates to notes.
   " The QuitPre event will trigger even when exiting with ZZ.
   if g:athome
-    autocmd mygroup QuitPre ~/notes/unsorted.md silent :!git -C ~/notes commit -m 'Update unsorted.md' unsorted.md && git push -C ~/notes
+    autocmd mygroup QuitPre ~/notes/unsorted.md
+      \ silent :!git -C ~/notes commit -m 'Update unsorted.md' unsorted.md && git push -C ~/notes
   endif
 
   " Automatically copy changes from ansible repo to personal dotfiles.
   " Use sed to remove the 'Ansible managed' header.
   " test1
   if g:atwork
-    autocmd mygroup BufWritePost ~/scripts/ansible/inventories/global_files/home/akelley/.vimrc :!cp -f ~/scripts/ansible/inventories/global_files/home/akelley/.vimrc ~/.config/nvim/init.vim
-    autocmd mygroup BufWritePost ~/scripts/ansible/inventories/global_files/home/akelley/.bashrc silent :!sed '0,/ansible_managed/d' ~/scripts/ansible/inventories/global_files/home/akelley/.bashrc > ~/.bashrc
-    autocmd mygroup BufWritePost ~/scripts/ansible/inventories/global_files/home/akelley/.tmux.conf silent :!sed '0,/ansible_managed/d' ~/scripts/ansible/inventories/global_files/home/akelley/.tmux.conf > ~/.tmux.conf
-    autocmd mygroup BufWritePost ~/scripts/ansible/inventories/global_files/home/akelley/.bash_profile silent :!sed '0,/ansible_managed/d' ~/scripts/ansible/inventories/global_files/home/akelley/.bash_profile ~/.bash_profile
+    autocmd mygroup BufWritePost
+      \ ~/scripts/ansible/inventories/global_files/home/akelley/.vimrc
+      \ :!cp -f ~/scripts/ansible/inventories/global_files/home/akelley/.vimrc
+      \ ~/.config/nvim/init.vim
+
+    autocmd mygroup BufWritePost
+      \ ~/scripts/ansible/inventories/global_files/home/akelley/.bashrc
+      \ silent :!sed '0,/ansible_managed/d'
+      \ ~/scripts/ansible/inventories/global_files/home/akelley/.bashrc > ~/.bashrc
+
+    autocmd mygroup BufWritePost
+      \ ~/scripts/ansible/inventories/global_files/home/akelley/.tmux.conf
+      \ silent :!sed '0,/ansible_managed/d'
+      \ ~/scripts/ansible/inventories/global_files/home/akelley/.tmux.conf > ~/.tmux.conf
+
+    autocmd mygroup BufWritePost
+      \ ~/scripts/ansible/inventories/global_files/home/akelley/.bash_profile
+      \ silent :!sed '0,/ansible_managed/d'
+      \ ~/scripts/ansible/inventories/global_files/home/akelley/.bash_profile ~/.bash_profile
   endif
 
 " }}}
