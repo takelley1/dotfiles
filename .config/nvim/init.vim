@@ -1110,42 +1110,4 @@ endif
   endif
 
 " }}}
-
-" UNUSED FUNCTIONS ################################################################################# {{{
-
-"  " If a split exists, navigate to it. Otherwise, create a split.
-"  " Currently not used, since I kept unintentionally splitting windows.
-"  " https://breuer.dev/blog/top-neovim-plugins.html
-"  function! WinMove(key)
-"    let t:curwin = winnr()
-"    exec "wincmd ".a:key
-"    if (t:curwin == winnr())
-"      if (match(a:key,'[jk]'))
-"        vsplit
-"      else
-"        split
-"      endif
-"      exec "wincmd ".a:key
-"    endif
-"  endfunction
-
-"  " CTRL-h/j/k/l to navigate and create splits.
-"  nnoremap <silent> <C-k>      :call WinMove('k')<CR>
-"  inoremap <silent> <C-k> <Esc>:call WinMove('k')<CR>
-
-"  nnoremap <silent> <C-j>      :call WinMove('j')<CR>
-"  inoremap <silent> <C-j> <Esc>:call WinMove('j')<CR>
-
-"  nnoremap <silent> <C-h>      :call WinMove('h')<CR>
-"  inoremap <silent> <C-h> <Esc>:call WinMove('h')<CR>
-
-"  nnoremap <silent> <C-l>      :call WinMove('l')<CR>
-"  inoremap <silent> <C-l> <Esc>:call WinMove('l')<CR>
-
-"  tnoremap <silent> <C-k> <C-\><C-n>:call WinMove('k')<CR>
-"  tnoremap <silent> <C-j> <C-\><C-n>:call WinMove('j')<CR>
-"  tnoremap <silent> <C-h> <C-\><C-n>:call WinMove('h')<CR>
-"  tnoremap <silent> <C-l> <C-\><C-n>:call WinMove('l')<CR>
-
-"  }}}
 "{% endraw %}
