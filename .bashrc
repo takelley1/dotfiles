@@ -88,6 +88,7 @@
     alias gs='git status'
 
     alias gsp='git submodule foreach git push'
+    alias gsur='git submodule update --remote'
 
     # Show all tracked files.
     alias dt='dot ls-tree -r master --name-only'
