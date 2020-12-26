@@ -883,13 +883,14 @@
       Plug 'ekalinin/Dockerfile.vim'
 
       " More performant folding.
-      Plug 'Konfekt / FastFold'
+      Plug 'Konfekt/FastFold'
 
       " Code completion.
       " This causes a noticeable lag when scrolling.
-      " if g:athome
+      if g:athome
       "   Plug 'neoclide/coc.nvim', { 'branch': 'release' }
-      " endif
+        Plug 'ycm-core/YouCompleteMe', { 'do': './install.py' }
+      endif
 
     " }}}
     " Usability {{{
@@ -937,7 +938,7 @@
         " Icons (Must be loaded after all the plugins that use it).
         Plug 'ryanoasis/vim-devicons'
         " Note management
-        Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
+        " Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
         " Render markdown.
         Plug 'iamcco/markdown-preview.nvim'
         " Edit files with sudo.
@@ -948,6 +949,7 @@
         Plug 'voldikss/vim-floaterm'
         " LeaderF extension for Floaterm.
         Plug 'voldikss/leaderf-floaterm'
+        "Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
      endif
 
    " }}}
@@ -1172,7 +1174,8 @@ endif
       return s
     endfunction
     set stal=2
-    set tabline=%!MyTabLine()
+    " Un-commenting this will override custom tab names set by taboo.vim.
+    "set tabline=%!MyTabLine()
   endif
 
 " }}}
