@@ -302,6 +302,7 @@ if [[ "${OSTYPE}" == "linux-gnu" ]]; then
         export EDITOR="/usr/bin/nvr -cc split --remote-wait"
         export VISUAL="/usr/bin/nvr -cc split --remote-wait"
         export SUDO_EDITOR="/usr/bin/vi"
+        source "/etc/profile.d/proxy.sh"
     fi
 
 fi
