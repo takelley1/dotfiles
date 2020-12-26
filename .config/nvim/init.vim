@@ -80,8 +80,6 @@
 
   " Update file if changed from outside.
   autocmd mygroup FocusGained,BufEnter * checktime
-  " Save on focus loss.
-  autocmd mygroup BufLeave * if &readonly ==# 0 | silent! write | endif
   " Save after editing text.
   autocmd mygroup TextChanged,TextChangedI * if &readonly ==# 0 | silent! write | endif
 
@@ -644,6 +642,18 @@
     endif
 
   " }}}
+  " Suda ------------------------------------------------------------------------------------------- {{{
+
+    " Automatically open write-protected files with sudo.
+    let g:suda_smart_edit = 1
+
+  " }}}
+  " Taboo ------------------------------------------------------------------------------------------ {{{
+
+    set sessionoptions+=tabpages,globals  " Help taboo remember session options.
+    let g:taboo_modified_tab_flag = ''    " Don't mark files as modified.
+
+  " }}}
   " Tagbar ----------------------------------------------------------------------------------------- {{{
 
     " Launch the tagbar by default when opening files >1000 lines.
@@ -831,6 +841,8 @@
       " Status bar.
       Plug 'vim-airline/vim-airline'
       Plug 'vim-airline/vim-airline-themes'
+      " Rename tabs.
+      Plug 'gcmt/taboo.vim'
 
       " Easily comment blocks.
       Plug 'preservim/nerdcommenter'
@@ -862,6 +874,9 @@
         Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
         " Render markdown.
         Plug 'iamcco/markdown-preview.nvim'
+        " Edit files with sudo.
+        " This causes performance issues at work.
+        Plug 'lambdalisue/suda.vim'
 
         " Terminal in a floating window.
         Plug 'voldikss/vim-floaterm'
