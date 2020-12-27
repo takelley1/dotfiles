@@ -866,7 +866,7 @@
       " Smooth scrolling.
       Plug 'psliwka/vim-smoothie'
       " Alternative line navigation.
-      Plug 'easymotion/vim-easymotion'
+      " Plug 'easymotion/vim-easymotion'
 
     " }}}
     " Programming {{{
@@ -891,9 +891,9 @@
       Plug 'Konfekt/FastFold'
 
       " Code completion.
-      " This causes a noticeable lag when scrolling.
       if g:athome
-      "   Plug 'neoclide/coc.nvim', { 'branch': 'release' }
+      " This causes a noticeable lag when scrolling.
+        " Plug 'neoclide/coc.nvim', { 'branch': 'release' }
         Plug 'ycm-core/YouCompleteMe', { 'do': './install.py' }
       endif
 
@@ -925,8 +925,6 @@
       " Auto-create bracket and quote pairs.
       Plug 'jiangmiao/auto-pairs'
 
-      " View man pages without leaving Neovim (:Man <COMMAND>).
-      Plug 'vim-utils/vim-man'
       " Better shell commands.
       Plug 'tpope/vim-eunuch'
       " Briefly highlight yanked text.
@@ -946,14 +944,15 @@
         " Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
         " Render markdown.
         Plug 'iamcco/markdown-preview.nvim'
+        "Plug 'plasticboy/vim-markdown'
         " Edit files with sudo.
         " This causes performance issues at work.
         Plug 'lambdalisue/suda.vim'
 
         " Terminal in a floating window.
-        Plug 'voldikss/vim-floaterm'
+        " Plug 'voldikss/vim-floaterm'
         " LeaderF extension for Floaterm.
-        Plug 'voldikss/leaderf-floaterm'
+        " Plug 'voldikss/leaderf-floaterm'
         "Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
      endif
 
