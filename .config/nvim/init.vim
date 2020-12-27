@@ -153,20 +153,22 @@
   set softtabstop=4
   set shiftwidth=4       " Number of auto-indent spaces.
   set expandtab          " Convert tabs to spaces.
-  set formatoptions=q    " Disable all auto-formatting.
-  set indentexpr=
+  autocmd mygroup FileType config,markdown,text,vim,vimwiki,yaml setlocal nowrap shiftwidth=2 softtabstop=2 tabstop=2
 
   set linebreak          " Break line at predefined characters when soft-wrapping.
   set showbreak=↪        " Character to show before the lines that have been soft-wrapped.
 
+  set formatoptions=q    " Disable all auto-formatting.
+  set indentexpr=
   " For some reason setting these options only works within an autocommand.
   autocmd mygroup BufEnter * set formatoptions=q noautoindent nocindent nosmartindent
-  " Force certain filetypes to use indents of 2 spaces.
-  autocmd mygroup FileType config,markdown,*.md,text,vim,vimwiki,yaml setlocal nowrap shiftwidth=2 softtabstop=2 tabstop=2
-  " Manual folding in vim files.
+
+  " Manual folding in vim and sh files.
   autocmd mygroup FileType vim,sh setlocal foldlevelstart=0 foldmethod=marker
-  " Autoformat personal notes.
-  autocmd mygroup BufEnter ~/notes/**.md setlocal textwidth=120
+
+  autocmd mygroup BufEnter *.md setlocal foldlevelstart=-1 concealcursor= conceallevel=1
+  autocmd mygroup BufEnter ~/notes/**.md setlocal foldlevelstart=2 textwidth=120
+
   autocmd mygroup FileType help setlocal nonumber
 
 " }}}
@@ -559,8 +561,9 @@
     let g:indentLine_char = '┊'
 
     " Exclude help pages and terminals.
-    let g:indentLine_bufTypeExclude = ['help', 'terminal', 'markdown', 'vimwiki']
-    let g:indentLine_bufNameExclude = ['term:*']
+    let g:indentLine_bufTypeExclude = ['help', 'terminal']
+    let g:indentLine_fileTypeExclude = ['markdown', 'vimwiki', 'help']
+    let g:indentLine_bufNameExclude = ['term:*', '*.md']
 
   " }}}
   " LeaderF ---------------------------------------------------------------------------------------- {{{
@@ -780,21 +783,28 @@
     let g:magit_scrolloff=999
 
   " }}}
+  " Vim Markdown ----------------------------------------------------------------------------------- {{{
+
+    let g:vim_markdown_conceal = 1
+    let g:vim_markdown_folding_level = 2
+    let g:vim_markdown_override_foldtext = 0
+
+  " }}}
   " Vim Wiki --------------------------------------------------------------------------------------- {{{
 
-    let g:vimwiki_list = [{'path': '~/notes/', 'syntax': 'markdown', 'ext': '.md'},
-                         \{'path': '~/linux-notes/', 'syntax': 'markdown', 'ext': '.md'}]
+    " let g:vimwiki_list = [{'path': '~/notes/', 'syntax': 'markdown', 'ext': '.md'},
+    "                      \{'path': '~/linux-notes/', 'syntax': 'markdown', 'ext': '.md'}]
 
-    let g:vimwiki_conceallevel = 1
-    let g:vimwiki_conceal_onechar_markers = 0
+    " let g:vimwiki_conceallevel = 1
+    " let g:vimwiki_conceal_onechar_markers = 0
 
     " <leader>ww is used by Vim-Windowswap, so remap it here.
-    nmap <Leader>wx <Plug>VimwikiIndex
+    " nmap <Leader>wx <Plug>VimwikiIndex
 
     " Override some of Vimwiki's configs.
     " For some reason this only works after the BufEnter event.
     " Only conceal markdown syntax in Normal mode.
-    autocmd mygroup BufEnter *.md,vimwiki,markdown setlocal concealcursor=n conceallevel=1
+    " autocmd mygroup BufEnter *.md,vimwiki,markdown setlocal concealcursor=n conceallevel=1
 
     " Uncomment to enable automatic Markdown folding.
     " let g:vimwiki_folding = 'custom'
