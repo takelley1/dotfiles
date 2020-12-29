@@ -422,7 +422,18 @@
 
     " Automatically enter Insert mode when opening the commit window.
     autocmd mygroup BufWinEnter COMMIT_EDITMSG startinsert
+    
+    if filereadable($HOME . '/.local/share/nvim/plugged/vim-fugitive/autoload/fugitive.vim')
+      autocmd mygroup VimEnter *
+        \ :!sed -i -e "s/.*call s:Map('n', \"=\".*/call s:Map('n', \"l\", \":<C-U>execute <SID>StageInline('toggle',line('.'),v:count)<CR>\", '<silent>')/"
+                 \ -e "s/.*call s:Map('x', \"=\".*/call s:Map('x', \"l\", \":<C-U>execute <SID>StageInline('toggle',line('.'),v:count)<CR>\", '<silent>')/"
+        \ ~/.local/share/nvim/plugged/vim-fugitive/autoload/fugitive.vim
+    endif
 
+  autocmd mygroup BufWritePost
+      \ ~/scripts/ansible/inventories/global_files/home/akelley/.vimrc
+      \ :!cp -f ~/scripts/ansible/inventories/global_files/home/akelley/.vimrc
+      \ ~/.config/nvim/init.vim
   " }}}
   " Grepper ---------------------------------------------------------------------------------------- {{{
 
@@ -568,6 +579,7 @@
 
   " }}}
   " Indentline ------------------------------------------------------------------------------------- {{{
+  
     let g:indentLine_char = '┊'
 
     " Exclude help pages and terminals.
