@@ -444,9 +444,10 @@
         tnoremap <leader>G <C-\><C-n>:Grepper -tool rg -cd ~/<CR>
         tnoremap <leader>g <C-\><C-n>:Grepper -tool rg<CR>
       endif
+      
+      let g:grepper.stop = 1000          " Stop after this many matches.
 
-      " I have to recreate the entire rg command here if I want to add
-      "  additional options since it doesn't work correctly otherwise.
+      " Set options for ripgrep.
       let g:grepper.rg.grepprg = 'rg
         \ -H
         \ --no-heading
@@ -526,16 +527,29 @@
 
     elseif g:atwork
 
+      " Set options for GNU Grep.
+      let g:grepper.grep.grepprg = 'grep
+       \ --ignore-case
+       \ --dereference-recursive
+       \ --binary-files=without-match
+       \ --exclude-dir=.*
+       \ --exclude-dir=tests
+       \ --exclude-dir=results
+       \ --exclude=*.ckl
+       \ --exclude=*bash_history
+       \ '
+       
       nnoremap <leader>G :Grepper -tool grep -cd ~/<CR>
-      nnoremap <leader>g :Grepper -tool grep<CR>
+      nnoremap <leader>g :Grepper -tool grep -cd ~/scripts<CR>
       if has('nvim')
         tnoremap <leader>G <C-\><C-n>:Grepper -tool grep -cd ~/<CR>
-        tnoremap <leader>g <C-\><C-n>:Grepper -tool grep<CR>
+        tnoremap <leader>g <C-\><C-n>:Grepper -tool grep -cd ~/scripts<CR>
       endif
+      
+      let g:grepper.stop = 100
 
     endif
 
-    let g:grepper.stop = 1000          " Stop after this many matches.
     let g:grepper.prompt_text = '$t> ' " Show bare prompt.
 
   " }}}
