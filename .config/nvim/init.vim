@@ -444,8 +444,6 @@
         tnoremap <leader>G <C-\><C-n>:Grepper -tool rg -cd ~/<CR>
         tnoremap <leader>g <C-\><C-n>:Grepper -tool rg<CR>
       endif
-      
-      let g:grepper.stop = 1000          " Stop after this many matches.
 
       " Set options for ripgrep.
       let g:grepper.rg.grepprg = 'rg
@@ -545,8 +543,6 @@
         tnoremap <leader>G <C-\><C-n>:Grepper -tool grep -cd ~/<CR>
         tnoremap <leader>g <C-\><C-n>:Grepper -tool grep -cd ~/scripts<CR>
       endif
-      
-      let g:grepper.stop = 100
 
     endif
 
