@@ -634,48 +634,49 @@
   " }}}
   " Ranger ----------------------------------------------------------------------------------------- {{{
 
-    if g:atwork
+    " if g:atwork
       " <leader>r to open file manager.
       nnoremap <silent> <leader>r :Ranger<CR>
-    endif
+    " endif
 
   " }}}
   " Rnvimr ----------------------------------------------------------------------------------------- {{{
 
-    if g:athome
-      " <leader>r to open file manager.
-      nnoremap <silent> <leader>r :RnvimrToggle<CR>
+    " This plugin has some rendering issues.
+    " if g:athome
+    "   " <leader>r to open file manager.
+    "   nnoremap <silent> <leader>r :RnvimrToggle<CR>
 
-      let g:rnvimr_enable_ex = 1                      " Replace NetRW.
-      let g:rnvimr_enable_picker = 1                  " Hide Ranger after picking file.
-      let g:rnvimr_enable_bw = 1                      " Make Neovim wipe buffers corresponding to the files deleted by Ranger.
-      let g:rnvimr_border_attr = {'fg': 14, 'bg': -1} " Set border color.
-      let g:rnvimr_ranger_cmd = 'ranger --cmd="set draw_borders both"'
+    "   let g:rnvimr_enable_ex = 1                      " Replace NetRW.
+    "   let g:rnvimr_enable_picker = 1                  " Hide Ranger after picking file.
+    "   let g:rnvimr_enable_bw = 1                      " Make Neovim wipe buffers corresponding to the files deleted by Ranger.
+    "   let g:rnvimr_border_attr = {'fg': 14, 'bg': -1} " Set border color.
+    "   let g:rnvimr_ranger_cmd = 'ranger --cmd="set draw_borders both"'
 
-      " Link CursorLine into RnvimrNormal highlight in the Floating window
-      highlight link RnvimrNormal CursorLine
+    "   " Link CursorLine into RnvimrNormal highlight in the Floating window
+    "   highlight link RnvimrNormal CursorLine
 
-      " Map Rnvimr actions.
-      " CTRL-e to open file in new tab.
-      " CTRL-l and CTRL-v to open file in new split or vsplit.
-      let g:rnvimr_action = {
-        \ '<C-e>': 'NvimEdit tabedit',
-        \ '<C-l>': 'NvimEdit split',
-        \ '<C-v>': 'NvimEdit vsplit',
-        \ 'gw': 'JumpNvimCwd',
-        \ 'yw': 'EmitRangerCwd',
-        \ }
+    "   " Map Rnvimr actions.
+    "   " CTRL-e to open file in new tab.
+    "   " CTRL-l and CTRL-v to open file in new split or vsplit.
+    "   let g:rnvimr_action = {
+    "     \ '<C-e>': 'NvimEdit tabedit',
+    "     \ '<C-l>': 'NvimEdit split',
+    "     \ '<C-v>': 'NvimEdit vsplit',
+    "     \ 'gw': 'JumpNvimCwd',
+    "     \ 'yw': 'EmitRangerCwd',
+    "     \ }
 
-      " Set floating initial size relative to 90% of parent window size.
-      let g:rnvimr_layout = {
-        \ 'relative': 'editor',
-        \ 'width': float2nr(round(0.9 * &columns)),
-        \ 'height': float2nr(round(0.9 * &lines)),
-        \ 'col': float2nr(round(0.05 * &columns)),
-        \ 'row': float2nr(round(0.05 * &lines)),
-        \ 'style': 'minimal'
-        \ }
-    endif
+    "   " Set floating initial size relative to 90% of parent window size.
+    "   let g:rnvimr_layout = {
+    "     \ 'relative': 'editor',
+    "     \ 'width': float2nr(round(0.9 * &columns)),
+    "     \ 'height': float2nr(round(0.9 * &lines)),
+    "     \ 'col': float2nr(round(0.05 * &columns)),
+    "     \ 'row': float2nr(round(0.05 * &lines)),
+    "     \ 'style': 'minimal'
+    "     \ }
+    " endif
 
   " }}}
   " Suda ------------------------------------------------------------------------------------------- {{{
@@ -801,6 +802,8 @@
 
     call plug#begin(stdpath('data') . '/plugged')
 
+      Plug '~/ansible-doc.vim'
+
     " Navigation {{{
 
       " Search within files.
@@ -819,13 +822,17 @@
       " Plug 'wincent/command-t'
 
       " File manager.
-      if g:athome
-        Plug 'kevinhwang91/rnvimr'
-      elseif g:atwork
-        Plug 'francoiscabrol/ranger.vim'
-        " Dependency for ranger.vim.
-        Plug 'rbgrouleff/bclose.vim'
-      endif
+      " if g:athome
+      "   Plug 'kevinhwang91/rnvimr'
+      "   Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
+      " elseif g:atwork
+      "   Plug 'francoiscabrol/ranger.vim'
+      "   " Dependency for ranger.vim.
+      "   Plug 'rbgrouleff/bclose.vim'
+      " endif
+      Plug 'francoiscabrol/ranger.vim'
+      " Dependency for ranger.vim.
+      Plug 'rbgrouleff/bclose.vim'
 
       " Function navigation on large files.
       Plug 'preservim/tagbar'
@@ -925,7 +932,6 @@
         " Plug 'voldikss/vim-floaterm'
         " LeaderF extension for Floaterm.
         " Plug 'voldikss/leaderf-floaterm'
-        "Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
      endif
 
    " }}}
