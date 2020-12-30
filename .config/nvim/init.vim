@@ -394,7 +394,18 @@
 
     " Automatically enter Insert mode when opening the commit window.
     autocmd mygroup BufWinEnter COMMIT_EDITMSG startinsert
+    
+    if filereadable($HOME . '/.local/share/nvim/plugged/vim-fugitive/autoload/fugitive.vim')
+      autocmd mygroup VimEnter *
+        \ :!sed -i -e "s/.*call s:Map('n', \"=\".*/call s:Map('n', \"l\", \":<C-U>execute <SID>StageInline('toggle',line('.'),v:count)<CR>\", '<silent>')/"
+                 \ -e "s/.*call s:Map('x', \"=\".*/call s:Map('x', \"l\", \":<C-U>execute <SID>StageInline('toggle',line('.'),v:count)<CR>\", '<silent>')/"
+        \ ~/.local/share/nvim/plugged/vim-fugitive/autoload/fugitive.vim
+    endif
 
+  autocmd mygroup BufWritePost
+      \ ~/scripts/ansible/inventories/global_files/home/akelley/.vimrc
+      \ :!cp -f ~/scripts/ansible/inventories/global_files/home/akelley/.vimrc
+      \ ~/.config/nvim/init.vim
   " }}}
   " Grepper ---------------------------------------------------------------------------------------- {{{
 
@@ -417,8 +428,7 @@
         tnoremap <leader>g <C-\><C-n>:Grepper -tool rg<CR>
       endif
 
-      " I have to recreate the entire rg command here if I want to add
-      "  additional options since it doesn't work correctly otherwise.
+      " Set options for ripgrep.
       let g:grepper.rg.grepprg = 'rg
         \ -H
         \ --no-heading
@@ -498,16 +508,27 @@
 
     elseif g:atwork
 
+      " Set options for GNU Grep.
+      let g:grepper.grep.grepprg = 'grep
+       \ --ignore-case
+       \ --dereference-recursive
+       \ --binary-files=without-match
+       \ --exclude-dir=.*
+       \ --exclude-dir=tests
+       \ --exclude-dir=results
+       \ --exclude=*.ckl
+       \ --exclude=*bash_history
+       \ '
+       
       nnoremap <leader>G :Grepper -tool grep -cd ~/<CR>
-      nnoremap <leader>g :Grepper -tool grep<CR>
+      nnoremap <leader>g :Grepper -tool grep -cd ~/scripts<CR>
       if has('nvim')
         tnoremap <leader>G <C-\><C-n>:Grepper -tool grep -cd ~/<CR>
-        tnoremap <leader>g <C-\><C-n>:Grepper -tool grep<CR>
+        tnoremap <leader>g <C-\><C-n>:Grepper -tool grep -cd ~/scripts<CR>
       endif
 
     endif
 
-    let g:grepper.stop = 1000          " Stop after this many matches.
     let g:grepper.prompt_text = '$t> ' " Show bare prompt.
 
   " }}}
@@ -530,6 +551,7 @@
 
   " }}}
   " Indentline ------------------------------------------------------------------------------------- {{{
+  
     let g:indentLine_char = '┊'
 
     " Exclude help pages and terminals.
