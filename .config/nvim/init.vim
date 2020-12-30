@@ -337,8 +337,8 @@
   " }}}
   " Black ------------------------------------------------------------------------------------------ {{{
 
-    " Run Black formatter before saving Python files.
-    autocmd mygroup BufWritePre *.py execute ':Black'
+    " Run Black formatter on Python files.
+    autocmd mygroup InsertLeave,BufWritePre,BufLeave *.py execute ':Black'
 
   " }}}
   " CtrlP ------------------------------------------------------------------------------------------ {{{
