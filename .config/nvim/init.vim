@@ -181,34 +181,6 @@
   " Jump back and forth between files.
   noremap <silent> <BS> :e#<CR><C-L>
 
-  function! OpenFloatingWin()
-    let opts = {
-      \ 'relative': 'editor',
-      \ 'width': float2nr(round(0.45 * &columns)),
-      \ 'height': float2nr(round(0.75 * &lines)),
-      \ 'col': float2nr(round(0.27 * &columns)),
-      \ 'row': float2nr(round(0.07 * &lines)),
-      \ }
-    let buf = nvim_create_buf(v:false, v:true)
-    let win = nvim_open_win(buf, v:true, opts)
-    setlocal
-          \ nobuflisted
-          \ bufhidden=hide
-          \ nonumber
-          \ filetype=ansible-doc
-  endfunction
-
-  " Easily view ansible documentation for a specific module in a floating window.
-  " Use Q to close window.
-  autocmd mygroup FileType yaml.ansible
-    \ nnoremap <buffer> K
-    \ :execute 'call OpenFloatingWin() <bar> 0read ! ansible-doc' substitute(expand("<cWORD>"), "[^a-zA-Z.].*", "", "")
-    \ <bar> set shiftwidth=3 <bar> normal! ggvG><CR>
-  autocmd mygroup FileType ansible-doc nnoremap <buffer> Q       :close<CR>
-  autocmd mygroup FileType ansible-doc nnoremap <buffer> <space> :close<CR>
-  autocmd mygroup FileType ansible-doc nnoremap <buffer> <CR>    :close<CR>
-  autocmd mygroup FileType ansible-doc nnoremap <buffer> <Esc>   :close<CR>
-
   " if g:atwork
   "   nnoremap ZZ :nohl
   "   nnoremap ZQ :nohl
