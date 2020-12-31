@@ -114,29 +114,43 @@
       \ silent :!git -C ~/notes commit -m 'Update unsorted.md' unsorted.md && git push -C ~/notes
   endif
 
-  " Automatically copy changes from ansible repo to personal dotfiles.
-  " Use sed to remove the 'Ansible managed' header.
-  " test1
+  
   if g:atwork
+  
+    " Automatically create SSH aliases file from Ansible inventory file.
+    autocmd mygroup BufWritePost
+      \ ~/scripts/ansible/inventories/s3noc/hosts.yml
+      \ silent 
+      \ :!awk '/[a-zA-Z]*:$/ {FS=".";gsub(/[\t| |\:]/,"");host=tolower($1);FS=" "}
+      \ /^\s*[^\#]*ansible_host/ {ip=$2;print "Host " host "\n\t HostName " ip}'
+      \ ~/scripts/ansible/inventories/s3noc/hosts.yml
+      \ | tee ~/scripts/ansible/inventories/global_files/home/akelley/.ssh/config
+      \ ~/.ssh/config
+      
     autocmd mygroup BufWritePost
       \ ~/scripts/ansible/inventories/global_files/home/akelley/.vimrc
-      \ :!cp -f ~/scripts/ansible/inventories/global_files/home/akelley/.vimrc
+      \ silent :!cp -f ~/scripts/ansible/inventories/global_files/home/akelley/.vimrc
       \ ~/.config/nvim/init.vim
 
+    " Automatically copy changes from ansible repo to personal dotfiles.
+    " Use sed to remove the 'Ansible managed' header.
     autocmd mygroup BufWritePost
       \ ~/scripts/ansible/inventories/global_files/home/akelley/.bashrc
       \ silent :!sed '0,/ansible_managed/d'
-      \ ~/scripts/ansible/inventories/global_files/home/akelley/.bashrc > ~/.bashrc
+      \ ~/scripts/ansible/inventories/global_files/home/akelley/.bashrc
+      \ > ~/.bashrc
 
     autocmd mygroup BufWritePost
       \ ~/scripts/ansible/inventories/global_files/home/akelley/.tmux.conf
       \ silent :!sed '0,/ansible_managed/d'
-      \ ~/scripts/ansible/inventories/global_files/home/akelley/.tmux.conf > ~/.tmux.conf
+      \ ~/scripts/ansible/inventories/global_files/home/akelley/.tmux.conf
+      \ > ~/.tmux.conf
 
     autocmd mygroup BufWritePost
       \ ~/scripts/ansible/inventories/global_files/home/akelley/.bash_profile
       \ silent :!sed '0,/ansible_managed/d'
-      \ ~/scripts/ansible/inventories/global_files/home/akelley/.bash_profile ~/.bash_profile
+      \ ~/scripts/ansible/inventories/global_files/home/akelley/.bash_profile
+      \ ~/.bash_profile
   endif
 
 " }}}
