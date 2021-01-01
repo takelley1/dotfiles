@@ -85,11 +85,11 @@
 
   " Switch to insert mode when entering terminals.
   if has ('nvim')
-    autocmd mygroup BufEnter * if &buftype ==# "terminal" | startinsert | endif
+    autocmd mygroup BufEnter * if &buftype ==# "terminal" | startinsert | setlocal nonumber | endif
     autocmd mygroup TermOpen * setlocal nonumber | startinsert
   endif
   " Switch to normal mode when entering all other buffers.
-  autocmd mygroup BufEnter * if &buftype !=# "terminal" | stopinsert | setlocal nonumber | endif
+  autocmd mygroup BufEnter * if &buftype !=# "terminal" | stopinsert | endif
 
   " https://vim.fandom.com/wiki/Set_working_directory_to_the_current_file
   " Set working dir to current file's dir.
