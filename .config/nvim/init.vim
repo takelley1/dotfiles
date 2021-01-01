@@ -1074,11 +1074,7 @@ endif
       :new
       :wincmd k
       :quit!
-      if g:athome
-        :RnvimrToggle
-      elseif g:atwork
         :Ranger
-      endif
     endfunction
     tnoremap <leader>r <C-\><C-n>:call Termtoranger()<CR>
 
