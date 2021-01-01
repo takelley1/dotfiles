@@ -114,19 +114,18 @@
       \ silent :!git -C ~/notes commit -m 'Update unsorted.md' unsorted.md && git push -C ~/notes
   endif
 
-  
   if g:atwork
-  
+
     " Automatically create SSH aliases file from Ansible inventory file.
     autocmd mygroup BufWritePost
       \ ~/scripts/ansible/inventories/s3noc/hosts.yml
-      \ silent 
+      \ silent
       \ :!awk '/[a-zA-Z]*:$/ {FS=".";gsub(/[\t| |\:]/,"");host=tolower($1);FS=" "}
       \ /^\s*[^\#]*ansible_host/ {ip=$2;print "Host " host "\n\t HostName " ip}'
       \ ~/scripts/ansible/inventories/s3noc/hosts.yml
       \ | tee ~/scripts/ansible/inventories/global_files/home/akelley/.ssh/config
       \ ~/.ssh/config
-      
+
     autocmd mygroup BufWritePost
       \ ~/scripts/ansible/inventories/global_files/home/akelley/.vimrc
       \ silent :!cp -f ~/scripts/ansible/inventories/global_files/home/akelley/.vimrc
@@ -408,7 +407,7 @@
 
     " Automatically enter Insert mode when opening the commit window.
     autocmd mygroup BufWinEnter COMMIT_EDITMSG startinsert
-    
+
     if filereadable($HOME . '/.local/share/nvim/plugged/vim-fugitive/autoload/fugitive.vim')
       autocmd mygroup VimEnter *
         \ :!sed -i -e "s/.*call s:Map('n', \"=\".*/call s:Map('n', \"l\", \":<C-U>execute <SID>StageInline('toggle',line('.'),v:count)<CR>\", '<silent>')/"
@@ -533,7 +532,7 @@
        \ --exclude=*.ckl
        \ --exclude=*bash_history
        \ '
-       
+
       nnoremap <leader>G :Grepper -tool grep -cd ~/<CR>
       nnoremap <leader>g :Grepper -tool grep -cd ~/scripts<CR>
       if has('nvim')
@@ -565,7 +564,7 @@
 
   " }}}
   " Indentline ------------------------------------------------------------------------------------- {{{
-  
+
     let g:indentLine_char = '┊'
 
     " Exclude help pages and terminals.
@@ -879,7 +878,7 @@
       " Plug 'jlanzarotta/bufexplorer'
 
       " Smooth scrolling.
-      Plug 'psliwka/vim-smoothie'
+      " Plug 'psliwka/vim-smoothie'
       " Alternative line navigation.
       " Plug 'easymotion/vim-easymotion'
 
