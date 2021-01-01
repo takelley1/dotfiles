@@ -1159,6 +1159,12 @@ endif
   inoremap <silent> <A-8> <Esc>8gt<CR>
   nnoremap <silent> <A-9> 9gt
   inoremap <silent> <A-9> <Esc>9gt<CR>
+  nnoremap <silent> <A-0> 10gt
+  inoremap <silent> <A-0> <Esc>10gt<CR>
+  nnoremap <silent> <A--> 11gt
+  inoremap <silent> <A--> <Esc>11gt<CR>
+  nnoremap <silent> <A-=> 12gt
+  inoremap <silent> <A-=> <Esc>12gt<CR>
 
   " Tabline function from https://vim.fandom.com/wiki/Show_tab_number_in_your_tab_line
   if exists("+showtabline")
