@@ -89,7 +89,7 @@
     autocmd mygroup TermOpen * setlocal nonumber | startinsert
   endif
   " Switch to normal mode when entering all other buffers.
-  autocmd mygroup BufEnter * if &buftype !=# "terminal" | stopinsert | endif
+  autocmd mygroup BufEnter * if &buftype !=# "terminal" | stopinsert | setlocal nonumber | endif
 
   " https://vim.fandom.com/wiki/Set_working_directory_to_the_current_file
   " Set working dir to current file's dir.
@@ -161,7 +161,7 @@
   set formatoptions=q    " Disable all auto-formatting.
   set indentexpr=
   " For some reason setting these options only works within an autocommand.
-  autocmd mygroup BufEnter * set formatoptions=q noautoindent nocindent nosmartindent
+  autocmd mygroup BufEnter * set formatoptions=q noautoindent nocindent nosmartindent indentexpr=
 
   " Manual folding in vim and sh files.
   autocmd mygroup FileType vim,sh setlocal foldlevelstart=0 foldmethod=marker
