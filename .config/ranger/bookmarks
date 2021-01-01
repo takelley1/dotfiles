@@ -1,2 +1,6 @@
 c:/home/akelley/.config
-':/home/akelley/.config/ranger
+':/home/akelley/linux-notes
+r:/home/akelley/.config/ranger
+b:/home/akelley/.config/i3/scripts/status-bar
+n:/home/akelley/.config/nvim
+a:/home/akelley/scripts/ansible
