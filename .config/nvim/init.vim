@@ -114,6 +114,24 @@
       \ silent :!git -C ~/notes commit -m 'Update unsorted.md' unsorted.md && git push -C ~/notes
   endif
 
+  " This func is slightly edited from the vim-workspace plugin.
+  function! CloseBuffers()
+    let l:visible_buffers = {}
+    for tabnr in range(1, tabpagenr('$'))
+      for bufnr in tabpagebuflist(tabnr)
+        let l:visible_buffers[bufnr] = 1
+      endfor
+    endfor
+    for bufnr in range(1, bufnr('$'))
+      if bufexists(bufnr) && !has_key(l:visible_buffers,bufnr)
+        execute printf('bdelete! %d', bufnr)
+      endif
+    endfor
+  endfunction
+
+  " Automatically close leftover hidden buffers.
+  autocmd mygroup TabLeave * silent! call CloseBuffers()
+
   if g:atwork
 
     " Automatically create SSH aliases file from Ansible inventory file.
@@ -742,9 +760,6 @@
 
   " }}}
   " Workspace -------------------------------------------------------------------------------------- {{{
-
-    " Automatically close leftover hidden buffers after reloading session.
-    autocmd mygroup SessionLoadPost * CloseHiddenBuffers
 
     " Automatically create, save, and restore sessions.
     let g:workspace_autocreate = 1
