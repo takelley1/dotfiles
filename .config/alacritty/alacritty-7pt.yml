@@ -144,6 +144,7 @@
     draw_bold_text_with_bright_colors: false
 
   schemes:
+    # NOT USED ----------------
     custom: &custom
       primary:
         background: "#302f2f"
@@ -188,7 +189,8 @@
         blue:    "#61afef"
         magenta: "#c678dd"
         cyan:    "#56b6c2"
-        white:   "#828997" # mono-2
+        white:   "#d3dae8"
+        #white:  "#828997" # mono-2
 
     # NOT USED ----------------
     gruvbox_dark: &gruvbox_dark
