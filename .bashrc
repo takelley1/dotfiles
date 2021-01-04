@@ -315,7 +315,7 @@ bind '"jk":vi-movement-mode'
 
 if hash bat 2>/dev/null; then
     export BAT_THEME='TwoDark'
-    alias cat='bat -p'
+    #alias cat='bat -p'
 fi
 
 export PAGER="less"
