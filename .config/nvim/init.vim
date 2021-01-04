@@ -24,7 +24,6 @@
   set noshowmode                        " Don't show mode since it's handled by Airline.
   set noshowcmd                         " Don't show command on last line.
   set hidden                            " Hide abandoned buffers. https://stackoverflow.com/questions/26708822/why-do-vim-experts-prefer-buffers-over-tabs?rq=1
-  set switchbuf=usetab,newtab           " Use tabs when switching buffers. https://stackoverflow.com/questions/102384/using-vims-tabs-like-buffers
 
   set ignorecase                        " Case-insensitive search, except when using capitals.
   set smartcase                         " Override ignorecase if search contains capital letters.
