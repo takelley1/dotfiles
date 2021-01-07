@@ -137,9 +137,10 @@
     autocmd mygroup BufWritePost
       \ ~/scripts/ansible/inventories/s3noc/hosts.yml
       \ silent
-      \ :!awk '/[a-zA-Z]*:$/ {FS=".";gsub(/[\t| |\:]/,"");host=tolower($1);FS=" "}
-      \ /^\s*[^\#]*ansible_host/ {ip=$2;print "Host " host "\n\t HostName " ip}'
+      \ :!sed '/^\s*#/d'
       \ ~/scripts/ansible/inventories/s3noc/hosts.yml
+      \ | awk '/[a-zA-Z_-]*:(#.*)*$/ {FS=".";gsub(/[\t| |\:]/,"");host=tolower($1);FS=" "}
+      \ /^\s*[^\#]*ansible_host/ {ip=$2;print "Host " host "\n\t HostName " ip}'
       \ | tee ~/scripts/ansible/inventories/global_files/home/akelley/.ssh/config
       \ ~/.ssh/config
 
