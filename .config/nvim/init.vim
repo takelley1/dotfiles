@@ -129,7 +129,7 @@
   endfunction
 
   " Automatically close leftover hidden buffers.
-  autocmd mygroup TabLeave * silent! call CloseBuffers()
+  autocmd mygroup VimEnter,TabLeave * silent! call CloseBuffers()
 
   if g:atwork
 
