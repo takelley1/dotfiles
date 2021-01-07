@@ -79,8 +79,8 @@
 
   " Update file if changed from outside.
   autocmd mygroup FocusGained,BufEnter * if &readonly ==# 0 | silent! checktime | endif
-  " Save after editing text.
-  autocmd mygroup TextChanged,TextChangedI * if &readonly ==# 0 | silent! write | endif
+  " Auto-save file.
+  autocmd mygroup InsertLeave,BufLeave,CursorHold * if &readonly ==# 0 | silent! update | endif
 
   " Switch to insert mode when entering terminals.
   if has ('nvim')
