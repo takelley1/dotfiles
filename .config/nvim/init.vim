@@ -1122,10 +1122,10 @@ endif
 
     nnoremap <silent> <leader>tn           :tabnew <bar> terminal<CR>
     tnoremap <silent> <leader>tn <C-\><C-n>:tabnew <bar> terminal<CR>
-    nnoremap <silent> <leader>ts           :split  <bar> terminal<CR>
-    tnoremap <silent> <leader>ts <C-\><C-n>:split  <bar> terminal<CR>
-    nnoremap <silent> <leader>tv           :vsplit <bar> terminal<CR>
-    tnoremap <silent> <leader>tv <C-\><C-n>:vsplit <bar> terminal<CR>
+    nnoremap <silent> <leader>ts           :split  <bar> set winfixheight <bar> terminal<CR>
+    tnoremap <silent> <leader>ts <C-\><C-n>:split  <bar> set winfixheight <bar> terminal<CR>
+    nnoremap <silent> <leader>tv           :vsplit <bar> set winfixwidth <bar> terminal<CR>
+    tnoremap <silent> <leader>tv <C-\><C-n>:vsplit <bar> set winfixwidth <bar> terminal<CR>
 
     tnoremap <silent> <C-n> <C-\><C-n>:tabnext<CR>
     tnoremap <silent> <C-p> <C-\><C-n>:tabprevious<CR>
