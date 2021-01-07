@@ -971,7 +971,7 @@
         " Note management
         " Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
         " Render markdown.
-        Plug 'iamcco/markdown-preview.nvim'
+        Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
         "Plug 'plasticboy/vim-markdown'
         " Edit files with sudo.
         " This causes performance issues at work.
