@@ -217,6 +217,10 @@
   "   nnoremap ZQ :nohl
   " endif
 
+  " Toggle preventing horizonal or vertial resizing.
+  nnoremap <leader>H :set winfixheight! <bar> set winfixheight?<CR>
+  nnoremap <leader>W :set winfixwidth! <bar> set winfixheight?<CR>
+
   " Columnize selection.
   vnoremap t :!column -t<CR>
   " Turn off highlighted search results.
