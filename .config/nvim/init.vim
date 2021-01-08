@@ -903,9 +903,8 @@
        Plug 'dense-analysis/ale'
        " Code completion.
        Plug 'ycm-core/YouCompleteMe', { 'do': './install.py' }
-
-       " Better syntax highlighting.
-       Plug 'sheerun/vim-polyglot'
+       " Better syntax highlighting. Causes issues in the Vimagit window.
+       " Plug 'sheerun/vim-polyglot'
        " Ansible syntax.
        Plug 'pearofducks/ansible-vim'
        " Dockerfile syntax.
@@ -917,7 +916,7 @@
        " Visualize and navigate Vim's undo tree.
        Plug 'mbbill/undotree'
        " Access previously yanked text.
-       Plug 'vimscripts/YankRing.vim'
+       " Plug 'vim-scripts/YankRing.vim'
        " Repeat plugin actions.
        Plug 'tpope/vim-repeat'
 
@@ -926,8 +925,10 @@
        Plug 'vim-airline/vim-airline-themes'
        " Rename tabs.
        Plug 'gcmt/taboo.vim'
+       " Easily swap window splits with <leader>ww
+       Plug 'wesQ3/vim-windowswap'
 
-       " Easily comment blocks.
+       " Comment blocks.
        Plug 'preservim/nerdcommenter'
        " Show indentation lines.
        Plug 'yggdroot/indentline'
@@ -937,13 +938,13 @@
        Plug 'jiangmiao/auto-pairs'
        " Auto terminate conditional statements.
        Plug 'tpope/vim-endwise'
+       " Easily surround words.
+       Plug 'tpope/vim-surround'
 
        " Better shell commands.
        Plug 'tpope/vim-eunuch'
        " Briefly highlight yanked text.
        Plug 'machakann/vim-highlightedyank'
-       " Easily swap window splits with <leader>ww
-       Plug 'wesQ3/vim-windowswap'
 
        if g:athome
          " Colorschemes.
