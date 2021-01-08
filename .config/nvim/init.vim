@@ -177,14 +177,15 @@
 
   set number             " Show line numbers.
   set numberwidth=1      " Make line number column thinner.
-  set scrolloff=999      " Force cursor to stay in the middle of the screen.
 
-  " Indents are 4 spaces by default.
   set tabstop=4          " A <TAB> creates 4 spaces.
   set softtabstop=4
   set shiftwidth=4       " Number of auto-indent spaces.
   set expandtab          " Convert tabs to spaces.
-  autocmd mygroup FileType config,markdown,text,vim,vimwiki,yaml setlocal nowrap shiftwidth=2 softtabstop=2 tabstop=2
+
+  " Use 2-space tabs on certain file formats.
+  autocmd mygroup FileType config,markdown,text,vim,vimwiki,yaml 
+          \ setlocal nowrap shiftwidth=2 softtabstop=2 tabstop=2
 
   set linebreak          " Break line at predefined characters when soft-wrapping.
   set showbreak=↪        " Character to show before the lines that have been soft-wrapped.
@@ -201,6 +202,12 @@
   autocmd mygroup BufEnter ~/notes/**.md setlocal foldlevelstart=2 textwidth=120
 
   autocmd mygroup FileType help setlocal nonumber
+
+  " Force cursor to stay in the middle of the screen.
+  set scrolloff=999
+  " Scrolloff is glitchy on terminals, so disable it there.
+  autocmd mygroup TermEnter * setlocal scrolloff=0
+  autocmd mygroup TermLeave * setlocal scrolloff=999
 
 " }}}
 " SHORTCUTS ######################################################################################## {{{
