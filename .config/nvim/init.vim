@@ -1076,11 +1076,7 @@ endif
 
     " Quickly convert a terminal window to a Ranger window.
     function! Termtoranger()
-      setlocal splitbelow
-      new
-      wincmd k
-      quit!
-      wincmd j
+      enew!
       Ranger
     endfunction
     tnoremap <leader>r <C-\><C-n>:call Termtoranger()<CR>
