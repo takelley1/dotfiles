@@ -1,6 +1,13 @@
 c:/home/akelley/.config
-':/home/akelley/linux-notes
-r:/home/akelley/.config/ranger
-b:/home/akelley/.config/i3/scripts/status-bar
+':/home/akelley/scripts/ansible
+r:/home/akelley/scripts/ansible/roles
+b:/home/akelley/scripts/bash
 n:/home/akelley/.config/nvim
 a:/home/akelley/scripts/ansible
+v:/home/akelley/library
+k:/home/akelley/library
+p:/home/akelley/.local/share/nvim/plugged
+s:/home/akelley/.config/i3/scripts/status-bar
+l:/home/akelley/library
+h:/home/akelley/scripts/ansible/host_vars
+g:/home/akelley/scripts/ansible/group_vars
