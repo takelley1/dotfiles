@@ -1122,8 +1122,8 @@ endif
     tnoremap <silent> <A-8> <C-\><C-n>8gt<CR>
     tnoremap <silent> <A-9> <C-\><C-n>9gt<CR>
 
-    tnoremap <silent> <A-Left>  <C-\><C-n>:vertical resize -5<CR><C-L>
-    tnoremap <silent> <A-Right> <C-\><C-n>:vertical resize +5<CR><C-L>
+    tnoremap <silent> <A-Left>  <C-\><C-n>:vertical resize -2<CR><C-L>
+    tnoremap <silent> <A-Right> <C-\><C-n>:vertical resize +2<CR><C-L>
     tnoremap <silent> <A-Up>    <C-\><C-n>:resize +2<CR><C-L>
     tnoremap <silent> <A-Down>  <C-\><C-n>:resize -2<CR><C-L>
   endif
