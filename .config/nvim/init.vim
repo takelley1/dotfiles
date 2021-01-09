@@ -1085,11 +1085,11 @@ endif
   inoremap <silent> <C-l> <Esc>:wincmd l<CR>
 
   " ALT-Up/Down/Left/Right to resize splits.
-  nnoremap <silent> <A-Right>      :vertical resize +5<CR><C-L>
-  inoremap <silent> <A-Right> <Esc>:vertical resize +5<CR><C-L>
+  nnoremap <silent> <A-Right>      :vertical resize +2<CR><C-L>
+  inoremap <silent> <A-Right> <Esc>:vertical resize +2<CR><C-L>
 
-  nnoremap <silent> <A-Left>      :vertical resize -5<CR><C-L>
-  inoremap <silent> <A-Left> <Esc>:vertical resize -5<CR><C-L>
+  nnoremap <silent> <A-Left>      :vertical resize -2<CR><C-L>
+  inoremap <silent> <A-Left> <Esc>:vertical resize -2<CR><C-L>
 
   nnoremap <silent> <A-Up>      :resize +2<CR><C-L>
   inoremap <silent> <A-Up> <Esc>:resize +2<CR><C-L>
@@ -1140,6 +1140,9 @@ endif
     tnoremap <silent> <A-7> <C-\><C-n>7gt<CR>
     tnoremap <silent> <A-8> <C-\><C-n>8gt<CR>
     tnoremap <silent> <A-9> <C-\><C-n>9gt<CR>
+    tnoremap <silent> <A-0> <C-\><C-n>10gt<CR>
+    tnoremap <silent> <A--> <C-\><C-n>11gt<CR>
+    tnoremap <silent> <A-=> <C-\><C-n>12gt<CR>
 
     tnoremap <silent> <A-Left>  <C-\><C-n>:vertical resize -2<CR><C-L>
     tnoremap <silent> <A-Right> <C-\><C-n>:vertical resize +2<CR><C-L>
