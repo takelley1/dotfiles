@@ -1044,10 +1044,14 @@ endif
   " Easier jumping to beginning and ends of lines.
   nnoremap L $
   nnoremap H ^
-  " Navigate quick-fix menus and helpgrep results.
-  nnoremap <leader>n :cnext<CR>
-  nnoremap <leader>p :cprevious<CR>
-  nnoremap <leader>l :copen<CR>
+
+  " Navigate quick-fix menus, location lists, and helpgrep results.
+  nnoremap <down>         :cnext<CR>
+  nnoremap <leader><down> :clast<CR>
+  nnoremap <up>           :cprevious<CR>
+  nnoremap <leader><up>   :cfirst<CR>
+  nnoremap <left>         :copen<CR>
+  nnoremap <right>        :clist<CR>
 
   " CTRL-n/p to navigate tabs.
   nnoremap <silent> <C-p>      :tabprevious<CR>
