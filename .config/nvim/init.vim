@@ -184,7 +184,7 @@
   set expandtab          " Convert tabs to spaces.
 
   " Use 2-space tabs on certain file formats.
-  autocmd mygroup FileType config,markdown,text,vim,vimwiki,yaml 
+  autocmd mygroup FileType config,markdown,text,vim,vimwiki,yaml
           \ setlocal nowrap shiftwidth=2 softtabstop=2 tabstop=2
 
   set linebreak          " Break line at predefined characters when soft-wrapping.
@@ -379,7 +379,7 @@
   " }}}
   " Ansible-doc ------------------------------------------------------------------------------------ {{{
 
-    nnoremap <leader>D :AnsibleDocFloat<CR>
+    nnoremap <leader>D :AnsibleDocFloat<CR><C-L>
     nnoremap <leader>S :AnsibleDocSplit<CR>
     nnoremap <leader>V :AnsibleDocVSplit<CR>
 
@@ -713,10 +713,9 @@
   " }}}
   " Ranger ----------------------------------------------------------------------------------------- {{{
 
-    " if g:atwork
-      " <leader>r to open file manager.
-      nnoremap <silent> <leader>r :Ranger<CR>
-    " endif
+    nnoremap <leader>r :Ranger<CR>
+    " This fixes weirdness with the default Ranger mapping of <leader>f.
+    let g:ranger_map_keys = ""
 
   " }}}
   " Rnvimr ----------------------------------------------------------------------------------------- {{{
@@ -799,7 +798,7 @@
   " }}}
   " Vimagit ---------------------------------------------------------------------------------------- {{{
 
-    let g:magit_show_magit_mapping='m'
+    let g:magit_show_magit_mapping='M'
 
     " Open Vimagit for the current repo. If Vimagit can't find a repo, use the dotfiles repo.
     " See also https://stackoverflow.com/questions/5441697/how-can-i-get-last-echoed-message-in-vimscript
@@ -825,9 +824,9 @@
     endfunction
 
     " Open Vimagit in a new split.
-    nnoremap <leader>m :call Vimagit(1)<CR>
+    nnoremap <leader>M :call Vimagit(1)<CR>
     " Open Vimagit in the same window.
-    nnoremap <leader>M :call Vimagit(0)<CR>
+    nnoremap <leader>m :call Vimagit(0)<CR>
 
     let g:magit_scrolloff=999
 
