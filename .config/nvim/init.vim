@@ -83,7 +83,7 @@
   autocmd mygroup InsertLeave,BufLeave,CursorHold * if &readonly ==# 0 | silent! update | endif
 
   " Switch to insert mode when entering terminals.
-  if has ('nvim')
+  if exists(':terminal')
     autocmd mygroup BufEnter * if &buftype ==# "terminal" | startinsert | setlocal nonumber | endif
     autocmd mygroup TermOpen * setlocal nonumber | startinsert
   endif
@@ -244,7 +244,7 @@
   " Easily edit vimrc (ve for 'vim edit').
   if g:athome
     nnoremap <leader>ve :edit ~/.config/nvim/init.vim<CR>
-    if has('nvim')
+    if exists(':terminal')
       tnoremap <leader>ve <C-\><C-n>:edit ~/.config/nvim/init.vim<CR>
     endif
   elseif g:atwork
@@ -296,7 +296,7 @@
 " }}}
 " PLUGINS ########################################################################################## {{{
 
-  if has ('nvim')
+  if has('nvim')
   " Install Vim-Plug ------------------------------------------------------------------------------- {{{
 
     " Attempt to install vim-plug if it isn't present.
@@ -480,7 +480,7 @@
 
       nnoremap <leader>G :Grepper -tool rg -cd ~/<CR>
       nnoremap <leader>g :Grepper -tool rg<CR>
-      if has('nvim')
+      if exists(':terminal')
         tnoremap <leader>G <C-\><C-n>:Grepper -tool rg -cd ~/<CR>
         tnoremap <leader>g <C-\><C-n>:Grepper -tool rg<CR>
       endif
@@ -579,7 +579,7 @@
 
       nnoremap <leader>G :Grepper -tool grep -cd ~/<CR>
       nnoremap <leader>g :Grepper -tool grep -cd ~/scripts<CR>
-      if has('nvim')
+      if exists(':terminal')
         tnoremap <leader>G <C-\><C-n>:Grepper -tool grep -cd ~/<CR>
         tnoremap <leader>g <C-\><C-n>:Grepper -tool grep -cd ~/scripts<CR>
       endif
@@ -1035,7 +1035,7 @@ endif
 
   " Easier exiting insert mode.
   inoremap jk <Esc>
-  if has('nvim')
+  if exists(':terminal')
     tnoremap fd <C-\><C-n>
   endif
   " Easier navigating soft-wrapped lines.
@@ -1098,22 +1098,15 @@ endif
   inoremap <silent> <A-Down> <Esc>:resize -2<CR><C-L>
 
   " Terminal-related shortcuts.
-  if has('nvim')
+  if exists(':terminal')
 
     " Quickly convert a terminal window to a Ranger window.
-    function! Termtoranger()
-      enew!
-      Ranger
-    endfunction
-    tnoremap <leader>r <C-\><C-n>:call Termtoranger()<CR>
+    tnoremap <leader>r <C-\><C-n>:enew! <bar> Ranger<CR><C-L>
 
     nnoremap <silent> <leader>t            :terminal<CR>
     tnoremap <silent> <leader>t  <C-\><C-n>:terminal<CR>
     nnoremap <silent> <leader>tt           :terminal<CR>
     tnoremap <silent> <leader>tt <C-\><C-n>:terminal<CR>
-
-    nnoremap <silent> <leader>tf           :FloatermToggle<CR>
-    tnoremap <silent> <leader>tf <C-\><C-n>:FloatermToggle<CR>
 
     nnoremap <silent> <leader>tn           :tabnew <bar> terminal<CR>
     tnoremap <silent> <leader>tn <C-\><C-n>:tabnew <bar> terminal<CR>
