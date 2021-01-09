@@ -316,19 +316,23 @@
     " Don't auto-pair anything by default.
     let g:AutoPairs={}
 
-    autocmd mygroup FileType yaml.ansible,jinja2 let b:AutoPairs=AutoPairsDefine({
-    \'"':'"',
-    \'(':')',
-    \'[':']',
-    \'{{':'}}',
-    \"`":"`",
-    \'```':'```',
-    \'"""':'"""',
-    \"'''":"'''"
-    \})
+    " Only activate auto-pair for the below strings.
+    autocmd mygroup FileType yaml.ansible,jinja2
+      \ let b:AutoPairs=AutoPairsDefine
+      \ ({
+      \ '"':'"',
+      \ '(':')',
+      \ '[':']',
+      \ '{{':'}}',
+      \ "`":"`",
+      \ '```':'```',
+      \ '"""':'"""',
+      \ "'''":"'''"
+      \ })
 
   " }}}
   " Airline ---------------------------------------------------------------------------------------- {{{
+
     if g:athome
       let g:airline_theme='palenight'
       " Use Nerd Fonts from Vim-devicons.
@@ -338,7 +342,7 @@
     endif
 
     let g:airline_highlighting_cache = 1
-    let g:airline_detect_modified = 0                      " Don't loudly mark files as modified.
+    let g:airline_detect_modified = 0 " Don't loudly mark files as modified.
 
     " Disable unnecessary extensions.
     let g:airline#extensions#grepper#enabled = 0
@@ -452,6 +456,7 @@
     " Automatically enter Insert mode when opening the commit window.
     autocmd mygroup BufWinEnter COMMIT_EDITMSG startinsert
 
+    " Change the inline-diff-expand from '=' to 'l' in the :Git window.
     if filereadable($HOME . '/.local/share/nvim/plugged/vim-fugitive/autoload/fugitive.vim')
       autocmd mygroup VimEnter *
         \ :!sed -i -e "s/.*call s:Map('n', \"=\".*/call s:Map('n', \"l\", \":<C-U>execute <SID>StageInline('toggle',line('.'),v:count)<CR>\", '<silent>')/"
@@ -459,18 +464,14 @@
         \ ~/.local/share/nvim/plugged/vim-fugitive/autoload/fugitive.vim
     endif
 
-  autocmd mygroup BufWritePost
-      \ ~/scripts/ansible/inventories/global_files/home/akelley/.vimrc
-      \ :!cp -f ~/scripts/ansible/inventories/global_files/home/akelley/.vimrc
-      \ ~/.config/nvim/init.vim
   " }}}
   " Grepper ---------------------------------------------------------------------------------------- {{{
 
-      " <leader>g to start grepping (g for 'grep').
+    " <leader>g to start grepping (g for 'grep').
 
-      " Use `}`and `{` to jump to contexts. `o` opens the current context in the
-      " last window. `<cr>` opens the current context in the last window, but closes
-      " the current window first.
+    " Use `}`and `{` to jump to contexts. `o` opens the current context in the
+    " last window. `<cr>` opens the current context in the last window, but closes
+    " the current window first.
 
     " For some reason this plugin doesn't load correctly, so we must source it
     "   manually here.
@@ -591,14 +592,17 @@
   " }}}
   " GitGutter -------------------------------------------------------------------------------------- {{{
 
-    " Make sidebar dark.
-    if g:athome | highlight SignColumn cterm=bold ctermbg=0 guibg=0 | endif
+    if g:athome
+      " Make sidebar dark.
+      highlight SignColumn cterm=bold ctermbg=0 guibg=0
+      " Fix git diff colors.
+      highlight DiffText ctermbg=1 ctermfg=3 guibg=1 guifg=3
+    endif
+
     " Undo git changes easily.
     nnoremap gu :GitGutterUndoHunk<CR>
     " View interactive git diff.
     nnoremap gd :Gdiffsplit<CR>
-    " Fix git diff colors.
-    if g:athome | highlight DiffText ctermbg=1 ctermfg=3 guibg=1 guifg=3 | endif
 
   " }}}
   " Highlighted Yank ------------------------------------------------------------------------------- {{{
@@ -665,18 +669,18 @@
         \ }
 
       " Automatically preview the following results.
-        let g:Lf_PreviewResult = {
-          \ 'File': 0,
-          \ 'Buffer': 0,
-          \ 'Mru': 0,
-          \ 'Tag': 1,
-          \ 'BufTag': 1,
-          \ 'Function': 1,
-          \ 'Line': 1,
-          \ 'Colorscheme': 1,
-          \ 'Rg': 1,
-          \ 'Gtags': 1
-          \ }
+      let g:Lf_PreviewResult = {
+        \ 'File': 0,
+        \ 'Buffer': 0,
+        \ 'Mru': 0,
+        \ 'Tag': 1,
+        \ 'BufTag': 1,
+        \ 'Function': 1,
+        \ 'Line': 1,
+        \ 'Colorscheme': 1,
+        \ 'Rg': 1,
+        \ 'Gtags': 1
+        \ }
     endif
 
   " }}}
@@ -700,6 +704,7 @@
     if has('nvim')
       let $GIT_EDITOR = 'nvr -cc split --remote-wait'
     endif
+
     autocmd mygroup FileType gitcommit,gitrebase,gitconfig set bufhidden=delete
 
   " }}}
@@ -707,8 +712,8 @@
 
     " <leader>cc to comment a block.
     " <leader>cu to uncomment a block.
-   let g:NERDSpaceDelims = 1
-   let g:NERDDefaultAlign = 'left'
+    let g:NERDSpaceDelims = 1
+    let g:NERDDefaultAlign = 'left'
 
   " }}}
   " Ranger ----------------------------------------------------------------------------------------- {{{
@@ -879,113 +884,113 @@
 
       Plug '~/ansible-doc.vim'
 
-       " Search within files.
-       Plug 'mhinz/vim-grepper'
-       " Find and replace.
-       Plug 'brooth/far.vim'
-       " Function navigation on large files.
-       " Plug 'preservim/tagbar'
-       " More performant folding.
-       Plug 'Konfekt/FastFold'
+      " Search within files.
+      Plug 'mhinz/vim-grepper'
+      " Find and replace.
+      Plug 'brooth/far.vim'
+      " Function navigation on large files.
+      " Plug 'preservim/tagbar'
+      " More performant folding.
+      Plug 'Konfekt/FastFold'
 
-       " Smooth scrolling.
-       " Plug 'psliwka/vim-smoothie'
-       " Alternative line navigation.
-       " Plug 'easymotion/vim-easymotion'
+      " Smooth scrolling.
+      " Plug 'psliwka/vim-smoothie'
+      " Alternative line navigation.
+      " Plug 'easymotion/vim-easymotion'
 
-       " Filename search.
-       if g:athome
-         Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' }
-       elseif g:atwork
-         Plug 'ctrlpvim/ctrlp.vim'
-       endif
-
-       " File manager.
-       " if g:athome
-       "   Plug 'kevinhwang91/rnvimr'
-       "   Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
-       " elseif g:atwork
-       "   Plug 'francoiscabrol/ranger.vim'
-       "   " Dependency for ranger.vim.
-       "   Plug 'rbgrouleff/bclose.vim'
-       " endif
-       Plug 'francoiscabrol/ranger.vim'
-       " Dependency for ranger.vim.
-       Plug 'rbgrouleff/bclose.vim'
-
-       " Git integration.
-       Plug 'airblade/vim-gitgutter'
-       Plug 'tpope/vim-fugitive'
-       Plug 'jreybert/vimagit'
-
-       " Code formatting.
-       Plug 'psf/black', { 'for': 'python', 'branch': 'stable' }
-       " Linting engine.
-       Plug 'dense-analysis/ale'
-       " Code completion.
-       Plug 'ycm-core/YouCompleteMe', { 'do': './install.py' }
-       " Better syntax highlighting. Causes issues in the Vimagit window.
-       " Plug 'sheerun/vim-polyglot'
-       " Ansible syntax.
-       Plug 'pearofducks/ansible-vim'
-       " Dockerfile syntax.
-       Plug 'ekalinin/Dockerfile.vim'
-
-       " Session save and restore.
-       Plug 'thaerkh/vim-workspace'
-
-       " Visualize and navigate Vim's undo tree.
-       Plug 'mbbill/undotree'
-       " Access previously yanked text.
-       " Plug 'vim-scripts/YankRing.vim'
-       " Repeat plugin actions.
-       Plug 'tpope/vim-repeat'
-
-       " Status bar.
-       Plug 'vim-airline/vim-airline'
-       Plug 'vim-airline/vim-airline-themes'
-       " Rename tabs.
-       Plug 'gcmt/taboo.vim'
-       " Easily swap window splits with <leader>ww
-       Plug 'wesQ3/vim-windowswap'
-
-       " Comment blocks.
-       Plug 'preservim/nerdcommenter'
-       " Show indentation lines.
-       Plug 'yggdroot/indentline'
-       " Alignment tools.
-       Plug 'godlygeek/tabular'
-       " Auto-create bracket and quote pairs.
-       Plug 'jiangmiao/auto-pairs'
-       " Auto terminate conditional statements.
-       Plug 'tpope/vim-endwise'
-       " Easily surround words.
-       Plug 'tpope/vim-surround'
-
-       " Better shell commands.
-       Plug 'tpope/vim-eunuch'
-       " Briefly highlight yanked text.
-       Plug 'machakann/vim-highlightedyank'
-
-       if g:athome
-         " Colorschemes.
-         Plug 'drewtempelmeyer/palenight.vim'
-         " Plug 'morhetz/gruvbox'
-         " Plug 'joshdick/onedark.vim'
-
-         " Icons (Must be loaded after all the plugins that use it).
-         Plug 'ryanoasis/vim-devicons'
-         " Note management.
-         " Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
-         " Render markdown.
-         Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
-         "Plug 'plasticboy/vim-markdown'
-         " Edit files with sudo.
-         " This causes performance issues at work.
-         Plug 'lambdalisue/suda.vim'
+      " Filename search.
+      if g:athome
+        Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' }
+      elseif g:atwork
+        Plug 'ctrlpvim/ctrlp.vim'
       endif
 
-  call plug#end()
+      " File manager.
+      " if g:athome
+      "   Plug 'kevinhwang91/rnvimr'
+      "   Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
+      " elseif g:atwork
+      "   Plug 'francoiscabrol/ranger.vim'
+      "   " Dependency for ranger.vim.
+      "   Plug 'rbgrouleff/bclose.vim'
+      " endif
+      Plug 'francoiscabrol/ranger.vim'
+      " Dependency for ranger.vim.
+      Plug 'rbgrouleff/bclose.vim'
+
+      " Git integration.
+      Plug 'airblade/vim-gitgutter'
+      Plug 'tpope/vim-fugitive'
+      Plug 'jreybert/vimagit'
+
+      " Code formatting.
+      Plug 'psf/black', { 'for': 'python', 'branch': 'stable' }
+      " Linting engine.
+      Plug 'dense-analysis/ale'
+      " Code completion.
+      Plug 'ycm-core/YouCompleteMe', { 'do': './install.py' }
+      " Better syntax highlighting. Causes issues in the Vimagit window.
+      " Plug 'sheerun/vim-polyglot'
+      " Ansible syntax.
+      Plug 'pearofducks/ansible-vim'
+      " Dockerfile syntax.
+      Plug 'ekalinin/Dockerfile.vim'
+
+      " Session save and restore.
+      Plug 'thaerkh/vim-workspace'
+
+      " Visualize and navigate Vim's undo tree.
+      Plug 'mbbill/undotree'
+      " Access previously yanked text.
+      " Plug 'vim-scripts/YankRing.vim'
+      " Repeat plugin actions.
+      Plug 'tpope/vim-repeat'
+
+      " Status bar.
+      Plug 'vim-airline/vim-airline'
+      Plug 'vim-airline/vim-airline-themes'
+      " Rename tabs.
+      Plug 'gcmt/taboo.vim'
+      " Easily swap window splits with <leader>ww
+      Plug 'wesQ3/vim-windowswap'
+
+      " Comment blocks.
+      Plug 'preservim/nerdcommenter'
+      " Show indentation lines.
+      Plug 'yggdroot/indentline'
+      " Alignment tools.
+      Plug 'godlygeek/tabular'
+      " Auto-create bracket and quote pairs.
+      Plug 'jiangmiao/auto-pairs'
+      " Auto terminate conditional statements.
+      Plug 'tpope/vim-endwise'
+      " Easily surround words.
+      Plug 'tpope/vim-surround'
+
+      " Better shell commands.
+      Plug 'tpope/vim-eunuch'
+      " Briefly highlight yanked text.
+      Plug 'machakann/vim-highlightedyank'
+
+      if g:athome
+        " Colorschemes.
+        Plug 'drewtempelmeyer/palenight.vim'
+        " Plug 'morhetz/gruvbox'
+        " Plug 'joshdick/onedark.vim'
+
+        " Icons (Must be loaded after all the plugins that use it).
+        Plug 'ryanoasis/vim-devicons'
+        " Note management.
+        " Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
+        " Render markdown.
+        Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
+        "Plug 'plasticboy/vim-markdown'
+        " Edit files with sudo.
+        " This causes performance issues at work.
+        Plug 'lambdalisue/suda.vim'
+      endif
+
+    call plug#end()
   " }}}
 
 endif
