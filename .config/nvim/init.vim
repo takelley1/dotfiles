@@ -113,23 +113,18 @@
       \ silent :!git -C ~/notes commit -m 'Update unsorted.md' unsorted.md && git push -C ~/notes
   endif
 
-  " This func is slightly edited from the vim-workspace plugin.
-  function! CloseBuffers()
-    let l:visible_buffers = {}
-    for tabnr in range(1, tabpagenr('$'))
-      for bufnr in tabpagebuflist(tabnr)
-        let l:visible_buffers[bufnr] = 1
-      endfor
-    endfor
-    for bufnr in range(1, bufnr('$'))
-      if bufexists(bufnr) && !has_key(l:visible_buffers,bufnr)
-        execute printf('bdelete! %d', bufnr)
-      endif
+  " https://stackoverflow.com/a/8459043
+  function! DeleteHiddenBuffers()
+    let tpbl=[]
+    call map(range(1, tabpagenr('$')), 'extend(tpbl, tabpagebuflist(v:val))')
+    for buf in filter(range(1, bufnr('$')), 'bufexists(v:val) && index(tpbl, v:val)==-1')
+        silent execute 'bwipeout!' buf
     endfor
   endfunction
 
   " Automatically close leftover hidden buffers.
-  autocmd mygroup VimEnter,TabLeave * silent! call CloseBuffers()
+  "   This is usually leftover terminal and ranger windows.
+  autocmd mygroup VimEnter,CursorHold * silent! call DeleteHiddenBuffers()
 
   if g:atwork
 
