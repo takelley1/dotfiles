@@ -454,6 +454,7 @@
     " Change the inline-diff-expand from '=' to 'l' in the :Git window.
     if filereadable($HOME . '/.local/share/nvim/plugged/vim-fugitive/autoload/fugitive.vim')
       autocmd mygroup VimEnter *
+        \ silent
         \ :!sed -i -e "s/.*call s:Map('n', \"=\".*/call s:Map('n', \"l\", \":<C-U>execute <SID>StageInline('toggle',line('.'),v:count)<CR>\", '<silent>')/"
                  \ -e "s/.*call s:Map('x', \"=\".*/call s:Map('x', \"l\", \":<C-U>execute <SID>StageInline('toggle',line('.'),v:count)<CR>\", '<silent>')/"
         \ ~/.local/share/nvim/plugged/vim-fugitive/autoload/fugitive.vim
@@ -786,14 +787,14 @@
   " }}}
   " Workspace -------------------------------------------------------------------------------------- {{{
 
-    " Automatically create, save, and restore sessions.
-    let g:workspace_autocreate = 1
-    let g:workspace_session_name = $HOME . '/.vim/sessions/session.vim'
-    " These options are for auto-saving individual files, but it breaks the cedit window.
-    let g:workspace_autosave = 0
-    let g:workspace_autosave_always = 0
-    " Don't deal with persisting undo history, since it's already handled.
-    let g:workspace_persist_undo_history = 0
+    " " Automatically create, save, and restore sessions.
+    " let g:workspace_autocreate = 1
+    " let g:workspace_session_name = $HOME . '/.vim/sessions/session.vim'
+    " " These options are for auto-saving individual files, but it breaks the cedit window.
+    " let g:workspace_autosave = 0
+    " let g:workspace_autosave_always = 0
+    " " Don't deal with persisting undo history, since it's already handled.
+    " let g:workspace_persist_undo_history = 0
 
   " }}}
   " Vimagit ---------------------------------------------------------------------------------------- {{{
@@ -932,7 +933,8 @@
       Plug 'ekalinin/Dockerfile.vim'
 
       " Session save and restore.
-      Plug 'thaerkh/vim-workspace'
+      "Plug 'thaerkh/vim-workspace'
+      Plug 'tpope/vim-obsession'
 
       " Visualize and navigate Vim's undo tree.
       Plug 'mbbill/undotree'
