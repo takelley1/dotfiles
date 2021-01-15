@@ -315,10 +315,10 @@
     autocmd mygroup FileType yaml.ansible,jinja2
       \ let b:AutoPairs=AutoPairsDefine
       \ ({
-      \ '"':'"',
       \ '(':')',
       \ '[':']',
       \ '{{':'}}',
+      \ '{%':'%}',
       \ "`":"`",
       \ '```':'```',
       \ '"""':'"""',
