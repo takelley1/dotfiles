@@ -131,8 +131,7 @@
     " Automatically create SSH aliases file from Ansible inventory file.
     autocmd mygroup BufWritePost
       \ ~/scripts/ansible/inventories/s3noc/hosts.yml
-      \ silent
-      \ :!sed '/^\s*#/d'
+      \ silent :!sed '/^\s*#/d'
       \ ~/scripts/ansible/inventories/s3noc/hosts.yml
       \ | awk '/[a-zA-Z_-]*:(#.*)*$/ {FS=".";gsub(/[\t| |\:]/,"");host=tolower($1);FS=" "}
       \ /^\s*[^\#]*ansible_host/ {ip=$2;print "Host " host "\n\t HostName " ip}'
@@ -201,8 +200,10 @@
   " Force cursor to stay in the middle of the screen.
   set scrolloff=999
   " Scrolloff is glitchy on terminals, so disable it there.
-  autocmd mygroup TermEnter * setlocal scrolloff=0
-  autocmd mygroup TermLeave * setlocal scrolloff=999
+  if exists(':terminal')
+    autocmd mygroup TermEnter * silent setlocal scrolloff=0
+    autocmd mygroup TermLeave * silent setlocal scrolloff=999
+  endif
 
 " }}}
 " SHORTCUTS ######################################################################################## {{{
@@ -1033,6 +1034,7 @@ endif
   highlight TabLineSel guifg=#292d3f guibg=#939ede gui=Bold
 
 " }}}
+
 " NAVIGATION ####################################################################################### {{{
 
   " Easier exiting insert mode.
