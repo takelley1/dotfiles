@@ -199,7 +199,6 @@
 if [[ "${OSTYPE}" == "freebsd"* ]]; then
 
     export SHELL="/usr/local/bin/bash"
-    export LANG="en_US.UTF-8"
 
     # FreeBSD's ls uses a different syntax from Linux.
     alias ls='ls -FCGh'
@@ -341,6 +340,10 @@ export HISTFILESIZE=9999999
 export HISTSIZE=9999999
 export HISTCONTROL=ignoreboth
 export PROMPT_COMMAND='history -a'
+
+# Allow unicode within the terminal.
+export LANG="en_US.UTF-8"
+export LC_ALL="en_US.UTF-8"
 
 # Append history rather than overwriting it.
 shopt -s histappend
