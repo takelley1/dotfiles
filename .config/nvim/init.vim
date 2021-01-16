@@ -205,6 +205,18 @@
     autocmd mygroup TermLeave * silent setlocal scrolloff=999
   endif
 
+  " Automatically set winfixheight and winfixwidth.
+  function! SetFixWindow()
+    if winwidth('$') > winheight('$')
+      setlocal nowinfixwidth
+      setlocal winfixheight
+    elseif winwidth('$') < winheight('$')
+      setlocal nowinfixheight
+      setlocal winfixwidth
+    endif
+  endfunction
+  autocmd mygroup BufEnter * call SetFixWindow()
+
 " }}}
 " SHORTCUTS ######################################################################################## {{{
 
