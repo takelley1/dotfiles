@@ -125,7 +125,7 @@
   " Automatically close leftover hidden buffers.
   " This is usually leftover terminal and ranger windows.
   " Don't trigger when in Vimagit buffers, since it will kill the buffer Magit() was called from.
-  autocmd mygroup VimEnter,CursorHold * silent! if &filetype != "magit" | call DeleteHiddenBuffers() | endif
+  autocmd mygroup CursorHold,TabEnter * silent! if &filetype != "magit" | call DeleteHiddenBuffers() | endif
 
   if g:atwork
 
