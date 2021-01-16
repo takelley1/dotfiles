@@ -799,16 +799,18 @@
     nnoremap <leader>u :UndotreeToggle<CR>
 
   " }}}
-  " Workspace -------------------------------------------------------------------------------------- {{{
+  " Vim Better Whitespace -------------------------------------------------------------------------- {{{
 
-    " " Automatically create, save, and restore sessions.
-    " let g:workspace_autocreate = 1
-    " let g:workspace_session_name = $HOME . '/.vim/sessions/session.vim'
-    " " These options are for auto-saving individual files, but it breaks the cedit window.
-    " let g:workspace_autosave = 0
-    " let g:workspace_autosave_always = 0
-    " " Don't deal with persisting undo history, since it's already handled.
-    " let g:workspace_persist_undo_history = 0
+    " Don't highlight whitespace.
+    let g:better_whitespace_enabled = 0
+
+    " Automatically strip whitespace.
+    autocmd mygroup InsertLeave * call StripWhite()
+    function! StripWhite()
+        if &filetype != 'magit'
+            StripWhitespace
+        endif
+    endfunction
 
   " }}}
   " Vimagit ---------------------------------------------------------------------------------------- {{{
@@ -889,116 +891,63 @@
   " }}}
 
   " Vim-Plug --------------------------------------------------------------------------------------- {{{
-
     call plug#begin(stdpath('data') . '/plugged')
 
       Plug '~/ansible-doc.vim'
 
-      " Search within files.
-      Plug 'mhinz/vim-grepper'
-      " Find and replace.
-      Plug 'brooth/far.vim'
-      " Function navigation on large files.
-      " Plug 'preservim/tagbar'
-      " More performant folding.
-      Plug 'Konfekt/FastFold'
-
-      " Smooth scrolling.
-      " Plug 'psliwka/vim-smoothie'
-      " Alternative line navigation.
-      " Plug 'easymotion/vim-easymotion'
-
-      " Filename search.
-      if g:athome
-        Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' }
-      elseif g:atwork
-        Plug 'ctrlpvim/ctrlp.vim'
-      endif
-
+      Plug 'ntpeters/vim-better-whitespace' " Highlight and strip whitespace.
+      Plug 'tpope/vim-obsession' " Session management.
+      Plug 'tpope/vim-endwise' " Auto terminate conditional statements.
+      Plug 'tpope/vim-surround' " Easily surround words.
+      Plug 'tpope/vim-eunuch' " Better shell commands.
+      Plug 'tpope/vim-repeat' " Repeat plugin actions.
+      Plug 'ycm-core/YouCompleteMe', { 'do': './install.py' } " Code completion.
+      Plug 'brooth/far.vim' " Find and replace.
+      Plug 'Konfekt/FastFold' " More performant folding.
+      Plug 'tpope/vim-unimpaired' " Navigation with square bracket keys.
+      " Plug 'easymotion/vim-easymotion' " Alternative line navigation.
+      Plug 'pearofducks/ansible-vim' " Ansible syntax.
+      Plug 'ekalinin/Dockerfile.vim' " Dockerfile syntax.
+      " Plug 'vim-scripts/YankRing.vim' " Access previously yanked text.
+      Plug 'gcmt/taboo.vim' " Rename tabs.
+      Plug 'wesQ3/vim-windowswap' " Easily swap window splits with <leader>ww
+      Plug 'godlygeek/tabular' " Alignment tools.
+      Plug 'jreybert/vimagit' " Git porcelain.
+      Plug 'psf/black', { 'for': 'python', 'branch': 'stable' } " Code formatting.
+      Plug 'jiangmiao/auto-pairs' " Auto-create bracket and quote pairs.
+      Plug 'yggdroot/indentline' " Show indentation lines.
+      Plug 'machakann/vim-highlightedyank' " Briefly highlight yanked text.
+      Plug 'preservim/tagbar' " Function navigation on large files.
       " File manager.
       " if g:athome
       "   Plug 'kevinhwang91/rnvimr'
       "   Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
       " elseif g:atwork
       "   Plug 'francoiscabrol/ranger.vim'
-      "   " Dependency for ranger.vim.
-      "   Plug 'rbgrouleff/bclose.vim'
+      "   Plug 'rbgrouleff/bclose.vim' "   " Dependency for ranger.vim.
       " endif
-      Plug 'francoiscabrol/ranger.vim'
-      " Dependency for ranger.vim.
-      Plug 'rbgrouleff/bclose.vim'
-
-      " Git integration.
-      Plug 'airblade/vim-gitgutter'
-      Plug 'tpope/vim-fugitive'
-      Plug 'jreybert/vimagit'
-
-      " Code formatting.
-      Plug 'psf/black', { 'for': 'python', 'branch': 'stable' }
-      " Linting engine.
-      Plug 'dense-analysis/ale'
-      " Code completion.
-      Plug 'ycm-core/YouCompleteMe', { 'do': './install.py' }
-      " Better syntax highlighting. Causes issues in the Vimagit window.
-      " Plug 'sheerun/vim-polyglot'
-      " Ansible syntax.
-      Plug 'pearofducks/ansible-vim'
-      " Dockerfile syntax.
-      Plug 'ekalinin/Dockerfile.vim'
-
-      " Session save and restore.
-      "Plug 'thaerkh/vim-workspace'
-      Plug 'tpope/vim-obsession'
-
-      " Visualize and navigate Vim's undo tree.
-      Plug 'mbbill/undotree'
-      " Access previously yanked text.
-      " Plug 'vim-scripts/YankRing.vim'
-      " Repeat plugin actions.
-      Plug 'tpope/vim-repeat'
-
-      " Status bar.
-      Plug 'vim-airline/vim-airline'
+      Plug 'francoiscabrol/ranger.vim' " File explorer.
+      Plug 'rbgrouleff/bclose.vim' " Dependency for ranger.vim.
+      " Plug 'sheerun/vim-polyglot' " Better syntax highlighting. Causes issues in the Vimagit window.
+      " Plug 'psliwka/vim-smoothie' " Smooth scrolling.
+      Plug 'mbbill/undotree' " Visualize and navigate Vim's undo tree.
+      Plug 'airblade/vim-gitgutter' " Git diffs in sidebar.
+      Plug 'dense-analysis/ale' " Linting engine.
+      Plug 'tpope/vim-fugitive' " Git wrapper.
+      Plug 'mhinz/vim-grepper' " Search within files.
+      Plug 'vim-airline/vim-airline' " Status bar.
       Plug 'vim-airline/vim-airline-themes'
-      " Rename tabs.
-      Plug 'gcmt/taboo.vim'
-      " Easily swap window splits with <leader>ww
-      Plug 'wesQ3/vim-windowswap'
-
-      " Comment blocks.
-      Plug 'preservim/nerdcommenter'
-      " Show indentation lines.
-      Plug 'yggdroot/indentline'
-      " Alignment tools.
-      Plug 'godlygeek/tabular'
-      " Auto-create bracket and quote pairs.
-      Plug 'jiangmiao/auto-pairs'
-      " Auto terminate conditional statements.
-      Plug 'tpope/vim-endwise'
-      " Easily surround words.
-      Plug 'tpope/vim-surround'
-
-      " Better shell commands.
-      Plug 'tpope/vim-eunuch'
-      " Briefly highlight yanked text.
-      Plug 'machakann/vim-highlightedyank'
+      Plug 'preservim/nerdcommenter' " Comment blocks.
 
       if g:athome
-        " Colorschemes.
-        Plug 'drewtempelmeyer/palenight.vim'
-        " Plug 'morhetz/gruvbox'
-        " Plug 'joshdick/onedark.vim'
-
-        " Icons (Must be loaded after all the plugins that use it).
-        Plug 'ryanoasis/vim-devicons'
-        " Note management.
-        " Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
-        " Render markdown.
-        Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
-        "Plug 'plasticboy/vim-markdown'
-        " Edit files with sudo.
-        " This causes performance issues at work.
-        Plug 'lambdalisue/suda.vim'
+        Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' } " Fuzzy finder.
+        Plug 'drewtempelmeyer/palenight.vim' " Colorschemes.
+        Plug 'ryanoasis/vim-devicons' " Icons (Must be loaded after all the plugins that use it).
+        " Plug 'vimwiki/vimwiki', { 'branch': 'dev' } " Note management.
+        Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  } " Render markdown.
+        Plug 'lambdalisue/suda.vim' " Edit files with sudo. This causes performance issues at work.
+      elseif g:atwork
+        Plug 'ctrlpvim/ctrlp.vim' " Fuzzy finder.
       endif
 
     call plug#end()
