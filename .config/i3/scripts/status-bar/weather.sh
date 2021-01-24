@@ -10,7 +10,7 @@ wind_icon="🍃"
 humidity_icon="💧"
 
 # Check connectivity first.
-if curl https://icanhazip.com 2>/dev/stdout | grep -Eq "E2Guardian|Connection refused"; then
+if curl https://icanhazip.com 2>/dev/stdout | grep -Eq "E2Guardian|Connection refused|Couldn't connect"; then
     exit 0
 else
     weather_full="$(curl -s "wttr.in?format=%c%f-%w-%h\n")"
