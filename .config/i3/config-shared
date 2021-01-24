@@ -23,10 +23,10 @@
 
  # Start apps automatically and assign them to workspaces.
    exec --no-startup-id i3-msg "workspace 1: firefox; exec firefox"
-   assign [class="firefox"] number "1: firefox"
+   # assign [class="firefox"] number "1: firefox"
 
    exec --no-startup-id i3-msg "workspace 2: terminal; exec alacritty"
-   assign [class="alacritty"] number "2: terminal"
+   # assign [class="alacritty"] number "2: terminal"
 
    #exec --no-startup-id i3-msg "workspace 3; exec pycharm"
    assign [class="jetbrains-pycharm-ce"] number 3
@@ -181,7 +181,8 @@
  # Switch between the two most recently-used workspaces.
    bindsym $mod+Tab workspace back_and_forth
  # Cycle through workspaces on current display.
-   bindsym $mod+Shift+Tab workspace next_on_output
+   bindsym $mod+n workspace next_on_output
+   bindsym $mod+p workspace prev_on_output
 
    bindsym $mod+1 workspace 1: firefox
    bindsym $mod+2 workspace 2: terminal
@@ -208,31 +209,44 @@
 
 # Status bar for tray icons and other distracting blocks.
 # Reveal this status bar with the right CTRL key.
+# bar {
+#      status_command i3blocks -c ~/.config/i3/i3blocks-tray.conf
+#      font pango:Noto Sans 15
+#      colors {
+#             statusline               #eeeeee
+#             focused_workspace        #00ff00 #285777 #ffffff
+#             urgent_workspace         #333333 #222222 #888888
+#             }
+#      mode hide
+#      hidden_state hide
+#      Modifier Mod3
+
+#      tray_output primary
+#      workspace_buttons no
+#     }
+
 bar {
-     status_command i3blocks -c ~/.config/i3/i3blocks-tray.conf
-     font pango:Noto Sans 15
+     status_command i3blocks -c ~/.config/i3/i3blocks-main.conf
      colors {
             statusline               #eeeeee
             focused_workspace        #00ff00 #285777 #ffffff
             urgent_workspace         #333333 #222222 #888888
             }
+    tray_output none
+    }
+
+# Main status bar. Hidden by default. Show with right CTRL.
+bar {
+     status_command i3blocks -c ~/.config/i3/i3blocks-hidden.conf
+     colors {
+            statusline               #eeeeee
+            focused_workspace        #00ff00 #285777 #ffffff
+            urgent_workspace         #333333 #222222 #888888
+            }
+     tray_output primary
      mode hide
      hidden_state hide
      Modifier Mod3
-
-     tray_output primary
-     workspace_buttons no
-    }
-
-# Main status bar.
-bar {
-     status_command i3blocks -c ~/.config/i3/i3blocks.conf
-     colors {
-            statusline               #eeeeee
-            focused_workspace        #00ff00 #285777 #ffffff
-            urgent_workspace         #333333 #222222 #888888
-            }
-     tray_output none # Tray icons can get distracting.
     }
 
 # \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
