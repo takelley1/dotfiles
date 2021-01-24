@@ -132,7 +132,7 @@
 
    bindsym $mod+i exec firefox
    bindsym $mod+g exec gimp
-   bindsym $mod+p exec pycharm
+   # bindsym $mod+p exec pycharm
    bindsym $mod+v exec vncviewer
 
  # Detect caps lock activation.
@@ -207,24 +207,6 @@
    bindsym $mod+Control+9 move container to workspace 9
    bindsym $mod+Control+0 move container to workspace 10
 
-# Status bar for tray icons and other distracting blocks.
-# Reveal this status bar with the right CTRL key.
-# bar {
-#      status_command i3blocks -c ~/.config/i3/i3blocks-tray.conf
-#      font pango:Noto Sans 15
-#      colors {
-#             statusline               #eeeeee
-#             focused_workspace        #00ff00 #285777 #ffffff
-#             urgent_workspace         #333333 #222222 #888888
-#             }
-#      mode hide
-#      hidden_state hide
-#      Modifier Mod3
-
-#      tray_output primary
-#      workspace_buttons no
-#     }
-
 bar {
      status_command i3blocks -c ~/.config/i3/i3blocks-main.conf
      colors {
@@ -235,7 +217,7 @@ bar {
     tray_output none
     }
 
-# Main status bar. Hidden by default. Show with right CTRL.
+# Hidden by default. Show with right CTRL.
 bar {
      status_command i3blocks -c ~/.config/i3/i3blocks-hidden.conf
      colors {
