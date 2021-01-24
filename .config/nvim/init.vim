@@ -895,6 +895,9 @@
 
       Plug '~/ansible-doc.vim'
 
+      Plug 'lervag/vimtex' " LaTeX helpers.
+      Plug 'xuhdev/vim-latex-live-preview' " LaTeX live preview.
+      Plug 'kevinhwang91/rnvimr' " Ranger in a floating window.
       Plug 'ntpeters/vim-better-whitespace' " Highlight and strip whitespace.
       Plug 'tpope/vim-obsession' " Session management.
       Plug 'tpope/vim-endwise' " Auto terminate conditional statements.
