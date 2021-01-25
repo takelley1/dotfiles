@@ -201,7 +201,7 @@
   " Force cursor to stay in the middle of the screen.
   set scrolloff=999
   " Scrolloff is glitchy on terminals, so disable it there.
-  if exists(':terminal')
+  if exists(':terminal') && exists('##TermEnter')
     autocmd mygroup TermEnter * silent setlocal scrolloff=0
     autocmd mygroup TermLeave * silent setlocal scrolloff=999
   endif
