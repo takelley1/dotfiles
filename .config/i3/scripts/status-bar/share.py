@@ -3,8 +3,12 @@
 # Status bar script for printing the amount of gigabytes free in the
 #   network share, assuming it's mounted to /mnt/tank/share/documents.
 #
-# Font-Awesome f6ff 
-
+# IP of server that we're mounting storage from.
+server_ip = "10.0.0.4"
+# Location of mounted sorage in local filesystem.
+mount_path = "/mnt/tank/storage/documents"
+# Whether to print "free" next to gigabytes free.
+verbose = True
 # Whether to display percentage used of network share.
 # This is not useful on ZFS datasets, for example.
 show_percent = False
@@ -15,7 +19,7 @@ unit = "G"
 icon = "🗄️"
 # When free space drops below this amount, color the output in red.
 # Units are in gigabytes.
-alert_thresh = 1800
+alert_thresh = 1700
 
 import os
 import sys
@@ -25,12 +29,12 @@ import psutil
 def main():
 
     # Check server availability.
-    shares = os.system("ping -c 1 10.0.0.4 &>/dev/null")
+    shares = os.system("ping -c 1 " + server_ip + " &>/dev/null")
     if shares != 0:
         sys.exit(0)
 
     # Get free space in bytes.
-    disk = psutil.disk_usage("/mnt/tank/storage/documents")
+    disk = psutil.disk_usage(mount_path)
     disk_bytes = disk.free
 
     disk_perc = disk.percent
@@ -51,10 +55,15 @@ def main():
         print("The 'unit' variable has an incorrect value!")
         sys.exit(1)
 
-    if show_percent:
-        print(output + " (" + str(disk_perc) + "%)")
+    if verbose is True:
+        free = " free"
     else:
-        print(output)
+        free = ""
+
+    if show_percent:
+        print(output + free + " (" + str(disk_perc) + "%)")
+    else:
+        print(output + free)
 
     # The i3bar protocol uses the third line of the output to specify.
     #   color: https://github.com/vivien/i3blocks#format
