@@ -143,7 +143,7 @@
     alias osrs='bash ~/scripts/bash/linux/osrs.sh &'
     alias runescape='osrs'
     alias rs='osrs'
-    alias snip='scrot --quality 100 --select --freeze --silent'
+    alias snip='bash ~/.config/i3/scripts/screenshot-region.sh'
 
     # }}}
     # Shortcuts -------------------------------------------------------------------------------------{{{
