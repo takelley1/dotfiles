@@ -233,6 +233,34 @@
   "   nnoremap ZQ :nohl
   " endif
 
+  " Use `call P('highlight')` to put the output of `highlight` in the current buffer,
+  "   allowing the content to be searched through.
+  function! P(command)
+    let opts = {
+      \ 'relative': 'editor',
+      \ 'style': 'minimal',
+      \ 'width': float2nr(round(0.55 * &columns)),
+      \ 'height': float2nr(round(0.75 * &lines)),
+      \ 'col': float2nr(round(0.27 * &columns)),
+      \ 'row': float2nr(round(0.05 * &lines)),
+      \ }
+    let float_buffer = nvim_create_buf(v:false, v:true)
+    let win = nvim_open_win(float_buffer, v:true, opts)
+    set filetype=floating
+    put =execute(a:command)
+    normal! ggdj
+  endfunction
+  " Mimic less's mappings.
+  autocmd FileType floating nnoremap <buffer> <space> <C-d>
+  autocmd FileType floating nnoremap <buffer> b       <C-u>
+  autocmd FileType floating nnoremap <buffer> q       :close!<CR>
+  autocmd FileType floating nnoremap <buffer> Q       :close!<CR>
+  autocmd FileType floating nnoremap <buffer> <CR>    :close!<CR>
+  autocmd FileType floating nnoremap <buffer> <Esc>   :close!<CR>
+  autocmd FileType floating
+    \ setlocal bufhidden=delete shiftwidth=3 scrolloff=999 nonumber
+  let g:livepreview_previewer = 'zathura'
+
   " Toggle preventing horizonal or vertial resizing.
   nnoremap <leader>H :set winfixheight! <bar> set winfixheight?<CR>
   nnoremap <leader>W :set winfixwidth! <bar> set winfixheight?<CR>
