@@ -201,7 +201,7 @@
   " Force cursor to stay in the middle of the screen.
   set scrolloff=999
   " Scrolloff is glitchy on terminals, so disable it there.
-  if exists(':terminal')
+  if exists(':terminal') && exists('##TermEnter')
     autocmd mygroup TermEnter * silent setlocal scrolloff=0
     autocmd mygroup TermLeave * silent setlocal scrolloff=999
   endif
@@ -927,17 +927,13 @@
     call plug#begin(stdpath('data') . '/plugged')
 
       Plug '~/ansible-doc.vim'
-
-      Plug 'lervag/vimtex' " LaTeX helpers.
-      Plug 'xuhdev/vim-latex-live-preview' " LaTeX live preview.
-      Plug 'kevinhwang91/rnvimr' " Ranger in a floating window.
+      
       Plug 'ntpeters/vim-better-whitespace' " Highlight and strip whitespace.
       Plug 'tpope/vim-obsession' " Session management.
       Plug 'tpope/vim-endwise' " Auto terminate conditional statements.
       Plug 'tpope/vim-surround' " Easily surround words.
       Plug 'tpope/vim-eunuch' " Better shell commands.
       Plug 'tpope/vim-repeat' " Repeat plugin actions.
-      Plug 'ycm-core/YouCompleteMe', { 'do': './install.py' } " Code completion.
       Plug 'brooth/far.vim' " Find and replace.
       Plug 'Konfekt/FastFold' " More performant folding.
       Plug 'tpope/vim-unimpaired' " Navigation with square bracket keys.
@@ -976,6 +972,10 @@
       Plug 'preservim/nerdcommenter' " Comment blocks.
 
       if g:athome
+        Plug 'lervag/vimtex' " LaTeX helpers.
+        Plug 'xuhdev/vim-latex-live-preview' " LaTeX live preview.
+        Plug 'kevinhwang91/rnvimr' " Ranger in a floating window.
+        Plug 'ycm-core/YouCompleteMe', { 'do': './install.py' } " Code completion.
         Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' } " Fuzzy finder.
         Plug 'drewtempelmeyer/palenight.vim' " Colorschemes.
         Plug 'ryanoasis/vim-devicons' " Icons (Must be loaded after all the plugins that use it).
