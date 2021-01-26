@@ -648,10 +648,15 @@
 
       nnoremap <leader>f :LeaderfFile ~/<CR>
       nnoremap <leader>F :LeaderfFile<CR>
-
       nnoremap <leader>R :LeaderfMru<CR>
-
       nnoremap <leader>/ :LeaderfLineAll<CR>
+
+      if exists(':terminal')
+        tnoremap <leader>f <C-\><C-n>:LeaderfFile ~/<CR>
+        tnoremap <leader>F <C-\><C-n>:LeaderfFile<CR>
+        tnoremap <leader>R <C-\><C-n>:LeaderfMru<CR>
+        tnoremap <leader>/ <C-\><C-n>:LeaderfLineAll<CR>
+      endif
 
       let g:Lf_ShowHidden = 1      " Index hidden files.
       let g:Lf_MruMaxFiles = 10000 " Index all used files in MRU list.
