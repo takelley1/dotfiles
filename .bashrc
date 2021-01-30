@@ -298,6 +298,12 @@ if [[ "${OSTYPE}" == "linux-gnu" ]]; then
         source "/etc/profile.d/proxy.sh"
     fi
 
+    # Used by hstr https://github.com/dvorka/hstr
+    export HSTR_CONFIG=monochromatic,prompt-bottom,help-on-opposite-side
+    export PROMPT_COMMAND="history -a; history -n; ${PROMPT_COMMAND}"
+    # if this is interactive shell, then bind hstr to Ctrl-r.
+    if [[ $- =~ .*i.* ]]; then bind '"\C-r": "\e^ihstr -- \n"'; fi
+
 fi
 
 # }}}
