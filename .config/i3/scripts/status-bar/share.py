@@ -19,7 +19,7 @@ unit = "G"
 icon = "🗄️"
 # When free space drops below this amount, color the output in red.
 # Units are in gigabytes.
-alert_thresh = 1700
+alert_thresh = 1000
 
 import os
 import sys
