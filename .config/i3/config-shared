@@ -39,23 +39,23 @@
 
 # KEYBOARD
 
- # Set key repeat delay.
-   exec --no-startup-id xset r rate 200 50
- # Disable keyboard beep.
+ # Set key repeat delay. Wait 180 miliseconds, then repeat at 50x speed.
+   exec --no-startup-id xset r rate 180 50
+ # Disable keyboard beeping.
    exec --no-startup-id xset b off
 
  # Make the SUPER key the main modifier key.
    set $mod Mod4
  # "Mod1" is the ALT key.
    set $mod2 Mod1
- # Rebind CAPS_LOCK to be useless.
-   exec --no-startup-id xmodmap -e "remove Lock = Caps_Lock" -e "keysym Caps_Lock = Scroll_Lock"
- # Bind right CTRL to Mod3
+ # Rebind CAPS_LOCK to Up arrow for use with hstr in Neovim windows (https://github.com/dvorka/hstr).
+   exec --no-startup-id xmodmap -e "remove Lock = Caps_Lock" -e "keysym Caps_Lock = Up" -e "remove Lock = Up"
+ # Bind right CTRL to Mod3.
    exec --no-startup-id xmodmap -e "remove control = Control_R" -e "add mod3 = Control_R"
 
 # FORMATTING
 
- # Top border colors.
+ # Border colors.
    # class                 border  backgr. text    indicator child_border
    client.focused          #00ff00 #285777 #ffffff #00ff00   #00ff00
    client.focused_inactive #888888 #888888 #000000 #484e50   #5f676a
@@ -207,6 +207,7 @@
    bindsym $mod+Control+9 move container to workspace 9
    bindsym $mod+Control+0 move container to workspace 10
 
+# Primary status bar.
 bar {
      status_command i3blocks -c ~/.config/i3/i3blocks-main.conf
      colors {
@@ -217,7 +218,7 @@ bar {
     tray_output none
     }
 
-# Hidden by default. Show with right CTRL.
+# Hidden by default. Show with the right CTRL key.
 bar {
      status_command i3blocks -c ~/.config/i3/i3blocks-hidden.conf
      colors {
