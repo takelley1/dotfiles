@@ -109,32 +109,42 @@
 
     # Aliases for common utilities and apps.
 
-    # "Up 1 directory."
-    alias u='cd ../'
-
+    alias u='cd ../' # "Up 1 directory."
     alias h='cd ~'
     alias c='clear'
 
     alias mv='mv -v'
     alias cp='cp -v'
-
     alias sudo='sudo ' # This is required for bash aliases to work with sudo.
-
     alias less='less -XRF' # Show text in terminal even after quitting less.
     alias grep='grep --color=always'
     alias mkdir='mkdir -pv' # Always make parent directories.
 
-    alias noproxy='export http_proxy=; export https_proxy=; export HTTP_PROXY=; export HTTPS_PROXY=; export npm_config_proxy='
+    alias ap='ansible-playbook --diff'
+    alias tmux='tmux -f ~/.config/tmux/tmux.conf'
+
+    # Easily enable or disable proxy config.
+    noproxy(){
+        export http_proxy=
+        export https_proxy=
+        export HTTP_PROXY=
+        export HTTPS_PROXY=
+        export npm_config_proxy=
+    }
+
+    proxy(){
+        export http_proxy="http://10.0.0.15:8080"
+        export https_proxy="${http_proxy}"
+        export HTTP_PROXY="${http_proxy}"
+        export HTTPS_PROXY="${http_proxy}"
+        export npm_config_proxy="${http_proxy}"
+    }
+
+    alias reset='pokoy && pokoy -k && pokoy -r && pokoy' # Reset break timer.
 
     alias pip='pip --trusted-host pypi.org --trusted-host pypi.python.org --trusted-host files.pythonhosted.org'
     alias pip3='pip3 --trusted-host pypi.org --trusted-host pypi.python.org --trusted-host files.pythonhosted.org'
     alias pip3.8='pip3.8 --trusted-host pypi.org --trusted-host pypi.python.org --trusted-host files.pythonhosted.org'
-
-    # Reset break timer.
-    alias reset='pokoy && pokoy -k && pokoy -r && pokoy'
-
-    alias ta='tmux -f ~/.config/tmux/tmux.conf attach'
-    alias tmux='tmux -f ~/.config/tmux/tmux.conf'
 
     alias define='dict'
     alias eve='bash /opt/evesetup/lib/evelauncher/evelauncher.sh &'
@@ -234,7 +244,7 @@ if [[ "${OSTYPE}" == "linux-gnu" ]]; then
 
     export SHELL="/bin/bash"
 
-    # Add to $PATH
+    # Add ~/.local/bin to $PATH. Prevent it from getting added multiple times.
     if ! printf "%s\n" "${PATH}" | grep -q '/.local/bin'; then
         export PATH=${PATH}:~/.local/bin
     fi
@@ -242,26 +252,15 @@ if [[ "${OSTYPE}" == "linux-gnu" ]]; then
     # asd.service breaks if this isn't enabled.
     xhost + &>/dev/null
 
-    # This has been fixed.
-    # # For some reason Ansible likes to add a bunch of junk at the end
-    # #   of plays. Sed cleans this up.
-    # ap() {
-    #     ansible-playbook --diff "${@}" | sed '/^{/,$d'
-    # }
-    alias ap='ansible-playbook --diff'
-
     # Easily start/stop automounts.
     mnt() {
-        # shellcheck disable=2046
         systemctl "${@}" \
-        $(systemctl list-units \
-            mnt*.*mount \
-            --type=automount \
-            --plain \
-            --no-legend \
-            --no-pager | \
-            awk '{ORS=" "}; {print $1}') \
-            2>/dev/null
+        mnt-tank-storage-logs.automount \
+        mnt-tank-storage-videos.automount \
+        mnt-tank-storage-documents.automount \
+        mnt-tank-storage-pictures.automount \
+        mnt-tank-storage-audio.automount \
+        mnt-tank-storage-software.automount
     }
 
     alias l='ls --classify --color=auto --human-readable'
@@ -272,8 +271,7 @@ if [[ "${OSTYPE}" == "linux-gnu" ]]; then
     alias la='l -l --all'
     alias lsal='l -l --all'
     alias lar='l -l --all --reverse'
-    # Sort by size.
-    alias lss='l -l --all -S'
+    alias lss='l -l --all -S' # Sort by size.
 
     alias lcon='l -lZ --all --reverse'
     alias untar='tar -xzvf'
