@@ -259,7 +259,6 @@
   autocmd FileType floating nnoremap <buffer> <Esc>   :close!<CR>
   autocmd FileType floating
     \ setlocal bufhidden=delete shiftwidth=3 scrolloff=999 nonumber
-  let g:livepreview_previewer = 'zathura'
 
   " Toggle preventing horizonal or vertial resizing.
   nnoremap <leader>H :set winfixheight! <bar> set winfixheight?<CR>
@@ -657,6 +656,11 @@
     let g:indentLine_bufTypeExclude = ['help', 'terminal']
     let g:indentLine_fileTypeExclude = ['markdown', 'vimwiki', 'help']
     let g:indentLine_bufNameExclude = ['term:*', '*.md']
+
+  " }}}
+  " Latex Live Preview ----------------------------------------------------------------------------- {{{
+
+    let g:livepreview_previewer = 'evince'
 
   " }}}
   " LeaderF ---------------------------------------------------------------------------------------- {{{
