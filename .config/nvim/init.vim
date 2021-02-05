@@ -939,7 +939,7 @@
     call plug#begin(stdpath('data') . '/plugged')
 
       Plug '~/ansible-doc.vim'
-      
+
       Plug 'ntpeters/vim-better-whitespace' " Highlight and strip whitespace.
       Plug 'tpope/vim-obsession' " Session management.
       Plug 'tpope/vim-endwise' " Auto terminate conditional statements.
@@ -1115,7 +1115,7 @@ endif
   if exists(':terminal')
 
     " Quickly convert a terminal window to a Ranger window.
-    tnoremap <leader>r <C-\><C-n>:enew! <bar> Ranger<CR><C-L>
+    tnoremap <leader>r <C-\><C-n>:enew! <bar> RnvimrToggle<CR><C-L>
 
     nnoremap <silent> <leader>t            :terminal<CR>
     tnoremap <silent> <leader>t  <C-\><C-n>:terminal<CR>
