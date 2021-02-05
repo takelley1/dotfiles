@@ -79,8 +79,10 @@
 
   " Update file if changed from outside.
   autocmd mygroup FocusGained,BufEnter * if &readonly ==# 0 | silent! checktime | endif
-  " Auto-save file.
-  autocmd mygroup InsertLeave,BufLeave,CursorHold * if &readonly ==# 0 | silent! update | endif
+  " Auto-save file. Don't save LaTeX files automatically since auto-updating PDF previews can be distracting.
+  autocmd mygroup InsertLeave,BufLeave,CursorHold * if &readonly ==# 0 && &filetype !=# "tex" | silent! update | endif
+  " Auto-save LaTeX files only after leaving the buffer.
+  autocmd mygroup InsertLeave,BufLeave if &readonly ==# 0 && &filetype ==# "tex" | silent! update | endif
 
   " Switch to insert mode when entering terminals.
   if exists(':terminal')
@@ -194,6 +196,7 @@
   autocmd mygroup FileType vim,sh setlocal foldlevelstart=0 foldmethod=marker
 
   autocmd mygroup BufEnter *.md setlocal foldlevelstart=-1 concealcursor= conceallevel=1
+  autocmd mygroup BufEnter *.tex setlocal concealcursor= conceallevel=0
   autocmd mygroup BufEnter ~/notes/**.md setlocal foldlevelstart=2 textwidth=120
 
   autocmd mygroup FileType help setlocal nonumber
