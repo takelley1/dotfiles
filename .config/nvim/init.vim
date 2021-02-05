@@ -339,12 +339,12 @@
   " Install Vim-Plug ------------------------------------------------------------------------------- {{{
 
     " Attempt to install vim-plug if it isn't present.
-    if !filereadable($HOME . '/.local/share/nvim/site/autoload/plug.vim')
-      echo "Attempting to install vim-plug!" | sleep 2
-      silent !curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
-              https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim')
-      autocmd mygroup VimEnter * PlugInstall
-    endif
+    " if !filereadable($HOME . '/.local/share/nvim/site/autoload/plug.vim')
+    "   echo "Attempting to install vim-plug!" | sleep 2
+    "   silent !curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
+    "           https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim')
+    "   autocmd mygroup VimEnter * PlugInstall
+    " endif
 
   " Increase plugin update speed.
   set updatetime=500
