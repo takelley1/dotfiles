@@ -406,7 +406,7 @@
   " ALE -------------------------------------------------------------------------------------------- {{{
 
     " Have ALE remove extra whitespace and trailing lines.
-    let g:ale_fixers = {'*': ['remove_trailing_lines', 'trim_whitespace']}
+    let g:ale_fixers = {'*': ['remove_trailing_lines', 'trim_whitespace', 'latexindent']}
 
     let g:ale_fix_on_save = 1  " ALE will fix files automatically when they're saved.
     let g:ale_lint_delay = 300 " Increase linting speed.
@@ -418,7 +418,8 @@
     let g:ale_python_pylint_options = '--rcfile ~/.config/nvim/linters/pylintrc.config'
     " YAML
     let g:ale_yaml_yamllint_options = '--config-file ~/.config/nvim/linters/yamllint.yml'
-    let g:ale_linters = {'yaml': ['yamllint']} " Don't run swaglint on YAML files.
+    let g:ale_linters = {'yaml': ['yamllint'], 'tex': ['texlab']} " Limit linting on these filetypes.
+
 
   " }}}
   " Ansible-doc ------------------------------------------------------------------------------------ {{{
