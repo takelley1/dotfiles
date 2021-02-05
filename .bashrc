@@ -255,12 +255,12 @@ if [[ "${OSTYPE}" == "linux-gnu" ]]; then
     # Easily start/stop automounts.
     mnt() {
         systemctl "${@}" \
-        mnt-tank-storage-logs.automount \
-        mnt-tank-storage-videos.automount \
-        mnt-tank-storage-documents.automount \
-        mnt-tank-storage-pictures.automount \
         mnt-tank-storage-audio.automount \
-        mnt-tank-storage-software.automount
+        mnt-tank-storage-documents.automount \
+        mnt-tank-storage-logs.automount \
+        mnt-tank-storage-pictures.automount \
+        mnt-tank-storage-software.automount \
+        mnt-tank-storage-videos.automount
     }
 
     alias l='ls --classify --color=auto --human-readable'
