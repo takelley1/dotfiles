@@ -664,7 +664,10 @@
   " }}}
   " Latex Live Preview ----------------------------------------------------------------------------- {{{
 
+    " Set PDF viewer. Use GNOME's evince since Zathura crashes a lot.
     let g:livepreview_previewer = 'evince'
+    " Don't refresh preview on CursorHold autocommand.
+    let g:livepreview_cursorhold_recompile = 0
 
   " }}}
   " LeaderF ---------------------------------------------------------------------------------------- {{{
