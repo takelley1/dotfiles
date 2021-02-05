@@ -201,6 +201,10 @@
 
   autocmd mygroup FileType help setlocal nonumber
 
+  " Draw line at column to mark when text is too wide.
+  autocmd mygroup FileType yaml,yaml.ansible,tex setlocal colorcolumn=120
+  autocmd mygroup FileType vim,python,sh setlocal colorcolumn=100
+
   " Force cursor to stay in the middle of the screen.
   set scrolloff=999
   " Scrolloff is glitchy on terminals, so disable it there.
@@ -1042,6 +1046,8 @@ endif
   "highlight TabLine guibg=#333747 gui=None
   highlight TabLineFill guibg=#333747 gui=None
   highlight TabLineSel guifg=#292d3f guibg=#939ede gui=Bold
+
+  highlight ColorColumn guibg=#2F373C
 
 " }}}
 
