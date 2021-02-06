@@ -202,8 +202,8 @@
   autocmd mygroup FileType help setlocal nonumber
 
   " Draw line at column to mark when text is too wide.
-  autocmd mygroup FileType yaml,yaml.ansible,tex setlocal colorcolumn=120
-  autocmd mygroup FileType vim,python,sh setlocal colorcolumn=100
+  autocmd mygroup FileType markdown,tex,yaml,yaml.ansible setlocal colorcolumn=120
+  autocmd mygroup FileType python,sh,vim setlocal colorcolumn=100
 
   " Force cursor to stay in the middle of the screen.
   set scrolloff=999
