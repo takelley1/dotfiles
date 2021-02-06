@@ -938,6 +938,32 @@
     "   \ setlocal foldenable | set foldexpr=VimwikiFoldLevelCustom(v:lnum)
 
   " }}}
+  " YouCompleteMe ---------------------------------------------------------------------------------- {{{
+
+    " Additional language servers for YCM. Install with npm and pacman.
+    let g:ycm_language_server = [
+      \   { 'name': 'vim',
+      \     'filetypes': [ 'vim' ],
+      \     'cmdline': [ expand('/usr/bin/vim-language-server' ), '--stdio' ]
+      \   },
+      \   {
+      \     'name': 'bash',
+      \     'cmdline': [ 'node', expand('/usr/bin/bash-language-server' ), 'start' ],
+      \     'filetypes': [ 'sh', 'bash' ],
+      \   },
+      \   {
+      \     'name': 'texlab',
+      \     'cmdline': [ '/usr/bin/texlab' ],
+      \     'filetypes': [ 'tex' ],
+      \   },
+      \ ]
+
+      let g:ycm_collect_identifiers_from_comments_and_strings = 1
+      let g:ycm_complete_in_comments = 1  " Allow auto-completion within comments
+      let g:ycm_max_num_candidates = 25   " Limit number of completion options given.
+      let g:ycm_autoclose_preview_window_after_completion = 1
+
+  " }}}
 
   " Vim-Plug --------------------------------------------------------------------------------------- {{{
     call plug#begin(stdpath('data') . '/plugged')
