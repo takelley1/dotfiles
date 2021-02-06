@@ -133,7 +133,7 @@
    bindsym $mod+i exec firefox
    bindsym $mod+g exec gimp
    # bindsym $mod+p exec pycharm
-   bindsym $mod+v exec vncviewer
+   # bindsym $mod+v exec vncviewer
 
  # Detect caps lock activation.
    mode "caps"
@@ -177,6 +177,8 @@
 
  # Toggle tiling / floating.
    bindsym $mod+f floating toggle
+ # Toggle vertically split / horizontally split windows.
+   bindsym $mod+v layout toggle splitv splith
 
  # Switch between the two most recently-used workspaces.
    bindsym $mod+Tab workspace back_and_forth
