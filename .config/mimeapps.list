@@ -19,3 +19,4 @@ video/x-theora+ogg=vlc.desktop
 
 [Added Associations]
 application/pdf=gimp.desktop;org.pwmt.zathura-pdf-poppler.desktop;
+image/png=sxiv.desktop;
