@@ -79,10 +79,8 @@
 
   " Update file if changed from outside.
   autocmd mygroup FocusGained,BufEnter * if &readonly ==# 0 | silent! checktime | endif
-  " Auto-save file. Don't save LaTeX files automatically since auto-updating PDF previews can be distracting.
-  autocmd mygroup InsertLeave,BufLeave,CursorHold * if &readonly ==# 0 && &filetype !=# "tex" | silent! update | endif
-  " Auto-save LaTeX files only after leaving the buffer.
-  autocmd mygroup InsertLeave,BufLeave if &readonly ==# 0 && &filetype ==# "tex" | silent! update | endif
+  " Auto-save file.
+  autocmd mygroup InsertLeave,BufLeave,CursorHold * if &readonly ==# 0 | silent! update | endif
 
   " Switch to insert mode when entering terminals.
   if exists(':terminal')
@@ -971,6 +969,7 @@
 
       Plug '~/ansible-doc.vim'
 
+      " Plug 'kevinhwang91/nvim-bqf'          " Better quickfix window.
       Plug 'ntpeters/vim-better-whitespace' " Highlight and strip whitespace.
       Plug 'tpope/vim-obsession'            " Session management.
       Plug 'tpope/vim-endwise'              " Auto terminate conditional statements.
@@ -993,7 +992,6 @@
       Plug 'yggdroot/indentline'            " Show indentation lines.
       Plug 'machakann/vim-highlightedyank'  " Briefly highlight yanked text.
       Plug 'preservim/tagbar'               " Function navigation on large files.
-      Plug 'francoiscabrol/ranger.vim'      " File explorer.
       Plug 'rbgrouleff/bclose.vim'          " Dependency for ranger.vim.
       " Plug 'sheerun/vim-polyglot'         " Better syntax highlighting. Causes issues in the Vimagit window.
       " Plug 'psliwka/vim-smoothie'         " Smooth scrolling.
@@ -1027,7 +1025,8 @@
         Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  } " Render markdown.
         " Plug 'vimwiki/vimwiki', { 'branch': 'dev' } " Note management.
       elseif g:atwork
-        Plug 'ctrlpvim/ctrlp.vim' " Fuzzy finder.
+        Plug 'ctrlpvim/ctrlp.vim'              " Fuzzy finder.
+        Plug 'francoiscabrol/ranger.vim'       " File explorer.
       endif
 
     call plug#end()
@@ -1075,7 +1074,8 @@ endif
   highlight TabLineFill guibg=#333747 gui=None
   highlight TabLineSel guifg=#292d3f guibg=#939ede gui=Bold
 
-  highlight ColorColumn guibg=#2F373C
+  highlight ColorColumn guibg=#292d51
+
 
 " }}}
 
