@@ -1074,7 +1074,7 @@ endif
   highlight TabLineFill guibg=#333747 gui=None
   highlight TabLineSel guifg=#292d3f guibg=#939ede gui=Bold
 
-  highlight ColorColumn guibg=#292d51
+  highlight ColorColumn guibg=#293051
 
 
 " }}}
