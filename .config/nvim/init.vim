@@ -969,6 +969,10 @@
 
       Plug '~/ansible-doc.vim'
 
+
+      " This autocmd can replace vim-highlightedyank in 0.5
+      " autocmd mygroup TextYankPost * silent! lua require'vim.highlight'.on_yank("IncSearch", 1000)
+
       " Plug 'kevinhwang91/nvim-bqf'          " Better quickfix window.
       Plug 'ntpeters/vim-better-whitespace' " Highlight and strip whitespace.
       Plug 'tpope/vim-obsession'            " Session management.
