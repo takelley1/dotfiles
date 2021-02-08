@@ -192,15 +192,15 @@
 
   " Manual folding in vim and sh files.
   autocmd mygroup FileType vim,sh setlocal foldlevelstart=0 foldmethod=marker
-
   autocmd mygroup BufEnter *.md setlocal foldlevelstart=-1 concealcursor= conceallevel=1
-  autocmd mygroup BufEnter *.tex setlocal concealcursor= conceallevel=0
+  autocmd mygroup BufEnter *.tex setlocal concealcursor= conceallevel=0 formatoptions+=t
   autocmd mygroup BufEnter ~/notes/**.md setlocal foldlevelstart=2 textwidth=120
 
   autocmd mygroup FileType help setlocal nonumber
 
   " Draw line at column to mark when text is too wide.
   autocmd mygroup FileType markdown,tex,yaml,yaml.ansible setlocal colorcolumn=120
+  autocmd mygroup FileType markdown,tex setlocal textwidth=120
   autocmd mygroup FileType python,sh,vim setlocal colorcolumn=100
 
   " Force cursor to stay in the middle of the screen.
