@@ -1,4 +1,4 @@
-browser qutebrowser
+browser elinks
 
 color background          white   black
 color listnormal          white   black
@@ -7,3 +7,15 @@ color listnormal_unread   magenta black
 color listfocus_unread    black   magenta   bold
 color info                black   white   bold
 color article             white   black
+
+unbind-key DOWN
+bind-key j down
+
+unbind-key UP
+bind-key k up
+
+unbind-key l
+bind-key l open
+
+unbind-key q
+bind-key h quit
