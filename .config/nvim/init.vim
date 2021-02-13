@@ -1,5 +1,5 @@
 "{% raw %}
-" OPTIONS ########################################################################################## {{{
+" OPTIONS ##################################################################################### {{{
 
   " Determine if system is at home or at work.
   let hostname = substitute(system('hostname'), '\n', '', '')
@@ -23,18 +23,20 @@
   set autoread                          " Auto update when a file is changed from the outside.
   set noshowmode                        " Don't show mode since it's handled by Airline.
   set noshowcmd                         " Don't show command on last line.
-  set hidden                            " Hide abandoned buffers. https://stackoverflow.com/questions/26708822/why-do-vim-experts-prefer-buffers-over-tabs?rq=1
+  set hidden                            " Hide abandoned buffers.
 
   set ignorecase                        " Case-insensitive search, except when using capitals.
   set smartcase                         " Override ignorecase if search contains capital letters.
   set wildmenu                          " Enable path autocompletion.
   set wildmode=longest,list,full
   " Don't auto-complete these filetypes.
-  set wildignore+=*/.git/*,*/.svn/*,*/__pycache__/*,*.pyc,*.jpg,*.png,*.jpeg,*.bmp,*.gif,*.tiff,*.svg,*.ico,*.mp4,*.mkv,*.avi
+  set wildignore+=
+    \ */.git/*,*/.svn/*,*/__pycache__/*,*.pyc,*.jpg,*.png,*.jpeg,*.bmp,*.gif,*.tiff,*.svg,*.ico,
+    \ *.mp4,*.mkv,*.avi
 
   set autowriteall                      " Auto-save after certain events.
   set clipboard+=unnamedplus            " Map vim copy buffer to system clipboard.
-  set splitbelow splitright             " Splits open at the bottom and right by default, rather than top and left.
+  set splitbelow splitright             " Splits open at the bottom and right, rather than top/left.
   set noswapfile nobackup               " Don't use backups since most files are in Git.
 
   if g:athome
@@ -60,7 +62,7 @@
   endif
 
 " }}}
-" AUTOCOMMANDS ##################################################################################### {{{
+" AUTOCOMMANDS ################################################################################ {{{
 
   " https://gist.github.com/romainl/6e4c15dfc4885cb4bd64688a71aa7063#protip
   augroup mygroup
@@ -98,13 +100,15 @@
     " Change to home directory on startup.
     autocmd mygroup VimEnter * cd ~
   elseif g:atwork
-    autocmd mygroup VimEnter * if isdirectory($HOME . '/scripts/ansible') | cd ~/scripts/ansible | endif
+    autocmd mygroup VimEnter *
+      \ if isdirectory($HOME . '/scripts/ansible') | cd ~/scripts/ansible | endif
   endif
 
   " https://github.com/jdhao/nvim-config/blob/master/core/autocommands.vim
   " Return to last position when re-opening file.
   autocmd mygroup BufReadPost
-    \ if line("'\"") > 1 && line("'\"") <= line("$") && &ft !~# 'commit' | execute "normal! g`\"zvzz" | endif
+    \ if line("'\"") > 1 && line("'\"") <= line("$") && &ft !~# 'commit' |
+      \ execute "normal! g`\"zvzz" | endif
 
   " Quickly commit and push updates to notes.
   " The QuitPre event will trigger even when exiting with ZZ.
@@ -125,7 +129,8 @@
   " Automatically close leftover hidden buffers.
   " This is usually leftover terminal and ranger windows.
   " Don't trigger when in Vimagit buffers, since it will kill the buffer Magit() was called from.
-  autocmd mygroup CursorHold,TabEnter * silent! if &filetype != "magit" | call DeleteHiddenBuffers() | endif
+  autocmd mygroup CursorHold,TabEnter *
+      \ silent! if &filetype != "magit" | call DeleteHiddenBuffers() | endif
 
   if g:atwork
 
@@ -166,7 +171,7 @@
   endif
 
 " }}}
-" FORMATTING ####################################################################################### {{{
+" FORMATTING ################################################################################## {{{
 
   set encoding=utf-8     " Force unicode encoding.
 
@@ -224,7 +229,7 @@
   " autocmd mygroup BufEnter * call SetFixWindow() " This doesn't seem to help with splits resizing.
 
 " }}}
-" SHORTCUTS ######################################################################################## {{{
+" SHORTCUTS ################################################################################### {{{
 
   " Leader key easier to reach.
   let mapleader = ","
@@ -289,14 +294,16 @@
       tnoremap <leader>ve <C-\><C-n>:edit ~/.config/nvim/init.vim<CR>
     endif
   elseif g:atwork
-    nnoremap <leader>ve :edit /home/akelley/scripts/ansible/inventories/global_files/home/akelley/.vimrc<CR>
+    nnoremap <leader>ve :edit
+      \ /home/akelley/scripts/ansible/inventories/global_files/home/akelley/.vimrc<CR>
   endif
   " Reload configuration without restarting vim (vs for 'vim source').
   nnoremap <leader>vs :update <bar> :source $MYVIMRC<CR><C-L>
 
   " Quickly add a note while working on something else.
   function! Notes()
-    silent !printf "\n\%s\n\n" "[$(date +\%Y\%m\%d)] $(date +\%A,\ \%b\ \%d\ \%H:\%M:\%S)" >> ~/notes/unsorted.md
+    silent !printf "\n\%s\n\n" "[$(date +\%Y\%m\%d)] $(date +\%A,\ \%b\ \%d\ \%H:\%M:\%S)" >>
+      \ ~/notes/unsorted.md
     split ~/notes/unsorted.md
     normal! Go
   endfunction
@@ -335,10 +342,10 @@
   endif
 
 " }}}
-" PLUGINS ########################################################################################## {{{
+" PLUGINS ##################################################################################### {{{
 
   if has('nvim')
-  " Install Vim-Plug ------------------------------------------------------------------------------- {{{
+  " Install Vim-Plug -------------------------------------------------------------------------- {{{
 
     " Attempt to install vim-plug if it isn't present.
     " if !filereadable($HOME . '/.local/share/nvim/site/autoload/plug.vim')
@@ -352,7 +359,7 @@
   set updatetime=500
 
   " }}}
-  " Auto Pairs ------------------------------------------------------------------------------------- {{{
+  " Auto Pairs -------------------------------------------------------------------------------- {{{
 
     " Don't auto-pair anything by default.
     let g:AutoPairs={}
@@ -374,7 +381,7 @@
       \ })
 
   " }}}
-  " Airline ---------------------------------------------------------------------------------------- {{{
+  " Airline ----------------------------------------------------------------------------------- {{{
 
     if g:athome
       let g:airline_theme='palenight'
@@ -406,7 +413,7 @@
     " let g:airline#extensions#tabline#show_close_button = 0 " Don't show tab close button.
 
   " }}}
-  " ALE -------------------------------------------------------------------------------------------- {{{
+  " ALE --------------------------------------------------------------------------------------- {{{
 
     " Have ALE remove extra whitespace and trailing lines.
     let g:ale_fixers = {'*': ['remove_trailing_lines', 'trim_whitespace', 'latexindent']}
@@ -425,7 +432,7 @@
 
 
   " }}}
-  " Ansible-doc ------------------------------------------------------------------------------------ {{{
+  " Ansible-doc ------------------------------------------------------------------------------- {{{
 
     nnoremap <leader>D :AnsibleDocFloat<CR><C-L>
     nnoremap <leader>S :AnsibleDocSplit<CR>
@@ -440,13 +447,13 @@
       \ }
 
   " }}}
-  " Black ------------------------------------------------------------------------------------------ {{{
+  " Black ------------------------------------------------------------------------------------- {{{
 
     " Run Black formatter on Python files.
     autocmd mygroup InsertLeave,BufWritePre,BufLeave *.py execute ':Black'
 
   " }}}
-  " CtrlP ------------------------------------------------------------------------------------------ {{{
+  " CtrlP ------------------------------------------------------------------------------------- {{{
 
     " <leader>s to start searching from home directory (s for 'search').
     " <leader>S to start searching from project directory.
@@ -463,14 +470,18 @@
       let g:ctrlp_tabpage_position = 'ac'
       let g:ctrlp_working_path_mode = 'rw' " Set search path to start at first .git directory below the cwd.
 
-      let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:15,results:15' " Change height of search window.
-      let g:ctrlp_show_hidden = 1                                           " Index hidden files.
-      let g:ctrlp_clear_cache_on_exit = 0                                   " Keep cache accross reboots.
-      let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn|swp|cache|tmp)$'     " Don't index these filetypes in addition to Wildignore.
+      " Change height of search window.
+      let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:15,results:15'
+      " Index hidden files.
+      let g:ctrlp_show_hidden = 1
+      " Keep cache accross reboots.
+      let g:ctrlp_clear_cache_on_exit = 0
+      " Don't index these filetypes in addition to Wildignore.
+      let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn|swp|cache|tmp)$'
     endif
 
   " }}}
-  " Devicons --------------------------------------------------------------------------------------- {{{
+  " Devicons ---------------------------------------------------------------------------------- {{{
 
     if g:athome
       " Enable Nerd Fonts (requires AUR package).
@@ -484,7 +495,7 @@
     endif
 
   " }}}
-  " Fugitive --------------------------------------------------------------------------------------- {{{
+  " Fugitive ---------------------------------------------------------------------------------- {{{
 
     nnoremap ga :Git add %<CR>
     nnoremap gs :Git status<CR>
@@ -510,7 +521,7 @@
     endif
 
   " }}}
-  " Grepper ---------------------------------------------------------------------------------------- {{{
+  " Grepper ----------------------------------------------------------------------------------- {{{
 
     " <leader>g to start grepping (g for 'grep').
 
@@ -635,7 +646,7 @@
     let g:grepper.prompt_text = '$t> ' " Show bare prompt.
 
   " }}}
-  " GitGutter -------------------------------------------------------------------------------------- {{{
+  " GitGutter --------------------------------------------------------------------------------- {{{
 
     if g:athome
       " Make sidebar dark.
@@ -650,13 +661,13 @@
     nnoremap gd :Gdiffsplit<CR>
 
   " }}}
-  " Highlighted Yank ------------------------------------------------------------------------------- {{{
+  " Highlighted Yank -------------------------------------------------------------------------- {{{
 
     let g:highlightedyank_highlight_duration = 200
     highlight link HighlightedyankRegion Search
 
   " }}}
-  " Indentline ------------------------------------------------------------------------------------- {{{
+  " Indentline -------------------------------------------------------------------------------- {{{
 
     let g:indentLine_char = '┊'
 
@@ -666,7 +677,7 @@
     let g:indentLine_bufNameExclude = ['term:*', '*.md']
 
   " }}}
-  " Latex Live Preview ----------------------------------------------------------------------------- {{{
+  " Latex Live Preview ------------------------------------------------------------------------ {{{
 
     " Set PDF viewer. Use GNOME's evince since Zathura crashes a lot.
     let g:livepreview_previewer = 'evince'
@@ -674,7 +685,7 @@
     let g:livepreview_cursorhold_recompile = 0
 
   " }}}
-  " LeaderF ---------------------------------------------------------------------------------------- {{{
+  " LeaderF ----------------------------------------------------------------------------------- {{{
 
     if g:athome
       " <leader>f to start searching from home directory (f for 'find').
@@ -742,7 +753,7 @@
     endif
 
   " }}}
-  " Markdown Preview ------------------------------------------------------------------------------- {{{
+  " Markdown Preview -------------------------------------------------------------------------- {{{
 
     if g:athome
       " Markdown preview with mp.
@@ -756,7 +767,7 @@
     endif
 
   " }}}
-  " Neovim Remote ---------------------------------------------------------------------------------- {{{
+  " Neovim Remote ----------------------------------------------------------------------------- {{{
 
     " See https://github.com/mhinz/neovim-remote
     if has('nvim')
@@ -766,7 +777,7 @@
     autocmd mygroup FileType gitcommit,gitrebase,gitconfig set bufhidden=delete
 
   " }}}
-  " NERD Commenter --------------------------------------------------------------------------------- {{{
+  " NERD Commenter ---------------------------------------------------------------------------- {{{
 
     " <leader>cc to comment a block.
     " <leader>cu to uncomment a block.
@@ -774,14 +785,14 @@
     let g:NERDDefaultAlign = 'left'
 
   " }}}
-  " Ranger ----------------------------------------------------------------------------------------- {{{
+  " Ranger ------------------------------------------------------------------------------------ {{{
 
     " nnoremap <leader>r :Ranger<CR>
     " " This fixes weirdness with the default Ranger mapping of <leader>f.
     " let g:ranger_map_keys = ""
 
   " }}}
-  " Rnvimr ----------------------------------------------------------------------------------------- {{{
+  " Rnvimr ------------------------------------------------------------------------------------ {{{
 
     " This plugin has some rendering issues.
     if g:athome
@@ -820,19 +831,19 @@
     endif
 
   " }}}
-  " Suda ------------------------------------------------------------------------------------------- {{{
+  " Suda -------------------------------------------------------------------------------------- {{{
 
     " Automatically open write-protected files with sudo.
     " let g:suda_smart_edit = 1
 
   " }}}
-  " Taboo ------------------------------------------------------------------------------------------ {{{
+  " Taboo ------------------------------------------------------------------------------------- {{{
 
     set sessionoptions+=tabpages,globals  " Help taboo remember session options.
     let g:taboo_modified_tab_flag = ''    " Don't mark files as modified.
 
   " }}}
-  " Tagbar ----------------------------------------------------------------------------------------- {{{
+  " Tagbar ------------------------------------------------------------------------------------ {{{
 
     " Launch the tagbar by default when opening files >1000 lines.
     "autocmd mygroup BufReadPost * if
@@ -841,13 +852,13 @@
     "autocmd mygroup FileType python TagbarToggle
 
   " }}}
-  " Undotree --------------------------------------------------------------------------------------- {{{
+  " Undotree ---------------------------------------------------------------------------------- {{{
 
     " <leader>u to open Vim's undo tree.
     nnoremap <leader>u :UndotreeToggle<CR>
 
   " }}}
-  " Vim Better Whitespace -------------------------------------------------------------------------- {{{
+  " Vim Better Whitespace --------------------------------------------------------------------- {{{
 
     " Don't highlight whitespace.
     let g:better_whitespace_enabled = 0
@@ -861,26 +872,26 @@
     endfunction
 
   " }}}
-  " Vimagit ---------------------------------------------------------------------------------------- {{{
+  " Vimagit ----------------------------------------------------------------------------------- {{{
 
     let g:magit_show_magit_mapping='M'
 
     " Open Vimagit for the current repo. If Vimagit can't find a repo, use the dotfiles repo.
     " See also https://stackoverflow.com/questions/5441697/how-can-i-get-last-echoed-message-in-vimscript
     function! Vimagit(split)
-      let g:magit_git_cmd="git"                                " Ensure variable is set to default value.
-      redir => g:messages                                      " Begin capturing output of messages.
+      let g:magit_git_cmd="git"                          " Ensure variable is set to default value.
+      redir => g:messages                                " Begin capturing output of messages.
       if a:split == 1
-        silent! Magit                                          " Try opening Magit for the current repo.
+        silent! Magit                                    " Try opening Magit for the current repo.
       else
         silent! MagitOnly
       endif
-      redir END                                                " End capturing output.
-      let g:lastmsg=get(split(g:messages, "\n"), -5, "")       " Send output to var.
+      redir END                                          " End capturing output.
+      let g:lastmsg=get(split(g:messages, "\n"), -5, "") " Send output to var.
       if g:lastmsg ==# "magit can not find any git repository" " If var matches error, use dotfiles instead.
         let g:magit_git_cmd="git --git-dir=$HOME/.cfg/ --work-tree=$HOME"
         if a:split == 1
-          silent! Magit                                        " Try opening Magit for the current repo.
+          silent! Magit                                  " Try opening Magit for the current repo.
         else
           silent! MagitOnly
         endif
@@ -896,14 +907,14 @@
     let g:magit_scrolloff=999
 
   " }}}
-  " Vim Markdown ----------------------------------------------------------------------------------- {{{
+  " Vim Markdown ------------------------------------------------------------------------------ {{{
 
     let g:vim_markdown_conceal = 1
     let g:vim_markdown_folding_level = 2
     let g:vim_markdown_override_foldtext = 0
 
   " }}}
-  " Vim Wiki --------------------------------------------------------------------------------------- {{{
+  " Vim Wiki ---------------------------------------------------------------------------------- {{{
 
     " let g:vimwiki_list = [{'path': '~/notes/', 'syntax': 'markdown', 'ext': '.md'},
     "                      \{'path': '~/linux-notes/', 'syntax': 'markdown', 'ext': '.md'}]
@@ -937,7 +948,7 @@
     "   \ setlocal foldenable | set foldexpr=VimwikiFoldLevelCustom(v:lnum)
 
   " }}}
-  " YouCompleteMe ---------------------------------------------------------------------------------- {{{
+  " YouCompleteMe ----------------------------------------------------------------------------- {{{
 
     " Additional language servers for YCM. Install with npm and pacman.
     let g:ycm_language_server = [
@@ -964,7 +975,7 @@
 
   " }}}
 
-  " Vim-Plug --------------------------------------------------------------------------------------- {{{
+  " Vim-Plug ---------------------------------------------------------------------------------- {{{
     call plug#begin(stdpath('data') . '/plugged')
 
       Plug '~/ansible-doc.vim'
@@ -997,7 +1008,7 @@
       Plug 'machakann/vim-highlightedyank'  " Briefly highlight yanked text.
       Plug 'preservim/tagbar'               " Function navigation on large files.
       Plug 'rbgrouleff/bclose.vim'          " Dependency for ranger.vim.
-      " Plug 'sheerun/vim-polyglot'         " Better syntax highlighting. Causes issues in the Vimagit window.
+      " Plug 'sheerun/vim-polyglot'         " Better syntax highlighting. Causes issues in Vimagit window.
       " Plug 'psliwka/vim-smoothie'         " Smooth scrolling.
       Plug 'mbbill/undotree'                " Visualize and navigate Vim's undo tree.
       Plug 'airblade/vim-gitgutter'         " Git diffs in sidebar.
@@ -1039,7 +1050,7 @@
 endif
 
 " }}}
-" COLORS ########################################################################################### {{{
+" COLORS ###################################################################################### {{{
 
   " Colors for plugins typically have to come after they're loaded by Vim-plug.
 
@@ -1082,8 +1093,7 @@ endif
 
 
 " }}}
-
-" NAVIGATION ####################################################################################### {{{
+" NAVIGATION ################################################################################## {{{
 
   " Easier exiting insert mode.
   inoremap jk <Esc>

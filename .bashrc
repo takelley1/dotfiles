@@ -1,6 +1,6 @@
-# ALIASES ########################################################################################## {{{
+# ALIASES ##################################################################################### {{{
 
-    # Git ------------------------------------------------------------------------------------------ {{{
+    # Git ------------------------------------------------------------------------------------- {{{
 
     # Custom Git aliases for managing dotfiles.
     # See: https://developer.atlassian.com/blog/2016/02/best-way-to-store-dotfiles-git-bare-repo/
@@ -58,8 +58,10 @@
     alias dds='dot diff --staged'
     alias gds='git diff --staged'
 
-    alias dl='dot log --graph --oneline --full-history --abbrev-commit --all --color --decorate --pretty=format:"%x1b[31m%h%x09%x1b[32m%d%x1b[0m%x20%s"'
-    alias gl='git log --graph --oneline --full-history --abbrev-commit --all --color --decorate --pretty=format:"%x1b[31m%h%x09%x1b[32m%d%x1b[0m%x20%s"'
+    alias dl='dot log --graph --oneline --full-history --abbrev-commit --all --color --decorate
+            --pretty=format:"%x1b[31m%h%x09%x1b[32m%d%x1b[0m%x20%s"'
+    alias gl='git log --graph --oneline --full-history --abbrev-commit --all --color --decorate
+            --pretty=format:"%x1b[31m%h%x09%x1b[32m%d%x1b[0m%x20%s"'
 
     alias dm='dot merge'
     alias gm='git merge'
@@ -105,7 +107,7 @@
     }
 
     # }}}
-    # Utilities -------------------------------------------------------------------------------------{{{
+    # Utilities --------------------------------------------------------------------------------{{{
 
     # Aliases for common utilities and apps.
 
@@ -142,9 +144,12 @@
 
     alias reset='pokoy && pokoy -k && pokoy -r && pokoy' # Reset break timer.
 
-    alias pip='pip --trusted-host pypi.org --trusted-host pypi.python.org --trusted-host files.pythonhosted.org'
-    alias pip3='pip3 --trusted-host pypi.org --trusted-host pypi.python.org --trusted-host files.pythonhosted.org'
-    alias pip3.8='pip3.8 --trusted-host pypi.org --trusted-host pypi.python.org --trusted-host files.pythonhosted.org'
+    alias pip='pip --trusted-host pypi.org --trusted-host pypi.python.org
+                --trusted-host files.pythonhosted.org'
+    alias pip3='pip3 --trusted-host pypi.org --trusted-host pypi.python.org
+                --trusted-host files.pythonhosted.org'
+    alias pip3.8='pip3.8 --trusted-host pypi.org --trusted-host pypi.python.org
+                --trusted-host files.pythonhosted.org'
 
     alias define='dict'
     alias eve='bash /opt/evesetup/lib/evelauncher/evelauncher.sh &'
@@ -156,12 +161,13 @@
     alias snip='bash ~/.config/i3/scripts/screenshot-region.sh'
 
     # }}}
-    # Shortcuts -------------------------------------------------------------------------------------{{{
+    # Shortcuts --------------------------------------------------------------------------------{{{
 
     # Aliases for easily accessing config files and directories.
 
     # Easy editing and committing of todo list.
-    alias todo='cd ~/notes/ && git pull && ${EDITOR} ./personal--todo.md && git commit -m "Update todo.md" ./personal--todo.md && git push'
+    alias todo='cd ~/notes/ && git pull && ${EDITOR} ./personal--todo.md && git commit
+                -m "Update todo.md" ./personal--todo.md && git push'
 
     alias fmt='fmt -w 120'
 
@@ -191,7 +197,7 @@
     alias scripts='cd ~/scripts/ && ls'
 
     # }}}
-    # SSH -------------------------------------------------------------------------------------------{{{
+    # SSH --------------------------------------------------------------------------------------{{{
 
     # Aliases for quickly SSHing into other hosts.
 
@@ -202,7 +208,7 @@
     # }}}
 
 # }}}
-# FREEBSD ########################################################################################## {{{
+# FREEBSD ##################################################################################### {{{
 
 # FreeBSD-specific aliases and environment variables.
 
@@ -235,7 +241,7 @@ if [[ "${OSTYPE}" == "freebsd"* ]]; then
 fi
 
 # }}}
-# LINUX ############################################################################################ {{{
+# LINUX ####################################################################################### {{{
 
 # Linux-specific aliases and environment variables.
 # shellcheck disable=2154
@@ -263,12 +269,15 @@ if [[ "${OSTYPE}" == "linux-gnu" ]]; then
         mnt-tank-storage-videos.automount
     }
 
-    alias l='ls --classify --color=auto --human-readable'
+    # This doesn't work if `l` is an alias.
+    l() {
+        ls --classify --color=auto --human-readable "${@}"
+    }
     alias ls='l'
     alias lr='l --reverse'
-    alias lsr='lr'
-    alias ll='l -l'
-    alias la='l -l --all'
+    alias lsr='l -l --reverse'
+    alias ll='ls -l'
+    alias la='ls -l --all'
     alias lsal='l -l --all'
     alias lar='l -l --all --reverse'
     alias lss='l -l --all -S' # Sort by size.
@@ -307,7 +316,7 @@ if [[ "${OSTYPE}" == "linux-gnu" ]]; then
 fi
 
 # }}}
-# OPTIONS ########################################################################################## {{{
+# OPTIONS ##################################################################################### {{{
 
 # Miscellaneous shell options and environment variables.
 
@@ -362,7 +371,7 @@ shopt -q -s checkwinsize
 shopt -s cdspell
 
 # }}}
-# PROMPT ########################################################################################### {{{
+# PROMPT ###################################################################################### {{{
 
 # Configuration for main bash prompt.
 
@@ -374,15 +383,21 @@ else
 fi
 
 if [[ "${HOSTNAME}" != "polaris" ]] && [[ "${HOSTNAME}" != "tethys" ]]; then
+
     # Make hostname field of standard prompts yellow on servers.
-    PS1="\[\033[01;${user_color}m\]\u\[\033[37m\]@\[\033[33m\]\h\[\033[37m\]:\[\033[01;34m\]\w\[\033[00m\]\$ "
+    PS1="\[\033[01;${user_color}m\]\u\[\033[37m\]@\[\033[33m\]\h\[\033[37m\]:\
+\[\033[01;34m\]\w\[\033[00m\]\$ "
+
 else
+
     # Make standard prompts green on workstations.
-    PS1="\[\033[01;${user_color}m\]\u\[\033[37m\]@\[\033[32m\]\h\[\033[37m\]:\[\033[01;34m\]\w\[\033[00m\]\$ "
+    PS1="\[\033[01;${user_color}m\]\u\[\033[37m\]@\[\033[32m\]\h\[\033[37m\]:\
+\[\033[01;34m\]\w\[\033[00m\]\$ "
+
 fi
 
 # }}}
-# FUNCTIONS ######################################################################################## {{{
+# FUNCTIONS ################################################################################### {{{
 
 # Miscellaneous bash functions.
 
@@ -400,8 +415,7 @@ ranger_cd() {
     rm -f -- "$temp_file"
 }
 
-# Make nvim follow symlinks.
-# This makes it easier to use Git mappings within nvim.
+# Make nvim follow symlinks. This makes it easier to use Git mappings within nvim.
 # From: https://stackoverflow.com/questions/30791692/make-vim-follow-symlinks-when-opening-files-from-command-line
 function nvim {
     args=()
@@ -417,7 +431,7 @@ function nvim {
 
 
 # }}}
-# STARTX ########################################################################################### {{{
+# STARTX ###################################################################################### {{{
 
 # Start X without a display manager if logging into tty1 with a non-root account.
 # shellcheck disable=2154
