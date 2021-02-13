@@ -221,7 +221,7 @@
       setlocal winfixwidth
     endif
   endfunction
-  autocmd mygroup BufEnter * call SetFixWindow()
+  " autocmd mygroup BufEnter * call SetFixWindow() " This doesn't seem to help with splits resizing.
 
 " }}}
 " SHORTCUTS ######################################################################################## {{{
