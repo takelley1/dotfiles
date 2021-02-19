@@ -30,9 +30,7 @@
   set wildmenu                          " Enable path autocompletion.
   set wildmode=longest,list,full
   " Don't auto-complete these filetypes.
-  set wildignore+=
-    \ */.git/*,*/.svn/*,*/__pycache__/*,*.pyc,*.jpg,*.png,*.jpeg,*.bmp,*.gif,*.tiff,*.svg,*.ico,
-    \ *.mp4,*.mkv,*.avi
+  set wildignore+=*/.git/*,*/.svn/*,*/__pycache__/*,*.pyc,*.jpg,*.png,*.jpeg,*.bmp,*.gif,*.tiff,*.svg,*.ico,*.mp4,*.mkv,*.avi
 
   set autowriteall                      " Auto-save after certain events.
   set clipboard+=unnamedplus            " Map vim copy buffer to system clipboard.
@@ -122,7 +120,7 @@
     let tpbl=[]
     call map(range(1, tabpagenr('$')), 'extend(tpbl, tabpagebuflist(v:val))')
     for buf in filter(range(1, bufnr('$')), 'bufexists(v:val) && index(tpbl, v:val)==-1')
-        silent! execute 'bwipeout!' buf
+        silent! execute 'bdelete!' buf
     endfor
   endfunction
 
