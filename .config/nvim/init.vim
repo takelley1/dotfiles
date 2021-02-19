@@ -172,40 +172,48 @@
 " FORMATTING ################################################################################## {{{
 
   set encoding=utf-8     " Force unicode encoding.
-
   set number             " Show line numbers.
   set numberwidth=1      " Make line number column thinner.
 
-  set tabstop=4          " A <TAB> creates 4 spaces.
-  set softtabstop=4
-  set shiftwidth=4       " Number of auto-indent spaces.
+  set tabstop=2          " A <TAB> creates 2 spaces.
+  set softtabstop=2
+  set shiftwidth=2       " Number of auto-indent spaces.
   set expandtab          " Convert tabs to spaces.
 
-  " Use 2-space tabs on certain file formats.
-  autocmd mygroup FileType config,markdown,text,vim,vimwiki,yaml
-          \ setlocal nowrap shiftwidth=2 softtabstop=2 tabstop=2
-
   set linebreak          " Break line at predefined characters when soft-wrapping.
-  set showbreak=↪        " Character to show before the lines that have been soft-wrapped.
-
-  set formatoptions=q    " Disable all auto-formatting.
-  set indentexpr=
   " For some reason setting these options only works within an autocommand.
-  autocmd mygroup BufEnter * set formatoptions=q noautoindent nocindent nosmartindent indentexpr=
+  autocmd mygroup BufEnter * setlocal formatoptions=qt noautoindent nocindent nosmartindent indentexpr=
 
-  " Manual folding in vim and sh files.
-  autocmd mygroup FileType vim,sh setlocal foldlevelstart=0 foldmethod=marker
-  autocmd mygroup BufEnter *.md setlocal foldlevelstart=-1 concealcursor= conceallevel=1
-  autocmd mygroup BufEnter *.tex setlocal concealcursor= conceallevel=0 formatoptions+=t
-  autocmd mygroup BufEnter ~/notes/**.md setlocal foldlevelstart=2 textwidth=120
-
-  autocmd mygroup FileType help setlocal nonumber
-
-  " Draw line at column to mark when text is too wide.
-  autocmd mygroup FileType markdown,tex,yaml,yaml.ansible setlocal colorcolumn=120
-  autocmd mygroup FileType markdown,tex setlocal textwidth=120
-  autocmd mygroup FileType python,sh,vim setlocal colorcolumn=100
-
+  " Help -------------------------------------------------------------
+    autocmd mygroup FileType help setlocal
+      \ nonumber
+  " Markdown ---------------------------------------------------------
+    autocmd mygroup FileType markdown setlocal
+      \ colorcolumn=120
+    autocmd mygroup BufEnter *.md setlocal 
+      \ foldlevelstart=-1 concealcursor= conceallevel=1
+  " Python -----------------------------------------------------------
+    autocmd mygroup FileType python setlocal
+      \ shiftwidth=4 softtabstop=4 tabstop=4
+      \ colorcolumn=100
+  " Shell ------------------------------------------------------------
+    autocmd mygroup FileType sh setlocal
+      \ shiftwidth=4 softtabstop=4 tabstop=4
+      \ foldlevelstart=0 foldmethod=marker
+      \ colorcolumn=100
+  " TeX --------------------------------------------------------------
+    autocmd mygroup FileType tex setlocal
+      \ colorcolumn=120 textwidth=120
+    autocmd mygroup BufEnter *.tex setlocal
+      \ concealcursor= conceallevel=0 formatoptions+=t
+  " VimScript --------------------------------------------------------
+    autocmd mygroup FileType vim setlocal
+      \ foldlevelstart=0 foldmethod=marker
+      \ colorcolumn=100
+  " YAML -------------------------------------------------------------
+    autocmd mygroup FileType yaml,yaml.ansible setlocal
+      \ colorcolumn=120
+  
   " Force cursor to stay in the middle of the screen.
   set scrolloff=999
   " Scrolloff is glitchy on terminals, so disable it there.
@@ -278,6 +286,11 @@
   nnoremap <silent> Q :nohl<CR><C-L>
   " Easy turn on paste mode.
   nnoremap <leader>p :set paste!<CR>
+  nnoremap <space> za
+  " Insert space.
+  " nnoremap <space> i<space><ESC>
+  " Insert line break.
+  " nnoremap <CR> i<CR><ESC>  " This will break lazygit.
 
   " https://github.com/jdhao/nvim-config/blob/master/core/mappings.vim
   " Continuous visual shifting (does not exit Visual mode), `gv` means
@@ -351,7 +364,9 @@
       " This autocmd can replace vim-highlightedyank in 0.5
       " autocmd mygroup TextYankPost * silent! lua require'vim.highlight'.on_yank("IncSearch", 1000)
 
-      " Plug 'kdheepak/lazygit.nvim', { 'branch': 'nvim-v0.4.3' } " Keeps crashing.
+      Plug 'tmhedberg/SimpylFold'  " Better folding in Python.
+      Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}  " Python code highlighting.
+      Plug 'kdheepak/lazygit.nvim', { 'branch': 'nvim-v0.4.3' } " Keeps crashing.
       " Plug 'APZelos/blamer.nvim'            " Git blame
       " Plug 'f-person/git-blame.nvim'        " Git blame on each line. Requires lua
       " Plug 'kevinhwang91/nvim-bqf'        " Better quickfix window.
@@ -404,7 +419,7 @@
         Plug 'drewtempelmeyer/palenight.vim'   " Colorschemes.
         Plug 'ryanoasis/vim-devicons'          " Icons (Must be loaded after all the plugins that use it).
         Plug 'lambdalisue/suda.vim'            " Edit files with sudo. This causes performance issues at work.
-        " Plug 'ycm-core/YouCompleteMe', { 'do': './install.py' }                  " Code completion.
+        Plug 'ycm-core/YouCompleteMe', { 'do': './install.py' }                  " Code completion.
         Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' }           " Fuzzy finder.
         Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  } " Render markdown.
         " Plug 'vimwiki/vimwiki', { 'branch': 'dev' } " Note management.
@@ -749,6 +764,13 @@
     let g:indentLine_bufNameExclude = ['term:*', '*.md']
 
   " }}}
+  " LazyGit ----------------------------------------------------------------------------------- {{{
+
+    nnoremap <silent> <leader>l :LazyGit<CR>
+    nnoremap <silent> <leader>M :LazyGit<CR>
+    let g:lazygit_floating_window_scaling_factor = 0.92
+
+  " }}}
   " Latex Live Preview ------------------------------------------------------------------------ {{{
 
     " Set PDF viewer. Use GNOME's evince since Zathura crashes a lot.
@@ -786,6 +808,7 @@
 
       let g:Lf_ShowHidden = 1      " Index hidden files.
       let g:Lf_MruMaxFiles = 10000 " Index all used files in MRU list.
+      let g:Lf_CacheDirectory = ($HOME . '/.cache')
 
       "highlight Lf_hl_selection guifg=Black guibg=Black gui=Bold ctermfg=Black ctermbg=156 cterm=Bold
 
@@ -936,9 +959,9 @@
     let g:better_whitespace_enabled = 0
 
     " Automatically strip whitespace.
-    autocmd mygroup InsertLeave * call StripWhite()
+    " autocmd mygroup InsertLeave * call StripWhite()
     function! StripWhite()
-        if &filetype != 'magit'
+        if &filetype !=# 'magit'
             StripWhitespace
         endif
     endfunction
@@ -972,7 +995,7 @@
     endfunction
 
     " Open Vimagit in a new split.
-    nnoremap <leader>M :call Vimagit(1)<CR>
+    " nnoremap <leader>M :call Vimagit(1)<CR>  " Currently replaced by lazygit.
     " Open Vimagit in the same window.
     nnoremap <leader>m :call Vimagit(0)<CR>
 
@@ -1045,78 +1068,6 @@
       let g:ycm_max_num_candidates = 25   " Limit number of completion options given.
       let g:ycm_autoclose_preview_window_after_completion = 1
 
-  " }}}
-
-  " Vim-Plug ---------------------------------------------------------------------------------- {{{
-    call plug#begin(stdpath('data') . '/plugged')
-
-      Plug '~/ansible-doc.vim'
-
-
-      " This autocmd can replace vim-highlightedyank in 0.5
-      " autocmd mygroup TextYankPost * silent! lua require'vim.highlight'.on_yank("IncSearch", 1000)
-
-      " Plug 'kevinhwang91/nvim-bqf'          " Better quickfix window.
-      Plug 'ntpeters/vim-better-whitespace' " Highlight and strip whitespace.
-      Plug 'tpope/vim-obsession'            " Session management.
-      Plug 'tpope/vim-endwise'              " Auto terminate conditional statements.
-      Plug 'tpope/vim-surround'             " Easily surround words.
-      Plug 'tpope/vim-eunuch'               " Better shell commands.
-      Plug 'tpope/vim-repeat'               " Repeat plugin actions.
-      Plug 'brooth/far.vim'                 " Find and replace.
-      Plug 'Konfekt/FastFold'               " More performant folding.
-      Plug 'tpope/vim-unimpaired'           " Navigation with square bracket keys.
-      " Plug 'easymotion/vim-easymotion'    " Alternative line navigation.
-      Plug 'pearofducks/ansible-vim'        " Ansible syntax.
-      Plug 'ekalinin/Dockerfile.vim'        " Dockerfile syntax.
-      " Plug 'vim-scripts/YankRing.vim'     " Access previously yanked text.
-      Plug 'gcmt/taboo.vim'                 " Rename tabs.
-      Plug 'wesQ3/vim-windowswap'           " Easily swap window splits with <leader>ww
-      Plug 'godlygeek/tabular'              " Alignment tools.
-      Plug 'jreybert/vimagit'               " Git porcelain.
-      Plug 'psf/black', { 'for': 'python', 'branch': 'stable' } " Code formatting.
-      Plug 'jiangmiao/auto-pairs'           " Auto-create bracket and quote pairs.
-      Plug 'yggdroot/indentline'            " Show indentation lines.
-      Plug 'machakann/vim-highlightedyank'  " Briefly highlight yanked text.
-      Plug 'preservim/tagbar'               " Function navigation on large files.
-      Plug 'rbgrouleff/bclose.vim'          " Dependency for ranger.vim.
-      " Plug 'sheerun/vim-polyglot'         " Better syntax highlighting. Causes issues in Vimagit window.
-      " Plug 'psliwka/vim-smoothie'         " Smooth scrolling.
-      Plug 'mbbill/undotree'                " Visualize and navigate Vim's undo tree.
-      Plug 'airblade/vim-gitgutter'         " Git diffs in sidebar.
-      Plug 'dense-analysis/ale'             " Linting engine.
-      Plug 'tpope/vim-fugitive'             " Git wrapper.
-      Plug 'mhinz/vim-grepper'              " Search within files.
-      Plug 'vim-airline/vim-airline'        " Status bar.
-      Plug 'vim-airline/vim-airline-themes'
-      Plug 'preservim/nerdcommenter'        " Comment blocks.
-
-      " File manager.
-      " if g:athome
-      "   Plug 'kevinhwang91/rnvimr'
-      "   Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
-      " elseif g:atwork
-      "   Plug 'francoiscabrol/ranger.vim'
-      "   Plug 'rbgrouleff/bclose.vim' "   " Dependency for ranger.vim.
-      " endif
-
-      if g:athome
-        Plug 'lervag/vimtex'                   " LaTeX helpers.
-        Plug 'xuhdev/vim-latex-live-preview'   " LaTeX live preview.
-        Plug 'kevinhwang91/rnvimr'             " Ranger in a floating window.
-        Plug 'drewtempelmeyer/palenight.vim'   " Colorschemes.
-        Plug 'ryanoasis/vim-devicons'          " Icons (Must be loaded after all the plugins that use it).
-        Plug 'lambdalisue/suda.vim'            " Edit files with sudo. This causes performance issues at work.
-        Plug 'ycm-core/YouCompleteMe', { 'do': './install.py' }                  " Code completion.
-        Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' }           " Fuzzy finder.
-        Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  } " Render markdown.
-        " Plug 'vimwiki/vimwiki', { 'branch': 'dev' } " Note management.
-      elseif g:atwork
-        Plug 'ctrlpvim/ctrlp.vim'              " Fuzzy finder.
-        Plug 'francoiscabrol/ranger.vim'       " File explorer.
-      endif
-
-    call plug#end()
   " }}}
 
 endif
