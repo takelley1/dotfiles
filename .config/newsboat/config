@@ -1,12 +1,19 @@
-browser elinks
+browser qutebrowser
 
 color background          white   black
 color listnormal          white   black
-color listfocus           black   white   bold
-color listnormal_unread   magenta black
-color listfocus_unread    black   magenta   bold
-color info                black   white   bold
+color listfocus           white   color232
+color listnormal_unread   cyan    black
+color listfocus_unread    cyan    color232
+color info                white   color232   dim
 color article             white   black
+
+# Automatic feed reloads.
+auto-reload yes
+reload-threads 100
+
+# Don't show hidden articles rather than deleting them.
+ignore-mode "display"
 
 unbind-key DOWN
 bind-key j down
@@ -19,3 +26,9 @@ bind-key l open
 
 unbind-key q
 bind-key h quit
+
+unbind-key END
+bind-key G end
+
+unbind-key HOME
+bind-key g home
