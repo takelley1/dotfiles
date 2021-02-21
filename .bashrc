@@ -58,10 +58,8 @@
     alias dds='dot diff --staged'
     alias gds='git diff --staged'
 
-    alias dl='dot log --graph --oneline --full-history --abbrev-commit --all --color --decorate
-            --pretty=format:"%x1b[31m%h%x09%x1b[32m%d%x1b[0m%x20%s"'
-    alias gl='git log --graph --oneline --full-history --abbrev-commit --all --color --decorate
-            --pretty=format:"%x1b[31m%h%x09%x1b[32m%d%x1b[0m%x20%s"'
+    alias dl='dot log --graph --oneline --full-history --abbrev-commit --all --color --decorate --pretty=format:"%x1b[31m%h%x09%x1b[32m%d%x1b[0m%x20%s"'
+    alias gl='git log --graph --oneline --full-history --abbrev-commit --all --color --decorate --pretty=format:"%x1b[31m%h%x09%x1b[32m%d%x1b[0m%x20%s"'
 
     alias dm='dot merge'
     alias gm='git merge'
@@ -212,7 +210,7 @@
 
 # FreeBSD-specific aliases and environment variables.
 
-if [[ "${OSTYPE}" == "freebsd"* ]]; then
+if [[ "${OSTYPE}" =~ "bsd" ]]; then
 
     export SHELL="/usr/local/bin/bash"
 
@@ -246,7 +244,7 @@ fi
 # Linux-specific aliases and environment variables.
 # shellcheck disable=2154
 
-if [[ "${OSTYPE}" == "linux-gnu" ]]; then
+if [[ "${OSTYPE}" =~ "linux" ]]; then
 
     export SHELL="/bin/bash"
 
@@ -307,11 +305,14 @@ if [[ "${OSTYPE}" == "linux-gnu" ]]; then
         source "/etc/profile.d/proxy.sh"
     fi
 
+    # if this is interactive shell, then bind hstr to Ctrl-r.
     # Used by hstr https://github.com/dvorka/hstr
     export HSTR_CONFIG=monochromatic,prompt-bottom,help-on-opposite-side
     export PROMPT_COMMAND="history -a; history -n; ${PROMPT_COMMAND}"
-    # if this is interactive shell, then bind hstr to Ctrl-r.
-    if [[ $- =~ .*i.* ]]; then bind '"\C-r": "\e^ihstr -- \n"'; fi
+    if [[ $- =~ .*i.* ]]; then
+        set -o vi  # The below binding only takes effect if vi mode is enabled.
+        bind '"\C-r": "\e^ihstr -- \n"'
+    fi
 
 fi
 
@@ -437,7 +438,7 @@ function nvim {
 # Start X without a display manager if logging into tty1 with a non-root account.
 # shellcheck disable=2154
 
-if [[ "${OSTYPE}" == "linux-gnu" ]]; then
+if [[ "${OSTYPE}" =~ "linux" ]]; then
     if [[ ! "${USER}" == "root" && -z "${DISPLAY}" && "$(tty)" == "/dev/tty1" ]]; then
         if hash startx 2>/dev/null; then
             exec startx
