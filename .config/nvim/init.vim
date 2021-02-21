@@ -732,6 +732,10 @@
   " }}}
   " GitGutter --------------------------------------------------------------------------------- {{{
 
+    autocmd mygroup BufEnter ~/.*
+      \ let g:gitgutter_git_args = "--git-dir=$HOME/.cfg --work-tree=$HOME"
+    autocmd mygroup BufLeave ~/.* let g:gitgutter_git_args = ''
+
     if g:athome
       " Make sidebar dark.
       highlight SignColumn cterm=bold ctermbg=0 guibg=0
