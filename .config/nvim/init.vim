@@ -190,7 +190,7 @@
   " Markdown ---------------------------------------------------------
     autocmd mygroup FileType markdown setlocal
       \ colorcolumn=120
-    autocmd mygroup BufEnter *.md setlocal 
+    autocmd mygroup BufEnter *.md setlocal
       \ foldlevelstart=-1 concealcursor= conceallevel=1
   " Python -----------------------------------------------------------
     autocmd mygroup FileType python setlocal
@@ -205,7 +205,7 @@
     autocmd mygroup FileType tex setlocal
       \ colorcolumn=120 textwidth=120
     autocmd mygroup BufEnter *.tex setlocal
-      \ concealcursor= conceallevel=0 formatoptions+=t
+      \ concealcursor= conceallevel=0
   " VimScript --------------------------------------------------------
     autocmd mygroup FileType vim setlocal
       \ foldlevelstart=0 foldmethod=marker
@@ -213,7 +213,7 @@
   " YAML -------------------------------------------------------------
     autocmd mygroup FileType yaml,yaml.ansible setlocal
       \ colorcolumn=120
-  
+
   " Force cursor to stay in the middle of the screen.
   set scrolloff=999
   " Scrolloff is glitchy on terminals, so disable it there.
@@ -244,11 +244,6 @@
   " Jump back and forth between files.
   noremap <silent> <BS> :e#<CR><C-L>
 
-  " if g:atwork
-  "   nnoremap ZZ :nohl
-  "   nnoremap ZQ :nohl
-  " endif
-
   " Use `call P('highlight')` to put the output of `highlight` in the current buffer,
   "   allowing the content to be searched through.
   function! P(command)
@@ -278,7 +273,7 @@
 
   " Toggle preventing horizonal or vertial resizing.
   nnoremap <leader>H :set winfixheight! <bar> set winfixheight?<CR>
-  nnoremap <leader>W :set winfixwidth! <bar> set winfixheight?<CR>
+  nnoremap <leader>W :set winfixwidth! <bar> set winfixwidth?<CR>
 
   " Columnize selection.
   vnoremap t :!column -t<CR>
@@ -306,7 +301,7 @@
     endif
   elseif g:atwork
     nnoremap <leader>ve :edit
-      \ /home/akelley/scripts/ansible/inventories/global_files/home/akelley/.vimrc<CR>
+      \ ~/scripts/ansible/inventories/global_files/home/akelley/.vimrc<CR>
   endif
   " Reload configuration without restarting vim (vs for 'vim source').
   nnoremap <leader>vs :update <bar> :source $MYVIMRC<CR><C-L>
@@ -329,14 +324,15 @@
     command! I3ccc     edit /tmp/.i3-config
     command! I3        tabnew | cd ~/.config/i3/ | RnvimrToggle
     command! Status    tabnew | cd ~/.config/i3/scripts/status-bar/ | RnvimrToggle
-    command! Bashrc    tabnew | cd ~/.config/bashrc.d | RnvimrToggle
+    command! Bashrc    tabnew | cd ~/.bashrc | RnvimrToggle
     command! Alacritty tabnew | cd ~/.config/alacritty | RnvimrToggle
 
   " Dotfiles (Vim-fugitive doesn't support --git-dir option)
     nnoremap da :write<CR> :!git --git-dir=$HOME/.cfg/ --work-tree=$HOME add %<CR><C-L>
     nnoremap ds :!git --git-dir=$HOME/.cfg/ --work-tree=$HOME status --untracked-files=no<CR>
     nnoremap dl :!git --git-dir=$HOME/.cfg/ --work-tree=$HOME log<CR>
-    nnoremap dp :!git --git-dir=$HOME/.cfg/ --work-tree=$HOME push<CR>
+    nnoremap dP :!git --git-dir=$HOME/.cfg/ --work-tree=$HOME push<CR>
+    nnoremap dp :!git --git-dir=$HOME/.cfg/ --work-tree=$HOME pull<CR>
     " *dot diff unstaged*
     nnoremap diu :!git --git-dir=$HOME/.cfg/ --work-tree=$HOME diff<CR>
     " *dot diff staged*
@@ -587,7 +583,8 @@
     nnoremap ga :Git add %<CR>
     nnoremap gs :Git status<CR>
     nnoremap gl :Git log<CR>
-    nnoremap gp :Git push<CR>
+    nnoremap gP :Git push<CR>
+    nnoremap gp :Git pull<CR>
     nnoremap giu :Git diff<CR>
     nnoremap gis :Git diff --staged<CR>
     nnoremap gcf :Git add % <bar> Git commit %<CR>
