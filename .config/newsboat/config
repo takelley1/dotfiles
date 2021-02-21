@@ -1,4 +1,4 @@
-browser qutebrowser
+browser "qutebrowser --loglevel critical %u"
 
 color background          white   black
 color listnormal          white   black
