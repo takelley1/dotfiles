@@ -747,6 +747,9 @@
     nnoremap gu :GitGutterUndoHunk<CR>
     " View interactive git diff.
     nnoremap gd :Gdiffsplit<CR>
+    " Jump between hunks.
+    nnoremap gn :GitGutterNextHunk<CR>
+    nnoremap gN :GitGutterPrevHunk<CR>
 
   " }}}
   " Highlighted Yank -------------------------------------------------------------------------- {{{
