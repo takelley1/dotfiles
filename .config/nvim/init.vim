@@ -82,11 +82,35 @@
   " Auto-save file.
   autocmd mygroup InsertLeave,BufLeave,CursorHold * if &readonly ==# 0 | silent! update | endif
 
-  " Switch to insert mode when entering terminals.
+  " Switch to insert mode when entering terminals --------------------------------------------- {{{
   if exists(':terminal')
-    autocmd mygroup BufEnter * if &buftype ==# "terminal" | startinsert | setlocal nonumber | endif
+    autocmd mygroup BufEnter * :call TermInsert()
     autocmd mygroup TermOpen * setlocal nonumber | startinsert
   endif
+  " This function emulates tmux's scrollback functionality. Nvim will only enter insert mode if the
+  "   user's cursor is on the terminal prompt. Nvim will NOT enter insert mode if the user is
+  "   viewing the terminal's scrollback buffer (see comment below for an exception).
+  function! TermInsert()
+    if &buftype ==# "terminal"
+      " Determine number of lines visible in the current terminal buffer/split.
+      let b:bufheight = line("w$") - line("w0") 
+      let b:bufheight_adjusted = b:bufheight + 1
+      " Enter insert mode if the number of total lines is equal to the line the cursor is on.
+      if line("$") == line(".")
+        startinsert
+      " Terminal prompts start at the top of the buffer and move to the bottom as the buffer scrolls.
+      " If the promt isn't at the bottom of the buffer yet, start insert mode since there's no way
+      "   to reliably check whether the cursor is on the prompt.
+      " The additional check using b:bufheight_adjusted allows scrolling back beyond the top of
+      "   the buffer's current view.
+      elseif line(".") <= b:bufheight && line("$") <= b:bufheight_adjusted
+        startinsert
+      endif
+      setlocal nonumber
+    endif
+  endfunction
+  " }}}
+
   " Switch to normal mode when entering all other buffers.
   autocmd mygroup BufEnter * if &buftype !=# "terminal" | stopinsert | endif
 
@@ -130,6 +154,7 @@
   autocmd mygroup CursorHold,TabEnter *
       \ silent! if &filetype != "magit" | call DeleteHiddenBuffers() | endif
 
+  " Auto-write files at work ------------------------------------------------------------------ {{{
   if g:atwork
 
     " Automatically create SSH aliases file from Ansible inventory file.
@@ -167,6 +192,7 @@
       \ ~/scripts/ansible/inventories/global_files/home/akelley/.bash_profile
       \ ~/.bash_profile
   endif
+  " }}}
 
 " }}}
 " FORMATTING ################################################################################## {{{
@@ -179,10 +205,11 @@
   set softtabstop=2
   set shiftwidth=2       " Number of auto-indent spaces.
   set expandtab          " Convert tabs to spaces.
+  set foldmethod=manual foldlevelstart=99  " Don't fold by default.
 
   set linebreak          " Break line at predefined characters when soft-wrapping.
   " For some reason setting these options only works within an autocommand.
-  autocmd mygroup BufEnter * setlocal formatoptions=qt noautoindent nocindent nosmartindent indentexpr=
+  autocmd mygroup BufEnter * setlocal formatoptions=q noautoindent nocindent nosmartindent indentexpr=
 
   " Help -------------------------------------------------------------
     autocmd mygroup FileType help setlocal
@@ -360,7 +387,7 @@
       " This autocmd can replace vim-highlightedyank in 0.5
       " autocmd mygroup TextYankPost * silent! lua require'vim.highlight'.on_yank("IncSearch", 1000)
 
-      Plug 'tmhedberg/SimpylFold'  " Better folding in Python.
+      " Plug 'tmhedberg/SimpylFold'  " Better folding in Python.
       Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}  " Python code highlighting.
       Plug 'kdheepak/lazygit.nvim', { 'branch': 'nvim-v0.4.3' } " Keeps crashing.
       " Plug 'APZelos/blamer.nvim'            " Git blame
@@ -439,7 +466,7 @@
     " endif
 
   " Increase plugin update speed.
-  set updatetime=500
+  set updatetime=300
 
   " }}}
   " Auto Pairs -------------------------------------------------------------------------------- {{{
