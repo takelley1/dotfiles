@@ -1,12 +1,17 @@
 config.load_autoconfig()
 
-c.content.javascript.enabled = False
+# This breaks eveonline.com
+#  c.content.javascript.enabled = False
 
 c.colors.webpage.darkmode.enabled = True
 c.colors.webpage.darkmode.grayscale.images = 0
 c.colors.webpage.darkmode.contrast = 0.0
 
 c.url.start_pages = ["https://www.qutebrowser.org/"]
+
+c.tabs.show = "multiple"
+c.statusbar.show = "in-mode"
+#  c.scrolling.smooth = True
 
 c.zoom.default = "140%"
 c.zoom.levels = [
@@ -32,7 +37,3 @@ c.zoom.levels = [
     "200%",
     "250%",
 ]
-
-c.tabs.show = "multiple"
-c.statusbar.show = "in-mode"
-#  c.scrolling.smooth = True
