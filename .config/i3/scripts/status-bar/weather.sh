@@ -7,7 +7,7 @@
 # Emoji U+1F343 🍃
 wind_icon="🍃"
 # Emoji U+1F4A7 💧
-humidity_icon="💧"
+humidity_icon="🌫" # U+1F32B
 
 # First check to make sure ping doesn't fail.
 if curl https://icanhazip.com >/dev/null 2>&1; then
