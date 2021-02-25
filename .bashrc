@@ -155,6 +155,7 @@
     # On neovim terminals, the cursor disappears after newsboat exits. This forces the cursor
     #   to reappear.
     alias newsboat='newsboat && echo -en "\e[?25h"'
+    alias feh='feh --draw-tinted --draw-filename --keep-zoom-vp --force-aliasing --fullscreen'
 
     alias osrs='bash ~/scripts/bash/linux/osrs.sh &'
     alias runescape='osrs'
