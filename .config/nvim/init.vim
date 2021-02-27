@@ -425,20 +425,17 @@
       Plug 'vim-airline/vim-airline'        " Status bar.
       Plug 'vim-airline/vim-airline-themes'
       Plug 'preservim/nerdcommenter'        " Comment blocks.
+      Plug 'kevinhwang91/rnvimr'             " Ranger in a floating window.
 
       " File manager.
       " if g:athome
       "   Plug 'kevinhwang91/rnvimr'
       "   Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
-      " elseif g:atwork
-      "   Plug 'francoiscabrol/ranger.vim'
-      "   Plug 'rbgrouleff/bclose.vim' "   " Dependency for ranger.vim.
       " endif
 
       if g:athome
         Plug 'lervag/vimtex'                   " LaTeX helpers.
         Plug 'xuhdev/vim-latex-live-preview'   " LaTeX live preview.
-        Plug 'kevinhwang91/rnvimr'             " Ranger in a floating window.
         Plug 'drewtempelmeyer/palenight.vim'   " Colorschemes.
         Plug 'ryanoasis/vim-devicons'          " Icons (Must be loaded after all the plugins that use it).
         Plug 'lambdalisue/suda.vim'            " Edit files with sudo. This causes performance issues at work.
@@ -448,8 +445,6 @@
         " Plug 'vimwiki/vimwiki', { 'branch': 'dev' } " Note management.
       elseif g:atwork
         Plug 'ctrlpvim/ctrlp.vim'              " Fuzzy finder.
-        Plug 'francoiscabrol/ranger.vim'       " File explorer.
-        Plug 'rbgrouleff/bclose.vim'          " Dependency for ranger.vim.
       endif
 
     call plug#end()
@@ -909,13 +904,6 @@
     " <leader>cu to uncomment a block.
     let g:NERDSpaceDelims = 1
     let g:NERDDefaultAlign = 'left'
-
-  " }}}
-  " Ranger ------------------------------------------------------------------------------------ {{{
-
-    " nnoremap <leader>r :Ranger<CR>
-    " " This fixes weirdness with the default Ranger mapping of <leader>f.
-    " let g:ranger_map_keys = ""
 
   " }}}
   " Rnvimr ------------------------------------------------------------------------------------ {{{
