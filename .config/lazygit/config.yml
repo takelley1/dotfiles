@@ -1,7 +1,7 @@
 ---
 
 gui:
-  scrollHeight: 2
+  scrollHeight: 4
   scrollPastBottom: true
   mouseEvents: false
   skipUnstageLineWarning: false
@@ -20,6 +20,7 @@ gui:
       - blue
     selectedLineBgColor:
       - bold
+      - reverse
     selectedRangeBgColor:
       - bold
       - reverse
@@ -50,12 +51,12 @@ update:
 reporting: undetermined
 splashUpdatesIndex: 0
 confirmOnQuit: false
-quitOnTopLevelReturn: true
+quitOnTopLevelReturn: false
 keybinding:
   universal:
     quit: q
     quit-alt1: <c-c>
-    return: <esc>
+    return: h
     quitWithoutChangingDirectory: Q
     togglePanel: <tab>
     prevItem: <up>
@@ -68,15 +69,15 @@ keybinding:
     gotoBottom: ">"
     prevBlock: <left>
     nextBlock: <right>
-    prevBlock-alt: h
-    nextBlock-alt: l
+    prevBlock-alt: K
+    nextBlock-alt: J
     nextMatch: n
     prevMatch: N
     startSearch: /
     optionMenu: x
     optionMenu-alt1: "?"
     select: <space>
-    goInto: <enter>
+    goInto: l
     confirm: <enter>
     confirm-alt1: y
     remove: d
@@ -144,8 +145,8 @@ keybinding:
     markCommitAsFixup: f
     createFixupCommit: F
     squashAboveCommits: S
-    moveDownCommit: <c-j>
-    moveUpCommit: <c-k>
+    moveDownCommit: <Down>
+    moveUpCommit: <Up>
     amendToCommit: A
     pickCommit: p
     revertCommit: t
