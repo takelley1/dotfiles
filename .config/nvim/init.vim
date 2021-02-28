@@ -793,7 +793,7 @@
   " LazyGit ----------------------------------------------------------------------------------- {{{
 
     nnoremap <silent> <leader>l :LazyGit<CR>
-    nnoremap <silent> <leader>M :LazyGit<CR>
+    nnoremap <silent> <leader>m :LazyGit<CR>
     let g:lazygit_floating_window_scaling_factor = 0.92
 
   " }}}
@@ -1014,9 +1014,9 @@
     endfunction
 
     " Open Vimagit in a new split.
-    " nnoremap <leader>M :call Vimagit(1)<CR>  " Currently replaced by lazygit.
+    " nnoremap <leader>m :call Vimagit(1)<CR>  " Currently replaced by lazygit.
     " Open Vimagit in the same window.
-    nnoremap <leader>m :call Vimagit(0)<CR>
+    nnoremap <leader>M :call Vimagit(0)<CR>
 
     let g:magit_scrolloff=999
 
