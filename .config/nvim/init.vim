@@ -82,7 +82,7 @@
   " Auto-save file.
   autocmd mygroup InsertLeave,BufLeave,CursorHold * if &readonly ==# 0 | silent! update | endif
 
-  " Switch to insert mode when entering terminals --------------------------------------------- {{{
+  " Manage insert mode when entering terminals ------------------------------------------------ {{{
   if exists(':terminal')
     autocmd mygroup BufEnter * :call TermInsert()
     autocmd mygroup TermOpen * setlocal nonumber | startinsert
@@ -93,7 +93,7 @@
   function! TermInsert()
     if &buftype ==# "terminal"
       " Determine number of lines visible in the current terminal buffer/split.
-      let b:bufheight = line("w$") - line("w0") 
+      let b:bufheight = line("w$") - line("w0")
       let b:bufheight_adjusted = b:bufheight + 1
       " Enter insert mode if the number of total lines is equal to the line the cursor is on.
       if line("$") == line(".")
@@ -332,6 +332,8 @@
   endif
   " Reload configuration without restarting vim (vs for 'vim source').
   nnoremap <leader>vs :update <bar> :source $MYVIMRC<CR><C-L>
+  " Quickly save and quit everything to restart neovim.
+  nnoremap <leader>Q :wqa!<CR>
 
   " Quickly add a note while working on something else.
   function! Notes()
@@ -470,20 +472,22 @@
     let g:AutoPairs={}
 
     " Only activate auto-pair for the below strings.
-    autocmd mygroup FileType yaml.ansible,jinja2
-      \ let b:AutoPairs=AutoPairsDefine
-      \ ({
-      \ '(':')',
-      \ '[':']',
-      \ '"{{':'}}"',
-      \ '{{':'}}',
-      \ "'{{":"}}'",
-      \ '{%':'%}',
-      \ "`":"`",
-      \ '```':'```',
-      \ '"""':'"""',
-      \ "'''":"'''"
-      \ })
+   autocmd mygroup FileType yaml.ansible,jinja2,sh
+     \ let b:AutoPairs=AutoPairsDefine
+     \ ({
+     \ '(':')',
+     \ '[':']',
+     \ '"{{':'}}"',
+     \ '{{':'}}',
+     \ "'{{":"}}'",
+     \ '{%':'%}',
+     \ "[[:":":]]",
+     \ '"${':'}"',
+     \ "`":"`",
+     \ '```':'```',
+     \ '"""':'"""',
+     \ "'''":"'''"
+     \ })
 
   " }}}
   " Airline ----------------------------------------------------------------------------------- {{{
