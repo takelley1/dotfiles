@@ -2,7 +2,7 @@
 
 gui:
   scrollHeight: 4
-  scrollPastBottom: true
+  scrollPastBottom: false
   mouseEvents: false
   skipUnstageLineWarning: false
   skipStashWarning: true
