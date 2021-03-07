@@ -275,8 +275,7 @@ if [[ "${OSTYPE}" =~ "linux" ]]; then
     alias lar='l -l --all --reverse'
     alias lss='l -l --all -S' # Sort by size.
 
-    alias lcon='l -lZ --all --reverse'
-    alias untar='tar -xzvf'
+    alias dmesg='dmesg --human --ctime --decode'
 
     if hash nvim 2>/dev/null; then
         export EDITOR="/usr/bin/nvim"
