@@ -227,7 +227,7 @@
     autocmd mygroup FileType sh setlocal
       \ shiftwidth=4 softtabstop=4 tabstop=4
       \ foldlevelstart=0 foldmethod=marker
-      \ colorcolumn=100
+      \ colorcolumn=120
   " TeX --------------------------------------------------------------
     autocmd mygroup FileType tex setlocal
       \ colorcolumn=120 textwidth=120
@@ -391,11 +391,11 @@
 
       " Plug 'tmhedberg/SimpylFold'  " Better folding in Python.
       Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}  " Python code highlighting.
-      Plug 'kdheepak/lazygit.nvim', { 'branch': 'nvim-v0.4.3' } " Keeps crashing.
+      Plug 'kdheepak/lazygit.nvim', { 'branch': 'nvim-v0.4.3' }
       " Plug 'APZelos/blamer.nvim'            " Git blame
       " Plug 'f-person/git-blame.nvim'        " Git blame on each line. Requires lua
       " Plug 'kevinhwang91/nvim-bqf'        " Better quickfix window.
-      " Plug 'ntpeters/vim-better-whitespace' " Highlight and strip whitespace.
+      Plug 'ntpeters/vim-better-whitespace' " Highlight and strip whitespace.
       Plug 'tpope/vim-obsession'            " Session management.
       Plug 'tpope/vim-endwise'              " Auto terminate conditional statements.
       Plug 'tpope/vim-surround'             " Easily surround words.
@@ -471,23 +471,23 @@
     " Don't auto-pair anything by default.
     let g:AutoPairs={}
 
-    " Only activate auto-pair for the below strings.
-   autocmd mygroup FileType yaml.ansible,jinja2,sh
-     \ let b:AutoPairs=AutoPairsDefine
-     \ ({
-     \ '(':')',
-     \ '[':']',
-     \ '"{{':'}}"',
-     \ '{{':'}}',
-     \ "'{{":"}}'",
-     \ '{%':'%}',
-     \ "[[:":":]]",
-     \ '"${':'}"',
-     \ "`":"`",
-     \ '```':'```',
-     \ '"""':'"""',
-     \ "'''":"'''"
-     \ })
+    " Only activate auto-pair for the below strings and filetypes.
+    autocmd mygroup FileType yaml.ansible,jinja2,sh,markdown,tex
+      \ let b:AutoPairs=AutoPairsDefine
+      \ ({
+      \ '<br>':'<br>',
+      \ '"{{':'}}"',
+      \ '{{':'}}',
+      \ "'{{":"}}'",
+      \ '{%':'%}',
+      \ "[[:":":]]",
+      \ '"${':'}"',
+      \ "`":"`",
+      \ "``":"''",
+      \ '```':'```',
+      \ '"""':'"""',
+      \ "'''":"'''"
+      \ })
 
   " }}}
   " Airline ----------------------------------------------------------------------------------- {{{
@@ -758,6 +758,7 @@
   " }}}
   " GitGutter --------------------------------------------------------------------------------- {{{
 
+    " Enable GitGutter markings for dotfiles repo.
     autocmd mygroup BufEnter ~/.*
       \ let g:gitgutter_git_args = "--git-dir=$HOME/.cfg --work-tree=$HOME"
     autocmd mygroup BufLeave ~/.* let g:gitgutter_git_args = ''
@@ -982,9 +983,9 @@
     let g:better_whitespace_enabled = 0
 
     " Automatically strip whitespace.
-    " autocmd mygroup InsertLeave * call StripWhite()
+    autocmd mygroup InsertLeave,CursorHold * call StripWhite()
     function! StripWhite()
-        if &filetype !=# 'magit'
+        if &filetype !=# 'magit' && &modifiable ==# 1 && &readonly ==# 0
             StripWhitespace
         endif
     endfunction
