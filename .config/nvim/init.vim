@@ -938,12 +938,12 @@
         \ 'yw': 'EmitRangerCwd',
         \ }
 
-      " Set floating initial size relative to 90% of parent window size.
+      " Set floating initial size relative to 95% of parent window size.
       let g:rnvimr_layout = {
         \ 'relative': 'editor',
-        \ 'width': float2nr(round(0.9 * &columns)),
-        \ 'height': float2nr(round(0.9 * &lines)),
-        \ 'col': float2nr(round(0.05 * &columns)),
+        \ 'width': float2nr(round(0.95 * &columns)),
+        \ 'height': float2nr(round(0.95 * &lines)),
+        \ 'col': float2nr(round(0.025 * &columns)),
         \ 'row': float2nr(round(0.05 * &lines)),
         \ 'style': 'minimal'
         \ }
@@ -1065,6 +1065,12 @@
     " endfunction
     " autocmd mygroup FileType vimwiki setlocal foldmethod=expr |
     "   \ setlocal foldenable | set foldexpr=VimwikiFoldLevelCustom(v:lnum)
+
+  " }}}
+  " Vim Windowswap ---------------------------------------------------------------------------- {{{
+
+    let g:windowswap_map_keys = 0
+    nnoremap <silent> <leader>WW :call WindowSwap#EasyWindowSwap()<CR>
 
   " }}}
   " YouCompleteMe ----------------------------------------------------------------------------- {{{
