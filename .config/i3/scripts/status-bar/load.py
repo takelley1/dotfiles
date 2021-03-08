@@ -8,6 +8,7 @@
 # Nerd Fonts f9c4 龍
 
 icon = "⚖️"
+verbose = True
 
 import sys
 import psutil
@@ -20,9 +21,10 @@ def main():
     # Break apart the tuple to add leading zeroes to each number.
     for load in load_tuple:
 
-        # Convert to int, drop decimal.
-        load = int(load)
-        load = "{:02d}".format(load)
+        if not verbose:
+            # Convert to int, drop decimal.
+            load = int(load)
+            load = "{:02d}".format(load)
 
         # Reassemble the values into a list.
         load_list.append(load)
