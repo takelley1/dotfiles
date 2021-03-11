@@ -36,6 +36,7 @@
   set clipboard+=unnamedplus            " Map vim copy buffer to system clipboard.
   set splitbelow splitright             " Splits open at the bottom and right, rather than top/left.
   set noswapfile nobackup               " Don't use backups since most files are in Git.
+  set updatetime=300                    " Increase plugin update speed.
 
   if g:athome
     let g:python3_host_prog = '/usr/bin/python3' " Speed up startup.
@@ -382,6 +383,7 @@
 
   if has('nvim')
   " Vim-Plug ---------------------------------------------------------------------------------- {{{
+
     call plug#begin(stdpath('data') . '/plugged')
 
       Plug '~/ansible-doc.vim'
@@ -429,12 +431,6 @@
       Plug 'preservim/nerdcommenter'        " Comment blocks.
       Plug 'kevinhwang91/rnvimr'             " Ranger in a floating window.
 
-      " File manager.
-      " if g:athome
-      "   Plug 'kevinhwang91/rnvimr'
-      "   Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
-      " endif
-
       if g:athome
         Plug 'lervag/vimtex'                   " LaTeX helpers.
         Plug 'xuhdev/vim-latex-live-preview'   " LaTeX live preview.
@@ -461,9 +457,6 @@
     "           https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim')
     "   autocmd mygroup VimEnter * PlugInstall
     " endif
-
-  " Increase plugin update speed.
-  set updatetime=300
 
   " }}}
   " Auto Pairs -------------------------------------------------------------------------------- {{{
@@ -538,7 +531,6 @@
     " YAML
     let g:ale_yaml_yamllint_options = '--config-file ~/.config/nvim/linters/yamllint.yml'
     let g:ale_linters = {'yaml': ['yamllint'], 'tex': ['texlab']} " Limit linting on these filetypes.
-
 
   " }}}
   " Ansible-doc ------------------------------------------------------------------------------- {{{
@@ -643,117 +635,60 @@
     "   manually here.
     source $HOME/.local/share/nvim/plugged/vim-grepper/plugin/grepper.vim
 
-    if g:athome
+    nnoremap <leader>G :Grepper -tool rg -cd ~/<CR>
+    nnoremap <leader>g :Grepper -tool rg<CR>
 
-      nnoremap <leader>G :Grepper -tool rg -cd ~/<CR>
-      nnoremap <leader>g :Grepper -tool rg<CR>
-      if exists(':terminal')
-        tnoremap <leader>G <C-\><C-n>:Grepper -tool rg -cd ~/<CR>
-        tnoremap <leader>g <C-\><C-n>:Grepper -tool rg<CR>
-      endif
-
-      " Set options for ripgrep.
-      let g:grepper.rg.grepprg = 'rg
-        \ -H
-        \ --no-heading
-        \ --vimgrep
-        \ --hidden
-        \ -g "!**/.LfCache"
-        \ -g "!**/.ansible"
-        \ -g "!**/.cache"
-        \ -g "!**/.cargo"
-        \ -g "!**/.cfg"
-        \ -g "!**/.gem"
-        \ -g "!**/.local"
-        \ -g "!**/.mozilla"
-        \ -g "!**/.npm"
-        \ -g "!**/.tmux"
-        \ -g "!**/.fltk"
-        \ -g "!**/.gnupg"
-        \ -g "!**/.gnupg"
-        \ -g "!*.7z"
-        \ -g "!*.aac"
-        \ -g "!*.avi"
-        \ -g "!*.bau"
-        \ -g "!*.bmp"
-        \ -g "!*.cer"
-        \ -g "!*.cert*"
-        \ -g "!*.crate"
-        \ -g "!*.crt"
-        \ -g "!*.dat"
-        \ -g "!*.db*"
-        \ -g "!*.der"
-        \ -g "!*.dic"
-        \ -g "!*.doc*"
-        \ -g "!*.exc"
-        \ -g "!*.fmt"
-        \ -g "!*.gif"
-        \ -g "!*.gpg"
-        \ -g "!*.gz"
-        \ -g "!*.ico"
-        \ -g "!*.iso"
-        \ -g "!*.jpeg"
-        \ -g "!*.jpg"
-        \ -g "!*.kbx*"
-        \ -g "!*.key"
-        \ -g "!*.localstorage*"
-        \ -g "!*.lock"
-        \ -g "!*.m4a"
-        \ -g "!*.mkv"
-        \ -g "!*.mp3"
-        \ -g "!*.mp4"
-        \ -g "!*.msg"
-        \ -g "!*.odt"
-        \ -g "!*.pack"
-        \ -g "!*.pdf"
-        \ -g "!*.pick*"
-        \ -g "!*.png"
-        \ -g "!*.py1*"
-        \ -g "!*.pyc"
-        \ -g "!*.sdv"
-        \ -g "!*.shada"
-        \ -g "!*.so"
-        \ -g "!*.sql*"
-        \ -g "!*.stats"
-        \ -g "!*.svg"
-        \ -g "!*.tar"
-        \ -g "!*.tar.*"
-        \ -g "!*.tgz"
-        \ -g "!*.thm"
-        \ -g "!*.tiff"
-        \ -g "!*.vdi"
-        \ -g "!*.vhd"
-        \ -g "!*.vmdk"
-        \ -g "!*.vmdx"
-        \ -g "!*.webp"
-        \ -g "!*.whl"
-        \ -g "!*.zip"
-        \ '
-
-    elseif g:atwork
-
-      " Set options for GNU Grep.
-      let g:grepper.grep.grepprg = 'grep
-       \ --ignore-case
-       \ --dereference-recursive
-       \ --binary-files=without-match
-       \ --exclude-dir=.*
-       \ --exclude-dir=tests
-       \ --exclude-dir=results
-       \ --exclude=*.ckl
-       \ --exclude=*bash_history
-       \ '
-
-      nnoremap <leader>G :Grepper -tool grep -cd ~/<CR>
-      nnoremap <leader>g :Grepper -tool grep -cd ~/scripts<CR>
-      if exists(':terminal')
-        tnoremap <leader>G <C-\><C-n>:Grepper -tool grep -cd ~/<CR>
-        tnoremap <leader>g <C-\><C-n>:Grepper -tool grep -cd ~/scripts<CR>
-      endif
-
+    if exists(':terminal')
+      tnoremap <leader>G <C-\><C-n>:Grepper -tool rg -cd ~/<CR>
+      tnoremap <leader>g <C-\><C-n>:Grepper -tool rg<CR>
     endif
 
     let g:grepper.prompt_text = '$t> ' " Show bare prompt.
+    let g:grepper.stop = 3000
+
+    " Set options for ripgrep.
+    let g:grepper.rg.grepprg = 'rg
+      \ --with-filename
+      \ --no-heading
+      \ --vimgrep
+      \ --hidden
+      \ --max-filesize 10M
+      \ --one-file-system
+      \ --smart-case
+      \ -g "!**/Downloads"
+      \ -g "!**/.cfg"
+      \ -g "!**/.fltk"
+      \ -g "!**/.git" -g "!**/.svn" -g "!**/.hg"
+      \ -g "!**/.gem" -g "!**/.vpython*" -g "!**/.npm" -g "!**/.cargo"
+      \ -g "!**/.gnupg" -g "!**/.local" -g "!**/.cache"
+      \ -g "!**/.mozilla" -g "!**/.tmux" -g "!**/.LfCache" -g "!**/.ansible"
+      \ -g "!*.avi" -g "!*.aac" -g "!*.m4a" -g "!*.mkv" -g "!*.mp*"
+      \ -g "!*.crt" -g "!*.der" -g "!*.cer*"
+      \ -g "!*.doc*" -g "!*.odt" -g "!*.pdf"
+      \ -g "!*.gpg" -g "!*.key"
+      \ -g "!*.ico" -g "!*.jp*g" -g "!*.gif" -g "!*.png" -g "!*.tiff" -g "!*.svg"
+      \ -g "!*.ko" -g "!*.so"
+      \ -g "!*.lock" -g "!*.swp"
+      \ -g "!*.py1*" -g "!*.pyc"
+      \ -g "!*.sdv" -g "!*.shada"
+      \ -g "!*.sql*" -g "!*.db*" -g "!*.pick*"
+      \ -g "!*.tar*" -g "!*.tgz" -g "!*.*zip*" -g "!*.gz*" -g "!*.7z"
+      \ -g "!*.vdi" -g "!*.vhd" -g "!*.vmd*" -g "!*.iso"
+      \ -g "!*.web*" -g "!*.bmp"
+      \ -g "!*.bau"
+      \ -g "!*.crate"
+      \ -g "!*.dat"
+      \ -g "!*.dic*"
+      \ -g "!*.exc"
+      \ -g "!*.fmt"
+      \ -g "!*.kbx*"
+      \ -g "!*.localstorage*"
+      \ -g "!*.msg"
+      \ -g "!*.pack"
+      \ -g "!*.stat*"
+      \ -g "!*.thm"
+      \ -g "!*.whl"
+      \ '
 
   " }}}
   " GitGutter --------------------------------------------------------------------------------- {{{
@@ -841,26 +776,26 @@
       let g:Lf_MruMaxFiles = 10000 " Index all used files in MRU list.
       let g:Lf_CacheDirectory = ($HOME . '/.cache')
 
-      "highlight Lf_hl_selection guifg=Black guibg=Black gui=Bold ctermfg=Black ctermbg=156 cterm=Bold
-
       " Don't index the following dirs/files.
       let g:Lf_WildIgnore = {
-        \ 'dir': ['.svn','.git','.hg','.cfg',
-        \ '.*cache','_*cache','.swp','.LfCache','.swt',
-        \ '.gnupg','.pylint.d','ansible-local-*',
-        \ '.cargo','.fltk','.icons','.password-store',
-        \ '.vim/undo','.mozilla','__pychache__'],
+        \ 'dir':
+        \ ['.svn','.git','.hg','.cfg',
+        \ '.*cache*','_*cache','.swp','.LfCache','.swt',
+        \ '.gnupg','.pylint.d','ansible*',
+        \ '.cargo','.fltk','.icon*','.password*',
+        \ '.vim/undo','.mozilla','__*__'],
         \
-        \ 'file': ['*.sw?','~$*',
-        \ '*.pyc','*.py1*','*.stats',
-        \ '*.gpg','*.kbx*','*.key','*.crt','*.*cert*','*.cer','*.der',
+        \ 'file':
+        \ ['*.sw?','~$*',
+        \ '*.pyc','*.py1*','*.stat*',
+        \ '*.gpg','*.kbx*','*.key','*.c?rt','*.cer','*.der','*.pem',
         \ '*.so','*.msg','*.lock','*.*db*','*.*sql*','*.localstorage*','*.shada','*.pack','*.crate',
-        \ '*.vdi','*.vmdx','*.vmdk','*.dat','*.vhd','*.iso',
+        \ '*.vdi','*.vmd*','*.dat','*.vhd','*.iso',
         \ '*.pdf','*.odt','*.doc*','*.bau','*.dic','*.exc','*.fmt','*.thm','*.sdv',
-        \ '*.7z','*.*zip','*.tar.*','*.tar','*.tgz','*.gz','*.pick*','*.whl',
-        \ '*.jpg','*.png','*.jpeg','*.bmp','*.gif','*.tiff','*.svg','*.ico','*.webp',
-        \ '*.mp3','*.m4a','*.aac',
-        \ '*.mp4','*.mkv','*.avi']
+        \ '*.7z','*.*zip','*.tar.*','*.tar*','*.*gz','*.pick*','*.whl',
+        \ '*.jp?g','*.png','*.bmp','*.gif','*.tif*','*.svg','*.ico','*.web*',
+        \ '*.mp?','*.m4a','*.aac',
+        \ '*.mkv','*.avi']
         \ }
 
       " Automatically preview the following results.
@@ -1287,38 +1222,6 @@ endif
   inoremap <silent> <A--> <Esc>11gt<CR>
   nnoremap <silent> <A-=> 12gt
   inoremap <silent> <A-=> <Esc>12gt<CR>
-
-  " Tabline function from https://vim.fandom.com/wiki/Show_tab_number_in_your_tab_line
-  if exists("+showtabline")
-    function! MyTabLine()
-      let s = ''
-      let t = tabpagenr()
-      let i = 1
-      while i <= tabpagenr('$')
-        let buflist = tabpagebuflist(i)
-        let winnr = tabpagewinnr(i)
-        let s .= '%' . i . 'T'
-        let s .= (i == t ? '%1*' : '%2*')
-        let s .= ' '
-        "let s .= i . ')'
-        let s .= ' %*'
-        let s .= (i == t ? '%#TabLineSel#' : '%#TabLine#')
-        let file = bufname(buflist[winnr - 1])
-        let file = fnamemodify(file, ':p:t')
-        if file == ''
-          let file = '[No Name]'
-        endif
-        let s .= file
-        let i = i + 1
-      endwhile
-      let s .= '%T%#TabLineFill#%='
-      let s .= (tabpagenr('$') > 1 ? '%999XX' : 'X')
-      return s
-    endfunction
-    set stal=2
-    " Un-commenting this will override custom tab names set by taboo.vim.
-    "set tabline=%!MyTabLine()
-  endif
 
 " }}}
 "{% endraw %}
