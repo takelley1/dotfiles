@@ -913,41 +913,37 @@
   " }}}
   " Rnvimr ------------------------------------------------------------------------------------ {{{
 
-    " This plugin has some rendering issues.
-    if g:athome
-      " <leader>r to open file manager.
-      nnoremap <silent> <leader>r :RnvimrToggle<CR>
+    nnoremap <silent> <leader>r :RnvimrToggle<CR>
 
-      let g:rnvimr_enable_ex = 1                      " Replace NetRW.
-      let g:rnvimr_enable_picker = 1                  " Hide Ranger after picking file.
-      let g:rnvimr_enable_bw = 1                      " Make Neovim wipe buffers corresponding to the files deleted by Ranger.
-      let g:rnvimr_border_attr = {'fg': 12, 'bg': -1} " Set border color.
-      let g:rnvimr_ranger_cmd = 'ranger --cmd="set draw_borders both"'
+    let g:rnvimr_enable_ex = 1                      " Replace NetRW.
+    let g:rnvimr_enable_picker = 1                  " Hide Ranger after picking file.
+    let g:rnvimr_enable_bw = 1                      " Make Neovim wipe buffers corresponding to the files deleted by Ranger.
+    let g:rnvimr_border_attr = {'fg': 12, 'bg': -1} " Set border color.
+    let g:rnvimr_ranger_cmd = 'ranger --cmd="set draw_borders both"'
 
-      " Link CursorLine into RnvimrNormal highlight in the Floating window
-      highlight link RnvimrNormal CursorLine
+    " Link CursorLine into RnvimrNormal highlight in the Floating window
+    highlight link RnvimrNormal CursorLine
 
-      " Map Rnvimr actions.
-      " CTRL-e to open file in new tab.
-      " CTRL-l and CTRL-v to open file in new split or vsplit.
-      let g:rnvimr_action = {
-        \ '<C-e>': 'NvimEdit tabedit',
-        \ '<C-l>': 'NvimEdit split',
-        \ '<C-v>': 'NvimEdit vsplit',
-        \ 'gw': 'JumpNvimCwd',
-        \ 'yw': 'EmitRangerCwd',
-        \ }
+    " Map Rnvimr actions.
+    " CTRL-e to open file in new tab.
+    " CTRL-l and CTRL-v to open file in new split or vsplit.
+    let g:rnvimr_action = {
+      \ '<C-e>': 'NvimEdit tabedit',
+      \ '<C-l>': 'NvimEdit split',
+      \ '<C-v>': 'NvimEdit vsplit',
+      \ 'gw': 'JumpNvimCwd',
+      \ 'yw': 'EmitRangerCwd',
+      \ }
 
-      " Set floating initial size relative to 95% of parent window size.
-      let g:rnvimr_layout = {
-        \ 'relative': 'editor',
-        \ 'width': float2nr(round(0.95 * &columns)),
-        \ 'height': float2nr(round(0.95 * &lines)),
-        \ 'col': float2nr(round(0.025 * &columns)),
-        \ 'row': float2nr(round(0.05 * &lines)),
-        \ 'style': 'minimal'
-        \ }
-    endif
+    " Set floating initial size relative to 95% of parent window size.
+    let g:rnvimr_layout = {
+      \ 'relative': 'editor',
+      \ 'width': float2nr(round(0.95 * &columns)),
+      \ 'height': float2nr(round(0.95 * &lines)),
+      \ 'col': float2nr(round(0.025 * &columns)),
+      \ 'row': float2nr(round(0.05 * &lines)),
+      \ 'style': 'minimal'
+      \ }
 
   " }}}
   " Suda -------------------------------------------------------------------------------------- {{{
