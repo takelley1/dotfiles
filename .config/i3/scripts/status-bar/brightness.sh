@@ -10,13 +10,14 @@
 icon_bright="🔆"
 icon_dim="🔅"
 
-if [ "$(hostname)" = "tethys" ]; then
+if [ -r "/tmp/redshift-brightness" ]; then
     brightness="$(cat /tmp/redshift-brightness)0%"
 else
     brightness="$(brightnessctl | grep -o '[0-9]*%')"
 fi
 
 brightness_raw="$(printf "%s\n" "${brightness}" | tr -d "%")"
+
 if [ "${brightness_raw}" -ge 50 ]; then
     icon="${icon_bright}"
 else
@@ -24,5 +25,3 @@ else
 fi
 
 printf "%s\n" "${icon} ${brightness}"
-
-exit 0

@@ -22,7 +22,6 @@ icon = "🗄️"
 alert_thresh = 1000
 
 import os
-import sys
 import psutil
 
 
@@ -31,7 +30,7 @@ def main():
     # Check server availability.
     shares = os.system("ping -c 1 " + server_ip + " &>/dev/null")
     if shares != 0:
-        sys.exit(0)
+        return 1
 
     # Get free space in bytes.
     disk = psutil.disk_usage(mount_path)
@@ -53,7 +52,7 @@ def main():
         output = icon + str(disk_bytes_t) + unit
     elif unit not in ("G", "g", "GB", "Gb", "gb", "gB", "gigabytes", "Gigabytes"):
         print("The 'unit' variable has an incorrect value!")
-        sys.exit(1)
+        return 1
 
     if verbose is True:
         free = " free"
@@ -69,8 +68,6 @@ def main():
     #   color: https://github.com/vivien/i3blocks#format
     if disk_bytes_g <= alert_thresh:
         print("\n#F11712")
-
-    sys.exit(0)
 
 
 if __name__ == "__main__":

@@ -26,5 +26,3 @@ if [ "${show_used}" -eq 1 ]; then
 else
     printf "%s\n" "${icon} ${disk_free}${free}"
 fi
-
-exit 0

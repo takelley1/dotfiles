@@ -6,12 +6,9 @@
 # Emoji U+1F4BD 💽
 # Emoji U+23F3 ⏳
 # Font-Awesome f252 
-
 icon="⏳"
 
 io_wa=$(top -n 1 -b | awk '/id,.*wa,.*hi,.*si/ {print $10}')
 
 # Pad with leading zeros.
 printf "%s%04.1f\n" "${icon} " "${io_wa}"
-
-exit 0

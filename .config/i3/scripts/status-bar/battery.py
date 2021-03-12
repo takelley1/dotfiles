@@ -10,7 +10,11 @@
 battery_icon = "🔋"
 plug_icon = "⚡"
 
-import sys
+# Percentage battery must reach to be declared full.
+full_threshold = 98
+# Don't print anything if the battery has reached full_threshold.
+hide_when_full = True
+
 import psutil
 
 
@@ -27,7 +31,7 @@ def main():
 
     # Exit quietly if no battery is present.
     if not hasattr(battery, "percent"):
-        sys.exit(0)
+        return 1
 
     # Round remaining percent to nearest whole number.
     percent = round(battery.percent)
@@ -48,8 +52,11 @@ def main():
     if remaining == "(-1:59)":
         remaining = ""
 
-    if percent >= 99:
-        output = battery_icon + " FULL"
+    if percent >= full_threshold:
+        if hide_when_full:
+            output = ""
+        else:
+            output = battery_icon + " FULL"
     else:
         output = battery_icon + " " + str(percent) + "% " + remaining + plug_icon
 
@@ -65,8 +72,6 @@ def main():
             print("\n#FF7300")
         elif percent <= 20:
             print("\n#FFF000")
-
-    sys.exit(0)
 
 
 if __name__ == "__main__":
