@@ -16,7 +16,7 @@ def main():
 
     # If the system doesn't have swap, exit.
     if swap_used is None:
-        return
+        return 0
 
     swap_total = psutil.swap_memory().total
 
@@ -35,10 +35,11 @@ def main():
 
     # If the system is using <X% of swap space, don't print anything and exit.
     if swap_used_perc < minimum_usage:
-        return
+        return 0
 
     swap_used_perc = str(swap_used_perc)
     print(icon + " " + swap_used + "M/" + swap_total + "G (" + swap_used_perc + "%)")
+    return 0
 
 
 if __name__ == "__main__":

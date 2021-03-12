@@ -73,6 +73,8 @@ def main():
         elif percent <= 20:
             print("\n#FFF000")
 
+    return 0
+
 
 if __name__ == "__main__":
     main()
