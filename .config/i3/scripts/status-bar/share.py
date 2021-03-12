@@ -18,7 +18,7 @@ unit = "G"
 # Emoji U+1F5C4 🗄️
 icon = "🗄️"
 # When free space drops below this amount, color the output in red.
-# Units are in gigabytes.
+# Units are in whatever "unit" is above.
 alert_thresh = 1000
 
 import os
@@ -40,17 +40,22 @@ def main():
     if disk_perc >= 1:
         disk_perc = round(disk_perc)
 
-    # Convert to GB.
-    disk_bytes_g = disk_bytes / (1024 ** 3)
-    disk_bytes_g = round(disk_bytes_g)
-    output = icon + str(disk_bytes_g) + unit
-
+    print_color = False
     if unit in ("T", "t", "TB", "Tb", "tb", "tB", "terabytes", "Terabytes"):
         # Convert to TB.
         disk_bytes_t = disk_bytes / (1024 ** 4)
         disk_bytes_t = round(disk_bytes_t, 2)
         output = icon + str(disk_bytes_t) + unit
-    elif unit not in ("G", "g", "GB", "Gb", "gb", "gB", "gigabytes", "Gigabytes"):
+        if disk_bytes_t <= alert_thresh:
+            print_color = True
+    elif unit in ("G", "g", "GB", "Gb", "gb", "gB", "gigabytes", "Gigabytes"):
+        # Convert to GB.
+        disk_bytes_g = disk_bytes / (1024 ** 3)
+        disk_bytes_g = round(disk_bytes_g)
+        output = icon + str(disk_bytes_g) + unit
+        if disk_bytes_g <= alert_thresh:
+            print_color = True
+    else:
         print("The 'unit' variable has an incorrect value!")
         return 1
 
@@ -66,8 +71,10 @@ def main():
 
     # The i3bar protocol uses the third line of the output to specify.
     #   color: https://github.com/vivien/i3blocks#format
-    if disk_bytes_g <= alert_thresh:
+    if print_color:
         print("\n#F11712")
+
+    return 0
 
 
 if __name__ == "__main__":
