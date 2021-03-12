@@ -5,13 +5,14 @@
 #
 # Emoji U+1F4BB 💻
 # Nerd Fonts e266 
-
 icon = "💻"
 
 # If verbose is False, usage is expressed on a scale of 1-10, so a
 #   value of "5" means a core is 50% used. Otherwise, regular
 #   percentages are used.
-verbose = False
+verbose = True
+# Number of cores to show in output, sorted by usage.
+show_cores = 5
 
 import psutil
 
@@ -47,8 +48,8 @@ def main():
 
         # Sort list by most active cores.
         core_list.sort(reverse=True)
-        # Only show the 4 most active cores.
-        del core_list[4:]
+        # Only show the X most active cores.
+        del core_list[show_cores:]
 
     # Format output.
     core_list = str(core_list)
