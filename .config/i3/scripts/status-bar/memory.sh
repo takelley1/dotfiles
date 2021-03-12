@@ -18,5 +18,3 @@ else
     # Show integer only.
     printf "%s %2d%s\n" "${icon}" "${free}" "G free" 2>/dev/null
 fi
-
-exit 0

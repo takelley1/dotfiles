@@ -32,5 +32,3 @@ printf "%s\n" "${icon} ${vol}"
 
 # Show both L and R channels.
 #printf "%s\n " $(amixer get Master | grep -o '[0-9]*%' | tr '\n' ' ' | sed 's/ $//' | tr ' ' '/')"
-
-exit 0

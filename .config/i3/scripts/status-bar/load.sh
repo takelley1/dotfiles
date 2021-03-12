@@ -7,8 +7,8 @@
 # Emoji U+2696 ⚖️
 # Font-Awesome f3fd 
 # Nerd Fonts f9c4 龍
-
 icon="⚖️"
+# Whether to print full info or cut off decimals.
 verbose=1
 
 load1m="$(cut -f1 -d' ' /proc/loadavg)"
@@ -21,5 +21,3 @@ else
     printf "%s %02d, %02d, %02d\n" \
         "${icon}" "${load1m}" "${load5m}" "${load15m}" 2>/dev/null
 fi
-
-exit 0

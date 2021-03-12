@@ -15,5 +15,3 @@ elif [ "${temp}" -ge 91 ]; then
     sleep 2s
     systemctl suspend &
 fi
-
-exit 0
