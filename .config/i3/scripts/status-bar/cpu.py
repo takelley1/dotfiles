@@ -20,12 +20,11 @@ import psutil
 def main():
     core_list = []
     # Break up the tuple containing the usage of each CPU core.
-    for core_percent in psutil.cpu_percent(interval=3, percpu=True):
+    for core_percent in psutil.cpu_percent(interval=1, percpu=True):
 
         if verbose:
             # print("DEBUG: initial: " + str(core_percent))
             core_percent = round(core_percent)
-            core_percent = str(core_percent) + "%"
 
         # Non-verbose formatting:
         else:
@@ -41,7 +40,6 @@ def main():
             elif core_percent == 100:
                 # print("DEBUG: =100: " + str(core_percent))
                 core_percent = "{:.2}".format(str(core_percent))
-
             core_percent = int(core_percent)
 
         core_list.append(core_percent)
@@ -51,14 +49,24 @@ def main():
         # Only show the X most active cores.
         del core_list[show_cores:]
 
-    # Format output.
-    core_list = str(core_list)
-    core_list = core_list.replace("'", "")
-    core_list = core_list.replace("[", "")
-    core_list = core_list.replace("]", "")
-    core_list = core_list.replace("]", "")
+    if verbose:
+        # Convert list items to str, add percent sign.
+        core_list_verbose = []
+        for item in core_list:
+            item = str(item)
+            item = item + "%"
+            core_list_verbose.append(item)
+        core_list_output = core_list_verbose
+    else:
+        core_list_output = core_list
 
-    print(icon, core_list)
+    # Format output.
+    core_list_output = str(core_list_output)
+    core_list_output = core_list_output.replace("'", "")
+    core_list_output = core_list_output.replace("[", "")
+    core_list_output = core_list_output.replace("]", "")
+    core_list_output = core_list_output.replace("]", "")
+    print(icon, core_list_output)
 
 
 if __name__ == "__main__":
