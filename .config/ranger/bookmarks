@@ -3,7 +3,7 @@ r:/home/akelley/scripts/ansible/roles
 b:/home/akelley/scripts/bash
 n:/home/akelley/.config/nvim
 a:/home/akelley/scripts/ansible
-v:/home/akelley/library
+v:/home/akelley/videos
 k:/home/akelley/library
 p:/home/akelley/.local/share/nvim/plugged
 s:/home/akelley/.config/i3/scripts/status-bar
@@ -11,3 +11,5 @@ l:/home/akelley/library
 h:/home/akelley/scripts/ansible/host_vars
 g:/home/akelley/scripts/ansible/group_vars
 q:/home/akelley/videos/quality-tests
+f:/home/akelley/pictures
+e:/home/akelley/scripts/bash/freebsd
