@@ -36,3 +36,4 @@ left_meters=LeftCPUs2 RightCPUs2
 left_meter_modes=1 1
 right_meters=Hostname Tasks LoadAverage Uptime Swap Memory Memory CPU
 right_meter_modes=2 2 2 2 1 1 2 1
+hide_function_bar=0
