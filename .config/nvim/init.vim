@@ -932,37 +932,37 @@
   " }}}
   " Vimagit ----------------------------------------------------------------------------------- {{{
 
+    " Vimagit is used for managing dotfiles, Lazygit is for everything else.
+
+    " Open Vimagit in the same window.
+    nnoremap <leader>M :MagitOnly<CR>
+
     let g:magit_show_magit_mapping='M'
+    let g:magit_git_cmd="git --git-dir=$HOME/.cfg/ --work-tree=$HOME"
+    let g:magit_scrolloff=999
 
     " Open Vimagit for the current repo. If Vimagit can't find a repo, use the dotfiles repo.
     " See also https://stackoverflow.com/questions/5441697/how-can-i-get-last-echoed-message-in-vimscript
-    function! Vimagit(split)
-      let g:magit_git_cmd="git"                          " Ensure variable is set to default value.
-      redir => g:messages                                " Begin capturing output of messages.
-      if a:split == 1
-        silent! Magit                                    " Try opening Magit for the current repo.
-      else
-        silent! MagitOnly
-      endif
-      redir END                                          " End capturing output.
-      let g:lastmsg=get(split(g:messages, "\n"), -5, "") " Send output to var.
-      if g:lastmsg ==# "magit can not find any git repository" " If var matches error, use dotfiles instead.
-        let g:magit_git_cmd="git --git-dir=$HOME/.cfg/ --work-tree=$HOME"
-        if a:split == 1
-          silent! Magit                                  " Try opening Magit for the current repo.
-        else
-          silent! MagitOnly
-        endif
-      endif
-      stopinsert
-    endfunction
-
-    " Open Vimagit in a new split.
-    " nnoremap <leader>m :call Vimagit(1)<CR>  " Currently replaced by lazygit.
-    " Open Vimagit in the same window.
-    nnoremap <leader>M :call Vimagit(0)<CR>
-
-    let g:magit_scrolloff=999
+    " function! Vimagit(split)
+    "   let g:magit_git_cmd="git"                          " Ensure variable is set to default value.
+    "   redir => g:messages                                " Begin capturing output of messages.
+    "   if a:split == 1
+    "     silent! Magit                                    " Try opening Magit for the current repo.
+    "   else
+    "     silent! MagitOnly
+    "   endif
+    "   redir END                                          " End capturing output.
+    "   let g:lastmsg=get(split(g:messages, "\n"), -5, "") " Send output to var.
+    "   if g:lastmsg ==# "magit can not find any git repository" " If var matches error, use dotfiles instead.
+    "     let g:magit_git_cmd="git --git-dir=$HOME/.cfg/ --work-tree=$HOME"
+    "     if a:split == 1
+    "       silent! Magit                                  " Try opening Magit for the current repo.
+    "     else
+    "       silent! MagitOnly
+    "     endif
+    "   endif
+    "   stopinsert
+    " endfunction
 
   " }}}
   " Vim Markdown ------------------------------------------------------------------------------ {{{
