@@ -7,7 +7,7 @@ gui:
   skipUnstageLineWarning: false
   skipStashWarning: true
   sidePanelWidth: 0.3333
-  expandFocusedSidePanel: false
+  expandFocusedSidePanel: true
   mainPanelSplitMode: flexible
   theme:
     lightTheme: false
