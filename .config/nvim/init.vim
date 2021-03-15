@@ -81,7 +81,7 @@
   " Update file if changed from outside.
   autocmd mygroup FocusGained,BufEnter * if &readonly ==# 0 | silent! checktime | endif
   " Auto-save file.
-  autocmd mygroup InsertLeave,BufLeave,CursorHold * if &readonly ==# 0 | silent! update | endif
+  autocmd mygroup InsertLeave,BufLeave,CursorHold * if &readonly ==# 0 | silent! write | endif
 
   " Manage insert mode when entering terminals ------------------------------------------------ {{{
   if exists(':terminal')
@@ -702,7 +702,7 @@
   " GitGutter --------------------------------------------------------------------------------- {{{
 
     " Enable GitGutter markings for dotfiles repo.
-    autocmd mygroup BufEnter ~/.*
+    autocmd mygroup BufEnter,InsertLeave ~/.*
       \ let g:gitgutter_git_args = "--git-dir=$HOME/.cfg --work-tree=$HOME"
     autocmd mygroup BufLeave ~/.* let g:gitgutter_git_args = ''
 
