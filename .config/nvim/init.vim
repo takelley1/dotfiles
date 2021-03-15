@@ -531,6 +531,8 @@
     " YAML
     let g:ale_yaml_yamllint_options = '--config-file ~/.config/nvim/linters/yamllint.yml'
     let g:ale_linters = {'yaml': ['yamllint'], 'tex': ['texlab']} " Limit linting on these filetypes.
+    " Ansible
+    let g:ale_ansible_ansible_lint_executable = 'ansible-lint -c ~/.config/nvim/linters/ansible-lint.yml'
 
   " }}}
   " Ansible-doc ------------------------------------------------------------------------------- {{{
