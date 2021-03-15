@@ -212,6 +212,11 @@
   " For some reason setting these options only works within an autocommand.
   autocmd mygroup BufEnter * setlocal formatoptions=q noautoindent nocindent nosmartindent indentexpr=
 
+  " Gitcommit -- used by Lazygit -------------------------------------
+    autocmd mygroup FileType gitcommit setlocal
+      \ colorcolumn=80 textwidth=80
+      \ formatoptions=qt
+      \ nonumber
   " Help -------------------------------------------------------------
     autocmd mygroup FileType help setlocal
       \ nonumber
