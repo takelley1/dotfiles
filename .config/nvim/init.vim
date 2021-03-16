@@ -418,6 +418,7 @@
       Plug 'gcmt/taboo.vim'                 " Rename tabs.
       Plug 'wesQ3/vim-windowswap'           " Easily swap window splits with <leader>ww
       Plug 'godlygeek/tabular'              " Alignment tools.
+      Plug 'plasticboy/vim-markdown'        " Better markdown syntax highlighting.
       Plug 'jreybert/vimagit'               " Git porcelain.
       Plug 'psf/black', { 'for': 'python', 'branch': 'stable' } " Code formatting.
       Plug 'jiangmiao/auto-pairs'           " Auto-create bracket and quote pairs.
@@ -967,8 +968,7 @@
   " }}}
   " Vim Markdown ------------------------------------------------------------------------------ {{{
 
-    let g:vim_markdown_conceal = 1
-    let g:vim_markdown_folding_level = 2
+    let g:vim_markdown_folding_disabled = 1
     let g:vim_markdown_override_foldtext = 0
 
   " }}}
