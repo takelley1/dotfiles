@@ -236,6 +236,7 @@ fi
 # }}}
 # LINUX ####################################################################################### {{{
 
+# shellcheck disable=2076
 # Linux-specific aliases and environment variables.
 # shellcheck disable=2154
 
@@ -243,24 +244,14 @@ if [[ "${OSTYPE}" =~ "linux" ]]; then
 
     export SHELL="/bin/bash"
 
-    # Add ~/.local/bin to $PATH. Prevent it from getting added multiple times.
-    if ! printf "%s\n" "${PATH}" | grep -q '/.local/bin'; then
-        export PATH=${PATH}:~/.local/bin
-    fi
+    # Add paths to $PATH. Prevent them from getting added multiple times.
+    [[ ":${PATH}:" =~ "${HOME}/.local/bin" ]] || PATH="${PATH}:${HOME}/.local/bin"
+    [[ ":${PATH}:" =~ "${HOME}/scripts/bash" ]] || PATH="${PATH}:${HOME}/scripts/bash"
+    [[ ":${PATH}:" =~ "${HOME}/scripts/bash/linux" ]] || PATH="${PATH}:${HOME}/scripts/bash/linux"
+    [[ ":${PATH}:" =~ "${HOME}/scripts/bash/linux/shell-functions" ]] || PATH="${PATH}:${HOME}/scripts/bash/linux/shell-functions"
 
     # asd.service breaks if this isn't enabled.
     xhost + &>/dev/null
-
-    # Easily start/stop automounts.
-    mnt() {
-        systemctl "${@}" \
-        mnt-tank-storage-audio.automount \
-        mnt-tank-storage-documents.automount \
-        mnt-tank-storage-logs.automount \
-        mnt-tank-storage-pictures.automount \
-        mnt-tank-storage-software.automount \
-        mnt-tank-storage-videos.automount
-    }
 
     # This doesn't work if `l` is an alias.
     l() {
