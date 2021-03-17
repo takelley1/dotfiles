@@ -701,10 +701,19 @@
   " }}}
   " GitGutter --------------------------------------------------------------------------------- {{{
 
-    " Enable GitGutter markings for dotfiles repo.
-    autocmd mygroup BufEnter,InsertLeave ~/.*
-      \ let g:gitgutter_git_args = "--git-dir=$HOME/.cfg --work-tree=$HOME"
-    autocmd mygroup BufLeave ~/.* let g:gitgutter_git_args = ''
+    " Enable GitGutter markings for dotfiles repo. Gitgutter won't update automatically after
+    "   changing g:gitgutter_git_args, so this is required to force it.
+    autocmd mygroup BufEnter,InsertLeave ~/.* call GitGutterDotfilesEnter()
+    autocmd mygroup BufLeave ~/.* call GitGutterDotfilesLeave()
+
+    function! GitGutterDotfilesEnter()
+      let g:gitgutter_git_args = "--git-dir=$HOME/.cfg --work-tree=$HOME"
+      GitGutterAll
+    endfunction
+    function! GitGutterDotfilesLeave()
+      let g:gitgutter_git_args = ''
+      GitGutterAll
+    endfunction
 
     if g:athome
       " Make sidebar dark.
@@ -1081,7 +1090,6 @@ endif
   highlight TabLineSel guifg=#292d3f guibg=#939ede gui=Bold
 
   highlight ColorColumn guibg=#293051
-
 
 " }}}
 " NAVIGATION ################################################################################## {{{
