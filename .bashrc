@@ -108,11 +108,7 @@
     # Utilities --------------------------------------------------------------------------------{{{
 
     # Aliases for common utilities and apps.
-
-    alias u='cd ../' # "Up 1 directory."
-    alias h='cd ~'
     alias c='clear'
-
     alias mv='mv -v'
     alias cp='cp -v'
     alias sudo='sudo ' # This is required for bash aliases to work with sudo.
@@ -173,30 +169,28 @@
 
     alias fmt='fmt -w 120'
 
-    alias alacrittyrc='${EDITOR} ~/.config/alacritty/alacritty.yml'
-    alias banlist='${EDITOR} /mnt/share/documents/banlist.txt'
-    alias bashrc='cd ~/.config/bashrc.d && ls'
-    alias bashrcf='${EDITOR} ~/.bashrc'
-    alias dunstrc='${EDITOR} ~/.config/dunst/dunstrc'
+    # cd shortcuts.
+    alias h='cd ~'
+    alias u='cd ../' # "Up 1 directory."
 
-    alias readme='${EDITOR} ~/.github/README.md'
-    alias tmuxrc='${EDITOR} ~/.config/tmux/tmux.conf'
-    alias vimrc='${EDITOR} ~/.config/nvim/init.vim'
-    alias plugins='cd ~/.local/share/nvim/site/pack/git-plugins/start/ && ls'
-    alias xdefaults='${EDITOR} ~/.Xdefaults'
-    alias xinitrc='${EDITOR} ~/.xinitrc'
-    alias xprofile='${EDITOR} ~/.xprofile'
+    alias a='cd ~/scripts/ansible && ls'
+    alias b='cd ~/scripts/bash && ls'
+    alias c='cd ~/.config && ls'
+    alias d='cd ~/.config/dunst/dunstrc && ls'
+    alias i='cd ~/.config/i3'
+    alias l='cd ~/linux-notes && ls'
+    alias n='cd ~/notes && ls'
+    alias p='cd ~/.local/share/nvim/plugged && ls'
+    alias v='cd ~/videos && ls'
+    alias y='cd ~/videos/youtube && ls'
+    alias roles='cd ~/scripts/ansible/roles && ls' # `r` is already used to call Ranger.
+    alias s='cd ~/.config/i3/scripts/status-bar && ls'
 
+    alias alacrittyrc='cd ~/.config/alacritty && ls'
     alias i3b='${EDITOR} ~/.config/i3/i3blocks.conf'
     alias i3c='${EDITOR} ~/.config/i3/config-unique-${HOSTNAME}'
     alias i3cc='${EDITOR} ~/.config/i3/config-shared'
     alias i3ccc='${EDITOR} /tmp/.i3-config'
-
-    alias config='cd ~/.config && ls'
-    alias linux='cd ~/linux-notes && ls'
-    alias notes='cd ~/notes/ && ls'
-    alias roles='cd ~/scripts/ansible/roles && ls'
-    alias scripts='cd ~/scripts/ && ls'
 
     # }}}
 
