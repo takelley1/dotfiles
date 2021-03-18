@@ -253,18 +253,13 @@ if [[ "${OSTYPE}" =~ "linux" ]]; then
     # asd.service breaks if this isn't enabled.
     xhost + &>/dev/null
 
-    # This doesn't work if `l` is an alias.
-    l() {
-        ls --classify --color=auto --human-readable "${@}"
-    }
-    alias ls='l'
-    alias lr='l --reverse'
-    alias lsr='l -l --reverse'
-    alias ll='ls -l'
-    alias la='ls -l --all'
-    alias lsal='l -l --all'
-    alias lar='l -l --all --reverse'
-    alias lss='l -l --all -S' # Sort by size.
+    alias ls='ls --classify --color=auto --human-readable'
+    alias lr='l --reverses --classify --color=auto --human-readable'
+    alias lsr='l -l --reverses --classify --color=auto --human-readable'
+    alias ll='ls -ls --classify --color=auto --human-readable'
+    alias la='ls -l --alls --classify --color=auto --human-readable'
+    alias lsal='l -l --alls --classify --color=auto --human-readable'
+    alias lar='l -l --all --reverses --classify --color=auto --human-readable'
 
     alias dmesg='dmesg --human --ctime --decode'
 
