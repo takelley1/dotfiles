@@ -75,7 +75,7 @@
  # Hide side borders when only one window is shown in workspace.
    hide_edge_borders smart
  # Make the side borders X pixels wide on workspaces with >1 window.
-   default_border pixel 3
+   default_border pixel 2
  # Don't wrap focus.
    focus_wrapping no
 
@@ -84,7 +84,7 @@
    no_focus [class="Vimb"]
 
  # Make certain windows floating for PyCharm unit-tests of botting scripts.
-   for_window [title="feh"] floating enable
+   #for_window [title="feh"] floating enable
    #for_window [title="OCVBot"] floating enable
    #for_window [title="ocvbot"] floating enable
 
@@ -208,17 +208,6 @@
    bindsym $mod+Control+9 move container to workspace 9
    bindsym $mod+Control+0 move container to workspace 10
 
-# Primary status bar.
-bar {
-     status_command i3blocks -c ~/.config/i3/i3blocks-main.conf
-     colors {
-            statusline               #eeeeee
-            focused_workspace        #00ff00 #285777 #ffffff
-            urgent_workspace         #333333 #222222 #888888
-            }
-    tray_output none
-    }
-
 # Hidden by default. Show with the right CTRL key.
 bar {
      status_command i3blocks -c ~/.config/i3/i3blocks-hidden.conf
@@ -231,6 +220,18 @@ bar {
      mode hide
      hidden_state hide
      Modifier Mod3
+     workspace_buttons no # Don't show workspace buttons.
+    }
+
+# Primary status bar.
+bar {
+     status_command i3blocks -c ~/.config/i3/i3blocks-main.conf
+     colors {
+            statusline               #eeeeee
+            focused_workspace        #00ff00 #285777 #ffffff
+            urgent_workspace         #333333 #222222 #888888
+            }
+    tray_output none
     }
 
 # \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
