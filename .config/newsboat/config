@@ -1,4 +1,4 @@
-browser "qutebrowser --loglevel critical %u"
+browser "firefox --new-tab %u"
 
 color background          white   black
 color listnormal          white   black
