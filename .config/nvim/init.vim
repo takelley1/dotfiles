@@ -404,13 +404,13 @@
       " Plug 'kevinhwang91/nvim-bqf'        " Better quickfix window.
       Plug 'ntpeters/vim-better-whitespace' " Highlight and strip whitespace.
       Plug 'tpope/vim-obsession'            " Session management.
-      Plug 'tpope/vim-endwise'              " Auto terminate conditional statements.
+      " Plug 'tpope/vim-endwise'              " Auto terminate conditional statements.
       Plug 'tpope/vim-surround'             " Easily surround words.
-      Plug 'tpope/vim-eunuch'               " Better shell commands.
+      " Plug 'tpope/vim-eunuch'               " Better shell commands.
       Plug 'tpope/vim-repeat'               " Repeat plugin actions.
       Plug 'brooth/far.vim'                 " Find and replace.
       Plug 'Konfekt/FastFold'               " More performant folding.
-      Plug 'tpope/vim-unimpaired'           " Navigation with square bracket keys.
+      " Plug 'tpope/vim-unimpaired'           " Navigation with square bracket keys.
       " Plug 'easymotion/vim-easymotion'    " Alternative line navigation.
       Plug 'pearofducks/ansible-vim'        " Ansible syntax.
       Plug 'ekalinin/Dockerfile.vim'        " Dockerfile syntax.
@@ -424,7 +424,7 @@
       Plug 'jiangmiao/auto-pairs'           " Auto-create bracket and quote pairs.
       Plug 'yggdroot/indentline'            " Show indentation lines.
       Plug 'machakann/vim-highlightedyank'  " Briefly highlight yanked text.
-      Plug 'preservim/tagbar'               " Function navigation on large files.
+      " Plug 'preservim/tagbar'               " Function navigation on large files.
       " Plug 'sheerun/vim-polyglot'         " Better syntax highlighting. Causes issues in Vimagit window.
       " Plug 'psliwka/vim-smoothie'         " Smooth scrolling.
       Plug 'mbbill/undotree'                " Visualize and navigate Vim's undo tree.
@@ -435,7 +435,7 @@
       Plug 'vim-airline/vim-airline'        " Status bar.
       Plug 'vim-airline/vim-airline-themes'
       Plug 'preservim/nerdcommenter'        " Comment blocks.
-      Plug 'kevinhwang91/rnvimr'             " Ranger in a floating window.
+      Plug 'kevinhwang91/rnvimr'            " Ranger in a floating window.
 
       if g:athome
         Plug 'lervag/vimtex'                   " LaTeX helpers.
