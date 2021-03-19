@@ -67,8 +67,10 @@ a:visited {
 }
 
 .hljs-comment {
-    color: #b8ddea !important;
+  color: #939ede !important;
+  font-weight: bold
 }
+
 .hljs-attr,
 .hljs-attribute,
 .hljs-built_in,
