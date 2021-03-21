@@ -36,7 +36,8 @@
   set clipboard+=unnamedplus            " Map vim copy buffer to system clipboard.
   set splitbelow splitright             " Splits open at the bottom and right, rather than top/left.
   set noswapfile nobackup               " Don't use backups since most files are in Git.
-  set updatetime=300                    " Increase plugin update speed.
+  set updatetime=500                    " Increase plugin update speed.
+  set redrawtime=1000                   " Set timeout for redrawing screen.
 
   if g:athome
     let g:python3_host_prog = '/usr/bin/python3' " Speed up startup.
@@ -391,17 +392,23 @@
 
     call plug#begin(stdpath('data') . '/plugged')
 
-      Plug '~/ansible-doc.vim'
+      Plug 'takelley1/ansible-doc.vim'
 
       " This autocmd can replace vim-highlightedyank in 0.5
       " autocmd mygroup TextYankPost * silent! lua require'vim.highlight'.on_yank("IncSearch", 1000)
 
+      if has('nvim-0.5') " Check for lua functionality.
+        " Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} " Tree-sitter syntax highlighting.
+        " Telescope.nvim
+        " Plug 'nvim-lua/popup.nvim'
+        " Plug 'nvim-lua/plenary.nvim'
+        " Plug 'nvim-telescope/telescope.nvim'
+        " Plug 'f-person/git-blame.nvim'        " Git blame on each line. Requires lua
+      endif
+
       " Plug 'tmhedberg/SimpylFold'  " Better folding in Python.
       Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}  " Python code highlighting.
       Plug 'kdheepak/lazygit.nvim', { 'branch': 'nvim-v0.4.3' }
-      " Plug 'APZelos/blamer.nvim'            " Git blame
-      " Plug 'f-person/git-blame.nvim'        " Git blame on each line. Requires lua
-      " Plug 'kevinhwang91/nvim-bqf'        " Better quickfix window.
       Plug 'ntpeters/vim-better-whitespace' " Highlight and strip whitespace.
       Plug 'tpope/vim-obsession'            " Session management.
       " Plug 'tpope/vim-endwise'              " Auto terminate conditional statements.
@@ -430,7 +437,7 @@
       Plug 'mbbill/undotree'                " Visualize and navigate Vim's undo tree.
       Plug 'airblade/vim-gitgutter'         " Git diffs in sidebar.
       Plug 'dense-analysis/ale'             " Linting engine.
-      Plug 'tpope/vim-fugitive'             " Git wrapper.
+      " Plug 'tpope/vim-fugitive'             " Git wrapper.
       Plug 'mhinz/vim-grepper'              " Search within files.
       Plug 'vim-airline/vim-airline'        " Status bar.
       Plug 'vim-airline/vim-airline-themes'
@@ -499,8 +506,11 @@
       let g:airline_theme='dark'
     endif
 
+    let g:airline#extensions#vimagit#enabled = 1
     let g:airline_highlighting_cache = 1
     let g:airline_detect_modified = 0 " Don't loudly mark files as modified.
+
+    let g:airline_section_c = '%F' " Show full filepath.
 
     " Disable unnecessary extensions.
     let g:airline#extensions#grepper#enabled = 0
@@ -1066,7 +1076,8 @@ endif
     colorscheme palenight
 
     " Make IncSearch and Search highlights the same.
-    highlight IncSearch ctermfg=235 ctermbg=180 guifg=#292D3E guibg=#ffcb6b
+    highlight IncSearch cterm=underline ctermfg=235 ctermbg=180 gui=underline guifg=#292D3E guibg=#ffcb6b
+    highlight Search cterm=underline ctermfg=235 ctermbg=180 gui=underline guifg=#292D3E guibg=#ffcb6b
     " Make selected LeaderF results more visible.
     highlight Lf_hl_cursorline guifg=#c3e88d gui=Bold ctermfg=226 ctermbg=0 cterm=Bold
 
