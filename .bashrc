@@ -161,8 +161,6 @@
     # }}}
     # Shortcuts --------------------------------------------------------------------------------{{{
 
-    # Aliases for easily accessing config files and directories.
-
     # Easy editing and committing of todo list.
     alias todo='cd ~/notes/ && git pull && ${EDITOR} ./personal--todo.md && git commit
                 -m "Update todo.md" ./personal--todo.md && git push'
@@ -175,18 +173,21 @@
 
     alias a='cd ~/scripts/ansible && ls'
     alias b='cd ~/scripts/bash && ls'
-    alias c='cd ~/.config && ls'
-    alias d='cd ~/.config/dunst/dunstrc && ls'
+    # `c` is already used for `clear`.
+    alias d='cd ~/Downloads && ls'
+    alias D='cd ~/Documents && ls'
     alias i='cd ~/.config/i3'
-    alias l='cd ~/linux-notes && ls'
+    alias l='cd ~/library && ls'
     alias n='cd ~/notes && ls'
+    alias o='cd ~/.config && ls'
     alias p='cd ~/.local/share/nvim/plugged && ls'
-    alias v='cd ~/videos && ls'
-    alias y='cd ~/videos/youtube && ls'
+    alias P='cd ~/Pictures && ls'
     alias roles='cd ~/scripts/ansible/roles && ls' # `r` is already used to call Ranger.
     alias s='cd ~/.config/i3/scripts/status-bar && ls'
+    alias v='cd ~/videos && ls'
+    alias x='cd ~/linux-notes && ls' # `x` for `*nix.`
+    alias y='cd ~/videos/youtube && ls'
 
-    alias alacrittyrc='cd ~/.config/alacritty && ls'
     alias i3b='${EDITOR} ~/.config/i3/i3blocks.conf'
     alias i3c='${EDITOR} ~/.config/i3/config-unique-${HOSTNAME}'
     alias i3cc='${EDITOR} ~/.config/i3/config-shared'
