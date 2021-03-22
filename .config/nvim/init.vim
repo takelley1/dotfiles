@@ -392,19 +392,28 @@
 
     call plug#begin(stdpath('data') . '/plugged')
 
-      Plug 'takelley1/ansible-doc.vim'
-
-      " This autocmd can replace vim-highlightedyank in 0.5
-      " autocmd mygroup TextYankPost * silent! lua require'vim.highlight'.on_yank("IncSearch", 1000)
 
       if has('nvim-0.5') " Check for lua functionality.
-        " Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} " Tree-sitter syntax highlighting.
+        " Plug 'tjdevries/colorbuddy.vim' " Colorscheme w/ Tree-sitter support.
+        " Plug 'Th3Whit3Wolf/onebuddy'
+        " Plug 'tanvirtin/nvim-monokai'
+        " Plug 'neovim/nvim-lspconfig'
         " Telescope.nvim
         " Plug 'nvim-lua/popup.nvim'
         " Plug 'nvim-lua/plenary.nvim'
         " Plug 'nvim-telescope/telescope.nvim'
-        " Plug 'f-person/git-blame.nvim'        " Git blame on each line. Requires lua
+        Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} " Tree-sitter syntax highlighting.
+        Plug 'f-person/git-blame.nvim'     " Git blame on each line.
+        Plug 'norcalli/nvim-colorizer.lua' " Automatically colorize color hex codes.
+        Plug 'hrsh7th/nvim-compe'          " Lua replacement for YouCompleteMe.
+        Plug 'glepnir/indent-guides.nvim'  " Lua replacement for yggdroot/indentline.
+        Plug 'b3nj5m1n/kommentary'         " Lua replacement for nerdcommenter.
+      else
+        Plug 'yggdroot/indentline'            " Show indentation lines. May cause performance issues.
+        Plug 'preservim/nerdcommenter'        " Comment blocks.
       endif
+
+      Plug 'takelley1/ansible-doc.vim' " View ansible docs within Neovim.
 
       " Plug 'tmhedberg/SimpylFold'  " Better folding in Python.
       Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}  " Python code highlighting.
@@ -414,14 +423,14 @@
       " Plug 'tpope/vim-endwise'              " Auto terminate conditional statements.
       Plug 'tpope/vim-surround'             " Easily surround words.
       " Plug 'tpope/vim-eunuch'               " Better shell commands.
-      Plug 'tpope/vim-repeat'               " Repeat plugin actions.
+      " Plug 'tpope/vim-repeat'               " Repeat plugin actions.
       Plug 'brooth/far.vim'                 " Find and replace.
       Plug 'Konfekt/FastFold'               " More performant folding.
       " Plug 'tpope/vim-unimpaired'           " Navigation with square bracket keys.
-      " Plug 'easymotion/vim-easymotion'    " Alternative line navigation.
+      " Plug 'easymotion/vim-easymotion'      " Alternative line navigation.
       Plug 'pearofducks/ansible-vim'        " Ansible syntax.
       Plug 'ekalinin/Dockerfile.vim'        " Dockerfile syntax.
-      " Plug 'vim-scripts/YankRing.vim'     " Access previously yanked text.
+      " Plug 'vim-scripts/YankRing.vim'       " Access previously yanked text.
       Plug 'gcmt/taboo.vim'                 " Rename tabs.
       Plug 'wesQ3/vim-windowswap'           " Easily swap window splits with <leader>ww
       Plug 'godlygeek/tabular'              " Alignment tools.
@@ -429,27 +438,26 @@
       Plug 'jreybert/vimagit'               " Git porcelain.
       Plug 'psf/black', { 'for': 'python', 'branch': 'stable' } " Code formatting.
       Plug 'jiangmiao/auto-pairs'           " Auto-create bracket and quote pairs.
-      Plug 'yggdroot/indentline'            " Show indentation lines.
-      Plug 'machakann/vim-highlightedyank'  " Briefly highlight yanked text.
       " Plug 'preservim/tagbar'               " Function navigation on large files.
-      " Plug 'sheerun/vim-polyglot'         " Better syntax highlighting. Causes issues in Vimagit window.
-      " Plug 'psliwka/vim-smoothie'         " Smooth scrolling.
+      " Plug 'sheerun/vim-polyglot'           " Better syntax highlighting. Causes issues in Vimagit window.
+      " Plug 'psliwka/vim-smoothie'           " Smooth scrolling.
       Plug 'mbbill/undotree'                " Visualize and navigate Vim's undo tree.
       Plug 'airblade/vim-gitgutter'         " Git diffs in sidebar.
       Plug 'dense-analysis/ale'             " Linting engine.
       " Plug 'tpope/vim-fugitive'             " Git wrapper.
+      Plug 'machakann/vim-highlightedyank'  " Briefly highlight yanked text.
       Plug 'mhinz/vim-grepper'              " Search within files.
       Plug 'vim-airline/vim-airline'        " Status bar.
       Plug 'vim-airline/vim-airline-themes'
-      Plug 'preservim/nerdcommenter'        " Comment blocks.
       Plug 'kevinhwang91/rnvimr'            " Ranger in a floating window.
 
       if g:athome
-        Plug 'lervag/vimtex'                   " LaTeX helpers.
-        Plug 'xuhdev/vim-latex-live-preview'   " LaTeX live preview.
-        Plug 'drewtempelmeyer/palenight.vim'   " Colorschemes.
+        Plug 'lervag/vimtex', { 'for': 'tex' }                  " LaTeX helpers.
+        Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }  " LaTeX live preview.
+        Plug 'drewtempelmeyer/palenight.vim'   " Colorscheme.
         Plug 'ryanoasis/vim-devicons'          " Icons (Must be loaded after all the plugins that use it).
-        Plug 'lambdalisue/suda.vim'            " Edit files with sudo. This causes performance issues at work.
+        Plug 'ycm-core/YouCompleteMe', { 'do': './install.py' } " Code completion.
+        " Plug 'lambdalisue/suda.vim'            " Edit files with sudo. This causes performance issues at work.
         Plug 'ycm-core/YouCompleteMe', { 'do': './install.py' }                  " Code completion.
         Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' }           " Fuzzy finder.
         Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  } " Render markdown.
@@ -520,16 +528,6 @@
     let g:airline#extensions#keymap#enabled = 0
     let g:airline#extensions#fzf#enabled = 0
 
-    " The tabline incorrectly displays terminal buffers, so disable it.
-    " let g:airline#extensions#tabline#show_buffers = 0      " Don't show buffers when a single tab is open.
-    " let g:airline#extensions#tabline#fnamemod = ':p:t'     " Format filenames in tabline.
-    " let g:airline#extensions#tabline#enabled = 1           " Replace the tabline with Airline's.
-    " let g:airline#extensions#tabline#show_splits = 0       " Don't show splits in the tabline.
-    " let g:airline#extensions#tabline#show_tab_nr = 0       " Don't show tab numbers.
-    " let g:airline#extensions#tabline#show_tab_count = 0    " Don't show number of tabs on top-right.
-    " let g:airline#extensions#tabline#show_tab_type = 0     " Don't show tab type.
-    " let g:airline#extensions#tabline#show_close_button = 0 " Don't show tab close button.
-
   " }}}
   " ALE --------------------------------------------------------------------------------------- {{{
 
@@ -572,6 +570,13 @@
     autocmd mygroup InsertLeave,BufWritePre,BufLeave *.py execute ':Black'
 
   " }}}
+  " Git-blame --------------------------------------------------------------------------------- {{{
+
+    " Disable by default.
+    let g:gitblame_enabled = 0
+    nnoremap <leader>B :GitBlameToggle<CR>
+
+  " }}}
   " CtrlP ------------------------------------------------------------------------------------- {{{
 
     " <leader>s to start searching from home directory (s for 'search').
@@ -597,6 +602,15 @@
       let g:ctrlp_clear_cache_on_exit = 0
       " Don't index these filetypes in addition to Wildignore.
       let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn|swp|cache|tmp)$'
+    endif
+
+  " }}}
+  " Colorizer --------------------------------------------------------------------------------- {{{
+
+    if has('nvim-0.5')
+      " Enable colorizer.nvim for all filetypes.
+      lua require 'colorizer'.setup()
+      lua require 'colorizer'.setup(nil, { css = true; })
     endif
 
   " }}}
@@ -630,15 +644,6 @@
 
     " Automatically enter Insert mode when opening the commit window.
     autocmd mygroup BufWinEnter COMMIT_EDITMSG startinsert
-
-    " Change the inline-diff-expand from '=' to 'l' in the :Git window.
-    if filereadable($HOME . '/.local/share/nvim/plugged/vim-fugitive/autoload/fugitive.vim')
-      autocmd mygroup VimEnter *
-        \ silent
-        \ :!sed -i -e "s/.*call s:Map('n', \"=\".*/call s:Map('n', \"l\", \":<C-U>execute <SID>StageInline('toggle',line('.'),v:count)<CR>\", '<silent>')/"
-                 \ -e "s/.*call s:Map('x', \"=\".*/call s:Map('x', \"l\", \":<C-U>execute <SID>StageInline('toggle',line('.'),v:count)<CR>\", '<silent>')/"
-        \ ~/.local/share/nvim/plugged/vim-fugitive/autoload/fugitive.vim
-    endif
 
   " }}}
   " Grepper ----------------------------------------------------------------------------------- {{{
@@ -674,38 +679,23 @@
       \ --one-file-system
       \ --smart-case
       \ -g "!**/Downloads"
-      \ -g "!**/.cfg"
-      \ -g "!**/.fltk"
+      \ -g "!**/.cfg" -g "!**/.fltk"
       \ -g "!**/.git" -g "!**/.svn" -g "!**/.hg"
       \ -g "!**/.gem" -g "!**/.vpython*" -g "!**/.npm" -g "!**/.cargo"
       \ -g "!**/.gnupg" -g "!**/.local" -g "!**/.cache"
       \ -g "!**/.mozilla" -g "!**/.tmux" -g "!**/.LfCache" -g "!**/.ansible"
       \ -g "!*.avi" -g "!*.aac" -g "!*.m4a" -g "!*.mkv" -g "!*.mp*"
-      \ -g "!*.crt" -g "!*.der" -g "!*.cer*"
+      \ -g "!*.crt" -g "!*.der" -g "!*.cer*" -g "!*.gpg" -g "!*.key"
       \ -g "!*.doc*" -g "!*.odt" -g "!*.pdf"
-      \ -g "!*.gpg" -g "!*.key"
       \ -g "!*.ico" -g "!*.jp*g" -g "!*.gif" -g "!*.png" -g "!*.tiff" -g "!*.svg"
-      \ -g "!*.ko" -g "!*.so"
-      \ -g "!*.lock" -g "!*.swp"
+      \ -g "!*.ko" -g "!*.so" -g "!*.lock" -g "!*.swp"
       \ -g "!*.py1*" -g "!*.pyc"
-      \ -g "!*.sdv" -g "!*.shada"
-      \ -g "!*.sql*" -g "!*.db*" -g "!*.pick*"
+      \ -g "!*.sdv" -g "!*.shada" -g "!*.sql*" -g "!*.db*" -g "!*.pick*"
       \ -g "!*.tar*" -g "!*.tgz" -g "!*.*zip*" -g "!*.gz*" -g "!*.7z"
       \ -g "!*.vdi" -g "!*.vhd" -g "!*.vmd*" -g "!*.iso"
-      \ -g "!*.web*" -g "!*.bmp"
-      \ -g "!*.bau"
-      \ -g "!*.crate"
-      \ -g "!*.dat"
-      \ -g "!*.dic*"
-      \ -g "!*.exc"
-      \ -g "!*.fmt"
-      \ -g "!*.kbx*"
-      \ -g "!*.localstorage*"
-      \ -g "!*.msg"
-      \ -g "!*.pack"
-      \ -g "!*.stat*"
-      \ -g "!*.thm"
-      \ -g "!*.whl"
+      \ -g "!*.web*" -g "!*.bmp" -g "!*.bau" -g "!*.crate"
+      \ -g "!*.dat" -g "!*.dic*" -g "!*.exc" -g "!*.fmt" -g "!*.kbx*"
+      \ -g "!*.localstorage*" -g "!*.msg" -g "!*.pack" -g "!*.stat*" -g "!*.thm" -g "!*.whl"
       \ '
 
   " }}}
@@ -743,7 +733,7 @@
   " }}}
   " Highlighted Yank -------------------------------------------------------------------------- {{{
 
-    let g:highlightedyank_highlight_duration = 200
+    let g:highlightedyank_highlight_duration = 180
     highlight link HighlightedyankRegion Search
 
   " }}}
@@ -757,9 +747,27 @@
     let g:indentLine_bufNameExclude = ['term:*', '*.md']
 
   " }}}
+  " Kommentary -------------------------------------------------------------------------------- {{{
+
+if has('nvim-0.5')
+" <leader>cc to comment a block.
+" <leader>cu to uncomment a block.
+lua << EOF
+vim.g.kommentary_create_default_mappings = false
+
+vim.api.nvim_set_keymap("n", "<leader>cc", "<Plug>kommentary_motion_increase", {})
+vim.api.nvim_set_keymap("v", "<leader>cc", "<Plug>kommentary_visual_increase", {})
+vim.api.nvim_set_keymap("n", "<leader>cc", "<Plug>kommentary_line_increase", {})
+
+vim.api.nvim_set_keymap("n", "<leader>cu", "<Plug>kommentary_motion_decrease", {})
+vim.api.nvim_set_keymap("v", "<leader>cu", "<Plug>kommentary_visual_decrease", {})
+vim.api.nvim_set_keymap("n", "<leader>cu", "<Plug>kommentary_line_decrease", {})
+EOF
+endif
+
+  " }}}
   " LazyGit ----------------------------------------------------------------------------------- {{{
 
-    nnoremap <silent> <leader>l :LazyGit<CR>
     nnoremap <silent> <leader>m :LazyGit<CR>
     let g:lazygit_floating_window_scaling_factor = 0.92
 
@@ -908,25 +916,42 @@
       \ }
 
   " }}}
-  " Suda -------------------------------------------------------------------------------------- {{{
-
-    " Automatically open write-protected files with sudo.
-    " let g:suda_smart_edit = 1
-
-  " }}}
   " Taboo ------------------------------------------------------------------------------------- {{{
 
     set sessionoptions+=tabpages,globals  " Help taboo remember session options.
     let g:taboo_modified_tab_flag = ''    " Don't mark files as modified.
 
   " }}}
-  " Tagbar ------------------------------------------------------------------------------------ {{{
+  " Telescope --------------------------------------------------------------------------------- {{{
 
-    " Launch the tagbar by default when opening files >1000 lines.
-    "autocmd mygroup BufReadPost * if
+    if has('nvim-0.5')
+      nnoremap <leader>g :Telescope live_grep<CR>
+      nnoremap <leader>G :lua require('lua.grep')<CR>
+      " C-j and C-k to scroll up/down file list.
+      " ESC to close window.
+      highlight TelescopeSelection guibg=#000000 gui=Bold
+      highlight TelescopeMatching  guifg=#c3e88d gui=bold
+    endif
 
-    " Launch the tagbar by default when opening Python files.
-    "autocmd mygroup FileType python TagbarToggle
+  " }}}
+  " Treesitter -------------------------------------------------------------------------------- {{{
+
+if has('nvim-0.5')
+lua <<EOF
+require'nvim-treesitter.configs'.setup {
+  ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+  highlight = {
+    enable = true,              -- false will disable the whole extension
+    additional_vim_regex_highlighting = true,
+    custom_captures = {},
+    disable = {},
+    enable = true,
+    loaded = true,
+    module_path = "nvim-treesitter.highlight"
+  },
+}
+EOF
+endif
 
   " }}}
   " Undotree ---------------------------------------------------------------------------------- {{{
@@ -988,40 +1013,6 @@
 
     let g:vim_markdown_folding_disabled = 1
     let g:vim_markdown_override_foldtext = 0
-
-  " }}}
-  " Vim Wiki ---------------------------------------------------------------------------------- {{{
-
-    " let g:vimwiki_list = [{'path': '~/notes/', 'syntax': 'markdown', 'ext': '.md'},
-    "                      \{'path': '~/linux-notes/', 'syntax': 'markdown', 'ext': '.md'}]
-
-    " let g:vimwiki_conceallevel = 1
-    " let g:vimwiki_conceal_onechar_markers = 0
-
-    " <leader>ww is used by Vim-Windowswap, so remap it here.
-    " nmap <Leader>wx <Plug>VimwikiIndex
-
-    " Override some of Vimwiki's configs.
-    " For some reason this only works after the BufEnter event.
-    " Only conceal markdown syntax in Normal mode.
-    " autocmd mygroup BufEnter *.md,vimwiki,markdown setlocal concealcursor=n conceallevel=1
-
-    " Uncomment to enable automatic Markdown folding.
-    " let g:vimwiki_folding = 'custom'
-    " function! VimwikiFoldLevelCustom(lnum)
-    "   let pounds = strlen(matchstr(getline(a:lnum), '^#\+'))
-    "   if (pounds)
-    "     return '>' . pounds  " start a fold level
-    "   endif
-    "   if getline(a:lnum) =~? '\v^\s*$'
-    "     if (strlen(matchstr(getline(a:lnum + 1), '^#\+')))
-    "       return '-1' " don't fold last blank line before header
-    "     endif
-    "   endif
-    "   return '=' " return previous fold level
-    " endfunction
-    " autocmd mygroup FileType vimwiki setlocal foldmethod=expr |
-    "   \ setlocal foldenable | set foldexpr=VimwikiFoldLevelCustom(v:lnum)
 
   " }}}
   " Vim Windowswap ---------------------------------------------------------------------------- {{{
