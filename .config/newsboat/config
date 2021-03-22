@@ -24,7 +24,6 @@ bind-key k up
 unbind-key l
 bind-key l open
 
-unbind-key q
 bind-key h quit
 
 unbind-key END
