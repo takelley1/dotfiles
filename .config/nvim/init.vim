@@ -158,16 +158,6 @@
   " Auto-write files at work ------------------------------------------------------------------ {{{
   if g:atwork
 
-    " Automatically create SSH aliases file from Ansible inventory file.
-    autocmd mygroup BufWritePost
-      \ ~/scripts/ansible/inventories/s3noc/hosts.yml
-      \ silent :!sed '/^\s*#/d'
-      \ ~/scripts/ansible/inventories/s3noc/hosts.yml
-      \ | awk '/[a-zA-Z_-]*:(#.*)*$/ {FS=".";gsub(/[\t| |\:]/,"");host=tolower($1);FS=" "}
-      \ /^\s*[^\#]*ansible_host/ {ip=$2;print "Host " host "\n\t HostName " ip}'
-      \ | tee ~/scripts/ansible/inventories/global_files/home/akelley/.ssh/config
-      \ ~/.ssh/config
-
     autocmd mygroup BufWritePost
       \ ~/scripts/ansible/inventories/global_files/home/akelley/.vimrc
       \ silent :!cp -f ~/scripts/ansible/inventories/global_files/home/akelley/.vimrc
