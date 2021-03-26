@@ -555,14 +555,6 @@
     nnoremap <leader>S :AnsibleDocSplit<CR>
     nnoremap <leader>V :AnsibleDocVSplit<CR>
 
-    let g:ansibledoc_float_opts = {
-      \ 'relative': 'editor',
-      \ 'width': float2nr(round(0.45 * &columns)),
-      \ 'height': float2nr(round(0.75 * &lines)),
-      \ 'col': float2nr(round(0.27 * &columns)),
-      \ 'row': float2nr(round(0.07 * &lines)),
-      \ }
-
   " }}}
   " Black ------------------------------------------------------------------------------------- {{{
 
