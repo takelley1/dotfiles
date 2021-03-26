@@ -341,6 +341,8 @@
   nnoremap <leader>vs :update <bar> :source $MYVIMRC<CR><C-L>
   " Quickly save and quit everything to restart neovim.
   nnoremap <leader>Q :wqa!<CR>
+  " Save and quit only open window.
+  nnoremap <leader>q :wq!<CR>
 
   " Quickly add a note while working on something else.
   function! Notes()
