@@ -138,12 +138,9 @@
 
     alias reset='pokoy && pokoy -k && pokoy -r && pokoy' # Reset break timer.
 
-    alias pip='pip --trusted-host pypi.org --trusted-host pypi.python.org
-                --trusted-host files.pythonhosted.org'
-    alias pip3='pip3 --trusted-host pypi.org --trusted-host pypi.python.org
-                --trusted-host files.pythonhosted.org'
-    alias pip3.8='pip3.8 --trusted-host pypi.org --trusted-host pypi.python.org
-                --trusted-host files.pythonhosted.org'
+    alias pip='pip --trusted-host pypi.org --trusted-host pypi.python.org --trusted-host files.pythonhosted.org'
+    alias pip3='pip3 --trusted-host pypi.org --trusted-host pypi.python.org --trusted-host files.pythonhosted.org'
+    alias pip3.8='pip3.8 --trusted-host pypi.org --trusted-host pypi.python.org --trusted-host files.pythonhosted.org'
 
     alias define='dict'
     alias eve='bash /opt/evesetup/lib/evelauncher/evelauncher.sh &'
