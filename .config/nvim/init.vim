@@ -159,13 +159,21 @@
   " Auto-write files at work ------------------------------------------------------------------ {{{
   if g:atwork
 
-    autocmd mygroup BufWritePost
-      \ ~/scripts/ansible/inventories/global_files/home/akelley/.vimrc
-      \ silent :!cp -f ~/scripts/ansible/inventories/global_files/home/akelley/.vimrc
-      \ ~/.config/nvim/init.vim
-
     " Automatically copy changes from ansible repo to personal dotfiles.
     " Use sed to remove the 'Ansible managed' header.
+    
+    autocmd mygroup BufWritePost
+      \ ~/scripts/ansible/inventories/global_files/home/akelley/.vimrc
+      \ silent :!sed '0,/ansible_managed/d'
+      \ ~/scripts/ansible/inventories/global_files/home/akelley/.vimrc
+      \ > ~/.config/nvim/init.vim
+      
+    autocmd mygroup BufWritePost
+      \ ~/scripts/ansible/inventories/global_files/home/akelley/.ssh/config
+      \ silent :!sed '0,/ansible_managed/d'
+      \ ~/scripts/ansible/inventories/global_files/home/akelley/.ssh/config
+      \ > ~/.ssh/config
+
     autocmd mygroup BufWritePost
       \ ~/scripts/ansible/inventories/global_files/home/akelley/.bashrc
       \ silent :!sed '0,/ansible_managed/d'
@@ -182,7 +190,7 @@
       \ ~/scripts/ansible/inventories/global_files/home/akelley/.bash_profile
       \ silent :!sed '0,/ansible_managed/d'
       \ ~/scripts/ansible/inventories/global_files/home/akelley/.bash_profile
-      \ ~/.bash_profile
+      \ > ~/.bash_profile
   endif
   " }}}
 
