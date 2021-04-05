@@ -159,21 +159,13 @@
   " Auto-write files at work ------------------------------------------------------------------ {{{
   if g:atwork
 
+    autocmd mygroup BufWritePost
+      \ ~/scripts/ansible/inventories/global_files/home/akelley/.vimrc
+      \ silent :!cp -f ~/scripts/ansible/inventories/global_files/home/akelley/.vimrc
+      \ ~/.config/nvim/init.vim
+
     " Automatically copy changes from ansible repo to personal dotfiles.
     " Use sed to remove the 'Ansible managed' header.
-    
-    autocmd mygroup BufWritePost
-      \ ~/scripts/ansible/inventories/global_files/home/akelley/.vimrc
-      \ silent :!sed '0,/ansible_managed/d'
-      \ ~/scripts/ansible/inventories/global_files/home/akelley/.vimrc
-      \ > ~/.config/nvim/init.vim
-      
-    autocmd mygroup BufWritePost
-      \ ~/scripts/ansible/inventories/global_files/home/akelley/.ssh/config
-      \ silent :!sed '0,/ansible_managed/d'
-      \ ~/scripts/ansible/inventories/global_files/home/akelley/.ssh/config
-      \ > ~/.ssh/config
-
     autocmd mygroup BufWritePost
       \ ~/scripts/ansible/inventories/global_files/home/akelley/.bashrc
       \ silent :!sed '0,/ansible_managed/d'
@@ -190,7 +182,7 @@
       \ ~/scripts/ansible/inventories/global_files/home/akelley/.bash_profile
       \ silent :!sed '0,/ansible_managed/d'
       \ ~/scripts/ansible/inventories/global_files/home/akelley/.bash_profile
-      \ > ~/.bash_profile
+      \ ~/.bash_profile
   endif
   " }}}
 
@@ -401,6 +393,7 @@
         " Telescope.nvim
         " Plug 'nvim-lua/popup.nvim'
         " Plug 'nvim-lua/plenary.nvim'
+        " Plug 'lewis6991/gitsigns.nvim' " Lua replacement for gitgutter.
         " Plug 'nvim-telescope/telescope.nvim'
         Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} " Tree-sitter syntax highlighting.
         Plug 'f-person/git-blame.nvim'     " Git blame on each line.
@@ -409,11 +402,12 @@
         Plug 'glepnir/indent-guides.nvim'  " Lua replacement for yggdroot/indentline.
         Plug 'b3nj5m1n/kommentary'         " Lua replacement for nerdcommenter.
       else
-        Plug 'yggdroot/indentline'            " Show indentation lines. May cause performance issues.
+        " Plug 'yggdroot/indentline'            " Show indentation lines. May cause performance issues.
         Plug 'preservim/nerdcommenter'        " Comment blocks.
       endif
 
-      Plug 'takelley1/ansible-doc.vim' " View ansible docs within Neovim.
+      " Plug 'takelley1/ansible-doc.vim' " View ansible docs within Neovim.
+      Plug '~/ansible-doc.vim'
 
       " Plug 'tmhedberg/SimpylFold'  " Better folding in Python.
       Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}  " Python code highlighting.
