@@ -236,6 +236,7 @@
       \ colorcolumn=100
   " YAML -------------------------------------------------------------
     autocmd mygroup FileType yaml,yaml.ansible setlocal
+      \ foldlevelstart=0 foldmethod=marker
       \ colorcolumn=120
 
   " Force cursor to stay in the middle of the screen.
