@@ -56,7 +56,7 @@ keybinding:
   universal:
     quit: q
     quit-alt1: <c-c>
-    return: h
+    return: <esc>
     quitWithoutChangingDirectory: Q
     togglePanel: <tab>
     prevItem: <up>
