@@ -210,19 +210,6 @@ if [[ "${OSTYPE}" =~ "bsd" ]]; then
     export http_proxy="http://10.0.0.15:8080"
     export https_proxy="http://10.0.0.15:8080"
 
-    if hash nvim 2>/dev/null; then
-        export EDITOR="/usr/local/bin/nvim"
-        export VISUAL="/usr/local/bin/nvim"
-        export SUDO_EDITOR="/usr/local/bin/nvim"
-    elif hash vim 2>/dev/null; then
-        export EDITOR="/usr/local/bin/vim"
-        export VISUAL="/usr/local/bin/vim"
-        export SUDO_EDITOR="/usr/local/bin/vim"
-    else
-        export EDITOR="/usr/local/bin/vi"
-        export VISUAL="/usr/local/bin/vi"
-        export SUDO_EDITOR="/usr/local/bin/vi"
-    fi
 fi
 
 # }}}
@@ -254,20 +241,6 @@ if [[ "${OSTYPE}" =~ "linux" ]]; then
     alias lar='l -l --all --reverses --classify --color=auto --human-readable'
 
     alias dmesg='dmesg --human --ctime --decode'
-
-    if hash nvim 2>/dev/null; then
-        export EDITOR="/usr/bin/nvim"
-        export VISUAL="/usr/bin/nvim"
-        export SUDO_EDITOR="/usr/bin/nvim"
-    elif hash vim 2>/dev/null; then
-        export EDITOR="/usr/bin/vim"
-        export VISUAL="/usr/bin/vim"
-        export SUDO_EDITOR="/usr/bin/vim"
-    else
-        export EDITOR="/usr/bin/vi"
-        export VISUAL="/usr/bin/vi"
-        export SUDO_EDITOR="/usr/bin/vi"
-    fi
 
     # Use nvr to edit files within a single neovim instance on polaris.
     if [[ "${HOSTNAME}" == "polaris" ]]; then
@@ -302,6 +275,16 @@ if hash bat 2>/dev/null; then
     export BAT_THEME='TwoDark'
     #alias cat='bat -p'
 fi
+
+if hash nvim 2>/dev/null; then
+    export EDITOR="nvim"
+elif hash vim 2>/dev/null; then
+    export EDITOR="vim"
+else
+    export EDITOR="vi"
+fi
+export VISUAL="${EDITOR}"
+export SUDO_EDITOR="${EDITOR}"
 
 export PAGER="less"
 export TERM="screen-256color"
