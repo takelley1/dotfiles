@@ -8,7 +8,7 @@ let Lf_TabpagePosition =  2
 let Lf_Help_IsRunning =  0 
 let Lf_Mru_StlResultsCount = "143"
 let Lf_DelimiterChar = ";"
-let Lf_File_StlTotal = "18344"
+let Lf_File_StlTotal = "20359"
 let Lf_Line_StlTotal = "2631"
 let Lf_Ctags = "ctags"
 let Lf_Mru_IsRunning =  0 
@@ -29,7 +29,6 @@ let NERDRemoveExtraSpaces = "0"
 let AutoPairsFlyMode =  0 
 let NERDTrimTrailingWhitespace = "0"
 let Lf_IndexTimeLimit =  120 
-let Lf_VimResized =  0 
 let Lf_Window_StlResultsCount = "29"
 let Lf_Window_StlLineNumber = "1"
 let WebDevIconsTabAirLineBeforeGlyphPadding = " "
@@ -42,15 +41,15 @@ let Lf_Help_StlMode = "Fuzzy"
 let AutoPairsMapBS =  1 
 let EasyMotion_move_highlight =  1 
 let AutoPairsShortcutBackInsert = "<M-b>"
-let NERDCompactSexyComs = "0"
+let Lf_UseMemoryCache =  1 
+let AutoPairsLoaded =  1 
 let Lf_File_StlCategory = "File"
 let EasyMotion_smartcase =  0 
 let AutoPairsMapCR =  1 
 let AutoPairsMapCh =  1 
-let Lf_File_StlResultsCount = "331"
+let Lf_File_StlResultsCount = "309"
 let DevIconsEnableDistro =  1 
-let Taboo_tabs = "1	1-init\n2	2-bash\n3	3-dot\n4	4-note\n5	5-nixnote\n6	6-ansible\n7	7-ansible2\n8	8-script\n9	9-script2\n10	10-rss\n11	11-ssh\n12	12\n13	13\n14	14\n15	15\n16	16\n17	17\n18	18\n19	19\n20	20\n21	21\n22	22\n"
-let NERDLPlace = "[>"
+let Taboo_tabs = "1	1-init\n2	2-bash\n3	3-dot\n4	4-note\n5	5-nixnote\n6	6-ans1\n7	7-ans2\n8	8-ans3\n9	9-scrpt1\n10	10-scrpt2\n11	11-rss\n12	12-rss\n13	13\n14	14\n15	15\n16	16\n17	17\n18	18\n19	19\n20	20\n21	21\n"
 let WebDevIconsUnicodeDecorateFileNodes =  1 
 let NERDCommentEmptyLines = "0"
 let EasyMotion_prompt = "Search for {n} character(s): "
@@ -65,12 +64,10 @@ let Lf_Line_IsRunning =  0
 let EasyMotion_cursor_highlight =  1 
 let Lf_Help_StlTotal = "12372"
 let Lf_Mru_StlRunning = ""
-let NERDBlockComIgnoreEmpty = "0"
 let Lf_Mru_StlMode = "FullPath"
 let NERDDisableTabsInBlockComm = "0"
 let NERDTreeUpdateOnCursorHold =  1 
 let Lf_WindowPosition = "bottom"
-let DevIconsDefaultFolderOpenSymbol = ""
 let Lf_PythonVersion =  3 
 let NERDAllowAnyVisualDelims = "1"
 let Lf_Help_StlCwd = "/home/akelley/.config/lazygit"
@@ -82,9 +79,11 @@ let Lf_ShowRelativePath =  1
 let Lf_CacheDirectory = "/home/akelley/.cache"
 let Lf_Window_StlCwd = "/home/akelley/.config/nvim"
 let DevIconsEnableFoldersOpenClose =  0 
+let NERDBlockComIgnoreEmpty = "0"
 let EasyMotion_use_upper =  0 
 let EasyMotion_do_mapping =  1 
 let Lf_Line_StlRunning = ""
+let Lf_NeedCacheTime = "1.5"
 let EasyMotion_disable_two_key_combo =  0 
 let DevIconsEnableFolderPatternMatching =  1 
 let Lf_highlightDevIconsLoad =  1 
@@ -94,10 +93,9 @@ let NERDMenuMode = "3"
 let Lf_WindowHeight = "0.5"
 let EasyMotion_grouping =  1 
 let WebDevIconsUnicodeDecorateFileNodesDefaultSymbol = ""
+let NERDToggleCheckAllLines = "0"
 let NERDTreeGitStatusUpdateOnCursorHold =  1 
 let EasyMotion_skipfoldedline =  1 
-let AutoPairsLoaded =  1 
-let WebDevIconsUnicodeDecorateFolderNodesExactMatches =  1 
 let WebDevIconsUnicodeByteOrderMarkerDefaultSymbol = ""
 let DevIconsAppendArtifactFix =  0 
 let NERDDefaultAlign = "left"
@@ -108,16 +106,19 @@ let Lf_File_StlCwd = "/home/akelley"
 let Lf_DefaultMode = "FullPath"
 let AutoPairsShortcutJump = "<M-n>"
 let AutoPairsMapSpace =  1 
+let EasyMotion_startofline =  1 
+let Lf_VimResized =  0 
 let Lf_Line_StlLineNumber = "1"
 let Lf_Line_StlResultsCount = "2631"
-let NERDToggleCheckAllLines = "0"
-let Lf_UseMemoryCache =  1 
+let NERDCompactSexyComs = "0"
 let EasyMotion_keys = "asdghklqwertyuiopzxcvbnmfj;"
 let DevIconsEnableFolderExtensionPatternMatching =  0 
+let DevIconsDefaultFolderOpenSymbol = ""
 let Lf_CursorBlink =  1 
 let Lf_Mru_StlTotal = "143"
 let Lf_Window_StlTotal = "29"
 let Lf_MaxCount =  2000000 
+let WebDevIconsUnicodeDecorateFolderNodesExactMatches =  1 
 let Lf_Mru_StlLineNumber = "1"
 let Lf_fuzzyMatch_C =  0 
 let AutoPairsShortcutToggle = "<M-p>"
@@ -126,6 +127,7 @@ let EasyMotion_enter_jump_first =  0
 let WebDevIconsNerdTreeAfterGlyphPadding = " "
 let Lf_PreviewCode =  0 
 let Lf_Window_StlCategory = "Window"
+let Lf_Help_StlLineNumber = "1"
 let AutoPairsSmartQuotes =  1 
 let Lf_MruMaxFiles =  10000 
 let Lf_FollowLinks =  0 
@@ -138,19 +140,17 @@ let EasyMotion_inc_highlight =  1
 let NERDSpaceDelims =  1 
 let Lf_RememberLastSearch =  0 
 let Lf_fuzzyEngine_C =  0 
+let NERDLPlace = "[>"
 let WebDevIconsNerdTreeBeforeGlyphPadding = " "
 let EasyMotion_verbose =  1 
 let WebDevIconsUnicodeDecorateFolderNodesSymlinkSymbol = ""
 let NERDCommentWholeLinesInVMode = "0"
 let Lf_Line_StlCwd = "/home/akelley/.config/nvim"
 let NERDRPlace = "<]"
-let Lf_Help_StlLineNumber = "1"
 let Lf_Line_StlMode = "Fuzzy"
-let Lf_NeedCacheTime = "1.5"
 let Lf_Help_StlRunning = ""
 let NERDRemoveAltComs = "1"
 let Lf_Mru_StlCategory = "Mru"
-let EasyMotion_startofline =  1 
 let Lf_ShortcutB = "<Leader>b"
 let Lf_ShortcutF = "<Leader>f"
 let Lf_WorkingDirectory = ""
@@ -160,43 +160,34 @@ let Lf_NumberOfHighlight =  100
 let AutoPairsMoveCharacter = "()[]{}\"'"
 let EasyMotion_space_jump_first =  0 
 silent only
-cd ~/linux-notes
+cd ~/scripts/ansible/host_vars/europa/e2guardian/lists
 if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +218 ~/.config/nvim/init.vim
 badd +1 ~/.config/newsboat/config
 badd +1 ~/.config/newsboat/urls
-badd +1 ~/scripts/ansible/roles/linux-arch--workstations/tasks/templates.yml
-badd +1 ~/.config/lazygit/config.yml
-badd +1 ~/.cfg/.gitignore
-badd +1 ~/.gitignore
 badd +1 ~/.local/share/nvim/plugged/lazygit.nvim/lua/lazygit.lua
+badd +393 ~/.config/nvim/init.vim
 badd +1 ~/.bashrc
-badd +1 ~/.config/i3/scripts/status-bar/brightness.sh
-badd +0 term://.//2992:/bin/bash
-badd +0 term://.//3092:/bin/bash
-badd +1 /mnt/tank/storage/documents/scripting/github-repos/my-repos/notes/other/personal--youtube-dl.txt
-badd +0 term://.//89195:/bin/bash
-badd +0 term://.//27014:/bin/bash
-badd +0 term://.//59193:/bin/bash
-badd +40 ~/scripts/bash/freebsd/05-youtube-dl-download.sh
-badd +0 term://.//217356:/bin/bash
-badd +37 term://.//253209:/bin/bash
-badd +0 ~/notes/budget.md
-badd +28 ~/scripts/ansible/roles/e2guardian/tasks/configure.yml
-badd +1 ~/scripts/ansible/roles/e2guardian/molecule/default/molecule.yml
-badd +3 ~/scripts/ansible/roles/e2guardian/defaults/main/main.yml
-badd +0 term://.//406789:/bin/bash
-badd +0 ~/.config/i3/scripts/status-bar/share.py
-badd +1 ~/scripts/ansible/group_vars/ubuntu_server.yml
-badd +0 term://.//481832:/bin/bash
-badd +0 software.md
-badd +0 term://.//500364:/bin/bash
-badd +0 term://.//500480:/bin/bash
-badd +0 term://.//500523:/bin/bash
-badd +0 term://.//500577:/bin/bash
+badd +1 ~/.config/vimb/style.css
+badd +1 ~/notes/work/skills.md
+badd +1 ~/.config/i3/config-shared
+badd +1 ~/linux-notes/awk-and-sed.md
+badd +1 ~/scripts/bash/linux/shell-functions/sort-hosts.sh
+badd +12 ~/scripts/bash/linux/shell-functions/hosts.yml
+badd +1 /mnt/tank/storage/documents/scripting/github-repos/my-repos/work-repos/scripts/ansible/roles/ansible-linux-common-s3noc/tasks/users.yml
+badd +24 ~/linux-notes/zfs.md
+badd +0 term://.//447354:/bin/bash
+badd +0 /mnt/tank/storage/documents/scripting/github-repos/my-repos/work-repos/scripts/ansible/inventories/s3noc/group_vars/centos7/linux-common/users.yml
+badd +50 ~/scripts/bash/freebsd/02-auto-screenshot-compress.sh
+badd +1 ~/.config/lazygit/config.yml
+badd +6 ~/scripts/ansible/roles/ansible-role-e2guardian/defaults/main/e2guardian/exceptionphraselist.yml
+badd +10 bannedregexpurllist.yml
+badd +1 ~/scripts/ansible/roles/ansible-role-e2guardian/templates/opt/e2g/etc/e2guardian/e2guardian.conf.j2
+badd +0 term://.//728718:/bin/bash
+badd +89 ~/scripts/ansible/roles/ansible-role-e2guardian/tasks/install.yml
+badd +0 /mnt/tank/storage/documents/scripting/github-repos/my-repos/scripts/bash/linux/systemd/automatic-update-daemon/aud.sh
 argglobal
 %argdel
 $argadd ~/.config/nvim/init.vim
@@ -218,56 +209,66 @@ setlocal fml=1
 setlocal fdn=20
 setlocal fen
 silent! normal! zE
-2,63fold
-86,113fold
-158,196fold
-64,198fold
-199,270fold
-271,386fold
-390,454fold
-456,466fold
-467,493fold
-494,525fold
-526,543fold
-544,558fold
-559,564fold
+2,64fold
+87,114fold
+159,187fold
+65,189fold
+190,261fold
+262,379fold
+383,463fold
+465,475fold
+476,499fold
+500,524fold
+525,544fold
+545,551fold
+552,557fold
+558,564fold
 565,592fold
-593,606fold
-607,633fold
-634,701fold
-702,724fold
-725,730fold
-731,740fold
-741,747fold
-748,755fold
-756,824fold
-825,838fold
-839,848fold
-849,856fold
-857,891fold
-892,897fold
-898,903fold
-904,912fold
-913,918fold
-919,932fold
-933,967fold
-968,974fold
-975,1008fold
-1009,1014fold
-1015,1040fold
-387,1044fold
-1045,1087fold
-1088,1234fold
-64
+593,601fold
+602,615fold
+616,633fold
+634,686fold
+687,718fold
+719,724fold
+725,734fold
+735,753fold
+754,759fold
+760,767fold
+768,836fold
+837,850fold
+851,860fold
+861,868fold
+869,903fold
+904,909fold
+910,921fold
+922,941fold
+942,947fold
+948,961fold
+962,996fold
+997,1002fold
+1003,1008fold
+1009,1034fold
+380,1038fold
+1039,1081fold
+1082,1228fold
+65
 normal! zo
-387
+65
+normal! zc
+380
 normal! zo
-let s:l = 84 - ((83 * winheight(0) + 22) / 44)
+383
+normal! zo
+525
+normal! zo
+725
+normal! zo
+let s:l = 396 - ((395 * winheight(0) + 22) / 44)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-84
-normal! 036|
+396
+normal! 09|
 lcd ~/.config/nvim
 tabedit ~/.bashrc
 set splitbelow splitright
@@ -285,33 +286,24 @@ setlocal fdl=0
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
-let s:l = 237 - ((236 * winheight(0) + 22) / 44)
+1
+normal! zo
+108
+normal! zo
+let s:l = 141 - ((21 * winheight(0) + 22) / 44)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-237
-normal! 0
+141
+normal! 074|
 lcd ~/
-tabedit ~/.config/i3/scripts/status-bar/share.py
+tabedit ~/.config/i3/config-shared
 set splitbelow splitright
-wincmd _ | wincmd |
-vsplit
-1wincmd h
-wincmd w
-wincmd _ | wincmd |
-split
-1wincmd k
-wincmd w
 wincmd t
 set winminheight=0
 set winheight=1
 set winminwidth=0
 set winwidth=1
-exe 'vert 1resize ' . ((&columns * 96 + 95) / 190)
-exe '2resize ' . ((&lines * 29 + 23) / 47)
-exe 'vert 2resize ' . ((&columns * 93 + 95) / 190)
-exe '3resize ' . ((&lines * 14 + 23) / 47)
-exe 'vert 3resize ' . ((&columns * 93 + 95) / 190)
 argglobal
 setlocal fdm=manual
 setlocal fde=0
@@ -322,17 +314,22 @@ setlocal fml=1
 setlocal fdn=20
 setlocal fen
 silent! normal! zE
-let s:l = 38 - ((21 * winheight(0) + 22) / 44)
+let s:l = 217 - ((21 * winheight(0) + 22) / 44)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-38
-normal! 0
-lcd ~/.config/i3/scripts/status-bar
-wincmd w
+217
+normal! 04|
+lcd ~/.config/i3
+tabedit ~/notes/work/skills.md
+set splitbelow splitright
+wincmd t
+set winminheight=0
+set winheight=1
+set winminwidth=0
+set winwidth=1
 argglobal
-if bufexists("~/.config/i3/scripts/status-bar/brightness.sh") | buffer ~/.config/i3/scripts/status-bar/brightness.sh | else | edit ~/.config/i3/scripts/status-bar/brightness.sh | endif
-setlocal fdm=marker
+setlocal fdm=manual
 setlocal fde=0
 setlocal fmr={{{,}}}
 setlocal fdi=#
@@ -340,38 +337,15 @@ setlocal fdl=0
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
-let s:l = 1 - ((0 * winheight(0) + 14) / 29)
+silent! normal! zE
+let s:l = 1 - ((0 * winheight(0) + 22) / 44)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
 1
 normal! 0
-lcd ~/.config/i3/scripts/status-bar
-wincmd w
-argglobal
-if bufexists("term://.//2992:/bin/bash") | buffer term://.//2992:/bin/bash | else | edit term://.//2992:/bin/bash | endif
-setlocal fdm=manual
-setlocal fde=0
-setlocal fmr={{{,}}}
-setlocal fdi=#
-setlocal fdl=0
-setlocal fml=1
-setlocal fdn=20
-setlocal fen
-let s:l = 1107 - ((13 * winheight(0) + 7) / 14)
-if s:l < 1 | let s:l = 1 | endif
-exe s:l
-normal! zt
-1107
-normal! 015|
-lcd ~/.config/i3/scripts/status-bar
-wincmd w
-exe 'vert 1resize ' . ((&columns * 96 + 95) / 190)
-exe '2resize ' . ((&lines * 29 + 23) / 47)
-exe 'vert 2resize ' . ((&columns * 93 + 95) / 190)
-exe '3resize ' . ((&lines * 14 + 23) / 47)
-exe 'vert 3resize ' . ((&columns * 93 + 95) / 190)
-tabedit ~/notes/budget.md
+lcd ~/notes/work
+tabedit ~/linux-notes/zfs.md
 set splitbelow splitright
 wincmd t
 set winminheight=0
@@ -388,53 +362,22 @@ setlocal fml=1
 setlocal fdn=20
 setlocal fen
 silent! normal! zE
-let s:l = 14 - ((13 * winheight(0) + 22) / 44)
+let s:l = 24 - ((21 * winheight(0) + 22) / 44)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-14
+24
 normal! 0
-lcd ~/notes
-tabedit ~/linux-notes/software.md
-set splitbelow splitright
-wincmd t
-set winminheight=0
-set winheight=1
-set winminwidth=0
-set winwidth=1
-argglobal
-setlocal fdm=manual
-setlocal fde=0
-setlocal fmr={{{,}}}
-setlocal fdi=#
-setlocal fdl=0
-setlocal fml=1
-setlocal fdn=20
-setlocal fen
-silent! normal! zE
-let s:l = 104 - ((21 * winheight(0) + 22) / 44)
-if s:l < 1 | let s:l = 1 | endif
-exe s:l
-normal! zt
-104
-normal! 054|
 lcd ~/linux-notes
-tabedit ~/scripts/ansible/roles/e2guardian/molecule/default/molecule.yml
+tabedit ~/scripts/ansible/roles/ansible-role-e2guardian/templates/opt/e2g/etc/e2guardian/e2guardian.conf.j2
 set splitbelow splitright
 wincmd _ | wincmd |
 split
 1wincmd k
 wincmd _ | wincmd |
 vsplit
-wincmd _ | wincmd |
-vsplit
-2wincmd h
-wincmd w
-wincmd w
-wincmd w
-wincmd _ | wincmd |
-vsplit
 1wincmd h
+wincmd w
 wincmd w
 wincmd t
 set winminheight=0
@@ -442,15 +385,10 @@ set winheight=1
 set winminwidth=0
 set winwidth=1
 exe '1resize ' . ((&lines * 21 + 23) / 47)
-exe 'vert 1resize ' . ((&columns * 58 + 95) / 190)
+exe 'vert 1resize ' . ((&columns * 88 + 95) / 190)
 exe '2resize ' . ((&lines * 21 + 23) / 47)
-exe 'vert 2resize ' . ((&columns * 62 + 95) / 190)
-exe '3resize ' . ((&lines * 21 + 23) / 47)
-exe 'vert 3resize ' . ((&columns * 68 + 95) / 190)
-exe '4resize ' . ((&lines * 22 + 23) / 47)
-exe 'vert 4resize ' . ((&columns * 94 + 95) / 190)
-exe '5resize ' . ((&lines * 22 + 23) / 47)
-exe 'vert 5resize ' . ((&columns * 95 + 95) / 190)
+exe 'vert 2resize ' . ((&columns * 101 + 95) / 190)
+exe '3resize ' . ((&lines * 22 + 23) / 47)
 argglobal
 setlocal fdm=manual
 setlocal fde=0
@@ -467,10 +405,28 @@ exe s:l
 normal! zt
 1
 normal! 0
-lcd ~/scripts/ansible/roles/e2guardian/molecule/default
+lcd ~/scripts/ansible/roles/ansible-role-e2guardian/templates/opt/e2g/etc/e2guardian
 wincmd w
 argglobal
-if bufexists("~/scripts/ansible/roles/e2guardian/tasks/configure.yml") | buffer ~/scripts/ansible/roles/e2guardian/tasks/configure.yml | else | edit ~/scripts/ansible/roles/e2guardian/tasks/configure.yml | endif
+if bufexists("term://.//728718:/bin/bash") | buffer term://.//728718:/bin/bash | else | edit term://.//728718:/bin/bash | endif
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+let s:l = 74 - ((20 * winheight(0) + 10) / 21)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+74
+normal! 064|
+lcd ~/scripts/ansible/roles/ansible-role-e2guardian/defaults/main
+wincmd w
+argglobal
+if bufexists("~/scripts/ansible/roles/ansible-role-e2guardian/tasks/install.yml") | buffer ~/scripts/ansible/roles/ansible-role-e2guardian/tasks/install.yml | else | edit ~/scripts/ansible/roles/ansible-role-e2guardian/tasks/install.yml | endif
 setlocal fdm=manual
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -480,92 +436,39 @@ setlocal fml=1
 setlocal fdn=20
 setlocal fen
 silent! normal! zE
-let s:l = 28 - ((8 * winheight(0) + 10) / 21)
+let s:l = 75 - ((10 * winheight(0) + 11) / 22)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-28
-normal! 090|
-lcd ~/scripts/ansible/roles/e2guardian/tasks
-wincmd w
-argglobal
-if bufexists("~/scripts/ansible/roles/e2guardian/defaults/main/main.yml") | buffer ~/scripts/ansible/roles/e2guardian/defaults/main/main.yml | else | edit ~/scripts/ansible/roles/e2guardian/defaults/main/main.yml | endif
-setlocal fdm=manual
-setlocal fde=0
-setlocal fmr={{{,}}}
-setlocal fdi=#
-setlocal fdl=0
-setlocal fml=1
-setlocal fdn=20
-setlocal fen
-silent! normal! zE
-let s:l = 4 - ((3 * winheight(0) + 10) / 21)
-if s:l < 1 | let s:l = 1 | endif
-exe s:l
-normal! zt
-4
-normal! 030|
-lcd ~/scripts/ansible/roles/e2guardian/defaults/main
-wincmd w
-argglobal
-if bufexists("term://.//253209:/bin/bash") | buffer term://.//253209:/bin/bash | else | edit term://.//253209:/bin/bash | endif
-setlocal fdm=manual
-setlocal fde=0
-setlocal fmr={{{,}}}
-setlocal fdi=#
-setlocal fdl=0
-setlocal fml=1
-setlocal fdn=20
-setlocal fen
-let s:l = 10022 - ((21 * winheight(0) + 11) / 22)
-if s:l < 1 | let s:l = 1 | endif
-exe s:l
-normal! zt
-10022
-normal! 051|
-lcd ~/scripts/ansible/roles/e2guardian/templates/usr/local/share/e2guardian/languages/ukenglish
-wincmd w
-argglobal
-if bufexists("term://.//406789:/bin/bash") | buffer term://.//406789:/bin/bash | else | edit term://.//406789:/bin/bash | endif
-setlocal fdm=manual
-setlocal fde=0
-setlocal fmr={{{,}}}
-setlocal fdi=#
-setlocal fdl=0
-setlocal fml=1
-setlocal fdn=20
-setlocal fen
-let s:l = 10022 - ((21 * winheight(0) + 11) / 22)
-if s:l < 1 | let s:l = 1 | endif
-exe s:l
-normal! zt
-10022
-normal! 0
-lcd ~/scripts/bash/freebsd
+75
+normal! 08|
+lcd ~/scripts/ansible/roles/ansible-role-e2guardian/tasks
 wincmd w
 exe '1resize ' . ((&lines * 21 + 23) / 47)
-exe 'vert 1resize ' . ((&columns * 58 + 95) / 190)
+exe 'vert 1resize ' . ((&columns * 88 + 95) / 190)
 exe '2resize ' . ((&lines * 21 + 23) / 47)
-exe 'vert 2resize ' . ((&columns * 62 + 95) / 190)
+exe 'vert 2resize ' . ((&columns * 101 + 95) / 190)
+exe '3resize ' . ((&lines * 22 + 23) / 47)
+tabedit ~/scripts/ansible/host_vars/europa/e2guardian/lists/bannedregexpurllist.yml
+set splitbelow splitright
+wincmd _ | wincmd |
+split
+1wincmd k
+wincmd _ | wincmd |
+vsplit
+1wincmd h
+wincmd w
+wincmd w
+wincmd t
+set winminheight=0
+set winheight=1
+set winminwidth=0
+set winwidth=1
+exe '1resize ' . ((&lines * 22 + 23) / 47)
+exe 'vert 1resize ' . ((&columns * 94 + 95) / 190)
+exe '2resize ' . ((&lines * 22 + 23) / 47)
+exe 'vert 2resize ' . ((&columns * 95 + 95) / 190)
 exe '3resize ' . ((&lines * 21 + 23) / 47)
-exe 'vert 3resize ' . ((&columns * 68 + 95) / 190)
-exe '4resize ' . ((&lines * 22 + 23) / 47)
-exe 'vert 4resize ' . ((&columns * 94 + 95) / 190)
-exe '5resize ' . ((&lines * 22 + 23) / 47)
-exe 'vert 5resize ' . ((&columns * 95 + 95) / 190)
-tabedit ~/scripts/ansible/roles/linux-arch--workstations/tasks/templates.yml
-set splitbelow splitright
-wincmd _ | wincmd |
-split
-1wincmd k
-wincmd w
-wincmd t
-set winminheight=0
-set winheight=1
-set winminwidth=0
-set winwidth=1
-exe '1resize ' . ((&lines * 21 + 23) / 47)
-exe '2resize ' . ((&lines * 22 + 23) / 47)
 argglobal
 setlocal fdm=manual
 setlocal fde=0
@@ -576,36 +479,82 @@ setlocal fml=1
 setlocal fdn=20
 setlocal fen
 silent! normal! zE
-let s:l = 4 - ((3 * winheight(0) + 10) / 21)
+let s:l = 11 - ((10 * winheight(0) + 11) / 22)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-4
+11
+normal! 013|
+lcd ~/scripts/ansible/host_vars/europa/e2guardian/lists
+wincmd w
+argglobal
+if bufexists("~/scripts/ansible/roles/ansible-role-e2guardian/defaults/main/e2guardian/exceptionphraselist.yml") | buffer ~/scripts/ansible/roles/ansible-role-e2guardian/defaults/main/e2guardian/exceptionphraselist.yml | else | edit ~/scripts/ansible/roles/ansible-role-e2guardian/defaults/main/e2guardian/exceptionphraselist.yml | endif
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+silent! normal! zE
+let s:l = 6 - ((5 * winheight(0) + 11) / 22)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+6
+normal! 039|
+lcd ~/scripts/ansible/roles/ansible-role-e2guardian/defaults/main/e2guardian
+wincmd w
+argglobal
+if bufexists("~/scripts/ansible/roles/ansible-role-e2guardian/templates/opt/e2g/etc/e2guardian/e2guardian.conf.j2") | buffer ~/scripts/ansible/roles/ansible-role-e2guardian/templates/opt/e2g/etc/e2guardian/e2guardian.conf.j2 | else | edit ~/scripts/ansible/roles/ansible-role-e2guardian/templates/opt/e2g/etc/e2guardian/e2guardian.conf.j2 | endif
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+silent! normal! zE
+let s:l = 141 - ((10 * winheight(0) + 10) / 21)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+141
+normal! 0
+lcd ~/scripts/ansible/roles/ansible-role-e2guardian/templates/opt/e2g/etc/e2guardian
+wincmd w
+exe '1resize ' . ((&lines * 22 + 23) / 47)
+exe 'vert 1resize ' . ((&columns * 94 + 95) / 190)
+exe '2resize ' . ((&lines * 22 + 23) / 47)
+exe 'vert 2resize ' . ((&columns * 95 + 95) / 190)
+exe '3resize ' . ((&lines * 21 + 23) / 47)
+tabnew
+set splitbelow splitright
+wincmd t
+set winminheight=0
+set winheight=1
+set winminwidth=0
+set winwidth=1
+argglobal
+if bufexists("term://.//447474:/bin/bash") | buffer term://.//447474:/bin/bash | else | edit term://.//447474:/bin/bash | endif
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+let s:l = 37 - ((36 * winheight(0) + 22) / 44)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+37
 normal! 019|
-lcd ~/scripts/ansible/roles/linux-arch--workstations/tasks
-wincmd w
-argglobal
-if bufexists("~/.cfg/.gitignore") | buffer ~/.cfg/.gitignore | else | edit ~/.cfg/.gitignore | endif
-setlocal fdm=manual
-setlocal fde=0
-setlocal fmr={{{,}}}
-setlocal fdi=#
-setlocal fdl=0
-setlocal fml=1
-setlocal fdn=20
-setlocal fen
-silent! normal! zE
-let s:l = 5 - ((4 * winheight(0) + 11) / 22)
-if s:l < 1 | let s:l = 1 | endif
-exe s:l
-normal! zt
-5
-normal! 06|
-lcd ~/.cfg
-wincmd w
-exe '1resize ' . ((&lines * 21 + 23) / 47)
-exe '2resize ' . ((&lines * 22 + 23) / 47)
-tabedit ~/scripts/ansible/group_vars/ubuntu_server.yml
+lcd ~/
+tabedit /mnt/tank/storage/documents/scripting/github-repos/my-repos/scripts/bash/linux/systemd/automatic-update-daemon/aud.sh
 set splitbelow splitright
 wincmd _ | wincmd |
 split
@@ -616,7 +565,8 @@ set winminheight=0
 set winheight=1
 set winminwidth=0
 set winwidth=1
-wincmd =
+exe '1resize ' . ((&lines * 22 + 23) / 47)
+exe '2resize ' . ((&lines * 21 + 23) / 47)
 argglobal
 setlocal fdm=marker
 setlocal fde=0
@@ -626,17 +576,81 @@ setlocal fdl=0
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
-let s:l = 9 - ((8 * winheight(0) + 16) / 33)
+let s:l = 16 - ((10 * winheight(0) + 11) / 22)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+16
+normal! 0
+lcd /mnt/tank/storage/documents/scripting/github-repos/my-repos/scripts/bash/linux/systemd/automatic-update-daemon
+wincmd w
+argglobal
+if bufexists("~/scripts/bash/freebsd/02-auto-screenshot-compress.sh") | buffer ~/scripts/bash/freebsd/02-auto-screenshot-compress.sh | else | edit ~/scripts/bash/freebsd/02-auto-screenshot-compress.sh | endif
+setlocal fdm=marker
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+let s:l = 50 - ((10 * winheight(0) + 10) / 21)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+50
+normal! 016|
+lcd ~/scripts/bash/freebsd
+wincmd w
+exe '1resize ' . ((&lines * 22 + 23) / 47)
+exe '2resize ' . ((&lines * 21 + 23) / 47)
+tabedit ~/scripts/bash/linux/shell-functions/sort-hosts.sh
+set splitbelow splitright
+wincmd _ | wincmd |
+split
+1wincmd k
+wincmd _ | wincmd |
+vsplit
+1wincmd h
+wincmd w
+wincmd w
+wincmd _ | wincmd |
+vsplit
+1wincmd h
+wincmd w
+wincmd t
+set winminheight=0
+set winheight=1
+set winminwidth=0
+set winwidth=1
+exe '1resize ' . ((&lines * 21 + 23) / 47)
+exe 'vert 1resize ' . ((&columns * 94 + 95) / 190)
+exe '2resize ' . ((&lines * 21 + 23) / 47)
+exe 'vert 2resize ' . ((&columns * 95 + 95) / 190)
+exe '3resize ' . ((&lines * 22 + 23) / 47)
+exe 'vert 3resize ' . ((&columns * 94 + 95) / 190)
+exe '4resize ' . ((&lines * 22 + 23) / 47)
+exe 'vert 4resize ' . ((&columns * 95 + 95) / 190)
+argglobal
+setlocal fdm=marker
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+let s:l = 9 - ((8 * winheight(0) + 10) / 21)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
 9
-normal! 014|
-lcd ~/scripts/ansible/group_vars
+normal! 03|
+lcd ~/scripts/bash/linux/shell-functions
 wincmd w
 argglobal
-if bufexists("term://.//59193:/bin/bash") | buffer term://.//59193:/bin/bash | else | edit term://.//59193:/bin/bash | endif
-setlocal fdm=marker
+if bufexists("~/scripts/bash/linux/shell-functions/hosts.yml") | buffer ~/scripts/bash/linux/shell-functions/hosts.yml | else | edit ~/scripts/bash/linux/shell-functions/hosts.yml | endif
+setlocal fdm=manual
 setlocal fde=0
 setlocal fmr={{{,}}}
 setlocal fdi=#
@@ -644,29 +658,18 @@ setlocal fdl=0
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
-let s:l = 407 - ((9 * winheight(0) + 5) / 10)
+silent! normal! zE
+let s:l = 12 - ((10 * winheight(0) + 10) / 21)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-407
-normal! 029|
-lcd /mnt/tank/storage/documents/scripting/github-repos/my-repos/scripts/bash/freebsd
+12
+normal! 024|
+lcd ~/scripts/bash/linux/shell-functions
 wincmd w
-wincmd =
-tabedit ~/scripts/bash/freebsd/05-youtube-dl-download.sh
-set splitbelow splitright
-wincmd _ | wincmd |
-split
-1wincmd k
-wincmd w
-wincmd t
-set winminheight=0
-set winheight=1
-set winminwidth=0
-set winwidth=1
-wincmd =
 argglobal
-setlocal fdm=marker
+if bufexists("term://.//447354:/bin/bash") | buffer term://.//447354:/bin/bash | else | edit term://.//447354:/bin/bash | endif
+setlocal fdm=manual
 setlocal fde=0
 setlocal fmr={{{,}}}
 setlocal fdi=#
@@ -674,17 +677,17 @@ setlocal fdl=0
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
-let s:l = 40 - ((10 * winheight(0) + 10) / 21)
+let s:l = 1 - ((0 * winheight(0) + 11) / 22)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-40
-normal! 0
-lcd ~/scripts/bash/freebsd
+1
+normal! 053|
+lcd ~/scripts/bash/linux/shell-functions
 wincmd w
 argglobal
-if bufexists("term://.//481832:/bin/bash") | buffer term://.//481832:/bin/bash | else | edit term://.//481832:/bin/bash | endif
-setlocal fdm=marker
+if bufexists("~/linux-notes/awk-and-sed.md") | buffer ~/linux-notes/awk-and-sed.md | else | edit ~/linux-notes/awk-and-sed.md | endif
+setlocal fdm=manual
 setlocal fde=0
 setlocal fmr={{{,}}}
 setlocal fdi=#
@@ -692,15 +695,23 @@ setlocal fdl=0
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
-let s:l = 26 - ((20 * winheight(0) + 11) / 22)
+silent! normal! zE
+let s:l = 65 - ((9 * winheight(0) + 11) / 22)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-26
-normal! 091|
-lcd /mnt/tank/storage/documents/scripting/github-repos/my-repos/scripts/bash/freebsd
+65
+normal! 092|
+lcd ~/linux-notes
 wincmd w
-wincmd =
+exe '1resize ' . ((&lines * 21 + 23) / 47)
+exe 'vert 1resize ' . ((&columns * 94 + 95) / 190)
+exe '2resize ' . ((&lines * 21 + 23) / 47)
+exe 'vert 2resize ' . ((&columns * 95 + 95) / 190)
+exe '3resize ' . ((&lines * 22 + 23) / 47)
+exe 'vert 3resize ' . ((&columns * 94 + 95) / 190)
+exe '4resize ' . ((&lines * 22 + 23) / 47)
+exe 'vert 4resize ' . ((&columns * 95 + 95) / 190)
 tabedit ~/.config/newsboat/config
 set splitbelow splitright
 wincmd _ | wincmd |
@@ -716,7 +727,11 @@ set winminheight=0
 set winheight=1
 set winminwidth=0
 set winwidth=1
-wincmd =
+exe '1resize ' . ((&lines * 15 + 23) / 47)
+exe 'vert 1resize ' . ((&columns * 63 + 95) / 190)
+exe '2resize ' . ((&lines * 15 + 23) / 47)
+exe 'vert 2resize ' . ((&columns * 126 + 95) / 190)
+exe '3resize ' . ((&lines * 28 + 23) / 47)
 argglobal
 setlocal fdm=manual
 setlocal fde=0
@@ -727,11 +742,11 @@ setlocal fml=1
 setlocal fdn=20
 setlocal fen
 silent! normal! zE
-let s:l = 2 - ((0 * winheight(0) + 5) / 11)
+let s:l = 3 - ((2 * winheight(0) + 7) / 15)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-2
+3
 normal! 0
 lcd ~/.config/newsboat
 wincmd w
@@ -746,16 +761,16 @@ setlocal fml=1
 setlocal fdn=20
 setlocal fen
 silent! normal! zE
-let s:l = 33 - ((10 * winheight(0) + 5) / 11)
+let s:l = 12 - ((0 * winheight(0) + 7) / 15)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-33
-normal! 0
+12
+normal! 043|
 lcd ~/.config/newsboat
 wincmd w
 argglobal
-if bufexists("term://.//3050:/bin/bash") | buffer term://.//3050:/bin/bash | else | edit term://.//3050:/bin/bash | endif
+if bufexists("term://.//447396:/bin/bash") | buffer term://.//447396:/bin/bash | else | edit term://.//447396:/bin/bash | endif
 setlocal fdm=manual
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -764,15 +779,19 @@ setlocal fdl=0
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
-let s:l = 32 - ((31 * winheight(0) + 16) / 32)
+let s:l = 10 - ((9 * winheight(0) + 14) / 28)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-32
-normal! 036|
+10
+normal! 0
 lcd /etc
 wincmd w
-wincmd =
+exe '1resize ' . ((&lines * 15 + 23) / 47)
+exe 'vert 1resize ' . ((&columns * 63 + 95) / 190)
+exe '2resize ' . ((&lines * 15 + 23) / 47)
+exe 'vert 2resize ' . ((&columns * 126 + 95) / 190)
+exe '3resize ' . ((&lines * 28 + 23) / 47)
 tabnew
 set splitbelow splitright
 wincmd t
@@ -781,7 +800,7 @@ set winheight=1
 set winminwidth=0
 set winwidth=1
 argglobal
-if bufexists("term://.//217356:/bin/bash") | buffer term://.//217356:/bin/bash | else | edit term://.//217356:/bin/bash | endif
+if bufexists("term://.//447423:/bin/bash") | buffer term://.//447423:/bin/bash | else | edit term://.//447423:/bin/bash | endif
 setlocal fdm=manual
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -790,13 +809,137 @@ setlocal fdl=0
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
-let s:l = 48 - ((42 * winheight(0) + 22) / 44)
+let s:l = 4 - ((3 * winheight(0) + 22) / 44)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-48
+4
+normal! 036|
+lcd ~/.config/newsboat
+tabedit /mnt/tank/storage/documents/scripting/github-repos/my-repos/work-repos/scripts/ansible/roles/ansible-linux-common-s3noc/tasks/users.yml
+set splitbelow splitright
+wincmd _ | wincmd |
+split
+1wincmd k
+wincmd w
+wincmd t
+set winminheight=0
+set winheight=1
+set winminwidth=0
+set winwidth=1
+exe '1resize ' . ((&lines * 21 + 23) / 47)
+exe '2resize ' . ((&lines * 22 + 23) / 47)
+argglobal
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+silent! normal! zE
+let s:l = 61 - ((10 * winheight(0) + 10) / 21)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+61
 normal! 0
-lcd /mnt/tank/storage/documents/scripting/github-repos/my-repos/scripts/bash/freebsd
+lcd /mnt/tank/storage/documents/scripting/github-repos/my-repos/work-repos/scripts/ansible/roles/ansible-linux-common-s3noc/tasks
+wincmd w
+argglobal
+if bufexists("/mnt/tank/storage/documents/scripting/github-repos/my-repos/work-repos/scripts/ansible/inventories/s3noc/group_vars/centos7/linux-common/users.yml") | buffer /mnt/tank/storage/documents/scripting/github-repos/my-repos/work-repos/scripts/ansible/inventories/s3noc/group_vars/centos7/linux-common/users.yml | else | edit /mnt/tank/storage/documents/scripting/github-repos/my-repos/work-repos/scripts/ansible/inventories/s3noc/group_vars/centos7/linux-common/users.yml | endif
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+silent! normal! zE
+let s:l = 32 - ((10 * winheight(0) + 11) / 22)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+32
+normal! 07|
+lcd /mnt/tank/storage/documents/scripting/github-repos/my-repos/work-repos/scripts/ansible/inventories/s3noc/group_vars/centos7/linux-common
+wincmd w
+exe '1resize ' . ((&lines * 21 + 23) / 47)
+exe '2resize ' . ((&lines * 22 + 23) / 47)
+tabedit ~/.local/share/nvim/plugged/lazygit.nvim/lua/lazygit.lua
+set splitbelow splitright
+wincmd t
+set winminheight=0
+set winheight=1
+set winminwidth=0
+set winwidth=1
+argglobal
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+silent! normal! zE
+let s:l = 1 - ((0 * winheight(0) + 22) / 44)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+1
+normal! 0
+lcd ~/.local/share/nvim/plugged/lazygit.nvim/lua
+tabedit ~/.config/vimb/style.css
+set splitbelow splitright
+wincmd t
+set winminheight=0
+set winheight=1
+set winminwidth=0
+set winwidth=1
+argglobal
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+silent! normal! zE
+let s:l = 88 - ((36 * winheight(0) + 22) / 44)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+88
+normal! 013|
+lcd ~/.config/vimb
+tabnew
+set splitbelow splitright
+wincmd t
+set winminheight=0
+set winheight=1
+set winminwidth=0
+set winwidth=1
+argglobal
+if bufexists("term://.//447466:/bin/bash") | buffer term://.//447466:/bin/bash | else | edit term://.//447466:/bin/bash | endif
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+let s:l = 10044 - ((43 * winheight(0) + 22) / 44)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+10044
+normal! 019|
+lcd ~/
 tabedit ~/.config/lazygit/config.yml
 set splitbelow splitright
 wincmd t
@@ -829,7 +972,7 @@ set winheight=1
 set winminwidth=0
 set winwidth=1
 argglobal
-if bufexists("term://.//500364:/bin/bash") | buffer term://.//500364:/bin/bash | else | edit term://.//500364:/bin/bash | endif
+if bufexists("term://.//447473:/bin/bash") | buffer term://.//447473:/bin/bash | else | edit term://.//447473:/bin/bash | endif
 setlocal fdm=manual
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -838,37 +981,27 @@ setlocal fdl=0
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
-let s:l = 1 - ((0 * winheight(0) + 22) / 44)
+let s:l = 137 - ((43 * winheight(0) + 22) / 44)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-1
-normal! 040|
-lcd ~/scripts/bash/freebsd
-tabedit ~/.local/share/nvim/plugged/lazygit.nvim/lua/lazygit.lua
+137
+normal! 028|
+lcd ~/
+tabnew
 set splitbelow splitright
 wincmd t
 set winminheight=0
 set winheight=1
 set winminwidth=0
 set winwidth=1
-argglobal
-setlocal fdm=manual
-setlocal fde=0
-setlocal fmr={{{,}}}
-setlocal fdi=#
-setlocal fdl=0
-setlocal fml=1
-setlocal fdn=20
-setlocal fen
-silent! normal! zE
-let s:l = 1 - ((0 * winheight(0) + 22) / 44)
-if s:l < 1 | let s:l = 1 | endif
-exe s:l
-normal! zt
-1
-normal! 0
-lcd ~/.local/share/nvim/plugged/lazygit.nvim/lua
+tabnew
+set splitbelow splitright
+wincmd t
+set winminheight=0
+set winheight=1
+set winminwidth=0
+set winwidth=1
 tabnew
 set splitbelow splitright
 wincmd t
@@ -877,207 +1010,23 @@ set winheight=1
 set winminwidth=0
 set winwidth=1
 argglobal
-if bufexists("term://.//500480:/bin/bash") | buffer term://.//500480:/bin/bash | else | edit term://.//500480:/bin/bash | endif
+if bufexists("term://.//447476:/bin/bash") | buffer term://.//447476:/bin/bash | else | edit term://.//447476:/bin/bash | endif
 setlocal fdm=manual
 setlocal fde=0
 setlocal fmr={{{,}}}
 setlocal fdi=#
-setlocal fdl=0
+setlocal fdl=99
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
-let s:l = 1 - ((0 * winheight(0) + 22) / 44)
+let s:l = 874 - ((43 * winheight(0) + 22) / 44)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-1
-normal! 033|
-lcd ~/ocvbot/ocvbot
-tabedit ~/.gitignore
-set splitbelow splitright
-wincmd _ | wincmd |
-vsplit
-1wincmd h
-wincmd w
-wincmd t
-set winminheight=0
-set winheight=1
-set winminwidth=0
-set winwidth=1
-wincmd =
-argglobal
-setlocal fdm=manual
-setlocal fde=0
-setlocal fmr={{{,}}}
-setlocal fdi=#
-setlocal fdl=0
-setlocal fml=1
-setlocal fdn=20
-setlocal fen
-silent! normal! zE
-let s:l = 1 - ((0 * winheight(0) + 22) / 44)
-if s:l < 1 | let s:l = 1 | endif
-exe s:l
-normal! zt
-1
-normal! 0
-lcd ~/
-wincmd w
-argglobal
-if bufexists("term://.//3092:/bin/bash") | buffer term://.//3092:/bin/bash | else | edit term://.//3092:/bin/bash | endif
-setlocal fdm=manual
-setlocal fde=0
-setlocal fmr={{{,}}}
-setlocal fdi=#
-setlocal fdl=0
-setlocal fml=1
-setlocal fdn=20
-setlocal fen
-let s:l = 32 - ((31 * winheight(0) + 22) / 44)
-if s:l < 1 | let s:l = 1 | endif
-exe s:l
-normal! zt
-32
-normal! 0
-lcd ~/
-wincmd w
-wincmd =
-tabnew
-set splitbelow splitright
-wincmd t
-set winminheight=0
-set winheight=1
-set winminwidth=0
-set winwidth=1
-argglobal
-if bufexists("term://.//500523:/bin/bash") | buffer term://.//500523:/bin/bash | else | edit term://.//500523:/bin/bash | endif
-setlocal fdm=manual
-setlocal fde=0
-setlocal fmr={{{,}}}
-setlocal fdi=#
-setlocal fdl=0
-setlocal fml=1
-setlocal fdn=20
-setlocal fen
-let s:l = 1 - ((0 * winheight(0) + 22) / 44)
-if s:l < 1 | let s:l = 1 | endif
-exe s:l
-normal! zt
-1
+874
 normal! 019|
 lcd ~/
-tabedit /mnt/tank/storage/documents/scripting/github-repos/my-repos/notes/other/personal--youtube-dl.txt
-set splitbelow splitright
-wincmd _ | wincmd |
-split
-1wincmd k
-wincmd w
-wincmd t
-set winminheight=0
-set winheight=1
-set winminwidth=0
-set winwidth=1
-wincmd =
-argglobal
-setlocal fdm=manual
-setlocal fde=0
-setlocal fmr={{{,}}}
-setlocal fdi=#
-setlocal fdl=0
-setlocal fml=1
-setlocal fdn=20
-setlocal fen
-silent! normal! zE
-let s:l = 1 - ((0 * winheight(0) + 10) / 21)
-if s:l < 1 | let s:l = 1 | endif
-exe s:l
-normal! zt
-1
-normal! 0
-lcd /mnt/tank/storage/documents/scripting/github-repos/my-repos/notes/other
-wincmd w
-argglobal
-if bufexists("term://.//27014:/bin/bash") | buffer term://.//27014:/bin/bash | else | edit term://.//27014:/bin/bash | endif
-setlocal fdm=manual
-setlocal fde=0
-setlocal fmr={{{,}}}
-setlocal fdi=#
-setlocal fdl=0
-setlocal fml=1
-setlocal fdn=20
-setlocal fen
-let s:l = 3 - ((2 * winheight(0) + 11) / 22)
-if s:l < 1 | let s:l = 1 | endif
-exe s:l
-normal! zt
-3
-normal! 088|
-lcd /mnt/tank/storage/documents/scripting/github-repos/my-repos/notes/other
-wincmd w
-wincmd =
-tabnew
-set splitbelow splitright
-wincmd t
-set winminheight=0
-set winheight=1
-set winminwidth=0
-set winwidth=1
-argglobal
-if bufexists("term://.//89195:/bin/bash") | buffer term://.//89195:/bin/bash | else | edit term://.//89195:/bin/bash | endif
-setlocal fdm=manual
-setlocal fde=0
-setlocal fmr={{{,}}}
-setlocal fdi=#
-setlocal fdl=0
-setlocal fml=1
-setlocal fdn=20
-setlocal fen
-let s:l = 62 - ((43 * winheight(0) + 22) / 44)
-if s:l < 1 | let s:l = 1 | endif
-exe s:l
-normal! zt
-62
-normal! 019|
-lcd ~/
-tabnew
-set splitbelow splitright
-wincmd t
-set winminheight=0
-set winheight=1
-set winminwidth=0
-set winwidth=1
-argglobal
-if bufexists("term://.//500577:/bin/bash") | buffer term://.//500577:/bin/bash | else | edit term://.//500577:/bin/bash | endif
-setlocal fdm=manual
-setlocal fde=0
-setlocal fmr={{{,}}}
-setlocal fdi=#
-setlocal fdl=0
-setlocal fml=1
-setlocal fdn=20
-setlocal fen
-let s:l = 1 - ((0 * winheight(0) + 22) / 44)
-if s:l < 1 | let s:l = 1 | endif
-exe s:l
-normal! zt
-1
-normal! 089|
-lcd /mnt/tank/storage/documents/scripting/github-repos/my-repos/notes/other
-tabnew
-set splitbelow splitright
-wincmd t
-set winminheight=0
-set winheight=1
-set winminwidth=0
-set winwidth=1
-tabnew
-set splitbelow splitright
-wincmd t
-set winminheight=0
-set winheight=1
-set winminwidth=0
-set winwidth=1
-tabnext 8
+tabnext 1
 set stal=1
 if exists('s:wipebuf') && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
