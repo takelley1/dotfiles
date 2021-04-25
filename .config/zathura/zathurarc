@@ -1,5 +1,16 @@
-set recolor "true"
 set recolor-lightcolor "#313030"
 set recolor-darkcolor "#DEDEDE"
+set notification-error-bg "#800020"
+
 set statusbar-v-padding "8"
-set font "monospace normal 11"
+set first-page-column 1
+
+set font "monospace normal 10"
+
+set page-cache-size "45"
+
+map [normal] f toggle_fullscreen
+map [fullscreen] f toggle_fullscreen
+
+map [normal] F follow
+map [fullscreen] F follow
