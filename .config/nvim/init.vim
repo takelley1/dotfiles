@@ -248,15 +248,15 @@
   endif
 
   " Automatically set winfixheight and winfixwidth.
-  function! SetFixWindow()
-    if winwidth('$') > winheight('$')
-      setlocal nowinfixwidth
-      setlocal winfixheight
-    elseif winwidth('$') < winheight('$')
-      setlocal nowinfixheight
-      setlocal winfixwidth
-    endif
-  endfunction
+  " function! SetFixWindow()
+  "   if winwidth('$') > winheight('$')
+  "     setlocal nowinfixwidth
+  "     setlocal winfixheight
+  "   elseif winwidth('$') < winheight('$')
+  "     setlocal nowinfixheight
+  "     setlocal winfixwidth
+  "   endif
+  " endfunction
   " autocmd mygroup BufEnter * call SetFixWindow() " This doesn't seem to help with splits resizing.
 
 " }}}
@@ -336,16 +336,16 @@
   nnoremap <leader>q :wq!<CR>
 
   " Quickly add a note while working on something else.
-  function! Notes()
-    silent !printf "\n\%s\n\n" "[$(date +\%Y\%m\%d)] $(date +\%A,\ \%b\ \%d\ \%H:\%M:\%S)" >>
-      \ ~/notes/unsorted.md
-    split ~/notes/unsorted.md
-    normal! Go
-  endfunction
+  " function! Notes()
+  "   silent !printf "\n\%s\n\n" "[$(date +\%Y\%m\%d)] $(date +\%A,\ \%b\ \%d\ \%H:\%M:\%S)" >>
+  "     \ ~/notes/unsorted.md
+  "   split ~/notes/unsorted.md
+  "   normal! Go
+  " endfunction
 
   if g:athome
-    nnoremap <leader>n :call Notes()<CR>
-    command! Note      call Notes()
+    " nnoremap <leader>n :call Notes()<CR>
+    " command! Note      call Notes()
 
     command! Todo      edit ~/notes/personal--todo.md
     command! I3b       edit ~/.config/i3/i3blocks.conf
