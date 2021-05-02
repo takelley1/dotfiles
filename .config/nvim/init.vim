@@ -267,7 +267,9 @@
   " Faster saving.
   nnoremap <silent> <leader>w :write<CR><C-L>
   " Jump back and forth between files.
-  noremap <silent> <BS> :e#<CR><C-L>
+  nnoremap <silent> <BS> :e#<CR><C-L>
+  " Easily set wrapping
+  nnoremap <leader>n :set wrap!<CR><C-L>
 
   " Use `call P('highlight')` to put the output of `highlight` in the current buffer,
   "   allowing the content to be searched through.
