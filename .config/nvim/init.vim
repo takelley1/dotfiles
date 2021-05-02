@@ -271,7 +271,7 @@
   " Easily set wrapping
   nnoremap <leader>n :set wrap!<CR><C-L>
 
-  " Use `call P('highlight')` to put the output of `highlight` in the current buffer,
+  " Use `call P('highlight')` to put the output of `highlight` in the current buffer, {{{
   "   allowing the content to be searched through.
   function! P(command)
     let opts = {
@@ -297,6 +297,7 @@
   autocmd FileType floating nnoremap <buffer> <Esc>   :close!<CR>
   autocmd FileType floating
     \ setlocal bufhidden=delete shiftwidth=3 scrolloff=999 nonumber
+  " }}}
 
   " Toggle preventing horizonal or vertial resizing.
   nnoremap <leader>H :set winfixheight! <bar> set winfixheight?<CR>
@@ -358,7 +359,7 @@
     command! Bashrc    tabnew | cd ~/.bashrc | RnvimrToggle
     command! Alacritty tabnew | cd ~/.config/alacritty | RnvimrToggle
 
-  " Dotfiles (Vim-fugitive doesn't support --git-dir option)
+  " Dotfiles (Vim-fugitive doesn't support --git-dir option) ---------------------------------- {{{
     nnoremap da :write<CR> :!git --git-dir=$HOME/.cfg/ --work-tree=$HOME add %<CR><C-L>
     nnoremap ds :!git --git-dir=$HOME/.cfg/ --work-tree=$HOME status --untracked-files=no<CR>
     nnoremap dl :!git --git-dir=$HOME/.cfg/ --work-tree=$HOME log<CR>
@@ -377,16 +378,16 @@
 
     nnoremap drm :!git --git-dir=$HOME/.cfg/ --work-tree=$HOME rm
     nnoremap drs :!git --git-dir=$HOME/.cfg/ --work-tree=$HOME restore
+    " }}}
   endif
 
 " }}}
 " PLUGINS ##################################################################################### {{{
 
-  if has('nvim')
+  if has('nvim') && filereadable($HOME . '/.local/share/nvim/site/autoload/plug.vim')
   " Vim-Plug ---------------------------------------------------------------------------------- {{{
 
     call plug#begin(stdpath('data') . '/plugged')
-
 
       if has('nvim-0.5') " Check for lua functionality.
         " Plug 'tjdevries/colorbuddy.vim' " Colorscheme w/ Tree-sitter support.
