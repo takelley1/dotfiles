@@ -119,6 +119,9 @@
     alias ap='ansible-playbook --diff'
     alias tmux='tmux -f ~/.config/tmux/tmux.conf'
 
+    # Uses my mdd.service to generate a list of files for fzf to search through.
+    alias f='ranger --selectfile="$(fzf < ~/.locatedb)"'
+
     # Easily enable or disable proxy config.
     noproxy(){
         export http_proxy=
