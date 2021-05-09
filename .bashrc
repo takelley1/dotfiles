@@ -120,8 +120,10 @@
     alias tmux='tmux -f ~/.config/tmux/tmux.conf'
 
     # Uses my mdd.service to generate a list of files for fzf to search through.
+    # Select a file from the mlocate database using fzf, then open the filepath in ranger.
     f() {
         file="$(fzf --color=light --no-hscroll --keep-right --no-mouse < ~/.locatedb)"
+        cd "$(dirname "${file}")" || exit 1
         [[ -n "${file}" ]] && ranger --selectfile="${file}"
     }
 
