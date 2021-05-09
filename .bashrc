@@ -116,6 +116,7 @@
     alias grep='grep --color=always'
     alias mkdir='mkdir -pv' # Always make parent directories.
 
+    alias rss='newsboat'
     alias ap='ansible-playbook --diff'
     alias tmux='tmux -f ~/.config/tmux/tmux.conf'
 
