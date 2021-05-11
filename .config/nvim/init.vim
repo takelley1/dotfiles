@@ -219,6 +219,8 @@
   " Python -----------------------------------------------------------
     autocmd mygroup FileType python setlocal
       \ shiftwidth=4 softtabstop=4 tabstop=4
+      \ foldlevelstart=0 foldmethod=indent foldnestmax=1
+      \ foldignore=""
       \ colorcolumn=100
   " Shell ------------------------------------------------------------
     autocmd mygroup FileType sh setlocal
@@ -444,7 +446,7 @@
       Plug 'dense-analysis/ale'             " Linting engine.
       " Plug 'tpope/vim-fugitive'             " Git wrapper.
       Plug 'machakann/vim-highlightedyank'  " Briefly highlight yanked text.
-      Plug 'mhinz/vim-grepper'              " Search within files.
+      " Plug 'mhinz/vim-grepper'              " Search within files.
       Plug 'vim-airline/vim-airline'        " Status bar.
       Plug 'vim-airline/vim-airline-themes'
       Plug 'kevinhwang91/rnvimr'            " Ranger in a floating window.
@@ -456,6 +458,10 @@
         Plug 'ryanoasis/vim-devicons'          " Icons (Must be loaded after all the plugins that use it).
         " Plug 'lambdalisue/suda.vim'            " Edit files with sudo. This causes performance issues at work.
         Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }            " Code completion.
+        Plug 'deoplete-plugins/deoplete-jedi'                                    " Deoplete Python integration.
+        Plug 'Shougo/neco-vim'                                                   " Deoplete VimScript integration.
+        Plug 'ncm2/float-preview.nvim'
+        Plug 'fszymanski/deoplete-emoji'                                         " Auto-complete `:` emoji in markdown files.
         Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' }           " Fuzzy finder.
         Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  } " Render markdown.
         " Plug 'vimwiki/vimwiki', { 'branch': 'dev' } " Note management.
@@ -521,15 +527,21 @@
     let g:airline#extensions#grepper#enabled = 0
     let g:airline#extensions#tagbar#enabled = 0
     let g:airline#extensions#po#enabled = 0
-    let g:airline#extensions#netrw#enabled = 0
     let g:airline#extensions#keymap#enabled = 0
     let g:airline#extensions#fzf#enabled = 0
+    let g:airline#extensions#netrw#enabled = 0
 
   " }}}
   " ALE --------------------------------------------------------------------------------------- {{{
 
     " Have ALE remove extra whitespace and trailing lines.
-    let g:ale_fixers = {'*': ['remove_trailing_lines', 'trim_whitespace', 'latexindent']}
+    let g:ale_fixers = {'*': ['remove_trailing_lines', 'trim_whitespace', 'latexindent'],
+                     \ 'python': ['autoimport', 'isort', 'remove_trailing_lines', 'trim_whitespace']
+                     \ }
+
+    let g:ale_linters = {'yaml': ['yamllint'],
+                      \  'tex': ['texlab']
+                      \ }
 
     let g:ale_fix_on_save = 1  " ALE will fix files automatically when they're saved.
     let g:ale_lint_delay = 300 " Increase linting speed.
@@ -541,7 +553,6 @@
     let g:ale_python_pylint_options = '--rcfile ~/.config/nvim/linters/pylintrc.config'
     " YAML
     let g:ale_yaml_yamllint_options = '--config-file ~/.config/nvim/linters/yamllint.yml'
-    let g:ale_linters = {'yaml': ['yamllint'], 'tex': ['texlab']} " Limit linting on these filetypes.
     " Ansible
     let g:ale_ansible_ansible_lint_executable = 'ansible-lint -c ~/.config/nvim/linters/ansible-lint.yml'
 
@@ -605,7 +616,13 @@
   " }}}
   " Deoplete ---------------------------------------------------------------------------------- {{{
 
+    " Use TAB to cycle through deoplete completion popups.
+    inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
+
     let g:deoplete#enable_at_startup = 1
+
+    " Don't show the default popup window since we're using ncm2/float-preview.nvim
+    set completeopt-=preview
 
   " }}}
   " Devicons ---------------------------------------------------------------------------------- {{{
@@ -620,6 +637,11 @@
         call webdevicons#refresh()
       endif
     endif
+
+  " }}}
+  " Float-preview.nvim ------------------------------------------------------------------------ {{{
+
+    let g:float_preview#docked = 0
 
   " }}}
   " Fugitive ---------------------------------------------------------------------------------- {{{
