@@ -415,6 +415,7 @@
       " Plug 'takelley1/ansible-doc.vim' " View ansible docs within Neovim.
       Plug '~/ansible-doc.vim'
 
+      Plug 'kassio/neoterm'                 " REPL integration for interactive Python coding.
       " Plug 'tmhedberg/SimpylFold'  " Better folding in Python.
       Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}  " Python code highlighting.
       Plug 'kdheepak/lazygit.nvim', { 'branch': 'nvim-v0.4.3' }
@@ -877,6 +878,18 @@ endif
       " Use vimb since Firefox won't automatically close the rendered markdown window.
       let g:mkdp_browser = 'vimb'
     endif
+
+  " }}}
+  " Neoterm ----------------------------------------------------------------------------------- {{{
+
+    " Open REPL terminal windows in a bottom split.
+    let g:neoterm_default_mod = 'botright'
+
+    " Send line/selection/file to a REPL in a terminal split. Useful for interactive Python coding.
+    " 'e' for 'execute'.
+    nnoremap <leader>ee  :TREPLSendLine<CR>
+    vnoremap <leader>ee  :TREPLSendSelection<CR>
+    nnoremap <leader>ef  :TREPLSendFile<CR>
 
   " }}}
   " Neovim Remote ----------------------------------------------------------------------------- {{{
