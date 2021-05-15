@@ -215,7 +215,7 @@
     autocmd mygroup FileType markdown setlocal
       \ colorcolumn=120
     autocmd mygroup BufEnter *.md setlocal
-      \ foldlevelstart=-1 concealcursor= conceallevel=1
+      \ foldlevelstart=-1 concealcursor= conceallevel=0
   " Python -----------------------------------------------------------
     autocmd mygroup FileType python setlocal
       \ shiftwidth=4 softtabstop=4 tabstop=4
@@ -884,6 +884,8 @@ endif
 
     " Open REPL terminal windows in a bottom split.
     let g:neoterm_default_mod = 'botright'
+    " Automatically scroll to the bottom of the REPL buffer.
+    let g:neoterm_autoscroll = 1
 
     " Send line/selection/file to a REPL in a terminal split. Useful for interactive Python coding.
     " 'e' for 'execute'.
