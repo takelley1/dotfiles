@@ -61,11 +61,7 @@ def main():
         core_list_output = core_list
 
     # Format output.
-    core_list_output = str(core_list_output)
-    core_list_output = core_list_output.replace("'", "")
-    core_list_output = core_list_output.replace("[", "")
-    core_list_output = core_list_output.replace("]", "")
-    core_list_output = core_list_output.replace("]", "")
+    core_list_output = " ".join(core_list_output)
     print(icon, core_list_output)
 
 
