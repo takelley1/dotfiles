@@ -20,7 +20,7 @@ import psutil
 
 # Convert seconds to HH:mm format.
 def secs2hours(secs):
-    MM, SS = divmod(secs, 60)
+    MM, _ = divmod(secs, 60)
     HH, MM = divmod(MM, 60)
     return "%02d:%02d" % (HH, MM)
 
@@ -39,8 +39,7 @@ def main():
     # Convert remaining time to hours and minutes.
     remaining = secs2hours(battery.secsleft)
     # Format remaining time with parentheses.
-    remaining = str(remaining)
-    remaining = "(" + remaining + ")"
+    remaining = "(" + str(remaining) + ")"
 
     # Indicate when the battery is being charged.
     if not battery.power_plugged:
