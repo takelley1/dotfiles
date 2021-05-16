@@ -7,6 +7,8 @@
 server_ip = "10.0.0.4"
 # Location of mounted sorage in local filesystem.
 mount_path = "/mnt/tank/storage/documents"
+# Name of systemd automount unit for checking if filesystem is mounted.
+systemd_unit = "mnt-tank-storage-documents.automount"
 # Whether to print "free" next to gigabytes free.
 verbose = True
 # Whether to display percentage used of network share.
@@ -21,16 +23,39 @@ icon = "🗄️"
 # Units are in whatever "unit" is above.
 alert_thresh = 1000
 
-import os
+import subprocess
+
 import psutil
 
 
-def main():
+def check_server():
+    # Check whether server is reachable.
+    server = subprocess.run(
+        "ping -c 1 " + server_ip + " &>/dev/null", shell=True, check=True
+    )
+    if server.returncode != 0:
+        raise Exception("Server not reachable!")
 
-    # Check server availability.
-    shares = os.system("ping -c 1 " + server_ip + " &>/dev/null")
-    if shares != 0:
-        return 1
+
+def check_mount():
+    # Check whether filesystem is mounted.
+    mounted = subprocess.run(
+        [
+            "systemctl",
+            "is-active",
+            "--quiet",
+            "--type=automount",
+            systemd_unit,
+        ],
+        check=True,
+    )
+    if mounted.returncode != 0:
+        raise Exception("Filesystem not mounted!")
+
+
+def main():
+    check_server()
+    check_mount()
 
     # Get free space in bytes.
     disk = psutil.disk_usage(mount_path)
@@ -40,41 +65,38 @@ def main():
     if disk_perc >= 1:
         disk_perc = round(disk_perc)
 
-    print_color = False
+    # Convert to terabytes.
     if unit in ("T", "t", "TB", "Tb", "tb", "tB", "terabytes", "Terabytes"):
-        # Convert to TB.
         disk_bytes_t = disk_bytes / (1024 ** 4)
         disk_bytes_t = round(disk_bytes_t, 2)
-        output = icon + str(disk_bytes_t) + unit
-        if disk_bytes_t <= alert_thresh:
-            print_color = True
+        disk_bytes_converted = disk_bytes_t
+    # Convert to gigabytes.
     elif unit in ("G", "g", "GB", "Gb", "gb", "gB", "gigabytes", "Gigabytes"):
-        # Convert to GB.
         disk_bytes_g = disk_bytes / (1024 ** 3)
         disk_bytes_g = round(disk_bytes_g)
-        output = icon + str(disk_bytes_g) + unit
-        if disk_bytes_g <= alert_thresh:
-            print_color = True
+        disk_bytes_converted = disk_bytes_g
     else:
-        print("The 'unit' variable has an incorrect value!")
-        return 1
+        raise Exception("The 'unit' variable has an incorrect value!")
 
-    if verbose is True:
-        free = " free"
+    output = icon + str(disk_bytes_converted) + unit
+    # Print in color if the remaining space exceeds the threshold.
+    print_color = bool(disk_bytes_converted <= alert_thresh)
+
+    if verbose:
+        free = "free"
     else:
         free = ""
+    output = output + " " + free
 
     if show_percent:
-        print(output + free + " (" + str(disk_perc) + "%)")
+        print(output + " (" + str(disk_perc) + "%)")
     else:
-        print(output + free)
+        print(output)
 
     # The i3bar protocol uses the third line of the output to specify.
     #   color: https://github.com/vivien/i3blocks#format
     if print_color:
         print("\n#F11712")
-
-    return 0
 
 
 if __name__ == "__main__":
