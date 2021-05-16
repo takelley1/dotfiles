@@ -23,24 +23,17 @@ def main():
     for core_percent in psutil.cpu_percent(interval=1, percpu=True):
 
         if verbose:
-            # print("DEBUG: initial: " + str(core_percent))
             core_percent = round(core_percent)
 
         # Non-verbose formatting:
         else:
             # Round to the nearest tens place.
             core_percent = round(core_percent, -1)
-            core_percent = int(core_percent)
+            core_percent = str(int(core_percent))
 
             # Change two-digit numbers to one digit.
-            if core_percent >= 10 < 100:
-                #  print("DEBUG: >10<100: " + str(core_percent))
-                core_percent = "{:.1}".format(str(core_percent))
-            # Change three-digit numbers (100) to two digits.
-            elif core_percent == 100:
-                # print("DEBUG: =100: " + str(core_percent))
-                core_percent = "{:.2}".format(str(core_percent))
-            core_percent = int(core_percent)
+            if len(core_percent) > 1:
+                core_percent = core_percent[:-1]
 
         core_list.append(core_percent)
 
@@ -50,7 +43,7 @@ def main():
         del core_list[show_cores:]
 
     if verbose:
-        # Convert list items to str, add percent sign.
+        # Add percent sign.
         core_list_verbose = []
         for item in core_list:
             item = str(item)
@@ -60,7 +53,6 @@ def main():
     else:
         core_list_output = core_list
 
-    # Format output.
     core_list_output = " ".join(core_list_output)
     print(icon, core_list_output)
 
