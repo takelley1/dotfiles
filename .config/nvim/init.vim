@@ -204,42 +204,23 @@
   autocmd mygroup BufEnter * setlocal formatoptions=q noautoindent nocindent nosmartindent indentexpr=
 
   " Gitcommit -- used by Lazygit -------------------------------------
-    autocmd mygroup FileType gitcommit setlocal
-      \ colorcolumn=80 textwidth=80
-      \ formatoptions=qt
-      \ nonumber
+    autocmd mygroup FileType gitcommit setlocal colorcolumn=80 textwidth=80 formatoptions=qt nonumber
   " Help -------------------------------------------------------------
-    autocmd mygroup FileType help setlocal
-      \ nonumber
+    autocmd mygroup FileType help setlocal nonumber
   " Markdown ---------------------------------------------------------
-    autocmd mygroup FileType markdown setlocal
-      \ colorcolumn=120
-    autocmd mygroup BufEnter *.md setlocal
-      \ foldlevelstart=-1 concealcursor= conceallevel=0
+    autocmd mygroup FileType markdown setlocal colorcolumn=120
+    autocmd mygroup BufEnter *.md setlocal foldlevelstart=-1 concealcursor= conceallevel=0
   " Python -----------------------------------------------------------
-    autocmd mygroup FileType python setlocal
-      \ shiftwidth=4 softtabstop=4 tabstop=4
-      \ foldlevelstart=0 foldmethod=indent foldnestmax=1
-      \ foldignore=""
-      \ colorcolumn=100
+    autocmd mygroup FileType python setlocal shiftwidth=4 softtabstop=4 tabstop=4 foldlevelstart=0 foldmethod=indent foldnestmax=1 foldignore="" colorcolumn=100
   " Shell ------------------------------------------------------------
-    autocmd mygroup FileType sh setlocal
-      \ shiftwidth=4 softtabstop=4 tabstop=4
-      \ foldlevelstart=0 foldmethod=marker
-      \ colorcolumn=120
+    autocmd mygroup FileType sh setlocal shiftwidth=4 softtabstop=4 tabstop=4 foldlevelstart=0 foldmethod=marker colorcolumn=120
   " TeX --------------------------------------------------------------
-    autocmd mygroup FileType tex setlocal
-      \ colorcolumn=120 textwidth=120
-    autocmd mygroup BufEnter *.tex setlocal
-      \ concealcursor= conceallevel=0
+    autocmd mygroup FileType tex setlocal colorcolumn=120 textwidth=120
+    autocmd mygroup BufEnter *.tex setlocal concealcursor= conceallevel=0
   " VimScript --------------------------------------------------------
-    autocmd mygroup FileType vim setlocal
-      \ foldlevelstart=0 foldmethod=marker
-      \ colorcolumn=100
+    autocmd mygroup FileType vim setlocal foldlevelstart=0 foldmethod=marker colorcolumn=100
   " YAML -------------------------------------------------------------
-    autocmd mygroup FileType yaml,yaml.ansible setlocal
-      \ foldlevelstart=0 foldmethod=marker
-      \ colorcolumn=120
+    autocmd mygroup FileType yaml,yaml.ansible setlocal foldlevelstart=0 foldmethod=marker colorcolumn=120
 
   " Force cursor to stay in the middle of the screen.
   set scrolloff=999
