@@ -537,7 +537,7 @@
 
     " Have ALE remove extra whitespace and trailing lines.
     let g:ale_fixers = {'*': ['remove_trailing_lines', 'trim_whitespace', 'latexindent'],
-                     \ 'python': ['autoimport', 'isort', 'remove_trailing_lines', 'trim_whitespace']
+                     \ 'python': ['autoimport', 'black', 'isort', 'remove_trailing_lines', 'trim_whitespace']
                      \ }
 
     let g:ale_linters = {'yaml': ['yamllint'],
@@ -568,14 +568,14 @@
   " Black ------------------------------------------------------------------------------------- {{{
 
     " Run Black formatter on Python files.
-    autocmd mygroup InsertLeave,BufWritePre,BufLeave *.py execute ':Black'
+    " autocmd mygroup InsertLeave,BufWritePre,BufLeave *.py execute ':Black'
 
   " }}}
   " Git-blame --------------------------------------------------------------------------------- {{{
 
     " Disable by default.
     let g:gitblame_enabled = 0
-    nnoremap <leader>B :GitBlameToggle<CR>
+    nnoremap <silent> <leader>B :GitBlameToggle<CR>
 
   " }}}
   " CtrlP ------------------------------------------------------------------------------------- {{{
