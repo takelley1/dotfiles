@@ -440,13 +440,13 @@
       Plug 'psf/black', { 'for': 'python', 'branch': 'stable' } " Code formatting.
       Plug 'jiangmiao/auto-pairs'           " Auto-create bracket and quote pairs.
       " Plug 'preservim/tagbar'               " Function navigation on large files.
-      " Plug 'sheerun/vim-polyglot'           " Better syntax highlighting. Causes issues in Vimagit window.
+      Plug 'sheerun/vim-polyglot'           " Better syntax highlighting. Causes issues in Vimagit window.
       " Plug 'psliwka/vim-smoothie'           " Smooth scrolling.
       Plug 'mbbill/undotree'                " Visualize and navigate Vim's undo tree.
       Plug 'airblade/vim-gitgutter'         " Git diffs in sidebar.
       Plug 'dense-analysis/ale'             " Linting engine.
-      " Plug 'tpope/vim-fugitive'             " Git wrapper.
-      Plug 'machakann/vim-highlightedyank'  " Briefly highlight yanked text.
+      Plug 'tpope/vim-fugitive'             " Git wrapper.
+      " Plug 'machakann/vim-highlightedyank'  " Briefly highlight yanked text.
       " Plug 'mhinz/vim-grepper'              " Search within files.
       Plug 'vim-airline/vim-airline'        " Status bar.
       Plug 'vim-airline/vim-airline-themes'
@@ -608,11 +608,11 @@
   " }}}
   " Colorizer --------------------------------------------------------------------------------- {{{
 
-    if has('nvim-0.5')
-      " Enable colorizer.nvim for all filetypes.
-      lua require 'colorizer'.setup()
-      lua require 'colorizer'.setup(nil, { css = true; })
-    endif
+  "  if has('nvim-0.5')
+  "    " Enable colorizer.nvim for all filetypes.
+  "    lua require 'colorizer'.setup()
+  "    lua require 'colorizer'.setup(nil, { css = true; })
+  "  endif
 
   " }}}
   " Deoplete ---------------------------------------------------------------------------------- {{{
@@ -973,7 +973,7 @@ require'nvim-treesitter.configs'.setup {
   ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
   highlight = {
     enable = true,              -- false will disable the whole extension
-    additional_vim_regex_highlighting = true,
+    additional_vim_regex_highlighting = false,
     custom_captures = {},
     disable = {},
     enable = true,
