@@ -76,6 +76,7 @@
 *.tiff
 *.tmp
 *.tmux/plugins
+*.txt
 *.vagrant*
 *.vdi
 *.vhd
@@ -164,3 +165,4 @@ videos
 
 !.config/lazygit/config.yml
 !.config/vimb/style.css
+!.config/i3/scripts
