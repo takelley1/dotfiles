@@ -7,9 +7,9 @@ set -eu
 
 time="$(date +%Y-%m-%d_%H:%M:%S)"
 hostname="$(hostname)"
-screenshot="$(mktemp --suffix=.png)"
+screenshot="$(mktemp --suffix=.png --tmpdir=/tmp tmp.screenshot.sh.XXXXXXXXXX)"
 
-import -window root "${screenshot}"
+import -silent -window root "${screenshot}"
 notify-send -u low "Processing screenshot..."
 
 pngcrush -s "${screenshot}" "${HOME}/pictures/misc_pictures/screenshots/polaris_laptop/${time}_${hostname}_screenshot.png"
