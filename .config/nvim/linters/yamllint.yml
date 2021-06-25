@@ -23,9 +23,6 @@ rules:
     max-spaces-before: 0
     min-spaces-after: 1
     max-spaces-after: 1
-  comments:
-    require-starting-space: true
-    min-spaces-from-content: 1
   document-start:
     present: true
   document-end:
