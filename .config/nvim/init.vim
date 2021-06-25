@@ -975,10 +975,10 @@ endif
   " Vim Better Whitespace --------------------------------------------------------------------- {{{
 
     " Don't highlight whitespace.
-    let g:better_whitespace_enabled = 0
+    " let g:better_whitespace_enabled = 0
 
     " Automatically strip whitespace.
-    autocmd mygroup BufEnter,BufLeave,CursorHold * call StripWhite()
+    autocmd mygroup BufWritePost,FileWritePost,FileReadPost,CursorHold * call StripWhite()
 
     function! StripWhite()
         if &filetype !=# 'magit' && &modifiable ==# 1 && &readonly ==# 0
