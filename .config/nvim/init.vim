@@ -978,7 +978,8 @@ endif
     let g:better_whitespace_enabled = 0
 
     " Automatically strip whitespace.
-    autocmd mygroup InsertLeave,CursorHold * call StripWhite()
+    autocmd mygroup BufEnter,BufLeave,CursorHold * call StripWhite()
+
     function! StripWhite()
         if &filetype !=# 'magit' && &modifiable ==# 1 && &readonly ==# 0
             StripWhitespace
