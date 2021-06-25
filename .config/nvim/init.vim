@@ -402,10 +402,10 @@
       Plug 'kdheepak/lazygit.nvim', { 'branch': 'nvim-v0.4.3' }
       Plug 'ntpeters/vim-better-whitespace' " Highlight and strip whitespace.
       Plug 'tpope/vim-obsession'            " Session management.
-      " Plug 'tpope/vim-endwise'              " Auto terminate conditional statements.
+      " Plug 'tpope/vim-endwise'              " Auto-terminate conditional statements.
       Plug 'tpope/vim-surround'             " Easily surround words.
-      " Plug 'tpope/vim-eunuch'               " Better shell commands.
-      " Plug 'tpope/vim-repeat'               " Repeat plugin actions.
+      Plug 'tpope/vim-eunuch'               " Better shell commands.
+      Plug 'tpope/vim-repeat'               " Repeat plugin actions.
       Plug 'brooth/far.vim'                 " Find and replace.
       Plug 'Konfekt/FastFold'               " More performant folding.
       " Plug 'tpope/vim-unimpaired'           " Navigation with square bracket keys.
@@ -427,7 +427,7 @@
       Plug 'airblade/vim-gitgutter'         " Git diffs in sidebar.
       Plug 'dense-analysis/ale'             " Linting engine.
       Plug 'tpope/vim-fugitive'             " Git wrapper.
-      " Plug 'machakann/vim-highlightedyank'  " Briefly highlight yanked text.
+      Plug 'machakann/vim-highlightedyank'  " Briefly highlight yanked text.
       " Plug 'mhinz/vim-grepper'              " Search within files.
       Plug 'vim-airline/vim-airline'        " Status bar.
       Plug 'vim-airline/vim-airline-themes'
