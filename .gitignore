@@ -94,6 +94,7 @@
 .Xauth*
 .bash_history
 .cfg
+.castget
 .config/Code Industry/
 .config/JetBrains*/
 .config/Qt*
