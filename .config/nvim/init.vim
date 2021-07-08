@@ -385,17 +385,17 @@
         Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} " Tree-sitter syntax highlighting.
         Plug 'f-person/git-blame.nvim'     " Git blame on each line.
         Plug 'norcalli/nvim-colorizer.lua' " Automatically colorize color hex codes.
-        Plug 'hrsh7th/nvim-compe'          " Lua replacement for YouCompleteMe.
-        Plug 'glepnir/indent-guides.nvim'  " Lua replacement for yggdroot/indentline.
-        Plug 'b3nj5m1n/kommentary'         " Lua replacement for nerdcommenter.
+        " Plug 'hrsh7th/nvim-compe'          " Lua replacement for Deoplete.
+        " Plug 'glepnir/indent-guides.nvim'  " Lua replacement for yggdroot/indentline.
+        " Plug 'b3nj5m1n/kommentary'         " Lua replacement for nerdcommenter.
       else
         " Plug 'yggdroot/indentline'            " Show indentation lines. May cause performance issues.
-        Plug 'preservim/nerdcommenter'        " Comment blocks.
       endif
 
       " Plug 'takelley1/ansible-doc.vim' " View ansible docs within Neovim.
       Plug '~/ansible-doc.vim'
 
+      Plug 'preservim/nerdcommenter'        " Comment blocks.
       Plug 'kassio/neoterm'                 " REPL integration for interactive Python coding.
       " Plug 'tmhedberg/SimpylFold'  " Better folding in Python.
       Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}  " Python code highlighting.
@@ -873,6 +873,10 @@ endif
     nnoremap <leader>ee  :TREPLSendLine<CR>
     vnoremap <leader>ee  :TREPLSendSelection<CR>
     nnoremap <leader>ef  :TREPLSendFile<CR>
+    " This binding isn't used, it's only here because the default value of ',tt' conflicts with
+    "   the current mapping to open a terminal in the current window.
+    let g:neoterm_automap_keys = ',lt'
+
 
   " }}}
   " Neovim Remote ----------------------------------------------------------------------------- {{{
