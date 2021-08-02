@@ -28,11 +28,11 @@
    exec --no-startup-id i3-msg "workspace 2: terminal; exec alacritty"
    # assign [class="alacritty"] number "2: terminal"
 
-   #exec --no-startup-id i3-msg "workspace 3; exec pycharm"
-   assign [class="jetbrains-pycharm-ce"] number 3
+   # exec --no-startup-id i3-msg "workspace 3; exec pycharm"
+   # assign [class="jetbrains-pycharm-ce"] number 3
 
-   #exec --no-startup-id i3-msg "workspace 9; exec discord"
-   assign [class="discord"] number 9
+   # exec --no-startup-id i3-msg "workspace 9; exec discord"
+   # assign [class="discord"] number 9
 
  # Return to workspace 2.
    exec --no-startup-id i3-msg "workspace 2: terminal"
