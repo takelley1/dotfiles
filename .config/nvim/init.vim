@@ -519,7 +519,8 @@
   " ALE --------------------------------------------------------------------------------------- {{{
 
     " Have ALE remove extra whitespace and trailing lines.
-    let g:ale_fixers = {'*': ['remove_trailing_lines', 'trim_whitespace', 'latexindent'],
+    let g:ale_fixers = {'*': ['latexindent', 'remove_trailing_lines', 'trim_whitespace'],
+                     \ 'sh': ['remove_trailing_lines', 'shfmt', 'trim_whitespace'],
                      \ 'python': ['autoimport', 'black', 'isort', 'remove_trailing_lines', 'trim_whitespace']
                      \ }
 
