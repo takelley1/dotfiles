@@ -44,8 +44,8 @@ fi
 
 # Determine proxy state.
 if ping -c 1 "${proxy_ip}" >/dev/null 2>&1; then
-    if curl --silent "${site_check_url}" 2>/dev/null | \
-    grep -q "E2Guardian - Unable to load website"; then
+    if curl --silent "${site_check_url}" 2>/dev/null |
+        grep -q "E2Guardian - Unable to load website"; then
         proxy="${blocking_icon}"
     else
         proxy="${up_icon}"
@@ -59,14 +59,14 @@ printf "%s\n" "${interface}GW${gateway} WEB${internet} PROXY${proxy}"
 if [ "${enable_colors}" -eq 1 ]; then
 
     # Set coloring using i3bar protocol.
-    if [ "${proxy}" = "${blocking_icon}" ] \
-    && [ "${internet}" = "${up_icon}" ] \
-    && [ "${gateway}" = "${up_icon}" ]; then
+    if [ "${proxy}" = "${blocking_icon}" ] &&
+        [ "${internet}" = "${up_icon}" ] &&
+        [ "${gateway}" = "${up_icon}" ]; then
         printf "\n%s\n" "#FFF000" # Yellow
 
-    elif [ "${proxy}" = "${down_icon}" ] \
-    || [ "${internet}" = "${down_icon}" ] \
-    || [ "${gateway}" = "${down_icon}" ]; then
+    elif [ "${proxy}" = "${down_icon}" ] ||
+        [ "${internet}" = "${down_icon}" ] ||
+        [ "${gateway}" = "${down_icon}" ]; then
         printf "\n%s\n" "#FF0000" # Red
 
     else

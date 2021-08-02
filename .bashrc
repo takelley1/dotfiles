@@ -60,7 +60,7 @@ if [[ "${OSTYPE}" =~ "linux" ]]; then
     export HSTR_CONFIG=monochromatic,prompt-bottom,help-on-opposite-side
     export PROMPT_COMMAND="history -a; history -n; ${PROMPT_COMMAND}"
     if [[ $- =~ .*i.* ]]; then
-        set -o vi  # The below binding only takes effect if vi mode is enabled.
+        set -o vi # The below binding only takes effect if vi mode is enabled.
         bind '"\C-r": "\e^ihstr -- \n"'
     fi
 
@@ -69,212 +69,212 @@ fi
 # }}}
 # ALIASES ##################################################################################### {{{
 
-    # Git ------------------------------------------------------------------------------------- {{{
+# Git ------------------------------------------------------------------------------------- {{{
 
-    # Custom Git aliases for managing dotfiles.
-    # See: https://developer.atlassian.com/blog/2016/02/best-way-to-store-dotfiles-git-bare-repo/
-    alias dot='git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+# Custom Git aliases for managing dotfiles.
+# See: https://developer.atlassian.com/blog/2016/02/best-way-to-store-dotfiles-git-bare-repo/
+alias dot='git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 
-    alias d='dot'
-    alias g='git'
+alias d='dot'
+alias g='git'
 
-    alias da='dot add'
-    alias ga='git add'
+alias da='dot add'
+alias ga='git add'
 
-    # Stage all changes below current path.
-    alias daa='dot add --all ./'
-    alias gaa='git add --all ./'
+# Stage all changes below current path.
+alias daa='dot add --all ./'
+alias gaa='git add --all ./'
 
-    # Stage all changes.
-    alias daaa='dot add --all'
-    alias gaaa='git add --all'
+# Stage all changes.
+alias daaa='dot add --all'
+alias gaaa='git add --all'
 
-    # Add all modified files below current path.
-    alias dau='dot add --update ./'
-    alias gau='git add --update ./'
+# Add all modified files below current path.
+alias dau='dot add --update ./'
+alias gau='git add --update ./'
 
-    # Add all modified files.
-    alias dauu='dot add --update'
-    alias gauu='git add --update'
+# Add all modified files.
+alias dauu='dot add --update'
+alias gauu='git add --update'
 
-    alias db='dot branch'
-    alias gb='git branch'
+alias db='dot branch'
+alias gb='git branch'
 
-    alias dc='dot commit'
-    alias gc='git commit'
+alias dc='dot commit'
+alias gc='git commit'
 
-    alias dca='dot commit --all'
-    alias gca='git commit --all'
+alias dca='dot commit --all'
+alias gca='git commit --all'
 
-    alias dcap='dot commit --all && dot push'
-    alias gcap='git commit --all && git push'
+alias dcap='dot commit --all && dot push'
+alias gcap='git commit --all && git push'
 
-    alias dcp='dot commit && dot push'
-    alias gcp='git commit && git push'
+alias dcp='dot commit && dot push'
+alias gcp='git commit && git push'
 
-    alias dcam='dot commit --all --message'
-    alias gcam='git commit --all --message'
+alias dcam='dot commit --all --message'
+alias gcam='git commit --all --message'
 
-    alias dch='dot checkout'
-    alias gch='git checkout'
+alias dch='dot checkout'
+alias gch='git checkout'
 
-    alias dcm='dot commit --message'
-    alias gcm='git commit --message'
+alias dcm='dot commit --message'
+alias gcm='git commit --message'
 
-    alias dd='dot diff'
-    alias gd='git diff'
+alias dd='dot diff'
+alias gd='git diff'
 
-    alias dds='dot diff --staged'
-    alias gds='git diff --staged'
+alias dds='dot diff --staged'
+alias gds='git diff --staged'
 
-    alias dl='lazygit -g $HOME/.cfg/ -w $HOME'
+alias dl='lazygit -g $HOME/.cfg/ -w $HOME'
 
-    alias dL='dot log --graph --oneline --full-history --abbrev-commit --all --color --decorate --pretty=format:"%x1b[31m%h%x09%x1b[32m%d%x1b[0m%x20%s"'
-    alias gL='git log --graph --oneline --full-history --abbrev-commit --all --color --decorate --pretty=format:"%x1b[31m%h%x09%x1b[32m%d%x1b[0m%x20%s"'
+alias dL='dot log --graph --oneline --full-history --abbrev-commit --all --color --decorate --pretty=format:"%x1b[31m%h%x09%x1b[32m%d%x1b[0m%x20%s"'
+alias gL='git log --graph --oneline --full-history --abbrev-commit --all --color --decorate --pretty=format:"%x1b[31m%h%x09%x1b[32m%d%x1b[0m%x20%s"'
 
-    alias dm='dot merge'
-    alias gm='git merge'
+alias dm='dot merge'
+alias gm='git merge'
 
-    alias dp='dot push'
-    alias gp='git push'
+alias dp='dot push'
+alias gp='git push'
 
-    alias dpu='dot pull'
-    alias gpu='git pull'
+alias dpu='dot pull'
+alias gpu='git pull'
 
-    alias dr='dot restore'
-    alias gr='git restore'
+alias dr='dot restore'
+alias gr='git restore'
 
-    alias drm='dot rm'
-    alias grm='git rm'
+alias drm='dot rm'
+alias grm='git rm'
 
-    alias drs='dot restore --staged'
-    alias grs='git restore --staged'
+alias drs='dot restore --staged'
+alias grs='git restore --staged'
 
-    alias ds='dot status --untracked-files=no'
-    alias dss='dot status'
-    alias gs='git status'
+alias ds='dot status --untracked-files=no'
+alias dss='dot status'
+alias gs='git status'
 
-    alias gsp='git submodule foreach git push'
-    alias gsur='git submodule update --remote'
+alias gsp='git submodule foreach git push'
+alias gsur='git submodule update --remote'
 
-    # Show all tracked files.
-    alias dt='dot ls-tree -r master --name-only'
-    alias gt='git ls-tree -r master --name-only'
+# Show all tracked files.
+alias dt='dot ls-tree -r master --name-only'
+alias gt='git ls-tree -r master --name-only'
 
-    function dcamp {
+function dcamp {
     dot commit --all --message "${@}" && dot push
-    }
-    function gcamp {
+}
+function gcamp {
     git commit --all --message "${@}" && git push
-    }
+}
 
-    function dcmp {
+function dcmp {
     dot commit --message "${@}" && dot push
-    }
-    function gcmp {
+}
+function gcmp {
     git commit --message "${@}" && git push
-    }
+}
 
-    # }}}
-    # Utilities --------------------------------------------------------------------------------{{{
+# }}}
+# Utilities --------------------------------------------------------------------------------{{{
 
-    # Aliases for common utilities and apps.
-    alias c='clear'
-    alias mv='mv -v'
-    alias cp='cp -v'
-    alias sudo='sudo ' # This is required for bash aliases to work with sudo.
-    alias less='less -XRF' # Show text in terminal even after quitting less.
-    alias grep='grep --color=always'
-    alias mkdir='mkdir -pv' # Always make parent directories.
+# Aliases for common utilities and apps.
+alias c='clear'
+alias mv='mv -v'
+alias cp='cp -v'
+alias sudo='sudo '     # This is required for bash aliases to work with sudo.
+alias less='less -XRF' # Show text in terminal even after quitting less.
+alias grep='grep --color=always'
+alias mkdir='mkdir -pv' # Always make parent directories.
 
-    alias bc='bc -l'
-    alias rss='newsboat'
-    alias ap='ansible-playbook --diff'
-    alias tmux='tmux -f ~/.config/tmux/tmux.conf'
+alias bc='bc -l'
+alias rss='newsboat'
+alias ap='ansible-playbook --diff'
+alias tmux='tmux -f ~/.config/tmux/tmux.conf'
 
-    # Uses my mdd.service to generate a list of files for fzf to search through.
-    # Select a file from the mlocate database using fzf, then open the filepath in ranger.
-    f() {
-        file="$(fzf --color=light --no-hscroll --keep-right --no-mouse < ~/.locatedb)"
-        cd "$(dirname "${file}")" || exit 1
-        [[ -n "${file}" ]] && ranger --selectfile="${file}"
-    }
+# Uses my mdd.service to generate a list of files for fzf to search through.
+# Select a file from the mlocate database using fzf, then open the filepath in ranger.
+f() {
+    file="$(fzf --color=light --no-hscroll --keep-right --no-mouse <~/.locatedb)"
+    cd "$(dirname "${file}")" || exit 1
+    [[ -n "${file}" ]] && ranger --selectfile="${file}"
+}
 
-    # Easily enable or disable proxy config.
-    noproxy(){
-        export http_proxy=
-        export https_proxy=
-        export HTTP_PROXY=
-        export HTTPS_PROXY=
-        export npm_config_proxy=
-    }
+# Easily enable or disable proxy config.
+noproxy() {
+    export http_proxy=
+    export https_proxy=
+    export HTTP_PROXY=
+    export HTTPS_PROXY=
+    export npm_config_proxy=
+}
 
-    proxy(){
-        export http_proxy="http://10.0.0.15:8080"
-        export https_proxy="${http_proxy}"
-        export HTTP_PROXY="${http_proxy}"
-        export HTTPS_PROXY="${http_proxy}"
-        export npm_config_proxy="${http_proxy}"
-    }
+proxy() {
+    export http_proxy="http://10.0.0.15:8080"
+    export https_proxy="${http_proxy}"
+    export HTTP_PROXY="${http_proxy}"
+    export HTTPS_PROXY="${http_proxy}"
+    export npm_config_proxy="${http_proxy}"
+}
 
-    alias reset='pokoy && pokoy -k && pokoy -r && pokoy' # Reset break timer.
+alias reset='pokoy && pokoy -k && pokoy -r && pokoy' # Reset break timer.
 
-    alias pip='pip --trusted-host pypi.org --trusted-host pypi.python.org --trusted-host files.pythonhosted.org'
-    alias pip3='pip3 --trusted-host pypi.org --trusted-host pypi.python.org --trusted-host files.pythonhosted.org'
-    alias pip3.8='pip3.8 --trusted-host pypi.org --trusted-host pypi.python.org --trusted-host files.pythonhosted.org'
+alias pip='pip --trusted-host pypi.org --trusted-host pypi.python.org --trusted-host files.pythonhosted.org'
+alias pip3='pip3 --trusted-host pypi.org --trusted-host pypi.python.org --trusted-host files.pythonhosted.org'
+alias pip3.8='pip3.8 --trusted-host pypi.org --trusted-host pypi.python.org --trusted-host files.pythonhosted.org'
 
-    alias define='dict'
-    alias eve='bash /opt/evesetup/lib/evelauncher/evelauncher.sh &'
-    alias audible='bash /opt/OpenAudible/OpenAudible &'
-    # On neovim terminals, the cursor disappears after newsboat exits. This forces the cursor
-    #   to reappear.
-    alias newsboat='newsboat && echo -en "\e[?25h"'
-    alias feh='feh --draw-tinted --draw-filename --keep-zoom-vp --force-aliasing --fullscreen'
+alias define='dict'
+alias eve='bash /opt/evesetup/lib/evelauncher/evelauncher.sh &'
+alias audible='bash /opt/OpenAudible/OpenAudible &'
+# On neovim terminals, the cursor disappears after newsboat exits. This forces the cursor
+#   to reappear.
+alias newsboat='newsboat && echo -en "\e[?25h"'
+alias feh='feh --draw-tinted --draw-filename --keep-zoom-vp --force-aliasing --fullscreen'
 
-    alias osrs='bash ~/scripts/bash/linux/osrs.sh &'
-    alias runescape='osrs'
-    alias rs='osrs'
-    alias snip='bash ~/.config/i3/scripts/screenshot-region.sh'
+alias osrs='bash ~/scripts/bash/linux/osrs.sh &'
+alias runescape='osrs'
+alias rs='osrs'
+alias snip='bash ~/.config/i3/scripts/screenshot-region.sh'
 
-    # }}}
-    # Navigation shortcuts ---------------------------------------------------------------------{{{
+# }}}
+# Navigation shortcuts ---------------------------------------------------------------------{{{
 
-    # Easy editing and committing of todo list.
-    alias todo='cd ~/notes/ && git pull && ${EDITOR} ./personal--todo.md && git commit
+# Easy editing and committing of todo list.
+alias todo='cd ~/notes/ && git pull && ${EDITOR} ./personal--todo.md && git commit
                 -m "Update todo.md" ./personal--todo.md && git push'
 
-    alias fmt='fmt -w 120'
+alias fmt='fmt -w 120'
 
-    cd() {
-        command cd "${@}" || exit 1
-        ls
-    }
-    alias h='cd ~'
-    alias u='cd ../' # "Up 1 directory."
+cd() {
+    command cd "${@}" || exit 1
+    ls
+}
+alias h='cd ~'
+alias u='cd ../' # "Up 1 directory."
 
-    alias a='cd ~/scripts/ansible'
-    alias b='cd ~/scripts/bash'
-    # `c` is already used for `clear`.
-    alias d='cd ~/Downloads'
-    alias D='cd ~/Documents'
-    alias i='cd ~/.config/i3'
-    alias l='cd ~/library'
-    alias n='cd ~/notes'
-    alias o='cd ~/.config'
-    alias p='cd ~/.local/share/nvim/plugged'
-    alias P='cd ~/Pictures'
-    alias roles='cd ~/scripts/ansible/roles' # `r` is already used to call Ranger.
-    alias s='cd ~/.config/i3/scripts/status-bar'
-    alias v='cd ~/videos'
-    alias x='cd ~/linux-notes' # `x` for `*nix.`
-    alias y='cd ~/videos/youtube'
+alias a='cd ~/scripts/ansible'
+alias b='cd ~/scripts/bash'
+# `c` is already used for `clear`.
+alias d='cd ~/Downloads'
+alias D='cd ~/Documents'
+alias i='cd ~/.config/i3'
+alias l='cd ~/library'
+alias n='cd ~/notes'
+alias o='cd ~/.config'
+alias p='cd ~/.local/share/nvim/plugged'
+alias P='cd ~/Pictures'
+alias roles='cd ~/scripts/ansible/roles' # `r` is already used to call Ranger.
+alias s='cd ~/.config/i3/scripts/status-bar'
+alias v='cd ~/videos'
+alias x='cd ~/linux-notes' # `x` for `*nix.`
+alias y='cd ~/videos/youtube'
 
-    alias i3b='${EDITOR} ~/.config/i3/i3blocks.conf'
-    alias i3c='${EDITOR} ~/.config/i3/config-unique-${HOSTNAME}'
-    alias i3cc='${EDITOR} ~/.config/i3/config-shared'
-    alias i3ccc='${EDITOR} /tmp/.i3-config'
+alias i3b='${EDITOR} ~/.config/i3/i3blocks.conf'
+alias i3c='${EDITOR} ~/.config/i3/config-unique-${HOSTNAME}'
+alias i3cc='${EDITOR} ~/.config/i3/config-shared'
+alias i3ccc='${EDITOR} /tmp/.i3-config'
 
-    # }}}
+# }}}
 
 # }}}
 # OPTIONS ##################################################################################### {{{
@@ -378,10 +378,9 @@ alias r='ranger_cd'
 ranger_cd() {
     temp_file="$(mktemp -t "ranger_cd.XXXXXXXXXX")"
     ranger --choosedir="$temp_file" -- "${@:-$PWD}"
-    if chosen_dir="$(cat -- "$temp_file")" && \
-        [[ -n "$chosen_dir" ]] && \
-        [[ "$chosen_dir" != "$PWD" ]]
-    then
+    if chosen_dir="$(cat -- "$temp_file")" &&
+        [[ -n "$chosen_dir" ]] &&
+        [[ "$chosen_dir" != "$PWD" ]]; then
         cd -- "$chosen_dir" || exit 1
     fi
     rm -f -- "$temp_file"
@@ -392,15 +391,14 @@ ranger_cd() {
 function nvim {
     args=()
     for i in "$@"; do
-        if [[ -h $i ]]; then
-            args+=("$( readlink "$i" )")
+        if [[ -L $i ]]; then
+            args+=("$(readlink "$i")")
         else
             args+=("$i")
         fi
     done
     /usr/bin/nvim -p "${args[@]}"
 }
-
 
 # }}}
 # STARTX ###################################################################################### {{{
