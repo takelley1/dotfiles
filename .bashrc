@@ -1,3 +1,72 @@
+# FREEBSD ##################################################################################### {{{
+
+# FreeBSD-specific aliases and environment variables.
+
+if [[ "${OSTYPE}" =~ "bsd" ]]; then
+
+    export SHELL="/usr/local/bin/bash"
+
+    # FreeBSD's ls uses a different syntax from Linux.
+    alias ls='ls -FCGh'
+    alias ll='ls -l'
+    alias la='ls -al'
+
+    # Set proxy for FreeBSD here since there's no /etc/environment file.
+    export http_proxy="http://10.0.0.15:8080"
+    export https_proxy="http://10.0.0.15:8080"
+
+fi
+
+# }}}
+# LINUX ####################################################################################### {{{
+
+# shellcheck disable=2076
+# Linux-specific aliases and environment variables.
+# shellcheck disable=2154
+
+if [[ "${OSTYPE}" =~ "linux" ]]; then
+
+    export SHELL="/bin/bash"
+
+    # Add paths to $PATH. Prevent them from getting added multiple times.
+    [[ ":${PATH}:" =~ "${HOME}/.local/bin" ]] || PATH="${PATH}:${HOME}/.local/bin"
+    [[ ":${PATH}:" =~ "${HOME}/scripts/bash" ]] || PATH="${PATH}:${HOME}/scripts/bash"
+    [[ ":${PATH}:" =~ "${HOME}/scripts/bash/linux" ]] || PATH="${PATH}:${HOME}/scripts/bash/linux"
+    [[ ":${PATH}:" =~ "${HOME}/scripts/bash/linux/shell-functions" ]] || PATH="${PATH}:${HOME}/scripts/bash/linux/shell-functions"
+
+    # asd.service breaks if this isn't enabled.
+    xhost + &>/dev/null
+
+    alias ls='ls --classify --color=auto --human-readable'
+    alias lr='l --reverses --classify --color=auto --human-readable'
+    alias lsr='l -l --reverses --classify --color=auto --human-readable'
+    alias ll='ls -ls --classify --color=auto --human-readable'
+    alias la='ls -l --alls --classify --color=auto --human-readable'
+    alias lsal='l -l --alls --classify --color=auto --human-readable'
+    alias lar='l -l --all --reverses --classify --color=auto --human-readable'
+
+    alias dmesg='dmesg --human --ctime --decode'
+
+    # Use nvr to edit files within a single neovim instance on polaris.
+    if [[ "${HOSTNAME}" == "polaris" ]]; then
+        export EDITOR="/usr/bin/nvr -cc split --remote-wait"
+        export VISUAL="/usr/bin/nvr -cc split --remote-wait"
+        export SUDO_EDITOR="/usr/bin/vi"
+        source "/etc/profile.d/proxy.sh"
+    fi
+
+    # if this is interactive shell, then bind hstr to Ctrl-r.
+    # Used by hstr https://github.com/dvorka/hstr
+    export HSTR_CONFIG=monochromatic,prompt-bottom,help-on-opposite-side
+    export PROMPT_COMMAND="history -a; history -n; ${PROMPT_COMMAND}"
+    if [[ $- =~ .*i.* ]]; then
+        set -o vi  # The below binding only takes effect if vi mode is enabled.
+        bind '"\C-r": "\e^ihstr -- \n"'
+    fi
+
+fi
+
+# }}}
 # ALIASES ##################################################################################### {{{
 
     # Git ------------------------------------------------------------------------------------- {{{
@@ -58,8 +127,10 @@
     alias dds='dot diff --staged'
     alias gds='git diff --staged'
 
-    alias dl='dot log --graph --oneline --full-history --abbrev-commit --all --color --decorate --pretty=format:"%x1b[31m%h%x09%x1b[32m%d%x1b[0m%x20%s"'
-    alias gl='git log --graph --oneline --full-history --abbrev-commit --all --color --decorate --pretty=format:"%x1b[31m%h%x09%x1b[32m%d%x1b[0m%x20%s"'
+    alias dl='lazygit -g $HOME/.cfg/ -w $HOME'
+
+    alias dL='dot log --graph --oneline --full-history --abbrev-commit --all --color --decorate --pretty=format:"%x1b[31m%h%x09%x1b[32m%d%x1b[0m%x20%s"'
+    alias gL='git log --graph --oneline --full-history --abbrev-commit --all --color --decorate --pretty=format:"%x1b[31m%h%x09%x1b[32m%d%x1b[0m%x20%s"'
 
     alias dm='dot merge'
     alias gm='git merge'
@@ -166,7 +237,7 @@
     alias snip='bash ~/.config/i3/scripts/screenshot-region.sh'
 
     # }}}
-    # Shortcuts --------------------------------------------------------------------------------{{{
+    # Navigation shortcuts ---------------------------------------------------------------------{{{
 
     # Easy editing and committing of todo list.
     alias todo='cd ~/notes/ && git pull && ${EDITOR} ./personal--todo.md && git commit
@@ -174,26 +245,29 @@
 
     alias fmt='fmt -w 120'
 
-    # cd shortcuts.
+    cd() {
+        command cd "${@}" || exit 1
+        ls
+    }
     alias h='cd ~'
     alias u='cd ../' # "Up 1 directory."
 
-    alias a='cd ~/scripts/ansible && ls'
-    alias b='cd ~/scripts/bash && ls'
+    alias a='cd ~/scripts/ansible'
+    alias b='cd ~/scripts/bash'
     # `c` is already used for `clear`.
-    alias d='cd ~/Downloads && ls'
-    alias D='cd ~/Documents && ls'
+    alias d='cd ~/Downloads'
+    alias D='cd ~/Documents'
     alias i='cd ~/.config/i3'
-    alias l='cd ~/library && ls'
-    alias n='cd ~/notes && ls'
-    alias o='cd ~/.config && ls'
-    alias p='cd ~/.local/share/nvim/plugged && ls'
-    alias P='cd ~/Pictures && ls'
-    alias roles='cd ~/scripts/ansible/roles && ls' # `r` is already used to call Ranger.
-    alias s='cd ~/.config/i3/scripts/status-bar && ls'
-    alias v='cd ~/videos && ls'
-    alias x='cd ~/linux-notes && ls' # `x` for `*nix.`
-    alias y='cd ~/videos/youtube && ls'
+    alias l='cd ~/library'
+    alias n='cd ~/notes'
+    alias o='cd ~/.config'
+    alias p='cd ~/.local/share/nvim/plugged'
+    alias P='cd ~/Pictures'
+    alias roles='cd ~/scripts/ansible/roles' # `r` is already used to call Ranger.
+    alias s='cd ~/.config/i3/scripts/status-bar'
+    alias v='cd ~/videos'
+    alias x='cd ~/linux-notes' # `x` for `*nix.`
+    alias y='cd ~/videos/youtube'
 
     alias i3b='${EDITOR} ~/.config/i3/i3blocks.conf'
     alias i3c='${EDITOR} ~/.config/i3/config-unique-${HOSTNAME}'
@@ -201,75 +275,6 @@
     alias i3ccc='${EDITOR} /tmp/.i3-config'
 
     # }}}
-
-# }}}
-# FREEBSD ##################################################################################### {{{
-
-# FreeBSD-specific aliases and environment variables.
-
-if [[ "${OSTYPE}" =~ "bsd" ]]; then
-
-    export SHELL="/usr/local/bin/bash"
-
-    # FreeBSD's ls uses a different syntax from Linux.
-    alias ls='ls -FCGh'
-    alias ll='ls -l'
-    alias la='ls -al'
-
-    # Set proxy for FreeBSD here since there's no /etc/environment file.
-    export http_proxy="http://10.0.0.15:8080"
-    export https_proxy="http://10.0.0.15:8080"
-
-fi
-
-# }}}
-# LINUX ####################################################################################### {{{
-
-# shellcheck disable=2076
-# Linux-specific aliases and environment variables.
-# shellcheck disable=2154
-
-if [[ "${OSTYPE}" =~ "linux" ]]; then
-
-    export SHELL="/bin/bash"
-
-    # Add paths to $PATH. Prevent them from getting added multiple times.
-    [[ ":${PATH}:" =~ "${HOME}/.local/bin" ]] || PATH="${PATH}:${HOME}/.local/bin"
-    [[ ":${PATH}:" =~ "${HOME}/scripts/bash" ]] || PATH="${PATH}:${HOME}/scripts/bash"
-    [[ ":${PATH}:" =~ "${HOME}/scripts/bash/linux" ]] || PATH="${PATH}:${HOME}/scripts/bash/linux"
-    [[ ":${PATH}:" =~ "${HOME}/scripts/bash/linux/shell-functions" ]] || PATH="${PATH}:${HOME}/scripts/bash/linux/shell-functions"
-
-    # asd.service breaks if this isn't enabled.
-    xhost + &>/dev/null
-
-    alias ls='ls --classify --color=auto --human-readable'
-    alias lr='l --reverses --classify --color=auto --human-readable'
-    alias lsr='l -l --reverses --classify --color=auto --human-readable'
-    alias ll='ls -ls --classify --color=auto --human-readable'
-    alias la='ls -l --alls --classify --color=auto --human-readable'
-    alias lsal='l -l --alls --classify --color=auto --human-readable'
-    alias lar='l -l --all --reverses --classify --color=auto --human-readable'
-
-    alias dmesg='dmesg --human --ctime --decode'
-
-    # Use nvr to edit files within a single neovim instance on polaris.
-    if [[ "${HOSTNAME}" == "polaris" ]]; then
-        export EDITOR="/usr/bin/nvr -cc split --remote-wait"
-        export VISUAL="/usr/bin/nvr -cc split --remote-wait"
-        export SUDO_EDITOR="/usr/bin/vi"
-        source "/etc/profile.d/proxy.sh"
-    fi
-
-    # if this is interactive shell, then bind hstr to Ctrl-r.
-    # Used by hstr https://github.com/dvorka/hstr
-    export HSTR_CONFIG=monochromatic,prompt-bottom,help-on-opposite-side
-    export PROMPT_COMMAND="history -a; history -n; ${PROMPT_COMMAND}"
-    if [[ $- =~ .*i.* ]]; then
-        set -o vi  # The below binding only takes effect if vi mode is enabled.
-        bind '"\C-r": "\e^ihstr -- \n"'
-    fi
-
-fi
 
 # }}}
 # OPTIONS ##################################################################################### {{{
