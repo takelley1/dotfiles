@@ -83,6 +83,8 @@
   autocmd mygroup FocusGained,BufEnter * if &readonly ==# 0 | silent! checktime | endif
   " Auto-save file.
   autocmd mygroup InsertLeave,BufLeave,CursorHold * if &readonly ==# 0 | silent! write | endif
+  " Enable tree-sitter highlighting
+  autocmd mygroup BufEnter * TSEnableAll highlight
 
   " Manage insert mode when entering terminals ------------------------------------------------ {{{
   if exists(':terminal')
@@ -377,14 +379,14 @@
         " Plug 'Th3Whit3Wolf/onebuddy'
         " Plug 'tanvirtin/nvim-monokai'
         " Plug 'neovim/nvim-lspconfig'
-        " Telescope.nvim
         " Plug 'nvim-lua/popup.nvim'
-        " Plug 'nvim-lua/plenary.nvim'
         " Plug 'lewis6991/gitsigns.nvim' " Lua replacement for gitgutter.
+        " Plug 'nvim-lua/plenary.nvim'
         " Plug 'nvim-telescope/telescope.nvim'
         Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} " Tree-sitter syntax highlighting.
         Plug 'f-person/git-blame.nvim'     " Git blame on each line.
         Plug 'norcalli/nvim-colorizer.lua' " Automatically colorize color hex codes.
+        Plug 'vigoux/tree-sitter-viml'     " Tree-sitter highlighting for VimScript.
         " Plug 'hrsh7th/nvim-compe'          " Lua replacement for Deoplete.
         " Plug 'glepnir/indent-guides.nvim'  " Lua replacement for yggdroot/indentline.
         " Plug 'b3nj5m1n/kommentary'         " Lua replacement for nerdcommenter.
@@ -398,7 +400,7 @@
       Plug 'preservim/nerdcommenter'        " Comment blocks.
       Plug 'kassio/neoterm'                 " REPL integration for interactive Python coding.
       " Plug 'tmhedberg/SimpylFold'  " Better folding in Python.
-      Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}  " Python code highlighting.
+      " Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}  " Python code highlighting.
       Plug 'kdheepak/lazygit.nvim', { 'branch': 'nvim-v0.4.3' }
       Plug 'ntpeters/vim-better-whitespace' " Highlight and strip whitespace.
       Plug 'tpope/vim-obsession'            " Session management.
@@ -421,7 +423,7 @@
       Plug 'psf/black', { 'for': 'python', 'branch': 'stable' } " Code formatting.
       Plug 'jiangmiao/auto-pairs'           " Auto-create bracket and quote pairs.
       " Plug 'preservim/tagbar'               " Function navigation on large files.
-      Plug 'sheerun/vim-polyglot'           " Better syntax highlighting. Causes issues in Vimagit window.
+      " Plug 'sheerun/vim-polyglot'           " Better syntax highlighting. Causes issues in Vimagit window.
       " Plug 'psliwka/vim-smoothie'           " Smooth scrolling.
       Plug 'mbbill/undotree'                " Visualize and navigate Vim's undo tree.
       Plug 'airblade/vim-gitgutter'         " Git diffs in sidebar.
@@ -544,12 +546,6 @@
     nnoremap <leader>D :AnsibleDocFloat<CR><C-L>
     nnoremap <leader>S :AnsibleDocSplit<CR>
     nnoremap <leader>V :AnsibleDocVSplit<CR>
-
-  " }}}
-  " Black ------------------------------------------------------------------------------------- {{{
-
-    " Run Black formatter on Python files.
-    " autocmd mygroup InsertLeave,BufWritePre,BufLeave *.py execute ':Black'
 
   " }}}
   " Git-blame --------------------------------------------------------------------------------- {{{
@@ -745,25 +741,6 @@
     let g:indentLine_bufNameExclude = ['term:*', '*.md']
 
   " }}}
-  " Kommentary -------------------------------------------------------------------------------- {{{
-
-if has('nvim-0.5')
-" <leader>cc to comment a block.
-" <leader>cu to uncomment a block.
-lua << EOF
-vim.g.kommentary_create_default_mappings = false
-
-vim.api.nvim_set_keymap("n", "<leader>cc", "<Plug>kommentary_motion_increase", {})
-vim.api.nvim_set_keymap("v", "<leader>cc", "<Plug>kommentary_visual_increase", {})
-vim.api.nvim_set_keymap("n", "<leader>cc", "<Plug>kommentary_line_increase", {})
-
-vim.api.nvim_set_keymap("n", "<leader>cu", "<Plug>kommentary_motion_decrease", {})
-vim.api.nvim_set_keymap("v", "<leader>cu", "<Plug>kommentary_visual_decrease", {})
-vim.api.nvim_set_keymap("n", "<leader>cu", "<Plug>kommentary_line_decrease", {})
-EOF
-endif
-
-  " }}}
   " LazyGit ----------------------------------------------------------------------------------- {{{
 
     nnoremap <silent> <leader>m :LazyGit<CR>
@@ -957,15 +934,22 @@ lua <<EOF
 require'nvim-treesitter.configs'.setup {
   ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
   highlight = {
-    enable = true,              -- false will disable the whole extension
+    enable = true,                 -- false will disable the whole extension
     additional_vim_regex_highlighting = false,
     custom_captures = {},
-    disable = {},
+    disable = {"bash"},
     enable = true,
     loaded = true,
     module_path = "nvim-treesitter.highlight"
   },
 }
+local parser_config = require "nvim-treesitter.parsers".get_parser_configs()
+  parser_config.viml = {
+    install_info = {
+      url = "~/.local/share/nvim/plugged/tree-sitter-viml", -- local path or git repo
+      files = {"src/parser.c"}
+    },
+  }
 EOF
 endif
 
