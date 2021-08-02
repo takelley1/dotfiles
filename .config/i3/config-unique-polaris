@@ -8,7 +8,7 @@ font pango:Noto Sans 10
 # STARTUP
 
  # Start redshift.
-   exec --no-startup-id redshift-gtk -l 39:-74 -t 6500k:2600K
+   exec --no-startup-id redshift-gtk -l 39:-74 -t 6500k:2200K
 
  # Set desktop background.
    exec --no-startup-id feh --bg-fill ~/.config/i3/wallpapers/earth-at-night-4617x2309.png
