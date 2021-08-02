@@ -41,8 +41,8 @@ if [[ "${OSTYPE}" =~ "linux" ]]; then
     alias lr='l --reverses --classify --color=auto --human-readable'
     alias lsr='l -l --reverses --classify --color=auto --human-readable'
     alias ll='ls -ls --classify --color=auto --human-readable'
-    alias la='ls -l --alls --classify --color=auto --human-readable'
-    alias lsal='l -l --alls --classify --color=auto --human-readable'
+    alias la='ls -l --all --classify --color=auto --human-readable'
+    alias lsal='l -l --all --classify --color=auto --human-readable'
     alias lar='l -l --all --reverses --classify --color=auto --human-readable'
 
     alias dmesg='dmesg --human --ctime --decode'
