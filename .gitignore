@@ -91,16 +91,19 @@
 *bot/
 *package.json
 *test*
+.FreeCAD/
 .Xauth*
 .bash_history
-.cfg
 .castget
+.cfg
 .config/Code Industry/
+.config/FreeCAD/
 .config/JetBrains*/
 .config/Qt*
 .config/Recoll*/
 .config/Thunar/
 .config/alacritty/alacritty.yml
+.config/blender/
 .config/brightnessctl/*.md
 .config/brightnessctl/license
 .config/calibre/
@@ -117,6 +120,7 @@
 .config/radeon*/
 .config/ranger/scope.sh.1.9.2
 .config/remmina/
+.config/sqlitebrowser/
 .config/tmux/plugins/
 .config/vimb/
 .config/xfce*/
@@ -135,7 +139,9 @@
 .recoll/
 .rnd
 .ssh/
+.ssr/
 .swt/
+.tmsu/
 .vim/sessions/main.vim
 .viminfo
 .vnc/
@@ -162,7 +168,9 @@ package-lock.json
 pictures
 script*/
 soft*
+ubuntu-minimal-root/
 videos
+virtualbox/
 
 !.config/lazygit/config.yml
 !.config/vimb/style.css
