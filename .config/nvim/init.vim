@@ -383,13 +383,15 @@
         " Plug 'lewis6991/gitsigns.nvim' " Lua replacement for gitgutter.
         " Plug 'nvim-lua/plenary.nvim'
         " Plug 'nvim-telescope/telescope.nvim'
-        Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} " Tree-sitter syntax highlighting.
-        Plug 'f-person/git-blame.nvim'     " Git blame on each line.
-        Plug 'norcalli/nvim-colorizer.lua' " Automatically colorize color hex codes.
-        Plug 'vigoux/tree-sitter-viml'     " Tree-sitter highlighting for VimScript.
-        " Plug 'hrsh7th/nvim-compe'          " Lua replacement for Deoplete.
-        " Plug 'glepnir/indent-guides.nvim'  " Lua replacement for yggdroot/indentline.
-        " Plug 'b3nj5m1n/kommentary'         " Lua replacement for nerdcommenter.
+        if g:athome
+          Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} " Tree-sitter syntax highlighting.
+          Plug 'f-person/git-blame.nvim'     " Git blame on each line.
+          Plug 'norcalli/nvim-colorizer.lua' " Automatically colorize color hex codes.
+          Plug 'vigoux/tree-sitter-viml'     " Tree-sitter highlighting for VimScript.
+          " Plug 'hrsh7th/nvim-compe'          " Lua replacement for Deoplete.
+          " Plug 'glepnir/indent-guides.nvim'  " Lua replacement for yggdroot/indentline.
+          " Plug 'b3nj5m1n/kommentary'         " Lua replacement for nerdcommenter.
+        endif
       else
         " Plug 'yggdroot/indentline'            " Show indentation lines. May cause performance issues.
       endif
