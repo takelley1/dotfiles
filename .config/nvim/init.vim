@@ -215,16 +215,16 @@
     autocmd mygroup FileType markdown setlocal colorcolumn=120
     autocmd mygroup BufEnter *.md setlocal foldlevelstart=-1 concealcursor= conceallevel=0
   " Python -----------------------------------------------------------
-    autocmd mygroup FileType python setlocal shiftwidth=4 softtabstop=4 tabstop=4 foldlevelstart=0 foldmethod=indent foldnestmax=1 foldignore="" colorcolumn=100
+    autocmd mygroup FileType python setlocal shiftwidth=4 softtabstop=4 tabstop=4 foldlevelstart=0 foldmethod=indent foldnestmax=1 foldignore="" colorcolumn=100 nowrap
   " Shell ------------------------------------------------------------
-    autocmd mygroup FileType sh setlocal shiftwidth=4 softtabstop=4 tabstop=4 foldlevelstart=0 foldmethod=marker colorcolumn=120
+    autocmd mygroup FileType sh setlocal shiftwidth=4 softtabstop=4 tabstop=4 foldlevelstart=0 foldmethod=marker colorcolumn=120 nowrap
   " TeX --------------------------------------------------------------
-    autocmd mygroup FileType tex setlocal colorcolumn=120 textwidth=120
+    autocmd mygroup FileType tex setlocal colorcolumn=120 textwidth=120 nowrap
     autocmd mygroup BufEnter *.tex setlocal concealcursor= conceallevel=0
   " VimScript --------------------------------------------------------
-    autocmd mygroup FileType vim setlocal foldlevelstart=0 foldmethod=marker colorcolumn=100
+    autocmd mygroup FileType vim setlocal foldlevelstart=0 foldmethod=marker colorcolumn=100 nowrap
   " YAML -------------------------------------------------------------
-    autocmd mygroup FileType yaml,yaml.ansible setlocal foldlevelstart=0 foldmethod=marker colorcolumn=120
+    autocmd mygroup FileType yaml,yaml.ansible setlocal foldlevelstart=0 foldmethod=marker colorcolumn=120 nowrap
 
   " Force cursor to stay in the middle of the screen.
   set scrolloff=999
