@@ -84,7 +84,9 @@
   " Auto-save file.
   autocmd mygroup InsertLeave,BufLeave,CursorHold * if &readonly ==# 0 | silent! write | endif
   " Enable tree-sitter highlighting
-  autocmd mygroup BufEnter * TSEnableAll highlight
+  if g:athome
+    autocmd mygroup BufEnter * TSEnableAll highlight
+  endif
 
   " Manage insert mode when entering terminals ------------------------------------------------ {{{
   if exists(':terminal')
