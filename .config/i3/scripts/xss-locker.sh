@@ -10,7 +10,7 @@ i3lock \
     --bar-indicator \
     --bar-max-height 300 \
     --bar-step 300 \
-    --bar-width=40 \
+    --bar-total-width=300 \
     --force-clock \
     --color=000000 \
     --time-color=ffffffff \
