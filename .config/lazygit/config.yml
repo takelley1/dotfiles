@@ -9,6 +9,7 @@ gui:
   sidePanelWidth: 0.3333
   expandFocusedSidePanel: true
   mainPanelSplitMode: flexible
+  showCommandLog: false
   theme:
     lightTheme: false
     activeBorderColor:
