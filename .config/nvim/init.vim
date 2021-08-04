@@ -84,7 +84,9 @@
   " Auto-save file.
   autocmd mygroup InsertLeave,BufLeave,CursorHold * if &readonly ==# 0 | silent! write | endif
   " Enable tree-sitter highlighting
-  autocmd mygroup BufEnter * TSEnableAll highlight
+  if g:athome
+    autocmd mygroup BufEnter * TSEnableAll highlight
+  endif
 
   " Manage insert mode when entering terminals ------------------------------------------------ {{{
   if exists(':terminal')
@@ -213,16 +215,16 @@
     autocmd mygroup FileType markdown setlocal colorcolumn=120
     autocmd mygroup BufEnter *.md setlocal foldlevelstart=-1 concealcursor= conceallevel=0
   " Python -----------------------------------------------------------
-    autocmd mygroup FileType python setlocal shiftwidth=4 softtabstop=4 tabstop=4 foldlevelstart=0 foldmethod=indent foldnestmax=1 foldignore="" colorcolumn=100
+    autocmd mygroup FileType python setlocal shiftwidth=4 softtabstop=4 tabstop=4 foldlevelstart=0 foldmethod=indent foldnestmax=1 foldignore="" colorcolumn=100 nowrap
   " Shell ------------------------------------------------------------
-    autocmd mygroup FileType sh setlocal shiftwidth=4 softtabstop=4 tabstop=4 foldlevelstart=0 foldmethod=marker colorcolumn=120
+    autocmd mygroup FileType sh setlocal shiftwidth=4 softtabstop=4 tabstop=4 foldlevelstart=0 foldmethod=marker colorcolumn=120 nowrap
   " TeX --------------------------------------------------------------
-    autocmd mygroup FileType tex setlocal colorcolumn=120 textwidth=120
+    autocmd mygroup FileType tex setlocal colorcolumn=120 textwidth=120 nowrap
     autocmd mygroup BufEnter *.tex setlocal concealcursor= conceallevel=0
   " VimScript --------------------------------------------------------
-    autocmd mygroup FileType vim setlocal foldlevelstart=0 foldmethod=marker colorcolumn=100
+    autocmd mygroup FileType vim setlocal foldlevelstart=0 foldmethod=marker colorcolumn=100 nowrap
   " YAML -------------------------------------------------------------
-    autocmd mygroup FileType yaml,yaml.ansible setlocal foldlevelstart=0 foldmethod=marker colorcolumn=120
+    autocmd mygroup FileType yaml,yaml.ansible setlocal foldlevelstart=0 foldmethod=marker colorcolumn=120 nowrap
 
   " Force cursor to stay in the middle of the screen.
   set scrolloff=999
@@ -383,13 +385,15 @@
         " Plug 'lewis6991/gitsigns.nvim' " Lua replacement for gitgutter.
         " Plug 'nvim-lua/plenary.nvim'
         " Plug 'nvim-telescope/telescope.nvim'
-        Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} " Tree-sitter syntax highlighting.
-        Plug 'f-person/git-blame.nvim'     " Git blame on each line.
-        Plug 'norcalli/nvim-colorizer.lua' " Automatically colorize color hex codes.
-        Plug 'vigoux/tree-sitter-viml'     " Tree-sitter highlighting for VimScript.
-        " Plug 'hrsh7th/nvim-compe'          " Lua replacement for Deoplete.
-        " Plug 'glepnir/indent-guides.nvim'  " Lua replacement for yggdroot/indentline.
-        " Plug 'b3nj5m1n/kommentary'         " Lua replacement for nerdcommenter.
+        if g:athome
+          Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} " Tree-sitter syntax highlighting.
+          Plug 'f-person/git-blame.nvim'     " Git blame on each line.
+          Plug 'norcalli/nvim-colorizer.lua' " Automatically colorize color hex codes.
+          Plug 'vigoux/tree-sitter-viml'     " Tree-sitter highlighting for VimScript.
+          " Plug 'hrsh7th/nvim-compe'          " Lua replacement for Deoplete.
+          " Plug 'glepnir/indent-guides.nvim'  " Lua replacement for yggdroot/indentline.
+          " Plug 'b3nj5m1n/kommentary'         " Lua replacement for nerdcommenter.
+        endif
       else
         " Plug 'yggdroot/indentline'            " Show indentation lines. May cause performance issues.
       endif
