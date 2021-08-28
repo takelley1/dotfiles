@@ -84,9 +84,9 @@
   " Auto-save file.
   autocmd mygroup InsertLeave,BufLeave,CursorHold * if &readonly ==# 0 | silent! write | endif
   " Enable tree-sitter highlighting
-  if g:athome
-    autocmd mygroup BufEnter * TSEnableAll highlight
-  endif
+  " if g:athome && exists(':TSEnableAll')
+  "   autocmd mygroup BufEnter * if &buftype !=# "nofile" | TSBufEnable highlight | endif
+  " endif
 
   " Manage insert mode when entering terminals ------------------------------------------------ {{{
   if exists(':terminal')
@@ -590,11 +590,11 @@
   " }}}
   " Colorizer --------------------------------------------------------------------------------- {{{
 
-  "  if has('nvim-0.5')
-  "    " Enable colorizer.nvim for all filetypes.
-  "    lua require 'colorizer'.setup()
-  "    lua require 'colorizer'.setup(nil, { css = true; })
-  "  endif
+   if has('nvim-0.5')
+     " Enable colorizer.nvim for all filetypes.
+     lua require 'colorizer'.setup()
+     lua require 'colorizer'.setup(nil, { css = true; })
+   endif
 
   " }}}
   " Deoplete ---------------------------------------------------------------------------------- {{{
@@ -620,29 +620,6 @@
         call webdevicons#refresh()
       endif
     endif
-
-  " }}}
-  " Float-preview.nvim ------------------------------------------------------------------------ {{{
-
-    let g:float_preview#docked = 0
-
-  " }}}
-  " Fugitive ---------------------------------------------------------------------------------- {{{
-
-    nnoremap ga :Git add %<CR>
-    nnoremap gs :Git status<CR>
-    nnoremap gl :Git log<CR>
-    nnoremap gP :Git push<CR>
-    nnoremap gp :Git pull<CR>
-    nnoremap giu :Git diff<CR>
-    nnoremap gis :Git diff --staged<CR>
-    nnoremap gcf :Git add % <bar> Git commit %<CR>
-    nnoremap gcs :Git commit<CR>
-    nnoremap grm :Git rm
-    nnoremap grs :Git restore
-
-    " Automatically enter Insert mode when opening the commit window.
-    autocmd mygroup BufWinEnter COMMIT_EDITMSG startinsert
 
   " }}}
   " Grepper ----------------------------------------------------------------------------------- {{{
@@ -734,16 +711,6 @@
 
     let g:highlightedyank_highlight_duration = 180
     highlight link HighlightedyankRegion Search
-
-  " }}}
-  " Indentline -------------------------------------------------------------------------------- {{{
-
-    let g:indentLine_char = '┊'
-
-    " Exclude help pages and terminals.
-    let g:indentLine_bufTypeExclude = ['help', 'terminal']
-    let g:indentLine_fileTypeExclude = ['markdown', 'vimwiki', 'help']
-    let g:indentLine_bufNameExclude = ['term:*', '*.md']
 
   " }}}
   " LazyGit ----------------------------------------------------------------------------------- {{{
@@ -939,7 +906,7 @@ lua <<EOF
 require'nvim-treesitter.configs'.setup {
   ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
   highlight = {
-    enable = true,                 -- false will disable the whole extension
+    enable = true, -- false will disable the whole extension
     additional_vim_regex_highlighting = false,
     custom_captures = {},
     disable = {"bash"},
@@ -948,13 +915,6 @@ require'nvim-treesitter.configs'.setup {
     module_path = "nvim-treesitter.highlight"
   },
 }
-local parser_config = require "nvim-treesitter.parsers".get_parser_configs()
-  parser_config.viml = {
-    install_info = {
-      url = "~/.local/share/nvim/plugged/tree-sitter-viml", -- local path or git repo
-      files = {"src/parser.c"}
-    },
-  }
 EOF
 endif
 
@@ -978,41 +938,6 @@ endif
             StripWhitespace
         endif
     endfunction
-
-  " }}}
-  " Vimagit ----------------------------------------------------------------------------------- {{{
-
-    " Vimagit is used for managing dotfiles, Lazygit is for everything else.
-
-    " Open Vimagit in the same window.
-    nnoremap <leader>M :MagitOnly<CR>
-
-    let g:magit_show_magit_mapping='M'
-    let g:magit_git_cmd="git --git-dir=$HOME/.cfg/ --work-tree=$HOME"
-    let g:magit_scrolloff=999
-
-    " Open Vimagit for the current repo. If Vimagit can't find a repo, use the dotfiles repo.
-    " See also https://stackoverflow.com/questions/5441697/how-can-i-get-last-echoed-message-in-vimscript
-    " function! Vimagit(split)
-    "   let g:magit_git_cmd="git"                          " Ensure variable is set to default value.
-    "   redir => g:messages                                " Begin capturing output of messages.
-    "   if a:split == 1
-    "     silent! Magit                                    " Try opening Magit for the current repo.
-    "   else
-    "     silent! MagitOnly
-    "   endif
-    "   redir END                                          " End capturing output.
-    "   let g:lastmsg=get(split(g:messages, "\n"), -5, "") " Send output to var.
-    "   if g:lastmsg ==# "magit can not find any git repository" " If var matches error, use dotfiles instead.
-    "     let g:magit_git_cmd="git --git-dir=$HOME/.cfg/ --work-tree=$HOME"
-    "     if a:split == 1
-    "       silent! Magit                                  " Try opening Magit for the current repo.
-    "     else
-    "       silent! MagitOnly
-    "     endif
-    "   endif
-    "   stopinsert
-    " endfunction
 
   " }}}
   " Vim Markdown ------------------------------------------------------------------------------ {{{
@@ -1044,7 +969,12 @@ endif
       \    'white': { 'gui': '#d3dae8', "cterm": "59", "cterm16": "15" },
       \}
     " This has to come AFTER Vim-plug, which is why it's after all the other plugins.
-    colorscheme palenight
+    " If palenight isn't present, try using a different colorscheme.
+    try
+        colorscheme palenight
+    catch /^Vim\%((\a\+)\)\=:E185/
+        colorscheme desert
+    endtry
 
     " Make IncSearch and Search highlights the same.
     highlight IncSearch cterm=underline ctermfg=235 ctermbg=180 gui=underline guifg=#292D3E guibg=#ffcb6b
