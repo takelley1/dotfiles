@@ -122,7 +122,7 @@
 
   " https://vim.fandom.com/wiki/Set_working_directory_to_the_current_file
   " Set working dir to current file's dir.
-  autocmd mygroup BufEnter * silent! lcd %:p:h
+  " autocmd mygroup BufEnter * silent! lcd %:p:h
 
   if g:athome
     " Change to home directory on startup.
@@ -383,7 +383,9 @@
         " Plug 'neovim/nvim-lspconfig'
         " Plug 'nvim-lua/popup.nvim'
         " Plug 'lewis6991/gitsigns.nvim' " Lua replacement for gitgutter.
-        " Plug 'nvim-lua/plenary.nvim'
+        Plug 'nvim-lua/plenary.nvim'  " Dependency for nvim-spectre.
+        Plug 'nvim-lua/popup.nvim'    " Dependency for nvim-spectre.
+        Plug 'windwp/nvim-spectre'    " Search and replace.
         " Plug 'nvim-telescope/telescope.nvim'
         if g:athome
           Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} " Tree-sitter syntax highlighting.
@@ -448,7 +450,7 @@
         Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }            " Code completion.
         Plug 'deoplete-plugins/deoplete-jedi'                                    " Deoplete Python integration.
         Plug 'Shougo/neco-vim'                                                   " Deoplete VimScript integration.
-        Plug 'ncm2/float-preview.nvim'
+        " Plug 'ncm2/float-preview.nvim'
         Plug 'fszymanski/deoplete-emoji'                                         " Auto-complete `:` emoji in markdown files.
         Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' }           " Fuzzy finder.
         Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  } " Render markdown.
@@ -561,9 +563,6 @@
 
   " }}}
   " CtrlP ------------------------------------------------------------------------------------- {{{
-
-    " <leader>s to start searching from home directory (s for 'search').
-    " <leader>S to start searching from project directory.
 
     " CTRL-j and CTRL-k to navigate through results.
     " CTRL-t to open the desired file in a new tab.
@@ -879,6 +878,67 @@
       \ 'row': float2nr(round(0.05 * &lines)),
       \ 'style': 'minimal'
       \ }
+
+  " }}}
+  " Spectre ----------------------------------------------------------------------------------- {{{
+
+    " Searches are relative to the current working directory.
+    " Enter a relative path glob under `Path:` to filter the search path
+    " (e.g. enter `scripts/**` to filter results to the `./scripts/` dir).
+    if has('nvim-0.5')
+      nnoremap <leader>s :lua require('spectre').open()<CR>
+
+lua<<EOF
+require('spectre').setup({
+  color_devicons = true,
+  line_sep_start = '┌-----------------------------------------',
+  result_padding = '¦  ',
+  line_sep       = '└-----------------------------------------',
+  highlight = {
+      ui = "String",
+      search = "DiffChange",
+      replace = "DiffDelete"
+  },
+  mapping={
+    ['toggle_line'] = {
+        map = "dd",
+        cmd = "<cmd>lua require('spectre').toggle_line()<CR>",
+        desc = "toggle current item"
+    },
+    ['send_to_qf'] = {
+        map = "<leader>q",
+        cmd = "<cmd>lua require('spectre.actions').send_to_qf()<CR>",
+        desc = "send all item to quickfix"
+    },
+    ['show_option_menu'] = {
+        map = "<leader>o",
+        cmd = "<cmd>lua require('spectre').show_options()<CR>",
+        desc = "show option"
+    },
+    ['run_replace'] = {
+        map = "<leader>R",
+        cmd = "<cmd>lua require('spectre.actions').run_replace()<CR>",
+        desc = "replace all"
+    },
+  },
+  find_engine = {
+    ['rg'] = {
+      cmd = "rg",
+      args = {
+        '--color=never',
+        '--no-heading',
+        '--with-filename',
+        '--line-number',
+        '--column',
+        '--hidden',
+        '--one-file-system',
+        '--smart-case',
+      } ,
+      }
+    }
+})
+EOF
+endif
 
   " }}}
   " Taboo ------------------------------------------------------------------------------------- {{{
