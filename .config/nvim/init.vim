@@ -589,7 +589,7 @@
   " }}}
   " Colorizer --------------------------------------------------------------------------------- {{{
 
-   if has('nvim-0.5')
+   if has('nvim-0.5') && g:athome
      " Enable colorizer.nvim for all filetypes.
      lua require 'colorizer'.setup()
      lua require 'colorizer'.setup(nil, { css = true; })
