@@ -83,10 +83,10 @@
   autocmd mygroup FocusGained,BufEnter * if &readonly ==# 0 | silent! checktime | endif
   " Auto-save file.
   autocmd mygroup InsertLeave,BufLeave,CursorHold * if &readonly ==# 0 | silent! write | endif
-  " Enable tree-sitter highlighting
-  " if g:athome && exists(':TSEnableAll')
-  "   autocmd mygroup BufEnter * if &buftype !=# "nofile" | TSBufEnable highlight | endif
-  " endif
+  " Enable tree-sitter highlighting.
+  if g:athome && exists(':TSBufEnable')
+    autocmd mygroup FileReadPost * if &buftype !=# "nofile" | TSBufEnable highlight | endif
+  endif
 
   " Manage insert mode when entering terminals ------------------------------------------------ {{{
   if exists(':terminal')
@@ -446,7 +446,7 @@
         Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }  " LaTeX live preview.
         Plug 'drewtempelmeyer/palenight.vim'   " Colorscheme.
         Plug 'ryanoasis/vim-devicons'          " Icons (Must be loaded after all the plugins that use it).
-        " Plug 'lambdalisue/suda.vim'            " Edit files with sudo. This causes performance issues at work.
+        Plug 'lambdalisue/suda.vim'            " Edit files with sudo. This causes performance issues at work.
         Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }            " Code completion.
         Plug 'deoplete-plugins/deoplete-jedi'                                    " Deoplete Python integration.
         Plug 'Shougo/neco-vim'                                                   " Deoplete VimScript integration.
@@ -527,7 +527,7 @@
     " Have ALE remove extra whitespace and trailing lines.
     let g:ale_fixers = {'*': ['latexindent', 'remove_trailing_lines', 'trim_whitespace'],
                      \ 'sh': ['remove_trailing_lines', 'shfmt', 'trim_whitespace'],
-                     \ 'python': ['autoimport', 'black', 'isort', 'remove_trailing_lines', 'trim_whitespace']
+                     \ 'python': ['autoimport', 'black', 'remove_trailing_lines', 'trim_whitespace']
                      \ }
 
     let g:ale_linters = {'yaml': ['yamllint'],
