@@ -84,7 +84,7 @@
   " Auto-save file.
   autocmd mygroup InsertLeave,BufLeave,CursorHold * if &readonly ==# 0 | silent! write | endif
   " Enable tree-sitter highlighting.
-  if g:athome && exists(':TSBufEnable')
+  if exists(':TSBufEnable')
     autocmd mygroup FileReadPost * if &buftype !=# "nofile" | TSBufEnable highlight | endif
   endif
 
@@ -961,7 +961,7 @@ endif
   " }}}
   " Treesitter -------------------------------------------------------------------------------- {{{
 
-if has('nvim-0.5')
+if exists(':TSBufEnable')
 lua <<EOF
 require'nvim-treesitter.configs'.setup {
   ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
