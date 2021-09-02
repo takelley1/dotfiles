@@ -213,7 +213,7 @@
     autocmd mygroup FileType help setlocal nonumber
   " Markdown ---------------------------------------------------------
     autocmd mygroup FileType markdown setlocal colorcolumn=120
-    autocmd mygroup BufEnter *.md setlocal foldlevelstart=-1 concealcursor= conceallevel=0
+    autocmd mygroup BufEnter *.md setlocal foldmethod=manual foldlevelstart=99 concealcursor= conceallevel=0
   " Python -----------------------------------------------------------
     autocmd mygroup FileType python setlocal shiftwidth=4 softtabstop=4 tabstop=4 foldlevelstart=0 foldmethod=indent foldnestmax=1 foldignore="" colorcolumn=100 nowrap
   " Shell ------------------------------------------------------------
