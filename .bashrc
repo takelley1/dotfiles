@@ -55,6 +55,14 @@ if [[ "${OSTYPE}" =~ "linux" ]]; then
         source "/etc/profile.d/proxy.sh"
     fi
 
+    # Uses my mdd.service to generate a list of files for fzf to search through.
+    # Selects a file from the mlocate database using fzf, then open the filepath in ranger.
+    f() {
+        file="$(fzf --color=light --no-hscroll --keep-right --no-mouse <~/.locatedb)"
+        cd "$(dirname "${file}")" || exit 1
+        [[ -n "${file}" ]] && ranger --selectfile="${file}"
+    }
+
     # if this is interactive shell, then bind hstr to Ctrl-r.
     # Used by hstr https://github.com/dvorka/hstr
     export HSTR_CONFIG=monochromatic,prompt-bottom,help-on-opposite-side
@@ -191,14 +199,6 @@ alias bc='bc -l'
 alias rss='newsboat'
 alias ap='ansible-playbook --diff'
 alias tmux='tmux -f ~/.config/tmux/tmux.conf'
-
-# Uses my mdd.service to generate a list of files for fzf to search through.
-# Select a file from the mlocate database using fzf, then open the filepath in ranger.
-f() {
-    file="$(fzf --color=light --no-hscroll --keep-right --no-mouse <~/.locatedb)"
-    cd "$(dirname "${file}")" || exit 1
-    [[ -n "${file}" ]] && ranger --selectfile="${file}"
-}
 
 # Easily enable or disable proxy config.
 noproxy() {
@@ -388,7 +388,7 @@ ranger_cd() {
 
 # Make nvim follow symlinks. This makes it easier to use Git mappings within nvim.
 # From: https://stackoverflow.com/questions/30791692/make-vim-follow-symlinks-when-opening-files-from-command-line
-function nvim {
+nvim() {
     args=()
     for i in "$@"; do
         if [[ -L $i ]]; then
@@ -406,12 +406,11 @@ function nvim {
 # Start X without a display manager if logging into tty1 with a non-root account.
 # shellcheck disable=2154
 
-if [[ "${OSTYPE}" =~ "linux" ]]; then
-    if [[ ! "${USER}" == "root" && -z "${DISPLAY}" && "$(tty)" == "/dev/tty1" ]]; then
-        if hash startx 2>/dev/null; then
-            exec startx
-        fi
-    fi
-fi
+[[ ! "${USER}" == "root" ]] &&
+    [[ -n "${PS1}" ]] &&
+    [[ -z "${DISPLAY}" ]] &&
+    [[ "$(tty)" == "/dev/tty1" ]] &&
+    hash startx 2>/dev/null &&
+    exec startx
 
 # }}}
