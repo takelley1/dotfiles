@@ -85,7 +85,7 @@
   autocmd mygroup InsertLeave,BufLeave,CursorHold * if &readonly ==# 0 | silent! write | endif
   " Enable tree-sitter highlighting.
   if exists(':TSBufEnable')
-    autocmd mygroup FileReadPost * if &buftype !=# "nofile" | TSBufEnable highlight | endif
+    autocmd mygroup BufEnter * TSBufEnable highlight
   endif
 
   " Manage insert mode when entering terminals ------------------------------------------------ {{{
