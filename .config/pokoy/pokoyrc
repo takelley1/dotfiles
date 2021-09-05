@@ -4,9 +4,9 @@
 
 #show_bar           true
 #show_timer         true
-enable_skip         false
-enable_postpone     false
-#idle_time          10:00
+enable_skip        false
+enable_postpone    false
+idle_time          5:00
 #sleep_time         30:00
 
 #break              20:00   0:20    0:00
