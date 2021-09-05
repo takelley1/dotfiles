@@ -2,11 +2,8 @@
 #
 # Status bar script for printing the current CPU and GPU
 #   package temperatures.
-#
-# Emoji U+1F321 🌡️
-# Font-Awesome f2c9 
-# Nerd Fonts f2c9 
 
+# Emoji U+1F321 🌡️
 icon = "🌡️"
 cpu_temp_name = "thinkpad"
 gpu_temp_name = "amdgpu"

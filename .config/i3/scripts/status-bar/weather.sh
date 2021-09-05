@@ -24,3 +24,5 @@ if curl https://icanhazip.com >/dev/null 2>&1; then
         printf "%s\n" "${weather}, ${wind_icon}${wind}, ${humidity_icon}${humidity}"
     fi
 fi
+
+exit 0

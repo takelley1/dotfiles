@@ -2,9 +2,8 @@
 #
 # Status bar script for printing the current swap space usage in
 #   megabytes and percentage of total.
-#
-# Emoji U+1F504 🔄
 
+# Emoji U+1F504 🔄
 icon = "🔄"
 minimum_usage = 3
 

@@ -23,3 +23,5 @@ elif [ "${percent}" -le 5 ]; then
 elif [ "${percent}" -le 3 ]; then
     notify-send -u critical "Battery under 3%!"
 fi
+
+exit 0

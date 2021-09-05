@@ -2,13 +2,12 @@
 #
 # Print battery percentage and estimated time remaining to full charge or
 #   depletion.
-#
-# Emoji U+1F50B 🔋
-# Emoji U+1F50C 🔌
-# Emoji U+26A1  ⚡
 
+# Emoji U+1F50B 🔋
 battery_icon = "🔋"
-plug_icon = "⚡"
+# Emoji U+26A1  ⚡
+# Emoji U+1F50C 🔌
+plug_icon = "🔌"
 
 # Percentage battery must reach to be declared full.
 full_threshold = 98

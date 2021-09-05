@@ -6,3 +6,5 @@
 if [ -z "$(pgrep -f "${HOME}/.*asd\.sh$")" ]; then
     printf "%s\n" "Screenshot script not running!"
 fi
+
+exit 0

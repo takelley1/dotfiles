@@ -2,7 +2,7 @@
 #
 # Status bar script for printing the amount of gigabytes free in the
 #   network share, assuming it's mounted to /mnt/tank/share/documents.
-#
+
 # IP of server that we're mounting storage from.
 server_ip = "10.0.0.4"
 # Location of mounted sorage in local filesystem.

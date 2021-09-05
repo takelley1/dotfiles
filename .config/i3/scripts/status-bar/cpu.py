@@ -2,9 +2,8 @@
 #
 # Status bar script for printing the current usage of the four most
 #   active CPU cores/threads.
-#
+
 # Emoji U+1F4BB 💻
-# Nerd Fonts e266 
 icon = "💻"
 
 # If verbose is False, usage is expressed on a scale of 1-10, so a

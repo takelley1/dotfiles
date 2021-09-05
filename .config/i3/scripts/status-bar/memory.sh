@@ -1,11 +1,9 @@
 #!/usr/bin/env dash
-
+#
 # Status bar script for printing the current amount of usable RAM remaining.
 
 # Emoji U+1F9E0 🧠
-# Font-Awesome f538 
-# Nerd Fonts f85a 
-
+# Emoji 🐏 U+1F40F
 icon="🐏"
 verbose=1
 
@@ -18,3 +16,5 @@ else
     # Show integer only.
     printf "%s %2d%s\n" "${icon}" "${free}" "G free" 2>/dev/null
 fi
+
+exit 0

@@ -1,13 +1,10 @@
 #!/usr/bin/env dash
 #
 # Print the current screen brightness.
-#
-# Emoji U+1F506 🔆
-# Emoji U+1F505 🔅
-# Font-Awesome f185 
-# Nerd Fonts f5df 
 
+# Emoji U+1F506 🔆
 icon_bright="🔆"
+# Emoji U+1F505 🔅
 icon_dim="🔅"
 
 if [ -r "/tmp/redshift-brightness" ]; then
@@ -25,3 +22,5 @@ else
 fi
 
 printf "%s\n" "${icon} ${brightness}"
+
+exit 0

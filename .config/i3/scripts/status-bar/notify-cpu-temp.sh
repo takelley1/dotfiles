@@ -3,7 +3,7 @@
 # Status bar script that notifies the user of a high CPU temperature.
 
 # Get the current temp from a file, which was written to by the
-#   cpu-temp.py script.
+#   temperatures.py script.
 temp="$(cat "/tmp/cputemp")"
 
 if [ "${temp}" -ge 87 ]; then
@@ -15,3 +15,5 @@ elif [ "${temp}" -ge 91 ]; then
     sleep 2s
     systemctl suspend &
 fi
+
+exit 0

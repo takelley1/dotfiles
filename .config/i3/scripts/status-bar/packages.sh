@@ -2,12 +2,10 @@
 #
 # Status bar script for printing the total number of packages on the system.
 # The number of packages requiring updates is also shown.
-#
-# Emoji U+1F4E6 📦
-# Emoji U+2B06  ⬆️
-# Font-Awesome  fa-arrow-circle-up [&#xf0aa;]
 
+# Emoji U+1F4E6 📦
 icon_packages="📦"
+# Emoji U+2B06  ⬆️
 icon_updates="⬆️"
 
 if [ -x "/usr/bin/pacman" ]; then
@@ -25,3 +23,5 @@ if [ -x "/usr/bin/pacman" ]; then
 elif [ -x "/usr/bin/apt" ]; then
     printf "%s\n" "PKGs $(dpkg-query --list | wc -l)"
 fi
+
+exit 0

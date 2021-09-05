@@ -73,3 +73,5 @@ if [ "${enable_colors}" -eq 1 ]; then
         printf "\n%s\n" "#00FF00" # Green
     fi
 fi
+
+exit 0
