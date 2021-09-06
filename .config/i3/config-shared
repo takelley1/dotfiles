@@ -13,13 +13,12 @@
 
  # Start notification daemon.
    exec --no-startup-id dunst -config ~/.config/dunst/dunstrc &
- # For some reason this has to be run for non-interactive processes to
- #   access the display.
-   exec_always --no-startup-id xhost + &>/dev/null
  # Start RSI-prevention daemon.
-   exec pokoy -r
+   exec --no-startup-id pokoy -r &
  # Mute microphone.
    exec --no-startup-id amixer set Capture 0%
+ # For some reason this has to be run for non-interactive processes to access the display.
+   exec_always --no-startup-id xhost + &>/dev/null
 
  # Start apps automatically and assign them to workspaces.
    exec --no-startup-id i3-msg "workspace 1: firefox; exec firefox"
@@ -28,15 +27,8 @@
    exec --no-startup-id i3-msg "workspace 2: terminal; exec alacritty"
    # assign [class="alacritty"] number "2: terminal"
 
-   exec --no-startup-id i3-msg "workspace 3; exec alacritty"
-   exec --no-startup-id i3-msg "workspace 4; exec alacritty"
-   exec --no-startup-id i3-msg "workspace 5; exec alacritty"
-   exec --no-startup-id i3-msg "workspace 6; exec alacritty"
    # exec --no-startup-id i3-msg "workspace 3; exec pycharm"
    # assign [class="jetbrains-pycharm-ce"] number 3
-
-   # exec --no-startup-id i3-msg "workspace 9; exec discord"
-   # assign [class="discord"] number 9
 
  # Return to workspace 2.
    exec --no-startup-id i3-msg "workspace 2: terminal"
@@ -134,7 +126,7 @@
    bindsym $mod+Shift+d exec dmenu
 
    bindsym $mod+i exec firefox
-   bindsym $mod+g exec gimp
+   # bindsym $mod+g exec gimp
    # bindsym $mod+p exec pycharm
    # bindsym $mod+v exec vncviewer
 
