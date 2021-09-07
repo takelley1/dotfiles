@@ -4,6 +4,7 @@
 **/file.*
 **/icedtea*/
 **/libreo*/
+**/.arduino*
 *.*Cache*
 *.*cert*
 *.*db*
