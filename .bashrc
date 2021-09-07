@@ -199,6 +199,7 @@ alias bc='bc -l'
 alias rss='newsboat'
 alias ap='ansible-playbook --diff'
 alias tmux='tmux -f ~/.config/tmux/tmux.conf'
+alias tokei='tokei -n commas'
 
 # Easily enable or disable proxy config.
 noproxy() {
