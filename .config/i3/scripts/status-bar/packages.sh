@@ -5,8 +5,8 @@
 
 # Emoji U+1F4E6 📦
 icon_packages="📦"
-# Emoji U+2B06  ⬆️
-icon_updates="⬆️"
+# Emoji U+2733 ✳
+icon_updates="✳️"
 
 if [ -x "/usr/bin/pacman" ]; then
 
