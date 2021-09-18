@@ -138,13 +138,6 @@
     \ if line("'\"") > 1 && line("'\"") <= line("$") && &ft !~# 'commit' |
       \ execute "normal! g`\"zvzz" | endif
 
-  " Quickly commit and push updates to notes.
-  " The QuitPre event will trigger even when exiting with ZZ.
-  if g:athome
-    autocmd mygroup QuitPre ~/notes/unsorted.md
-      \ silent :!git -C ~/notes commit -m 'Update unsorted.md' unsorted.md && git push -C ~/notes
-  endif
-
   " https://stackoverflow.com/a/8459043
   function! DeleteHiddenBuffers()
     let tpbl=[]
@@ -156,9 +149,7 @@
 
   " Automatically close leftover hidden buffers.
   " This is usually leftover terminal and ranger windows.
-  " Don't trigger when in Vimagit buffers, since it will kill the buffer Magit() was called from.
-  autocmd mygroup CursorHold,TabEnter *
-      \ silent! if &filetype != "magit" | call DeleteHiddenBuffers() | endif
+  autocmd mygroup CursorHold,TabEnter * silent! call DeleteHiddenBuffers()
 
   " Auto-write files at work ------------------------------------------------------------------ {{{
   if g:atwork
@@ -190,6 +181,13 @@
   endif
   " }}}
 
+  " Quickly commit and push updates to notes.
+  " The QuitPre event will trigger even when exiting with ZZ.
+  " if g:athome
+  "   autocmd mygroup QuitPre ~/notes/unsorted.md
+  "     \ silent :!git -C ~/notes commit -m 'Update unsorted.md' unsorted.md && git push -C ~/notes
+  " endif
+
 " }}}
 " FORMATTING ################################################################################## {{{
 
@@ -207,23 +205,23 @@
   " For some reason setting these options only works within an autocommand.
   autocmd mygroup BufEnter * setlocal formatoptions=q noautoindent nocindent nosmartindent indentexpr=
 
-  " Gitcommit -- used by Lazygit -------------------------------------
+  " Gitcommit -- used by Lazygit ------------------------------------------------------------------
     autocmd mygroup FileType gitcommit setlocal colorcolumn=80 textwidth=80 formatoptions=qt nonumber
-  " Help -------------------------------------------------------------
+  " Help ------------------------------------------------------------------------------------------
     autocmd mygroup FileType help setlocal nonumber
-  " Markdown ---------------------------------------------------------
+  " Markdown --------------------------------------------------------------------------------------
     autocmd mygroup FileType markdown setlocal colorcolumn=120 textwidth=80
     autocmd mygroup BufEnter *.md setlocal foldmethod=manual foldlevelstart=99 concealcursor= conceallevel=0
-  " Python -----------------------------------------------------------
+  " Python ----------------------------------------------------------------------------------------
     autocmd mygroup FileType python setlocal shiftwidth=4 softtabstop=4 tabstop=4 foldlevelstart=0 foldmethod=indent foldnestmax=1 foldignore="" colorcolumn=100 nowrap
-  " Shell ------------------------------------------------------------
+  " Shell -----------------------------------------------------------------------------------------
     autocmd mygroup FileType sh setlocal shiftwidth=4 softtabstop=4 tabstop=4 foldlevelstart=0 foldmethod=marker colorcolumn=120 nowrap
-  " TeX --------------------------------------------------------------
+  " TeX -------------------------------------------------------------------------------------------
     autocmd mygroup FileType tex setlocal colorcolumn=120 textwidth=120 nowrap
     autocmd mygroup BufEnter *.tex setlocal concealcursor= conceallevel=0
-  " VimScript --------------------------------------------------------
+  " VimScript -------------------------------------------------------------------------------------
     autocmd mygroup FileType vim setlocal foldlevelstart=0 foldmethod=marker colorcolumn=100 nowrap
-  " YAML -------------------------------------------------------------
+  " YAML ------------------------------------------------------------------------------------------
     autocmd mygroup FileType yaml,yaml.ansible setlocal foldlevelstart=0 foldmethod=marker colorcolumn=120 nowrap
 
   " Force cursor to stay in the middle of the screen.
@@ -346,7 +344,7 @@
     command! Bashrc    tabnew | cd ~/.bashrc | RnvimrToggle
     command! Alacritty tabnew | cd ~/.config/alacritty | RnvimrToggle
 
-  " Dotfiles (Vim-fugitive doesn't support --git-dir option) ---------------------------------- {{{
+  " Dotfiles ---------------------------------------------------------------------------------- {{{
     nnoremap da :write<CR> :!git --git-dir=$HOME/.cfg/ --work-tree=$HOME add %<CR><C-L>
     nnoremap ds :!git --git-dir=$HOME/.cfg/ --work-tree=$HOME status --untracked-files=no<CR>
     nnoremap dl :!git --git-dir=$HOME/.cfg/ --work-tree=$HOME log<CR>
@@ -391,7 +389,7 @@
           Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} " Tree-sitter syntax highlighting.
           Plug 'f-person/git-blame.nvim'     " Git blame on each line.
           Plug 'norcalli/nvim-colorizer.lua' " Automatically colorize color hex codes.
-          Plug 'vigoux/tree-sitter-viml'     " Tree-sitter highlighting for VimScript.
+          " Plug 'vigoux/tree-sitter-viml'     " Tree-sitter highlighting for VimScript.
           " Plug 'hrsh7th/nvim-compe'          " Lua replacement for Deoplete.
           " Plug 'glepnir/indent-guides.nvim'  " Lua replacement for yggdroot/indentline.
           " Plug 'b3nj5m1n/kommentary'         " Lua replacement for nerdcommenter.
@@ -413,8 +411,8 @@
       " Plug 'tpope/vim-endwise'              " Auto-terminate conditional statements.
       Plug 'tpope/vim-surround'             " Easily surround words.
       Plug 'tpope/vim-eunuch'               " Better shell commands.
-      Plug 'tpope/vim-repeat'               " Repeat plugin actions.
-      Plug 'brooth/far.vim'                 " Find and replace.
+      " Plug 'tpope/vim-repeat'               " Repeat plugin actions.
+      " Plug 'brooth/far.vim'                 " Find and replace.
       Plug 'Konfekt/FastFold'               " More performant folding.
       " Plug 'tpope/vim-unimpaired'           " Navigation with square bracket keys.
       " Plug 'easymotion/vim-easymotion'      " Alternative line navigation.
@@ -425,7 +423,7 @@
       Plug 'wesQ3/vim-windowswap'           " Easily swap window splits with <leader>ww
       Plug 'godlygeek/tabular'              " Alignment tools.
       Plug 'plasticboy/vim-markdown'        " Better markdown syntax highlighting.
-      Plug 'jreybert/vimagit'               " Git porcelain.
+      " Plug 'jreybert/vimagit'               " Git porcelain.
       Plug 'psf/black', { 'for': 'python', 'branch': 'stable' } " Code formatting.
       Plug 'jiangmiao/auto-pairs'           " Auto-create bracket and quote pairs.
       " Plug 'preservim/tagbar'               " Function navigation on large files.
@@ -434,7 +432,7 @@
       Plug 'mbbill/undotree'                " Visualize and navigate Vim's undo tree.
       Plug 'airblade/vim-gitgutter'         " Git diffs in sidebar.
       Plug 'dense-analysis/ale'             " Linting engine.
-      Plug 'tpope/vim-fugitive'             " Git wrapper.
+      " Plug 'tpope/vim-fugitive'             " Git wrapper.
       Plug 'machakann/vim-highlightedyank'  " Briefly highlight yanked text.
       " Plug 'mhinz/vim-grepper'              " Search within files.
       Plug 'vim-airline/vim-airline'        " Status bar.
@@ -444,15 +442,15 @@
       if g:athome
         Plug 'lervag/vimtex', { 'for': 'tex' }                  " LaTeX helpers.
         Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }  " LaTeX live preview.
-        Plug 'drewtempelmeyer/palenight.vim'   " Colorscheme.
-        Plug 'ryanoasis/vim-devicons'          " Icons (Must be loaded after all the plugins that use it).
-        Plug 'lambdalisue/suda.vim'            " Edit files with sudo. This causes performance issues at work.
-        Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }            " Code completion.
-        Plug 'deoplete-plugins/deoplete-jedi'                                    " Deoplete Python integration.
-        Plug 'Shougo/neco-vim'                                                   " Deoplete VimScript integration.
+        Plug 'drewtempelmeyer/palenight.vim' " Colorscheme.
+        " Plug 'ryanoasis/vim-devicons' " Icons (Must be loaded after all the plugins that use it).
+        Plug 'lambdalisue/suda.vim' " Edit files with sudo. This causes performance issues at work.
+        Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' } " Code completion.
+        Plug 'deoplete-plugins/deoplete-jedi' " Deoplete Python integration.
+        Plug 'Shougo/neco-vim' " Deoplete VimScript integration.
         " Plug 'ncm2/float-preview.nvim'
-        Plug 'fszymanski/deoplete-emoji'                                         " Auto-complete `:` emoji in markdown files.
-        Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' }           " Fuzzy finder.
+        Plug 'fszymanski/deoplete-emoji' " Auto-complete `:` emoji in markdown files.
+        Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' } " Fuzzy finder.
         Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  } " Render markdown.
         " Plug 'vimwiki/vimwiki', { 'branch': 'dev' } " Note management.
       elseif g:atwork
@@ -997,7 +995,8 @@ endif
     " let g:better_whitespace_enabled = 0
 
     " Automatically strip whitespace.
-    autocmd mygroup BufWritePost,FileWritePost,FileReadPost,CursorHold * call StripWhite()
+    " Calling StripWhite() during "CursorHold" will sometimes cause search results to disappear.
+    autocmd mygroup BufWritePost,FileWritePost,FileReadPost,CursorHoldI * call StripWhite()
 
     function! StripWhite()
         if &filetype !=# 'magit' && &modifiable ==# 1 && &readonly ==# 0
@@ -1109,10 +1108,10 @@ endif
   inoremap <silent> <C-w> <Esc>:q!<CR>
 
   " Create a split with an empty file.
-  nnoremap <silent> <C-s>      :cd ~/ <bar> new<CR>
-  inoremap <silent> <C-s> <Esc>:cd ~/ <bar> new<CR>
-  nnoremap <silent> <C-\>      :cd ~/ <bar> vnew<CR>
-  inoremap <silent> <C-\> <Esc>:cd ~/ <bar> vnew<CR>
+  nnoremap <silent> <C-s>      :new<CR>
+  inoremap <silent> <C-s> <Esc>:new<CR>
+  nnoremap <silent> <C-\>      :vnew<CR>
+  inoremap <silent> <C-\> <Esc>:vnew<CR>
 
   nnoremap <silent> <C-k>      :wincmd k<CR>
   inoremap <silent> <C-k> <Esc>:wincmd k<CR>
@@ -1167,8 +1166,8 @@ endif
     tnoremap <silent> <C-h> <C-\><C-n>:wincmd h<CR>
     tnoremap <silent> <C-l> <C-\><C-n>:wincmd l<CR>
 
-    tnoremap <silent> <C-s> <C-\><C-n>:cd ~/ <bar> new<CR>
-    tnoremap <silent> <C-\> <C-\><C-n>:cd ~/ <bar> vnew<CR>
+    tnoremap <silent> <C-s> <C-\><C-n>:new<CR>
+    tnoremap <silent> <C-\> <C-\><C-n>:vnew<CR>
 
     tnoremap <silent> <A-1> <C-\><C-n>1gt<CR>
     tnoremap <silent> <A-2> <C-\><C-n>2gt<CR>
