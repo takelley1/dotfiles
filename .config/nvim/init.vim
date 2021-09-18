@@ -212,7 +212,7 @@
   " Help -------------------------------------------------------------
     autocmd mygroup FileType help setlocal nonumber
   " Markdown ---------------------------------------------------------
-    autocmd mygroup FileType markdown setlocal colorcolumn=120
+    autocmd mygroup FileType markdown setlocal colorcolumn=120 textwidth=80
     autocmd mygroup BufEnter *.md setlocal foldmethod=manual foldlevelstart=99 concealcursor= conceallevel=0
   " Python -----------------------------------------------------------
     autocmd mygroup FileType python setlocal shiftwidth=4 softtabstop=4 tabstop=4 foldlevelstart=0 foldmethod=indent foldnestmax=1 foldignore="" colorcolumn=100 nowrap
@@ -756,6 +756,9 @@
         tnoremap <leader>/ <C-\><C-n>:LeaderfLineAll<CR>
       endif
 
+      " Make selected LeaderF results more visible.
+      highlight Lf_hl_cursorline guifg=#c3e88d gui=Bold ctermfg=226 ctermbg=0 cterm=Bold
+
       let g:Lf_ShowHidden = 1      " Index hidden files.
       let g:Lf_MruMaxFiles = 10000 " Index all used files in MRU list.
       let g:Lf_CacheDirectory = ($HOME . '/.cache')
@@ -1042,8 +1045,8 @@ endif
     " Make IncSearch and Search highlights the same.
     highlight IncSearch cterm=underline ctermfg=235 ctermbg=180 gui=underline guifg=#292D3E guibg=#ffcb6b
     highlight Search cterm=underline ctermfg=235 ctermbg=180 gui=underline guifg=#292D3E guibg=#ffcb6b
-    " Make selected LeaderF results more visible.
-    highlight Lf_hl_cursorline guifg=#c3e88d gui=Bold ctermfg=226 ctermbg=0 cterm=Bold
+    " Change text selection background.
+    highlight Visual gui=bold guifg=#000000 guibg=#00eee0
 
   elseif g:atwork
 
