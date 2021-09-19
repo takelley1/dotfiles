@@ -996,7 +996,7 @@ endif
 
     " Automatically strip whitespace.
     " Calling StripWhite() during "CursorHold" will sometimes cause search results to disappear.
-    autocmd mygroup BufWritePost,FileWritePost,FileReadPost,CursorHoldI * call StripWhite()
+    autocmd mygroup BufWritePost,FileWritePost,FileReadPost * call StripWhite()
 
     function! StripWhite()
         if &filetype !=# 'magit' && &modifiable ==# 1 && &readonly ==# 0
