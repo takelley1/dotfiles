@@ -258,6 +258,7 @@ alias b='cd ~/scripts/bash'
 # `c` is already used for `clear`.
 alias d='cd ~/Downloads'
 alias D='cd ~/Documents'
+alias e='cd ~/scripts/ansible/roles/ansible-role-e2guardian'
 alias i='cd ~/.config/i3'
 alias l='cd ~/library'
 alias n='cd ~/notes'
