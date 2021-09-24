@@ -132,11 +132,9 @@
       \ if isdirectory($HOME . '/scripts/ansible') | cd ~/scripts/ansible | endif
   endif
 
-  " https://github.com/jdhao/nvim-config/blob/master/core/autocommands.vim
+  " https://stackoverflow.com/a/14449484
   " Return to last position when re-opening file.
-  autocmd mygroup BufReadPost
-    \ if line("'\"") > 1 && line("'\"") <= line("$") && &ft !~# 'commit' |
-      \ execute "normal! g`\"zvzz" | endif
+  autocmd mygroup BufReadPost * silent! normal! g`"zv
 
   " https://stackoverflow.com/a/8459043
   function! DeleteHiddenBuffers()
