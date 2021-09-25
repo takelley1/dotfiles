@@ -120,16 +120,17 @@
   " Switch to normal mode when entering all other buffers.
   autocmd mygroup BufEnter * if &buftype !=# "terminal" | stopinsert | endif
 
-  if g:athome
-    " Change to home directory on startup.
-    autocmd mygroup VimEnter * cd ~
-  elseif g:atwork
-    " https://vim.fandom.com/wiki/Set_working_directory_to_the_current_file
-    " Set working dir to current file's dir.
-    autocmd mygroup BufEnter * silent! lcd %:p:h
-    autocmd mygroup VimEnter *
-      \ if isdirectory($HOME . '/infrastructure/ansible') | cd ~/infrastructure/ansible | endif
-  endif
+  " https://vim.fandom.com/wiki/Set_working_directory_to_the_current_file
+  " Set working dir to current file's dir.
+  autocmd mygroup BufEnter * silent! lcd %:p:h
+
+  " if g:athome
+  "   " Change to home directory on startup.
+  "   autocmd mygroup VimEnter * cd ~
+  " elseif g:atwork
+  "   autocmd mygroup VimEnter *
+  "     \ if isdirectory($HOME . '/infrastructure/ansible') | cd ~/infrastructure/ansible | endif
+  " endif
 
   " https://stackoverflow.com/a/14449484
   " Return to last position when re-opening file.
@@ -509,6 +510,7 @@
     let g:ale_python_pylint_options = '--rcfile ~/.config/nvim/linters/pylintrc.config'
     " YAML
     let g:ale_yaml_yamllint_options = '--config-file ~/.config/nvim/linters/yamllint.yml'
+    " let g:ale_ansible_ansible_lint_executable = 'ansible-lint --nocolor --parseable-severity -x yaml -c ~/.config/nvim/linters/ansible-lint.yml ' . expand('%:p')
 
   " }}}
   " Ansible-doc ------------------------------------------------------------------------------- {{{
