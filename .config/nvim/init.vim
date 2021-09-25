@@ -120,16 +120,15 @@
   " Switch to normal mode when entering all other buffers.
   autocmd mygroup BufEnter * if &buftype !=# "terminal" | stopinsert | endif
 
-  " https://vim.fandom.com/wiki/Set_working_directory_to_the_current_file
-  " Set working dir to current file's dir.
-  " autocmd mygroup BufEnter * silent! lcd %:p:h
-
   if g:athome
     " Change to home directory on startup.
     autocmd mygroup VimEnter * cd ~
   elseif g:atwork
+    " https://vim.fandom.com/wiki/Set_working_directory_to_the_current_file
+    " Set working dir to current file's dir.
+    autocmd mygroup BufEnter * silent! lcd %:p:h
     autocmd mygroup VimEnter *
-      \ if isdirectory($HOME . '/scripts/ansible') | cd ~/scripts/ansible | endif
+      \ if isdirectory($HOME . '/infrastructure/ansible') | cd ~/infrastructure/ansible | endif
   endif
 
   " https://stackoverflow.com/a/14449484
@@ -179,13 +178,6 @@
   endif
   " }}}
 
-  " Quickly commit and push updates to notes.
-  " The QuitPre event will trigger even when exiting with ZZ.
-  " if g:athome
-  "   autocmd mygroup QuitPre ~/notes/unsorted.md
-  "     \ silent :!git -C ~/notes commit -m 'Update unsorted.md' unsorted.md && git push -C ~/notes
-  " endif
-
 " }}}
 " FORMATTING ################################################################################## {{{
 
@@ -230,18 +222,6 @@
     autocmd mygroup TermLeave * silent setlocal scrolloff=999
   endif
 
-  " Automatically set winfixheight and winfixwidth.
-  " function! SetFixWindow()
-  "   if winwidth('$') > winheight('$')
-  "     setlocal nowinfixwidth
-  "     setlocal winfixheight
-  "   elseif winwidth('$') < winheight('$')
-  "     setlocal nowinfixheight
-  "     setlocal winfixwidth
-  "   endif
-  " endfunction
-  " autocmd mygroup BufEnter * call SetFixWindow() " This doesn't seem to help with splits resizing.
-
 " }}}
 " SHORTCUTS ################################################################################### {{{
 
@@ -251,7 +231,7 @@
   nnoremap <silent> <leader>w :write<CR><C-L>
   " Jump back and forth between files.
   nnoremap <silent> <BS> :e#<CR><C-L>
-  " Easily set wrapping
+  " Easily text wrapping toggle
   nnoremap <leader>n :set wrap!<CR><C-L>
 
   " Use `call P('highlight')` to put the output of `highlight` in the current buffer, {{{
@@ -310,9 +290,6 @@
     if exists(':terminal')
       tnoremap <leader>ve <C-\><C-n>:edit ~/.config/nvim/init.vim<CR>
     endif
-  elseif g:atwork
-    nnoremap <leader>ve :edit
-      \ ~/scripts/ansible/inventories/global_files/home/akelley/.vimrc<CR>
   endif
   " Reload configuration without restarting vim (vs for 'vim source').
   nnoremap <leader>vs :update <bar> :source $MYVIMRC<CR><C-L>
@@ -320,14 +297,6 @@
   nnoremap <leader>Q :wqa!<CR>
   " Save and quit only open window.
   nnoremap <leader>q :wq!<CR>
-
-  " Quickly add a note while working on something else.
-  " function! Notes()
-  "   silent !printf "\n\%s\n\n" "[$(date +\%Y\%m\%d)] $(date +\%A,\ \%b\ \%d\ \%H:\%M:\%S)" >>
-  "     \ ~/notes/unsorted.md
-  "   split ~/notes/unsorted.md
-  "   normal! Go
-  " endfunction
 
   if g:athome
     " nnoremap <leader>n :call Notes()<CR>
@@ -452,7 +421,7 @@
         Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  } " Render markdown.
         " Plug 'vimwiki/vimwiki', { 'branch': 'dev' } " Note management.
       elseif g:atwork
-        Plug 'ctrlpvim/ctrlp.vim'              " Fuzzy finder.
+        Plug 'ctrlpvim/ctrlp.vim' " Fuzzy finder.
       endif
 
     call plug#end()
@@ -540,8 +509,6 @@
     let g:ale_python_pylint_options = '--rcfile ~/.config/nvim/linters/pylintrc.config'
     " YAML
     let g:ale_yaml_yamllint_options = '--config-file ~/.config/nvim/linters/yamllint.yml'
-    " Ansible
-    let g:ale_ansible_ansible_lint_executable = 'ansible-lint -c ~/.config/nvim/linters/ansible-lint.yml'
 
   " }}}
   " Ansible-doc ------------------------------------------------------------------------------- {{{
@@ -599,22 +566,8 @@
 
     let g:deoplete#enable_at_startup = 1
 
-    " Don't show the default popup window since we're using ncm2/float-preview.nvim
+    " Don't show the default popup window.
     set completeopt-=preview
-
-  " }}}
-  " Devicons ---------------------------------------------------------------------------------- {{{
-
-    if g:athome
-      " Enable Nerd Fonts (requires AUR package).
-      set guifont=Nerd\ Font\ 11
-
-      " https://github.com/ryanoasis/vim-devicons
-      " Fix issues re-sourcing Vimrc.
-      if exists("g:loaded_webdevicons")
-        call webdevicons#refresh()
-      endif
-    endif
 
   " }}}
   " Grepper ----------------------------------------------------------------------------------- {{{
@@ -1133,7 +1086,6 @@ endif
   nnoremap <silent> <A-Down>      :resize -2<CR><C-L>
   inoremap <silent> <A-Down> <Esc>:resize -2<CR><C-L>
 
-  " Terminal-related shortcuts.
   if exists(':terminal')
 
     " Quickly convert a terminal window to a Ranger window.
@@ -1184,6 +1136,7 @@ endif
     tnoremap <silent> <A-Right> <C-\><C-n>:vertical resize +2<CR><C-L>
     tnoremap <silent> <A-Up>    <C-\><C-n>:resize +2<CR><C-L>
     tnoremap <silent> <A-Down>  <C-\><C-n>:resize -2<CR><C-L>
+
   endif
 
   " Jump to tab by number.
