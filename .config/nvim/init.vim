@@ -514,6 +514,7 @@
                       \ }
 
     let g:ale_fix_on_save = 1  " ALE will fix files automatically when they're saved.
+    let g:ale_lint_on_insert_leave = 1 " Run linting after exiting insert mode.
     let g:ale_lint_delay = 300 " Increase linting speed.
 
     " Bash
