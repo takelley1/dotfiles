@@ -285,6 +285,19 @@
   "xnoremap < <gv
   "xnoremap > >gv
 
+  " Quickly lookup docs for the word or WORD under the cursor. Especially useful for Python.
+  " gK looks up the <WORD>, gk looks up the <word>.
+  nnoremap <silent> gK :call Zeal() <CR><CR>
+  nnoremap <silent> gk :!zeal "<cword>"&<CR><CR>
+
+  function! Zeal()
+   " Strip leading characters. Anything that isn't [a-zA-Z0-9._] will get stripped from the beginning.
+    let query = substitute(expand("<cWORD>"), "^[^a-zA-Z0-9._]*", "", "")
+   " Strip trailing characters. Anything that isn't [a-zA-Z0-9._] will get stripped from the end.
+    let query = substitute(query, "[^a-zA-Z0-9._].*", "", "")
+    execute '!zeal' query
+  endfunction
+
   " Easily edit vimrc (ve for 'vim edit').
   if g:athome
     nnoremap <leader>ve :edit ~/.config/nvim/init.vim<CR>
