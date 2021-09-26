@@ -83,10 +83,6 @@
   autocmd mygroup FocusGained,BufEnter * if &readonly ==# 0 | silent! checktime | endif
   " Auto-save file.
   autocmd mygroup InsertLeave,BufLeave,CursorHold * if &readonly ==# 0 | silent! write | endif
-  " Enable tree-sitter highlighting.
-  if exists(':TSBufEnable')
-    autocmd mygroup BufEnter * TSBufEnable highlight
-  endif
 
   " Manage insert mode when entering terminals ------------------------------------------------ {{{
   if exists(':terminal')
@@ -515,6 +511,7 @@
 
     let g:ale_fix_on_save = 1  " ALE will fix files automatically when they're saved.
     let g:ale_lint_on_insert_leave = 1 " Run linting after exiting insert mode.
+
     let g:ale_lint_delay = 300 " Increase linting speed.
 
     " Bash
@@ -932,7 +929,13 @@ endif
   " }}}
   " Treesitter -------------------------------------------------------------------------------- {{{
 
-if exists(':TSBufEnable')
+" Must source plugin file manually or it won't be loaded on startup.
+if filereadable($HOME . '/.local/share/nvim/plugged/nvim-treesitter/plugin/nvim-treesitter.vim')
+  source $HOME/.local/share/nvim/plugged/nvim-treesitter/plugin/nvim-treesitter.vim
+
+  " Enable tree-sitter highlighting.
+  autocmd mygroup BufEnter * TSBufEnable highlight
+
 lua <<EOF
 require'nvim-treesitter.configs'.setup {
   ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
