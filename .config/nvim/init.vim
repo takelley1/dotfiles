@@ -930,11 +930,12 @@ endif
   " Treesitter -------------------------------------------------------------------------------- {{{
 
 " Must source plugin file manually or it won't be loaded on startup.
-if filereadable($HOME . '/.local/share/nvim/plugged/nvim-treesitter/plugin/nvim-treesitter.vim')
-  source $HOME/.local/share/nvim/plugged/nvim-treesitter/plugin/nvim-treesitter.vim
+if g:athome
+  if filereadable($HOME . '/.local/share/nvim/plugged/nvim-treesitter/plugin/nvim-treesitter.vim')
+    source $HOME/.local/share/nvim/plugged/nvim-treesitter/plugin/nvim-treesitter.vim
 
-  " Enable tree-sitter highlighting.
-  autocmd mygroup BufEnter * TSBufEnable highlight
+    " Enable tree-sitter highlighting.
+    autocmd mygroup BufEnter * TSBufEnable highlight
 
 lua <<EOF
 require'nvim-treesitter.configs'.setup {
@@ -950,6 +951,7 @@ require'nvim-treesitter.configs'.setup {
   },
 }
 EOF
+  endif
 endif
 
   " }}}
