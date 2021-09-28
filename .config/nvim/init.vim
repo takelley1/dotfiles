@@ -149,29 +149,24 @@
   if g:atwork
 
     autocmd mygroup BufWritePost
-      \ ~/scripts/ansible/inventories/global_files/home/akelley/.vimrc
-      \ silent :!cp -f ~/scripts/ansible/inventories/global_files/home/akelley/.vimrc
+      \ ~/infrastructure/ansible/environments/s3noc/group_files/all/home/akelley/.vimrc
+      \ silent :!cp -f ~/infrastructure/ansible/environments/s3noc/group_files/all/home/akelley/.vimrc
       \ ~/.config/nvim/init.vim
 
     " Automatically copy changes from ansible repo to personal dotfiles.
     " Use sed to remove the 'Ansible managed' header.
     autocmd mygroup BufWritePost
-      \ ~/scripts/ansible/inventories/global_files/home/akelley/.bashrc
+      \ ~/infrastructure/ansible/environments/s3noc/group_files/all/home/akelley/.bashrc
       \ silent :!sed '0,/ansible_managed/d'
-      \ ~/scripts/ansible/inventories/global_files/home/akelley/.bashrc
+      \ ~/infrastructure/ansible/environments/s3noc/group_files/all/home/akelley/.bashrc
       \ > ~/.bashrc
 
     autocmd mygroup BufWritePost
-      \ ~/scripts/ansible/inventories/global_files/home/akelley/.tmux.conf
+      \ ~/infrastructure/ansible/environments/s3noc/group_files/all/home/akelley/.tmux.conf
       \ silent :!sed '0,/ansible_managed/d'
-      \ ~/scripts/ansible/inventories/global_files/home/akelley/.tmux.conf
+      \ ~/infrastructure/ansible/environments/s3noc/group_files/all/home/akelley/.tmux.conf
       \ > ~/.tmux.conf
 
-    autocmd mygroup BufWritePost
-      \ ~/scripts/ansible/inventories/global_files/home/akelley/.bash_profile
-      \ silent :!sed '0,/ansible_managed/d'
-      \ ~/scripts/ansible/inventories/global_files/home/akelley/.bash_profile
-      \ ~/.bash_profile
   endif
   " }}}
 
