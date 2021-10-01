@@ -366,7 +366,6 @@
           Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} " Tree-sitter syntax highlighting.
           Plug 'f-person/git-blame.nvim'     " Git blame on each line.
           Plug 'norcalli/nvim-colorizer.lua' " Automatically colorize color hex codes.
-          " Plug 'vigoux/tree-sitter-viml'     " Tree-sitter highlighting for VimScript.
           " Plug 'hrsh7th/nvim-compe'          " Lua replacement for Deoplete.
           " Plug 'glepnir/indent-guides.nvim'  " Lua replacement for yggdroot/indentline.
           " Plug 'b3nj5m1n/kommentary'         " Lua replacement for nerdcommenter.
@@ -376,7 +375,7 @@
       endif
 
       " Plug 'takelley1/ansible-doc.vim' " View ansible docs within Neovim.
-      Plug '~/ansible-doc.vim'
+      " Plug '~/ansible-doc.vim'
 
       Plug 'preservim/nerdcommenter'        " Comment blocks.
       Plug 'kassio/neoterm'                 " REPL integration for interactive Python coding.
@@ -935,15 +934,17 @@ if filereadable($HOME . '/.local/share/nvim/plugged/nvim-treesitter/plugin/nvim-
 
   " Enable tree-sitter highlighting.
   autocmd mygroup BufEnter * TSBufEnable highlight
+  autocmd mygroup CursorHold * TSBufEnable highlight
 
 lua <<EOF
 require'nvim-treesitter.configs'.setup {
   ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+  ignore_install = { "bash", "yaml" }, -- List of parsers to ignore installing
   highlight = {
     enable = true, -- false will disable the whole extension
     additional_vim_regex_highlighting = false,
     custom_captures = {},
-    disable = {"bash"},
+    disable = { "bash", "yaml" },
     enable = true,
     loaded = true,
     module_path = "nvim-treesitter.highlight"
@@ -966,7 +967,7 @@ endif
 
     " Automatically strip whitespace.
     " Calling StripWhite() during "CursorHold" will sometimes cause search results to disappear.
-    autocmd mygroup BufWritePost,FileWritePost,FileReadPost * call StripWhite()
+    autocmd mygroup BufWritePre,FileWritePre,FileReadPre * call StripWhite()
 
     function! StripWhite()
         if &filetype !=# 'magit' && &modifiable ==# 1 && &readonly ==# 0
