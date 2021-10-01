@@ -195,9 +195,12 @@ alias less='less -XRF' # Show text in terminal even after quitting less.
 alias grep='grep --color=always'
 alias mkdir='mkdir -pv' # Always make parent directories.
 
+ap() {
+    ansible-playbook --diff "${@}"
+}
+
 alias bc='bc -l'
 alias rss='newsboat'
-alias ap='ansible-playbook --diff'
 alias tmux='tmux -f ~/.config/tmux/tmux.conf'
 alias tokei='tokei -n commas'
 
@@ -250,6 +253,11 @@ cd() {
     command cd "${@}" || exit 1
     ls
 }
+
+mediainfo() {
+    command mediainfo "${@}" | less
+}
+
 alias h='cd ~'
 alias u='cd ../' # "Up 1 directory."
 
@@ -331,6 +339,9 @@ export PROMPT_COMMAND='history -a'
 # Allow unicode within the terminal.
 export LANG="en_US.UTF-8"
 export LC_ALL="en_US.UTF-8"
+
+# Allow recursive globbing.
+shopt -s globstar
 
 # Append history rather than overwriting it.
 shopt -s histappend
