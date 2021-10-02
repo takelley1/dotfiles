@@ -55,6 +55,33 @@ if [[ "${OSTYPE}" =~ "linux" ]]; then
         source "/etc/profile.d/proxy.sh"
     fi
 
+    alias reboot='i3-save && reboot'
+    alias shutdown='i3-save && shutdown now'
+    alias restore='i3-restore'
+    alias i3-ls='i3-resurrect ls'
+
+    i3-save() {
+        echo "Saving workspaces ..."
+        i3-msg -t get_workspaces |
+            jq -r '.[].name' |
+            awk '{print "\"" $0 "\""}' |
+            xargs -n1 i3-resurrect save -w
+    }
+    i3-rm() {
+        echo "Removing workspaces ..."
+        i3-resurrect ls |
+            awk '{gsub(/^Workspace\s+|\s+(layout|programs)$/, ""); print "\"" $0 "\""}' |
+            sort -u |
+            xargs -n1 i3-resurrect rm -w
+    }
+    i3-restore() {
+        echo "Restoring workspaces ..."
+        i3-resurrect ls |
+            awk '{gsub(/^Workspace\s+|\s+(layout|programs)$/, ""); print "\"" $0 "\""}' |
+            sort -u |
+            xargs -n1 i3-resurrect restore -w
+    }
+
     # Uses my mdd.service to generate a list of files for fzf to search through.
     # Selects a file from the mlocate database using fzf, then open the filepath in ranger.
     f() {
