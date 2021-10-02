@@ -306,16 +306,6 @@
   if g:athome
     " nnoremap <leader>n :call Notes()<CR>
     " command! Note      call Notes()
-
-    command! Todo      edit ~/notes/personal--todo.md
-    command! I3b       edit ~/.config/i3/i3blocks.conf
-    command! I3cc      edit ~/.config/i3/config-shared
-    command! I3ccc     edit /tmp/.i3-config
-    command! I3        tabnew | cd ~/.config/i3/ | RnvimrToggle
-    command! Status    tabnew | cd ~/.config/i3/scripts/status-bar/ | RnvimrToggle
-    command! Bashrc    tabnew | cd ~/.bashrc | RnvimrToggle
-    command! Alacritty tabnew | cd ~/.config/alacritty | RnvimrToggle
-
   " Dotfiles ---------------------------------------------------------------------------------- {{{
     nnoremap da :write<CR> :!git --git-dir=$HOME/.cfg/ --work-tree=$HOME add %<CR><C-L>
     nnoremap ds :!git --git-dir=$HOME/.cfg/ --work-tree=$HOME status --untracked-files=no<CR>
@@ -359,11 +349,12 @@
         " Plug 'nvim-telescope/telescope.nvim'
         if g:athome
           Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} " Tree-sitter syntax highlighting.
-          Plug 'f-person/git-blame.nvim'     " Git blame on each line.
+          " Plug 'f-person/git-blame.nvim'     " Git blame on each line.
           Plug 'norcalli/nvim-colorizer.lua' " Automatically colorize color hex codes.
           " Plug 'hrsh7th/nvim-compe'          " Lua replacement for Deoplete.
           " Plug 'glepnir/indent-guides.nvim'  " Lua replacement for yggdroot/indentline.
           " Plug 'b3nj5m1n/kommentary'         " Lua replacement for nerdcommenter.
+          Plug 'voldikss/vim-floaterm'         " Use to launch lf, a backup for when ranger is slow.
         endif
       else
         " Plug 'yggdroot/indentline'            " Show indentation lines. May cause performance issues.
@@ -392,7 +383,7 @@
       " Plug 'vim-scripts/YankRing.vim'       " Access previously yanked text.
       Plug 'gcmt/taboo.vim'                 " Rename tabs.
       Plug 'wesQ3/vim-windowswap'           " Easily swap window splits with <leader>ww
-      Plug 'godlygeek/tabular'              " Alignment tools.
+      " Plug 'godlygeek/tabular'              " Alignment tools.
       Plug 'plasticboy/vim-markdown'        " Better markdown syntax highlighting.
       " Plug 'jreybert/vimagit'               " Git porcelain.
       Plug 'psf/black', { 'for': 'python', 'branch': 'stable' } " Code formatting.
@@ -421,7 +412,7 @@
         Plug 'Shougo/neco-vim' " Deoplete VimScript integration.
         " Plug 'ncm2/float-preview.nvim'
         Plug 'fszymanski/deoplete-emoji' " Auto-complete `:` emoji in markdown files.
-        Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' } " Fuzzy finder.
+        " Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' } " Fuzzy finder.
         Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  } " Render markdown.
         " Plug 'vimwiki/vimwiki', { 'branch': 'dev' } " Note management.
       elseif g:atwork
@@ -577,6 +568,14 @@
     set completeopt-=preview
 
   " }}}
+  " Floaterm ---------------------------------------------------------------------------------- {{{
+
+    " Use to launch lf, a backup for when ranger is slow.
+    command! LF FloatermNew lf
+    nnoremap <leader>f :LF<CR>
+    let g:floaterm_opener = 'edit'
+
+  " }}}
   " Grepper ----------------------------------------------------------------------------------- {{{
 
     " <leader>g to start grepping (g for 'grep').
@@ -687,74 +686,74 @@
   " }}}
   " LeaderF ----------------------------------------------------------------------------------- {{{
 
-    if g:athome
-      " <leader>f to start searching from home directory (f for 'find').
-      " <leader>F to start searching from project directory.
+    " if g:athome
+    "   " <leader>f to start searching from home directory (f for 'find').
+    "   " <leader>F to start searching from project directory.
 
-      " <leader>/ to grep for a string in all open buffers.
-      " <leader>b to search within open buffers.
-      " <leader>R to search recently used files.
+    "   " <leader>/ to grep for a string in all open buffers.
+    "   " <leader>b to search within open buffers.
+    "   " <leader>R to search recently used files.
 
-      " CTRL-j, CTRL-k : navigate through results.
-      " CTRL-x : open in horizontal split window.
-      " CTRL-] : open in vertical split window.
-      " CTRL-T : open in new tabpage.
+    "   " CTRL-j, CTRL-k : navigate through results.
+    "   " CTRL-x : open in horizontal split window.
+    "   " CTRL-] : open in vertical split window.
+    "   " CTRL-T : open in new tabpage.
 
-      nnoremap <leader>f :LeaderfFile ~/<CR>
-      nnoremap <leader>F :LeaderfFile<CR>
-      nnoremap <leader>R :LeaderfMru<CR>
-      nnoremap <leader>/ :LeaderfLineAll<CR>
+    "   nnoremap <leader>f :LeaderfFile ~/<CR>
+    "   nnoremap <leader>F :LeaderfFile<CR>
+    "   nnoremap <leader>R :LeaderfMru<CR>
+    "   nnoremap <leader>/ :LeaderfLineAll<CR>
 
-      if exists(':terminal')
-        tnoremap <leader>f <C-\><C-n>:LeaderfFile ~/<CR>
-        tnoremap <leader>F <C-\><C-n>:LeaderfFile<CR>
-        tnoremap <leader>R <C-\><C-n>:LeaderfMru<CR>
-        tnoremap <leader>/ <C-\><C-n>:LeaderfLineAll<CR>
-      endif
+    "   if exists(':terminal')
+    "     tnoremap <leader>f <C-\><C-n>:LeaderfFile ~/<CR>
+    "     tnoremap <leader>F <C-\><C-n>:LeaderfFile<CR>
+    "     tnoremap <leader>R <C-\><C-n>:LeaderfMru<CR>
+    "     tnoremap <leader>/ <C-\><C-n>:LeaderfLineAll<CR>
+    "   endif
 
-      " Make selected LeaderF results more visible.
-      highlight Lf_hl_cursorline guifg=#c3e88d gui=Bold ctermfg=226 ctermbg=0 cterm=Bold
+    "   " Make selected LeaderF results more visible.
+    "   highlight Lf_hl_cursorline guifg=#c3e88d gui=Bold ctermfg=226 ctermbg=0 cterm=Bold
 
-      let g:Lf_ShowHidden = 1      " Index hidden files.
-      let g:Lf_MruMaxFiles = 10000 " Index all used files in MRU list.
-      let g:Lf_CacheDirectory = ($HOME . '/.cache')
+    "   let g:Lf_ShowHidden = 1      " Index hidden files.
+    "   let g:Lf_MruMaxFiles = 10000 " Index all used files in MRU list.
+    "   let g:Lf_CacheDirectory = ($HOME . '/.cache')
 
-      " Don't index the following dirs/files.
-      let g:Lf_WildIgnore = {
-        \ 'dir':
-        \ ['.svn','.git','.hg','.cfg',
-        \ '.*cache*','_*cache','.swp','.LfCache','.swt',
-        \ '.gnupg','.pylint.d','ansible*',
-        \ '.cargo','.fltk','.icon*','.password*',
-        \ '.vim/undo','.mozilla','__*__'],
-        \
-        \ 'file':
-        \ ['*.sw?','~$*',
-        \ '*.pyc','*.py1*','*.stat*',
-        \ '*.gpg','*.kbx*','*.key','*.c?rt','*.cer','*.der','*.pem',
-        \ '*.so','*.msg','*.lock','*.*db*','*.*sql*','*.localstorage*','*.shada','*.pack','*.crate',
-        \ '*.vdi','*.vmd*','*.dat','*.vhd','*.iso',
-        \ '*.pdf','*.odt','*.doc*','*.bau','*.dic','*.exc','*.fmt','*.thm','*.sdv',
-        \ '*.7z','*.*zip','*.tar.*','*.tar*','*.*gz','*.pick*','*.whl',
-        \ '*.jp?g','*.png','*.bmp','*.gif','*.tif*','*.svg','*.ico','*.web*',
-        \ '*.mp?','*.m4a','*.aac',
-        \ '*.mkv','*.avi']
-        \ }
+    "   " Don't index the following dirs/files.
+    "   let g:Lf_WildIgnore = {
+    "     \ 'dir':
+    "     \ ['.svn','.git','.hg','.cfg',
+    "     \ '.*cache*','_*cache','.swp','.LfCache','.swt',
+    "     \ '.gnupg','.pylint.d','ansible*',
+    "     \ '.cargo','.fltk','.icon*','.password*',
+    "     \ '.vim/undo','.mozilla','__*__'],
+    "     \
+    "     \ 'file':
+    "     \ ['*.sw?','~$*',
+    "     \ '*.pyc','*.py1*','*.stat*',
+    "     \ '*.gpg','*.kbx*','*.key','*.c?rt','*.cer','*.der','*.pem',
+    "     \ '*.so','*.msg','*.lock','*.*db*','*.*sql*','*.localstorage*','*.shada','*.pack','*.crate',
+    "     \ '*.vdi','*.vmd*','*.dat','*.vhd','*.iso',
+    "     \ '*.pdf','*.odt','*.doc*','*.bau','*.dic','*.exc','*.fmt','*.thm','*.sdv',
+    "     \ '*.7z','*.*zip','*.tar.*','*.tar*','*.*gz','*.pick*','*.whl',
+    "     \ '*.jp?g','*.png','*.bmp','*.gif','*.tif*','*.svg','*.ico','*.web*',
+    "     \ '*.mp?','*.m4a','*.aac',
+    "     \ '*.mkv','*.avi']
+    "     \ }
 
-      " Automatically preview the following results.
-      let g:Lf_PreviewResult = {
-        \ 'File': 0,
-        \ 'Buffer': 0,
-        \ 'Mru': 0,
-        \ 'Tag': 1,
-        \ 'BufTag': 1,
-        \ 'Function': 1,
-        \ 'Line': 1,
-        \ 'Colorscheme': 1,
-        \ 'Rg': 1,
-        \ 'Gtags': 1
-        \ }
-    endif
+    "   " Automatically preview the following results.
+    "   let g:Lf_PreviewResult = {
+    "     \ 'File': 0,
+    "     \ 'Buffer': 0,
+    "     \ 'Mru': 0,
+    "     \ 'Tag': 1,
+    "     \ 'BufTag': 1,
+    "     \ 'Function': 1,
+    "     \ 'Line': 1,
+    "     \ 'Colorscheme': 1,
+    "     \ 'Rg': 1,
+    "     \ 'Gtags': 1
+    "     \ }
+    " endif
 
   " }}}
   " Markdown Preview -------------------------------------------------------------------------- {{{
