@@ -65,21 +65,21 @@ if [[ "${OSTYPE}" =~ "linux" ]]; then
         i3-msg -t get_workspaces |
             jq -r '.[].name' |
             awk '{print "\"" $0 "\""}' |
-            xargs -n1 i3-resurrect save -w
+            xargs -P 0 -n 1 -- i3-resurrect save -w
     }
     i3-rm() {
         echo "Removing workspaces ..."
         i3-resurrect ls |
             awk '{gsub(/^Workspace\s+|\s+(layout|programs)$/, ""); print "\"" $0 "\""}' |
             sort -u |
-            xargs -n1 i3-resurrect rm -w
+            xargs -P 0 -n 1 -- i3-resurrect rm -w
     }
     i3-restore() {
         echo "Restoring workspaces ..."
         i3-resurrect ls |
             awk '{gsub(/^Workspace\s+|\s+(layout|programs)$/, ""); print "\"" $0 "\""}' |
             sort -u |
-            xargs -n1 i3-resurrect restore -w
+            xargs -P 0 -n 1 -- i3-resurrect restore -w
     }
 
     # Uses my mdd.service to generate a list of files for fzf to search through.
