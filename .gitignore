@@ -1,6 +1,6 @@
-/**/__pycache__/**
 *CAD*
 *arduino*
+/**/__pycache__/**
 /.Xauthority
 /.bash_history
 /.castget
@@ -22,8 +22,10 @@
 /.config/gtk-*.0/
 /.config/htop/htoprc
 /.config/lazygit
+/.config/lf
 /.config/menus
 /.config/mimeapps.list
+/.config/nnn
 /.config/nvim/spell
 /.config/polybar
 /.config/pulse
@@ -31,6 +33,7 @@
 /.config/remmina
 /.config/sql*
 /.config/tmux/plugins
+/.config/vifm
 /.config/vim*
 /.config/voc*
 /.config/xfce*
@@ -41,6 +44,7 @@
 /.fltk/
 /.gnupg/
 /.gsutil/
+/.i3
 /.install4j
 /.lesshst
 /.locatedb
@@ -58,7 +62,6 @@
 /.vnc
 /.vpython*
 /.wget-hsts
-/test*
 /202*
 /Arduino
 /Documents
@@ -82,6 +85,7 @@
 /pictures
 /script*
 /soft*
+/test*
 /videos
 /virtualbox
 
