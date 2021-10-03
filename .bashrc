@@ -74,12 +74,14 @@ if [[ "${OSTYPE}" =~ "linux" ]]; then
             sort -u |
             xargs -P 0 -n 1 -- i3-resurrect rm -w
     }
+    # Don't use xargs -P here since it will cause all workspaces to restore to
+    #   the same window.
     i3-restore() {
         echo "Restoring workspaces ..."
         i3-resurrect ls |
             awk '{gsub(/^Workspace\s+|\s+(layout|programs)$/, ""); print "\"" $0 "\""}' |
             sort -u |
-            xargs -P 0 -n 1 -- i3-resurrect restore -w
+            xargs -n 1 -- i3-resurrect restore -w
     }
 
     # Uses my mdd.service to generate a list of files for fzf to search through.
