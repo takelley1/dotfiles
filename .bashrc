@@ -429,15 +429,37 @@ git_branch() {
 }
 git_branch_color="\[\033[35m\]"
 
-# Show if any changes have been made on the current branch.
+# Show if any unstaged changes have been made on the current branch and if any
+#   commits need to be pushed/pulled from remote.
 git_status() {
     if [[ -n "$(git_branch)" ]]; then
-        if [[ -n "$(git status --short 2>/dev/null)" ]]; then
-            printf "%s" "+"
-        fi
+        git status --short --branch 2>/dev/null |
+        awk -F'[][]' \
+            '{
+            # Operate on 1st line only.
+            if(NR==1)
+                {
+                # Replace ahead/behind with arrows.
+                sub(/ahead/,"▲")
+                sub(/behind/,"▼")
+
+                # Remove comma and spaces.
+                gsub(/(\s|,)/,"")
+
+                # Store in a variable.
+                ahead_behind_count=$2
+                }
+            # If theres more than 1 line, then the repo has unstaged changes.
+            if(NR>1)
+                changed="(+)"
+            }
+            # Use END so we only print once and not once for every record.
+            # Use printf instead of print so fields are not separated by spaces.
+            END {printf "%s%s",ahead_behind_count,changed}
+            '
     fi
 }
-git_status_color="\[\033[31m\]"
+git_status_color="\[\033[36m\]"
 
 # See https://stackoverflow.com/questions/4133904/ps1-line-with-git-current-branch-and-colors
 user_and_host="\[\033[01;${user_color}m\]\u@\h"
@@ -445,7 +467,7 @@ current_dir="\[\033[01;34m\]\w"
 colon_separator="\[\033[00m\]:"
 text_color="\[\033[00m\]"
 
-PS1="${user_and_host}${colon_separator}${current_dir} ${git_branch_color}\$(git_branch)${git_status_color}\$(git_status)${text_color}\$ "
+PS1="${user_and_host}${colon_separator}${current_dir}${git_branch_color}\$(git_branch)${git_status_color}\$(git_status)${text_color}\$ "
 
 # }}}
 # FUNCTIONS ################################################################################### {{{
