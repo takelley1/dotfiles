@@ -223,7 +223,22 @@ alias sudo='sudo '     # This is required for bash aliases to work with sudo.
 alias less='less -XRF' # Show text in terminal even after quitting less.
 alias grep='grep --color=always'
 alias mkdir='mkdir -pv' # Always make parent directories.
-alias ssh='mosh'        # https://mosh.org/
+
+# Use mosh if possible - https://mosh.org/
+ssh() {
+    if ! hash 2>/dev/null mosh; then
+        echo "Mosh on the client is missing! Using ssh instead."
+        command ssh "${@}"
+        return 1
+    fi
+
+    mosh "${@}"
+
+    if [[ "$(echo $?)" -eq 10 ]]; then
+        echo "Mosh on server is missing! Using ssh instead."
+        command ssh "${@}"
+    fi
+}
 
 ap() {
     ansible-playbook --diff "${@}"
