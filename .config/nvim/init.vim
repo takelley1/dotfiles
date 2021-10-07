@@ -346,6 +346,7 @@
         Plug 'nvim-lua/plenary.nvim'  " Dependency for nvim-spectre.
         Plug 'nvim-lua/popup.nvim'    " Dependency for nvim-spectre.
         Plug 'windwp/nvim-spectre'    " Search and replace.
+        Plug 'voldikss/vim-floaterm'         " Use to launch lf, a backup for when ranger is slow.
         " Plug 'nvim-telescope/telescope.nvim'
         if g:athome
           Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} " Tree-sitter syntax highlighting.
@@ -354,7 +355,6 @@
           " Plug 'hrsh7th/nvim-compe'          " Lua replacement for Deoplete.
           " Plug 'glepnir/indent-guides.nvim'  " Lua replacement for yggdroot/indentline.
           " Plug 'b3nj5m1n/kommentary'         " Lua replacement for nerdcommenter.
-          Plug 'voldikss/vim-floaterm'         " Use to launch lf, a backup for when ranger is slow.
         endif
       else
         " Plug 'yggdroot/indentline'            " Show indentation lines. May cause performance issues.
