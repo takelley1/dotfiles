@@ -295,7 +295,7 @@ alias todo='cd ~/notes/ && git pull && ${EDITOR} ./personal--todo.md && git comm
 alias fmt='fmt -w 120'
 
 cd() {
-    command cd "${@}" || exit 1
+    command cd "${@}"
     ls
 }
 
