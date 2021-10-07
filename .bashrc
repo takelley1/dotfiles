@@ -405,6 +405,16 @@ shopt -s cdspell
 
 # Configuration for main bash prompt.
 
+# COLORS:
+# Black  30
+# Red    31
+# Green  32
+# Yellow 33
+# Blue   34
+# Purple 35
+# Cyan   36
+# White  37
+
 if [[ "${USER}" == "root" ]]; then
     # Make username field of root prompts red.
     user_color=31
@@ -412,19 +422,30 @@ else
     user_color=32
 fi
 
-if [[ "${HOSTNAME}" != "polaris" ]] && [[ "${HOSTNAME}" != "tethys" ]]; then
+# Show the current branch.
+# See https://www.shellhacks.com/show-git-branch-terminal-command-prompt/
+git_branch() {
+    git branch 2>/dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
+}
+git_branch_color="\[\033[35m\]"
 
-    # Make hostname field of standard prompts yellow on servers.
-    PS1="\[\033[01;${user_color}m\]\u\[\033[37m\]@\[\033[33m\]\h\[\033[37m\]:\
-\[\033[01;34m\]\w\[\033[00m\]\$ "
+# Show if any changes have been made on the current branch.
+git_status() {
+    if [[ -n "$(git_branch)" ]]; then
+        if [[ -n "$(git status --short 2>/dev/null)" ]]; then
+            printf "%s" "+"
+        fi
+    fi
+}
+git_status_color="\[\033[31m\]"
 
-else
+# See https://stackoverflow.com/questions/4133904/ps1-line-with-git-current-branch-and-colors
+user_and_host="\[\033[01;${user_color}m\]\u@\h"
+current_dir="\[\033[01;34m\]\w"
+colon_separator="\[\033[00m\]:"
+text_color="\[\033[00m\]"
 
-    # Make standard prompts green on workstations.
-    PS1="\[\033[01;${user_color}m\]\u\[\033[37m\]@\[\033[32m\]\h\[\033[37m\]:\
-\[\033[01;34m\]\w\[\033[00m\]\$ "
-
-fi
+PS1="${user_and_host}${colon_separator}${current_dir} ${git_branch_color}\$(git_branch)${git_status_color}\$(git_status)${text_color}\$ "
 
 # }}}
 # FUNCTIONS ################################################################################### {{{
