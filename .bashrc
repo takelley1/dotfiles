@@ -434,8 +434,8 @@ git_branch_color="\[\033[35m\]"
 git_status() {
     if [[ -n "$(git_branch)" ]]; then
         git status --short --branch 2>/dev/null |
-        awk -F'[][]' \
-            '{
+            awk -F'[][]' \
+                '{
             # Operate on 1st line only.
             if(NR==1)
                 {
