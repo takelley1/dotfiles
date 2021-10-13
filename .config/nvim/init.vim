@@ -413,7 +413,6 @@
         Plug 'Shougo/neco-vim' " Deoplete VimScript integration.
         " Plug 'ncm2/float-preview.nvim'
         Plug 'fszymanski/deoplete-emoji' " Auto-complete `:` emoji in markdown files.
-        " Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' } " Fuzzy finder.
         Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  } " Render markdown.
         " Plug 'vimwiki/vimwiki', { 'branch': 'dev' } " Note management.
       elseif g:atwork
@@ -656,78 +655,6 @@ EOF
     let g:livepreview_previewer = 'evince'
     " Don't refresh preview on CursorHold autocommand.
     let g:livepreview_cursorhold_recompile = 0
-
-  " }}}
-  " LeaderF ----------------------------------------------------------------------------------- {{{
-
-    " if g:athome
-    "   " <leader>f to start searching from home directory (f for 'find').
-    "   " <leader>F to start searching from project directory.
-
-    "   " <leader>/ to grep for a string in all open buffers.
-    "   " <leader>b to search within open buffers.
-    "   " <leader>R to search recently used files.
-
-    "   " CTRL-j, CTRL-k : navigate through results.
-    "   " CTRL-x : open in horizontal split window.
-    "   " CTRL-] : open in vertical split window.
-    "   " CTRL-T : open in new tabpage.
-
-    "   nnoremap <leader>f :LeaderfFile ~/<CR>
-    "   nnoremap <leader>F :LeaderfFile<CR>
-    "   nnoremap <leader>R :LeaderfMru<CR>
-    "   nnoremap <leader>/ :LeaderfLineAll<CR>
-
-    "   if exists(':terminal')
-    "     tnoremap <leader>f <C-\><C-n>:LeaderfFile ~/<CR>
-    "     tnoremap <leader>F <C-\><C-n>:LeaderfFile<CR>
-    "     tnoremap <leader>R <C-\><C-n>:LeaderfMru<CR>
-    "     tnoremap <leader>/ <C-\><C-n>:LeaderfLineAll<CR>
-    "   endif
-
-    "   " Make selected LeaderF results more visible.
-    "   highlight Lf_hl_cursorline guifg=#c3e88d gui=Bold ctermfg=226 ctermbg=0 cterm=Bold
-
-    "   let g:Lf_ShowHidden = 1      " Index hidden files.
-    "   let g:Lf_MruMaxFiles = 10000 " Index all used files in MRU list.
-    "   let g:Lf_CacheDirectory = ($HOME . '/.cache')
-
-    "   " Don't index the following dirs/files.
-    "   let g:Lf_WildIgnore = {
-    "     \ 'dir':
-    "     \ ['.svn','.git','.hg','.cfg',
-    "     \ '.*cache*','_*cache','.swp','.LfCache','.swt',
-    "     \ '.gnupg','.pylint.d','ansible*',
-    "     \ '.cargo','.fltk','.icon*','.password*',
-    "     \ '.vim/undo','.mozilla','__*__'],
-    "     \
-    "     \ 'file':
-    "     \ ['*.sw?','~$*',
-    "     \ '*.pyc','*.py1*','*.stat*',
-    "     \ '*.gpg','*.kbx*','*.key','*.c?rt','*.cer','*.der','*.pem',
-    "     \ '*.so','*.msg','*.lock','*.*db*','*.*sql*','*.localstorage*','*.shada','*.pack','*.crate',
-    "     \ '*.vdi','*.vmd*','*.dat','*.vhd','*.iso',
-    "     \ '*.pdf','*.odt','*.doc*','*.bau','*.dic','*.exc','*.fmt','*.thm','*.sdv',
-    "     \ '*.7z','*.*zip','*.tar.*','*.tar*','*.*gz','*.pick*','*.whl',
-    "     \ '*.jp?g','*.png','*.bmp','*.gif','*.tif*','*.svg','*.ico','*.web*',
-    "     \ '*.mp?','*.m4a','*.aac',
-    "     \ '*.mkv','*.avi']
-    "     \ }
-
-    "   " Automatically preview the following results.
-    "   let g:Lf_PreviewResult = {
-    "     \ 'File': 0,
-    "     \ 'Buffer': 0,
-    "     \ 'Mru': 0,
-    "     \ 'Tag': 1,
-    "     \ 'BufTag': 1,
-    "     \ 'Function': 1,
-    "     \ 'Line': 1,
-    "     \ 'Colorscheme': 1,
-    "     \ 'Rg': 1,
-    "     \ 'Gtags': 1
-    "     \ }
-    " endif
 
   " }}}
   " Markdown Preview -------------------------------------------------------------------------- {{{
