@@ -489,31 +489,6 @@
     nnoremap <silent> <leader>B :GitBlameToggle<CR>
 
   " }}}
-  " CtrlP ------------------------------------------------------------------------------------- {{{
-
-    " CTRL-j and CTRL-k to navigate through results.
-    " CTRL-t to open the desired file in a new tab.
-    " CTRL-v to open the desired file in a new vertical split.
-
-    if g:atwork
-      let g:ctrlp_map = '<leader>F'
-      " For some reason mapping this normally doesn't work.
-      autocmd mygroup VimEnter * nnoremap <leader>f :CtrlP ~/<CR>
-
-      let g:ctrlp_tabpage_position = 'ac'
-      let g:ctrlp_working_path_mode = 'rw' " Set search path to start at first .git directory below the cwd.
-
-      " Change height of search window.
-      let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:15,results:15'
-      " Index hidden files.
-      let g:ctrlp_show_hidden = 1
-      " Keep cache accross reboots.
-      let g:ctrlp_clear_cache_on_exit = 0
-      " Don't index these filetypes in addition to Wildignore.
-      let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn|swp|cache|tmp)$'
-    endif
-
-  " }}}
   " Colorizer --------------------------------------------------------------------------------- {{{
 
    if has('nvim-0.5') && g:athome
