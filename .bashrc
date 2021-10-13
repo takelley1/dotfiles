@@ -280,9 +280,6 @@ alias audible='bash /opt/OpenAudible/OpenAudible &'
 alias newsboat='newsboat && echo -en "\e[?25h"'
 alias feh='feh --draw-tinted --draw-filename --keep-zoom-vp --force-aliasing --fullscreen'
 
-alias osrs='bash ~/scripts/bash/linux/osrs.sh &'
-alias runescape='osrs'
-alias rs='osrs'
 alias snip='bash ~/.config/i3/scripts/screenshot-region.sh'
 
 # }}}
