@@ -517,62 +517,6 @@
     let g:floaterm_opener = 'edit'
 
   " }}}
-  " Grepper ----------------------------------------------------------------------------------- {{{
-
-    " <leader>g to start grepping (g for 'grep').
-
-    " Use `}`and `{` to jump to contexts. `o` opens the current context in the
-    " last window. `<cr>` opens the current context in the last window, but closes
-    " the current window first.
-
-    " For some reason this plugin doesn't load correctly, so we must source it
-    "   manually here.
-
-    if filereadable($HOME . '/.local/share/nvim/plugged/vim-grepper/plugin/grepper.vim')
-      source $HOME/.local/share/nvim/plugged/vim-grepper/plugin/grepper.vim
-
-      nnoremap <leader>G :Grepper -tool rg -cd ~/<CR>
-      nnoremap <leader>g :Grepper -tool rg<CR>
-
-      if exists(':terminal')
-        tnoremap <leader>G <C-\><C-n>:Grepper -tool rg -cd ~/<CR>
-        tnoremap <leader>g <C-\><C-n>:Grepper -tool rg<CR>
-      endif
-
-      let g:grepper.prompt_text = '$t> ' " Show bare prompt.
-      let g:grepper.stop = 3000
-
-      " Set options for ripgrep.
-      let g:grepper.rg.grepprg = 'rg
-        \ --with-filename
-        \ --no-heading
-        \ --vimgrep
-        \ --hidden
-        \ --max-filesize 10M
-        \ --one-file-system
-        \ --smart-case
-        \ -g "!**/Downloads"
-        \ -g "!**/.cfg" -g "!**/.fltk"
-        \ -g "!**/.git" -g "!**/.svn" -g "!**/.hg"
-        \ -g "!**/.gem" -g "!**/.vpython*" -g "!**/.npm" -g "!**/.cargo"
-        \ -g "!**/.gnupg" -g "!**/.local" -g "!**/.cache"
-        \ -g "!**/.mozilla" -g "!**/.tmux" -g "!**/.LfCache" -g "!**/.ansible"
-        \ -g "!*.avi" -g "!*.aac" -g "!*.m4a" -g "!*.mkv" -g "!*.mp*"
-        \ -g "!*.crt" -g "!*.der" -g "!*.cer*" -g "!*.gpg" -g "!*.key"
-        \ -g "!*.doc*" -g "!*.odt" -g "!*.pdf"
-        \ -g "!*.ico" -g "!*.jp*g" -g "!*.gif" -g "!*.png" -g "!*.tiff" -g "!*.svg"
-        \ -g "!*.ko" -g "!*.so" -g "!*.lock" -g "!*.swp"
-        \ -g "!*.py1*" -g "!*.pyc"
-        \ -g "!*.sdv" -g "!*.shada" -g "!*.sql*" -g "!*.db*" -g "!*.pick*"
-        \ -g "!*.tar*" -g "!*.tgz" -g "!*.*zip*" -g "!*.gz*" -g "!*.7z"
-        \ -g "!*.vdi" -g "!*.vhd" -g "!*.vmd*" -g "!*.iso"
-        \ -g "!*.web*" -g "!*.bmp" -g "!*.bau" -g "!*.crate"
-        \ -g "!*.dat" -g "!*.dic*" -g "!*.exc" -g "!*.fmt" -g "!*.kbx*"
-        \ -g "!*.localstorage*" -g "!*.msg" -g "!*.pack" -g "!*.stat*" -g "!*.thm" -g "!*.whl"
-        \ '
-    endif
-
-  " }}}
   " Gitsigns ---------------------------------------------------------------------------------- {{{
 lua<<EOF
 require('gitsigns').setup()
