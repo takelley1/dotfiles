@@ -345,7 +345,6 @@
         " Plug 'nvim-lua/popup.nvim'
         Plug 'nvim-lua/plenary.nvim'  " Dependency for nvim-spectre.
         Plug 'nvim-lua/popup.nvim'    " Dependency for nvim-spectre.
-        Plug 'windwp/nvim-spectre'    " Search and replace.
         Plug 'voldikss/vim-floaterm'         " Use to launch lf, a backup for when ranger is slow.
         Plug 'nvim-lua/plenary.nvim'  " Dependency for nvim-spectre, gitsigns.
         Plug 'lewis6991/gitsigns.nvim' " Lua replacement for gitgutter.
@@ -740,67 +739,6 @@ EOF
       \ 'row': float2nr(round(0.05 * &lines)),
       \ 'style': 'minimal'
       \ }
-
-  " }}}
-  " Spectre ----------------------------------------------------------------------------------- {{{
-
-    " Searches are relative to the current working directory.
-    " Enter a relative path glob under `Path:` to filter the search path
-    " (e.g. enter `scripts/**` to filter results to the `./scripts/` dir).
-    if has('nvim-0.5')
-      nnoremap <leader>s :lua require('spectre').open()<CR>
-
-lua<<EOF
-require('spectre').setup({
-  color_devicons = true,
-  line_sep_start = '┌-----------------------------------------',
-  result_padding = '¦  ',
-  line_sep       = '└-----------------------------------------',
-  highlight = {
-      ui = "String",
-      search = "DiffChange",
-      replace = "DiffDelete"
-  },
-  mapping={
-    ['toggle_line'] = {
-        map = "dd",
-        cmd = "<cmd>lua require('spectre').toggle_line()<CR>",
-        desc = "toggle current item"
-    },
-    ['send_to_qf'] = {
-        map = "<leader>q",
-        cmd = "<cmd>lua require('spectre.actions').send_to_qf()<CR>",
-        desc = "send all item to quickfix"
-    },
-    ['show_option_menu'] = {
-        map = "<leader>o",
-        cmd = "<cmd>lua require('spectre').show_options()<CR>",
-        desc = "show option"
-    },
-    ['run_replace'] = {
-        map = "<leader>R",
-        cmd = "<cmd>lua require('spectre.actions').run_replace()<CR>",
-        desc = "replace all"
-    },
-  },
-  find_engine = {
-    ['rg'] = {
-      cmd = "rg",
-      args = {
-        '--color=never',
-        '--no-heading',
-        '--with-filename',
-        '--line-number',
-        '--column',
-        '--hidden',
-        '--one-file-system',
-        '--smart-case',
-      } ,
-      }
-    }
-})
-EOF
-endif
 
   " }}}
   " Taboo ------------------------------------------------------------------------------------- {{{
