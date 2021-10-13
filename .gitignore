@@ -1,12 +1,12 @@
 *CAD*
 *arduino*
-.jagexcache
+.jagex*
 /**/__pycache__/**
 /.Xauthority
 /.bash_history
 /.castget
 /.cfg
-/.config/Code Industry
+/.config/Code*
 /.config/JetBrains*
 /.config/Qt*
 /.config/Recoll*
@@ -89,6 +89,8 @@
 /test*
 /videos
 /virtualbox
+jagex*
+repos
 
 !/.config/lazygit/config.yml
 !/.config/vimb/style.css
