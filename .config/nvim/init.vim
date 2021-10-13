@@ -80,7 +80,7 @@
   " autocmd mygroup InsertEnter * let @/ = ''
 
   " Update file if changed from outside.
-  autocmd mygroup FocusGained,BufEnter * if &readonly ==# 0 | silent! checktime | endif
+  autocmd mygroup FocusGained * if &readonly ==# 0 | silent! checktime | endif
   " Auto-save file.
   autocmd mygroup InsertLeave,BufLeave,CursorHold * if &readonly ==# 0 | silent! write | endif
 
@@ -195,7 +195,8 @@
     autocmd mygroup FileType markdown setlocal colorcolumn=120 textwidth=80
     autocmd mygroup BufEnter *.md setlocal foldmethod=manual foldlevelstart=99 concealcursor= conceallevel=0
   " Python ----------------------------------------------------------------------------------------
-    autocmd mygroup FileType python setlocal shiftwidth=4 softtabstop=4 tabstop=4 foldlevelstart=0 foldmethod=indent foldnestmax=1 foldignore="" colorcolumn=100 nowrap
+    autocmd mygroup FileType python setlocal shiftwidth=4 softtabstop=4 tabstop=4 colorcolumn=100 nowrap
+    autocmd mygroup BufEnter *.py setlocal foldlevelstart=0 foldmethod=indent foldnestmax=1 foldignore=""
   " Shell -----------------------------------------------------------------------------------------
     autocmd mygroup FileType sh setlocal shiftwidth=4 softtabstop=4 tabstop=4 foldlevelstart=0 foldmethod=marker colorcolumn=120 nowrap
   " TeX -------------------------------------------------------------------------------------------
