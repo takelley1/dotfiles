@@ -482,13 +482,6 @@
     " let g:ale_ansible_ansible_lint_executable = 'ansible-lint --nocolor --parseable-severity -x yaml -c ~/.config/nvim/linters/ansible-lint.yml ' . expand('%:p')
 
   " }}}
-  " Ansible-doc ------------------------------------------------------------------------------- {{{
-
-    nnoremap <leader>D :AnsibleDocFloat<CR><C-L>
-    nnoremap <leader>S :AnsibleDocSplit<CR>
-    nnoremap <leader>V :AnsibleDocVSplit<CR>
-
-  " }}}
   " Git-blame --------------------------------------------------------------------------------- {{{
 
     " Disable by default.
