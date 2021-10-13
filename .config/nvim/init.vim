@@ -747,18 +747,6 @@ EOF
     let g:taboo_modified_tab_flag = ''    " Don't mark files as modified.
 
   " }}}
-  " Telescope --------------------------------------------------------------------------------- {{{
-
-    if has('nvim-0.5')
-      nnoremap <leader>g :Telescope live_grep<CR>
-      nnoremap <leader>G :lua require('lua.grep')<CR>
-      " C-j and C-k to scroll up/down file list.
-      " ESC to close window.
-      highlight TelescopeSelection guibg=#000000 gui=Bold
-      highlight TelescopeMatching  guifg=#c3e88d gui=bold
-    endif
-
-  " }}}
   " Treesitter -------------------------------------------------------------------------------- {{{
 
 " Must source plugin file manually or it won't be loaded on startup.
