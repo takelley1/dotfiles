@@ -343,11 +343,12 @@
         " Plug 'tanvirtin/nvim-monokai'
         " Plug 'neovim/nvim-lspconfig'
         " Plug 'nvim-lua/popup.nvim'
-        " Plug 'lewis6991/gitsigns.nvim' " Lua replacement for gitgutter.
         Plug 'nvim-lua/plenary.nvim'  " Dependency for nvim-spectre.
         Plug 'nvim-lua/popup.nvim'    " Dependency for nvim-spectre.
         Plug 'windwp/nvim-spectre'    " Search and replace.
         Plug 'voldikss/vim-floaterm'         " Use to launch lf, a backup for when ranger is slow.
+        Plug 'nvim-lua/plenary.nvim'  " Dependency for nvim-spectre, gitsigns.
+        Plug 'lewis6991/gitsigns.nvim' " Lua replacement for gitgutter.
         " Plug 'nvim-telescope/telescope.nvim'
         if g:athome
           Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} " Tree-sitter syntax highlighting.
@@ -393,7 +394,6 @@
       " Plug 'sheerun/vim-polyglot'           " Better syntax highlighting. Causes issues in Vimagit window.
       " Plug 'psliwka/vim-smoothie'           " Smooth scrolling.
       Plug 'mbbill/undotree'                " Visualize and navigate Vim's undo tree.
-      Plug 'airblade/vim-gitgutter'         " Git diffs in sidebar.
       Plug 'dense-analysis/ale'             " Linting engine.
       " Plug 'tpope/vim-fugitive'             " Git wrapper.
       Plug 'machakann/vim-highlightedyank'  " Briefly highlight yanked text.
@@ -633,37 +633,10 @@
     endif
 
   " }}}
-  " GitGutter --------------------------------------------------------------------------------- {{{
-
-    " Enable GitGutter markings for dotfiles repo. Gitgutter won't update automatically after
-    "   changing g:gitgutter_git_args, so this is required to force it.
-    autocmd mygroup BufEnter,InsertLeave ~/.* call GitGutterDotfilesEnter()
-    autocmd mygroup BufLeave ~/.* call GitGutterDotfilesLeave()
-
-    function! GitGutterDotfilesEnter()
-      let g:gitgutter_git_args = "--git-dir=$HOME/.cfg --work-tree=$HOME"
-      GitGutterAll
-    endfunction
-    function! GitGutterDotfilesLeave()
-      let g:gitgutter_git_args = ''
-      GitGutterAll
-    endfunction
-
-    if g:athome
-      " Make sidebar dark.
-      highlight SignColumn cterm=bold ctermbg=0 guibg=0
-      " Fix git diff colors.
-      highlight DiffText ctermbg=1 ctermfg=3 guibg=1 guifg=3
-    endif
-
-    " Undo git changes easily.
-    nnoremap gu :GitGutterUndoHunk<CR>
-    " View interactive git diff.
-    nnoremap gd :Gdiffsplit<CR>
-    " Jump between hunks.
-    nnoremap gn :GitGutterNextHunk<CR>
-    nnoremap gN :GitGutterPrevHunk<CR>
-
+  " Gitsigns ---------------------------------------------------------------------------------- {{{
+lua<<EOF
+require('gitsigns').setup()
+EOF
   " }}}
   " Highlighted Yank -------------------------------------------------------------------------- {{{
 
