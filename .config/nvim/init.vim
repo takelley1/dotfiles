@@ -343,11 +343,11 @@
         " Plug 'tanvirtin/nvim-monokai'
         " Plug 'neovim/nvim-lspconfig'
         " Plug 'nvim-lua/popup.nvim'
-        Plug 'nvim-lua/plenary.nvim'  " Dependency for nvim-spectre.
-        Plug 'nvim-lua/popup.nvim'    " Dependency for nvim-spectre.
-        Plug 'voldikss/vim-floaterm'         " Use to launch lf, a backup for when ranger is slow.
         Plug 'nvim-lua/plenary.nvim'  " Dependency for nvim-spectre, gitsigns.
         Plug 'lewis6991/gitsigns.nvim' " Lua replacement for gitgutter.
+        " Plug 'nvim-lua/popup.nvim'    " Dependency for nvim-spectre.
+        " Plug 'windwp/nvim-spectre'    " Search and replace.
+        Plug 'voldikss/vim-floaterm' " Use to launch lf, a backup for when ranger is slow.
         " Plug 'nvim-telescope/telescope.nvim'
         if g:athome
           Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} " Tree-sitter syntax highlighting.
@@ -357,12 +357,7 @@
           " Plug 'glepnir/indent-guides.nvim'  " Lua replacement for yggdroot/indentline.
           " Plug 'b3nj5m1n/kommentary'         " Lua replacement for nerdcommenter.
         endif
-      else
-        " Plug 'yggdroot/indentline'            " Show indentation lines. May cause performance issues.
       endif
-
-      " Plug 'takelley1/ansible-doc.vim' " View ansible docs within Neovim.
-      " Plug '~/ansible-doc.vim'
 
       Plug 'preservim/nerdcommenter'        " Comment blocks.
       Plug 'kassio/neoterm'                 " REPL integration for interactive Python coding.
@@ -376,27 +371,20 @@
       Plug 'tpope/vim-eunuch'               " Better shell commands.
       " Plug 'tpope/vim-repeat'               " Repeat plugin actions.
       " Plug 'brooth/far.vim'                 " Find and replace.
-      Plug 'Konfekt/FastFold'               " More performant folding.
+      " Plug 'Konfekt/FastFold'               " More performant folding.
       " Plug 'tpope/vim-unimpaired'           " Navigation with square bracket keys.
       " Plug 'easymotion/vim-easymotion'      " Alternative line navigation.
       Plug 'pearofducks/ansible-vim'        " Ansible syntax.
-      Plug 'ekalinin/Dockerfile.vim'        " Dockerfile syntax.
-      " Plug 'vim-scripts/YankRing.vim'       " Access previously yanked text.
+      " Plug 'ekalinin/Dockerfile.vim'        " Dockerfile syntax.
       Plug 'gcmt/taboo.vim'                 " Rename tabs.
       Plug 'wesQ3/vim-windowswap'           " Easily swap window splits with <leader>ww
       " Plug 'godlygeek/tabular'              " Alignment tools.
       Plug 'plasticboy/vim-markdown'        " Better markdown syntax highlighting.
-      " Plug 'jreybert/vimagit'               " Git porcelain.
-      Plug 'psf/black', { 'for': 'python', 'branch': 'stable' } " Code formatting.
       Plug 'jiangmiao/auto-pairs'           " Auto-create bracket and quote pairs.
       " Plug 'preservim/tagbar'               " Function navigation on large files.
-      " Plug 'sheerun/vim-polyglot'           " Better syntax highlighting. Causes issues in Vimagit window.
-      " Plug 'psliwka/vim-smoothie'           " Smooth scrolling.
       Plug 'mbbill/undotree'                " Visualize and navigate Vim's undo tree.
       Plug 'dense-analysis/ale'             " Linting engine.
-      " Plug 'tpope/vim-fugitive'             " Git wrapper.
       Plug 'machakann/vim-highlightedyank'  " Briefly highlight yanked text.
-      " Plug 'mhinz/vim-grepper'              " Search within files.
       Plug 'vim-airline/vim-airline'        " Status bar.
       Plug 'vim-airline/vim-airline-themes'
       Plug 'kevinhwang91/rnvimr'            " Ranger in a floating window.
@@ -405,17 +393,12 @@
         Plug 'lervag/vimtex', { 'for': 'tex' }                  " LaTeX helpers.
         Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }  " LaTeX live preview.
         Plug 'drewtempelmeyer/palenight.vim' " Colorscheme.
-        " Plug 'ryanoasis/vim-devicons' " Icons (Must be loaded after all the plugins that use it).
         Plug 'lambdalisue/suda.vim' " Edit files with sudo. This causes performance issues at work.
         Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' } " Code completion.
         Plug 'deoplete-plugins/deoplete-jedi' " Deoplete Python integration.
         Plug 'Shougo/neco-vim' " Deoplete VimScript integration.
-        " Plug 'ncm2/float-preview.nvim'
-        Plug 'fszymanski/deoplete-emoji' " Auto-complete `:` emoji in markdown files.
+        " Plug 'fszymanski/deoplete-emoji' " Auto-complete `:` emoji in markdown files.
         Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  } " Render markdown.
-        " Plug 'vimwiki/vimwiki', { 'branch': 'dev' } " Note management.
-      elseif g:atwork
-        Plug 'ctrlpvim/ctrlp.vim' " Fuzzy finder.
       endif
 
     call plug#end()
@@ -503,6 +486,8 @@
     " Python
     let g:ale_python_flake8_options = '--config ~/.config/nvim/linters/flake8.config'
     let g:ale_python_pylint_options = '--rcfile ~/.config/nvim/linters/pylintrc.config'
+    let g:ale_python_mypy_options   = '--strict --ignore-missing-imports --no-site-packages'
+
     " YAML
     let g:ale_yaml_yamllint_options = '--config-file ~/.config/nvim/linters/yamllint.yml'
     " let g:ale_ansible_ansible_lint_executable = 'ansible-lint --nocolor --parseable-severity -x yaml -c ~/.config/nvim/linters/ansible-lint.yml ' . expand('%:p')
