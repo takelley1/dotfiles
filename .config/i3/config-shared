@@ -11,7 +11,7 @@
    # Run 'systemctl enable go-luks-suspend.service' and comment out the
    #   below line to enable luks-suspend (https://github.com/guns/go-luks-suspend).
    # Using xss-lock instead of luks-suspend is faster and more reliable, but less secure.
-   exec --no-startup-id xss-lock ~/.config/i3/scripts/xss-locker.sh
+   #exec --no-startup-id xss-lock ~/.config/i3/scripts/xss-locker.sh
 
  # Start notification daemon.
    exec --no-startup-id dunst -config ~/.config/dunst/dunstrc &
