@@ -177,6 +177,9 @@
    bindsym $mod+Control+j move down
    bindsym $mod+Control+k move up
    bindsym $mod+Control+l move right
+ # Swap window with another display's window. Only works if one window is on each display's workspace.
+   bindsym $mod+$mod2+Control+l exec --no-startup-id "~/.config/i3/scripts/i3-swap.sh right 2>/dev/null"
+   bindsym $mod+$mod2+Control+h exec --no-startup-id "~/.config/i3/scripts/i3-swap.sh left 2>/dev/null"
 
  # Enter fullscreen mode for the focused container.
   #bindsym $mod+f fullscreen toggle
