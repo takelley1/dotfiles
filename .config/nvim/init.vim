@@ -333,13 +333,13 @@
         " Plug 'tanvirtin/nvim-monokai'
         " Plug 'neovim/nvim-lspconfig'
         " Plug 'nvim-lua/popup.nvim'
-        Plug 'nvim-lua/plenary.nvim'  " Dependency for nvim-spectre, gitsigns.
-        Plug 'lewis6991/gitsigns.nvim' " Lua replacement for gitgutter.
         " Plug 'nvim-lua/popup.nvim'    " Dependency for nvim-spectre.
         " Plug 'windwp/nvim-spectre'    " Search and replace.
         Plug 'voldikss/vim-floaterm' " Use to launch lf, a backup for when ranger is slow.
         " Plug 'nvim-telescope/telescope.nvim'
         if g:athome
+          Plug 'nvim-lua/plenary.nvim'  " Dependency for nvim-spectre, gitsigns.
+          Plug 'lewis6991/gitsigns.nvim' " Lua replacement for gitgutter.
           Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} " Tree-sitter syntax highlighting.
           " Plug 'f-person/git-blame.nvim'     " Git blame on each line.
           Plug 'norcalli/nvim-colorizer.lua' " Automatically colorize color hex codes.
@@ -508,9 +508,11 @@
 
   " }}}
   " Gitsigns ---------------------------------------------------------------------------------- {{{
+if g:athome
 lua<<EOF
 require('gitsigns').setup()
 EOF
+endif
   " }}}
   " Highlighted Yank -------------------------------------------------------------------------- {{{
 
