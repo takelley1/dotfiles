@@ -3,7 +3,9 @@
 # SHARED CONFIG
 ##############################################################################
 
-# STARTUP
+# --------------------------------------------------------------------------------------------------
+# STARTUP ------------------------------------------------------------------------------------------
+# --------------------------------------------------------------------------------------------------
 
  # Force screen to lock when system is suspended, which occurs whenever the lid is shut.
    # Run 'systemctl enable go-luks-suspend.service' and comment out the
@@ -33,7 +35,9 @@
  # Return to workspace 2.
    exec --no-startup-id i3-msg "workspace 2: terminal"
 
-# KEYBOARD
+# --------------------------------------------------------------------------------------------------
+# KEYBOARD -----------------------------------------------------------------------------------------
+# --------------------------------------------------------------------------------------------------
 
  # Set key repeat delay. Wait 180 miliseconds, then repeat at 50x speed.
    exec --no-startup-id xset r rate 180 50
@@ -48,7 +52,9 @@
  # Bind right CTRL to Mod3.
    exec --no-startup-id xmodmap -e "remove Lock = Caps_Lock" -e "keysym Caps_Lock = Up" -e "remove Lock = Up" -e "remove control = Control_R" -e "add mod3 = Control_R"
 
-# FORMATTING
+# --------------------------------------------------------------------------------------------------
+# FORMATTING ---------------------------------------------------------------------------------------
+# --------------------------------------------------------------------------------------------------
 
  # Border colors.
    # class                 border  backgr. text    indicator child_border
@@ -94,7 +100,9 @@
  # And the settings window.
    for_window [title="Settings"] floating disable
 
-# HOTKEYS
+# --------------------------------------------------------------------------------------------------
+# HOTKEYS ------------------------------------------------------------------------------------------
+# --------------------------------------------------------------------------------------------------
 
  # Volume controls.
  # A small script is used to ensure L and R channels are in sync.
