@@ -149,7 +149,7 @@
    bindsym Caps_Lock mode "caps"
 
  # Reload the configuration file.
-   bindsym $mod+Control+c reload
+   bindsym $mod+$mod2+Control+c reload
  # Restart i3 in-place (preserves layout/session, can be used to upgrade i3).
    bindsym $mod+Control+r restart
  # Exit i3 (logs out of X session).
@@ -194,7 +194,7 @@
    bindsym $mod+n workspace next_on_output
    bindsym $mod+p workspace prev_on_output
  # Create a new workspace on the current display.
-   bindsym $mod+c exec --no-startup-id ~/.config/i3/scripts/new-workspace.sh
+   bindsym $mod+c exec --no-startup-id "~/.config/i3/scripts/new-workspace.sh create"
 
    bindsym $mod+1 workspace 1: firefox
    bindsym $mod+2 workspace 2: terminal
@@ -218,6 +218,7 @@
    bindsym $mod+Shift+0 workspace 20
 
  # Move focused container to workspace.
+   bindsym $mod+Control+c exec --no-startup-id "~/.config/i3/scripts/new-workspace.sh move"
    bindsym $mod+Control+1 move container to workspace 1: firefox
    bindsym $mod+Control+2 move container to workspace 2: terminal
    bindsym $mod+Control+3 move container to workspace 3
