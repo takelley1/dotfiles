@@ -189,6 +189,8 @@
  # Cycle through workspaces on current display.
    bindsym $mod+n workspace next_on_output
    bindsym $mod+p workspace prev_on_output
+ # Create a new workspace on the current display.
+   bindsym $mod+c exec --no-startup-id ~/.config/i3/scripts/new-workspace.sh
 
    bindsym $mod+1 workspace 1: firefox
    bindsym $mod+2 workspace 2: terminal
