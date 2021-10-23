@@ -151,7 +151,7 @@
  # Reload the configuration file.
    bindsym $mod+$mod2+Control+c reload
  # Restart i3 in-place (preserves layout/session, can be used to upgrade i3).
-   bindsym $mod+Control+r restart
+   bindsym $mod+Control+r exec --no-startup-id ~/.config/i3/scripts/i3-restart.sh
  # Exit i3 (logs out of X session).
    bindsym $mod+$mod2+Control+e exec --no-startup-id i3-msg exit
 
