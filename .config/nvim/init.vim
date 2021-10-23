@@ -37,7 +37,7 @@
   set splitbelow splitright             " Splits open at the bottom and right, rather than top/left.
   set noswapfile nobackup               " Don't use backups since most files are in Git.
   set updatetime=500                    " Increase plugin update speed.
-  set redrawtime=1000                   " Set timeout for redrawing screen.
+  set redrawtime=2000                   " Set timeout for redrawing screen.
 
   if g:athome
     let g:python3_host_prog = '/usr/bin/python3' " Speed up startup.
@@ -80,9 +80,9 @@
   " autocmd mygroup InsertEnter * let @/ = ''
 
   " Update file if changed from outside.
-  autocmd mygroup FocusGained * if &readonly ==# 0 | silent! checktime | endif
+  autocmd mygroup FocusGained,BufEnter * if &readonly ==# 0 | silent! checktime | endif
   " Auto-save file.
-  autocmd mygroup InsertLeave,BufLeave,CursorHold * if &readonly ==# 0 | silent! write | endif
+  autocmd mygroup InsertLeave,CursorHold * if &readonly ==# 0 | silent! write | endif
 
   " Manage insert mode when entering terminals ------------------------------------------------ {{{
   if exists(':terminal')
@@ -119,14 +119,6 @@
   " https://vim.fandom.com/wiki/Set_working_directory_to_the_current_file
   " Set working dir to current file's dir.
   autocmd mygroup BufEnter * silent! lcd %:p:h
-
-  " if g:athome
-  "   " Change to home directory on startup.
-  "   autocmd mygroup VimEnter * cd ~
-  " elseif g:atwork
-  "   autocmd mygroup VimEnter *
-  "     \ if isdirectory($HOME . '/infrastructure/ansible') | cd ~/infrastructure/ansible | endif
-  " endif
 
   " https://stackoverflow.com/a/14449484
   " Return to last position when re-opening file.
@@ -305,8 +297,6 @@
   nnoremap <leader>q :wq!<CR>
 
   if g:athome
-    " nnoremap <leader>n :call Notes()<CR>
-    " command! Note      call Notes()
   " Dotfiles ---------------------------------------------------------------------------------- {{{
     nnoremap da :write<CR> :!git --git-dir=$HOME/.cfg/ --work-tree=$HOME add %<CR><C-L>
     nnoremap ds :!git --git-dir=$HOME/.cfg/ --work-tree=$HOME status --untracked-files=no<CR>
@@ -458,7 +448,7 @@
     " Have ALE remove extra whitespace and trailing lines.
     let g:ale_fixers = {'*': ['latexindent', 'remove_trailing_lines', 'trim_whitespace'],
                      \ 'sh': ['remove_trailing_lines', 'shfmt', 'trim_whitespace'],
-                     \ 'python': ['autoimport', 'black', 'remove_trailing_lines', 'trim_whitespace']
+                     \ 'python': ['autoimport', 'black', 'remove_trailing_lines', 'reorder-python-imports', 'trim_whitespace']
                      \ }
 
     let g:ale_linters = {'yaml': ['yamllint'],
@@ -474,8 +464,8 @@
     let g:ale_sh_bashate_options = '--ignore "E043,E006"'
     " Python
     let g:ale_python_flake8_options = '--config ~/.config/nvim/linters/flake8.config'
-    let g:ale_python_pylint_options = '--rcfile ~/.config/nvim/linters/pylintrc.config'
-    let g:ale_python_mypy_options   = '--strict --ignore-missing-imports --no-site-packages'
+    " let g:ale_python_pylint_options = '--rcfile ~/.config/nvim/linters/pylintrc.config'
+    " let g:ale_python_mypy_options   = '--strict --ignore-missing-imports --no-site-packages --exclude '.*test.*'
 
     " YAML
     let g:ale_yaml_yamllint_options = '--config-file ~/.config/nvim/linters/yamllint.yml'
