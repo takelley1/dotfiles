@@ -1,4 +1,4 @@
-
+---
 # Configuration for Alacritty, the GPU enhanced terminal emulator.
 
 # Any items in the `env` entry below will be added as
@@ -30,13 +30,16 @@
   #  x: 0
   #  y: 0
 
+  # Allow terminal applications to change Alacritty's window title.
+    dynamic_title: false
+
   # Window padding (changes require restart)
   #
   # Blank space added around the window in pixels. This padding is scaled
   # by DPI and the specified value is always added at both opposing sides.
     padding:
-      x: 3
-      y: 0
+      x: 5
+      y: 5
 
   # Spread additional padding evenly around the terminal content.
   #dynamic_padding: false
@@ -126,9 +129,9 @@
 
   # Offset is the extra space around each character. `offset.y` can be thought of
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
-    offset:
+  # offset:
    #  x: 0
-      y: -1
+   #  y: 0
 
   # Glyph offset determines the locations of the glyphs within their cells with
   # the default being at the bottom. Increasing `x` moves the glyph to the right,
@@ -138,82 +141,110 @@
   #  y: 0
 
     # If `true`, bold text is drawn using the bright color variants.
-    draw_bold_text_with_bright_colors: true
+    draw_bold_text_with_bright_colors: false
 
   schemes:
-    custom: &custom
+    # # NOT USED ----------------
+    # custom: &custom
+    #   primary:
+    #     background: "#302f2f"
+    #     foreground: "#eeeeee"
+    #   cursor:
+    #     cursor: "0xffffff"
+    #   normal:
+    #     black:   "#302f2f"
+    #     red:     "#ff3344"
+    #     green:   "#00ee00"
+    #     yellow:  "#ffc400"
+    #     blue:    "#4499ff"
+    #     magenta: "#ff6fff"
+    #     cyan:    "#55dddd"
+    #     white:   "#ffffff"
+    #   bright:
+    #     black:   "#aaaaaa"
+    #     red:     "#ee0000"
+    #     green:   "#00ee00"
+    #     yellow:  "#ffc400"
+    #     blue:    "#4499ff"
+    #     magenta: "#ff6fff"
+    #     cyan:    "#55ddff"
+    #     white:   "#ffffff"
+
+    onedark: &onedark
       primary:
-        background: '#313030'
-        foreground: '#dedede'
+        background: "#282c34"
+        #foreground: "#abb2bf"
+        foreground:  "#d3dae8"
       cursor:
-        cursor: '0xffffff'
+        text: CellBackground
+        cursor:     "#eeeeee" # syntax-cursor-color
+      selection:
+        text: CellForeground
+        background: "#3e4451" # syntax-selection-color
       normal:
-        black:   '#111111'
-        red:     '#ff3344'
-        green:   '#00ee00'
-        yellow:  '#ffff33'
-        blue:    '#4499ff'
-        magenta: '#ff6fff'
-        cyan:    '#55dddd'
-        white:   '#dddddd'
-      bright:
-        black:   '#111111'
-        red:     '#ee0000'
-        green:   '#00ee00'
-        yellow:  '#ffff33'
-        blue:    '#4499ff'
-        magenta: '#ff6fff'
-        cyan:    '#55ddff'
-        white:   '#dddddd'
-    gruvbox_dark: &gruvbox_dark
-      primary:
-        # hard contrast: background = '#1d2021'
-        background: '#282828'
-        # soft contrast: background = '#32302f'
-        foreground: '#ebdbb2'
-      normal:
-        black:   '#282828'
-        red:     '#cc241d'
-        green:   '#98971a'
-        yellow:  '#d79921'
-        blue:    '#458588'
-        magenta: '#b16286'
-        cyan:    '#689d6a'
-        white:   '#a89984'
-      bright:
-        black:   '#928374'
-        red:     '#fb4934'
-        green:   '#b8bb26'
-        yellow:  '#fabd2f'
-        blue:    '#83a598'
-        magenta: '#d3869b'
-        cyan:    '#8ec07c'
-        white:   '#ebdbb2'
-    tomorrow_night_bright: &tomorrow_night_bright
-      primary:
-        background: '#1d1f21'
-        foreground: '#c5c8c6'
-      cursor:
-        text: '#1d1f21'
-        cursor: '#ffffff'
-      normal:
-        black:   '#1d1f21'
-        red:     '#cc6666'
-        green:   '#b5bd68'
-        yellow:  '#e6c547'
-        blue:    '#81a2be'
-        magenta: '#b294bb'
-        cyan:    '#70c0ba'
-        white:   '#373b41'
-      bright:
-        black:   '#666666'
-        red:     '#ff3334'
-        green:   '#9ec400'
-        yellow:  '#f0c674'
-        blue:    '#81a2be'
-        magenta: '#b77ee0'
-        cyan:    '#54ced6'
-        white:   '#282a2e'
+        #black:   "#5c6370" # mono-3
+        black:   "#222222" # mono-3
+        red:     "#e06c75" # red 1
+        green:   "#98c379"
+        yellow:  "#e5c07b" # orange 2
+        blue:    "#61afef"
+        magenta: "#c678dd"
+        cyan:    "#56b6c2"
+        white:   "#d3dae8"
+        #white:  "#828997" # mono-2
+
+    # NOT USED ----------------
+    # gruvbox_dark: &gruvbox_dark
+    #   primary:
+    #     # hard contrast: background = '#1d2021'
+    #     background: "#282828"
+    #     # soft contrast: background = '#32302f'
+    #     foreground: "#ebdbb2"
+    #   normal:
+    #     black:   "#282828"
+    #     red:     "#cc241d"
+    #     green:   "#98971a"
+    #     yellow:  "#d79921"
+    #     blue:    "#458588"
+    #     magenta: "#b16286"
+    #     cyan:    "#689d6a"
+    #     white:   "#a89984"
+    #   bright:
+    #     black:   "#928374"
+    #     red:     "#fb4934"
+    #     green:   "#b8bb26"
+    #     yellow:  "#fabd2f"
+    #     blue:    "#83a598"
+    #     magenta: "#d3869b"
+    #     cyan:    "#8ec07c"
+    #     white:   "#ebdbb2"
+
+    # NOT USED ----------------
+    # tomorrow_night_bright: &tomorrow_night_bright
+    #   primary:
+    #     background: "#1d1f21"
+    #     foreground: "#c5c8c6"
+    #   cursor:
+    #     text:    "#1d1f21"
+    #     cursor:  "#ffffff"
+    #   normal:
+    #     black:   "#1d1f21"
+    #     red:     "#cc6666"
+    #     green:   "#b5bd68"
+    #     yellow:  "#e6c547"
+    #     blue:    "#81a2be"
+    #     magenta: "#b294bb"
+    #     cyan:    "#70c0ba"
+    #     white:   "#373b41"
+    #   bright:
+    #     black:   "#666666"
+    #     red:     "#ff3334"
+    #     green:   "#9ec400"
+    #     yellow:  "#f0c674"
+    #     blue:    "#81a2be"
+    #     magenta: "#b77ee0"
+    #     cyan:    "#54ced6"
+    #     white:   "#282a2e"
 
       # Bright and dim foreground colors
       #
@@ -237,7 +268,7 @@
       #  text: '0xeaeaea'
       #  background: '0x404040'
 
-  colors: *custom
+  colors: *onedark
 
 # Dim colors
 #
@@ -284,7 +315,7 @@
 #   - Linear
 #
 # Specifying a `duration` of `0` will disable the visual bell.
-  visual_bell:
+  bell:
 #  animation: EaseOutExpo
     duration: 0
 #  color: '0xffffff'
@@ -301,9 +332,6 @@
   # When set to `true`, selected text will be copied to the primary clipboard.
     save_to_clipboard: true
 
-# Allow terminal applications to change Alacritty's window title.
-  dynamic_title: false
-
   cursor:
   # Cursor style
   #
@@ -315,10 +343,10 @@
 
   # If this is `true`, the cursor will be rendered as a hollow box when the
   # window is not focused.
-  #unfocused_hollow: true
+  unfocused_hollow: true
 
-# Live config reload (changes require restart)
-#live_config_reload: true
+  # Live config reload (changes require restart)
+  live_config_reload: true
 
 # Shell
 #
@@ -377,7 +405,7 @@
   #triple_click: { threshold: 300 }
 
   # If this is `true`, the cursor is temporarily hidden when typing.
-   hide_when_typing: true
+    hide_when_typing: true
 
   url:
     # URL launcher
@@ -539,4 +567,3 @@
   #- { key: PageDown,  mods: Shift,   action: ScrollPageDown, mode: ~Alt       }
   #- { key: Home,      mods: Shift,   action: ScrollToTop,    mode: ~Alt       }
   #- { key: End,       mods: Shift,   action: ScrollToBottom, mode: ~Alt       }
- 
