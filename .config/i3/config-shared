@@ -89,7 +89,7 @@
    no_focus [class="Vimb"]
 
  # Make certain windows floating for PyCharm unit-tests of botting scripts.
-   #for_window [title="feh"] floating enable
+   for_window [title="feh"] floating enable
    #for_window [title="OCVBot"] floating enable
    #for_window [title="ocvbot"] floating enable
 
