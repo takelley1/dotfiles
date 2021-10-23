@@ -81,6 +81,8 @@
    default_border pixel 2
  # Don't wrap focus.
    focus_wrapping no
+ # Don't move the mouse cursor to the workspace when changing focus to it.
+   mouse_warping none
 
  # Don't auto-focus the Vimb browser since it's exclusively used for Markdown
  #   preview by the markdown-previm.nvim NeoVim extension.
@@ -186,6 +188,8 @@
 
  # Switch between the two most recently-used workspaces.
    bindsym $mod+Tab workspace back_and_forth
+ # Allow using $mod+number to switch back and forth between workspaces.
+   workspace_auto_back_and_forth yes
  # Cycle through workspaces on current display.
    bindsym $mod+n workspace next_on_output
    bindsym $mod+p workspace prev_on_output
