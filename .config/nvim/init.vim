@@ -82,7 +82,7 @@
   " Update file if changed from outside.
   autocmd mygroup FocusGained,BufEnter * if &readonly ==# 0 | silent! checktime | endif
   " Auto-save file.
-  autocmd mygroup InsertLeave,CursorHold * if &readonly ==# 0 | silent! write | endif
+  autocmd mygroup InsertLeave,CursorHold,BufLeave * if &readonly ==# 0 | silent! write | endif
 
   " Manage insert mode when entering terminals ------------------------------------------------ {{{
   if exists(':terminal')
