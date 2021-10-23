@@ -23,17 +23,17 @@
    exec_always --no-startup-id xhost + &>/dev/null
 
  # Start apps automatically and assign them to workspaces.
-   exec --no-startup-id i3-msg "workspace 1: firefox; exec firefox"
+   exec --no-startup-id i3-msg "workspace 1; exec firefox"
    # assign [class="firefox"] number "1: firefox"
 
-   exec --no-startup-id i3-msg "workspace 2: terminal; exec alacritty"
+   exec --no-startup-id i3-msg "workspace 2; exec alacritty"
    # assign [class="alacritty"] number "2: terminal"
 
    # exec --no-startup-id i3-msg "workspace 3; exec pycharm"
    # assign [class="jetbrains-pycharm-ce"] number 3
 
  # Return to workspace 2.
-   exec --no-startup-id i3-msg "workspace 2: terminal"
+   exec --no-startup-id i3-msg "workspace 2"
 
 # --------------------------------------------------------------------------------------------------
 # KEYBOARD -----------------------------------------------------------------------------------------
@@ -199,8 +199,8 @@
  # Create a new workspace on the current display.
    bindsym $mod+c exec --no-startup-id "~/.config/i3/scripts/new-workspace.sh create"
 
-   bindsym $mod+1 workspace 1: firefox
-   bindsym $mod+2 workspace 2: terminal
+   bindsym $mod+1 workspace 1
+   bindsym $mod+2 workspace 2
    bindsym $mod+3 workspace 3
    bindsym $mod+4 workspace 4
    bindsym $mod+5 workspace 5
@@ -222,8 +222,8 @@
 
  # Move focused container to workspace.
    bindsym $mod+Control+c exec --no-startup-id "~/.config/i3/scripts/new-workspace.sh move"
-   bindsym $mod+Control+1 move container to workspace 1: firefox
-   bindsym $mod+Control+2 move container to workspace 2: terminal
+   bindsym $mod+Control+1 move container to workspace 1
+   bindsym $mod+Control+2 move container to workspace 2
    bindsym $mod+Control+3 move container to workspace 3
    bindsym $mod+Control+4 move container to workspace 4
    bindsym $mod+Control+5 move container to workspace 5
