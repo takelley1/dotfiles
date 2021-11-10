@@ -349,6 +349,7 @@
         endif
       endif
 
+      Plug 'hashivim/vim-terraform'         " HashiCorp Terraform support.
       Plug 'preservim/nerdcommenter'        " Comment blocks.
       Plug 'kassio/neoterm'                 " REPL integration for interactive Python coding.
       " Plug 'tmhedberg/SimpylFold'  " Better folding in Python.
@@ -446,9 +447,10 @@
   " ALE --------------------------------------------------------------------------------------- {{{
 
     " Have ALE remove extra whitespace and trailing lines.
-    let g:ale_fixers = {'*': ['latexindent', 'remove_trailing_lines', 'trim_whitespace'],
+    let g:ale_fixers = {'*': ['remove_trailing_lines', 'trim_whitespace'],
                      \ 'sh': ['remove_trailing_lines', 'shfmt', 'trim_whitespace'],
                      \ 'python': ['autoimport', 'black', 'remove_trailing_lines', 'reorder-python-imports', 'trim_whitespace']
+                     \ 'terraform': ['terraform', 'remove_trailing_lines', 'trim_whitespace'],
                      \ }
 
     let g:ale_linters = {'yaml': ['yamllint'],
