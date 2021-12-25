@@ -55,8 +55,8 @@ if [[ "${OSTYPE}" =~ "linux" ]]; then
         source "/etc/profile.d/proxy.sh"
     fi
 
-    alias reboot='i3-save && reboot'
-    alias shutdown='i3-save && shutdown now'
+    alias i3-reboot='i3-save && i3-resurrect ls && sleep 10 && reboot'
+    alias i3-shutdown='i3-save && shutdown now'
     alias restore='i3-restore'
     alias i3-ls='i3-resurrect ls'
 
