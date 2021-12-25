@@ -13,10 +13,8 @@
 
   filetype indent plugin on             " Identify the filetype, load indent and plugin files.
   syntax on                             " Force syntax highlighting.
-  if g:athome
-    if has('termguicolors')
-      set termguicolors                 " Enable 24-bit color support.
-    endif
+  if has('termguicolors')
+    set termguicolors                 " Enable 24-bit color support.
   endif
 
   set lazyredraw                        " Don't redraw screen during macros.
@@ -282,11 +280,9 @@
   endfunction
 
   " Easily edit vimrc (ve for 'vim edit').
-  if g:athome
-    nnoremap <leader>ve :edit ~/.config/nvim/init.vim<CR>
-    if exists(':terminal')
-      tnoremap <leader>ve <C-\><C-n>:edit ~/.config/nvim/init.vim<CR>
-    endif
+  nnoremap <leader>ve :edit ~/.config/nvim/init.vim<CR>
+  if exists(':terminal')
+    tnoremap <leader>ve <C-\><C-n>:edit ~/.config/nvim/init.vim<CR>
   endif
   " Reload configuration without restarting vim (vs for 'vim source').
   nnoremap <leader>vs :update <bar> :source $MYVIMRC<CR><C-L>
@@ -348,6 +344,7 @@
         endif
       endif
 
+      Plug 'hashivim/vim-terraform'         " HashiCorp Terraform support.
       Plug 'preservim/nerdcommenter'        " Comment blocks.
       Plug 'kassio/neoterm'                 " REPL integration for interactive Python coding.
       " Plug 'tmhedberg/SimpylFold'  " Better folding in Python.
@@ -377,14 +374,14 @@
       Plug 'vim-airline/vim-airline'        " Status bar.
       Plug 'vim-airline/vim-airline-themes'
       Plug 'kevinhwang91/rnvimr'            " Ranger in a floating window.
+      Plug 'drewtempelmeyer/palenight.vim' " Colorscheme.
+      Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' } " Code completion.
+      Plug 'deoplete-plugins/deoplete-jedi' " Deoplete Python integration.
 
       if g:athome
         Plug 'lervag/vimtex', { 'for': 'tex' }                  " LaTeX helpers.
         Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }  " LaTeX live preview.
-        Plug 'drewtempelmeyer/palenight.vim' " Colorscheme.
         Plug 'lambdalisue/suda.vim' " Edit files with sudo. This causes performance issues at work.
-        Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' } " Code completion.
-        Plug 'deoplete-plugins/deoplete-jedi' " Deoplete Python integration.
         Plug 'Shougo/neco-vim' " Deoplete VimScript integration.
         " Plug 'fszymanski/deoplete-emoji' " Auto-complete `:` emoji in markdown files.
         Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  } " Render markdown.
@@ -445,9 +442,10 @@
   " ALE --------------------------------------------------------------------------------------- {{{
 
     " Have ALE remove extra whitespace and trailing lines.
-    let g:ale_fixers = {'*': ['latexindent', 'remove_trailing_lines', 'trim_whitespace'],
+    let g:ale_fixers = {'*': ['remove_trailing_lines', 'trim_whitespace'],
                      \ 'sh': ['remove_trailing_lines', 'shfmt', 'trim_whitespace'],
-                     \ 'python': ['autoimport', 'black', 'remove_trailing_lines', 'reorder-python-imports', 'trim_whitespace']
+                     \ 'python': ['autoimport', 'black', 'remove_trailing_lines', 'reorder-python-imports', 'trim_whitespace'],
+                     \ 'terraform': ['terraform', 'remove_trailing_lines', 'trim_whitespace'],
                      \ }
 
     let g:ale_linters = {'yaml': ['yamllint'],
@@ -480,7 +478,7 @@
   " }}}
   " Colorizer --------------------------------------------------------------------------------- {{{
 
-   if has('nvim-0.5') && g:athome
+   if has('nvim-0.5')
      " Enable colorizer.nvim for all filetypes.
      lua require 'colorizer'.setup()
      lua require 'colorizer'.setup(nil, { css = true; })
@@ -507,11 +505,9 @@
 
   " }}}
   " Gitsigns ---------------------------------------------------------------------------------- {{{
-if g:athome
 lua<<EOF
 require('gitsigns').setup()
 EOF
-endif
   " }}}
   " Highlighted Yank -------------------------------------------------------------------------- {{{
 
@@ -627,7 +623,6 @@ endif
   " Treesitter -------------------------------------------------------------------------------- {{{
 
 " Must source plugin file manually or it won't be loaded on startup.
-if g:athome
   if filereadable($HOME . '/.local/share/nvim/plugged/nvim-treesitter/plugin/nvim-treesitter.vim')
     source $HOME/.local/share/nvim/plugged/nvim-treesitter/plugin/nvim-treesitter.vim
 
@@ -651,7 +646,6 @@ require'nvim-treesitter.configs'.setup {
 }
 EOF
   endif
-endif
 
   " }}}
   " Undotree ---------------------------------------------------------------------------------- {{{
@@ -696,7 +690,6 @@ endif
 
   " Colors for plugins typically have to come after they're loaded by Vim-plug.
 
-  if g:athome
 
     " Change comment color from grey to turquoise.
     " Make white a bit brighter.
@@ -718,19 +711,19 @@ endif
     " Change text selection background.
     highlight Visual gui=bold guifg=#000000 guibg=#00eee0
 
-  elseif g:atwork
+  " if g:atwork
 
-    colorscheme peachpuff
+  "   colorscheme peachpuff
 
-    " Color for folded blocks of text.
-    highlight Folded cterm=bold ctermfg=5 ctermbg=8 guifg=5 guibg=8
-    " Visual mode text highlight color.
-    highlight Visual ctermfg=2 ctermbg=8 guifg=2 guibg=8
-    " Search results highlight color.
-    highlight Search ctermfg=8 ctermbg=3 guifg=8 guibg=3
-    highlight IncSearch ctermfg=8 ctermbg=3 guifg=8 guibg=3
+  "   " Color for folded blocks of text.
+  "   highlight Folded cterm=bold ctermfg=5 ctermbg=8 guifg=5 guibg=8
+  "   " Visual mode text highlight color.
+  "   highlight Visual ctermfg=2 ctermbg=8 guifg=2 guibg=8
+  "   " Search results highlight color.
+  "   highlight Search ctermfg=8 ctermbg=3 guifg=8 guibg=3
+  "   highlight IncSearch ctermfg=8 ctermbg=3 guifg=8 guibg=3
 
-  endif
+  " endif
 
   " Tabline.
   "highlight TabLine guibg=#333747 gui=None
