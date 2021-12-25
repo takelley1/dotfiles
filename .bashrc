@@ -232,7 +232,8 @@ ssh() {
         return 1
     fi
 
-    mosh "${@}"
+    # -a = Always use prediction.
+    mosh -a "${@}"
 
     if [[ "$(echo $?)" -eq 10 ]]; then
         echo "Mosh on server is missing! Using ssh instead."
