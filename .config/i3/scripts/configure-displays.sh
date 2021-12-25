@@ -16,4 +16,5 @@ xrandr --output \
     --primary
 
 xrandr --output HDMI-A-0 --right-of "${displayport_output_higher}"
-xrandr --output eDP --right-of HDMI-A-0
+# Disable built-in display so workspaces don't get placed on it.
+xrandr --output eDP --off
