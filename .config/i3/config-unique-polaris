@@ -10,7 +10,7 @@ font pango:Noto Sans 10
  # Start redshift.
    exec --no-startup-id redshift-gtk -l 39:-74 -t 6500k:2200K
  # Configure displays.
-   exec_always --no-startup-id ~/.config/i3/scripts/configure_displays.sh
+   exec_always --no-startup-id ~/.config/i3/scripts/configure-displays.sh
 
  # Set desktop background.
    exec --no-startup-id feh --bg-fill ~/.config/i3/wallpapers/earth-at-night-4617x2309.png
@@ -26,6 +26,9 @@ font pango:Noto Sans 10
    exec --no-startup-id amixer set Master 0%
 
 # HOTKEYS
+
+ # Reconfigure displays
+   bindsym $mod+m exec --no-startup-id ~/.config/i3/scripts/configure-displays.sh
 
  # Brightness controls.
  # Requires the line "austin ALL=NOPASSWD: /bin/brightnessctl" in visudo file.
