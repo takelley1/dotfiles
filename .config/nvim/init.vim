@@ -339,7 +339,7 @@
         if g:athome
           Plug 'nvim-lua/plenary.nvim'  " Dependency for nvim-spectre, gitsigns.
           Plug 'lewis6991/gitsigns.nvim' " Lua replacement for gitgutter.
-          Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} " Tree-sitter syntax highlighting.
+          Plug 'nvim-treesitter/nvim-treesitter' " Tree-sitter syntax highlighting.
           " Plug 'f-person/git-blame.nvim'     " Git blame on each line.
           Plug 'norcalli/nvim-colorizer.lua' " Automatically colorize color hex codes.
           " Plug 'hrsh7th/nvim-compe'          " Lua replacement for Deoplete.
