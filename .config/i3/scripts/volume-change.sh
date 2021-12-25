@@ -15,6 +15,8 @@ else
 fi
 
 vol="$(amixer get Master | awk -F'[][]' '/[[:digit:]]+%/ {gsub(/%/,""); print $2}')"
+#vol=$(amixer get Master | awk '/[[:digit:]]+%/ {gsub(/\[/,""); gsub(/\]/,""); print $5;exit}')
+
 L="$(printf "%s\n" "${vol}" | head -1)"
 R="$(printf "%s\n" "${vol}" | tail -1)"
 
