@@ -37,7 +37,6 @@
   set splitbelow splitright             " Splits open at the bottom and right, rather than top/left.
   set noswapfile nobackup               " Don't use backups since most files are in Git.
   set updatetime=500                    " Increase plugin update speed.
-  set redrawtime=2000                   " Set timeout for redrawing screen.
 
   if g:athome
     let g:python3_host_prog = '/usr/bin/python3' " Speed up startup.
