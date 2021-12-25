@@ -31,7 +31,7 @@
   #  y: 0
 
   # Allow terminal applications to change Alacritty's window title.
-    dynamic_title: false
+    dynamic_title: true
 
   # Window padding (changes require restart)
   #
