@@ -39,11 +39,9 @@
 # KEYBOARD -----------------------------------------------------------------------------------------
 # --------------------------------------------------------------------------------------------------
 
- # Set key repeat delay. Wait 190 miliseconds, then repeat at 50x speed.
- # Continuously run in a loop so keyboards that get added will receive the correct configuration.
-   exec --no-startup-id ~/.config/i3/scripts/xset-loop.sh
- # Disable keyboard beeping.
-   exec_always --no-startup-id xset b off
+ # Configure peripherals. Continuously run in a loop so keyboards that get
+ #   added will receive the correct configuration.
+   exec --no-startup-id ~/.config/i3/scripts/configure-peripherals.sh
 
  # Make the SUPER key the main modifier key.
    set $mod Mod4
