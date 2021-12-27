@@ -11,7 +11,7 @@
 #   `new-workspace.sh create` = Create a new workspace on the current display
 #                                 and switch to it.
 # shellcheck disable=2076
-set -eu
+set -euo pipefail
 
 # Print workspaces, remove quotes and formatting.
 workspaces="$(i3-msg -t get_workspaces | jq '.[].name' | awk 'gsub(/[^0-9]/, "")')"
@@ -26,6 +26,11 @@ for i in $(seq 1 30); do
         break 2
     fi
 done
+
+if [[ -z "${workspace_to_create}" ]]; then
+    printf "%s\n" "Unable to find valid workspace to create!"
+    exit 1
+fi
 
 # Create and switch to the new workspace, or move window to new workspace.
 if [[ "${1}" == "create" ]]; then

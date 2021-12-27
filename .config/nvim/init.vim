@@ -35,7 +35,6 @@
   set splitbelow splitright             " Splits open at the bottom and right, rather than top/left.
   set noswapfile nobackup               " Don't use backups since most files are in Git.
   set updatetime=500                    " Increase plugin update speed.
-  set redrawtime=2000                   " Set timeout for redrawing screen.
 
   if g:athome
     let g:python3_host_prog = '/usr/bin/python3' " Speed up startup.
@@ -333,14 +332,16 @@
         " Plug 'windwp/nvim-spectre'    " Search and replace.
         Plug 'voldikss/vim-floaterm' " Use to launch lf, a backup for when ranger is slow.
         " Plug 'nvim-telescope/telescope.nvim'
-        Plug 'nvim-lua/plenary.nvim'  " Dependency for nvim-spectre, gitsigns.
-        Plug 'lewis6991/gitsigns.nvim' " Lua replacement for gitgutter.
-        Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} " Tree-sitter syntax highlighting.
-        " Plug 'f-person/git-blame.nvim'     " Git blame on each line.
-        Plug 'norcalli/nvim-colorizer.lua' " Automatically colorize color hex codes.
-        " Plug 'hrsh7th/nvim-compe'          " Lua replacement for Deoplete.
-        " Plug 'glepnir/indent-guides.nvim'  " Lua replacement for yggdroot/indentline.
-        " Plug 'b3nj5m1n/kommentary'         " Lua replacement for nerdcommenter.
+        if g:athome
+          Plug 'nvim-lua/plenary.nvim'  " Dependency for nvim-spectre, gitsigns.
+          Plug 'lewis6991/gitsigns.nvim' " Lua replacement for gitgutter.
+          Plug 'nvim-treesitter/nvim-treesitter' " Tree-sitter syntax highlighting.
+          " Plug 'f-person/git-blame.nvim'     " Git blame on each line.
+          Plug 'norcalli/nvim-colorizer.lua' " Automatically colorize color hex codes.
+          " Plug 'hrsh7th/nvim-compe'          " Lua replacement for Deoplete.
+          " Plug 'glepnir/indent-guides.nvim'  " Lua replacement for yggdroot/indentline.
+          " Plug 'b3nj5m1n/kommentary'         " Lua replacement for nerdcommenter.
+        endif
       endif
 
       Plug 'hashivim/vim-terraform'         " HashiCorp Terraform support.

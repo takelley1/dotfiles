@@ -94,3 +94,11 @@ repos
 
 !/.config/lazygit/config.yml
 !/.config/vimb/style.css
+
+.vscode-oss/argv.json
+.dockercfg
+.config/Zeal/Zeal.conf
+.hugin
+.config/kmagrc
+.config/i3-resurrect
+.config/autorandr/main
