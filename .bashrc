@@ -353,6 +353,7 @@ fi
 export VISUAL="${EDITOR}"
 export SUDO_EDITOR="${EDITOR}"
 
+export GIT_SSL_NO_VERIFY="true"
 export PAGER="less -XRFS"
 export TERM="screen-256color"
 export BROWSER="firefox"
