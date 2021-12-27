@@ -131,6 +131,8 @@
    bindsym $mod+Shift+Return exec urxvt
    # Rofi app launcher.
    bindsym $mod+d exec rofi -show run -lines 30 -terminal alacritty
+   # Also use Rofi to quickly switch workspaces.
+   bindsym $mod+x exec rofi -show window -lines 30 -terminal alacritty
    # Backup app launcher.
    bindsym $mod+Shift+d exec dmenu
 
