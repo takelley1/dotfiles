@@ -349,7 +349,7 @@
       Plug 'kassio/neoterm'                 " REPL integration for interactive Python coding.
       " Plug 'tmhedberg/SimpylFold'  " Better folding in Python.
       " Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}  " Python code highlighting.
-      Plug 'kdheepak/lazygit.nvim', { 'branch': 'nvim-v0.4.3' }
+      Plug 'kdheepak/lazygit.nvim'
       Plug 'ntpeters/vim-better-whitespace' " Highlight and strip whitespace.
       Plug 'tpope/vim-obsession'            " Session management.
       " Plug 'tpope/vim-endwise'              " Auto-terminate conditional statements.
