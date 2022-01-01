@@ -32,9 +32,13 @@ while :; do
         -e "add mod3 = Control_R"
 
     # Also configure mice and input devices that may get added dynamically.
+    # Run `xinput --list-props pointer'POINTER_NAME_HERE'` to get properties.
 
+    # MICE
     xinput --set-prop pointer:'MOSART Semi. 2.4G Keyboard Mouse' 'libinput Accel Speed' -0.55
+    xinput --set-prop pointer:'Logitech ERGO M575' 'libinput Accel Speed' -0.5
 
+    # KEYBOARDS
     xinput --set-prop 'ETPS/2 Elantech Touchpad' 'libinput Tapping Enabled' 1 # Enable tap-clicking.
     xinput --set-prop 'ETPS/2 Elantech Touchpad' 'libinput Accel Speed' 0.2   # Increase sensitivity.
 
