@@ -191,6 +191,9 @@
   " TeX -------------------------------------------------------------------------------------------
     autocmd mygroup FileType tex setlocal colorcolumn=120 textwidth=120 nowrap
     autocmd mygroup BufEnter *.tex setlocal concealcursor= conceallevel=0
+  " Terraform -------------------------------------------------------------------------------------
+    autocmd mygroup FileType terraform setlocal foldmethod=marker foldmarker={,} nowrap
+    autocmd mygroup BufEnter *.tf setlocal foldlevelstart=0
   " VimScript -------------------------------------------------------------------------------------
     autocmd mygroup FileType vim setlocal foldlevelstart=0 foldmethod=marker colorcolumn=100 nowrap
   " YAML ------------------------------------------------------------------------------------------
