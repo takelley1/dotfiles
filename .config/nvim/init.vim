@@ -257,7 +257,7 @@
   nnoremap <silent> Q :nohl<CR><C-L>
   " Easy turn on paste mode.
   nnoremap <leader>p :set paste!<CR>
-  nnoremap <space> za
+  nnoremap <space> zA
   " Insert space.
   " nnoremap <space> i<space><ESC>
   " Insert line break.
