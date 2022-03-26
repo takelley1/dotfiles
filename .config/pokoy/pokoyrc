@@ -6,12 +6,13 @@
 #show_timer         true
 enable_skip        false
 enable_postpone    false
-idle_time          3:00
+idle_time          5:00
 #sleep_time         30:00
 
 #break              20:00   0:20    0:00
 break              60:00   5:00    0:00
 
+# break              0:10   0:01    0:00
 font                -*-lucidatypewriter-*-*-*-*-34-*-*-*-*-*-*-*
 
 # Example settings. They are not default.
