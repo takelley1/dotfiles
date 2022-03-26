@@ -76,7 +76,7 @@
  # Hide side borders when only one window is shown in workspace.
    hide_edge_borders smart
  # Make the side borders X pixels wide on workspaces with >1 window.
-   default_border pixel 2
+   default_border pixel 1
  # Don't wrap focus.
    focus_wrapping no
  # Don't move the mouse cursor to the workspace when changing focus to it.
