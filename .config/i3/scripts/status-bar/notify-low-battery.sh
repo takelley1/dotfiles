@@ -4,22 +4,19 @@
 # Requires acpi.
 
 # Get current battery percentage.
-percent="$(acpi -b | awk '{gsub(/%/,""); gsub(/,/,""); print $4}')"
-
-# Get current battery state (charging or discharging).
-state="$(acpi -b | awk '{print $3}')"
+percent="$(acpi -b | awk '{gsub(/%/,""); gsub(/,/,""); print $4}' | sort | tail -1)"
 
 # Don't send a notification if the battery is being charged.
-if [ "${state}" = 'Charging,' ]; then
+if acpi -b | awk '{print $3}' | grep -Eq "^Charging"; then
     exit 0
 fi
 
 if [ "${percent}" -le 15 ]; then
-    notify-send -u low "Battery under 15%!"
+    notify-send -u normal "Battery under 15%!"
 elif [ "${percent}" -le 10 ]; then
-    notify-send -u low "Battery under 10%!"
+    notify-send -u normal "Battery under 10%!"
 elif [ "${percent}" -le 5 ]; then
-    notify-send -u low "Battery under 5%!"
+    notify-send -u normal "Battery under 5%!"
 elif [ "${percent}" -le 3 ]; then
     notify-send -u critical "Battery under 3%!"
 fi
