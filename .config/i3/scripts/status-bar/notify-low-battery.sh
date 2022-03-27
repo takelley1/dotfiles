@@ -11,8 +11,6 @@ if acpi -b | awk '{print $3}' | grep -Eq "^Charging"; then
     exit 0
 fi
 
-echo "${percent}"
-
 if [ "${percent}" -le 15 ]; then
     notify-send -u normal "Battery under 15%!"
 elif [ "${percent}" -le 10 ]; then
