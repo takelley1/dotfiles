@@ -188,9 +188,14 @@ include ~/.config/i3/config-unique-`hostname`
   #bindsym $mod+f fullscreen toggle
 
  # Toggle tiling / floating.
-   bindsym $mod+f floating toggle
- # Toggle vertically split / horizontally split windows.
-   bindsym $mod+v layout toggle splitv splith
+   bindsym $mod+Control+f floating toggle
+ # Toggle vertically split / horizontally split windows. The names are,
+ #   confusingly, reversed.
+ # splith creates a vertical split.
+ # splitv creates a horizontal split.
+   bindsym $mod+v splith
+   # f for "flat"
+   bindsym $mod+f splitv
 
  # Switch between the two most recently-used workspaces.
    bindsym $mod+Tab workspace back_and_forth
