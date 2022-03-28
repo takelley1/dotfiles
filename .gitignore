@@ -102,3 +102,5 @@ repos
 .config/kmagrc
 .config/i3-resurrect
 .config/autorandr/main
+openvpn_config
+.vim/sessions
