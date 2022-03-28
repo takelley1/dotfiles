@@ -1,7 +1,10 @@
 
 ##############################################################################
-# SHARED CONFIG
+# i3 MAIN CONFIG FILE
 ##############################################################################
+
+# Include the configuration unique to the current host.
+include ~/.config/i3/config-unique-`hostname`
 
 # --------------------------------------------------------------------------------------------------
 # STARTUP ------------------------------------------------------------------------------------------
@@ -151,7 +154,7 @@
  # Reload the configuration file.
    bindsym $mod+$mod2+Control+c reload
  # Restart i3 in-place (preserves layout/session, can be used to upgrade i3).
-   bindsym $mod+Control+r exec --no-startup-id ~/.config/i3/scripts/i3-restart.sh
+   bindsym $mod+Control+r exec --no-startup-id i3-msg restart
  # Exit i3 (logs out of X session).
    bindsym $mod+$mod2+Control+e exec --no-startup-id i3-msg exit
 
