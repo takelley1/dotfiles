@@ -1,16 +1,6 @@
 "{% raw %}
 " OPTIONS ##################################################################################### {{{
 
-  " Determine if system is at home or at work.
-  let hostname = substitute(system('hostname'), '\n', '', '')
-  if hostname ==# "polaris" || "tethys"
-    let g:athome = 1
-    let g:atwork = 0
-  else
-    let g:athome = 0
-    let g:atwork = 1
-  endif
-
   filetype indent plugin on             " Identify the filetype, load indent and plugin files.
   syntax on                             " Force syntax highlighting.
   if has('termguicolors')
@@ -36,10 +26,8 @@
   set noswapfile nobackup               " Don't use backups since most files are in Git.
   set updatetime=500                    " Increase plugin update speed.
 
-  if g:athome
-    let g:python3_host_prog = '/usr/bin/python3' " Speed up startup.
-    let g:loaded_python_provider = 0             " Disable Python 2 provider.
-  endif
+  let g:python3_host_prog = '/usr/bin/python3' " Speed up startup.
+  let g:loaded_python_provider = 0             " Disable Python 2 provider.
 
   " Disable Ex mode.
   noremap q: <Nop>
@@ -133,31 +121,6 @@
   " Automatically close leftover hidden buffers.
   " This is usually leftover terminal and ranger windows.
   autocmd mygroup CursorHold,TabEnter * silent! call DeleteHiddenBuffers()
-
-  " Auto-write files at work ------------------------------------------------------------------ {{{
-  if g:atwork
-
-    autocmd mygroup BufWritePost
-      \ ~/infrastructure/ansible/environments/s3noc/group_files/all/home/akelley/.vimrc
-      \ silent :!cp -f ~/infrastructure/ansible/environments/s3noc/group_files/all/home/akelley/.vimrc
-      \ ~/.config/nvim/init.vim
-
-    " Automatically copy changes from ansible repo to personal dotfiles.
-    " Use sed to remove the 'Ansible managed' header.
-    autocmd mygroup BufWritePost
-      \ ~/infrastructure/ansible/environments/s3noc/group_files/all/home/akelley/.bashrc
-      \ silent :!sed '0,/ansible_managed/d'
-      \ ~/infrastructure/ansible/environments/s3noc/group_files/all/home/akelley/.bashrc
-      \ > ~/.bashrc
-
-    autocmd mygroup BufWritePost
-      \ ~/infrastructure/ansible/environments/s3noc/group_files/all/home/akelley/.tmux.conf
-      \ silent :!sed '0,/ansible_managed/d'
-      \ ~/infrastructure/ansible/environments/s3noc/group_files/all/home/akelley/.tmux.conf
-      \ > ~/.tmux.conf
-
-  endif
-  " }}}
 
 " }}}
 " FORMATTING ################################################################################## {{{
@@ -294,29 +257,6 @@
   " Save and quit only open window.
   nnoremap <leader>q :wq!<CR>
 
-  if g:athome
-  " Dotfiles ---------------------------------------------------------------------------------- {{{
-    nnoremap da :write<CR> :!git --git-dir=$HOME/.cfg/ --work-tree=$HOME add %<CR><C-L>
-    nnoremap ds :!git --git-dir=$HOME/.cfg/ --work-tree=$HOME status --untracked-files=no<CR>
-    nnoremap dl :!git --git-dir=$HOME/.cfg/ --work-tree=$HOME log<CR>
-    nnoremap dP :!git --git-dir=$HOME/.cfg/ --work-tree=$HOME push<CR>
-    nnoremap dp :!git --git-dir=$HOME/.cfg/ --work-tree=$HOME pull<CR>
-    " *dot diff unstaged*
-    nnoremap diu :!git --git-dir=$HOME/.cfg/ --work-tree=$HOME diff<CR>
-    " *dot diff staged*
-    nnoremap dis :!git --git-dir=$HOME/.cfg/ --work-tree=$HOME diff --staged<CR>
-    " *dot commit file*
-    nnoremap dcf :write<CR> :!git --git-dir=$HOME/.cfg/ --work-tree=$HOME commit % -m '
-    " *dot commit staged*
-    nnoremap dcs :!git --git-dir=$HOME/.cfg/ --work-tree=$HOME commit -m '
-    " *dot commit --amend*
-    nnoremap dca :!git --git-dir=$HOME/.cfg/ --work-tree=$HOME commit % -C HEAD --amend
-
-    nnoremap drm :!git --git-dir=$HOME/.cfg/ --work-tree=$HOME rm
-    nnoremap drs :!git --git-dir=$HOME/.cfg/ --work-tree=$HOME restore
-    " }}}
-  endif
-
 " }}}
 " PLUGINS ##################################################################################### {{{
 
@@ -335,16 +275,14 @@
         " Plug 'windwp/nvim-spectre'    " Search and replace.
         Plug 'voldikss/vim-floaterm' " Use to launch lf, a backup for when ranger is slow.
         " Plug 'nvim-telescope/telescope.nvim'
-        if g:athome
-          Plug 'nvim-lua/plenary.nvim'  " Dependency for nvim-spectre, gitsigns.
-          Plug 'lewis6991/gitsigns.nvim' " Lua replacement for gitgutter.
-          Plug 'nvim-treesitter/nvim-treesitter' " Tree-sitter syntax highlighting.
-          " Plug 'f-person/git-blame.nvim'     " Git blame on each line.
-          Plug 'norcalli/nvim-colorizer.lua' " Automatically colorize color hex codes.
-          " Plug 'hrsh7th/nvim-compe'          " Lua replacement for Deoplete.
-          " Plug 'glepnir/indent-guides.nvim'  " Lua replacement for yggdroot/indentline.
-          " Plug 'b3nj5m1n/kommentary'         " Lua replacement for nerdcommenter.
-        endif
+        Plug 'nvim-lua/plenary.nvim'  " Dependency for nvim-spectre, gitsigns.
+        Plug 'lewis6991/gitsigns.nvim' " Lua replacement for gitgutter.
+        Plug 'nvim-treesitter/nvim-treesitter' " Tree-sitter syntax highlighting.
+        " Plug 'f-person/git-blame.nvim'     " Git blame on each line.
+        Plug 'norcalli/nvim-colorizer.lua' " Automatically colorize color hex codes.
+        " Plug 'hrsh7th/nvim-compe'          " Lua replacement for Deoplete.
+        " Plug 'glepnir/indent-guides.nvim'  " Lua replacement for yggdroot/indentline.
+        " Plug 'b3nj5m1n/kommentary'         " Lua replacement for nerdcommenter.
       endif
 
       Plug 'hashivim/vim-terraform'         " HashiCorp Terraform support.
@@ -381,14 +319,12 @@
       Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' } " Code completion.
       Plug 'deoplete-plugins/deoplete-jedi' " Deoplete Python integration.
 
-      if g:athome
-        Plug 'lervag/vimtex', { 'for': 'tex' }                  " LaTeX helpers.
-        Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }  " LaTeX live preview.
-        Plug 'lambdalisue/suda.vim' " Edit files with sudo. This causes performance issues at work.
-        Plug 'Shougo/neco-vim' " Deoplete VimScript integration.
-        " Plug 'fszymanski/deoplete-emoji' " Auto-complete `:` emoji in markdown files.
-        Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  } " Render markdown.
-      endif
+      Plug 'lervag/vimtex', { 'for': 'tex' }                  " LaTeX helpers.
+      Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }  " LaTeX live preview.
+      Plug 'lambdalisue/suda.vim' " Edit files with sudo. This causes performance issues at work.
+      Plug 'Shougo/neco-vim' " Deoplete VimScript integration.
+      " Plug 'fszymanski/deoplete-emoji' " Auto-complete `:` emoji in markdown files.
+      Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  } " Render markdown.
 
     call plug#end()
   " }}}
@@ -419,13 +355,9 @@
   " }}}
   " Airline ----------------------------------------------------------------------------------- {{{
 
-    if g:athome
-      let g:airline_theme='palenight'
-      " Use Nerd Fonts from Vim-devicons.
-      let g:airline_powerline_fonts = 1
-    elseif g:atwork
-      let g:airline_theme='dark'
-    endif
+    let g:airline_theme='palenight'
+    " Use Nerd Fonts from Vim-devicons.
+    let g:airline_powerline_fonts = 1
 
     let g:airline#extensions#vimagit#enabled = 1
     let g:airline_highlighting_cache = 1
@@ -534,16 +466,14 @@ EOF
   " }}}
   " Markdown Preview -------------------------------------------------------------------------- {{{
 
-    if g:athome
-      " Markdown preview with mp.
-      autocmd mygroup FileType markdown nnoremap mp :MarkdownPreview<CR><C-L>
+    " Markdown preview with mp.
+    autocmd mygroup FileType markdown nnoremap mp :MarkdownPreview<CR><C-L>
 
-      "let g:mkdp_auto_start = 1  " Automatically launch rendered markdown in browser.
-      let g:mkdp_auto_close = 1   " Automatically close rendered markdown in browser.
+    "let g:mkdp_auto_start = 1  " Automatically launch rendered markdown in browser.
+    let g:mkdp_auto_close = 1   " Automatically close rendered markdown in browser.
 
-      " Use vimb since Firefox won't automatically close the rendered markdown window.
-      let g:mkdp_browser = 'vimb'
-    endif
+    " Use vimb since Firefox won't automatically close the rendered markdown window.
+    let g:mkdp_browser = 'vimb'
 
   " }}}
   " Neoterm ----------------------------------------------------------------------------------- {{{
