@@ -339,6 +339,13 @@ set -o vi
 # Use jk to exit edit mode instead of ESC.
 bind '"jk":vi-movement-mode'
 
+# These 3 bindings mimic zsh-style TAB-completion.
+bind '"\t":menu-complete'  # Cycle through matching files.
+bind "set show-all-if-ambiguous on"  # Display a list of the matching files.
+# Perform partial (common) completion on the first Tab press, only start
+# cycling full results on the second Tab press (from bash version 5)
+bind "set menu-complete-display-prefix on"
+
 if hash bat 2>/dev/null; then
     export BAT_THEME='TwoDark'
     #alias cat='bat -p'
