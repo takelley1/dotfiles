@@ -104,3 +104,5 @@ repos
 .config/autorandr/main
 openvpn_config
 .vim/sessions
+.config/vlc
+.sqlite_history
