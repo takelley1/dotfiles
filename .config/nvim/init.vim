@@ -320,6 +320,7 @@
       Plug 'deoplete-plugins/deoplete-jedi' " Deoplete Python integration.
 
       Plug 'lervag/vimtex', { 'for': 'tex' }                  " LaTeX helpers.
+      " Run :LLPStartPreview to start preview window.
       Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }  " LaTeX live preview.
       Plug 'lambdalisue/suda.vim' " Edit files with sudo. This causes performance issues at work.
       Plug 'Shougo/neco-vim' " Deoplete VimScript integration.
