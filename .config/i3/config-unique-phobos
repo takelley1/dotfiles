@@ -13,13 +13,17 @@ font pango:DejaVu Sans 7.5
  # start redshift
    exec --no-startup-id redshift-gtk -l 39:-74 -t 6500k:2600K
 
+ # unmute speakers
+   exec --no-startup-id amixer sset Master unmute
+   exec --no-startup-id amixer sset Speaker unmute
+
 # HOTKEYS
-   
+
  # brightness controls
    bindsym XF86MonBrightnessDown exec brightness-
-   bindsym XF86MonBrightnessUp exec brightness+ 
+   bindsym XF86MonBrightnessUp exec brightness+
 
-   bindsym $mod+Right exec brightness+ 
+   bindsym $mod+Right exec brightness+
    bindsym $mod+Left exec brightness-
 
  # touchpad toggle (for easier typing)
@@ -34,4 +38,3 @@ font pango:DejaVu Sans 7.5
 
 # \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 # //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
