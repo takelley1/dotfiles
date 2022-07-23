@@ -521,7 +521,7 @@ EOF
     let g:rnvimr_enable_picker = 1                  " Hide Ranger after picking file.
     let g:rnvimr_enable_bw = 1                      " Make Neovim wipe buffers corresponding to the files deleted by Ranger.
     let g:rnvimr_border_attr = {'fg': 12, 'bg': -1} " Set border color.
-    let g:rnvimr_ranger_cmd = 'ranger --cmd="set draw_borders both"'
+    let g:rnvimr_ranger_cmd = ['ranger', '--cmd="set draw_borders both"']
 
     " Link CursorLine into RnvimrNormal highlight in the Floating window
     highlight link RnvimrNormal CursorLine
