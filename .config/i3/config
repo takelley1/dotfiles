@@ -129,7 +129,8 @@ include ~/.config/i3/config-unique-`hostname`
 
  # App launch hotkeys.
    # Terminal emulator (config file is ~/.config/alacritty/alacritty.yml).
-   bindsym $mod+Return exec alacritty
+   # Create a terminal inside Neovim
+   bindsym $mod+Return exec alacritty --command nvim -c terminal
    # Backup terminal emulator (config file is ~/.Xdefaults).
    bindsym $mod+Shift+Return exec urxvt
    # Rofi app launcher.
