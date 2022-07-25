@@ -216,7 +216,6 @@ function gcmp {
 # Utilities --------------------------------------------------------------------------------{{{
 
 # Aliases for common utilities and apps.
-alias c='clear'
 alias mv='mv -v'
 alias cp='cp -v'
 alias sudo='sudo '     # This is required for bash aliases to work with sudo.
@@ -340,8 +339,8 @@ set -o vi
 bind '"jk":vi-movement-mode'
 
 # These 3 bindings mimic zsh-style TAB-completion.
-bind '"\t":menu-complete'  # Cycle through matching files.
-bind "set show-all-if-ambiguous on"  # Display a list of the matching files.
+bind '"\t":menu-complete'           # Cycle through matching files.
+bind "set show-all-if-ambiguous on" # Display a list of the matching files.
 # Perform partial (common) completion on the first Tab press, only start
 # cycling full results on the second Tab press (from bash version 5)
 bind "set menu-complete-display-prefix on"
@@ -493,6 +492,23 @@ ranger_cd() {
         cd -- "$chosen_dir" || exit 1
     fi
     rm -f -- "$temp_file"
+}
+
+# Same as ranger_cd(), but for lf
+# https://github.com/gokcehan/lf/blob/master/etc/lfcd.sh
+alias c='lfcd'
+lfcd() {
+    temp_file="$(mktemp -t "lf_cd.XXXXXXXXXX")"
+    lf -last-dir-path="$temp_file" -- "$@"
+    if [ -f "$temp_file" ]; then
+        dir="$(cat "$temp_file")"
+        rm -f "$temp_file"
+        if [ -d "$dir" ]; then
+            if [ "$dir" != "$(pwd)" ]; then
+                cd "$dir" || exit 1
+            fi
+        fi
+    fi
 }
 
 # Make nvim follow symlinks. This makes it easier to use Git mappings within nvim.
