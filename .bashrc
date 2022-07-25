@@ -473,7 +473,9 @@ current_dir="\[\033[01;34m\]\w"
 colon_separator="\[\033[00m\]:"
 text_color="\[\033[00m\]"
 
-PS1="${user_and_host}${colon_separator}${current_dir}${git_branch_color}\$(git_branch)${git_status_color}\$(git_status)${text_color}\$ "
+# Running git_status can take a while on git repos on NFS mounts.
+# PS1="${user_and_host}${colon_separator}${current_dir}${git_branch_color}\$(git_branch)${git_status_color}\$(git_status)${text_color}\$ "
+PS1="${user_and_host}${colon_separator}${current_dir}${git_branch_color}\$(git_branch)${text_color}\$ "
 
 # }}}
 # FUNCTIONS ################################################################################### {{{
