@@ -500,11 +500,11 @@ EOF
   " Neovim Remote ----------------------------------------------------------------------------- {{{
 
     " See https://github.com/mhinz/neovim-remote
-    if has('nvim')
-      let $GIT_EDITOR = 'nvr -cc split --remote-wait'
-    endif
+    " if has('nvim')
+    "   let $GIT_EDITOR = 'nvr -cc split --remote-wait'
+    " endif
 
-    autocmd mygroup FileType gitcommit,gitrebase,gitconfig set bufhidden=delete
+    " autocmd mygroup FileType gitcommit,gitrebase,gitconfig set bufhidden=delete
 
   " }}}
   " NERD Commenter ---------------------------------------------------------------------------- {{{
@@ -626,7 +626,6 @@ endif
 
   " Colors for plugins typically have to come after they're loaded by Vim-plug.
 
-
     " Change comment color from grey to turquoise.
     " Make white a bit brighter.
     let g:palenight_color_overrides = {
@@ -646,20 +645,6 @@ endif
     highlight Search cterm=underline ctermfg=235 ctermbg=180 gui=underline guifg=#292D3E guibg=#ffcb6b
     " Change text selection background.
     highlight Visual gui=bold guifg=#000000 guibg=#00eee0
-
-  " if g:atwork
-
-  "   colorscheme peachpuff
-
-  "   " Color for folded blocks of text.
-  "   highlight Folded cterm=bold ctermfg=5 ctermbg=8 guifg=5 guibg=8
-  "   " Visual mode text highlight color.
-  "   highlight Visual ctermfg=2 ctermbg=8 guifg=2 guibg=8
-  "   " Search results highlight color.
-  "   highlight Search ctermfg=8 ctermbg=3 guifg=8 guibg=3
-  "   highlight IncSearch ctermfg=8 ctermbg=3 guifg=8 guibg=3
-
-  " endif
 
   " Tabline.
   "highlight TabLine guibg=#333747 gui=None
