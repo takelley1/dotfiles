@@ -181,6 +181,8 @@
   nnoremap <silent> <BS> :e#<CR><C-L>
   " Easily text wrapping toggle
   nnoremap <leader>n :set wrap!<CR><C-L>
+  " Quickly add timestamp for dated notes.
+  nnoremap <leader>d :r !printf "\%s" "- $(date +\%Y/\%m/\%d\ \%H\%M) - "<CR>
 
   " Use `call P('highlight')` to put the output of `highlight` in the current buffer, {{{
   "   allowing the content to be searched through.
