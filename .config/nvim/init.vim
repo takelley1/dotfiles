@@ -120,7 +120,7 @@
 
   " Automatically close leftover hidden buffers.
   " This is usually leftover terminal and ranger windows.
-  autocmd mygroup CursorHold,TabEnter * silent! call DeleteHiddenBuffers()
+  autocmd mygroup CursorHold * silent! call DeleteHiddenBuffers()
 
 " }}}
 " FORMATTING ################################################################################## {{{
@@ -148,7 +148,7 @@
     autocmd mygroup BufEnter *.md setlocal foldmethod=manual foldlevelstart=99 concealcursor= conceallevel=0
   " Python ----------------------------------------------------------------------------------------
     autocmd mygroup FileType python setlocal shiftwidth=4 softtabstop=4 tabstop=4 colorcolumn=100 nowrap
-    autocmd mygroup BufEnter *.py setlocal foldlevelstart=0 foldmethod=indent foldnestmax=1 foldignore=""
+    autocmd mygroup BufEnter *.py setlocal foldlevelstart=0 foldmethod=indent foldnestmax=2 foldignore=""
   " Shell -----------------------------------------------------------------------------------------
     autocmd mygroup FileType sh setlocal shiftwidth=4 softtabstop=4 tabstop=4 foldlevelstart=0 foldmethod=marker colorcolumn=120 nowrap
   " TeX -------------------------------------------------------------------------------------------
@@ -179,10 +179,10 @@
   nnoremap <silent> <leader>w :write<CR><C-L>
   " Jump back and forth between files.
   nnoremap <silent> <BS> :e#<CR><C-L>
-  " Text wrapping toggle
+  " Text wrapping toggle.
   nnoremap <leader>n :set wrap!<CR><C-L>
   " Quickly add timestamp for dated notes.
-  nnoremap <leader>d :r !printf "\%s" "- $(date +\%Y/\%m/\%d\ \%H\%M) - "<CR>
+  nnoremap <silent> <leader>d :r !printf "\%s" "- $(date +\%Y/\%m/\%d\ \%a\ \%H:\%M) - "<CR>
 
   " Use `call P('highlight')` to put the output of `highlight` in the current buffer, {{{
   "   allowing the content to be searched through.
@@ -238,16 +238,16 @@
 
   " Quickly lookup docs for the word or WORD under the cursor. Especially useful for Python.
   " gK looks up the <WORD>, gk looks up the <word>.
-  nnoremap <silent> gK :call Zeal() <CR><CR>
-  nnoremap <silent> gk :!zeal "<cword>"&<CR><CR>
+  " nnoremap <silent> gK :call Zeal() <CR><CR>
+  " nnoremap <silent> gk :!zeal "<cword>"&<CR><CR>
 
-  function! Zeal()
+  " function! Zeal()
    " Strip leading characters. Anything that isn't [a-zA-Z0-9._] will get stripped from the beginning.
-    let query = substitute(expand("<cWORD>"), "^[^a-zA-Z0-9._]*", "", "")
+    " let query = substitute(expand("<cWORD>"), "^[^a-zA-Z0-9._]*", "", "")
    " Strip trailing characters. Anything that isn't [a-zA-Z0-9._] will get stripped from the end.
-    let query = substitute(query, "[^a-zA-Z0-9._].*", "", "")
-    execute '!zeal' query
-  endfunction
+    " let query = substitute(query, "[^a-zA-Z0-9._].*", "", "")
+    " execute '!zeal' query
+  " endfunction
 
   " Easily edit vimrc (ve for 'vim edit').
   nnoremap <leader>ve :edit ~/.config/nvim/init.vim<CR>
@@ -308,7 +308,7 @@
       Plug 'pearofducks/ansible-vim'        " Ansible syntax.
       " Plug 'ekalinin/Dockerfile.vim'        " Dockerfile syntax.
       Plug 'gcmt/taboo.vim'                 " Rename tabs.
-      Plug 'wesQ3/vim-windowswap'           " Easily swap window splits with <leader>ww
+      " Plug 'wesQ3/vim-windowswap'           " Easily swap window splits with <leader>ww
       " Plug 'godlygeek/tabular'              " Alignment tools.
       Plug 'plasticboy/vim-markdown'        " Better markdown syntax highlighting.
       Plug 'jiangmiao/auto-pairs'           " Auto-create bracket and quote pairs.
@@ -604,7 +604,7 @@ EOF
     autocmd mygroup BufWritePre,FileWritePre,FileReadPre * call StripWhite()
 
     function! StripWhite()
-        if &filetype !=# 'magit' && &modifiable ==# 1 && &readonly ==# 0
+        if &modifiable ==# 1 && &readonly ==# 0
             StripWhitespace
         endif
     endfunction
