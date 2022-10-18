@@ -45,6 +45,21 @@
     let &undodir = target_path
     set undofile
   endif
+  
+  " WSL 2-way yank support
+  " https://superuser.com/a/1557751
+  let g:clipboard = {
+            \   'name': 'win32yank-wsl',
+            \   'copy': {
+            \      '+': 'win32yank.exe -i --crlf',
+            \      '*': 'win32yank.exe -i --crlf',
+            \    },
+            \   'paste': {
+            \      '+': 'win32yank.exe -o --lf',
+            \      '*': 'win32yank.exe -o --lf',
+            \   },
+            \   'cache_enabled': 0,
+            \ }
 
 " }}}
 " AUTOCOMMANDS ################################################################################ {{{
