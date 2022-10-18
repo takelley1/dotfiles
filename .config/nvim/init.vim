@@ -179,7 +179,7 @@
   nnoremap <silent> <leader>w :write<CR><C-L>
   " Jump back and forth between files.
   nnoremap <silent> <BS> :e#<CR><C-L>
-  " Easily text wrapping toggle
+  " Text wrapping toggle
   nnoremap <leader>n :set wrap!<CR><C-L>
   " Quickly add timestamp for dated notes.
   nnoremap <leader>d :r !printf "\%s" "- $(date +\%Y/\%m/\%d\ \%H\%M) - "<CR>
@@ -220,6 +220,8 @@
   vnoremap t :!column -t<CR>
   " Turn off highlighted search results.
   nnoremap <silent> Q :nohl<CR><C-L>
+  " Make it easier to copy text from the terminal using the mouse.
+  nnoremap <leader>c :set number! <bar> :Gitsigns toggle_signs<CR><C-L>
   " Easy turn on paste mode.
   nnoremap <leader>p :set paste!<CR>
   nnoremap <space> zA
