@@ -404,7 +404,8 @@
                      \ }
 
     let g:ale_linters = {'yaml': ['yamllint'],
-                      \  'tex': ['texlab']
+                      \  'tex': ['texlab'],
+                      \  'python': ['cspell', 'flake8', 'mypy', 'pydocstyle', 'pylint']
                       \ }
 
     let g:ale_fix_on_save = 1  " ALE will fix files automatically when they're saved.
