@@ -1,0 +1,9 @@
+set hidden
+
+# Zoxide config
+# https://github.com/ajeetdsouza/zoxide#third-party-integrations
+# https://github.com/gokcehan/lf/wiki/Integrations#zoxide
+cmd z %{{
+    result="$(zoxide query --exclude "${PWD}" -- "$@")"
+    lf -remote "send ${id} cd '${result}'"
+}}
