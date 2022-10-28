@@ -126,7 +126,7 @@
   
   " Automatically increase the current file's Autojump directory weight.
   " https://github.com/wting/autojump
-  autocmd mygroup BufReadPost * silent! :!autojump --add %:p:h
+  autocmd mygroup BufReadPost,BufWritePost * silent! :!autojump --add %:p:h
 
   " https://stackoverflow.com/a/8459043
   function! DeleteHiddenBuffers()
