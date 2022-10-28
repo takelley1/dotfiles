@@ -391,7 +391,8 @@ export HISTIGNORE="&:ls:[bf]g:exit"
 export HISTFILESIZE=9999999
 export HISTSIZE=9999999
 export HISTCONTROL=ignoreboth
-export PROMPT_COMMAND='history -a'
+# https://github.com/wting/autojump
+export PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND ;} history -a"
 
 # Allow unicode within the terminal.
 export LANG="en_US.UTF-8"
