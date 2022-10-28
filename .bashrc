@@ -100,11 +100,12 @@ if [[ "${OSTYPE}" =~ "linux" ]]; then
         set -o vi # The below binding only takes effect if vi mode is enabled.
         bind '"\C-r": "\e^ihstr -- \n"'
     fi
-    # Configure zoxide
-    # https://github.com/ajeetdsouza/zoxide
-    if hash zoxide 2>/dev/null; then
-        eval "$(zoxide init bash)"
+    # Configure Autojump
+    # https://github.com/wting/autojump
+    if [[ -f /usr/share/autojump/autojump.bash ]]; then
+        source /usr/share/autojump/autojump.bash
     fi
+
 
 
 fi
