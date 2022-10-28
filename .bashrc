@@ -102,7 +102,7 @@ if [[ "${OSTYPE}" =~ "linux" ]]; then
     fi
     # Configure zoxide
     # https://github.com/ajeetdsouza/zoxide
-    if ! hash zoxide 2>/dev/null; then
+    if hash zoxide 2>/dev/null; then
         eval "$(zoxide init bash)"
     fi
 
