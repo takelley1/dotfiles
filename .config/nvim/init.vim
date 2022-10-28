@@ -123,6 +123,10 @@
   " https://stackoverflow.com/a/14449484
   " Return to last position when re-opening file.
   autocmd mygroup BufReadPost * silent! normal! g`"zv
+  
+  " Automatically increase the current file's Autojump directory weight.
+  " https://github.com/wting/autojump
+  autocmd mygroup BufReadPost * silent! :!autojump --add %:p:h
 
   " https://stackoverflow.com/a/8459043
   function! DeleteHiddenBuffers()
