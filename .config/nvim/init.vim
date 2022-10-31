@@ -419,6 +419,8 @@
 
     " Bash
     let g:ale_sh_bashate_options = '--ignore "E043,E006"'
+    " Indent Bash files with 4 spaces.
+    let g:ale_sh_shfmt_options = '-i 4'
     " Python
     let g:ale_python_flake8_options = '--config ~/.config/nvim/linters/flake8.config'
     " let g:ale_python_pylint_options = '--rcfile ~/.config/nvim/linters/pylintrc.config'
