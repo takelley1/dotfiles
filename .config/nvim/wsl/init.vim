@@ -115,9 +115,13 @@
   " Switch to normal mode when entering all other buffers.
   autocmd mygroup BufEnter * if &buftype !=# "terminal" | stopinsert | endif
 
-  " https://vim.fandom.com/wiki/Set_working_directory_to_the_current_file
-  " Set working dir to current file's dir.
-  " autocmd mygroup BufEnter * silent! lcd %:p:h
+  " Set working dir to the root of the current file's git repo.
+  " This allows the linters from the ALE plugin to use the repo's lint config file.
+  autocmd mygroup BufWritePost * silent! :call CdToGitRoot()
+  function! CdToGitRoot()
+    let b:gitroot = system(['git', '-C', expand('%:p:h'), 'rev-parse', '--show-toplevel'])
+    lcd `=b:gitroot`
+  endfunction
 
   " https://stackoverflow.com/a/14449484
   " Return to last position when re-opening file.
@@ -354,9 +358,11 @@
     " Indent Bash files with 4 spaces.
     let g:ale_sh_shfmt_options = '-i 4'
     " Python
-    let g:ale_python_flake8_options = '--config ~/.config/nvim/linters/flake8.config'
-    let g:ale_python_pylint_options = '--rcfile ~/.config/nvim/linters/pylintrc.config'
-    " let g:ale_python_mypy_options   = '--strict --ignore-missing-imports --no-site-packages --exclude '.*test.*'
+    " Relies on the CdToGitRoot() function in this file to ensure the working
+    "   directory is the root of the git repo.
+    let g:ale_python_flake8_options = '--config ./conf/.flake8rc'
+    let g:ale_python_pylint_options = '--rcfile ./conf/.pylintrc'
+    let g:ale_python_mypy_options   = '--config-file ./conf/mypy.ini'
 
     " YAML
     let g:ale_yaml_yamllint_options = '--config-file ~/.config/nvim/linters/yamllint.yml'
@@ -366,13 +372,6 @@
     " Disable by default.
     let g:gitblame_enabled = 0
     nnoremap <silent> <leader>B :GitBlameToggle<CR>
-  " Colorizer --------------------------------------------------------------------------------
-
-   "if has('nvim-0.5')
-     "" Enable colorizer.nvim for all filetypes.
-     "lua require 'colorizer'.setup()
-     "lua require 'colorizer'.setup(nil, { css = true; })
-   "endif
   " Deoplete ---------------------------------------------------------------------------------
 
     " Use TAB to cycle through deoplete completion popups.
