@@ -197,8 +197,6 @@
   nnoremap <silent> <leader>w :write<CR><C-L>
   " Jump back and forth between files.
   nnoremap <silent> <BS> :e#<CR><C-L>
-  " Easily text wrapping toggle
-  nnoremap <leader>n :set wrap!<CR><C-L>
   " Quickly add timestamp for dated notes.
   nnoremap <silent> <leader>d :r !printf "\%s" "- $(date +\%Y/\%m/\%d\ \%H:\%M) - "<CR>
 
@@ -330,6 +328,9 @@
     let g:airline#extensions#fzf#enabled = 0
     let g:airline#extensions#netrw#enabled = 0
   " ALE --------------------------------------------------------------------------------------
+
+    " Jump to linting errors with <leader>n
+    nnoremap <leader>n :ALENextWrap<CR>
 
     " Have ALE remove extra whitespace and trailing lines.
     let g:ale_fixers = {'*': ['remove_trailing_lines', 'trim_whitespace'],
