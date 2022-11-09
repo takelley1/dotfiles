@@ -45,21 +45,6 @@
     let &undodir = target_path
     set undofile
   endif
-  
-  " WSL 2-way yank support
-  " https://superuser.com/a/1557751
-  let g:clipboard = {
-            \   'name': 'win32yank-wsl',
-            \   'copy': {
-            \      '+': 'win32yank.exe -i --crlf',
-            \      '*': 'win32yank.exe -i --crlf',
-            \    },
-            \   'paste': {
-            \      '+': 'win32yank.exe -o --lf',
-            \      '*': 'win32yank.exe -o --lf',
-            \   },
-            \   'cache_enabled': 0,
-            \ }
 
 " }}}
 " AUTOCOMMANDS ################################################################################ {{{
@@ -123,7 +108,7 @@
   " https://stackoverflow.com/a/14449484
   " Return to last position when re-opening file.
   autocmd mygroup BufReadPost * silent! normal! g`"zv
-  
+
   " Automatically increase the current file's Autojump directory weight.
   " https://github.com/wting/autojump
   autocmd mygroup BufReadPost,BufWritePost * silent! :!autojump --add %:p:h
@@ -255,19 +240,6 @@
   "xnoremap < <gv
   "xnoremap > >gv
 
-  " Quickly lookup docs for the word or WORD under the cursor. Especially useful for Python.
-  " gK looks up the <WORD>, gk looks up the <word>.
-  " nnoremap <silent> gK :call Zeal() <CR><CR>
-  " nnoremap <silent> gk :!zeal "<cword>"&<CR><CR>
-
-  " function! Zeal()
-   " Strip leading characters. Anything that isn't [a-zA-Z0-9._] will get stripped from the beginning.
-    " let query = substitute(expand("<cWORD>"), "^[^a-zA-Z0-9._]*", "", "")
-   " Strip trailing characters. Anything that isn't [a-zA-Z0-9._] will get stripped from the end.
-    " let query = substitute(query, "[^a-zA-Z0-9._].*", "", "")
-    " execute '!zeal' query
-  " endfunction
-
   " Easily edit vimrc (ve for 'vim edit').
   nnoremap <leader>ve :edit ~/.config/nvim/init.vim<CR>
   if exists(':terminal')
@@ -300,9 +272,9 @@
         " Plug 'nvim-telescope/telescope.nvim'
         Plug 'nvim-lua/plenary.nvim'  " Dependency for nvim-spectre, gitsigns.
         Plug 'lewis6991/gitsigns.nvim' " Lua replacement for gitgutter.
-        Plug 'nvim-treesitter/nvim-treesitter' " Tree-sitter syntax highlighting.
+        " Plug 'nvim-treesitter/nvim-treesitter' " Tree-sitter syntax highlighting.
         " Plug 'f-person/git-blame.nvim'     " Git blame on each line.
-        Plug 'norcalli/nvim-colorizer.lua' " Automatically colorize color hex codes.
+        " Plug 'norcalli/nvim-colorizer.lua' " Automatically colorize color hex codes.
         " Plug 'hrsh7th/nvim-compe'          " Lua replacement for Deoplete.
         " Plug 'glepnir/indent-guides.nvim'  " Lua replacement for yggdroot/indentline.
         " Plug 'b3nj5m1n/kommentary'         " Lua replacement for nerdcommenter.
@@ -318,7 +290,7 @@
       Plug 'tpope/vim-obsession'            " Session management.
       " Plug 'tpope/vim-endwise'              " Auto-terminate conditional statements.
       Plug 'tpope/vim-surround'             " Easily surround words.
-      Plug 'tpope/vim-eunuch'               " Better shell commands.
+      " Plug 'tpope/vim-eunuch'               " Better shell commands.
       " Plug 'tpope/vim-repeat'               " Repeat plugin actions.
       " Plug 'brooth/far.vim'                 " Find and replace.
       " Plug 'Konfekt/FastFold'               " More performant folding.
@@ -345,7 +317,7 @@
       Plug 'lervag/vimtex', { 'for': 'tex' }                  " LaTeX helpers.
       " Run :LLPStartPreview to start preview window.
       Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }  " LaTeX live preview.
-      Plug 'lambdalisue/suda.vim' " Edit files with sudo. This causes performance issues at work.
+      " Plug 'lambdalisue/suda.vim' " Edit files with sudo. This causes performance issues at work.
       Plug 'Shougo/neco-vim' " Deoplete VimScript integration.
       " Plug 'fszymanski/deoplete-emoji' " Auto-complete `:` emoji in markdown files.
       Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  } " Render markdown.
@@ -438,15 +410,6 @@
     nnoremap <silent> <leader>B :GitBlameToggle<CR>
 
   " }}}
-  " Colorizer --------------------------------------------------------------------------------- {{{
-
-   if has('nvim-0.5')
-     " Enable colorizer.nvim for all filetypes.
-     lua require 'colorizer'.setup()
-     lua require 'colorizer'.setup(nil, { css = true; })
-   endif
-
-  " }}}
   " Deoplete ---------------------------------------------------------------------------------- {{{
 
     " Use TAB to cycle through deoplete completion popups.
@@ -523,16 +486,6 @@ EOF
 
 
   " }}}
-  " Neovim Remote ----------------------------------------------------------------------------- {{{
-
-    " See https://github.com/mhinz/neovim-remote
-    " if has('nvim')
-    "   let $GIT_EDITOR = 'nvr -cc split --remote-wait'
-    " endif
-
-    " autocmd mygroup FileType gitcommit,gitrebase,gitconfig set bufhidden=delete
-
-  " }}}
   " NERD Commenter ---------------------------------------------------------------------------- {{{
 
     " <leader>cc to comment a block.
@@ -582,32 +535,6 @@ EOF
     let g:taboo_modified_tab_flag = ''    " Don't mark files as modified.
 
   " }}}
-  " Treesitter -------------------------------------------------------------------------------- {{{
-
-" Must source plugin file manually or it won't be loaded on startup.
-  if filereadable($HOME . '/.local/share/nvim/plugged/nvim-treesitter/plugin/nvim-treesitter.vim')
-    source $HOME/.local/share/nvim/plugged/nvim-treesitter/plugin/nvim-treesitter.vim
-
-  " Enable tree-sitter highlighting.
-  autocmd mygroup BufEnter * TSBufEnable highlight
-  autocmd mygroup CursorHold * TSBufEnable highlight
-
-lua <<EOF
-require'nvim-treesitter.configs'.setup {
-  ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
-  ignore_install = { "bash", "yaml" }, -- List of parsers to ignore installing
-  highlight = {
-    enable = true, -- false will disable the whole extension
-    additional_vim_regex_highlighting = false,
-    custom_captures = {},
-    disable = { "bash", "yaml" },
-    enable = true,
-    loaded = true,
-    module_path = "nvim-treesitter.highlight"
-  },
-}
-EOF
-  endif
 
   " }}}
   " Undotree ---------------------------------------------------------------------------------- {{{
@@ -623,7 +550,7 @@ EOF
 
     " Automatically strip whitespace.
     " Calling StripWhite() during "CursorHold" will sometimes cause search results to disappear.
-    autocmd mygroup BufWritePre,FileWritePre,FileReadPre * call StripWhite()
+    autocmd mygroup BufWritePre,FileWritePre,FileReadPre,TermEnter * call StripWhite()
 
     function! StripWhite()
         if &modifiable ==# 1 && &readonly ==# 0
