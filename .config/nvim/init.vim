@@ -3,8 +3,9 @@
 
   filetype indent plugin on             " Identify the filetype, load indent and plugin files.
   syntax on                             " Force syntax highlighting.
+  let g:vimsyn_embed = 'lPr'            " Allow embedded syntax highlighting.
   if has('termguicolors')
-    set termguicolors                 " Enable 24-bit color support.
+    set termguicolors                   " Enable 24-bit color support.
   endif
 
   set lazyredraw                        " Don't redraw screen during macros.
@@ -432,9 +433,9 @@
 
   " }}}
   " Gitsigns ---------------------------------------------------------------------------------- {{{
-lua<<EOF
-require('gitsigns').setup()
-EOF
+
+    lua require('gitsigns').setup()
+
   " }}}
   " Highlighted Yank -------------------------------------------------------------------------- {{{
 
@@ -545,12 +546,15 @@ EOF
   " }}}
   " Vim Better Whitespace --------------------------------------------------------------------- {{{
 
-    " Don't highlight whitespace.
-    " let g:better_whitespace_enabled = 0
+    let g:show_spaces_that_precede_tabs = 1
 
     " Automatically strip whitespace.
     " Calling StripWhite() during "CursorHold" will sometimes cause search results to disappear.
-    autocmd mygroup BufWritePre,FileWritePre,FileReadPre,TermEnter * call StripWhite()
+    autocmd mygroup BufWritePre,FileWritePre * call StripWhite()
+
+    " Disable whitespace highlighting in terminals.
+    autocmd mygroup TermEnter * :DisableWhitespace
+    autocmd mygroup TermLeave * :EnableWhitespace
 
     function! StripWhite()
         if &modifiable ==# 1 && &readonly ==# 0
