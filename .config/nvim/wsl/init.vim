@@ -378,6 +378,7 @@
     inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 
     let g:deoplete#enable_at_startup = 1
+    call deoplete#custom#source('_', 'min_pattern_length', 0)
 
     " Don't show the default popup window.
     set completeopt-=preview
