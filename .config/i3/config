@@ -26,17 +26,17 @@ include ~/.config/i3/config-unique-`hostname`
    exec_always --no-startup-id xhost + &>/dev/null
 
  # Start apps automatically and assign them to workspaces.
-   exec --no-startup-id i3-msg "workspace 1; exec firefox"
+   # exec --no-startup-id i3-msg "workspace 1; exec firefox"
    # assign [class="firefox"] number "1: firefox"
 
-   exec --no-startup-id i3-msg "workspace 2; exec alacritty"
+   # exec --no-startup-id i3-msg "workspace 2; exec alacritty"
    # assign [class="alacritty"] number "2: terminal"
 
    # exec --no-startup-id i3-msg "workspace 3; exec pycharm"
    # assign [class="jetbrains-pycharm-ce"] number 3
 
  # Return to workspace 2.
-   exec --no-startup-id i3-msg "workspace 2"
+   # exec --no-startup-id i3-msg "workspace 2"
 
 # --------------------------------------------------------------------------------------------------
 # KEYBOARD -----------------------------------------------------------------------------------------
