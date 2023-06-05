@@ -131,8 +131,10 @@ include ~/.config/i3/config-unique-`hostname`
    # Terminal emulator (config file is ~/.config/alacritty/alacritty.yml).
    # Create a terminal inside Neovim
    bindsym $mod+Return exec alacritty --command nvim -c terminal
+   # Create a bare terminal
+   bindsym $mod+Shift+Return exec alacritty
    # Backup terminal emulator (config file is ~/.Xdefaults).
-   bindsym $mod+Shift+Return exec urxvt
+   bindsym $mod+Shift+t exec urxvt
    # Rofi app launcher.
    bindsym $mod+d exec rofi -show run -lines 30 -terminal alacritty
    # Also use Rofi to quickly switch workspaces.
