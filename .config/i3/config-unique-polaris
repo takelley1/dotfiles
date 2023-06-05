@@ -28,7 +28,7 @@ font pango:Noto Sans 10
 # HOTKEYS
 
  # Reconfigure displays
-   bindsym $mod+m exec --no-startup-id ~/.config/i3/scripts/configure-displays.sh
+   # bindsym $mod+m exec --no-startup-id ~/.config/i3/scripts/configure-displays.sh
 
  # Brightness controls.
  # Requires the line "austin ALL=NOPASSWD: /bin/brightnessctl" in visudo file.
