@@ -140,3 +140,10 @@ rootencryption.pem
 .pylint.d
 .redhat
 .vscode-server
+openvpn_config
+.vim/sessions
+.config/vlc
+.sqlite_history
+.config/teams
+.config/autostart
+.config/Microsoft/Microsoft Teams

@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 #
-# Creates a new workspace on the current display.
+# Creates a new workspace on the current display, or moves the current window
+#   to a new workspace on the current display.
 #
 # "${1}" is used to either switch to the new workspace or move the current
 #   window to the new workspace.

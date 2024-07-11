@@ -36,7 +36,7 @@ while :; do
 
     # MICE
     xinput --set-prop pointer:'MOSART Semi. 2.4G Keyboard Mouse' 'libinput Accel Speed' -0.55
-    xinput --set-prop pointer:'Logitech ERGO M575' 'libinput Accel Speed' -0.5
+    xinput --set-prop pointer:'Logitech ERGO M575' 'libinput Accel Speed' -0.4
 
     # KEYBOARDS
     xinput --set-prop 'ETPS/2 Elantech Touchpad' 'libinput Tapping Enabled' 1 # Enable tap-clicking.

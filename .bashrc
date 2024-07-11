@@ -100,6 +100,13 @@ if [[ "${OSTYPE}" =~ "linux" ]]; then
         set -o vi # The below binding only takes effect if vi mode is enabled.
         bind '"\C-r": "\e^ihstr -- \n"'
     fi
+    # Configure Autojump
+    # https://github.com/wting/autojump
+    if [[ -f /usr/share/autojump/autojump.bash ]]; then
+        source /usr/share/autojump/autojump.bash
+    fi
+
+
 
 fi
 
@@ -216,7 +223,6 @@ function gcmp {
 # Utilities --------------------------------------------------------------------------------{{{
 
 # Aliases for common utilities and apps.
-alias c='clear'
 alias mv='mv -v'
 alias cp='cp -v'
 alias sudo='sudo '     # This is required for bash aliases to work with sudo.
@@ -339,6 +345,13 @@ set -o vi
 # Use jk to exit edit mode instead of ESC.
 bind '"jk":vi-movement-mode'
 
+# These 3 bindings mimic zsh-style TAB-completion.
+bind '"\t":menu-complete'           # Cycle through matching files.
+bind "set show-all-if-ambiguous on" # Display a list of the matching files.
+# Perform partial (common) completion on the first Tab press, only start
+# cycling full results on the second Tab press (from bash version 5)
+bind "set menu-complete-display-prefix on"
+
 if hash bat 2>/dev/null; then
     export BAT_THEME='TwoDark'
     #alias cat='bat -p'
@@ -378,7 +391,8 @@ export HISTIGNORE="&:ls:[bf]g:exit"
 export HISTFILESIZE=9999999
 export HISTSIZE=9999999
 export HISTCONTROL=ignoreboth
-export PROMPT_COMMAND='history -a'
+# https://github.com/wting/autojump
+export PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND ;} history -a"
 
 # Allow unicode within the terminal.
 export LANG="en_US.UTF-8"
@@ -466,7 +480,9 @@ current_dir="\[\033[01;34m\]\w"
 colon_separator="\[\033[00m\]:"
 text_color="\[\033[00m\]"
 
-PS1="${user_and_host}${colon_separator}${current_dir}${git_branch_color}\$(git_branch)${git_status_color}\$(git_status)${text_color}\$ "
+# Running git_status can take a while on git repos on NFS mounts.
+# PS1="${user_and_host}${colon_separator}${current_dir}${git_branch_color}\$(git_branch)${git_status_color}\$(git_status)${text_color}\$ "
+PS1="${user_and_host}${colon_separator}${current_dir}${git_branch_color}\$(git_branch)${text_color}\$ "
 
 # }}}
 # FUNCTIONS ################################################################################### {{{
@@ -484,6 +500,23 @@ ranger_cd() {
         cd -- "$chosen_dir" || exit 1
     fi
     rm -f -- "$temp_file"
+}
+
+# Same as ranger_cd(), but for lf
+# https://github.com/gokcehan/lf/blob/master/etc/lfcd.sh
+alias c='lfcd'
+lfcd() {
+    temp_file="$(mktemp -t "lf_cd.XXXXXXXXXX")"
+    lf -last-dir-path="$temp_file" -- "$@"
+    if [ -f "$temp_file" ]; then
+        dir="$(cat "$temp_file")"
+        rm -f "$temp_file"
+        if [ -d "$dir" ]; then
+            if [ "$dir" != "$(pwd)" ]; then
+                cd "$dir" || exit 1
+            fi
+        fi
+    fi
 }
 
 # Make nvim follow symlinks. This makes it easier to use Git mappings within nvim.

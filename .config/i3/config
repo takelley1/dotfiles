@@ -1,7 +1,10 @@
 
 ##############################################################################
-# SHARED CONFIG
+# i3 MAIN CONFIG FILE
 ##############################################################################
+
+# Include the configuration unique to the current host.
+include ~/.config/i3/config-unique-`hostname`
 
 # --------------------------------------------------------------------------------------------------
 # STARTUP ------------------------------------------------------------------------------------------
@@ -23,17 +26,17 @@
    exec_always --no-startup-id xhost + &>/dev/null
 
  # Start apps automatically and assign them to workspaces.
-   exec --no-startup-id i3-msg "workspace 1; exec firefox"
+   # exec --no-startup-id i3-msg "workspace 1; exec firefox"
    # assign [class="firefox"] number "1: firefox"
 
-   exec --no-startup-id i3-msg "workspace 2; exec alacritty"
+   # exec --no-startup-id i3-msg "workspace 2; exec alacritty"
    # assign [class="alacritty"] number "2: terminal"
 
    # exec --no-startup-id i3-msg "workspace 3; exec pycharm"
    # assign [class="jetbrains-pycharm-ce"] number 3
 
  # Return to workspace 2.
-   exec --no-startup-id i3-msg "workspace 2"
+   # exec --no-startup-id i3-msg "workspace 2"
 
 # --------------------------------------------------------------------------------------------------
 # KEYBOARD -----------------------------------------------------------------------------------------
@@ -76,7 +79,7 @@
  # Hide side borders when only one window is shown in workspace.
    hide_edge_borders smart
  # Make the side borders X pixels wide on workspaces with >1 window.
-   default_border pixel 2
+   default_border pixel 1
  # Don't wrap focus.
    focus_wrapping no
  # Don't move the mouse cursor to the workspace when changing focus to it.
@@ -109,7 +112,7 @@
  # A small script is used to ensure L and R channels are in sync.
    bindsym XF86AudioLowerVolume exec --no-startup-id ~/.config/i3/scripts/volume-change.sh down
    bindsym XF86AudioRaiseVolume exec --no-startup-id ~/.config/i3/scripts/volume-change.sh up
-   bindsym XF86AudioMute exec --no-startup-id amixer set Master 0%
+   #bindsym XF86AudioMute exec --no-startup-id amixer set Master 0%
 
    bindsym $mod+Down exec --no-startup-id ~/.config/i3/scripts/volume-change.sh down
    bindsym $mod+Up exec --no-startup-id ~/.config/i3/scripts/volume-change.sh up
@@ -126,9 +129,12 @@
 
  # App launch hotkeys.
    # Terminal emulator (config file is ~/.config/alacritty/alacritty.yml).
-   bindsym $mod+Return exec alacritty
+   # Create a terminal inside Neovim
+   bindsym $mod+Return exec alacritty --command nvim -c terminal
+   # Create a bare terminal
+   bindsym $mod+Shift+Return exec alacritty
    # Backup terminal emulator (config file is ~/.Xdefaults).
-   bindsym $mod+Shift+Return exec urxvt
+   bindsym $mod+Shift+t exec urxvt
    # Rofi app launcher.
    bindsym $mod+d exec rofi -show run -lines 30 -terminal alacritty
    # Also use Rofi to quickly switch workspaces.
@@ -151,7 +157,7 @@
  # Reload the configuration file.
    bindsym $mod+$mod2+Control+c reload
  # Restart i3 in-place (preserves layout/session, can be used to upgrade i3).
-   bindsym $mod+Control+r exec --no-startup-id ~/.config/i3/scripts/i3-restart.sh
+   bindsym $mod+Control+r exec --no-startup-id i3-msg restart
  # Exit i3 (logs out of X session).
    bindsym $mod+$mod2+Control+e exec --no-startup-id i3-msg exit
 
@@ -185,9 +191,14 @@
   #bindsym $mod+f fullscreen toggle
 
  # Toggle tiling / floating.
-   bindsym $mod+f floating toggle
- # Toggle vertically split / horizontally split windows.
-   bindsym $mod+v layout toggle splitv splith
+   bindsym $mod+Control+f floating toggle
+ # Toggle vertically split / horizontally split windows. The names are,
+ #   confusingly, reversed.
+ # splith creates a vertical split.
+ # splitv creates a horizontal split.
+   bindsym $mod+v splith
+   # f for "flat"
+   bindsym $mod+f splitv
 
  # Switch between the two most recently-used workspaces.
    bindsym $mod+Tab workspace back_and_forth
@@ -221,7 +232,11 @@
    bindsym $mod+Shift+0 workspace 20
 
  # Move focused container to workspace.
+   bindsym $mod+Control+n move container to workspace next_on_output
+   bindsym $mod+Control+p move container to workspace prev_on_output
+
    bindsym $mod+Control+c exec --no-startup-id "~/.config/i3/scripts/new-workspace.sh move"
+
    bindsym $mod+Control+1 move container to workspace 1
    bindsym $mod+Control+2 move container to workspace 2
    bindsym $mod+Control+3 move container to workspace 3
