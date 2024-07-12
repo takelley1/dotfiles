@@ -293,14 +293,11 @@
       Plug 'vim-airline/vim-airline-themes'
       Plug 'kevinhwang91/rnvimr'            " Ranger in a floating window.
       Plug 'drewtempelmeyer/palenight.vim' " Colorscheme.
-      " Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' } " Code completion.
-      " Plug 'deoplete-plugins/deoplete-jedi' " Deoplete Python integration.
     call plug#end()
   " Auto Pairs -------------------------------------------------------------------------------
 
     " Don't auto-pair anything by default.
     let g:AutoPairs={}
-
     " Only activate auto-pair for the below strings and filetypes.
     autocmd mygroup FileType yaml.ansible,jinja2,sh,markdown,tex
       \ let b:AutoPairs=AutoPairsDefine
@@ -371,7 +368,7 @@
     " let g:ale_ansible_ansible_lint_executable = 'ansible-lint --nocolor --parseable-severity -x yaml -c ~/.config/nvim/linters/ansible-lint.yml ' . expand('%:p')
   " Coq --------------------------------------------------------------------------------------
 
-    " Run on start
+    " Run code completion on start
     autocmd mygroup VimEnter * silent :COQnow -s
 
   " Git-blame --------------------------------------------------------------------------------
@@ -379,18 +376,6 @@
     " Disable by default.
     let g:gitblame_enabled = 0
     nnoremap <silent> <leader>B :GitBlameToggle<CR>
-  " Deoplete ---------------------------------------------------------------------------------
-
-    " Use TAB to cycle through deoplete completion popups.
-    " inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
-
-    "let g:deoplete#enable_at_startup = 1
-    "call deoplete#custom#source('_', 'min_pattern_length', 1)
-    "call deoplete#custom#option('auto_complete_delay', 200)
-
-    "" Don't show the default popup window.
-    "set completeopt-=preview
-    "set shortmess+=c
   " Floaterm ---------------------------------------------------------------------------------
 
     " Use to launch lf, a backup for when ranger is slow.
@@ -400,9 +385,9 @@
     let g:floaterm_width = 0.9
     let g:floaterm_height = 0.9
   " Gitsigns ---------------------------------------------------------------------------------
-"lua<<EOF
-"require('gitsigns').setup()
-"EOF
+lua<<EOF
+require('gitsigns').setup()
+EOF
   " Highlighted Yank -------------------------------------------------------------------------
 
     let g:highlightedyank_highlight_duration = 180
