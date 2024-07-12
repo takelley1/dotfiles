@@ -201,6 +201,13 @@ else
     user_color=32
 fi
 
+user_and_host="\[\033[01;${user_color}m\]\u@\h"
+current_dir="\[\033[01;34m\]\w"
+colon_separator="\[\033[00m\]:"
+text_color="\[\033[00m\]"
+
+PS1="${user_and_host}${colon_separator}${current_dir}${text_color}\$ "
+
 # }}}
 # FUNCTIONS ################################################################################### {{{
 
