@@ -139,7 +139,6 @@ rootencryption.pem
 .oci
 .pylint.d
 .redhat
-.vscode-server
 openvpn_config
 .vim/sessions
 .config/vlc
