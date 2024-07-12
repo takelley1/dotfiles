@@ -1,3 +1,7 @@
 {
-    "vim.neovimConfigPath": "~/.config/nivm/wsl/init.vim"
+    "vim.neovimConfigPath": "~/.config/nivm/wsl/init.vim",
+    "vim.handleKeys": 
+        {
+        "<C-e>": false
+        }
 }
