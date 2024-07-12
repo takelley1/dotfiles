@@ -278,8 +278,8 @@
       Plug 'Konfekt/FastFold'               " More performant folding.
       " Plug 'tpope/vim-unimpaired'           " Navigation with square bracket keys.
       " Plug 'easymotion/vim-easymotion'      " Alternative line navigation.
-      " Plug 'pearofducks/ansible-vim'        " Ansible syntax.
-      " Plug 'ekalinin/Dockerfile.vim'        " Dockerfile syntax.
+      Plug 'pearofducks/ansible-vim'        " Ansible syntax.
+      Plug 'ekalinin/Dockerfile.vim'        " Dockerfile syntax.
       Plug 'gcmt/taboo.vim'                 " Rename tabs.
       " Plug 'wesQ3/vim-windowswap'           " Easily swap window splits with <leader>ww
       " Plug 'godlygeek/tabular'              " Alignment tools.
@@ -340,6 +340,7 @@
                      \ 'sh': ['remove_trailing_lines', 'shfmt', 'trim_whitespace'],
                      \ 'python': ['autoimport', 'black', 'remove_trailing_lines', 'reorder-python-imports', 'trim_whitespace'],
                      \ 'terraform': ['terraform', 'remove_trailing_lines', 'trim_whitespace'],
+                     \ 'yaml': ['remove_trailing_lines', 'trim_whitespace'],
                      \ }
 
     let g:ale_linters = {'yaml': ['yamllint'],
