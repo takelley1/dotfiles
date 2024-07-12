@@ -1,9 +1,7 @@
-"{% raw %}
 " OPTIONS ##################################################################################### {{{
 
   filetype indent plugin on             " Identify the filetype, load indent and plugin files.
   syntax on                             " Force syntax highlighting.
-  let g:vimsyn_embed = 'lPr'            " Allow embedded syntax highlighting.
   if has('termguicolors')
     set termguicolors                   " Enable 24-bit color support.
   endif
@@ -25,7 +23,7 @@
   set clipboard+=unnamedplus            " Map vim copy buffer to system clipboard.
   set splitbelow splitright             " Splits open at the bottom and right, rather than top/left.
   set noswapfile nobackup               " Don't use backups since most files are in Git.
-  set updatetime=500                    " Increase plugin update speed.
+  set updatetime=1000                    " Increase plugin update speed.
 
   let g:python3_host_prog = '/usr/bin/python3' " Speed up startup.
   let g:loaded_python_provider = 0             " Disable Python 2 provider.
@@ -46,6 +44,21 @@
     let &undodir = target_path
     set undofile
   endif
+
+  " https://superuser.com/a/1557751
+  " set clipboard+=unnamedplus
+  " let g:clipboard = {
+  "           \   'name': 'win32yank-wsl',
+  "           \   'copy': {
+  "           \      '+': 'win32yank.exe -i --crlf',
+  "           \      '*': 'win32yank.exe -i --crlf',
+  "           \    },
+  "           \   'paste': {
+  "           \      '+': 'win32yank.exe -o --lf',
+  "           \      '*': 'win32yank.exe -o --lf',
+  "           \   },
+  "           \   'cache_enabled': 0,
+  "           \ }
 
 " }}}
 " AUTOCOMMANDS ################################################################################ {{{
@@ -70,7 +83,7 @@
   " Auto-save file.
   autocmd mygroup InsertLeave,CursorHold,BufLeave * if &readonly ==# 0 | silent! write | endif
 
-  " Manage insert mode when entering terminals ------------------------------------------------ {{{
+  " Manage insert mode when entering terminals -----------------------------------------------
   if exists(':terminal')
     autocmd mygroup BufEnter * :call TermInsert()
     autocmd mygroup TermOpen * setlocal nonumber | startinsert
@@ -97,14 +110,17 @@
       setlocal nonumber
     endif
   endfunction
-  " }}}
 
   " Switch to normal mode when entering all other buffers.
   autocmd mygroup BufEnter * if &buftype !=# "terminal" | stopinsert | endif
 
-  " https://vim.fandom.com/wiki/Set_working_directory_to_the_current_file
-  " Set working dir to current file's dir.
-  autocmd mygroup BufEnter * silent! lcd %:p:h
+  " Set working dir to the root of the current file's git repo.
+  " This allows the linters from the ALE plugin to use the repo's lint config file.
+  autocmd mygroup BufWritePost * silent! :call CdToGitRoot()
+  function! CdToGitRoot()
+    let b:gitroot = system(['git', '-C', expand('%:p:h'), 'rev-parse', '--show-toplevel'])
+    lcd `=b:gitroot`
+  endfunction
 
   " https://stackoverflow.com/a/14449484
   " Return to last position when re-opening file.
@@ -152,7 +168,7 @@
     autocmd mygroup FileType markdown setlocal colorcolumn=120 textwidth=80
     autocmd mygroup BufEnter *.md setlocal foldmethod=manual foldlevelstart=99 concealcursor= conceallevel=0
   " Python ----------------------------------------------------------------------------------------
-    autocmd mygroup FileType python setlocal shiftwidth=4 softtabstop=4 tabstop=4 colorcolumn=100 nowrap
+    autocmd mygroup FileType python setlocal textwidth=100 shiftwidth=4 softtabstop=4 tabstop=4 colorcolumn=100 nowrap
     autocmd mygroup BufEnter *.py setlocal foldlevelstart=0 foldmethod=indent foldnestmax=2 foldignore=""
   " Shell -----------------------------------------------------------------------------------------
     autocmd mygroup FileType sh setlocal shiftwidth=4 softtabstop=4 tabstop=4 foldlevelstart=0 foldmethod=marker colorcolumn=120 nowrap
@@ -184,62 +200,25 @@
   nnoremap <silent> <leader>w :write<CR><C-L>
   " Jump back and forth between files.
   nnoremap <silent> <BS> :e#<CR><C-L>
-  " Text wrapping toggle.
-  nnoremap <leader>n :set wrap!<CR><C-L>
   " Quickly add timestamp for dated notes.
-  nnoremap <silent> <leader>d :r !printf "\%s" "- $(date +\%Y/\%m/\%d\ \%a\ \%H:\%M) - "<CR>
-
-  " Use `call P('highlight')` to put the output of `highlight` in the current buffer, {{{
-  "   allowing the content to be searched through.
-  function! P(command)
-    let opts = {
-      \ 'relative': 'editor',
-      \ 'style': 'minimal',
-      \ 'width': float2nr(round(0.55 * &columns)),
-      \ 'height': float2nr(round(0.75 * &lines)),
-      \ 'col': float2nr(round(0.27 * &columns)),
-      \ 'row': float2nr(round(0.05 * &lines)),
-      \ }
-    let float_buffer = nvim_create_buf(v:false, v:true)
-    let win = nvim_open_win(float_buffer, v:true, opts)
-    set filetype=floating
-    put =execute(a:command)
-    normal! ggdj
-  endfunction
-  " Mimic less's mappings.
-  autocmd FileType floating nnoremap <buffer> <space> <C-d>
-  autocmd FileType floating nnoremap <buffer> b       <C-u>
-  autocmd FileType floating nnoremap <buffer> q       :close!<CR>
-  autocmd FileType floating nnoremap <buffer> Q       :close!<CR>
-  autocmd FileType floating nnoremap <buffer> <CR>    :close!<CR>
-  autocmd FileType floating nnoremap <buffer> <Esc>   :close!<CR>
-  autocmd FileType floating
-    \ setlocal bufhidden=delete shiftwidth=3 scrolloff=999 nonumber
-  " }}}
+  nnoremap <silent> <leader>d :r !printf "\%s" "- $(date +\%Y/\%m/\%d\ \%H:\%M) - "<CR>
 
   " Toggle preventing horizonal or vertial resizing.
   nnoremap <leader>H :set winfixheight! <bar> set winfixheight?<CR>
   nnoremap <leader>W :set winfixwidth! <bar> set winfixwidth?<CR>
 
+  " Toggle wrapping
+  nnoremap <silent> <leader>N :set wrap!<CR><C-L>
+
   " Columnize selection.
   vnoremap t :!column -t<CR>
   " Turn off highlighted search results.
   nnoremap <silent> Q :nohl<CR><C-L>
-  " Make it easier to copy text from the terminal using the mouse.
+  " Make it easier to copy using the mouse.
   nnoremap <leader>c :set number! <bar> :Gitsigns toggle_signs<CR><C-L>
   " Easy turn on paste mode.
   nnoremap <leader>p :set paste!<CR>
   nnoremap <space> zA
-  " Insert space.
-  " nnoremap <space> i<space><ESC>
-  " Insert line break.
-  " nnoremap <CR> i<CR><ESC>  " This will break lazygit.
-
-  " https://github.com/jdhao/nvim-config/blob/master/core/mappings.vim
-  " Continuous visual shifting (does not exit Visual mode), `gv` means
-  " to reselect previous visual area, see https://superuser.com/q/310417/736190
-  "xnoremap < <gv
-  "xnoremap > >gv
 
   " Easily edit vimrc (ve for 'vim edit').
   nnoremap <leader>ve :edit ~/.config/nvim/init.vim<CR>
@@ -256,35 +235,37 @@
 " }}}
 " PLUGINS ##################################################################################### {{{
 
+  " See https://gist.github.com/PeterRincker/582ea9be24a69e6dd8e237eb877b8978
+  " source $HOME/SortGroup.vim
+
   if has('nvim') && filereadable($HOME . '/.local/share/nvim/site/autoload/plug.vim')
-  " Vim-Plug ---------------------------------------------------------------------------------- {{{
+  " Vim-Plug ---------------------------------------------------------------------------------
 
     call plug#begin(stdpath('data') . '/plugged')
 
-      if has('nvim-0.5') " Check for lua functionality.
-        " Plug 'tjdevries/colorbuddy.vim' " Colorscheme w/ Tree-sitter support.
-        " Plug 'Th3Whit3Wolf/onebuddy'
-        " Plug 'tanvirtin/nvim-monokai'
-        " Plug 'neovim/nvim-lspconfig'
-        " Plug 'nvim-lua/popup.nvim'
-        " Plug 'nvim-lua/popup.nvim'    " Dependency for nvim-spectre.
-        " Plug 'windwp/nvim-spectre'    " Search and replace.
-        Plug 'voldikss/vim-floaterm' " Use to launch lf, a backup for when ranger is slow.
-        " Plug 'nvim-telescope/telescope.nvim'
-        Plug 'nvim-lua/plenary.nvim'  " Dependency for nvim-spectre, gitsigns.
-        Plug 'lewis6991/gitsigns.nvim' " Lua replacement for gitgutter.
-        " Plug 'nvim-treesitter/nvim-treesitter' " Tree-sitter syntax highlighting.
-        " Plug 'f-person/git-blame.nvim'     " Git blame on each line.
-        " Plug 'norcalli/nvim-colorizer.lua' " Automatically colorize color hex codes.
-        " Plug 'hrsh7th/nvim-compe'          " Lua replacement for Deoplete.
-        " Plug 'glepnir/indent-guides.nvim'  " Lua replacement for yggdroot/indentline.
-        " Plug 'b3nj5m1n/kommentary'         " Lua replacement for nerdcommenter.
-      endif
-
+      " Plug 'tjdevries/colorbuddy.vim' " Colorscheme w/ Tree-sitter support.
+      " Plug 'Th3Whit3Wolf/onebuddy'
+      " Plug 'tanvirtin/nvim-monokai'
+      Plug 'neovim/nvim-lspconfig'
+      " Plug 'nvim-lua/popup.nvim'
+      " Plug 'nvim-lua/popup.nvim'    " Dependency for nvim-spectre.
+      " Plug 'windwp/nvim-spectre'    " Search and replace.
+      Plug 'voldikss/vim-floaterm' " Use to launch lf, a backup for when ranger is slow.
+      " Plug 'nvim-telescope/telescope.nvim'
+      Plug 'nvim-lua/plenary.nvim'  " Dependency for nvim-spectre, gitsigns.
+      Plug 'lewis6991/gitsigns.nvim' " Lua replacement for gitgutter.
+      " Plug 'nvim-treesitter/nvim-treesitter' " Tree-sitter syntax highlighting.
+      " Plug 'f-person/git-blame.nvim'     " Git blame on each line.
+      " Plug 'norcalli/nvim-colorizer.lua' " Automatically colorize color hex codes.
+      Plug 'ms-jpq/coq_nvim', {'branch': 'coq'} " Code completion.
+      Plug 'ms-jpq/coq.artifacts', {'branch': 'artifacts'}
+      Plug 'ms-jpq/coq.thirdparty', {'branch': '3p'}
+      " Plug 'glepnir/indent-guides.nvim'  " Lua replacement for yggdroot/indentline.
+      " Plug 'b3nj5m1n/kommentary'         " Lua replacement for nerdcommenter.
       Plug 'hashivim/vim-terraform'         " HashiCorp Terraform support.
       Plug 'preservim/nerdcommenter'        " Comment blocks.
       Plug 'kassio/neoterm'                 " REPL integration for interactive Python coding.
-      " Plug 'tmhedberg/SimpylFold'  " Better folding in Python.
+      Plug 'tmhedberg/SimpylFold'  " Better folding in Python.
       " Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}  " Python code highlighting.
       Plug 'kdheepak/lazygit.nvim'
       Plug 'ntpeters/vim-better-whitespace' " Highlight and strip whitespace.
@@ -294,15 +275,15 @@
       " Plug 'tpope/vim-eunuch'               " Better shell commands.
       " Plug 'tpope/vim-repeat'               " Repeat plugin actions.
       " Plug 'brooth/far.vim'                 " Find and replace.
-      " Plug 'Konfekt/FastFold'               " More performant folding.
+      Plug 'Konfekt/FastFold'               " More performant folding.
       " Plug 'tpope/vim-unimpaired'           " Navigation with square bracket keys.
       " Plug 'easymotion/vim-easymotion'      " Alternative line navigation.
-      Plug 'pearofducks/ansible-vim'        " Ansible syntax.
+      " Plug 'pearofducks/ansible-vim'        " Ansible syntax.
       " Plug 'ekalinin/Dockerfile.vim'        " Dockerfile syntax.
       Plug 'gcmt/taboo.vim'                 " Rename tabs.
       " Plug 'wesQ3/vim-windowswap'           " Easily swap window splits with <leader>ww
       " Plug 'godlygeek/tabular'              " Alignment tools.
-      Plug 'plasticboy/vim-markdown'        " Better markdown syntax highlighting.
+      " Plug 'plasticboy/vim-markdown'        " Better markdown syntax highlighting.
       Plug 'jiangmiao/auto-pairs'           " Auto-create bracket and quote pairs.
       " Plug 'preservim/tagbar'               " Function navigation on large files.
       Plug 'mbbill/undotree'                " Visualize and navigate Vim's undo tree.
@@ -312,21 +293,10 @@
       Plug 'vim-airline/vim-airline-themes'
       Plug 'kevinhwang91/rnvimr'            " Ranger in a floating window.
       Plug 'drewtempelmeyer/palenight.vim' " Colorscheme.
-      Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' } " Code completion.
-      Plug 'deoplete-plugins/deoplete-jedi' " Deoplete Python integration.
-
-      Plug 'lervag/vimtex', { 'for': 'tex' }                  " LaTeX helpers.
-      " Run :LLPStartPreview to start preview window.
-      Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }  " LaTeX live preview.
-      " Plug 'lambdalisue/suda.vim' " Edit files with sudo. This causes performance issues at work.
-      Plug 'Shougo/neco-vim' " Deoplete VimScript integration.
-      " Plug 'fszymanski/deoplete-emoji' " Auto-complete `:` emoji in markdown files.
-      Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  } " Render markdown.
-
+      " Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' } " Code completion.
+      " Plug 'deoplete-plugins/deoplete-jedi' " Deoplete Python integration.
     call plug#end()
-  " }}}
-
-  " Auto Pairs -------------------------------------------------------------------------------- {{{
+  " Auto Pairs -------------------------------------------------------------------------------
 
     " Don't auto-pair anything by default.
     let g:AutoPairs={}
@@ -348,13 +318,7 @@
       \ '"""':'"""',
       \ "'''":"'''"
       \ })
-
-  " }}}
-  " Airline ----------------------------------------------------------------------------------- {{{
-
-    let g:airline_theme='palenight'
-    " Use Nerd Fonts from Vim-devicons.
-    let g:airline_powerline_fonts = 1
+  " Airline ----------------------------------------------------------------------------------
 
     let g:airline#extensions#vimagit#enabled = 1
     let g:airline_highlighting_cache = 1
@@ -369,9 +333,10 @@
     let g:airline#extensions#keymap#enabled = 0
     let g:airline#extensions#fzf#enabled = 0
     let g:airline#extensions#netrw#enabled = 0
+  " ALE --------------------------------------------------------------------------------------
 
-  " }}}
-  " ALE --------------------------------------------------------------------------------------- {{{
+    " Jump to linting errors with <leader>n
+    nnoremap <silent> <leader>n :ALENextWrap<CR>
 
     " Have ALE remove extra whitespace and trailing lines.
     let g:ale_fixers = {'*': ['remove_trailing_lines', 'trim_whitespace'],
@@ -382,11 +347,11 @@
 
     let g:ale_linters = {'yaml': ['yamllint'],
                       \  'tex': ['texlab'],
-                      \  'python': ['cspell', 'flake8', 'mypy', 'pydocstyle', 'pylint']
+                      \  'python': ['flake8', 'mypy', 'pydocstyle', 'pylint']
                       \ }
 
     let g:ale_fix_on_save = 1  " ALE will fix files automatically when they're saved.
-    let g:ale_lint_on_insert_leave = 1 " Run linting after exiting insert mode.
+    " let g:ale_lint_on_insert_leave = 1 " Run linting after exiting insert mode.
 
     let g:ale_lint_delay = 300 " Increase linting speed.
 
@@ -395,34 +360,38 @@
     " Indent Bash files with 4 spaces.
     let g:ale_sh_shfmt_options = '-i 4'
     " Python
-    let g:ale_python_flake8_options = '--config ~/.config/nvim/linters/flake8.config'
-    " let g:ale_python_pylint_options = '--rcfile ~/.config/nvim/linters/pylintrc.config'
-    " let g:ale_python_mypy_options   = '--strict --ignore-missing-imports --no-site-packages --exclude '.*test.*'
+    " Relies on the CdToGitRoot() function in this file to ensure the working
+    "   directory is the root of the git repo.
+    let g:ale_python_flake8_options = '--config ./conf/.flake8rc'
+    let g:ale_python_pylint_options = '--rcfile ./conf/.pylintrc'
+    let g:ale_python_mypy_options   = '--config-file ./conf/mypy.ini'
 
     " YAML
     let g:ale_yaml_yamllint_options = '--config-file ~/.config/nvim/linters/yamllint.yml'
     " let g:ale_ansible_ansible_lint_executable = 'ansible-lint --nocolor --parseable-severity -x yaml -c ~/.config/nvim/linters/ansible-lint.yml ' . expand('%:p')
+  " Coq --------------------------------------------------------------------------------------
 
-  " }}}
-  " Git-blame --------------------------------------------------------------------------------- {{{
+    " Run on start
+    autocmd mygroup VimEnter * silent :COQnow -s
+
+  " Git-blame --------------------------------------------------------------------------------
 
     " Disable by default.
     let g:gitblame_enabled = 0
     nnoremap <silent> <leader>B :GitBlameToggle<CR>
-
-  " }}}
-  " Deoplete ---------------------------------------------------------------------------------- {{{
+  " Deoplete ---------------------------------------------------------------------------------
 
     " Use TAB to cycle through deoplete completion popups.
-    inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
+    " inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 
-    let g:deoplete#enable_at_startup = 1
+    "let g:deoplete#enable_at_startup = 1
+    "call deoplete#custom#source('_', 'min_pattern_length', 1)
+    "call deoplete#custom#option('auto_complete_delay', 200)
 
-    " Don't show the default popup window.
-    set completeopt-=preview
-
-  " }}}
-  " Floaterm ---------------------------------------------------------------------------------- {{{
+    "" Don't show the default popup window.
+    "set completeopt-=preview
+    "set shortmess+=c
+  " Floaterm ---------------------------------------------------------------------------------
 
     " Use to launch lf, a backup for when ranger is slow.
     command! LF FloatermNew lf
@@ -430,46 +399,19 @@
     let g:floaterm_opener = 'edit'
     let g:floaterm_width = 0.9
     let g:floaterm_height = 0.9
-
-  " }}}
-  " Gitsigns ---------------------------------------------------------------------------------- {{{
-
-    lua require('gitsigns').setup()
-
-  " }}}
-  " Highlighted Yank -------------------------------------------------------------------------- {{{
+  " Gitsigns ---------------------------------------------------------------------------------
+"lua<<EOF
+"require('gitsigns').setup()
+"EOF
+  " Highlighted Yank -------------------------------------------------------------------------
 
     let g:highlightedyank_highlight_duration = 180
     highlight link HighlightedyankRegion Search
-
-  " }}}
-  " LazyGit ----------------------------------------------------------------------------------- {{{
+  " LazyGit ----------------------------------------------------------------------------------
 
     nnoremap <silent> <leader>m :LazyGit<CR>
     let g:lazygit_floating_window_scaling_factor = 0.92
-
-  " }}}
-  " Latex Live Preview ------------------------------------------------------------------------ {{{
-
-    " Set PDF viewer. Use GNOME's evince since Zathura crashes a lot.
-    let g:livepreview_previewer = 'evince'
-    " Don't refresh preview on CursorHold autocommand.
-    let g:livepreview_cursorhold_recompile = 0
-
-  " }}}
-  " Markdown Preview -------------------------------------------------------------------------- {{{
-
-    " Markdown preview with mp.
-    autocmd mygroup FileType markdown nnoremap mp :MarkdownPreview<CR><C-L>
-
-    "let g:mkdp_auto_start = 1  " Automatically launch rendered markdown in browser.
-    let g:mkdp_auto_close = 1   " Automatically close rendered markdown in browser.
-
-    " Use vimb since Firefox won't automatically close the rendered markdown window.
-    let g:mkdp_browser = 'vimb'
-
-  " }}}
-  " Neoterm ----------------------------------------------------------------------------------- {{{
+  " Neoterm ----------------------------------------------------------------------------------
 
     " Open REPL terminal windows in a bottom split.
     let g:neoterm_default_mod = 'botright'
@@ -485,17 +427,13 @@
     "   the current mapping to open a terminal in the current window.
     let g:neoterm_automap_keys = ',lt'
 
-
-  " }}}
-  " NERD Commenter ---------------------------------------------------------------------------- {{{
+  " NERD Commenter ---------------------------------------------------------------------------
 
     " <leader>cc to comment a block.
     " <leader>cu to uncomment a block.
     let g:NERDSpaceDelims = 1
     let g:NERDDefaultAlign = 'left'
-
-  " }}}
-  " Rnvimr ------------------------------------------------------------------------------------ {{{
+  " Rnvimr -----------------------------------------------------------------------------------
 
     nnoremap <silent> <leader>r :RnvimrToggle<CR>
 
@@ -528,53 +466,32 @@
       \ 'row': float2nr(round(0.05 * &lines)),
       \ 'style': 'minimal'
       \ }
-
-  " }}}
-  " Taboo ------------------------------------------------------------------------------------- {{{
+  " Taboo ------------------------------------------------------------------------------------
 
     set sessionoptions+=tabpages,globals  " Help taboo remember session options.
     let g:taboo_modified_tab_flag = ''    " Don't mark files as modified.
-
-  " }}}
-
-  " }}}
-  " Undotree ---------------------------------------------------------------------------------- {{{
+  " Undotree ---------------------------------------------------------------------------------
 
     " <leader>u to open Vim's undo tree.
     nnoremap <leader>u :UndotreeToggle<CR>
+  " Vim Better Whitespace --------------------------------------------------------------------
 
-  " }}}
-  " Vim Better Whitespace --------------------------------------------------------------------- {{{
-
-    let g:show_spaces_that_precede_tabs = 1
+    " Don't highlight whitespace.
+    " let g:better_whitespace_enabled = 0
 
     " Automatically strip whitespace.
     " Calling StripWhite() during "CursorHold" will sometimes cause search results to disappear.
     autocmd mygroup BufWritePre,FileWritePre * call StripWhite()
-
-    " Disable whitespace highlighting in terminals.
-    autocmd mygroup TermEnter * :DisableWhitespace
-    autocmd mygroup TermLeave * :EnableWhitespace
 
     function! StripWhite()
         if &modifiable ==# 1 && &readonly ==# 0
             StripWhitespace
         endif
     endfunction
-
-  " }}}
-  " Vim Markdown ------------------------------------------------------------------------------ {{{
-
-    let g:vim_markdown_folding_disabled = 1
-    let g:vim_markdown_override_foldtext = 0
-
-  " }}}
-  " Vim Windowswap ---------------------------------------------------------------------------- {{{
+  " Vim Windowswap ---------------------------------------------------------------------------
 
     let g:windowswap_map_keys = 0
     nnoremap <silent> <leader>WW :call WindowSwap#EasyWindowSwap()<CR>
-
-  " }}}
 
 endif
 
@@ -626,12 +543,12 @@ endif
   nnoremap H ^
 
   " Navigate quick-fix menus, location lists, and helpgrep results.
-  nnoremap <down>         :cnext<CR>
-  nnoremap <leader><down> :clast<CR>
-  nnoremap <up>           :cprevious<CR>
-  nnoremap <leader><up>   :cfirst<CR>
-  nnoremap <left>         :copen<CR>
-  nnoremap <right>        :clist<CR>
+  " nnoremap <down>         :cnext<CR>
+  " nnoremap <leader><down> :clast<CR>
+  " nnoremap <up>           :cprevious<CR>
+  " nnoremap <leader><up>   :cfirst<CR>
+  " nnoremap <left>         :copen<CR>
+  " nnoremap <right>        :clist<CR>
 
   " CTRL-n/p to navigate tabs.
   nnoremap <silent> <C-p>      :tabprevious<CR>
@@ -756,6 +673,3 @@ endif
   inoremap <silent> <A--> <Esc>11gt<CR>
   nnoremap <silent> <A-=> 12gt
   inoremap <silent> <A-=> <Esc>12gt<CR>
-
-" }}}
-"{% endraw %}

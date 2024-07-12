@@ -1,4 +1,3 @@
-"{% raw %}
 " OPTIONS ##################################################################################### {{{
 
   filetype indent plugin on             " Identify the filetype, load indent and plugin files.
@@ -46,21 +45,6 @@
     set undofile
   endif
 
-  " https://superuser.com/a/1557751
-  set clipboard+=unnamedplus
-  let g:clipboard = {
-            \   'name': 'win32yank-wsl',
-            \   'copy': {
-            \      '+': 'win32yank.exe -i --crlf',
-            \      '*': 'win32yank.exe -i --crlf',
-            \    },
-            \   'paste': {
-            \      '+': 'win32yank.exe -o --lf',
-            \      '*': 'win32yank.exe -o --lf',
-            \   },
-            \   'cache_enabled': 0,
-            \ }
-
 " }}}
 " AUTOCOMMANDS ################################################################################ {{{
 
@@ -68,16 +52,6 @@
   augroup mygroup
     autocmd!
   augroup END
-
-  " Change cursor to bar when switching to insert mode.
-  " Requires `set -ga terminal-overrides ',*:Ss=\E[%p1%d q:Se=\E[2 q'` in tmux config if using tmux.
-  let &t_SI = "\e[6 q"
-  let &t_EI = "\e[2 q"
-  autocmd mygroup VimEnter * silent !echo -ne "\e[2 q"
-
-  " Clear search results when entering insert mode.
-  " This can make it more difficult to do find-replace actions.
-  " autocmd mygroup InsertEnter * let @/ = ''
 
   " Update file if changed from outside.
   autocmd mygroup FocusGained,BufEnter * if &readonly ==# 0 | silent! checktime | endif
@@ -665,6 +639,3 @@ endif
   inoremap <silent> <A--> <Esc>11gt<CR>
   nnoremap <silent> <A-=> 12gt
   inoremap <silent> <A-=> <Esc>12gt<CR>
-
-" }}}
-"{% endraw %}
