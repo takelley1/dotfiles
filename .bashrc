@@ -1,5 +1,10 @@
 #!/usr/bin/env bash
 
+# Return early if running under Devin CLI to prevent config loading
+if [[ "${DEVIN_CLI}" == "1" ]]; then
+    return
+fi
+
 # shellcheck disable=2076
 # Linux-specific aliases and environment variables.
 # shellcheck disable=2154
@@ -237,5 +242,11 @@ nvim() {
             args+=("$i")
         fi
     done
-    /usr/bin/nvim -p "${args[@]}"
+    /usr/local/bin/nvim -p "${args[@]}"
 }
+
+# direnv integration
+eval "$(direnv hook bash)"
+
+# Atuin shell history integration (Up Arrow disabled)
+eval "$(atuin init bash --disable-up-arrow)"
