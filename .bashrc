@@ -105,6 +105,52 @@ alias h='cd ~'
 alias u='cd ../' # "Up 1 directory."
 
 # }}}
+# Modern CLI Replacements ------------------------------------------------------------------{{{
+
+# Use bat as a modern replacement for cat (syntax highlighting, paging)
+if hash bat 2>/dev/null; then
+    export BAT_THEME='TwoDark'
+    alias cat='bat --style=plain'
+    alias batp='bat' # with layout & paging
+fi
+
+# Use eza as a modern replacement for ls (icons, git status, tree view)
+if hash eza 2>/dev/null; then
+    alias ls='eza --icons --group-directories-first'
+    alias l='eza -la --icons --git --group-directories-first'
+    alias ll='eza -lh --icons --git --group-directories-first'
+    alias la='eza -la --icons --git --group-directories-first'
+    alias lt='eza --tree --icons'
+    alias lr='eza --reverse --icons --group-directories-first'
+    alias lsr='eza -lh --reverse --icons --git --group-directories-first'
+    alias lsal='eza -la --icons --git --group-directories-first'
+    alias lar='eza -la --reverse --icons --git --group-directories-first'
+    alias lS='eza -lh --sort=size --icons --git --group-directories-first'
+    alias lD='eza -lh --sort=date --icons --git --group-directories-first'
+fi
+
+# Use rg (ripgrep) as a modern replacement for grep (faster, gitignore aware)
+if hash rg 2>/dev/null; then
+    alias grep='rg'
+    alias rgi='rg -i'
+fi
+
+# Use fd as a modern replacement for find (faster, simpler syntax)
+if hash fd 2>/dev/null; then
+    alias find='fd'
+fi
+
+# Use duf as a modern replacement for df (prettier disk usage table)
+if hash duf 2>/dev/null; then
+    alias df='duf'
+fi
+
+# Use htop as a modern replacement for top (interactive process viewer)
+if hash htop 2>/dev/null; then
+    alias top='htop'
+fi
+
+# }}}
 
 # }}}
 # OPTIONS ##################################################################################### {{{
@@ -123,10 +169,7 @@ bind "set show-all-if-ambiguous on" # Display a list of the matching files.
 # cycling full results on the second Tab press (from bash version 5)
 bind "set menu-complete-display-prefix on"
 
-if hash bat 2>/dev/null; then
-    export BAT_THEME='TwoDark'
-    #alias cat='bat -p'
-fi
+
 
 if hash nvim 2>/dev/null; then
     export EDITOR="nvim"
