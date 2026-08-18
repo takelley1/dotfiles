@@ -218,7 +218,15 @@
       "Exec(gh issue list)",
       "Exec(gh repo view)",
       "Exec(gh run list)",
-      "Exec(gh run view)"
+      "Exec(gh run view)",
+      "Exec(tmux list-windows)",
+      "Exec(tmux show-environment)",
+      "Write(~/.config/nvim)",
+      "Exec(true)",
+      "Write(~/repos/_spartans)",
+      "Write(~/repos/_modbucket_devops/flux-cluster-management/clusters/e11-monitoring/config/rook-ceph)",
+      "Write(~/repos/_modbucket_devops/flux-cluster-management)",
+      "Write(~/uby)"
     ]
   }
 }

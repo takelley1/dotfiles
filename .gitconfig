@@ -1,1 +1,3 @@
-scripts/private-dotfiles/git/cfg-repo/gitconfig
+[user]
+	name = Austin Kelley
+	email = troy.kelley@ngc.com

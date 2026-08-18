@@ -60,6 +60,21 @@
   "           \   'cache_enabled': 0,
   "           \ }
 
+  if exists('$TMUX')
+    let g:clipboard = {
+          \   'name': 'tmux-xclip',
+          \   'copy': {
+          \      '+': ['sh', '-c', 'env DISPLAY=$(tmux show-environment DISPLAY | cut -d= -f2-) xclip -i -selection clipboard'],
+          \      '*': ['sh', '-c', 'env DISPLAY=$(tmux show-environment DISPLAY | cut -d= -f2-) xclip -i -selection primary'],
+          \    },
+          \   'paste': {
+          \      '+': ['sh', '-c', 'env DISPLAY=$(tmux show-environment DISPLAY | cut -d= -f2-) xclip -o -selection clipboard'],
+          \      '*': ['sh', '-c', 'env DISPLAY=$(tmux show-environment DISPLAY | cut -d= -f2-) xclip -o -selection primary'],
+          \   },
+          \   'cache_enabled': 1,
+          \ }
+  endif
+
 " }}}
 " AUTOCOMMANDS ################################################################################ {{{
 
@@ -579,6 +594,19 @@ endif
 
   nnoremap <silent> <A-Down>      :resize -2<CR><C-L>
   inoremap <silent> <A-Down> <Esc>:resize -2<CR><C-L>
+
+  " Leader + Arrow keys to resize splits (alternative for when Alt/Option is intercepted)
+  nnoremap <silent> <leader><Right>      :vertical resize +2<CR><C-L>
+  inoremap <silent> <leader><Right> <Esc>:vertical resize +2<CR><C-L>
+
+  nnoremap <silent> <leader><Left>      :vertical resize -2<CR><C-L>
+  inoremap <silent> <leader><Left> <Esc>:vertical resize -2<CR><C-L>
+
+  nnoremap <silent> <leader><Up>      :resize +2<CR><C-L>
+  inoremap <silent> <leader><Up> <Esc>:resize +2<CR><C-L>
+
+  nnoremap <silent> <leader><Down>      :resize -2<CR><C-L>
+  inoremap <silent> <leader><Down> <Esc>:resize -2<CR><C-L>
 
   if exists(':terminal')
 

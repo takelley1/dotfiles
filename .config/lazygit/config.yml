@@ -1,10 +1,8 @@
----
-
 gui:
   scrollHeight: 4
   scrollPastBottom: false
   mouseEvents: false
-  skipUnstageLineWarning: false
+  skipDiscardChangeWarning: false
   skipStashWarning: true
   sidePanelWidth: 0.3333
   expandFocusedSidePanel: true
@@ -29,10 +27,10 @@ gui:
     show: true
   skipNoStagedFilesWarning: false
 git:
-  paging:
-    colorArg: always
-    pager: ""
-    useConfig: false
+  diffRenderers:
+    - colorArg: always
+      useConfig: false
+      type: rawGit
   merging:
     manualCommit: false
     args: ""
@@ -42,10 +40,12 @@ git:
   autoFetch: true
   branchLogCmd: >
     git log --graph --color=always --abbrev-commit --decorate --date=relative --pretty=medium {{branchName}} --
-  allBranchesLogCmd: git log --graph --all --color=always --abbrev-commit --decorate --date=relative  --pretty=medium
+
   overrideGpg: false
   disableForcePushing: false
   commitPrefixes: {}
+  allBranchesLogCmds:
+    - git log --graph --all --color=always --abbrev-commit --decorate --date=relative  --pretty=medium
 update:
   method: prompt
   days: 14
@@ -91,7 +91,7 @@ keybinding:
     scrollDownMain-alt1: J
     scrollUpMain-alt2: <c-u>
     scrollDownMain-alt2: <c-d>
-    executeCustomCommand: ":"
+    executeShellCommand: ":"
     createRebaseOptionsMenu: m
     pushFiles: P
     pullFiles: p
@@ -146,8 +146,8 @@ keybinding:
     markCommitAsFixup: f
     createFixupCommit: F
     squashAboveCommits: S
-    moveDownCommit: <Down>
-    moveUpCommit: <Up>
+    # moveDownCommit: <Down>
+    # moveUpCommit: <Up>
     amendToCommit: A
     pickCommit: p
     revertCommit: t
@@ -156,7 +156,7 @@ keybinding:
     pasteCommits: v
     tagCommit: T
     checkoutCommit: <space>
-    resetCherryPick: <c-R>
+    # resetCherryPick: <c-R>
     copyCommitMessageToClipboard: <c-y>
   stash:
     popStash: g
