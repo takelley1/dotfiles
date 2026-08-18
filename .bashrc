@@ -88,6 +88,7 @@ ap() {
 alias bc='bc -l'
 alias tmux='tmux -f ~/.config/tmux/tmux.conf'
 alias tokei='tokei -n commas'
+alias k='kubectl'
 
 alias pip='pip --trusted-host pypi.org --trusted-host pypi.python.org --trusted-host files.pythonhosted.org'
 alias pip3='pip3 --trusted-host pypi.org --trusted-host pypi.python.org --trusted-host files.pythonhosted.org'
@@ -249,12 +250,37 @@ else
     user_color=32
 fi
 
+get_kube_context() {
+    if hash kubectl 2>/dev/null; then
+        local context
+        if [[ -z "${KUBECONFIG}" && -f "${HOME}/.kube/config" ]]; then
+            context=$(grep "current-context:" "${HOME}/.kube/config" 2>/dev/null | awk '{print $2}')
+        else
+            context=$(kubectl config current-context 2>/dev/null)
+        fi
+        if [[ -n "${context}" ]]; then
+            local colors=(
+                33 39 40 41 42 43 45 46 47 48 49 50
+                75 76 77 78 79 80 81 82 83 84 85 86
+                111 112 113 114 115 116 117 118 119 120 121 122
+                147 148 149 150 151 152 153 154 155 156 157 158
+                197 198 199 200 201 202 203 204 205 206 207 208 209 214 215 220 221 226
+            )
+            local hash_val
+            hash_val=$(echo -n "${context}" | cksum | cut -d' ' -f1)
+            local hash_idx=$(( hash_val % ${#colors[@]} ))
+            local color_code="${colors[$hash_idx]}"
+            echo -e "\001\033[01;36m\002[\001\033[38;5;${color_code}m\002${context}\001\033[01;36m\002]\001\033[00m\002 "
+        fi
+    fi
+}
+
 user_and_host="\[\033[01;${user_color}m\]\u@\h"
 current_dir="\[\033[01;34m\]\w"
 colon_separator="\[\033[00m\]:"
 text_color="\[\033[00m\]"
 
-PS1="${user_and_host}${colon_separator}${current_dir}${text_color}\$ "
+PS1="${user_and_host}${colon_separator}${current_dir}${text_color}\$ \$(get_kube_context)"
 
 # }}}
 # FUNCTIONS ################################################################################### {{{
@@ -293,3 +319,6 @@ eval "$(direnv hook bash)"
 
 # Atuin shell history integration (Up Arrow disabled)
 eval "$(atuin init bash --disable-up-arrow)"
+
+# Custom Firefox alias to use the latest Rapid Release version
+alias firefox='/opt/firefox-latest/firefox'
